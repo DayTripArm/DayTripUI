@@ -1,6 +1,9 @@
 import React from 'react';
 import FormInputText from "./Form/FormInputText";
 import FormButton from "./Form/FormButton";
+import FacebookLogin from 'react-facebook-login';
+
+import GoogleLogin from 'react-google-login';
 
 import {makeStyles} from "@material-ui/core/styles";
 import { indigo } from '@material-ui/core/colors';
@@ -69,6 +72,14 @@ function SignUp(props) {
     const { showSignUp } = props;
     const classes = useStyles();
 
+    const responseFacebook = (response) => {
+        console.log(response);
+    }
+
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
+
     return (
         <div className="log-in-form" style={{minHeight: "710px"}}>
             <header>
@@ -102,9 +113,26 @@ function SignUp(props) {
                 <FormButton label="sign up" customClass={classes.button}/>
 
                 <div className="or"></div>
-                <FormButton label="Login with facebook" customClass={classes.facebook}/>
 
-                <FormButton label="Login with google" customClass={classes.google}/>
+                <FacebookLogin
+                    appId="140290697419911"
+                    fields="name,email"
+                    scope="public_profile,email"
+                    callback={responseFacebook}
+                    textButton="Login with facebook"
+                    cssClass={classes.facebook}
+                />
+
+                <GoogleLogin
+                    clientId="439125939465-br0aotgaijd4i2of7nqg7r911u4tv4tj.apps.googleusercontent.com"
+                    buttonText="Login with google"
+                    fields="select_account"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    className={classes.google}
+                />
+                <br/>
+                <br/>
 
                 <div className="no-account">
                     <span>Already have an account? <a href="http://google.com">Login</a></span>
