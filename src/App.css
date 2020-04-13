@@ -38,10 +38,10 @@ a:visited {color: #FFFFFF;}
 
 .explore {
     position: absolute;
-    top: 424px;
+    top: 438px;
     left: 80px;
     z-index: 1;
-    width: 460px;
+    width: 657px;
 }
 
 .explore h2 {
@@ -79,16 +79,8 @@ a:visited {color: #FFFFFF;}
 
 .content {
     height: 800px;
-    background: white url("./assets/images/sign_in_background_1760_800.jpg") no-repeat center center;
+    background: linear-gradient(180deg, rgba(16, 15, 114, 0.6) 0%, rgba(16, 15, 114, 0.37) 41.29%, rgba(16, 15, 114, 0.16) 100%), url("./assets/images/home_background_1760_800.jpg") no-repeat center center;
     position: relative;
-}
-
-@media screen and (max-width: 1560px) {
-.content {
-    height: 700px;
-    background: white url("./assets/images/sign_in_background_1560_700.png") no-repeat center center;
-    position: relative;
-}
 }
 
 
@@ -183,6 +175,8 @@ header div.header-right-side select {
     outline: 0;
     background-color: rgba(255,255,255,0);
     padding: 5px;
+    color: #FFFFFF;
+    font-size: 16px;
 }
 
 header div.header-right-side select option {
@@ -273,6 +267,7 @@ header div.header-left-side div.daytrip span {
     background: #FFFFFF;
     box-shadow: 0 3px 4px rgba(5, 4, 62, 0.23);
     border-radius: 10px;
+    z-index: 1000;
 }
 
 .content div.log-in-form header {
@@ -524,4 +519,77 @@ footer h2.top-choices {
     display: flex;
     align-items: center;
     color: #100F72;
+}
+
+@media screen and (max-width: 1560px) {
+    .content {
+        height: 700px;
+        background: linear-gradient(180deg, rgba(16, 15, 114, 0.6) 0%, rgba(16, 15, 114, 0.37) 41.29%, rgba(16, 15, 114, 0.16) 100%), url("./assets/images/home_background_1560_700.png") no-repeat center center;
+    }
+
+    .explore { top: 338px; }
+}
+
+@media screen and (max-width: 1280px) {
+    .content {
+        height: 600px;
+        background: linear-gradient(180deg, rgba(16, 15, 114, 0.6) 0%, rgba(16, 15, 114, 0.37) 41.29%, rgba(16, 15, 114, 0.16) 100%), url("./assets/images/home_background_1280_600.png") no-repeat center center;
+    }
+
+    .explore { left: 40px; top: 318px; }
+
+    header div.header-left-side { margin-left: 40px; }
+    header div.header-right-side div.login { margin-right: 40px; }
+
+}
+
+@media screen and (max-width: 1024px) {
+    .content {
+        height: 600px;
+        background: linear-gradient(180deg, rgba(16, 15, 114, 0.6) 0%, rgba(16, 15, 114, 0.37) 41.29%, rgba(16, 15, 114, 0.16) 100%), url("./assets/images/home_background_1024_600.png") no-repeat center center;
+    }
+
+    .explore h2 { font-size: 32px; }
+    header div.header-right-side > div {  margin: 0 7px;}
+    header div.search-place { margin-left: 10px; }
+
+    .search-place input.search-text::placeholder { color: transparent; }
+    .search-place input.search-text:-ms-input-placeholder { color: #FFFFFF; }
+    .search-place input.search-text::-ms-input-placeholder { color: transparent; }
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        height: 900px;
+        max-width: 768px;
+        background: linear-gradient(180deg, rgba(16, 15, 114, 0.6) 0%, rgba(16, 15, 114, 0.37) 41.29%, rgba(16, 15, 114, 0.16) 100%), url("./assets/images/home_background_768_900.png") no-repeat center center;
+    }
+
+    header div.header-left-side { margin-left: 20px; }
+    header div.header-right-side div.login { margin-right: 20px; }
+
+    .explore { width: 720px; left: 24px; top: 620px; }
+    .explore p { font-size: 20px; }
+}
+
+@media screen and (max-width: 660px) {
+    header div.header-right-side div.language { display: none; }
+    header div.header-right-side div.currency { display: none; }
+    header div.header-right-side div.become-driver { display: none; }
+
+}
+
+
+@media screen and (max-width: 360px) {
+    .content {
+        height: 540px;
+        max-width: 360px;
+        background: linear-gradient(180deg, rgba(16, 15, 114, 0.6) 0%, rgba(16, 15, 114, 0.37) 41.29%, rgba(16, 15, 114, 0.16) 100%), url("./assets/images/home_background_360_540.png") no-repeat center center;
+    }
+
+    header div.header-right-side div.language { display: none; }
+    header div.header-right-side div.currency { display: none; }
+    header div.header-right-side div.become-driver { display: none; }
+
+    .explore { width: 221px; left: 16px; top: 239px; }
 }

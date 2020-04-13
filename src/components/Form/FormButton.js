@@ -1,10 +1,6 @@
 import React from "react";
 import {Button} from '@material-ui/core';
 
-
-
-
-
 function FormButton(props) {
     const { label, disabled, customClass } = props;
 

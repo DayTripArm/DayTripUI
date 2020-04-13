@@ -12,8 +12,7 @@ function Home(props) {
             <div id="page">
                 <div className="explore">
                     <h2>Be Fleible to Discover More</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus vestibulum auctor. Ut
-                        iaculis convallis justo, quis vehicula lectus malesuada at</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate augue purus</p>
                     <div className="explore-button">
                         <span>Explore Daytrip</span>
                     </div>
