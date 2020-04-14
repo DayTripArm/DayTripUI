@@ -115,7 +115,7 @@ function SignUp(props) {
                 <div className="or"></div>
 
                 <FacebookLogin
-                    appId="140290697419911"
+                    appId={process.env.REACT_APP_FB_API_KEY}
                     fields="name,email"
                     scope="public_profile,email"
                     callback={responseFacebook}
@@ -124,7 +124,7 @@ function SignUp(props) {
                 />
 
                 <GoogleLogin
-                    clientId="439125939465-br0aotgaijd4i2of7nqg7r911u4tv4tj.apps.googleusercontent.com"
+                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                     buttonText="Login with google"
                     fields="select_account"
                     onSuccess={responseGoogle}
