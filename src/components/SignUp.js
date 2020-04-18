@@ -116,7 +116,7 @@ function SignUp(props) {
 
                 <FacebookLogin
                     appId={process.env.REACT_APP_FB_API_KEY}
-                    fields="name,email"
+                    fields="name,email,picture"
                     scope="public_profile,email"
                     callback={responseFacebook}
                     textButton="Login with facebook"
