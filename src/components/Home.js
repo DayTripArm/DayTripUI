@@ -11,7 +11,7 @@ function Home(props) {
         return(
             <div id="page">
                 <div className="explore">
-                    <h2>Be Fleible to Discover More</h2>
+                    <h2>Be Flexible to Discover More</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate augue purus</p>
                     <div className="explore-button">
                         <span>Explore Daytrip</span>

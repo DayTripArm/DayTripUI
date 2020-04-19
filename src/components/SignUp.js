@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FormInputText from "./Form/FormInputText";
 import FormButton from "./Form/FormButton";
 import FacebookLogin from 'react-facebook-login';
@@ -7,6 +7,8 @@ import GoogleLogin from 'react-google-login';
 
 import {makeStyles} from "@material-ui/core/styles";
 import { indigo } from '@material-ui/core/colors';
+import axios from "axios";
+import base_urls from "../base_urls";
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -70,14 +72,38 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp(props) {
     const { showSignUp } = props;
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const classes = useStyles();
 
     const responseFacebook = (response) => {
         console.log(response);
-    }
+    };
 
     const responseGoogle = (response) => {
         console.log(response);
+    };
+
+    function signUp() {
+        const body = {
+            name,
+            phone,
+            email,
+            password
+        };
+
+        try {
+            axios.post(base_urls.day_trip.sign_up, body)
+                .then(response => {
+                    showSignUp(false);
+                }).catch(error => {
+                    console.log(" err ", error.response);
+                });
+        } catch (e) {
+            console.log(" err ", e.response);
+        }
     }
 
     return (
@@ -89,28 +115,40 @@ function SignUp(props) {
             <form action="#" method="post">
                 <React.Fragment>
                     <FormInputText
-                        onChange={() => {}}
+                        onChange={(e) => setName(e.target.value)}
                         label="Name*"
+                        name="name"
                         placeholder="e.g Jogn Smith"
-                        value=""
+                        value={name}
                     />
                     <FormInputText
-                        onChange={() => {}}
+                        onChange={(e) => {setPhone(e.target.value)}}
                         label="Phone*"
+                        name="phone"
                         placeholder="Type Your Number"
-                        className={["marginTop30"]}
-                        value=""
+                        className={["marginTop25"]}
+                        value={phone}
                     />
                     <FormInputText
-                        onChange={() => {}}
+                        onChange={(e) => {setEmail(e.target.value)}}
                         label="Email*"
+                        email="email"
                         placeholder="Enter your Email"
-                        className={["marginTop30"]}
-                        value=""
+                        className={["marginTop25"]}
+                        value={email}
+                    />
+                    <FormInputText
+                        onChange={(e) => {setPassword(e.target.value)}}
+                        label="Password*"
+                        name="password"
+                        placeholder="Enter your Password"
+                        className={["marginTop25"]}
+                        password={true}
+                        value={password}
                     />
                 </React.Fragment>
 
-                <FormButton label="sign up" customClass={classes.button}/>
+                <FormButton label="sign up" customClass={classes.button} onClick={() => signUp()}/>
 
                 <div className="or"></div>
 

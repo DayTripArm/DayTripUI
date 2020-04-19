@@ -14,16 +14,20 @@ class FormInputText extends React.Component {
         this.setState({
             value: e.target.value
         });
+
+        if (this.props.onChange) {
+            this.props.onChange(e);
+        }
     };
 
     render() {
-        const { placeholder, label, className} = this.props;
+        const { placeholder, label, className, password} = this.props;
 
         return (
             <React.Fragment>
                 <div className={`section ${className ? className.join(" ") : ""}`}>
                     <p>{label}</p>
-                    <input type="text" name="email" value={this.state.value} placeholder={placeholder} min="1"
+                    <input type={password ? "password" : "text"} name="email" value={this.state.value} placeholder={placeholder} min="1"
                            max="1440" onChange={this.onChange} step="1" autoComplete="off"
                            autoCapitalize="off" autoCorrect="off" spellCheck="false" />
                 </div>

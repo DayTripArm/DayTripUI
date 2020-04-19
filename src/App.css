@@ -25,9 +25,9 @@ a:hover {
 }
 a:visited {color: #FFFFFF;}
 
-.marginTop30 {
-    margin-top: 30px;
-}
+.marginTop30 {margin-top: 30px;}
+.marginTop25 {margin-top: 25px;}
+.marginTop20 {margin-top: 20px;}
 
 
 #page {
@@ -404,7 +404,7 @@ header div.header-left-side div.daytrip span {
 .content div.log-in-form form div.or {
     width: 328px;
     height: 24px;
-    margin-top: 30px;
+    margin-top: 20px;
     background: url("./assets/images/Or.png") no-repeat center center;
 }
 
