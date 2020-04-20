@@ -10,6 +10,14 @@ class FormInputText extends React.Component {
         };
     }
 
+    onBlur = (e) => {
+        const {name} = this.props;
+
+        if (this.props.onBlur) {
+            this.props.onBlur(e, name);
+        }
+    };
+
     onChange = (e) => {
         this.setState({
             value: e.target.value
@@ -21,15 +29,28 @@ class FormInputText extends React.Component {
     };
 
     render() {
-        const { placeholder, label, className, password} = this.props;
+        const { placeholder, label, errorMessage, wrapperClassName, inputClassName, password} = this.props;
 
         return (
             <React.Fragment>
-                <div className={`section ${className ? className.join(" ") : ""}`}>
+                <div className={`section ${wrapperClassName ? wrapperClassName.join(" ") : ""}`}>
                     <p>{label}</p>
-                    <input type={password ? "password" : "text"} name="email" value={this.state.value} placeholder={placeholder} min="1"
-                           max="1440" onChange={this.onChange} step="1" autoComplete="off"
-                           autoCapitalize="off" autoCorrect="off" spellCheck="false" />
+                    <input className={`input-text ${errorMessage && "error"} ${inputClassName ? inputClassName.join(" ") : ""}`}
+                           type={password ? "password" : "text"}
+                           name="email"
+                           value={this.state.value}
+                           placeholder={placeholder}
+                           min="1"
+                           max="1440"
+                           onChange={this.onChange}
+                           onBlur={this.onBlur}
+                           step="1"
+                           autoComplete="off"
+                           autoCapitalize="off"
+                           autoCorrect="off"
+                           spellCheck="false"
+                    />
+                    {errorMessage && errorMessage.length !== 0 && <span className="text-error-message">{errorMessage}</span>}
                 </div>
             </React.Fragment>
 

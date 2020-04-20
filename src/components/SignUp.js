@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import FormInputText from "./Form/FormInputText";
 import FormButton from "./Form/FormButton";
 import FacebookLogin from 'react-facebook-login';
+import _ from "lodash";
 
 import GoogleLogin from 'react-google-login';
 
@@ -70,12 +71,23 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+const validations = {
+    phone: {
+        required: true,
+        reg: /^\+?[0-9]{3}-?[0-9]{6,12}$/i,
+        errorMsg: "Phone is invalid"
+    },
+    email: {
+        required: true,
+        reg: /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/i,
+        errorMsg: "Email is invalid"
+    },
+};
+
 function SignUp(props) {
     const { showSignUp } = props;
-    const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [invalidFields, setInvalidFields] = useState({});
+    const [form, setForm] = useState({name: "", phone: "", email: "", password: ""});
     const classes = useStyles();
 
     const responseFacebook = (response) => {
@@ -86,24 +98,70 @@ function SignUp(props) {
         console.log(response);
     };
 
+    function validateForm() {
+
+        return _.reduce(validations, (errors, rule, name) => {
+            const result = validateField(name);
+
+            if (result) { errors[name] = result; }
+
+            return errors;
+        }, {});
+    }
+
+    function getStatusMessage(name) {
+        const field = invalidFields[name];
+        return field && field.statusMessage ? field.statusMessage : undefined;
+    }
+
+    function validateField(name) {
+        const rule = validations[name];
+
+        if (rule) {
+            if (rule.required && !form[name].trim()) {
+                return { status: "error", statusMessage: "This field is required" };
+            }
+
+            if (!_.isEmpty(form[name]) && rule.reg && !rule.reg.test(form[name])) {
+                return { status: "error", statusMessage: rule.errorMsg };
+            }
+        }
+    }
+
+    function validateOnBlur(e, name) {
+        const result = validateField(name);
+        let state = _.clone(invalidFields);
+
+        if (result) state[name] = result;
+        else delete state[name];
+
+        setInvalidFields(state);
+    }
+
     function signUp() {
         const body = {
-            name,
-            phone,
-            email,
-            password
+            name: form.name,
+            phone: form.phone,
+            email: form.email,
+            password: form.password
         };
 
-        try {
-            axios.post(base_urls.day_trip.sign_up, body)
-                .then(response => {
-                    showSignUp(false);
-                }).catch(error => {
+        const invalidFields = validateForm();
+
+        if (_.isEmpty(invalidFields)) {
+            try {
+                axios.post(base_urls.day_trip.sign_up, body)
+                    .then(response => {
+                        showSignUp(false);
+                    }).catch(error => {
                     console.log(" err ", error.response);
                 });
-        } catch (e) {
-            console.log(" err ", e.response);
+            } catch (e) {
+                console.log(" err ", e.response);
+            }
         }
+
+        setInvalidFields(invalidFields);
     }
 
     return (
@@ -115,36 +173,55 @@ function SignUp(props) {
             <form action="#" method="post">
                 <React.Fragment>
                     <FormInputText
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => setForm({
+                            ...form,
+                            name: e.target.value
+                        })}
                         label="Name*"
                         name="name"
                         placeholder="e.g Jogn Smith"
-                        value={name}
+                        value={form.name}
                     />
                     <FormInputText
-                        onChange={(e) => {setPhone(e.target.value)}}
+                        onChange={(e) => setForm({
+                            ...form,
+                            phone: e.target.value
+                        })}
                         label="Phone*"
                         name="phone"
                         placeholder="Type Your Number"
-                        className={["marginTop25"]}
-                        value={phone}
+                        wrapperClassName={["marginTop25"]}
+                        inputClassName={[]}
+                        errorMessage={getStatusMessage("phone")}
+                        onBlur={validateOnBlur}
+                        value={form.phone}
                     />
                     <FormInputText
-                        onChange={(e) => {setEmail(e.target.value)}}
+                        onChange={(e) => setForm({
+                            ...form,
+                            email: e.target.value
+                        })}
                         label="Email*"
-                        email="email"
+                        name="email"
                         placeholder="Enter your Email"
-                        className={["marginTop25"]}
-                        value={email}
+                        wrapperClassName={["marginTop25"]}
+                        inputClassName={[""]}
+                        errorMessage={getStatusMessage("email")}
+                        onBlur={validateOnBlur}
+                        value={form.email}
                     />
                     <FormInputText
-                        onChange={(e) => {setPassword(e.target.value)}}
+                        onChange={(e) => setForm({
+                            ...form,
+                            password: e.target.value
+                        })}
                         label="Password*"
                         name="password"
                         placeholder="Enter your Password"
-                        className={["marginTop25"]}
+                        wrapperClassName={["marginTop25"]}
+                        inputClassName={[""]}
                         password={true}
-                        value={password}
+                        value={form.password}
                     />
                 </React.Fragment>
 

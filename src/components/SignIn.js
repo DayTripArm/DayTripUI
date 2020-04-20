@@ -88,7 +88,8 @@ function SignIn(props) {
                         onChange={() => {}}
                         label="Password*"
                         placeholder="Enter your Password"
-                        className={["marginTop30"]}
+                        wrapperClassName={["marginTop30"]}
+                        inputClassName={[""]}
                         value=""
                     />
                 </React.Fragment>

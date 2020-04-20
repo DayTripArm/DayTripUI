@@ -317,7 +317,7 @@ header div.header-left-side div.daytrip span {
     color: #757575;
 }
 
-.content div.log-in-form form div.section input, .content div.log-in-form form div.-section input {
+.content div.log-in-form form div.section input.input-text {
     border: 1px solid #BDBDBD;
     box-sizing: border-box;
     border-radius: 4px;
@@ -329,6 +329,17 @@ header div.header-left-side div.daytrip span {
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
+}
+
+.text-error-message {
+    font-weight: bold;
+    font-size: 12px;
+    color: #B80000;
+    margin-top: 4px;
+}
+
+.error {
+    border: 1px solid #B80000!important;
 }
 
 .content div.log-in-form form input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -482,9 +493,8 @@ header div.header-left-side div.daytrip span {
 }
 
 .no-account {
-    position: absolute;
-    bottom: 25px;
-    left: 108px;
+    text-align: center;
+    margin-top: 20px;
 }
 
 .no-account span {
