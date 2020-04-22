@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FormInputText from "./Form/FormInputText";
 import FormCheckbox from "./Form/FormCheckbox";
 import FormButton from "./Form/FormButton";
 
 import {makeStyles} from "@material-ui/core/styles";
 import { indigo } from '@material-ui/core/colors';
+import axios from "axios";
+import base_urls from "../base_urls";
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -69,6 +71,28 @@ function SignIn(props) {
     const { showSignIn } = props;
     const classes = useStyles();
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    function signIn() {
+        const body = {
+            email,
+            password
+        };
+
+        try {
+            axios.post(base_urls.day_trip.sign_in, body)
+                .then(response => {
+                    showSignIn(false);
+                    console.log(response);
+                }).catch(error => {
+                console.log(" err ", error.response);
+            });
+        } catch (e) {
+            console.log(" err ", e.response);
+        }
+    }
+
     return (
         <div className="log-in-form">
             <header>
@@ -78,14 +102,14 @@ function SignIn(props) {
             <form action="#" method="post">
                 <React.Fragment>
                     <FormInputText
-                        onChange={() => {}}
+                        onChange={(e) => setEmail(e.target.value)}
                         label="Email*"
                         placeholder="Enter your Email"
                         value=""
                     />
 
                     <FormInputText
-                        onChange={() => {}}
+                        onChange={(e) => setPassword(e.target.value)}
                         label="Password*"
                         placeholder="Enter your Password"
                         wrapperClassName={["marginTop30"]}
@@ -101,7 +125,7 @@ function SignIn(props) {
                     <span className="forgot"><a href="http://google.com">Forgot Password?</a></span>
                 </div>
 
-                <FormButton label="login" customClass={classes.button}/>
+                <FormButton label="login" customClass={classes.button} onClick={() => signIn()}/>
 
                 <div className="or"></div>
                 <FormButton label="Login with facebook" customClass={classes.facebook}/>
