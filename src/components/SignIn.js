@@ -114,6 +114,7 @@ function SignIn(props) {
                         placeholder="Enter your Password"
                         wrapperClassName={["marginTop30"]}
                         inputClassName={[""]}
+                        password={true}
                         value=""
                     />
                 </React.Fragment>
