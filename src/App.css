@@ -531,6 +531,142 @@ footer h2.top-choices {
     color: #100F72;
 }
 
+
+.content div.welcome {
+    width: 440px;
+    height: 640px;
+    margin: 70px auto 0 auto;
+    position: relative;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 4px rgba(5, 4, 62, 0.23);
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.content div.welcome header {
+    height: 64px;
+    position: relative;
+    border-bottom: 1px solid #cccccc;
+    padding-top: 6px;
+}
+
+.content div.welcome header span {
+    margin-top: 14px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 30px;
+    display: block;
+    align-items: center;
+    text-align: center;
+    color: #100F72;
+}
+
+.content div.welcome div.container {
+    width: 328px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+/*.content div.welcome div.container .image {*/
+/*    background: white url("./assets/images/predesigned_day_trips.png") no-repeat center center;*/
+/*    width: 328px;*/
+/*    height: 213px;*/
+/*    margin-top: 30px;*/
+/*}*/
+
+.content div.welcome div.container div.header {
+    color: #090925;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 12px;
+    margin-top: 16px;
+}
+
+.content div.welcome div.container div.text {
+    height: 102px;
+    color: #090925;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+}
+
+.content div.welcome div.control {
+    width: 328px;
+    height: 24px;
+    margin: 76px auto 0 auto;
+}
+
+.content div.welcome div.control div {
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+}
+
+.content div.welcome div.control .skip:hover {text-decoration: underline;}
+.content div.welcome div.control .skip {
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #090925;
+    margin-right: 76px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.content div.welcome div.control .next:hover {text-decoration: underline;}
+.content div.welcome div.control .next {
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #FE4C30;
+    cursor: pointer;
+    margin-left: 53px;
+}
+
+.content div.welcome div.control div.dots span.big {
+    height: 12px;
+    width: 12px;
+    background-color: #FE4C30;
+}
+
+.content div.welcome div.control div.dots span {
+    height: 8px;
+    width: 8px;
+    background-color: #BDBDBD;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.content div.welcome .get-started:hover {background-color: #E24432;}
+.content div.welcome .get-started:active {box-shadow: none;}
+.content div.welcome .get-started {
+    background-color: #FE4C30;
+    border-radius: 4px;
+    width: 159px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    display: block;
+    margin: 64px auto 0 auto;
+}
+
+.content div.welcome div.get-started span {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
 @media screen and (max-width: 1560px) {
     .content {
         height: 700px;

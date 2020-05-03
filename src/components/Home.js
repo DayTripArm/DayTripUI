@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import SignIn from "./SignIn";
-import SignUp from "./SignUp";
+import SignUp from "./SignUp/SignUp";
 
 function Home(props) {
 
