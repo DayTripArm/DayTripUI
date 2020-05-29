@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import FormInputText from "../Form/FormInputText";
 import FormButton from "../Form/FormButton";
 import FacebookLogin from 'react-facebook-login';
+import {useDispatch, useSelector} from "react-redux";
 import _ from "lodash";
 
 import GoogleLogin from 'react-google-login';
@@ -9,8 +10,8 @@ import Welcome from "./Welcome";
 
 import {makeStyles} from "@material-ui/core/styles";
 import { indigo } from '@material-ui/core/colors';
-import axios from "axios";
-import base_urls from "../../base_urls";
+import actions from "../actions";
+
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -86,9 +87,14 @@ const validations = {
 };
 
 function SignUp(props) {
-    const { showSignUp } = props;
     const [invalidFields, setInvalidFields] = useState({});
-    const [welcome, showWelcome] = useState(false);
+
+    const dispatch = useDispatch();
+    const {
+        showWelcome,
+        user_info
+    } = useSelector(state => state.dayTrip);
+
     const [form, setForm] = useState({name: "", phone: "", email: "", password: ""});
     const classes = useStyles();
 
@@ -140,7 +146,7 @@ function SignUp(props) {
         setInvalidFields(state);
     }
 
-    function signUp() {
+    function signUpRequest() {
         const body = {
             name: form.name,
             phone: form.phone,
@@ -152,13 +158,7 @@ function SignUp(props) {
 
         if (_.isEmpty(invalidFields)) {
             try {
-                axios.post(base_urls.day_trip.sign_up, body)
-                    .then(response => {
-                        // showSignUp(false);
-                        showWelcome(true);
-                    }).catch(error => {
-                    console.log(" err ", error.response);
-                });
+                dispatch(actions.signUpRequest(body));
             } catch (e) {
                 console.log(" err ", e.response);
             }
@@ -170,13 +170,13 @@ function SignUp(props) {
     return (
         <React.Fragment>
             {
-                welcome ?
-                    <Welcome showSignUp={showSignUp}/>
+                showWelcome ?
+                    <Welcome />
                     :
                     <div className="log-in-form" style={{minHeight: "710px"}}>
                         <header>
                             <span>Please Sign Up</span>
-                            <div className="close" onClick={() => showSignUp(false)}></div>
+                            <div className="close" onClick={() => dispatch(actions.showHideSignUp(false))}> </div>
                         </header>
                         <form action="#" method="post">
                             <React.Fragment>
@@ -233,7 +233,14 @@ function SignUp(props) {
                                 />
                             </React.Fragment>
 
-                            <FormButton label="sign up" customClass={classes.button} onClick={() => signUp()}/>
+                            <FormButton label="sign up" customClass={classes.button} onClick={() => signUpRequest()}/>
+                            <div className="form-error">
+                                {
+                                    user_info.errors && _.isArray(user_info.errors) && user_info.errors.map(err => {
+                                        return <span className="text-error-message">{err}</span>
+                                    })
+                                }
+                            </div>
 
                             <div className="or"></div>
 

@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import FormInputText from "./Form/FormInputText";
-import FormCheckbox from "./Form/FormCheckbox";
-import FormButton from "./Form/FormButton";
-
 import {makeStyles} from "@material-ui/core/styles";
 import { indigo } from '@material-ui/core/colors';
-import axios from "axios";
-import base_urls from "../base_urls";
+import {useDispatch, useSelector} from "react-redux";
+import _ from "lodash";
+
+import FormInputText from "../Form/FormInputText";
+import FormCheckbox from "../Form/FormCheckbox";
+import FormButton from "../Form/FormButton";
+import actions from "../actions";
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -68,26 +69,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SignIn(props) {
-    const { showSignIn } = props;
+
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const {
+        user_info
+    } = useSelector(state => state.dayTrip);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    function signIn() {
+    function signInRequest() {
         const body = {
             email,
             password
         };
 
         try {
-            axios.post(base_urls.day_trip.sign_in, body)
-                .then(response => {
-                    showSignIn(false);
-                    console.log(response);
-                }).catch(error => {
-                console.log(" err ", error.response);
-            });
+            dispatch(actions.signInRequest(body));
         } catch (e) {
             console.log(" err ", e.response);
         }
@@ -97,7 +96,7 @@ function SignIn(props) {
         <div className="log-in-form">
             <header>
                 <span>Please Login</span>
-                <div className="close" onClick={() => showSignIn(false)}></div>
+                <div className="close" onClick={() => dispatch(actions.showHideSignIn(false))}> </div>
             </header>
             <form action="#" method="post">
                 <React.Fragment>
@@ -126,7 +125,10 @@ function SignIn(props) {
                     <span className="forgot"><a href="http://google.com">Forgot Password?</a></span>
                 </div>
 
-                <FormButton label="login" customClass={classes.button} onClick={() => signIn()}/>
+                <FormButton label="login" customClass={classes.button} onClick={() => signInRequest()}/>
+                <div className="form-error">
+                    <span className="text-error-message">{!_.isArray(user_info.errors) && user_info.errors}</span>
+                </div>
 
                 <div className="or"></div>
                 <FormButton label="Login with facebook" customClass={classes.facebook}/>

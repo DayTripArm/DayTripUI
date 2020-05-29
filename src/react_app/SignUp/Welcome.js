@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import actions from "../actions";
 import FormButton from "../Form/FormButton";
 
 class Welcome extends React.Component {
@@ -24,6 +27,7 @@ class Welcome extends React.Component {
 
     render() {
         const info = this.welcomeInfo[this.state.count];
+        const {showHideSignUp} = this.props;
 
         return (
             <div className="welcome">
@@ -38,7 +42,7 @@ class Welcome extends React.Component {
                 {
                     this.state.count === this.welcomeInfo.length - 1 // last dot
                         ?
-                        <FormButton label="GET STARTED" customClass="get-started" onClick={() => this.props.showSignUp(false)}/>
+                        <FormButton label="GET STARTED" customClass="get-started" onClick={() => showHideSignUp(false)}/>
                         :
                         <div className="control">
                             <div className="skip" onClick={() => this.setState({count: this.welcomeInfo.length - 1})}>skip</div>
@@ -63,4 +67,17 @@ class Welcome extends React.Component {
     }
 }
 
-export default Welcome;
+Welcome.propTypes = {
+    showHideSignUp: PropTypes.func
+};
+
+const mapStateToProps = state => ({
+    dayTrip: state.dayTrip
+});
+
+const mapDispatchToProps = dispatch => ({
+    showHideSignUp: (show) => dispatch(actions.showHideSignUp(show)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);

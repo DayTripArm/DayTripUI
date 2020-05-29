@@ -246,6 +246,134 @@ header div.header-right-side div.sign-up span {
     color: #090925;
 }
 
+/******************* header right sight: menu after sign in/up*/
+header div.header-right-side .traveler-menu > div {
+    display: inline-block;
+    float: left;
+    margin: 0 20px;
+}
+
+header div.header-right-side .traveler-menu .text:hover {
+    text-decoration: underline;
+}
+
+header div.header-right-side .traveler-menu .text {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+}
+
+header div.header-right-side .traveler-menu div.home .icon {
+    width: 24px;
+    height: 24px;
+    background: url("./assets/images/Home.png") no-repeat center center;
+    display: inline-block;
+    margin-right: 6px;
+    cursor: pointer;
+    float: left;
+}
+
+header div.header-right-side .traveler-menu div.saved .icon {
+    width: 24px;
+    height: 24px;
+    background: url("./assets/images/heart.png") no-repeat center center;
+    display: inline-block;
+    margin-right: 6px;
+    cursor: pointer;
+    float: left;
+}
+
+header div.header-right-side .traveler-menu div.trips .icon {
+    width: 24px;
+    height: 24px;
+    background: url("./assets/images/Trips.png") no-repeat center center;
+    display: inline-block;
+    margin-right: 6px;
+    cursor: pointer;
+    float: left;
+}
+
+header div.header-right-side .traveler-menu div.messages .icon {
+    width: 24px;
+    height: 24px;
+    background: url("./assets/images/Messages.png") no-repeat center center;
+    display: inline-block;
+    margin-right: 6px;
+    cursor: pointer;
+    float: left;
+}
+
+header div.header-right-side .traveler-menu div.profile {
+    margin-right: 80px;
+    position: relative;
+    height: 35px;      /* this height for dropdown :hover action */
+}
+
+header div.header-right-side .traveler-menu div.profile .icon {
+    width: 20px;
+    height: 20px;
+    background: url("./assets/images/Account.png") no-repeat center center;
+    display: inline-block;
+    margin-right: 6px;
+    cursor: pointer;
+    float: left;
+}
+
+
+/******    dropdown part******/
+header div.header-right-side .traveler-menu div.profile:hover > .dropdown {
+    display: block;
+}
+
+.profile .dropdown {
+    z-index: 1;
+    position: absolute;
+    right: 1px;
+    top: 35px;
+    margin: 0;
+    padding: 0;
+    width: 328px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 4px 4px;
+    display: none;
+}
+
+.profile .dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile .dropdown ul li:hover {
+    background: rgba(189, 189, 189, 0.16);
+}
+
+.profile .dropdown ul li {
+    height: 53px;
+    border-top: 0.5px solid #BDBDBD;
+    cursor: pointer;
+}
+
+.profile .dropdown ul li a {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    color: #757575;
+    display: inline-block;
+    padding-left: 24px;
+    padding-top: 19px;
+    text-decoration: none;
+}
+
+
+/***************************************************************/
+
 header div.header-left-side div.daytrip span {
     font-style: normal;
     font-weight: normal;
@@ -336,6 +464,12 @@ header div.header-left-side div.daytrip span {
     font-size: 12px;
     color: #B80000;
     margin-top: 4px;
+    display: inline-block;
+}
+
+.form-error {
+    margin-top: 10px;
+    margin-left: 5px;
 }
 
 .error {
@@ -512,26 +646,6 @@ header div.header-left-side div.daytrip span {
     color: #FE4C30;
 }
 
-footer {
-    height: 169px;
-    background: rgba(5, 4, 62, 0.23);
-}
-
-/* footer  */
-footer h2.top-choices {
-    position: absolute;
-    left: 80px;
-    bottom: 24px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 28px;
-    line-height: 42px;
-    display: flex;
-    align-items: center;
-    color: #100F72;
-}
-
-
 .content div.welcome {
     width: 440px;
     height: 640px;
@@ -567,13 +681,6 @@ footer h2.top-choices {
     margin: 0 auto;
     margin-top: 30px;
 }
-
-/*.content div.welcome div.container .image {*/
-/*    background: white url("./assets/images/predesigned_day_trips.png") no-repeat center center;*/
-/*    width: 328px;*/
-/*    height: 213px;*/
-/*    margin-top: 30px;*/
-/*}*/
 
 .content div.welcome div.container div.header {
     color: #090925;
@@ -667,6 +774,111 @@ footer h2.top-choices {
     color: #FFFFFF;
 }
 
+/**************** main content******************/
+.main-content:before {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.main-content {
+    min-height: 50px;
+}
+
+.menu-responsive {
+    height: 36px;
+    position: relative;
+    padding-top: 20px;
+    display: none;
+}
+
+.menu-responsive > div {
+    float: left;
+}
+
+.menu-responsive .home {
+    width: 20px;
+    height: 20px;
+    background: url("./assets/images/Home_icon_orange.png") no-repeat center center;
+    cursor: pointer;
+    margin-right: 140px;
+    margin-left: 26%;
+}
+
+.menu-responsive .saved {
+    width: 20px;
+    height: 20px;
+    background: url("./assets/images/Heart_icon_black.png") no-repeat center center;
+    cursor: pointer;
+    margin-right: 140px;
+}
+
+.menu-responsive .trips {
+    width: 20px;
+    height: 20px;
+    background: url("./assets/images/Trips_icon_black.png") no-repeat center center;
+    cursor: pointer;
+    margin-right: 140px;
+}
+
+.menu-responsive .messages {
+    width: 20px;
+    height: 20px;
+    background: url("./assets/images/Messages_icon_black.png") no-repeat center center;
+    cursor: pointer;
+}
+
+
+/***********************footer*******************/
+footer {
+    height: 72px;
+    background: #FFFFFF;
+    box-shadow: 0 -1px 0 #BDBDBD;
+    position: relative;
+}
+
+footer span.copyright {
+    color: #090925;
+    float: left;
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+footer div.wrapper {
+    float: right; margin-top: 30px;
+}
+
+footer div.wrapper .icons {
+    float: left;
+}
+
+footer div.wrapper span {margin-right: 20px;}
+footer span {float: left;}
+footer span.terms-conditions a {color: #757575;}
+footer span.help a {color: #757575;}
+footer span.fb {
+    width: 20px;
+    height: 20px;
+    background: url("./assets/images/FB_help_icon.png") no-repeat center center;
+    cursor: pointer;
+}
+footer span.insta {
+    width: 18px;
+    height: 18px;
+    background: url("./assets/images/Insta_help_icon.png") no-repeat center center;
+    cursor: pointer;
+}
+footer span.twitter {
+    width: 20px;
+    height: 16px;
+    background: url("./assets/images/Twitter_help_icon.png") no-repeat center center;
+    cursor: pointer;
+}
+
+
+
+
+/***************************** media queries*********************/
 @media screen and (max-width: 1560px) {
     .content {
         height: 700px;
@@ -687,6 +899,8 @@ footer h2.top-choices {
     header div.header-left-side { margin-left: 40px; }
     header div.header-right-side div.login { margin-right: 40px; }
 
+    header div.header-right-side .traveler-menu div.profile { margin-right: 40px; }
+
 }
 
 @media screen and (max-width: 1024px) {
@@ -702,6 +916,13 @@ footer h2.top-choices {
     .search-place input.search-text::placeholder { color: transparent; }
     .search-place input.search-text:-ms-input-placeholder { color: #FFFFFF; }
     .search-place input.search-text::-ms-input-placeholder { color: transparent; }
+
+    header div.header-right-side .traveler-menu .home { display: none; }
+    header div.header-right-side .traveler-menu .saved { display: none; }
+    header div.header-right-side .traveler-menu .trips { display: none; }
+    header div.header-right-side .traveler-menu .messages { display: none; }
+
+    .menu-responsive {display: block;}
 }
 
 @media screen and (max-width: 768px) {
@@ -714,14 +935,50 @@ footer h2.top-choices {
     header div.header-left-side { margin-left: 20px; }
     header div.header-right-side div.login { margin-right: 20px; }
 
-    .explore { width: 720px; left: 24px; top: 620px; }
+    .explore { width: 620px; left: 24px; top: 620px; }
     .explore p { font-size: 20px; }
+
+    .menu-responsive .home {margin-left: 15%;}
 }
 
 @media screen and (max-width: 660px) {
     header div.header-right-side div.language { display: none; }
     header div.header-right-side div.currency { display: none; }
     header div.header-right-side div.become-driver { display: none; }
+
+    .explore { width: 400px; left: 12px; top: 560px;}
+    .explore p { font-size: 16px; }
+
+    .menu-responsive .home {margin-left: 20%; margin-right: 17%;}
+    .menu-responsive .saved {margin-right: 17%;}
+    .menu-responsive .trips {margin-right: 17%;}
+
+    footer span.copyright {
+        position: absolute;
+        margin: unset;
+        float: none;
+        top: 110px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 210px;
+    }
+    footer div.wrapper {
+        position: absolute;
+        margin: unset;
+        float: none;
+        top: 30px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 210px;
+    }
+
+    footer div.wrapper .icons {
+        position: absolute;
+        left: 50%;
+        top: 50px;
+        transform: translate(-50%, -50%);
+        width: 120px;
+    }
 
 }
 
@@ -737,5 +994,8 @@ footer h2.top-choices {
     header div.header-right-side div.currency { display: none; }
     header div.header-right-side div.become-driver { display: none; }
 
-    .explore { width: 221px; left: 16px; top: 239px; }
+    .explore { width: 220px; left: 12px; top: 220px; }
+
+    .profile .dropdown { width: 280px; }
+
 }
