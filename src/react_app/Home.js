@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector} from "react-redux";
 
 import Header from "./Header/Header";
+import Footer from "./Footer";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 
@@ -43,18 +44,8 @@ function Home(props) {
                 <div className="hit-the-road"></div>
                 <div className="explore-all-day-trips"></div>
             </div>
-            <footer>
-                <span className="copyright">© Daytrip. All rights reserved.</span>
-                <div className="wrapper">
-                    <span className="terms-conditions"><a href={() => {}}>Terms & Conditions</a></span>
-                    <span className="help"><a href={() => {}}>Help</a></span>
-                    <div className="icons">
-                        <span className="fb"> </span>
-                        <span className="insta"> </span>
-                        <span className="twitter"> </span>
-                    </div>
-                </div>
-            </footer>
+
+            <Footer />
         </div>
     );
 }

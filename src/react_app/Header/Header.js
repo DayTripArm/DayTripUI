@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
 import actions from "../actions";
 
@@ -9,7 +10,8 @@ class Header extends React.Component {
         const {
             dayTrip,
             showHideSignIn,
-            showHideSignUp
+            showHideSignUp,
+            page
         } = this.props;
 
         const {
@@ -19,12 +21,12 @@ class Header extends React.Component {
         } = dayTrip;
 
         return (
-            <header>
+            <header className={`${page ? "header-border" : ""}`}>
                 <div className="header-left-side">
-                    <div className="daytrip"><span>DAYTRIP</span></div>
+                    <div className="daytrip"><span className={`${page ? "blue-color" : "white-color"}`}><Link to="/">DAYTRIP</Link></span></div>
                     <div className="search-place">
-                        <div className="search-icon"></div>
-                        <input type="text" className="search-text" placeholder="Search for place" />
+                        <div className={`${page ? "search-icon-black" : "search-icon-white"}`}></div>
+                        <input type="text" className={`search-text ${page ? "search-text-grey" : "search-text-white"}`} placeholder="Search for place" />
                     </div>
                 </div>
                 <div className="header-right-side">
@@ -32,30 +34,32 @@ class Header extends React.Component {
                         isTraveler ?
                             <div className="traveler-menu">
                                 <div className="home">
-                                    <span className="icon"></span>
-                                    <span className="text">Home</span>
+                                    <Link to="/">
+                                        <span className={`icon ${page ? "icon-black" : "icon-white"}`}></span>
+                                        <span className={`text ${page ? "text-black" : "text-white"}`}>Home</span>
+                                    </Link>
                                 </div>
                                 <div className="saved">
-                                    <span className="icon"></span>
-                                    <span className="text">Saved</span>
+                                    <span className={`icon ${page ? "icon-black" : "icon-white"}`}></span>
+                                    <span className={`text ${page ? "text-black" : "text-white"}`}>Saved</span>
                                 </div>
                                 <div className="trips">
-                                    <span className="icon"></span>
-                                    <span className="text">Trips</span>
+                                    <span className={`icon ${page ? "icon-black" : "icon-white"}`}></span>
+                                    <span className={`text ${page ? "text-black" : "text-white"}`}>Trips</span>
                                 </div>
                                 <div className="messages">
-                                    <span className="icon"></span>
-                                    <span className="text">Messages</span>
+                                    <span className={`icon ${page ? "icon-black" : "icon-white"}`}></span>
+                                    <span className={`text ${page ? "text-black" : "text-white"}`}>Messages</span>
 
                                 </div>
                                 <div className="profile">
-                                    <span className="icon"></span>
-                                    <span className="text"><a href={() => {}} aria-haspopup="true">John</a></span>
+                                    <span className={`icon ${page ? "icon-black" : "icon-white"}`}></span>
+                                    <span className={`text ${page ? "text-black" : "text-white"}`}>John</span>
 
                                     <div className="dropdown">
                                         <ul>
                                             <li><a href={() => {}}>Profile</a></li>
-                                            <li><a href={() => {}}>Account</a></li>
+                                            <li><Link to="/account">Account</Link></li>
                                             <li><a href={() => {}}>Refer a Friends</a></li>
                                             <li><a href={() => {}}>Switch to Driver</a></li>
                                             <li><a href={() => {}}>$ USD</a></li>
@@ -96,6 +100,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
     state: PropTypes.object,
+    page: PropTypes.string,
     showHideSignIn: PropTypes.func,
     showHideSignUp: PropTypes.func,
 };
