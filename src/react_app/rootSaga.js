@@ -34,9 +34,26 @@ function* signInRequest(action) {
     }
 }
 
+function* profileInfoRequest(action) {
+    try {
+        const { id } = action;
+        const {response, error} = yield call(Api.getProfileInfo, id);
+
+        if (response) {
+            console.log(" response ", response);
+            yield put(actions.profileInfoReceive(response.data.profile));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
+    yield takeEvery(actions.PROFILE_INFO_REQUEST, profileInfoRequest);
 }
 
 export default function* root() {

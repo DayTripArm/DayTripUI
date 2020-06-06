@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Home from "./react_app/Home";
-import Account from "./react_app/Account";
+import Account from "./react_app/Account/Account";
 import {
   BrowserRouter as Router,
   Switch,

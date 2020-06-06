@@ -48,6 +48,18 @@ const actions  = {
         type: actions.SHOW_HIDE_SIGN_UP,
         show
     }),
+
+    PROFILE_INFO_REQUEST: `${nameSpace}_PROFILE_INFO_REQUEST`,
+    profileInfoRequest: (id) => ({
+        type: actions.PROFILE_INFO_REQUEST,
+        id
+    }),
+
+    PROFILE_INFO_RECEIVE: `${nameSpace}_PROFILE_INFO_RECEIVE`,
+    profileInfoReceive: (data) => ({
+        type: actions.PROFILE_INFO_RECEIVE,
+        data
+    }),
 };
 
 export default actions;

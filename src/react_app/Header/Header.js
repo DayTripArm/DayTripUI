@@ -58,14 +58,14 @@ class Header extends React.Component {
 
                                     <div className="dropdown">
                                         <ul>
-                                            <li><a href={() => {}}>Profile</a></li>
-                                            <li><Link to="/account">Account</Link></li>
-                                            <li><a href={() => {}}>Refer a Friends</a></li>
-                                            <li><a href={() => {}}>Switch to Driver</a></li>
-                                            <li><a href={() => {}}>$ USD</a></li>
-                                            <li><a href={() => {}}>ENG</a></li>
-                                            <li><a href={() => {}}>Help</a></li>
-                                            <li><a href={() => {}}>Log Out</a></li>
+                                            <li><a href="http://google.com">Profile</a></li>
+                                            <li><Link to="/account" onClick={() => window.location.pathname === "/account" && window.location.reload()}>Account</Link></li>
+                                            <li><a href="http://google.com">Refer a Friends</a></li>
+                                            <li><a href="http://google.com">Switch to Driver</a></li>
+                                            <li><a href="http://google.com">$ USD</a></li>
+                                            <li><a href="http://google.com">ENG</a></li>
+                                            <li><a href="http://google.com">Help</a></li>
+                                            <li><a href="http://google.com">Log Out</a></li>
                                         </ul>
                                     </div>
                                 </div>

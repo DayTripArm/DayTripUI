@@ -8,6 +8,7 @@ export const INITIAL_STATE = {
     isTraveler: false,
     isDriver: false,
     user_info: {},
+    profile: {}
 };
 
 const rootReducer = (state = INITIAL_STATE, action) => {
@@ -61,6 +62,15 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 showSignUp: show
+            }
+        }
+
+        case actions.PROFILE_INFO_RECEIVE: {
+            const { data } = action;
+
+            return {
+                ...state,
+                profile: data
             }
         }
 

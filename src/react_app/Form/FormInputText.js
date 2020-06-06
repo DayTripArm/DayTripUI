@@ -29,7 +29,7 @@ class FormInputText extends React.Component {
     };
 
     render() {
-        const { placeholder, label, errorMessage, wrapperClassName, inputClassName, password} = this.props;
+        const { placeholder, label, errorMessage, wrapperClassName, inputClassName, password, name} = this.props;
 
         return (
             <React.Fragment>
@@ -37,7 +37,7 @@ class FormInputText extends React.Component {
                     <p>{label}</p>
                     <input className={`input-text ${errorMessage && "error"} ${inputClassName ? inputClassName.join(" ") : ""}`}
                            type={password ? "password" : "text"}
-                           name="email"
+                           name={name}
                            value={this.state.value}
                            placeholder={placeholder}
                            min="1"
@@ -71,7 +71,8 @@ FormInputText.propTypes = {
     /** Pass a function to be called on FormInputText value change */
     onChange: PropTypes.func.isRequired,
     /** Set the placeholder text */
-    placeholder: PropTypes.string
+    placeholder: PropTypes.string,
+    name: PropTypes.string
 };
 
 export default FormInputText;

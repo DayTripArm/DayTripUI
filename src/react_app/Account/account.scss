@@ -1,0 +1,254 @@
+/******************account-content**********************/
+
+.account-content {
+  max-width: 1760px;
+  margin: 0 auto;
+  min-height: 570px;
+}
+
+.account-content .account-title {
+  margin-left: 80px;
+  margin-top: 80px;
+}
+
+.account-content .account-title .title {
+  font-weight: bold;
+  font-size: 28px;
+  color: #090925;
+}
+
+.account-content .account-title .account-user {
+  margin-top: 12px;
+}
+
+.account-content .account-title .user-name {
+  font-size: 14px;
+  margin-right: 28px;
+  color: #090925;
+}
+
+.account-content .account-title .go-to-profile:hover {text-decoration: underline;}
+.account-content .account-title .go-to-profile {
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #FE4C30;
+}
+
+.account-segments:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.account-segments {
+  margin-left: 80px;
+  margin-top: 35px;
+  width: 91%;
+}
+
+.account-segments > div {
+  float: left;
+  width: 32%;
+  height: 214px;
+  margin-right: 15px;
+  background: #FFFFFF;
+  border: 1px solid #BDBDBD;
+  box-sizing: border-box;
+  border-radius: 4px;
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.account-segments > div:hover {
+  background: rgba(189, 189, 189, 0.16);
+}
+
+
+.account-segments .icon {
+  width: 56px;
+  height: 56px;
+  margin-top: 32px;
+  margin-left: 32px;
+}
+
+.account-segments .payments-payouts {
+  margin-right: 0;
+  margin-bottom: 15px;
+}
+
+.account-segments .personal-info .icon {background: url("../../assets/images/person_icon.png") no-repeat center center;}
+.account-segments .login-security .icon {background: url("../../assets/images/security_icon.png") no-repeat center center;}
+.account-segments .payments-payouts .icon {background: url("../../assets/images/payment_icon.png") no-repeat center center;}
+
+.account-segments .title {
+  font-weight: bold;
+  font-size: 20px;
+  color: #090925;
+  margin-top: 24px;
+  margin-left: 32px;
+}
+
+.account-segments .description {
+  font-weight: normal;
+  font-size: 16px;
+  color: #090925;
+  margin-top: 16px;
+  margin-left: 32px;
+}
+
+
+/*********************personal info****************************/
+
+.account-segment-title > a:hover {text-decoration: underline;}
+.account-segment-title {
+  margin-top: 26px;
+  margin-left: 80px;
+  color: #100F72;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.personal-segment {
+  width: 792px;
+  margin: 0 auto;
+}
+
+.personal-segment title {
+  display: block;
+  color: #100F72;
+  font-size: 28px;
+  margin-top: 35px;
+  font-weight: bold;
+}
+
+.personal-segment .user-image {
+  width: 60px;
+  margin: 0 auto;
+  cursor: pointer;
+  margin-top: 50px;
+  margin-bottom: 21px;
+}
+
+.personal-segment .user-image .image-upload {
+  width: 60px;
+  height: 60px;
+  background: url("../../assets/images/image_upload_icon.png") no-repeat center center;
+}
+
+.personal-segment .user-image .text {
+  color: #757575;
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-left: 8px;
+  display: block;
+}
+
+.personal-segment .login-title {
+  color: #757575;
+  font-size: 20px;
+}
+
+.personal-segment .border-line {
+  border-top: 1px solid #BDBDBD;
+}
+.personal-segment .no-border {
+  border: 0
+}
+
+/******************************form input box***************************/
+.form-input-box {
+  min-height: 92px;
+  width: 100%;
+  border-top: 1px solid #BDBDBD;
+}
+
+.form-input-box .header:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+.form-input-box .header {
+  margin-top: 16px;
+}
+
+.form-input-box .header .label {
+  color: #090925;
+  font-weight: bold;
+  font-size: 16px;
+  float: left;
+  display: inline-block;
+}
+.form-input-box .header .field-edit:hover {text-decoration: underline;}
+.form-input-box .header .field-edit {
+  color: #FE4C30;
+  font-weight: bold;
+  font-size: 14px;
+  float: right;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.form-input-box .container {
+  margin-top: 12px;
+}
+
+.form-input-box .container .value {
+  color: #757575;
+  font-size: 16px;
+}
+
+.form-input-box .header .disabled:hover {text-decoration: none;}
+.form-input-box .header .disabled {
+  color: #BDBDBD;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: not-allowed;
+}
+
+/***************************** media queries*********************/
+@media screen and (max-width: 1560px) {
+  .account-content {min-height: 540px;}
+}
+
+@media screen and (max-width: 1280px) {
+  .account-segments > div {width: 48%;}
+  .account-segment-title {margin-left: 40px;}
+}
+
+@media screen and (max-width: 1024px) {
+  .account-segments {width: 89%;}
+  .account-segments > div {
+    height: 190px;
+    width: 47%;
+  }
+  .account-segments .icon {
+    margin-top: 24px;
+    margin-left: 24px;
+  }
+  .account-segments .title, .account-segments .description {
+    margin-top: 16px;
+    margin-left: 24px;
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .personal-segment {
+    margin-left: 24px;
+    width: 90%;
+  }
+  .account-segment-title {margin-left: 24px;}
+}
+
+@media screen and (max-width: 768px) {
+  .account-segments {width: 87%;}
+}
+
+@media screen and (max-width: 660px) {
+  .account-content .account-title {margin-left: 24px;}
+  .account-segments {margin-left: 24px;}
+  .account-segments {width: 95%;}
+  .account-segments > div {width: 95%;}
+}

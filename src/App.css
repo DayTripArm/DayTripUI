@@ -23,6 +23,9 @@ a {
 .marginTop30 {margin-top: 30px;}
 .marginTop25 {margin-top: 25px;}
 .marginTop20 {margin-top: 20px;}
+.marginBottom20 {margin-bottom: 20px;}
+.marginBottom25 {margin-bottom: 25px;}
+.marginBottom30 {margin-bottom: 30px;}
 
 
 #page {
@@ -325,7 +328,7 @@ header div.header-right-side .traveler-menu div.messages .icon {
 header div.header-right-side .traveler-menu div.profile {
     margin-right: 80px;
     position: relative;
-    height: 35px;      /* this height for dropdown :hover action */
+    height: 51px;      /* this height for dropdown :hover action */
 }
 
 header div.header-right-side .traveler-menu div.profile .icon-white {background: url("./assets/images/Account.png") no-repeat center center;}
@@ -349,7 +352,7 @@ header div.header-right-side .traveler-menu div.profile:hover > .dropdown {
     z-index: 1;
     position: absolute;
     right: 1px;
-    top: 35px;
+    top: 51px;
     margin: 0;
     padding: 0;
     width: 328px;
@@ -461,7 +464,7 @@ header div.header-left-side div.daytrip span {
     color: #757575;
 }
 
-.content div.log-in-form form div.section input.input-text {
+input.input-text {
     border: 1px solid #BDBDBD;
     box-sizing: border-box;
     border-radius: 4px;
@@ -837,104 +840,6 @@ header div.header-left-side div.daytrip span {
 }
 
 
-/******************account-content**********************/
-
-.account-content {
-    max-width: 1760px;
-    margin: 0 auto;
-    min-height: 570px;
-}
-
-.account-content .account-title {
-    margin-left: 80px;
-    margin-top: 80px;
-}
-
-.account-content .account-title .title {
-    font-weight: bold;
-    font-size: 28px;
-    color: #090925;
-}
-
-.account-content .account-title .account-user {
-    margin-top: 12px;
-}
-
-.account-content .account-title .user-name {
-    font-size: 14px;
-    margin-right: 28px;
-    color: #090925;
-}
-
-.account-content .account-title .go-to-profile:hover {text-decoration: underline;}
-.account-content .account-title .go-to-profile {
-    font-size: 14px;
-    cursor: pointer;
-    text-transform: capitalize;
-    font-weight: bold;
-    color: #FE4C30;
-}
-
-.account-segments:after {
-    content: "";
-    clear: both;
-    display: block;
-}
-.account-segments {
-    margin-left: 80px;
-    margin-top: 35px;
-    width: 91%;
-}
-
-.account-segments > div {
-    float: left;
-    width: 32%;
-    height: 214px;
-    margin-right: 15px;
-    background: #FFFFFF;
-    border: 1px solid #BDBDBD;
-    box-sizing: border-box;
-    border-radius: 4px;
-    margin-top: 16px;
-    cursor: pointer;
-}
-
-.account-segments > div:hover {
-    background: rgba(189, 189, 189, 0.16);
-}
-
-
-.account-segments .icon {
-    width: 56px;
-    height: 56px;
-    margin-top: 32px;
-    margin-left: 32px;
-}
-
-.account-segments .payments-payouts {
-    margin-right: 0;
-    margin-bottom: 15px;
-}
-
-.account-segments .personal-info .icon {background: url("./assets/images/person_icon.png") no-repeat center center;}
-.account-segments .login-security .icon {background: url("./assets/images/security_icon.png") no-repeat center center;}
-.account-segments .payments-payouts .icon {background: url("./assets/images/payment_icon.png") no-repeat center center;}
-
-.account-segments .title {
-    font-weight: bold;
-    font-size: 20px;
-    color: #090925;
-    margin-top: 24px;
-    margin-left: 32px;
-}
-
-.account-segments .description {
-    font-weight: normal;
-    font-size: 16px;
-    color: #090925;
-    margin-top: 16px;
-    margin-left: 32px;
-}
 
 
 /***********************footer*******************/
@@ -968,7 +873,9 @@ footer div.wrapper .icons {
 footer div.wrapper span {margin-right: 20px;}
 footer span {float: left;}
 footer span.terms-conditions a {color: #757575;}
+footer span.terms-conditions a:hover {text-decoration: underline;}
 footer span.help a {color: #757575;}
+footer span.help a:hover {text-decoration: underline;}
 footer span.fb {
     width: 20px;
     height: 20px;
@@ -998,8 +905,6 @@ footer span.twitter {
         background: linear-gradient(180deg, rgba(16, 15, 114, 0.6) 0%, rgba(16, 15, 114, 0.37) 41.29%, rgba(16, 15, 114, 0.16) 100%), url("./assets/images/home_background_1560_700.png") no-repeat center center;
     }
 
-    .account-content {min-height: 540px;}
-
     .explore { top: 338px; }
 }
 
@@ -1008,8 +913,6 @@ footer span.twitter {
         height: 600px;
         background: linear-gradient(180deg, rgba(16, 15, 114, 0.6) 0%, rgba(16, 15, 114, 0.37) 41.29%, rgba(16, 15, 114, 0.16) 100%), url("./assets/images/home_background_1280_600.png") no-repeat center center;
     }
-
-    .account-segments > div {width: 48%;}
 
     .explore { left: 40px; top: 318px; }
 
@@ -1026,19 +929,6 @@ footer span.twitter {
         background: linear-gradient(180deg, rgba(16, 15, 114, 0.6) 0%, rgba(16, 15, 114, 0.37) 41.29%, rgba(16, 15, 114, 0.16) 100%), url("./assets/images/home_background_1024_600.png") no-repeat center center;
     }
 
-    .account-segments {width: 89%;}
-    .account-segments > div {
-        height: 190px;
-        width: 47%;
-    }
-    .account-segments .icon {
-        margin-top: 24px;
-        margin-left: 24px;
-    }
-    .account-segments .title, .account-segments .description {
-        margin-top: 16px;
-        margin-left: 24px;
-    }
 
     .explore h2 { font-size: 32px; }
     header div.header-right-side > div {  margin: 0 7px;}
@@ -1063,8 +953,6 @@ footer span.twitter {
         background: linear-gradient(180deg, rgba(16, 15, 114, 0.6) 0%, rgba(16, 15, 114, 0.37) 41.29%, rgba(16, 15, 114, 0.16) 100%), url("./assets/images/home_background_768_900.png") no-repeat center center;
     }
 
-    .account-segments {width: 87%;}
-
     header div.header-left-side { margin-left: 20px; }
     header div.header-right-side div.login { margin-right: 20px; }
 
@@ -1085,9 +973,6 @@ footer span.twitter {
     .menu-responsive .home {margin-left: 20%; margin-right: 17%;}
     .menu-responsive .saved {margin-right: 17%;}
     .menu-responsive .trips {margin-right: 17%;}
-
-    .account-segments {width: 80%;}
-    .account-segments > div {width: 90%;}
 
     footer {
         height: 120px;
