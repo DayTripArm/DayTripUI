@@ -6,6 +6,18 @@ import {Link} from "react-router-dom";
 import actions from "../actions";
 
 class Header extends React.Component {
+
+    componentDidMount() {
+        if (localStorage.user_type && localStorage.user_type === "TRAVELER") {
+            this.props.setUserType("TRAVELER");
+        }
+    }
+
+    logOut() {
+        this.props.logOut();
+        delete localStorage.user_type;
+    }
+
     render() {
         const {
             dayTrip,
@@ -65,7 +77,7 @@ class Header extends React.Component {
                                             <li><a href="http://google.com">$ USD</a></li>
                                             <li><a href="http://google.com">ENG</a></li>
                                             <li><a href="http://google.com">Help</a></li>
-                                            <li><a href="http://google.com">Log Out</a></li>
+                                            <li><Link to="/" onClick={() => this.logOut()}>Log Out</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -103,6 +115,7 @@ Header.propTypes = {
     page: PropTypes.string,
     showHideSignIn: PropTypes.func,
     showHideSignUp: PropTypes.func,
+    setUserType: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -112,6 +125,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     showHideSignIn: (show) => dispatch(actions.showHideSignIn(show)),
     showHideSignUp: (show) => dispatch(actions.showHideSignUp(show)),
+    setUserType: (user_type) => dispatch(actions.setUserType(user_type)),
+    logOut: (user_type) => dispatch(actions.logOut()),
 });
 
 

@@ -10,6 +10,8 @@ function* signUpRequest(action) {
 
         if (response) {
             yield put(actions.signUpReceiveSuccess(response));
+
+            localStorage.setItem("user_type", "TRAVELER");
         } else {
             yield put(actions.signUpReceiveError(error.response));
         }
@@ -26,6 +28,8 @@ function* signInRequest(action) {
         if (response) {
             yield put(actions.signInReceiveSuccess(response));
             yield put(actions.showHideSignIn(false));
+
+            localStorage.setItem("user_type", "TRAVELER");
         } else {
             yield put(actions.signInReceiveError(error.response));
         }

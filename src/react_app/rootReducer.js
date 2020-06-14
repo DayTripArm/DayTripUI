@@ -74,6 +74,25 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             }
         }
 
+        case actions.SET_USER_TYPE: {
+            const { user_type } = action;
+            let key = user_type === "TRAVELER" ? "isTraveler" : "isDriver";
+
+            return {
+                ...state,
+                [key]: true
+            }
+        }
+
+        case actions.LOG_OUT: {
+
+            return {
+                ...state,
+                isTraveler: false,
+                isDriver: false
+            }
+        }
+
         default:
             return state;
     }

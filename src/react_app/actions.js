@@ -37,6 +37,11 @@ const actions  = {
         response
     }),
 
+    LOG_OUT: `${nameSpace}_LOG_OUT`,
+    logOut: () => ({
+        type: actions.LOG_OUT
+    }),
+
     SHOW_HIDE_SIGN_IN: `${nameSpace}_SHOW_HIDE_SIGN_IN`,
     showHideSignIn: (show) => ({
         type: actions.SHOW_HIDE_SIGN_IN,
@@ -59,6 +64,12 @@ const actions  = {
     profileInfoReceive: (data) => ({
         type: actions.PROFILE_INFO_RECEIVE,
         data
+    }),
+
+    SET_USER_TYPE: `${nameSpace}_SET_USER_TYPE`,
+    setUserType: (user_type) => ({
+        type: actions.SET_USER_TYPE,
+        user_type
     }),
 };
 
