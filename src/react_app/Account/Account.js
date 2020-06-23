@@ -5,17 +5,19 @@ import Footer from "../Footer";
 import PersonalInfo from "./PersonalInfo";
 import LoginSecurity from "./LoginSecurity";
 import "./account.scss";
+import {
+    TRAVELER_TYPE,
+    PERSONAL,
+    LOGIN,
+    PAYMENTS
+} from "../contants";
 // import actions from "../actions";
 
-
-const PERSONAL = "PERSONAL";
-const LOGIN = "LOGIN";
-const PAYMENTS = "PAYMENTS";
 
 function Account(props) {
     // const dispatch = useDispatch();
     const {
-        isTraveler,
+        userType,
         // user_info,
         // profile={}
     } = useSelector(state => state.dayTrip);
@@ -89,7 +91,7 @@ function Account(props) {
 
             <Footer />
             {
-                isTraveler &&
+                userType === TRAVELER_TYPE &&
                 <div className="menu-responsive">
                     <div className="home"></div>
                     <div className="saved"></div>

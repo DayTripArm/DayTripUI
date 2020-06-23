@@ -20,13 +20,6 @@ a {
     text-decoration: none;
 }
 
-.marginTop30 {margin-top: 30px;}
-.marginTop25 {margin-top: 25px;}
-.marginTop20 {margin-top: 20px;}
-.marginBottom20 {margin-bottom: 20px;}
-.marginBottom25 {margin-bottom: 25px;}
-.marginBottom30 {margin-bottom: 30px;}
-
 
 #page {
     max-width: 1760px;
@@ -166,6 +159,16 @@ header div.search-place::after {
     clear: both;
 }
 
+/* driver header step area */
+
+.header-left-side .step-area {
+    color: #757575;
+    margin-left: 40px;
+    line-height: 35px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
 
 /* header right side */
 header div.header-right-side > div {
@@ -219,14 +222,15 @@ header div.header-right-side div.sign-up:hover > span {
     color: #FFFFFF;
 }
 
-header div.header-right-side div.become-driver a:hover {text-decoration: underline;}
-header div.header-right-side div.become-driver a {
+header div.header-right-side div.become-driver:hover {text-decoration: underline;}
+header div.header-right-side div.become-driver {
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
     color: #FFFFFF;
     text-decoration: none;
+    cursor: pointer;
 }
 
 header div.header-right-side div.login {
@@ -520,15 +524,12 @@ input.input-text {
 }
 
 .content div.log-in-form form div.remember-forgot span.forgot a {
-    font-style: normal;
     font-weight: bold;
     font-size: 14px;
     line-height: 21px;
     text-transform: capitalize;
     color: #757575;
-    flex: none;
-    order: 0;
-    align-self: center;
+    display: inline-block;
     margin: 10px 0;
     margin-left: 80px;
 }
@@ -642,19 +643,21 @@ input.input-text {
     margin-top: 20px;
 }
 
-.no-account span {
+.no-account span.text {
     font-weight: bold;
     font-size: 16px;
     line-height: 24px;
     color: #090925;
 }
 
-.no-account a {
+.no-account span.sign-in-up:hover {text-decoration: underline;}
+.no-account span.sign-in-up {
     font-weight: bold;
     font-size: 14px;
     line-height: 21px;
     text-transform: capitalize;
     color: #FE4C30;
+    cursor: pointer;
 }
 
 .content div.welcome {
@@ -840,6 +843,20 @@ input.input-text {
 }
 
 
+/*****************form-select***********************/
+
+.form-select {
+    margin-bottom: 24px;
+}
+.form-select .form-select-label {
+    font-weight: bold;
+    font-size: 12px;
+    color: #757575;
+    display: inline-block;
+    margin-bottom: 4px;
+    margin-left: 4px;
+}
+
 
 
 /***********************footer*******************/
@@ -896,6 +913,22 @@ footer span.twitter {
 }
 
 
+
+
+.marginTop30 {margin-top: 30px;}
+.marginTop25 {margin-top: 25px;}
+.marginTop20 {margin-top: 20px;}
+.marginBottom0 {margin-bottom: 0;}
+.marginBottom8 {margin-bottom: 8px;}
+.marginBottom20 {margin-bottom: 20px;}
+.marginBottom25 {margin-bottom: 25px;}
+.marginBottom30 {margin-bottom: 30px;}
+.marginBottom46 {margin-bottom: 46px;}
+.marginRight10 {margin-right: 10px;}
+.marginRight16 {margin-right: 16px;}
+.marginRight30 {margin-right: 30px;}
+
+.clear {clear: both;}
 
 
 /***************************** media queries*********************/

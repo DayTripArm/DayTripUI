@@ -1,0 +1,118 @@
+/******************driver-content**********************/
+.driver-header-border {
+  box-shadow: 0 3px 0 #BDBDBD
+}
+
+.progress-line {
+  margin-top: 56px;
+}
+
+.driver-content {
+  max-width: 1760px;
+  margin: 0 auto;
+}
+
+/**********driver-preregistration*********************/
+
+.driver-preregistration {
+  width: 328px;
+  margin: 76px auto 0px auto;
+}
+
+.driver-preregistration .title {
+  font-weight: bold;
+  font-size: 20px;
+  color: #100F72;
+  display: inline-block;
+}
+
+.driver-preregistration .back {
+  float: left;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #090925;
+  cursor: pointer;
+  margin-top: 48px;
+  margin-left: 20px;
+}
+
+.driver-preregistration .text {
+  font-size: 16px;
+  color: #757575;
+  line-height: 24px;
+  display: inline-block;
+  margin-top: 16px;
+}
+
+.driver-preregistration .plus-minus:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.driver-preregistration .plus-minus {
+  margin-top: 24px;
+}
+
+.driver-preregistration .plus-minus > div {
+  display: inline-block;
+  float: left;
+}
+
+.driver-preregistration .plus-minus .plus {
+  width: 20px;
+  height: 20px;
+  background: url("../../assets/images/Plus.png") no-repeat center center;
+  margin-right: 18px;
+  cursor: pointer;
+}
+
+.driver-preregistration .plus-minus .value {
+  font-size: 16px;
+  color: #090925;
+}
+
+.driver-preregistration .plus-minus .minus {
+  width: 20px;
+  height: 20px;
+  background: url("../../assets/images/Minus.png") no-repeat center center;
+  margin-left: 18px;
+  cursor: pointer;
+}
+
+.driver-preregistration .plus-minus .label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #090925;
+}
+
+.driver-preregistration .car-checkbox {
+  margin-top: 10px;
+}
+
+
+/***************************** media queries*********************/
+@media screen and (max-width: 1560px) {
+
+}
+
+@media screen and (max-width: 1280px) {
+
+}
+
+@media screen and (max-width: 1024px) {
+
+}
+
+@media screen and (max-width: 890px) {
+
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 660px) {
+
+}

@@ -54,6 +54,11 @@ const actions  = {
         show
     }),
 
+    SWITCH_SIGN_IN_UP: `${nameSpace}_SWITCH_SIGN_IN_UP`,
+    switchSignInUp: () => ({
+        type: actions.SWITCH_SIGN_IN_UP
+    }),
+
     PROFILE_INFO_REQUEST: `${nameSpace}_PROFILE_INFO_REQUEST`,
     profileInfoRequest: (id) => ({
         type: actions.PROFILE_INFO_REQUEST,
@@ -67,9 +72,15 @@ const actions  = {
     }),
 
     SET_USER_TYPE: `${nameSpace}_SET_USER_TYPE`,
-    setUserType: (user_type) => ({
+    setUserType: (userType) => ({
         type: actions.SET_USER_TYPE,
-        user_type
+        userType
+    }),
+
+    SET_REGISTERED_USER_TYPE: `${nameSpace}_SET_REGISTERED_USER_TYPE`,
+    setRegisteredUserType: (userType) => ({
+        type: actions.SET_REGISTERED_USER_TYPE,
+        userType
     }),
 };
 

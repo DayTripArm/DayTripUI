@@ -5,11 +5,12 @@ import Header from "./Header/Header";
 import Footer from "./Footer";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
+import {TRAVELER_TYPE} from "./contants";
 
 function Home(props) {
 
     const {
-        isTraveler,
+        userType,
         showSignIn,
         showSignUp
     } = useSelector(state => state.dayTrip);
@@ -31,7 +32,7 @@ function Home(props) {
             </div>
             <div className="main-content">
                 {
-                    isTraveler &&
+                    userType ===  TRAVELER_TYPE &&
                     <div className="menu-responsive">
                         <div className="home"></div>
                         <div className="saved"></div>

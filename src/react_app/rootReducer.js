@@ -1,12 +1,14 @@
 import {combineReducers} from 'redux';
 import actions from "./actions";
+import {
+    TRAVELER_TYPE
+} from "./contants";
 
 export const INITIAL_STATE = {
     showWelcome: false,
     showSignIn: false,
     showSignUp: false,
-    isTraveler: false,
-    isDriver: false,
+    userType: 0,
     user_info: {},
     profile: {}
 };
@@ -21,7 +23,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 user_info: data,
                 showWelcome: true,
-                isTraveler: true
+                userType: TRAVELER_TYPE
             }
         }
 
@@ -43,7 +45,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 user_info: data,
-                isTraveler: true
+                userType: TRAVELER_TYPE
             }
         }
 
@@ -53,6 +55,14 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 showSignIn: show
+            }
+        }
+
+        case actions.SWITCH_SIGN_IN_UP: {
+            return {
+                ...state,
+                showSignIn: !state.showSignIn,
+                showSignUp: !state.showSignUp,
             }
         }
 
@@ -75,21 +85,27 @@ const rootReducer = (state = INITIAL_STATE, action) => {
         }
 
         case actions.SET_USER_TYPE: {
-            const { user_type } = action;
-            let key = user_type === "TRAVELER" ? "isTraveler" : "isDriver";
+            const { userType } = action;
 
             return {
                 ...state,
-                [key]: true
+                userType
+            }
+        }
+
+        case actions.SET_REGISTERED_USER_TYPE: {
+            const { userType } = action;
+
+            return {
+                ...state,
+                registeredUserType: userType
             }
         }
 
         case actions.LOG_OUT: {
 
             return {
-                ...state,
-                isTraveler: false,
-                isDriver: false
+                ...INITIAL_STATE
             }
         }
 

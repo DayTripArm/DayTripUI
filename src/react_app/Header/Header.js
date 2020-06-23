@@ -2,20 +2,23 @@ import React from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {DRIVER_TYPE, TRAVELER_TYPE} from "../contants";
 
 import actions from "../actions";
 
 class Header extends React.Component {
 
     componentDidMount() {
-        if (localStorage.user_type && localStorage.user_type === "TRAVELER") {
-            this.props.setUserType("TRAVELER");
+        if (localStorage.userType && localStorage.userType === TRAVELER_TYPE) {
+            this.props.setUserType(TRAVELER_TYPE);
+        } else if (localStorage.userType && localStorage.userType === DRIVER_TYPE) {
+            this.props.setUserType(DRIVER_TYPE);
         }
     }
 
     logOut() {
         this.props.logOut();
-        delete localStorage.user_type;
+        delete localStorage.userType;
     }
 
     render() {
@@ -27,7 +30,7 @@ class Header extends React.Component {
         } = this.props;
 
         const {
-            isTraveler,
+            userType,
             showSignIn,
             showSignUp
         } = dayTrip;
@@ -43,7 +46,7 @@ class Header extends React.Component {
                 </div>
                 <div className="header-right-side">
                     {
-                        isTraveler ?
+                        userType === TRAVELER_TYPE ?
                             <div className="traveler-menu">
                                 <div className="home">
                                     <Link to="/">
@@ -99,8 +102,14 @@ class Header extends React.Component {
                                         <option value="am">AMD</option>
                                     </select>
                                 </div>
-                                <div className="become-driver"><a href="http://google.com">Become a Driver</a></div>
-                                <div className="sign-up" onClick={() => !showSignIn && showHideSignUp(true)}><span>Sign Up</span></div>
+                                <div className="become-driver" onClick={() => {
+                                    !showSignIn && showHideSignUp(true);
+                                    this.props.setRegisteredUserType(DRIVER_TYPE);
+                                }}>Become a Driver</div>
+                                <div className="sign-up" onClick={() => {
+                                    !showSignIn && showHideSignUp(true);
+                                    this.props.setRegisteredUserType(TRAVELER_TYPE);
+                                }}><span>Sign Up</span></div>
                                 <div className="login" onClick={() => !showSignUp && showHideSignIn(true)}><span>Login</span></div>
                             </React.Fragment>
                     }
@@ -125,8 +134,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     showHideSignIn: (show) => dispatch(actions.showHideSignIn(show)),
     showHideSignUp: (show) => dispatch(actions.showHideSignUp(show)),
-    setUserType: (user_type) => dispatch(actions.setUserType(user_type)),
-    logOut: (user_type) => dispatch(actions.logOut()),
+    setUserType: (userType) => dispatch(actions.setUserType(userType)),
+    setRegisteredUserType: (userType) => dispatch(actions.setRegisteredUserType(userType)),
+    logOut: (userType) => dispatch(actions.logOut()),
 });
 
 

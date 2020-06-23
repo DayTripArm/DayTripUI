@@ -1,6 +1,7 @@
 import { takeEvery, all, fork, call, put } from "redux-saga/effects";
 import actions from "./actions";
 import Api from "./Api";
+import {TRAVELER_TYPE} from "./contants";
 
 
 function* signUpRequest(action) {
@@ -11,7 +12,7 @@ function* signUpRequest(action) {
         if (response) {
             yield put(actions.signUpReceiveSuccess(response));
 
-            localStorage.setItem("user_type", "TRAVELER");
+            localStorage.setItem("userType", TRAVELER_TYPE);
         } else {
             yield put(actions.signUpReceiveError(error.response));
         }
@@ -29,7 +30,7 @@ function* signInRequest(action) {
             yield put(actions.signInReceiveSuccess(response));
             yield put(actions.showHideSignIn(false));
 
-            localStorage.setItem("user_type", "TRAVELER");
+            localStorage.setItem("userType", TRAVELER_TYPE);
         } else {
             yield put(actions.signInReceiveError(error.response));
         }

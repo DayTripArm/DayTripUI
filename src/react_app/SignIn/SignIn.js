@@ -119,9 +119,8 @@ function SignIn(props) {
                 </React.Fragment>
 
                 <div className="remember-forgot">
-                    <FormCheckbox name="rememberMe" value=""/>
+                    <FormCheckbox name="rememberMe" value="" label="Remember me" wrapperClassName={{float: "left"}}/>
 
-                    <span className="remember">Remember me</span>
                     <span className="forgot"><a href="http://google.com">Forgot Password?</a></span>
                 </div>
 
@@ -136,7 +135,7 @@ function SignIn(props) {
                 <FormButton label="Login with google" customClass={classes.google}/>
 
                 <div className="no-account">
-                    <span>Don't have an account? <a href="http://google.com">Sign Up</a></span>
+                    <span className="text">Don't have an account? <span className="sign-in-up" onClick={() => dispatch(actions.switchSignInUp())}>Sign Up</span></span>
                 </div>
             </form>
         </div>

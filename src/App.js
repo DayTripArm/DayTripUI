@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import Home from "./react_app/Home";
 import Account from "./react_app/Account/Account";
+import Driver from "./react_app/Driver/Driver";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,11 +16,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/account" component={Account} />
-          <Route render={() => {
-              return (
-                  <h1>404!</h1>
-              );
-          }} />
+          <Route exact path="/driver" component={Driver} />
+          <Route render={() => <h1>404!</h1>} />
         </Switch>
       </Router>
   );

@@ -11,6 +11,7 @@ import Welcome from "./Welcome";
 import {makeStyles} from "@material-ui/core/styles";
 import { indigo } from '@material-ui/core/colors';
 import actions from "../actions";
+import {TRAVELER_TYPE} from "../contants";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -74,6 +75,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const validations = {
+    name: {
+        required: true,
+        errorMsg: "Name is invalid"
+    },
     phone: {
         required: true,
         reg: /^\+?[0-9]{3}-?[0-9]{6,12}$/i,
@@ -84,6 +89,10 @@ const validations = {
         reg: /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/i,
         errorMsg: "Email is invalid"
     },
+    password: {
+        required: true,
+        errorMsg: "Password is invalid"
+    },
 };
 
 function SignUp(props) {
@@ -92,7 +101,9 @@ function SignUp(props) {
     const dispatch = useDispatch();
     const {
         showWelcome,
-        user_info
+        userType,
+        user_info,
+        registeredUserType,
     } = useSelector(state => state.dayTrip);
 
     const [form, setForm] = useState({name: "", phone: "", email: "", password: ""});
@@ -151,7 +162,8 @@ function SignUp(props) {
             name: form.name,
             phone: form.phone,
             email: form.email,
-            password: form.password
+            password: form.password,
+            user_type: Number(registeredUserType)
         };
 
         const invalidFields = validateForm();
@@ -170,7 +182,7 @@ function SignUp(props) {
     return (
         <React.Fragment>
             {
-                showWelcome ?
+                userType === TRAVELER_TYPE && showWelcome ?
                     <Welcome />
                     :
                     <div className="log-in-form" style={{minHeight: "710px"}}>
@@ -188,6 +200,8 @@ function SignUp(props) {
                                     label="Name*"
                                     name="name"
                                     placeholder="e.g Jogn Smith"
+                                    errorMessage={getStatusMessage("name")}
+                                    onBlur={validateOnBlur}
                                     value={form.name}
                                 />
                                 <FormInputText
@@ -229,6 +243,8 @@ function SignUp(props) {
                                     wrapperClassName={["marginTop25"]}
                                     inputClassName={[""]}
                                     password={true}
+                                    errorMessage={getStatusMessage("password")}
+                                    onBlur={validateOnBlur}
                                     value={form.password}
                                 />
                             </React.Fragment>
@@ -265,7 +281,7 @@ function SignUp(props) {
                             <br/>
 
                             <div className="no-account">
-                                <span>Already have an account? <a href="http://google.com">Login</a></span>
+                                <span className="text">Already have an account? <span className="sign-in-up" onClick={() => dispatch(actions.switchSignInUp())}>Login</span></span>
                             </div>
                         </form>
                     </div>
