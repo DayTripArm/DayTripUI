@@ -15,7 +15,7 @@ import {TRAVELER_TYPE} from "../contants";
 
 
 const useStyles = makeStyles((theme) => ({
-    button: {
+    sign_up: {
         backgroundColor: '#FE4C30',
         borderRadius: "4px",
         marginTop: "30px",
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: "bold",
         color: "#FFFFFF",
         letterSpacing: "0.05em",
+        cursor: "pointer",
         marginTop: "25px",
         textTransform: "uppercase",
         '&:hover': {
@@ -63,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
         color: "#757575",
         marginTop: "15px",
         letterSpacing: "0.05em",
+        cursor: "pointer",
         textTransform: "uppercase",
         '&:active': {
             boxShadow: 'none'
@@ -171,6 +173,7 @@ function SignUp(props) {
         if (_.isEmpty(invalidFields)) {
             try {
                 dispatch(actions.signUpRequest(body));
+                document.documentElement.scrollTop = 0;
             } catch (e) {
                 console.log(" err ", e.response);
             }
@@ -190,8 +193,23 @@ function SignUp(props) {
                             <span>Please Sign Up</span>
                             <div className="close" onClick={() => dispatch(actions.showHideSignUp(false))}> </div>
                         </header>
-                        <form action="#" method="post">
+                        <form onSubmit={(e) => {
+                            e.preventDefault();
+                            signUpRequest()
+                        }}>
                             <React.Fragment>
+                                {user_info.errors ?
+                                    <div className="form-error">
+                                        {
+                                            _.isArray(user_info.errors) && user_info.errors.map(err => {
+                                                return <span className="text-error-message">{err}</span>
+                                            })
+                                        }
+                                    </div>
+                                    :
+                                    null
+                                }
+
                                 <FormInputText
                                     onChange={(e) => setForm({
                                         ...form,
@@ -225,7 +243,7 @@ function SignUp(props) {
                                     })}
                                     label="Email*"
                                     name="email"
-                                    placeholder="Enter your Email"
+                                    placeholder="e.g johnsmith@gmail.com"
                                     wrapperClassName={["marginTop25"]}
                                     inputClassName={[""]}
                                     errorMessage={getStatusMessage("email")}
@@ -239,7 +257,7 @@ function SignUp(props) {
                                     })}
                                     label="Password*"
                                     name="password"
-                                    placeholder="Enter your Password"
+                                    placeholder="Insert Your Password"
                                     wrapperClassName={["marginTop25"]}
                                     inputClassName={[""]}
                                     password={true}
@@ -249,14 +267,7 @@ function SignUp(props) {
                                 />
                             </React.Fragment>
 
-                            <FormButton label="sign up" customClass={classes.button} onClick={() => signUpRequest()}/>
-                            <div className="form-error">
-                                {
-                                    user_info.errors && _.isArray(user_info.errors) && user_info.errors.map(err => {
-                                        return <span className="text-error-message">{err}</span>
-                                    })
-                                }
-                            </div>
+                            <FormButton label="sign up" type="submit" customClass={classes.sign_up}/>
 
                             <div className="or"></div>
 

@@ -412,9 +412,8 @@ header div.header-left-side div.daytrip span {
     width: 440px;
     min-height: 632px;
     border: 1px solid #FFFFFF;
-    margin: 97px auto 0 auto;
+    margin: 16px auto 0 auto;
     position: relative;
-
     background: #FFFFFF;
     box-shadow: 0 3px 4px rgba(5, 4, 62, 0.23);
     border-radius: 10px;
@@ -457,14 +456,11 @@ header div.header-left-side div.daytrip span {
     margin: 20px auto;
 }
 
-.content div.log-in-form form p {
-    font-style: normal;
+.content div.log-in-form form .label {
     font-weight: bold;
     font-size: 12px;
-    line-height: 18px;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
+    margin-bottom: 4px;
+    margin-left: 4px;
     color: #757575;
 }
 
@@ -491,8 +487,9 @@ input.input-text {
 }
 
 .form-error {
-    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 5px;
+    text-align: center;
 }
 
 .error {
@@ -523,6 +520,9 @@ input.input-text {
     color: #090925;
 }
 
+.content div.log-in-form form div.remember-forgot span.forgot {
+    float: right;
+}
 .content div.log-in-form form div.remember-forgot span.forgot a {
     font-weight: bold;
     font-size: 14px;

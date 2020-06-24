@@ -54,7 +54,8 @@ const rootReducer = (state = INITIAL_STATE, action) => {
 
             return {
                 ...state,
-                showSignIn: show
+                showSignIn: show,
+                user_info: {}
             }
         }
 
@@ -63,6 +64,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 showSignIn: !state.showSignIn,
                 showSignUp: !state.showSignUp,
+                user_info: {}
             }
         }
 
@@ -71,7 +73,8 @@ const rootReducer = (state = INITIAL_STATE, action) => {
 
             return {
                 ...state,
-                showSignUp: show
+                showSignUp: show,
+                user_info: {}
             }
         }
 

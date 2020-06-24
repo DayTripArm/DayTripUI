@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: "bold",
         color: "#FFFFFF",
         letterSpacing: "0.05em",
-        marginTop: "25px",
+        marginTop: "20px",
         textTransform: "uppercase",
         '&:hover': {
             backgroundColor: indigo[800]
@@ -87,6 +87,7 @@ function SignIn(props) {
 
         try {
             dispatch(actions.signInRequest(body));
+            document.documentElement.scrollTop = 0;
         } catch (e) {
             console.log(" err ", e.response);
         }
@@ -98,8 +99,19 @@ function SignIn(props) {
                 <span>Please Login</span>
                 <div className="close" onClick={() => dispatch(actions.showHideSignIn(false))}> </div>
             </header>
-            <form action="#" method="post">
+            <form onSubmit={(e) => {
+                e.preventDefault();
+                signInRequest();
+            }}>
                 <React.Fragment>
+                    {
+                        user_info.errors ?
+                        <div className="form-error">
+                            <span className="text-error-message">{!_.isArray(user_info.errors) && user_info.errors}</span>
+                        </div>
+                        :
+                        null
+                    }
                     <FormInputText
                         onChange={(e) => setEmail(e.target.value)}
                         label="Email*"
@@ -119,12 +131,12 @@ function SignIn(props) {
                 </React.Fragment>
 
                 <div className="remember-forgot">
-                    <FormCheckbox name="rememberMe" value="" label="Remember me" wrapperClassName={{float: "left"}}/>
+                    <FormCheckbox name="rememberMe" value="" label="Remember me" wrapperClassName={{float: "left", marginLeft: "-5px"}}/>
 
                     <span className="forgot"><a href="http://google.com">Forgot Password?</a></span>
                 </div>
 
-                <FormButton label="login" customClass={classes.button} onClick={() => signInRequest()}/>
+                <FormButton label="login" type="submit" name="form_submit" customClass={classes.button}/>
                 <div className="form-error">
                     <span className="text-error-message">{!_.isArray(user_info.errors) && user_info.errors}</span>
                 </div>

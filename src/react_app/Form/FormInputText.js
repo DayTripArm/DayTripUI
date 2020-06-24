@@ -34,7 +34,7 @@ class FormInputText extends React.Component {
         return (
             <React.Fragment>
                 <div className={`section ${wrapperClassName ? wrapperClassName.join(" ") : ""}`}>
-                    <p>{label}</p>
+                    <p className="label">{label}</p>
                     <input className={`input-text ${errorMessage && "error"} ${inputClassName ? inputClassName.join(" ") : ""}`}
                            type={password ? "password" : "text"}
                            name={name}

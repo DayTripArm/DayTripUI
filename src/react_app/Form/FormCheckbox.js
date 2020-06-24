@@ -7,8 +7,8 @@ import { indigo } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme) => ({
     root: {
         color: indigo[800],
-        width: "20px",
-        height: "20px",
+        width: "22px",
+        height: "22px",
         float: "left",
         '&$checked': {
             color: indigo[800],
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     label: {
         color: "#090925",
         fontSize: "14px",
-        marginTop: "11px",
+        marginTop: "12px",
         display: "inline-block"
     }
 }));
