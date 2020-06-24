@@ -137,9 +137,6 @@ function SignIn(props) {
                 </div>
 
                 <FormButton label="login" type="submit" name="form_submit" customClass={classes.button}/>
-                <div className="form-error">
-                    <span className="text-error-message">{!_.isArray(user_info.errors) && user_info.errors}</span>
-                </div>
 
                 <div className="or"></div>
                 <FormButton label="Login with facebook" customClass={classes.facebook}/>
