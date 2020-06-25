@@ -483,6 +483,7 @@ input.input-text {
     font-size: 12px;
     color: #B80000;
     margin-top: 4px;
+    margin-left: 4px;
     display: inline-block;
 }
 

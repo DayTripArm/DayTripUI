@@ -68,7 +68,20 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+const validations = {
+    email: {
+        required: true,
+        reg: /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/i,
+        errorMsg: "Email is invalid"
+    },
+    password: {
+        required: true,
+        errorMsg: "Password is invalid"
+    },
+};
+
 function SignIn(props) {
+    const [invalidFields, setInvalidFields] = useState({});
 
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -76,21 +89,69 @@ function SignIn(props) {
         user_info
     } = useSelector(state => state.dayTrip);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const {general: generalMsg="", password: passwordMsg=""} = user_info.errors || ""; // errors: {general: "...", or password: "..."}
+
+    const [form, setForm] = useState({email: "", password: ""});
+
+
+    function validateForm() {
+
+        return _.reduce(validations, (errors, rule, name) => {
+            const result = validateField(name);
+
+            if (result) { errors[name] = result; }
+
+            return errors;
+        }, {});
+    }
+
+    function getStatusMessage(name) {
+        const field = invalidFields[name];
+        return field && field.statusMessage ? field.statusMessage : undefined;
+    }
+
+    function validateField(name) {
+        const rule = validations[name];
+
+        if (rule) {
+            if (rule.required && !form[name].trim()) {
+                return { status: "error", statusMessage: "This field is required" };
+            }
+
+            if (!_.isEmpty(form[name]) && rule.reg && !rule.reg.test(form[name])) {
+                return { status: "error", statusMessage: rule.errorMsg };
+            }
+        }
+    }
+
+    function validateOnBlur(e, name) {
+        const result = validateField(name);
+        let state = _.clone(invalidFields);
+
+        if (result) state[name] = result;
+        else delete state[name];
+
+        setInvalidFields(state);
+    }
 
     function signInRequest() {
         const body = {
-            email,
-            password
+            email: form.email,
+            password: form.password
         };
 
-        try {
-            dispatch(actions.signInRequest(body));
-            document.documentElement.scrollTop = 0;
-        } catch (e) {
-            console.log(" err ", e.response);
+        const invalidFields = validateForm();
+
+        if (_.isEmpty(invalidFields)) {
+            try {
+                dispatch(actions.signInRequest(body));
+                document.documentElement.scrollTop = 0;
+            } catch (e) {
+                console.log(" err ", e.response);
+            }
         }
+
+        setInvalidFields(invalidFields);
     }
 
     return (
@@ -105,28 +166,42 @@ function SignIn(props) {
             }}>
                 <React.Fragment>
                     {
-                        user_info.errors ?
+                        generalMsg ?
                         <div className="form-error">
-                            <span className="text-error-message">{!_.isArray(user_info.errors) && user_info.errors}</span>
+                            <span className="text-error-message">{generalMsg}</span>
                         </div>
                         :
                         null
                     }
                     <FormInputText
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setForm({
+                            ...form,
+                            email: e.target.value
+                        })}
                         label="Email*"
                         placeholder="Enter your Email"
-                        value=""
+                        value={form.email}
+                        name="email"
+                        showErrorMsg={!generalMsg}
+                        errorMessage={getStatusMessage("email") || generalMsg}
+                        onBlur={validateOnBlur}
                     />
 
                     <FormInputText
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e) => setForm({
+                            ...form,
+                            password: e.target.value
+                        })}
                         label="Password*"
                         placeholder="Enter your Password"
                         wrapperClassName={["marginTop30"]}
                         inputClassName={[""]}
                         password={true}
-                        value=""
+                        value={form.password}
+                        name="password"
+                        showErrorMsg={!generalMsg}
+                        errorMessage={getStatusMessage("password") || generalMsg || passwordMsg}
+                        onBlur={validateOnBlur}
                     />
                 </React.Fragment>
 

@@ -11,7 +11,7 @@ function FormButton(props) {
     }
 
     return (
-        <Button variant="contained" type={type} name={name} className={customClass} disabled={disabled} onClick={() => onClick()}>
+        <Button variant="contained" disableElevation type={type} name={name} className={customClass} disabled={disabled} onClick={() => onClick()}>
             {label}
         </Button>
     );

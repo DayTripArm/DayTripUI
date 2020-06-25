@@ -29,7 +29,16 @@ class FormInputText extends React.Component {
     };
 
     render() {
-        const { placeholder, label, errorMessage, wrapperClassName, inputClassName, password, name} = this.props;
+        const {
+            placeholder,
+            label,
+            errorMessage,
+            wrapperClassName,
+            inputClassName,
+            password,
+            name,
+            showErrorMsg=true
+        } = this.props;
 
         return (
             <React.Fragment>
@@ -50,7 +59,7 @@ class FormInputText extends React.Component {
                            autoCorrect="off"
                            spellCheck="false"
                     />
-                    {errorMessage && errorMessage.length !== 0 && <span className="text-error-message">{errorMessage}</span>}
+                    {showErrorMsg && errorMessage && errorMessage.length !== 0 && <span className="text-error-message">{errorMessage}</span>}
                 </div>
             </React.Fragment>
 
