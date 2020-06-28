@@ -19,7 +19,6 @@ function LoginSecurity(props) {
                     empty_message="Last Update 13 days ago"
                     placeholder="Password"
                 />
-                <div className="border-line"></div>
             </div>
         </React.Fragment>
     );

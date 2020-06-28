@@ -42,7 +42,7 @@ function FormInputBox(props) {
         placeholder,
         options,
         empty_message,
-        customClass
+        customClass=""
     } = props;
     const classes = useStyles();
 

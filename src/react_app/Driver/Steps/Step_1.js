@@ -42,8 +42,6 @@ function Step_1(props) {
 
     const {preregistered_info} = driverData;
 
-    console.log(preregistered_info);
-
     const {
         car_type,
         car_mark,

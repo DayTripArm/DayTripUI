@@ -42,7 +42,7 @@ a {
 }
 
 .explore p {
-    font-size: 24px;
+    font-size: 20px;
     line-height: 36px;
     color: #FFFFFF;
 }
@@ -997,7 +997,6 @@ footer span.twitter {
     header div.header-right-side div.login { margin-right: 20px; }
 
     .explore { width: 620px; left: 24px; top: 620px; }
-    .explore p { font-size: 20px; }
 
     .menu-responsive .home {margin-left: 15%;}
 }
@@ -1008,7 +1007,6 @@ footer span.twitter {
     header div.header-right-side div.become-driver { display: none; }
 
     .explore { width: 400px; left: 12px; top: 560px;}
-    .explore p { font-size: 16px; }
 
     .menu-responsive .home {margin-left: 20%; margin-right: 17%;}
     .menu-responsive .saved {margin-right: 17%;}
