@@ -27,7 +27,7 @@ class Welcome extends React.Component {
 
     render() {
         const info = this.welcomeInfo[this.state.count];
-        const {showHideSignUp} = this.props;
+        const {showHideSignUp, showHideWelcome} = this.props;
 
         return (
             <div className="welcome">
@@ -42,7 +42,10 @@ class Welcome extends React.Component {
                 {
                     this.state.count === this.welcomeInfo.length - 1 // last dot
                         ?
-                        <FormButton label="GET STARTED" customClass="get-started" onClick={() => showHideSignUp(false)}/>
+                        <FormButton label="GET STARTED" customClass="get-started" onClick={() => {
+                            showHideSignUp(false);
+                            showHideWelcome(false);
+                        }} />
                         :
                         <div className="control">
                             <div className="skip" onClick={() => this.setState({count: this.welcomeInfo.length - 1})}>skip</div>
@@ -68,15 +71,17 @@ class Welcome extends React.Component {
 }
 
 Welcome.propTypes = {
-    showHideSignUp: PropTypes.func
+    showHideSignUp: PropTypes.func,
+    showHideWelcome: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
-    dayTrip: state.dayTrip
+
 });
 
 const mapDispatchToProps = dispatch => ({
     showHideSignUp: (show) => dispatch(actions.showHideSignUp(show)),
+    showHideWelcome: (show) => dispatch(actions.showHideWelcome(show)),
 });
 
 

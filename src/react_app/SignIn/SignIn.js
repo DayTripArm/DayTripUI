@@ -85,9 +85,10 @@ function SignIn(props) {
 
     const classes = useStyles();
     const dispatch = useDispatch();
+    const {travelerData} = useSelector(state => state);
     const {
         user_info
-    } = useSelector(state => state.dayTrip);
+    } = travelerData;
 
     const {general: generalMsg="", password: passwordMsg=""} = user_info.errors || ""; // errors: {general: "...", or password: "..."}
 

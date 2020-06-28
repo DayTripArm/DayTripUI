@@ -5,15 +5,17 @@ import Header from "./Header/Header";
 import Footer from "./Footer";
 import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
-import {TRAVELER_TYPE} from "./contants";
+import {TRAVELER_TYPE} from "./constants";
 
 function Home(props) {
 
+    const {travelerData, config} = useSelector(state => state);
     const {
-        userType,
         showSignIn,
         showSignUp
-    } = useSelector(state => state.dayTrip);
+    } = travelerData;
+
+    const {userType} = config;
 
     return(
         <div id="page">

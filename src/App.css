@@ -849,7 +849,13 @@ input.input-text {
 .form-select {
     margin-bottom: 24px;
 }
-.form-select .form-select-label {
+
+.single-select {
+
+}
+
+
+.form-select-label {
     font-weight: bold;
     font-size: 12px;
     color: #757575;

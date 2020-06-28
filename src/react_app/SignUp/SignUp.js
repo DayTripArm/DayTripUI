@@ -11,7 +11,7 @@ import Welcome from "./Welcome";
 import {makeStyles} from "@material-ui/core/styles";
 import { indigo } from '@material-ui/core/colors';
 import actions from "../actions";
-import {TRAVELER_TYPE} from "../contants";
+import {TRAVELER_TYPE} from "../constants";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -101,12 +101,26 @@ function SignUp(props) {
     const [invalidFields, setInvalidFields] = useState({});
 
     const dispatch = useDispatch();
+    const {travelerData, driverData, config} = useSelector(state => state);
+
     const {
         showWelcome,
-        userType,
-        user_info,
+        user_info
+    } = travelerData;
+
+    const {
         registeredUserType,
-    } = useSelector(state => state.dayTrip);
+        userType,
+    } = config;
+
+
+    const {user} = driverData.driver_info;
+    const {is_prereg} = user || {};
+
+    if (is_prereg) {
+        window.location.href = "/driver";
+        dispatch(actions.showHideSignUp(false));
+    }
 
     const [form, setForm] = useState({name: "", phone: "", email: "", password: ""});
     const classes = useStyles();

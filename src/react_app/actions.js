@@ -7,9 +7,15 @@ const actions  = {
         body
     }),
 
-    SIGN_UP_RECEIVE_SUCCESS: `${nameSpace}_SIGN_UP_RECEIVE_SUCCESS`,
-    signUpReceiveSuccess: (response) => ({
-        type: actions.SIGN_UP_RECEIVE_SUCCESS,
+    SIGN_UP_TRAVELER_RECEIVE_SUCCESS: `${nameSpace}_SIGN_UP_TRAVELER_RECEIVE_SUCCESS`,
+    signUpTravelerReceiveSuccess: (response) => ({
+        type: actions.SIGN_UP_TRAVELER_RECEIVE_SUCCESS,
+        response
+    }),
+
+    SIGN_UP_DRIVER_RECEIVE_SUCCESS: `${nameSpace}_SIGN_UP_DRIVER_RECEIVE_SUCCESS`,
+    signUpDriverReceiveSuccess: (response) => ({
+        type: actions.SIGN_UP_DRIVER_RECEIVE_SUCCESS,
         response
     }),
 
@@ -48,6 +54,12 @@ const actions  = {
         show
     }),
 
+    SHOW_HIDE_WELCOME: `${nameSpace}_SHOW_HIDE_WELCOME`,
+    showHideWelcome: (show) => ({
+        type: actions.SHOW_HIDE_WELCOME,
+        show
+    }),
+
     SHOW_HIDE_SIGN_UP: `${nameSpace}_SHOW_HIDE_SIGN_UP`,
     showHideSignUp: (show) => ({
         type: actions.SHOW_HIDE_SIGN_UP,
@@ -81,6 +93,38 @@ const actions  = {
     setRegisteredUserType: (userType) => ({
         type: actions.SET_REGISTERED_USER_TYPE,
         userType
+    }),
+
+    /*********************driver actions*************************/
+
+    SET_PREREGISTERED_DRIVER_PROPERTY: `${nameSpace}_SET_PREREGISTERED_DRIVER_PROPERTY`,
+    setPreregisteredDriverProperty: (field, value) => ({
+        type: actions.SET_PREREGISTERED_DRIVER_PROPERTY,
+        field,
+        value
+    }),
+
+    CAR_MARK_REQUEST: `${nameSpace}_CAR_MARK_REQUEST`,
+    carMarkRequest: () => ({
+        type: actions.CAR_MARK_REQUEST
+    }),
+
+    CAR_MARK_RECEIVE: `${nameSpace}_CAR_MARK_RECEIVE`,
+    carMarkReceive: (data) => ({
+        type: actions.CAR_MARK_RECEIVE,
+        data
+    }),
+
+    CAR_MODEL_REQUEST: `${nameSpace}_CAR_MODEL_REQUEST`,
+    carModelRequest: (mark_id) => ({
+        type: actions.CAR_MODEL_REQUEST,
+        mark_id
+    }),
+
+    CAR_MODEL_RECEIVE: `${nameSpace}_CAR_MODEL_RECEIVE`,
+    carModelReceive: (data) => ({
+        type: actions.CAR_MODEL_RECEIVE,
+        data
     }),
 };
 

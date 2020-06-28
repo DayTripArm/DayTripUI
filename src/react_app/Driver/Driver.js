@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-// import {useSelector} from "react-redux";/
+//import {useSelector} from "react-redux";
 import DriverHeader from "../Header/DriverHeader";
 import Footer from "../Footer";
 import "./driver.scss";
@@ -16,10 +16,9 @@ const StepPageByNumber = {
 function Driver(props) {
     document.body.onselectstart = () => false;
 
-    // const {
-    //     userType
-    // } = useSelector(state => state.dayTrip);
-    //
+    //const {driverData} = useSelector(state => state);
+    //const {driver_info} = driverData;
+
     const [step, setStep] = useState(1);
 
     const StepPage = StepPageByNumber[step];

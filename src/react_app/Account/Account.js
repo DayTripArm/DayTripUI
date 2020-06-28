@@ -10,17 +10,19 @@ import {
     PERSONAL,
     LOGIN,
     PAYMENTS
-} from "../contants";
+} from "../constants";
 // import actions from "../actions";
 
 
 function Account(props) {
     // const dispatch = useDispatch();
-    const {
-        userType,
-        // user_info,
-        // profile={}
-    } = useSelector(state => state.dayTrip);
+    const {config} = useSelector(state => state);
+    // const {
+    //     // user_info,
+    //     // profile={}
+    // } = travelerData;
+
+    const {userType} = config;
 
     // const {id} = user_info.user;
     // const {name} = profile;

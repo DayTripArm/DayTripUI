@@ -46,7 +46,8 @@ function FormSelect(props) {
         options,
         //placeholder,
         wrapperClassName,
-        //value
+        onChange,
+        value
     } = props;
     const classes = useStyles();
 
@@ -54,8 +55,7 @@ function FormSelect(props) {
         <div className={`form-select ${wrapperClassName ? wrapperClassName.join("") : ""}`}>
             <span className="form-select-label">{label}</span>
             <FormControl variant="outlined" className={classes.selectWrapper}>
-                <Select className={classes.select} native value="" onChange={() => {}}>
-                    <option aria-label="None" value="" />
+                <Select className={classes.select} native value={value} onChange={(e) => onChange(e)}>
                     {options && options.map(item => <option key={item} value={item}>{item}</option>)}
                 </Select>
             </FormControl>

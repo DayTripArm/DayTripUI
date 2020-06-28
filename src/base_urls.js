@@ -6,5 +6,7 @@ export default {
     "sign_up": `${HOST}/sign_up`,
     "sign_in": `${HOST}/sign_in`,
     "getProfileInfo": `${HOST}/profile_info`,
+    "getCarMarks": `${HOST}/car_brands`,
+    "getCarModels": `${HOST}/car_brands/{0}/models`,
   }
 }

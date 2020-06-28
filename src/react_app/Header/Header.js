@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {DRIVER_TYPE, TRAVELER_TYPE} from "../contants";
+import {DRIVER_TYPE, TRAVELER_TYPE} from "../constants";
 
 import actions from "../actions";
 
@@ -23,17 +23,19 @@ class Header extends React.Component {
 
     render() {
         const {
-            dayTrip,
+            travelerData,
             showHideSignIn,
             showHideSignUp,
-            page
+            page,
+            config
         } = this.props;
 
         const {
-            userType,
             showSignIn,
             showSignUp
-        } = dayTrip;
+        } = travelerData;
+
+        const {userType} = config;
 
         return (
             <header className={`${page ? "header-border" : ""}`}>
@@ -128,7 +130,8 @@ Header.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    dayTrip: state.dayTrip
+    travelerData: state.travelerData,
+    config: state.config,
 });
 
 const mapDispatchToProps = dispatch => ({

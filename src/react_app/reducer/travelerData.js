@@ -1,29 +1,22 @@
-import {combineReducers} from 'redux';
-import actions from "./actions";
-import {
-    TRAVELER_TYPE
-} from "./contants";
+import actions from "../actions";
 
 export const INITIAL_STATE = {
     showWelcome: false,
     showSignIn: false,
     showSignUp: false,
-    userType: 0,
     user_info: {},
     profile: {}
 };
 
-const rootReducer = (state = INITIAL_STATE, action) => {
+const travelerData = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case actions.SIGN_UP_RECEIVE_SUCCESS: {
+        case actions.SIGN_UP_TRAVELER_RECEIVE_SUCCESS: {
             const { response } = action;
             const { data } = response;
 
             return {
                 ...state,
-                user_info: data,
-                showWelcome: true,
-                userType: TRAVELER_TYPE
+                user_info: data
             }
         }
 
@@ -44,8 +37,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
 
             return {
                 ...state,
-                user_info: data,
-                userType: TRAVELER_TYPE
+                user_info: data
             }
         }
 
@@ -55,7 +47,15 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 showSignIn: show,
-                user_info: {}
+            }
+        }
+
+        case actions.SHOW_HIDE_WELCOME: {
+            const { show } = action;
+
+            return {
+                ...state,
+                showWelcome: show,
             }
         }
 
@@ -63,8 +63,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 showSignIn: !state.showSignIn,
-                showSignUp: !state.showSignUp,
-                user_info: {}
+                showSignUp: !state.showSignUp
             }
         }
 
@@ -87,37 +86,10 @@ const rootReducer = (state = INITIAL_STATE, action) => {
             }
         }
 
-        case actions.SET_USER_TYPE: {
-            const { userType } = action;
-
-            return {
-                ...state,
-                userType
-            }
-        }
-
-        case actions.SET_REGISTERED_USER_TYPE: {
-            const { userType } = action;
-
-            return {
-                ...state,
-                registeredUserType: userType
-            }
-        }
-
-        case actions.LOG_OUT: {
-
-            return {
-                ...INITIAL_STATE
-            }
-        }
-
         default:
             return state;
     }
 };
 
 
-export default combineReducers({
-    dayTrip: rootReducer
-});
+export default travelerData;

@@ -9,9 +9,6 @@ function DriverHeader(props) {
     } = props;
 
     const progressLineUnit = 11.11;
-    // const dispatch = useDispatch();
-
-    //const {} = useSelector(state => state.dayTrip);
 
     return (
         <header className="driver-header-border">
