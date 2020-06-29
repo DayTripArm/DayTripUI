@@ -275,6 +275,7 @@ function SignUp(props) {
                                     wrapperClassName={["marginTop25"]}
                                     inputClassName={[""]}
                                     password={true}
+                                    showEye={true}
                                     errorMessage={getStatusMessage("password")}
                                     onBlur={validateOnBlur}
                                     value={form.password}
