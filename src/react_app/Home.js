@@ -18,38 +18,41 @@ function Home(props) {
     const {userType} = config;
 
     return(
-        <div id="page">
-            <div className="explore">
-                <h2>Be Flexible to Discover More</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate augue purus</p>
-                <div className="explore-button">
-                    <span>Explore Daytrip</span>
-                </div>
-            </div>
-            <div className="content">
-                <Header />
-
-                {showSignIn && <SignIn />}
-                {showSignUp && <SignUp />}
-            </div>
-            <div className="main-content">
-                {
-                    userType ===  TRAVELER_TYPE &&
-                    <div className="menu-responsive">
-                        <div className="home"></div>
-                        <div className="saved"></div>
-                        <div className="trips"></div>
-                        <div className="messages"></div>
+        <React.Fragment>
+            <div className={`overlay ${(showSignIn || showSignUp) ? "display-block" : ""}`}></div>
+            <div id="page">
+                <div className="explore">
+                    <h2>Be Flexible to Discover More</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate augue purus</p>
+                    <div className="explore-button">
+                        <span>Explore Daytrip</span>
                     </div>
-                }
+                </div>
+                <div className="content">
+                    <Header />
 
-                <div className="top-choices"></div>
-                <div className="hit-the-road"></div>
-                <div className="explore-all-day-trips"></div>
+                    {showSignIn && <SignIn />}
+                    {showSignUp && <SignUp />}
+                </div>
+                <div className="main-content">
+                    {
+                        userType ===  TRAVELER_TYPE &&
+                        <div className="menu-responsive">
+                            <div className="home"></div>
+                            <div className="saved"></div>
+                            <div className="trips"></div>
+                            <div className="messages"></div>
+                        </div>
+                    }
+
+                    <div className="top-choices"></div>
+                    <div className="hit-the-road"></div>
+                    <div className="explore-all-day-trips"></div>
+                </div>
+
+                <Footer />
             </div>
-
-            <Footer />
-        </div>
+        </React.Fragment>
     );
 }
 
