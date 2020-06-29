@@ -475,6 +475,22 @@ header div.header-left-side div.daytrip span {
     color: #757575;
 }
 
+.form-input-text {
+    position: relative;
+}
+
+.form-input-text .eye {
+    width: 20px;
+    height: 14px;
+    /*background: url("./assets/images/Eye_show.png") no-repeat center center;*/
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 17px;
+    cursor: pointer;
+    z-index: 5;
+}
+
 input.input-text {
     border: 1px solid #BDBDBD;
     box-sizing: border-box;

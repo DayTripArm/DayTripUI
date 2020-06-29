@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
+
 class FormInputText extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            value: ""
+            value: "",
+            password: props.password
         };
     }
 
@@ -28,24 +32,33 @@ class FormInputText extends React.Component {
         }
     };
 
+    showHidePwd = () => {
+        this.setState({
+            password: !this.state.password
+        });
+    };
+
+
     render() {
+
         const {
             placeholder,
             label,
             errorMessage,
             wrapperClassName,
             inputClassName,
-            password,
             name,
+            showEye=false,
             showErrorMsg=true
         } = this.props;
 
+
         return (
             <React.Fragment>
-                <div className={`section ${wrapperClassName ? wrapperClassName.join(" ") : ""}`}>
+                <div className={`form-input-text ${wrapperClassName ? wrapperClassName.join(" ") : ""}`}>
                     <p className="label">{label}</p>
                     <input className={`input-text ${errorMessage && "error"} ${inputClassName ? inputClassName.join(" ") : ""}`}
-                           type={password ? "password" : "text"}
+                           type={this.state.password ? "password" : "text"}
                            name={name}
                            value={this.state.value}
                            placeholder={placeholder}
@@ -59,6 +72,14 @@ class FormInputText extends React.Component {
                            autoCorrect="off"
                            spellCheck="false"
                     />
+                    {showEye && <span className="eye" onClick={() => this.showHidePwd()}>
+                        {
+                            this.state.password ?
+                                <VisibilityOffIcon/>
+                                :
+                                <RemoveRedEyeIcon />
+                        }
+                    </span>}
                     {showErrorMsg && errorMessage && errorMessage.length !== 0 && <span className="text-error-message">{errorMessage}</span>}
                 </div>
             </React.Fragment>

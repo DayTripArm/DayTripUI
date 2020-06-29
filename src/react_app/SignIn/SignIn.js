@@ -199,6 +199,7 @@ function SignIn(props) {
                         inputClassName={[""]}
                         password={true}
                         value={form.password}
+                        showEye={true}
                         name="password"
                         showErrorMsg={!generalMsg}
                         errorMessage={getStatusMessage("password") || generalMsg || passwordMsg}
