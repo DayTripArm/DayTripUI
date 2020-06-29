@@ -116,7 +116,7 @@ header div.header-left-side > div {
 }
 
 header div.search-place {
-    margin-left: 20px;
+    margin-left: 23px;
     position: relative;
 }
 
@@ -143,10 +143,11 @@ header div.search-place {
 .search-place input.search-text-grey {color: #757575;}
 .search-place input.search-text {
     position: absolute;
-    top: 5px;
+    top: 8px;
     left: 30px;
     border: none;
     outline: none;
+    font-family: Roboto;
     background: transparent;
     font-style: normal;
     font-weight: normal;
@@ -215,8 +216,8 @@ header div.header-right-side span.currency-icon {
 header div.header-right-side div.sign-up {
     width: 87px;
     height: 32px;
-    margin-top: -10px;
-    margin-right: 0px;
+    margin-top: -6px;
+    margin-right: 0;
     text-align: center;
     background-color: #FFFFFF;
     border-radius: 4px;
@@ -238,7 +239,7 @@ header div.header-right-side div.become-driver {
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 30px;
     color: #FFFFFF;
     text-decoration: none;
     cursor: pointer;
@@ -248,7 +249,7 @@ header div.header-right-side div.login {
     border: 1px solid #FFFFFF;
     border-radius: 4px;
     padding: 7px 20px;
-    margin-top: -10px;
+    margin-top: -6px;
     margin-right: 80px;
     cursor: pointer;
 }
