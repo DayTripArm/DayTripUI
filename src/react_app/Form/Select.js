@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import _ from "lodash";
 
 const defaultStyles =  {
     control: (styles, state) => ({
@@ -24,7 +25,7 @@ const defaultStyles =  {
             fontSize: "14px",
             color: "#757575",
             backgroundColor:
-                isSelected ? "#bdbdbd"
+                isSelected ? "#ededed"
                     :
                     isFocused ? "#ededed" : "white",
             paddingLeft: "15px",
@@ -63,8 +64,8 @@ function SingleSelect(props) {
     };
 
     return (
-        <div className={`form-select ${wrapperClassName ? wrapperClassName.join("") : ""}`}>
-            <label className="form-select-label">{label}</label>
+        <div className={`${wrapperClassName ? wrapperClassName.join(" ") : ""}`}>
+            {!_.isEmpty(label) && <label className="form-select-label">{label}</label>}
             <Select
                 className=""
                 classNamePrefix="select"

@@ -5,7 +5,8 @@ export default {
   "day_trip": {
     "sign_up": `${HOST}/sign_up`,
     "sign_in": `${HOST}/sign_in`,
-    "getProfileInfo": `${HOST}/profile_info`,
+    "getProfileInfo": `${HOST}/profile_info/{0}?profile={1}`,
+    "updateProfileInfo": `${HOST}/profile_info/{0}`,
     "getCarMarks": `${HOST}/car_brands`,
     "getCarModels": `${HOST}/car_brands/{0}/models`,
   }

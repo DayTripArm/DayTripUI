@@ -100,13 +100,33 @@
 
 /*********************personal info****************************/
 
-.account-segment-title > a:hover {text-decoration: underline;}
+.account-segment-title:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.account-segment-title > span {
+  float: left;
+}
 .account-segment-title {
   margin-top: 26px;
   margin-left: 80px;
   color: #100F72;
   font-size: 14px;
   font-weight: bold;
+}
+
+.account-segment-title .arrow {
+  width: 8px;
+  height: 12px;
+  display: inline-block;
+  margin: 2px 13px 0 13px;
+  background: url("../../assets/images/Arrow.png") no-repeat center center;
+}
+
+.account-segment-title .account-name:hover {text-decoration: underline;}
+.account-segment-title .account-name {
+  cursor: pointer;
 }
 
 .personal-segment {
@@ -127,7 +147,7 @@
   margin: 0 auto;
   cursor: pointer;
   margin-top: 50px;
-  margin-bottom: 21px;
+  margin-bottom: 25px;
 }
 
 .personal-segment .user-image .image-upload {
@@ -198,6 +218,15 @@
 .form-input-box .container .value {
   color: #757575;
   font-size: 16px;
+}
+
+.container .date-of-birth:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .date-of-birth > div {
+  float: left;
 }
 
 .form-input-box .header .disabled:hover {text-decoration: none;}

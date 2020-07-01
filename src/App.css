@@ -476,17 +476,17 @@ header div.header-left-side div.daytrip span {
     color: #757575;
 }
 
-.form-input-text {
+.form-input-container {
     position: relative;
 }
 
-.form-input-text .eye {
+.form-input-container .eye {
     width: 20px;
     height: 14px;
     /*background: url("./assets/images/Eye_show.png") no-repeat center center;*/
     display: block;
     position: absolute;
-    top: 30px;
+    top: 13px;
     right: 17px;
     cursor: pointer;
     z-index: 5;
@@ -949,10 +949,12 @@ footer span.twitter {
 
 
 
-
+.bigInputField {width: 328px}
+.smallInputField {width: 156px}
 .marginTop30 {margin-top: 30px;}
 .marginTop25 {margin-top: 25px;}
 .marginTop20 {margin-top: 20px;}
+.marginTop15 {margin-top: 15px;}
 .marginBottom0 {margin-bottom: 0;}
 .marginBottom8 {margin-bottom: 8px;}
 .marginBottom20 {margin-bottom: 20px;}

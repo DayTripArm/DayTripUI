@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
-import {CAR_TYPE_LIST, YEAR_LIST, COLOR_LIST} from "../../constants";
+import {CAR_TYPE_LIST, CAR_YEAR_LIST, COLOR_LIST} from "../../constants";
 import actions from "../../actions";
 import _ from "lodash";
 
@@ -68,7 +68,7 @@ function Step_1(props) {
     };
 
     const carTypeList = CAR_TYPE_LIST.map(item => {return {label: item, value: item}});
-    const yearList    = YEAR_LIST.map(item => {return {label: item, value: item}});
+    const yearList    = CAR_YEAR_LIST().map(item => {return {label: item, value: item}});
     const colorList   = COLOR_LIST.map(item => {return {label: item, value: item}});
     const carBrands = car_mark_list.map(item => {return {label: item.brand_name, value: item.id}});
     const carModels = car_model_list.map(item => {return {label: item.car_model_name, value: item.id, brand_id: item.brand_id}});
@@ -82,6 +82,7 @@ function Step_1(props) {
                 name="car_type"
                 value={_.find(carTypeList, i => i.value === car_type)}
                 placeholder="Choose"
+                wrapperClassName={["form-select"]}
                 label="What is Your Car Type?"
             />
             <SingleSelect
@@ -90,6 +91,7 @@ function Step_1(props) {
                 name="car_mark"
                 value={_.find(carBrands, i => i.value === car_mark)}
                 placeholder="Choose"
+                wrapperClassName={["form-select"]}
                 label="What is Your Car Mark?"
             />
             <SingleSelect
@@ -98,6 +100,7 @@ function Step_1(props) {
                 name="car_model"
                 value={_.find(carModels, i => i.value === car_model && i.brand_id === car_mark)}
                 placeholder="Choose"
+                wrapperClassName={["form-select"]}
                 label="What is Your Car Model?"
             />
             <SingleSelect
@@ -106,6 +109,7 @@ function Step_1(props) {
                 name="year"
                 value={_.find(yearList, i => i.value === year)}
                 placeholder="Choose"
+                wrapperClassName={["form-select"]}
                 label="Year"
             />
             <SingleSelect
@@ -115,7 +119,7 @@ function Step_1(props) {
                 value={_.find(colorList, i => i.value === color)}
                 placeholder="Choose"
                 label="Color"
-                wrapperClassName={["marginBottom8"]}
+                wrapperClassName={["form-select", "marginBottom8"]}
             />
             <FormButton
                 customClass={classes.next}

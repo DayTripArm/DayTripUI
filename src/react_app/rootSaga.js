@@ -10,7 +10,7 @@ function* signUpRequest(action) {
         const {response, error} = yield call(Api.signUpRequest, body);
 
         if (response) {
-            const {user_type} = response.data.user;
+            const {id, user_type} = response.data.user;
 
             if (user_type === Number(TRAVELER_TYPE)) {
                 yield put(actions.signUpTravelerReceiveSuccess(response));
@@ -19,7 +19,8 @@ function* signUpRequest(action) {
                 yield put(actions.signUpDriverReceiveSuccess(response));
             }
 
-            yield put(actions.setUserType(response.data.user.user_type));
+            localStorage.setItem("id", id);
+            yield put(actions.setUserType(user_type));
         } else {
             yield put(actions.signUpReceiveError(error.response));
         }
@@ -34,9 +35,13 @@ function* signInRequest(action) {
         const {response, error} = yield call(Api.signInRequest, body);
 
         if (response) {
+            const {id, user_type} = response.data.user;
+
             yield put(actions.signInReceiveSuccess(response));
-            yield put(actions.setUserType(response.data.user.user_type));
+            yield put(actions.setUserType(user_type));
             yield put(actions.showHideSignIn(false));
+
+            localStorage.setItem("id", id);
         } else {
             yield put(actions.signInReceiveError(error.response));
         }
@@ -52,6 +57,22 @@ function* profileInfoRequest(action) {
 
         if (response) {
             yield put(actions.profileInfoReceive(response.data.profile));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* updateProfileInfo(action) {
+    try {
+        const { id, data } = action;
+        console.log(" id ", id, " data ", data);
+        const {response, error} = yield call(Api.updateProfileInfo, id, data);
+
+        if (response) {
+            yield put(actions.profileInfoRequest(id));
         } else {
             console.log(" err ", error);
         }
@@ -96,6 +117,7 @@ function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
     yield takeEvery(actions.PROFILE_INFO_REQUEST, profileInfoRequest);
+    yield takeEvery(actions.UPDATE_PROFILE_INFO, updateProfileInfo);
     yield takeEvery(actions.CAR_MARK_REQUEST, carMarkRequest);
     yield takeEvery(actions.CAR_MODEL_REQUEST, carModelRequest);
 }

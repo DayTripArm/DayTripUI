@@ -5,48 +5,37 @@ import Footer from "../Footer";
 import PersonalInfo from "./PersonalInfo";
 import LoginSecurity from "./LoginSecurity";
 import "./account.scss";
+
 import {
     TRAVELER_TYPE,
     PERSONAL,
     LOGIN,
     PAYMENTS
 } from "../constants";
-// import actions from "../actions";
 
 
 function Account(props) {
-    // const dispatch = useDispatch();
-    const {config} = useSelector(state => state);
-    // const {
-    //     // user_info,
-    //     // profile={}
-    // } = travelerData;
+    const {config={}, travelerData={}} = useSelector(state => state);
+    const {profile={}} = travelerData;
+    const {name} = profile || {};
 
     const {userType} = config;
 
-    // const {id} = user_info.user;
-    // const {name} = profile;
 
     const [type, setType] = useState("");
 
     function renderSegment() {
         switch (type) {
             case PERSONAL:
-                return <PersonalInfo />;
+                return <PersonalInfo setType={setType} />;
             case LOGIN:
-                return <LoginSecurity />;
+                return <LoginSecurity setType={setType} />;
             case PAYMENTS:
                 return <h1>Coming soon...</h1>;
             default:
                 return null;
         }
     }
-
-    // TODO Khachatur
-    // useEffect(() => {
-    //     console.log("use effect");
-    //     dispatch(actions.profileInfoRequest(id));
-    // }, []);
 
     return (
         <div id="page">
@@ -58,7 +47,7 @@ function Account(props) {
                         <div className="account-title">
                             <span className="title">Account</span>
                             <div className="account-user">
-                                <span className="user-name">John Smith</span>
+                                <span className="user-name">{name}</span>
                                 <span className="go-to-profile">Go To Profile</span>
                             </div>
                         </div>

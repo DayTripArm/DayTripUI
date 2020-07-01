@@ -95,6 +95,13 @@ const actions  = {
         userType
     }),
 
+    UPDATE_PROFILE_INFO: `${nameSpace}_UPDATE_PROFILE_INFO`,
+    updateProfileInfo: (id, data) => ({
+        type: actions.UPDATE_PROFILE_INFO,
+        id,
+        data
+    }),
+
     /*********************driver actions*************************/
 
     SET_PREREGISTERED_DRIVER_PROPERTY: `${nameSpace}_SET_PREREGISTERED_DRIVER_PROPERTY`,

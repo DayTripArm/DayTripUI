@@ -16,7 +16,13 @@ export default {
     },
 
     getProfileInfo(id) {
-        return axios.get(base_urls.day_trip.getProfileInfo+`/${id}?profile=personal`, { handlesError: [400, 417, 500] })
+        return axios.get(template(base_urls.day_trip.getProfileInfo, id, "personal"), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    updateProfileInfo(id, data) {
+        return axios.post(template(base_urls.day_trip.updateProfileInfo, id), data, { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },

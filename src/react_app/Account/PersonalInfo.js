@@ -1,13 +1,33 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import FormInputBox from "../Form/FormInputBox";
-import FormDatePicker from "../Form/FormDatePicker";
+import {useSelector} from "react-redux";
+import {GENDER_LIST} from "../constants";
 
 function PersonalInfo(props) {
 
+    //const dispatch = useDispatch();
+    const {travelerData} = useSelector(state => state);
+    const {profile} = travelerData;
+
+    const {
+        name,
+        gender,
+        date_of_birth,
+        email,
+        phone,
+        about,
+        location,
+        languages,
+        work
+    } = profile || {};
+
+    const genderList = GENDER_LIST.map(item => {return {label: item, value: item}});
+
     return(
         <React.Fragment>
-            <div className="account-segment-title"><Link to="/account" onClick={() => window.location.reload()} refresh="true">Account</Link> &nbsp; > &nbsp; Personal Info</div>
+            <div className="account-segment-title">
+                <span className="account-name" onClick={() => props.setType("")}>Account</span>
+                <span className="arrow"></span>Personal Info</div>
             <div className="personal-segment">
                 <title>Personal Info</title>
                 <div className="user-image">
@@ -17,46 +37,46 @@ function PersonalInfo(props) {
 
                 <FormInputBox
                     type="input"
-                    name="user"
+                    name="name"
                     label="User Name"
-                    value="John Doe"
+                    value={name}
                     placeholder="John Doe"
                 />
                 <FormInputBox
                     type="select"
-                    options={["Male", "Female"]}
+                    options={genderList}
                     name="gender"
                     label="Gender"
-                    value="Male"
+                    value={gender}
                     placeholder="Male"
+                    empty_message="Not Specified"
                 />
-                <FormDatePicker
+                <FormInputBox
                     type="date"
                     name="date_of_birth"
                     label="Date of Birth"
-                    value=""
-                    options={["Male", "Female"]}
-                    empty_message="Current date"
+                    value={date_of_birth}
+                    empty_message="Not Specified"
                 />
                 <FormInputBox
                     type="input"
                     name="email"
                     label="Email Address"
-                    value="gevorg.petrosyan@gmail.com"
+                    value={email}
                     disabled={true}
                 />
                 <FormInputBox
                     type="input"
                     name="phone"
                     label="Phone Number"
-                    value=""
+                    value={phone}
                     empty_message="Not Specified"
                 />
                 <FormInputBox
                     type="input"
                     name="about"
                     label="About"
-                    value=""
+                    value={about}
                     empty_message="Not Written"
                 />
                 <FormInputBox
@@ -64,7 +84,7 @@ function PersonalInfo(props) {
                     name="location"
                     label="Location"
                     placeholder="Yerevan, Armenia"
-                    value="Yerevan, Armenia"
+                    value={location}
                     empty_message="Not Written"
                 />
                 <FormInputBox
@@ -72,7 +92,7 @@ function PersonalInfo(props) {
                     name="languages"
                     label="Languages/Speaks"
                     placeholder="English, Russian, French"
-                    value="English, Russian, French"
+                    value={languages}
                     empty_message="Not Written"
                 />
                 <FormInputBox
@@ -80,7 +100,7 @@ function PersonalInfo(props) {
                     name="work"
                     label="Work"
                     placeholder=""
-                    value=""
+                    value={work}
                     empty_message="Not Written"
                 />
             </div>

@@ -9,7 +9,7 @@ class FormInputText extends React.Component {
         super(props);
 
         this.state = {
-            value: "",
+            value: props.value,
             password: props.password
         };
     }
@@ -55,31 +55,34 @@ class FormInputText extends React.Component {
 
         return (
             <React.Fragment>
-                <div className={`form-input-text ${wrapperClassName ? wrapperClassName.join(" ") : ""}`}>
+                <div className={`${wrapperClassName ? wrapperClassName.join(" ") : ""}`}>
                     <p className="label">{label}</p>
-                    <input className={`input-text ${errorMessage && "error"} ${inputClassName ? inputClassName.join(" ") : ""}`}
-                           type={this.state.password ? "password" : "text"}
-                           name={name}
-                           value={this.state.value}
-                           placeholder={placeholder}
-                           min="1"
-                           max="1440"
-                           onChange={this.onChange}
-                           onBlur={this.onBlur}
-                           step="1"
-                           autoComplete="off"
-                           autoCapitalize="off"
-                           autoCorrect="off"
-                           spellCheck="false"
-                    />
-                    {showEye && <span className="eye" onClick={() => this.showHidePwd()}>
-                        {
-                            this.state.password ?
-                                <VisibilityOffIcon/>
-                                :
-                                <RemoveRedEyeIcon />
+                    <div className="form-input-container">
+                        <input className={`input-text ${errorMessage && "error"} ${inputClassName ? inputClassName.join(" ") : ""}`}
+                               type={this.state.password ? "password" : "text"}
+                               name={name}
+                               value={this.state.value}
+                               placeholder={placeholder}
+                               min="1"
+                               max="1440"
+                               onChange={this.onChange}
+                               onBlur={this.onBlur}
+                               step="1"
+                               autoComplete="off"
+                               autoCapitalize="off"
+                               autoCorrect="off"
+                               spellCheck="false"
+                        />
+                        {showEye && <span className="eye" onClick={() => this.showHidePwd()}>
+                            {
+                                this.state.password ?
+                                    <VisibilityOffIcon/>
+                                    :
+                                    <RemoveRedEyeIcon />
+                            }
+                        </span>
                         }
-                    </span>}
+                    </div>
                     {showErrorMsg && errorMessage && errorMessage.length !== 0 && <span className="text-error-message">{errorMessage}</span>}
                 </div>
             </React.Fragment>

@@ -72,8 +72,7 @@ const travelerData = (state = INITIAL_STATE, action) => {
 
             return {
                 ...state,
-                showSignUp: show,
-                user_info: {}
+                showSignUp: show
             }
         }
 
@@ -82,7 +81,14 @@ const travelerData = (state = INITIAL_STATE, action) => {
 
             return {
                 ...state,
-                profile: data
+                profile: data || {}
+            }
+        }
+
+        case actions.LOG_OUT: {
+
+            return {
+                ...INITIAL_STATE
             }
         }
 

@@ -1,41 +1,52 @@
-import React from 'react';
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {DRIVER_TYPE, TRAVELER_TYPE} from "../constants";
+import _ from "lodash";
 
 import actions from "../actions";
 
-class Header extends React.Component {
+function Header(props) {
+    const dispatch = useDispatch();
+    const {travelerData, config} = useSelector(state => state);
+    const {page} = props;
 
-    componentDidMount() {
+    useEffect(() => {
         if (localStorage.userType && localStorage.userType === TRAVELER_TYPE) {
-            this.props.setUserType(TRAVELER_TYPE);
+            dispatch(actions.setUserType(TRAVELER_TYPE));
         } else if (localStorage.userType && localStorage.userType === DRIVER_TYPE) {
-            this.props.setUserType(DRIVER_TYPE);
+            dispatch(actions.setUserType(DRIVER_TYPE));
         }
-    }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    logOut() {
-        this.props.logOut();
+    useEffect(() => {
+        if (localStorage.userType) {
+            dispatch(actions.profileInfoRequest(localStorage.id));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const logOut = () => {
+        dispatch(actions.logOut());
         delete localStorage.userType;
-    }
+        delete localStorage.id;
+    };
 
-    render() {
-        const {
-            travelerData,
-            showHideSignIn,
-            showHideSignUp,
-            page,
-            config
-        } = this.props;
 
-        const {
-            showSignIn,
-            showSignUp
-        } = travelerData;
+    const {
+        showSignIn,
+        showSignUp,
+        user_info={},
+        profile={},
+    } = travelerData;
 
-        const {userType} = config;
+
+
+    const {user={}} = user_info;
+    const {name} = !_.isEmpty(profile) ? profile : user;
+
+    const {userType} = config;
 
         return (
             <header className={`${page ? "header-border" : ""}`}>
@@ -71,7 +82,7 @@ class Header extends React.Component {
                                 </div>
                                 <div className="profile">
                                     <span className={`icon ${page ? "icon-black" : "icon-white"}`}></span>
-                                    <span className={`text ${page ? "text-black" : "text-white"}`}>John</span>
+                                    <span className={`text ${page ? "text-black" : "text-white"}`}>{name}</span>
 
                                     <div className="dropdown">
                                         <ul>
@@ -82,7 +93,7 @@ class Header extends React.Component {
                                             <li><a href="http://google.com">$ USD</a></li>
                                             <li><a href="http://google.com">ENG</a></li>
                                             <li><a href="http://google.com">Help</a></li>
-                                            <li><Link to="/" onClick={() => this.logOut()}>Log Out</Link></li>
+                                            <li><Link to="/" onClick={() => logOut()}>Log Out</Link></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -105,42 +116,19 @@ class Header extends React.Component {
                                     </select>
                                 </div>
                                 <div className="become-driver" onClick={() => {
-                                    !showSignIn && showHideSignUp(true);
-                                    this.props.setRegisteredUserType(DRIVER_TYPE);
+                                    !showSignIn && dispatch(actions.showHideSignUp(true));
+                                    dispatch(actions.setRegisteredUserType(DRIVER_TYPE));
                                 }}>Become a Driver</div>
                                 <div className="sign-up" onClick={() => {
-                                    !showSignIn && showHideSignUp(true);
-                                    this.props.setRegisteredUserType(TRAVELER_TYPE);
+                                    !showSignIn && dispatch(actions.showHideSignUp(true));
+                                    dispatch(actions.setRegisteredUserType(TRAVELER_TYPE));
                                 }}><span>Sign Up</span></div>
-                                <div className="login" onClick={() => !showSignUp && showHideSignIn(true)}><span>Login</span></div>
+                                <div className="login" onClick={() => !showSignUp && dispatch(actions.showHideSignIn(true))}><span>Login</span></div>
                             </React.Fragment>
                     }
                 </div>
             </header>
         );
-    }
 }
 
-Header.propTypes = {
-    state: PropTypes.object,
-    page: PropTypes.string,
-    showHideSignIn: PropTypes.func,
-    showHideSignUp: PropTypes.func,
-    setUserType: PropTypes.func,
-};
-
-const mapStateToProps = state => ({
-    travelerData: state.travelerData,
-    config: state.config,
-});
-
-const mapDispatchToProps = dispatch => ({
-    showHideSignIn: (show) => dispatch(actions.showHideSignIn(show)),
-    showHideSignUp: (show) => dispatch(actions.showHideSignUp(show)),
-    setUserType: (userType) => dispatch(actions.setUserType(userType)),
-    setRegisteredUserType: (userType) => dispatch(actions.setRegisteredUserType(userType)),
-    logOut: (userType) => dispatch(actions.logOut()),
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;
