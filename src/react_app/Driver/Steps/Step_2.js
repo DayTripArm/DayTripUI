@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Step_2(props) {
+    document.documentElement.scrollTop = 0;
     const classes = useStyles();
 
     const {step, setStep} = props;

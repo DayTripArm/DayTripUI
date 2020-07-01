@@ -216,7 +216,7 @@ header div.header-right-side span.currency-icon {
 header div.header-right-side div.sign-up {
     width: 87px;
     height: 32px;
-    margin-top: -6px;
+    margin-top: -4px;
     margin-right: 0;
     text-align: center;
     background-color: #FFFFFF;
@@ -249,7 +249,7 @@ header div.header-right-side div.login {
     border: 1px solid #FFFFFF;
     border-radius: 4px;
     padding: 7px 20px;
-    margin-top: -6px;
+    margin-top: -4px;
     margin-right: 80px;
     cursor: pointer;
 }

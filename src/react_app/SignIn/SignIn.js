@@ -208,7 +208,7 @@ function SignIn(props) {
                 </React.Fragment>
 
                 <div className="remember-forgot">
-                    <FormCheckbox name="rememberMe" value="" label="Remember me" wrapperClassName={{float: "left", marginLeft: "-5px"}}/>
+                    <FormCheckbox name="rememberMe" value="" label="Remember me" wrapperClassName={{float: "left", marginLeft: "-7px"}}/>
 
                     <span className="forgot"><a href="http://google.com">Forgot Password?</a></span>
                 </div>

@@ -67,6 +67,7 @@ function SingleSelect(props) {
         <div className={`${wrapperClassName ? wrapperClassName.join(" ") : ""}`}>
             {!_.isEmpty(label) && <label className="form-select-label">{label}</label>}
             <Select
+                components={{IndicatorSeparator: null}}
                 className=""
                 classNamePrefix="select"
                 onChange={handleChange}

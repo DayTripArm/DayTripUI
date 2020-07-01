@@ -39,9 +39,9 @@ function FormInputBox(props) {
     const dispatch = useDispatch();
     const {travelerData} = useSelector(state => state);
 
-    const [month, setMonth] = useState(props.name === "date_of_birth" ? new Date(props.value).getMonth() : "");
-    const [day, setDay] = useState(props.name === "date_of_birth" ? new Date(props.value).getDate() : "");
-    const [year, setYear] = useState(props.name === "date_of_birth" ? new Date(props.value).getFullYear() : "");
+    const [month, setMonth] = useState(props.name === "date_of_birth" && !_.isEmpty(props.value) ? new Date(props.value).getMonth() : "");
+    const [day, setDay] = useState(props.name === "date_of_birth" && !_.isEmpty(props.value) ? new Date(props.value).getDate() : "");
+    const [year, setYear] = useState(props.name === "date_of_birth" && !_.isEmpty(props.value) ? new Date(props.value).getFullYear() : "");
 
     const [edit, setEdit] = useState(false);
     const [field, setField] = useState({
