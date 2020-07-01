@@ -37,7 +37,12 @@ const defaultStyles =  {
     placeholder: (styles) => ({
         ...styles,
         color: "#BDBDBD",
-    })
+    }),
+
+    dropdownIndicator: base => ({
+        ...base,
+        color: "#757575"
+    }),
 };
 
 function SingleSelect(props) {

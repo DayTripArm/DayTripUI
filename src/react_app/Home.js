@@ -22,8 +22,8 @@ function Home(props) {
             <div className={`overlay ${(showSignIn || showSignUp) ? "display-block" : ""}`}></div>
             <div id="page">
                 <div className="explore">
-                    <h2>Be Flexible to Discover More</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate augue purus</p>
+                    <h1>Be Flexible to Discover More</h1>
+                    <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vulputate augue purus</h4>
                     <div className="explore-button">
                         <span>Explore Daytrip</span>
                     </div>
