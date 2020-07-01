@@ -45,6 +45,7 @@ class Welcome extends React.Component {
                         <FormButton label="GET STARTED" customClass="get-started" onClick={() => {
                             showHideSignUp(false);
                             showHideWelcome(false);
+                            document.documentElement.scrollTop = 0;
                         }} />
                         :
                         <div className="control">

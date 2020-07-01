@@ -1036,7 +1036,7 @@ footer span.twitter {
     header div.header-right-side div.currency { display: none; }
     header div.header-right-side div.become-driver { display: none; }
 
-    .explore { width: 400px; left: 12px; top: 560px;}
+    .explore { width: 360px; left: 12px; top: 560px;}
 
     .menu-responsive .home {margin-left: 20%; margin-right: 17%;}
     .menu-responsive .saved {margin-right: 17%;}
@@ -1073,8 +1073,19 @@ footer span.twitter {
         width: 120px;
     }
 
+    .content div.welcome {
+        width: 360px;
+        height: 610px;
+    }
+
 }
 
+
+@media screen and (max-width: 450px) {
+    .content div.log-in-form {
+        width: 350px;
+    }
+}
 
 @media screen and (max-width: 360px) {
     .content {
