@@ -111,6 +111,13 @@ const actions  = {
         value
     }),
 
+    SET_PREREGISTERED_DRIVER_CAR_OPTIONS: `${nameSpace}_SET_PREREGISTERED_DRIVER_CAR_OPTIONS`,
+    setPreregisteredDriverCarOptions: (field, value) => ({
+        type: actions.SET_PREREGISTERED_DRIVER_CAR_OPTIONS,
+        field,
+        value
+    }),
+
     CAR_MARK_REQUEST: `${nameSpace}_CAR_MARK_REQUEST`,
     carMarkRequest: () => ({
         type: actions.CAR_MARK_REQUEST

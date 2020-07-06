@@ -4,7 +4,10 @@ export const INITIAL_STATE = {
     driver_info: {},
     preregistered_info: {
         car_mark_list: [],
-        car_model_list: []
+        car_model_list: [],
+        car_options: {},
+        car_photos: [],
+        seats: 4
     }
 };
 
@@ -29,6 +32,26 @@ const driverData = (state = INITIAL_STATE, action) => {
                 preregistered_info: {
                     ...state.preregistered_info,
                     [field]: value
+                }
+            }
+        }
+
+        case actions.SET_PREREGISTERED_DRIVER_CAR_OPTIONS: {
+            const {field, value} = action;
+            let checked = value;
+
+            if (!checked) {
+                checked = undefined;
+            }
+
+            return {
+                ...state,
+                preregistered_info: {
+                    ...state.preregistered_info,
+                    car_options: {
+                        ...state.preregistered_info.car_options,
+                        [field]: checked
+                    }
                 }
             }
         }

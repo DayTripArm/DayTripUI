@@ -28,38 +28,40 @@ function FormCheckbox(props) {
         value,
         name,
         label,
-        wrapperClassName
+        wrapperClassName,
+        onChange,
     } = props;
 
-    const [checked, setChecked] = React.useState(false);
+    const [checked, setChecked] = React.useState(value || false);
     const classes = useStyles();
 
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
+
+        if (onChange) {
+            onChange({name, value: event.target.checked})
+        }
     };
 
 
-        return (
-            <div style={wrapperClassName}>
-                <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
-                    classes={{
-                        root: classes.root,
-                        checked: classes.checked
-                    }}
-                    value={value}
-                    name={name}
-                />
-                <span className={classes.label}>{label}</span>
-                <div className="clear"></div>
-            </div>
-        );
+    return (
+        <div style={wrapperClassName}>
+            <Checkbox
+                checked={checked}
+                onChange={handleChange}
+                classes={{
+                    root: classes.root,
+                    checked: classes.checked
+                }}
+                value={value}
+                name={name}
+            />
+            <span className={classes.label}>{label}</span>
+            <div className="clear"></div>
+        </div>
+    );
 
 }
-
-FormCheckbox.defaultProps = {
-};
 
 export default FormCheckbox;

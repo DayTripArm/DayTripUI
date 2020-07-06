@@ -5,7 +5,8 @@ import Progress from 'react-progressbar';
 function DriverHeader(props) {
 
     const {
-        step
+        step,
+        stepText
     } = props;
 
     const progressLineUnit = 11.11;
@@ -14,7 +15,7 @@ function DriverHeader(props) {
         <header className="driver-header-border">
             <div className="header-left-side">
                 <div className="daytrip"><span className="blue-color"><Link to="/">DAYTRIP</Link></span></div>
-                <div className="step-area">Step 1: Driver Sign Up</div>
+                <div className="step-area">{stepText}</div>
             </div>
             <div className="progress-line">
                 <Progress completed={step * progressLineUnit} color="#FE4C30" height={3} animation={400} />

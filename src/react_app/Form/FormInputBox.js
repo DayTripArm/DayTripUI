@@ -76,27 +76,18 @@ function FormInputBox(props) {
             let stringDate = dateFormat("MM/dd/yyyy", date_of_birth);
             data = {
                 profile: profile,
-                personal: {
+                profile_info: {
                     [name]: stringDate
                 }
             }
         } else {
-            if (profile === "login") {
-                data = {
-                    profile: profile,
+            data = {
+                profile: profile,
+                profile_info: {
                     [field.name]: field.value
-                }
-            } else {
-                data = {
-                    profile: profile,
-                    personal: {
-                        [field.name]: field.value
-                    }
                 }
             }
         }
-
-        console.log(data);
 
         dispatch(actions.updateProfileInfo(id, data));
         setEdit(!edit);

@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Step_1(props) {
-    document.documentElement.scrollTop = 0;
     const {step, setStep} = props;
     const classes = useStyles();
 
@@ -54,8 +53,9 @@ function Step_1(props) {
     } = preregistered_info || {};
 
 
-    // after component get once car marks
+    // after component render get once car marks
     useEffect(() => {
+        document.documentElement.scrollTop = 0;
         dispatch(actions.carMarkRequest());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
