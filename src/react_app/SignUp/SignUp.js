@@ -239,7 +239,7 @@ function SignUp(props) {
                                 <FormInputText
                                     onChange={(e) => setForm({
                                         ...form,
-                                        phone: e.target.value
+                                        phone: e.target ? e.target.value: e
                                     })}
                                     label="Phone*"
                                     name="phone"
@@ -249,6 +249,7 @@ function SignUp(props) {
                                     errorMessage={getStatusMessage("phone")}
                                     onBlur={validateOnBlur}
                                     value={form.phone}
+                                    phoneCodes={true}
                                 />
                                 <FormInputText
                                     onChange={(e) => setForm({

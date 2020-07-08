@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 class FormInputText extends React.Component {
     constructor(props) {
@@ -24,7 +26,7 @@ class FormInputText extends React.Component {
 
     onChange = (e) => {
         this.setState({
-            value: e.target.value
+            value: e.target ? e.target.value : e.value
         });
 
         if (this.props.onChange) {
@@ -49,7 +51,8 @@ class FormInputText extends React.Component {
             inputClassName,
             name,
             showEye=false,
-            showErrorMsg=true
+            showErrorMsg=true,
+            phoneCodes=false
         } = this.props;
 
 
@@ -58,7 +61,22 @@ class FormInputText extends React.Component {
                 <div className={`${wrapperClassName ? wrapperClassName.join(" ") : ""}`}>
                     <p className="label">{label}</p>
                     <div className="form-input-container">
-                        <input className={`input-text ${errorMessage && "error"} ${inputClassName ? inputClassName.join(" ") : ""}`}
+                        {phoneCodes ?
+                        <PhoneInput
+                            inputStyle={{width: '328px', height: '48px'}}
+                            name={name}
+                            masks={{am: '(..) ..-..-..'}}
+                            country={'am'}
+                            autoFormat="true"
+                            value={this.state.phone}
+                            onChange={this.onChange}
+                            inputProps={{
+                                name: 'phone',
+                                required: true
+                            }}
+                        />
+                            :
+                         <input className={`input-text ${errorMessage && "error"} ${inputClassName ? inputClassName.join(" ") : ""}`}
                                type={this.state.password ? "password" : "text"}
                                name={name}
                                value={this.state.value}
@@ -72,7 +90,9 @@ class FormInputText extends React.Component {
                                autoCapitalize="off"
                                autoCorrect="off"
                                spellCheck="false"
-                        />
+                         />
+                        }
+
                         {showEye && <span className="eye" onClick={() => this.showHidePwd()}>
                             {
                                 this.state.password ?
