@@ -296,6 +296,11 @@ header div.header-right-side .traveler-menu .text {
 }
 header div.header-right-side .traveler-menu .text-white { color: #FFFFFF; }
 header div.header-right-side .traveler-menu .text-black { color: #090925; }
+header div.header-right-side .traveler-menu .fadeout-name {
+    background-image: linear-gradient(90deg,#000000 0%,rgba(0,0,0,0));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 header div.header-right-side .traveler-menu div.home .icon-white {background: url("./assets/images/Home.png") no-repeat center center;}
 header div.header-right-side .traveler-menu div.home .icon-black {background: url("./assets/images/Home_icon_black.png") no-repeat center center;}
