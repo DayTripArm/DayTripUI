@@ -55,6 +55,7 @@ function Step_7(props) {
     useEffect(() => {
         document.documentElement.scrollTop = 0;
 
+        dispatch(actions.destinationRequest());
         dispatch(actions.tipsRequest(2));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
