@@ -38,4 +38,16 @@ export default {
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
+
+    getTips(type) {
+        return axios.get(template(base_urls.day_trip.getTips, type), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    getDestinations() {
+        return axios.get(base_urls.day_trip.getDestinations, { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
 }

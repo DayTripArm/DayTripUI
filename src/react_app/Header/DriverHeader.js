@@ -9,7 +9,7 @@ function DriverHeader(props) {
         stepText
     } = props;
 
-    const progressLineUnit = 11.11;
+    const progressLineUnit = 12.5;
 
     return (
         <header className="driver-header-border">

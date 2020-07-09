@@ -106,7 +106,7 @@
 
 
 
-.driver-preregistration .car-photos {
+.driver-preregistration .photos {
   margin-top: 16px;
   width: 328px;
 }
@@ -163,7 +163,7 @@
   border-radius: 4px;
 }
 
-.driver-preregistration .trips-overlay {
+.driver-preregistration .tips-overlay {
   position: fixed;
   left: 0;
   top: 0;
@@ -173,7 +173,7 @@
   height: 100%;
 }
 
-.driver-preregistration .trips {
+.driver-preregistration .tips {
   position: fixed;
   right: 0;
   top: 0;
@@ -184,12 +184,12 @@
   box-shadow: -1px 0px 0px #C4C4C4;
 }
 
-.trips header {
+.tips header {
   height: 56px;
   box-shadow: 0px 1px 0px #BDBDBD;
 }
 
-.trips header .text {
+.tips header .text {
   font-weight: bold;
   font-size: 16px;
   color: #05043E;
@@ -198,7 +198,7 @@
   margin-right: 270px;
 }
 
-.trips header .icon {
+.tips header .icon {
   width: 8px;
   height: 12px;
   display: inline-block;
@@ -206,14 +206,69 @@
   background: url("../../assets/images/Arrow.png") no-repeat center center;
 }
 
-.trips .trips-content {
+.tips .tips-content {
   margin: 24px auto 0 auto;
   width: 328px;
 }
 
-.trips-content .ul-content {
+.tips-content .ul-content {
   margin-top: 24px;
 }
+
+.change-container {
+  height: 79px;
+  margin-top: 19px;
+  position: relative;
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.change-container .check-icon {
+  width: 20px;
+  height: 20px;
+  background: url("../../assets/images/checkmark.png") no-repeat center center;
+  display: block;
+  position: absolute;
+}
+.change-container .model-number {
+  font-size: 12px;
+  color: #090925;
+  display: inline-block;
+  text-indent: 30px;
+}
+
+.change-container .change-btn {
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: capitalize;
+  color: #FE4C30;
+  float: right;
+  display: inline-block;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.driver-preregistration .step-4 {
+  font-size: 16px;
+  color: #100F72;
+  display: block;
+  margin-top: 24px;
+}
+
+.driver-preregistration .step-4-text {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  color: #090925;
+  margin-top: 16px;
+}
+
+.driver-preregistration .step-4-sub-text {
+  font-size: 16px;
+  color: #090925;
+  display: block;
+  margin-top: 8px;
+}
+
 
 .ul-content .ul-header {
   color: #090925;
@@ -232,7 +287,7 @@
   font-size: 14px;
 }
 
-.trips .title {
+.tips .title {
   color: #100F72;
 }
 

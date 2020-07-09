@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,700,700i&display=swap');
 
-body {
+body, textarea {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     color: #757575;
@@ -473,7 +473,7 @@ header div.header-left-side div.daytrip span {
     margin: 20px auto;
 }
 
-.content div.log-in-form form .label {
+.label, .content div.log-in-form form .label {
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 4px;
@@ -509,6 +509,62 @@ input.input-text {
     font-weight: normal;
     font-size: 16px;
     line-height: 24px;
+}
+
+.form-input-container .up-down-icons {
+    position: absolute;
+    top: 0;
+    right: 5px;
+}
+
+.up-down-icons .less-icon {
+    display: block;
+    cursor: pointer;
+}
+
+.up-down-icons .more-icon {
+    display: block;
+    cursor: pointer;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.form-textarea::placeholder {
+    opacity: 1; /* Firefox */
+    color: #BDBDBD;
+}
+.form-textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-style: normal;
+    color: #BDBDBD;
+}
+.form-textarea::-ms-input-placeholder { /* Microsoft Edge */
+    color: #BDBDBD;
+}
+
+.form-textarea {
+    width: 326px;
+    height: 152px;
+    font-size: 16px;
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    border-radius: 4px;
+    resize: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border: 1px solid #100F72;
 }
 
 .text-error-message {
@@ -952,16 +1008,23 @@ footer span.twitter {
     cursor: pointer;
 }
 
+.destination-icon {
+    width: 22px;
+    height: 22px;
+    background: url("./assets/images/Destination.png") no-repeat center center;
+}
 
-
+.inlineBlock {display: inline-block;}
 .bigInputField {width: 328px}
 .smallInputField {width: 156px}
+.marginTop48 {margin-top: 48px;}
 .marginTop30 {margin-top: 30px;}
 .marginTop25 {margin-top: 25px;}
 .marginTop20 {margin-top: 20px;}
 .marginTop15 {margin-top: 15px;}
 .marginBottom0 {margin-bottom: 0;}
 .marginBottom8 {margin-bottom: 8px;}
+.marginBottom16 {margin-bottom: 16px;}
 .marginBottom20 {margin-bottom: 20px;}
 .marginBottom25 {margin-bottom: 25px;}
 .marginBottom30 {margin-bottom: 30px;}

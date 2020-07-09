@@ -140,6 +140,39 @@ const actions  = {
         type: actions.CAR_MODEL_RECEIVE,
         data
     }),
+
+    DRIVER_UPLOAD_PHOTOS: `${nameSpace}_DRIVER_UPLOAD_PHOTOS`,
+    driverUploadPhotos: (field, data) => ({
+        type: actions.DRIVER_UPLOAD_PHOTOS,
+        field,
+        data
+    }),
+
+    TIPS_REQUEST: `${nameSpace}_TIPS_REQUEST`,
+    tipsRequest: (tip_type) => ({
+        type: actions.TIPS_REQUEST,
+        tip_type
+    }),
+
+    TIPS_RECEIVE: `${nameSpace}_TIPS_RECEIVE`,
+    tipsReceive: (data, tip_type) => ({
+        type: actions.TIPS_RECEIVE,
+        data,
+        tip_type
+    }),
+
+    DESTINATION_REQUEST: `${nameSpace}_DESTINATION_REQUEST`,
+    destinationRequest: () => ({
+        type: actions.DESTINATION_REQUEST
+    }),
+
+    DESTINATION_RECEIVE: `${nameSpace}_DESTINATION_RECEIVE`,
+    destinationReceive: (data) => ({
+        type: actions.DESTINATION_RECEIVE,
+        data
+    }),
+
+
 };
 
 export default actions;

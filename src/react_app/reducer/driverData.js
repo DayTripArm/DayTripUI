@@ -5,9 +5,14 @@ export const INITIAL_STATE = {
     preregistered_info: {
         car_mark_list: [],
         car_model_list: [],
-        car_options: {},
+        car_specs: {},
+        destination_list: [],
+        tips: {},
         car_photos: [],
-        seats: 4
+        gov_photos: [],
+        license_photos: [],
+        profile_photos: [],
+        car_seats: 4
     }
 };
 
@@ -48,8 +53,8 @@ const driverData = (state = INITIAL_STATE, action) => {
                 ...state,
                 preregistered_info: {
                     ...state.preregistered_info,
-                    car_options: {
-                        ...state.preregistered_info.car_options,
+                    car_specs: {
+                        ...state.preregistered_info.car_specs,
                         [field]: checked
                     }
                 }
@@ -71,13 +76,51 @@ const driverData = (state = INITIAL_STATE, action) => {
         case actions.CAR_MODEL_RECEIVE: {
             const {data} = action;
 
-            console.log(" data ", data);
-
             return {
                 ...state,
                 preregistered_info: {
                     ...state.preregistered_info,
                     car_model_list: data.car_models
+                }
+            }
+        }
+
+        case actions.DRIVER_UPLOAD_PHOTOS: {
+            const {field, data} = action;
+
+            return {
+                ...state,
+                preregistered_info: {
+                    ...state.preregistered_info,
+                    [field]: data
+                }
+            }
+        }
+
+        case actions.TIPS_RECEIVE: {
+            const {data, tip_type} = action;
+
+            return {
+                ...state,
+                preregistered_info: {
+                    ...state.preregistered_info,
+                    tips: {
+                        ...state.preregistered_info.tips,
+                        [tip_type]: data
+                    }
+                }
+            }
+        }
+
+        case actions.DESTINATION_RECEIVE: {
+            const {data} = action;
+            const {destinations} = data;
+
+            return {
+                ...state,
+                preregistered_info: {
+                    ...state.preregistered_info,
+                    destination_list: destinations
                 }
             }
         }

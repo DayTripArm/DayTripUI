@@ -39,8 +39,8 @@ function Step_2(props) {
     const {preregistered_info} = driverData;
 
     const {
-        seats,
-        car_options={}
+        car_seats,
+        car_specs={}
     } = preregistered_info;
 
     const dispatch = useDispatch();
@@ -57,8 +57,8 @@ function Step_2(props) {
 
             <FormPlusMinus
                 label="Seats"
-                name="seats"
-                initialValue={seats || 4}
+                name="car_seats"
+                initialValue={car_seats || 4}
                 onChange={(e) => dispatch(actions.setPreregisteredDriverProperty(e.name, e.value))}
                 customLabelClassName="marginRight16"
                 wrapperClassName="marginBottom46"
@@ -71,43 +71,43 @@ function Step_2(props) {
                 <FormCheckbox
                     name="car_seat"
                     label="Car Seat"
-                    value={car_options["car_seat"]}
+                    value={car_specs["car_seat"]}
                     onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions(e.name, e.value))}
                 />
                 <FormCheckbox
                     name="air_condition"
                     label="Air Conditioning"
-                    value={car_options["air_condition"]}
+                    value={car_specs["air_condition"]}
                     onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions(e.name, e.value))}
                 />
                 <FormCheckbox
                     name="smoke_allowed"
                     label="Smoke Allowed"
-                    value={car_options["smoke_allowed"]}
+                    value={car_specs["smoke_allowed"]}
                     onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions(e.name, e.value))}
                 />
                 <FormCheckbox
                     name="pets_allowd"
                     label="Pets Allowed"
-                    value={car_options["pets_allowd"]}
+                    value={car_specs["pets_allowd"]}
                     onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions(e.name, e.value))}
                 />
                 <FormCheckbox
                     name="water"
                     label="Water"
-                    value={car_options["water"]}
+                    value={car_specs["water"]}
                     onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions(e.name, e.value))}
                 />
                 <FormCheckbox
                     name="snacks"
                     label="Snacks"
-                    value={car_options["snacks"]}
+                    value={car_specs["snacks"]}
                     onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions(e.name, e.value))}
                 />
                 <FormCheckbox
                     name="wifi"
                     label="WIFI"
-                    value={car_options["wifi"]}
+                    value={car_specs["wifi"]}
                     onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions(e.name, e.value))}
                 />
             </div>

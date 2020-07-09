@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
@@ -40,6 +42,29 @@ class FormInputText extends React.Component {
         });
     };
 
+    add = () => {
+        let value = Number(this.state.value) + 10;
+        this.setState({
+            value
+        });
+
+        if (this.props.onChange) {
+            this.props.onChange(value);
+        }
+    };
+
+    subtract = () => {
+        let value = 0;
+        if (Number(this.state.value) >= 10) {
+            value = Number(this.state.value) - 10
+        }
+
+        this.setState({value});
+        if (this.props.onChange) {
+            this.props.onChange(value);
+        }
+    };
+
 
     render() {
 
@@ -51,6 +76,7 @@ class FormInputText extends React.Component {
             inputClassName,
             name,
             showEye=false,
+            isNumber=false,
             showErrorMsg=true,
             phoneCodes=false
         } = this.props;
@@ -77,7 +103,7 @@ class FormInputText extends React.Component {
                         />
                             :
                          <input className={`input-text ${errorMessage && "error"} ${inputClassName ? inputClassName.join(" ") : ""}`}
-                               type={this.state.password ? "password" : "text"}
+                               type={this.state.password ? "password" : isNumber ? "number" : "text"}
                                name={name}
                                value={this.state.value}
                                placeholder={placeholder}
@@ -101,6 +127,14 @@ class FormInputText extends React.Component {
                                     <RemoveRedEyeIcon />
                             }
                         </span>
+                        }
+
+                        {
+                            isNumber &&
+                            <div className="up-down-icons">
+                                <ExpandLessIcon className="less-icon" onClick={() => this.add()} />
+                                <ExpandMoreIcon className="more-icon" onClick={() => this.subtract()} />
+                            </div>
                         }
                     </div>
                     {showErrorMsg && errorMessage && errorMessage.length !== 0 && <span className="text-error-message">{errorMessage}</span>}

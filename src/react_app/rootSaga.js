@@ -68,7 +68,6 @@ function* profileInfoRequest(action) {
 function* updateProfileInfo(action) {
     try {
         const { id, data } = action;
-        console.log(" id ", id, " data ", data);
         const {response, error} = yield call(Api.updateProfileInfo, id, data);
 
         if (response) {
@@ -101,10 +100,38 @@ function* carModelRequest(action) {
     try {
         const {response, error} = yield call(Api.getCarModels, mark_id);
 
-        console.log(" response ", response);
-
         if (response) {
             yield put(actions.carModelReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* tipsRequest(action) {
+    const {tip_type} = action;
+
+    try {
+        const {response, error} = yield call(Api.getTips, tip_type);
+
+        if (response) {
+            yield put(actions.tipsReceive(response.data, tip_type));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* destinationRequest(action) {
+    try {
+        const {response, error} = yield call(Api.getDestinations);
+
+        if (response) {
+            yield put(actions.destinationReceive(response.data));
         } else {
             console.log(" err ", error);
         }
@@ -120,6 +147,8 @@ function* watcherSaga() {
     yield takeEvery(actions.UPDATE_PROFILE_INFO, updateProfileInfo);
     yield takeEvery(actions.CAR_MARK_REQUEST, carMarkRequest);
     yield takeEvery(actions.CAR_MODEL_REQUEST, carModelRequest);
+    yield takeEvery(actions.TIPS_REQUEST, tipsRequest);
+    yield takeEvery(actions.DESTINATION_REQUEST, destinationRequest);
 }
 
 export default function* root() {
