@@ -27,7 +27,7 @@ const StepPageByNumber = {
 function Driver(props) {
     document.body.onselectstart = () => false;
 
-    const [step, setStep] = useState(8);
+    const [step, setStep] = useState(1);
 
     const StepPage = StepPageByNumber[step].page;
     const stepText = StepPageByNumber[step].stepText;
