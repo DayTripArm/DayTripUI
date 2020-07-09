@@ -82,7 +82,10 @@ function Header(props) {
                                 </div>
                                 <div className="profile">
                                     <span className={`icon ${page ? "icon-black" : "icon-white"}`}></span>
-                                    <span className={`text ${page ? "text-black" : "text-white"} fadeout-name`}>{name}</span>
+                                    <span className={`text ${page ? "text-black" : "text-white"} fadeout-name`}>{ _.truncate(name, {
+                                        'length': 21,
+                                        'omission': ''
+                                    })}</span>
 
                                     <div className="dropdown">
                                         <ul>
