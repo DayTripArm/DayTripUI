@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import FormButton from "../../Form/FormButton";
 import {makeStyles} from "@material-ui/core/styles";
 import {useDispatch, useSelector} from "react-redux";
@@ -49,12 +49,6 @@ function Step_7(props) {
         languages=""
     } = preregistered_info;
 
-    const [birth, setBirth] = useState({
-        month: birthMonth || "",
-        day: birthDay || "",
-        year: birthYear || ""
-    });
-
 
     useEffect(() => {
         document.documentElement.scrollTop = 0;
@@ -69,13 +63,6 @@ function Step_7(props) {
 
             event && event.map(item => langString += item.value + ",");
             value = langString.slice(0, -1);
-        }
-
-        if (["month", "day", "year"].indexOf(name) > -1) {
-            setBirth({
-                ...birth,
-                [name]: value
-            });
         }
 
 
@@ -109,7 +96,7 @@ function Step_7(props) {
                 options={monthList}
                 onChange={(event, name) => selectOnChange(event, name)}
                 name="birthMonth"
-                value={_.find(monthList, i => i.value === birth.month)}
+                value={_.find(monthList, i => i.value === birthMonth)}
                 placeholder="Month"
                 wrapperClassName={["bigInputField", "marginBottom16"]}
                 label="Date of Birth"
@@ -118,7 +105,7 @@ function Step_7(props) {
                 options={days}
                 onChange={(event, name) => selectOnChange(event, name)}
                 name="birthDay"
-                value={_.find(days, i => i.value === birth.day)}
+                value={_.find(days, i => i.value === birthDay)}
                 placeholder="Day"
                 wrapperClassName={["smallInputField", "inlineBlock", "marginRight16"]}
             />
@@ -126,7 +113,7 @@ function Step_7(props) {
                 options={yearList}
                 onChange={(event, name) => selectOnChange(event, name)}
                 name="birthYear"
-                value={_.find(yearList,i => i.value === birth.year)}
+                value={_.find(yearList,i => i.value === birthYear)}
                 placeholder="Year"
                 wrapperClassName={["smallInputField","inlineBlock"]}
             />
