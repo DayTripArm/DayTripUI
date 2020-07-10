@@ -477,6 +477,8 @@ header div.header-left-side div.daytrip span {
     font-weight: bold;
     font-size: 12px;
     margin-bottom: 4px;
+    line-height: 18px;
+    display: inline-block;
     margin-left: 4px;
     color: #757575;
 }
@@ -1014,6 +1016,8 @@ footer span.twitter {
     background: url("./assets/images/Destination.png") no-repeat center center;
 }
 
+.float-left {float: left;}
+.float-right {float: right;}
 .inlineBlock {display: inline-block;}
 .bigInputField {width: 328px}
 .smallInputField {width: 156px}
@@ -1024,6 +1028,7 @@ footer span.twitter {
 .marginTop15 {margin-top: 15px;}
 .marginBottom0 {margin-bottom: 0;}
 .marginBottom8 {margin-bottom: 8px;}
+.marginBottom10 {margin-bottom: 10px;}
 .marginBottom16 {margin-bottom: 16px;}
 .marginBottom20 {margin-bottom: 20px;}
 .marginBottom25 {margin-bottom: 25px;}
@@ -1032,6 +1037,10 @@ footer span.twitter {
 .marginRight10 {margin-right: 10px;}
 .marginRight16 {margin-right: 16px;}
 .marginRight30 {margin-right: 30px;}
+.marginLeft10 {margin-left: 10px;}
+.marginLeft20 {margin-left: 20px;}
+.marginLeft30 {margin-left: 30px;}
+.marginLeft36 {margin-left: 36px;}
 
 .clear {clear: both;}
 

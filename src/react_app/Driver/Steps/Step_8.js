@@ -47,6 +47,8 @@ function Step_7(props) {
         destination_list=[],
         driver_destinations="",
         tips={},
+        tariff1="",
+        tariff2="",
     } = preregistered_info;
 
     const carTips = tips[2]; // type = 2
@@ -104,7 +106,7 @@ function Step_7(props) {
                 label="Destinations"
             />
 
-            <span className="title marginTop48">1 Km Tariff <i className="help-icon" onClick={() => setShow(!show)}> </i></span>
+            <span className="title marginTop48">Price per 1 Km <i className="help-icon" onClick={() => setShow(!show)}> </i></span>
             <Fade in={show} timeout={500}>
                 <div className="tips-container">
                     <div className="tips-overlay"> </div>
@@ -131,15 +133,86 @@ function Step_7(props) {
             </Fade>
 
             <FormInputText
-                onChange={(e) => console.log(e.target ? e.target.value : e)}
-                label="Set your price for 1 km ride, including waiting time"
+                onChange={(e, name) => selectOnChange(e, name)}
+                label="Set your price per 1 km  for short distance trips (up to 110 km, including waiting time)"
                 placeholder="price"
                 wrapperClassName={["marginTop30"]}
                 inputClassName={[""]}
                 isNumber={true}
-                value=""
-                name="tariff"
+                value={tariff1}
+                name="tariff1"
             />
+
+            {Number(tariff1) > 0 &&
+                <React.Fragment>
+                    <span className="price-label marginTop25 marginBottom16">According to the 1km price, you will earn the following amounts for these example trips</span>
+                    <div className="trip-info-section marginBottom8">
+                        <div className="section-1">
+                            <span className="text">Yerevan - Garni - Geghard - Yerevan</span>
+                            <span className="price marginTop15 marginBottom10">{Number(tariff1) * 35}AMD</span>
+                        </div>
+                        <div className="section-2">
+                            <span className="label float-left marginTop15 marginBottom10">Trip duration: <span
+                                  className="hours">4 hours</span></span>
+                            <span className="label float-left marginLeft36 marginTop15 marginBottom10">Distance: <span
+                                  className="km">35km</span></span>
+                        </div>
+                    </div>
+                    <div className="trip-info-section">
+                        <div className="section-1">
+                            <span className="text">Yerevan - Noravank - Tatev - Yerevan</span>
+                            <span className="price marginTop15 marginBottom10">{Number(tariff1) * 250}AMD</span>
+                        </div>
+                        <div className="section-2">
+                            <span className="label float-left marginTop15 marginBottom10">Trip duration: <span
+                                  className="hours">8 hours</span></span>
+                            <span className="label float-left marginLeft36 marginTop15 marginBottom10">Distance: <span
+                                  className="km">250km</span></span>
+                        </div>
+                    </div>
+                </React.Fragment>
+            }
+
+            <FormInputText
+                onChange={(e, name) => selectOnChange(e, name)}
+                label="Set your price per 1 km  for long distance trips (over 110 km, including waiting time)"
+                placeholder="price"
+                wrapperClassName={["marginTop30"]}
+                inputClassName={[""]}
+                isNumber={true}
+                value={tariff2}
+                name="tariff2"
+            />
+
+            {Number(tariff2) > 0 &&
+            <React.Fragment>
+                <span className="price-label marginTop25 marginBottom16">According to the 1km price, you will earn the following amounts for these example trips</span>
+                <div className="trip-info-section marginBottom8">
+                    <div className="section-1">
+                        <span className="text">Yerevan - Garni - Geghard - Yerevan</span>
+                        <span className="price marginTop15 marginBottom10">{Number(tariff2) * 35}AMD</span>
+                    </div>
+                    <div className="section-2">
+                            <span className="label float-left marginTop15 marginBottom10">Trip duration: <span
+                                className="hours">4 hours</span></span>
+                        <span className="label float-left marginLeft36 marginTop15 marginBottom10">Distance: <span
+                            className="km">35km</span></span>
+                    </div>
+                </div>
+                <div className="trip-info-section">
+                    <div className="section-1">
+                        <span className="text">Yerevan - Noravank - Tatev - Yerevan</span>
+                        <span className="price marginTop15 marginBottom10">{Number(tariff2) * 250}AMD</span>
+                    </div>
+                    <div className="section-2">
+                            <span className="label float-left marginTop15 marginBottom10">Trip duration: <span
+                                className="hours">8 hours</span></span>
+                        <span className="label float-left marginLeft36 marginTop15 marginBottom10">Distance: <span
+                            className="km">250km</span></span>
+                    </div>
+                </div>
+            </React.Fragment>
+            }
 
 
             <div className="clear"> </div>
@@ -148,7 +221,7 @@ function Step_7(props) {
             }}>Back</div>
             <FormButton
                 customClass={classes.next}
-                label="FINISH"
+                label="SAVE"
                 onClick={() => step < 7 && setStep(step + 1)}
             />
             <div className="clear"> </div>

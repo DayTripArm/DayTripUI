@@ -291,6 +291,59 @@
   color: #100F72;
 }
 
+.trip-info-section {
+  box-sizing: border-box;
+  height: 91px;
+  width: 328px;
+  border: 1px solid #BDBDBD;
+  border-radius: 4px;
+}
+
+.trip-info-section .section-1:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.trip-info-section .section-1 {
+  width: 296px;
+  margin: 0 auto;
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.trip-info-section .section-1 .text {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #100F72;
+}
+
+.trip-info-section .section-1 .price {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 18px;
+  color: #100F72;
+  float: right;
+}
+
+.trip-info-section .section-2 {
+  width: 296px;
+  margin: 0 auto;
+}
+
+.trip-info-section .section-2 .hours, .trip-info-section .section-2 .km {
+  font-weight: normal;
+}
+
+.price-label {
+  color: #757575;
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+
+
 
 /***************************** media queries*********************/
 @media screen and (max-width: 1560px) {

@@ -32,7 +32,7 @@ class FormInputText extends React.Component {
         });
 
         if (this.props.onChange) {
-            this.props.onChange(e);
+            this.props.onChange(e, this.props.name);
         }
     };
 
@@ -49,7 +49,7 @@ class FormInputText extends React.Component {
         });
 
         if (this.props.onChange) {
-            this.props.onChange(value);
+            this.props.onChange({value}, this.props.name);
         }
     };
 
@@ -61,7 +61,7 @@ class FormInputText extends React.Component {
 
         this.setState({value});
         if (this.props.onChange) {
-            this.props.onChange(value);
+            this.props.onChange({value}, this.props.name);
         }
     };
 
