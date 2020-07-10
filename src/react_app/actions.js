@@ -172,7 +172,10 @@ const actions  = {
         data
     }),
 
-
+    SAVE_DRIVER_PREREG_DATA: `${nameSpace}_SAVE_DRIVER_PREREG_DATA`,
+    saveDriverPreregData: () => ({
+        type: actions.SAVE_DRIVER_PREREG_DATA
+    }),
 };
 
 export default actions;

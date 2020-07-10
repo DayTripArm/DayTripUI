@@ -1,8 +1,11 @@
-import { takeEvery, all, fork, call, put } from "redux-saga/effects";
+import { takeEvery, all, fork, call, put, select } from "redux-saga/effects";
 import actions from "./actions";
 import Api from "./Api";
+import _ from "lodash";
 import {TRAVELER_TYPE} from "./constants";
+import dateFormat from "date-format";
 
+const driverDataState = state => state.driverData;
 
 function* signUpRequest(action) {
     try {
@@ -140,6 +143,46 @@ function* destinationRequest(action) {
     }
 }
 
+function* saveDriverPreregData(action) {
+    const driverState = yield select(driverDataState);
+    const {preregistered_info} = driverState;
+    const formData = new FormData();
+
+    const preregInfo = _.cloneDeep(_.omit(preregistered_info, ["car_mark_list", "car_model_list", "destination_list", "tips"]));
+    const {birthYear="", birthMonth="", birthDay=""} = preregInfo;
+
+    const photos = _.pick(preregInfo, ["car_photos", "gov_photos", "license_photos", "profile_photos"]); // get only photos
+    const attributes = _.omit(preregInfo, ["car_photos", "gov_photos", "license_photos", "profile_photos"]); // get only attributes without photos
+
+    attributes['car_specs'] = JSON.stringify(attributes['car_specs']);
+
+    //construct date_of_birth
+    attributes['date_of_birth'] = dateFormat("MM/dd/yyyy", new Date(birthYear, birthMonth, birthDay));
+    delete attributes['birthYear'];
+    delete attributes['birthMonth'];
+    delete attributes['birthDay'];
+
+    attributes['prereg_finish'] = true;
+    attributes['login_id'] = 1; // TODO Khachatur
+
+    // construct photos
+    _.each(photos, (photos, name) => {
+        photos.map(photo => formData.append(`${name}[${photo.name}]`, photo));
+    });
+
+    // construct attributes
+    _.each(attributes, (value, name) => {
+        formData.append(name, value);
+    });
+
+
+    try {
+        yield call(Api.saveDriverPreregData, formData);
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -149,6 +192,7 @@ function* watcherSaga() {
     yield takeEvery(actions.CAR_MODEL_REQUEST, carModelRequest);
     yield takeEvery(actions.TIPS_REQUEST, tipsRequest);
     yield takeEvery(actions.DESTINATION_REQUEST, destinationRequest);
+    yield takeEvery(actions.SAVE_DRIVER_PREREG_DATA, saveDriverPreregData);
 }
 
 export default function* root() {

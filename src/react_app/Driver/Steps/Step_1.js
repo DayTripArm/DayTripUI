@@ -48,8 +48,8 @@ function Step_1(props) {
         car_mark_list,
         car_model_list,
         car_model,
-        year,
-        color
+        car_year,
+        car_color
     } = preregistered_info || {};
 
 
@@ -107,8 +107,8 @@ function Step_1(props) {
             <SingleSelect
                 options={yearList}
                 onChange={(event, name) => selectOnChange(event, name)}
-                name="year"
-                value={_.find(yearList, i => i.value === year)}
+                name="car_year"
+                value={_.find(yearList, i => i.value === car_year)}
                 placeholder="Choose"
                 wrapperClassName={["form-select"]}
                 label="Year"
@@ -116,8 +116,8 @@ function Step_1(props) {
             <SingleSelect
                 options={colorList}
                 onChange={(event, name) => selectOnChange(event, name)}
-                name="color"
-                value={_.find(colorList, i => i.value === color)}
+                name="car_color"
+                value={_.find(colorList, i => i.value === car_color)}
                 placeholder="Choose"
                 label="Color"
                 wrapperClassName={["form-select", "marginBottom8"]}

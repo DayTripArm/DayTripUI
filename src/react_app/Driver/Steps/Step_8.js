@@ -222,7 +222,7 @@ function Step_7(props) {
             <FormButton
                 customClass={classes.next}
                 label="SAVE"
-                onClick={() => step < 7 && setStep(step + 1)}
+                onClick={() => dispatch(actions.saveDriverPreregData())}
             />
             <div className="clear"> </div>
         </div>

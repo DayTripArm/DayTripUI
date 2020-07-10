@@ -11,5 +11,6 @@ export default {
     "getCarModels": `${HOST}/car_brands/{0}/models`,
     "getTips": `${HOST}/tips?type={0}`,
     "getDestinations": `${HOST}/destinations`,
+    "saveDriverPreregData": `${HOST}/driver_infos`,
   }
 }
