@@ -161,6 +161,8 @@ function* saveDriverPreregData(action) {
     delete attributes['birthYear'];
     delete attributes['birthMonth'];
     delete attributes['birthDay'];
+    const profileInfo = _.pick(attributes, ["gender", "date_of_birth", "languages", "work", "about", "location"]);
+    const driverInfo = _.omit(attributes, ["gender", "date_of_birth", "languages", "work", "about", "location"]);
 
     attributes['prereg_finish'] = true;
     attributes['login_id'] = 1; // TODO Khachatur
@@ -171,6 +173,8 @@ function* saveDriverPreregData(action) {
     });
 
     // construct attributes
+    formData.append("driver_info", JSON.stringify(driverInfo));
+    formData.append("profile_info", JSON.stringify(profileInfo));
     _.each(attributes, (value, name) => {
         formData.append(name, value);
     });
