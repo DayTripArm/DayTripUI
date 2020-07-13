@@ -38,13 +38,20 @@ function* signInRequest(action) {
         const {response, error} = yield call(Api.signInRequest, body);
 
         if (response) {
-            const {id, user_type} = response.data.user;
+            const {id, user_type, is_prereg} = response.data.user;
 
-            yield put(actions.signInReceiveSuccess(response));
             yield put(actions.setUserType(user_type));
-            yield put(actions.showHideSignIn(false));
-
             localStorage.setItem("id", id);
+
+            // redirect to /driver page for complete registration
+            if (is_prereg && user_type === Number(DRIVER_TYPE)) {
+                setTimeout(() => {
+                    window.location.href = "/driver";
+                }, 300);
+            } else {
+                yield put(actions.signInReceiveSuccess(response));
+                yield put(actions.showHideSignIn(false));
+            }
         } else {
             yield put(actions.signInReceiveError(error.response));
         }
