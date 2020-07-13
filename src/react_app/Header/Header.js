@@ -44,8 +44,16 @@ function Header(props) {
 
 
     const {user={}} = user_info;
-    const {name} = !_.isEmpty(profile) ? profile : user;
-
+    let {name} = !_.isEmpty(profile) ? profile : user;
+    let fadeout_class = "";
+    name = _.split(name, ' ')[0];
+    if (name && name.length > 20) {
+        name = _.truncate(name, {
+            'length': 21,
+            'omission': ''
+        });
+        fadeout_class = page ? "fadeout-name-black" : "fadeout-name-white"
+    }
     const {userType} = config;
 
         return (
@@ -82,10 +90,7 @@ function Header(props) {
                                 </div>
                                 <div className="profile">
                                     <span className={`icon ${page ? "icon-black" : "icon-white"}`}></span>
-                                    <span className={`text ${page ? "text-black" : "text-white"} fadeout-name`}>{ _.truncate(name, {
-                                        'length': 21,
-                                        'omission': ''
-                                    })}</span>
+                                    <span className={`text ${page ? "text-black" : "text-white"} ${fadeout_class}`}>{name}</span>
 
                                     <div className="dropdown">
                                         <ul>
