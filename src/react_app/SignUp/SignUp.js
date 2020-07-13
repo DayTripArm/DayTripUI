@@ -118,8 +118,11 @@ function SignUp(props) {
     const {is_prereg} = user || {};
 
     if (is_prereg) {
-        window.location.href = "/driver";
-        dispatch(actions.showHideSignUp(false));
+        setTimeout(() => {
+            window.location.href = "/driver";
+            dispatch(actions.showHideSignUp(false));
+        }, 300)
+
     }
 
     const [form, setForm] = useState({name: "", phone: "", email: "", password: ""});

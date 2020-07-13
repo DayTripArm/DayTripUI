@@ -1,6 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import DriverHeader from "../Header/DriverHeader";
 import Footer from "../Footer";
+import actions from "../actions";
+import {useDispatch} from "react-redux";
 import "./driver.scss";
 
 import Step_1 from "./Steps/Step_1";
@@ -26,11 +28,18 @@ const StepPageByNumber = {
 
 function Driver(props) {
     document.body.onselectstart = () => false;
+    const dispatch = useDispatch();
 
     const [step, setStep] = useState(1);
 
     const StepPage = StepPageByNumber[step].page;
     const stepText = StepPageByNumber[step].stepText;
+
+    // get driver profile info
+    useEffect(() => {
+        dispatch(actions.profileInfoRequest(localStorage.id));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div id="page">

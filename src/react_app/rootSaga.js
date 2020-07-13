@@ -2,7 +2,7 @@ import { takeEvery, all, fork, call, put, select } from "redux-saga/effects";
 import actions from "./actions";
 import Api from "./Api";
 import _ from "lodash";
-import {TRAVELER_TYPE} from "./constants";
+import {DRIVER_TYPE, TRAVELER_TYPE} from "./constants";
 import dateFormat from "date-format";
 
 const driverDataState = state => state.driverData;
@@ -57,9 +57,12 @@ function* profileInfoRequest(action) {
     try {
         const { id } = action;
         const {response, error} = yield call(Api.getProfileInfo, id);
+        const {user_type} = response.data.profile;
 
-        if (response) {
-            yield put(actions.profileInfoReceive(response.data.profile));
+        if (user_type === Number(TRAVELER_TYPE)) {
+            yield put(actions.travelerProfileInfoReceive(response.data.profile));
+        } else if (user_type === Number(DRIVER_TYPE)) {
+            yield put(actions.driverProfileInfoReceive(response.data.profile));
         } else {
             console.log(" err ", error);
         }
@@ -145,7 +148,9 @@ function* destinationRequest(action) {
 
 function* saveDriverPreregData(action) {
     const driverState = yield select(driverDataState);
-    const {preregistered_info} = driverState;
+    const {preregistered_info, profile={}} = driverState;
+    const {id: login_id} = profile;
+
     const formData = new FormData();
 
     const preregInfo = _.cloneDeep(_.omit(preregistered_info, ["car_mark_list", "car_model_list", "destination_list", "tips"]));
@@ -165,7 +170,7 @@ function* saveDriverPreregData(action) {
     const driverInfo = _.omit(attributes, ["gender", "date_of_birth", "languages", "work", "about", "location"]);
 
     attributes['prereg_finish'] = true;
-    attributes['login_id'] = 1; // TODO Khachatur
+    attributes['login_id'] = login_id;
 
     // construct photos
     _.each(photos, (photos, name) => {
@@ -181,7 +186,15 @@ function* saveDriverPreregData(action) {
 
 
     try {
-        yield call(Api.saveDriverPreregData, formData);
+        const {response} = yield call(Api.saveDriverPreregData, formData);
+
+        if (response) {
+            setTimeout(() => {
+                window.location.href = "/";
+                delete localStorage.id;
+                delete localStorage.userType;
+            }, 300);
+        }
     } catch (e) {
         console.log(" error ", e);
     }

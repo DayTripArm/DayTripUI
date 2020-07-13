@@ -76,7 +76,7 @@ const travelerData = (state = INITIAL_STATE, action) => {
             }
         }
 
-        case actions.PROFILE_INFO_RECEIVE: {
+        case actions.TRAVELER_PROFILE_INFO_RECEIVE: {
             const { data } = action;
 
             return {

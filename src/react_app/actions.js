@@ -77,9 +77,15 @@ const actions  = {
         id
     }),
 
-    PROFILE_INFO_RECEIVE: `${nameSpace}_PROFILE_INFO_RECEIVE`,
-    profileInfoReceive: (data) => ({
-        type: actions.PROFILE_INFO_RECEIVE,
+    TRAVELER_PROFILE_INFO_RECEIVE: `${nameSpace}_TRAVELER_PROFILE_INFO_RECEIVE`,
+    travelerProfileInfoReceive: (data) => ({
+        type: actions.TRAVELER_PROFILE_INFO_RECEIVE,
+        data
+    }),
+
+    DRIVER_PROFILE_INFO_RECEIVE: `${nameSpace}_DRIVER_PROFILE_INFO_RECEIVE`,
+    driverProfileInfoReceive: (data) => ({
+        type: actions.DRIVER_PROFILE_INFO_RECEIVE,
         data
     }),
 

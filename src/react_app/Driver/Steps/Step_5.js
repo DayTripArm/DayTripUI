@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import FormButton from "../../Form/FormButton";
 import {makeStyles} from "@material-ui/core/styles";
+import {useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     next: {
@@ -30,6 +31,11 @@ function Step_5(props) {
     const classes = useStyles();
     const {step, setStep} = props;
 
+    const {driverData} = useSelector(state => state);
+    const {profile={}} = driverData;
+
+    const {name} = profile;
+
     useEffect(() => {
         document.documentElement.scrollTop = 0;
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,7 +43,7 @@ function Step_5(props) {
 
     return (
         <div className="driver-preregistration">
-            <span className="title">Great Progress, Khachatur</span>
+            <span className="title">Great Progress, {name}</span>
             <span className="text">Now tell us about yourself, so travelers get to know you.</span>
 
             <div className="change-container">
