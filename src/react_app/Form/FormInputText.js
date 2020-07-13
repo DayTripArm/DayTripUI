@@ -27,12 +27,17 @@ class FormInputText extends React.Component {
     };
 
     onChange = (e) => {
-        this.setState({
-            value: e.target ? e.target.value : e.value
-        });
+        let value = "";
+        if (typeof e === "string") {
+            value = e;
+        } else {
+            value = e.target ? e.target.value : e.value
+        }
+
+        this.setState({value});
 
         if (this.props.onChange) {
-            this.props.onChange(e, this.props.name);
+            this.props.onChange(value, this.props.name);
         }
     };
 
@@ -94,10 +99,10 @@ class FormInputText extends React.Component {
                             masks={{am: '(..) ..-..-..'}}
                             country={'am'}
                             autoFormat="true"
-                            value={this.state.phone}
+                            value={this.state.value}
                             onChange={this.onChange}
                             inputProps={{
-                                name: 'phone',
+                                name: name,
                                 required: true
                             }}
                         />

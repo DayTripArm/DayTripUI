@@ -140,11 +140,12 @@ function FormInputBox(props) {
                         {
                             type === "input" &&
                             <FormInputText
-                                onChange={(e) => setField({
+                                onChange={(value) => setField({
                                     name: name,
-                                    value: e.target.value
+                                    value
                                 })}
                                 name={name}
+                                phoneCodes={name === "phone"}
                                 password={password}
                                 showEye={showEye}
                                 placeholder={placeholder}

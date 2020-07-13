@@ -63,7 +63,12 @@ function Step_7(props) {
     }, []);
 
     const selectOnChange = (event, name) => {
-        let value = event ? event.target ? event.target.value : event.value : "";
+        let value = "";
+        if (typeof event === "string") {
+            value = event;
+        } else {
+            value = event.target ? event.target.value : event.value
+        }
 
         if (name === "driver_destinations") {
             let destString = "";

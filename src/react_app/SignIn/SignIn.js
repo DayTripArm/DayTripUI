@@ -177,7 +177,7 @@ function SignIn(props) {
                     <FormInputText
                         onChange={(e) => setForm({
                             ...form,
-                            email: e.target.value
+                            email: e
                         })}
                         label="Email*"
                         placeholder="Enter your Email"
@@ -191,7 +191,7 @@ function SignIn(props) {
                     <FormInputText
                         onChange={(e) => setForm({
                             ...form,
-                            password: e.target.value
+                            password: e
                         })}
                         label="Password*"
                         placeholder="Enter your Password"

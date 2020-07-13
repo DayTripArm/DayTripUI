@@ -227,7 +227,7 @@ function SignUp(props) {
                                 <FormInputText
                                     onChange={(e) => setForm({
                                         ...form,
-                                        name: e.target.value
+                                        name: e
                                     })}
                                     label="Name*"
                                     name="name"
@@ -239,7 +239,7 @@ function SignUp(props) {
                                 <FormInputText
                                     onChange={(e) => setForm({
                                         ...form,
-                                        phone: e.target ? e.target.value: e
+                                        phone: e
                                     })}
                                     label="Phone*"
                                     name="phone"
@@ -254,7 +254,7 @@ function SignUp(props) {
                                 <FormInputText
                                     onChange={(e) => setForm({
                                         ...form,
-                                        email: e.target.value
+                                        email: e
                                     })}
                                     label="Email*"
                                     name="email"
@@ -268,7 +268,7 @@ function SignUp(props) {
                                 <FormInputText
                                     onChange={(e) => setForm({
                                         ...form,
-                                        password: e.target.value
+                                        password: e
                                     })}
                                     label="Password*"
                                     name="password"
