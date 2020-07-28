@@ -1,0 +1,19 @@
+.drivers-illustration {
+  height: 237px;
+  @include media-breakpoint-up(md) {
+    height: 273px;
+  }
+  @include media-breakpoint-up(xl) {
+    height: 343px;
+  }
+  @include media-breakpoint-up(xxl) {
+    height: 403px;
+  }
+  @include media-breakpoint-up(xxxl) {
+    height: 404px;
+  }
+
+  .overlay {
+    background: rgba(5, 4, 62, 0.23)
+  }
+}

@@ -1,0 +1,63 @@
+.messaging-container {
+  overflow: hidden;
+  border: none;
+  @include media-breakpoint-up(md) {
+    border: 1px solid $default-border-color
+  }
+
+  .chat-input {
+    min-width: 0;
+  }
+
+  .chat-area {
+    width: 100%;
+    margin-right: -1px;
+    background-color: $white;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    z-index: 1;
+    transition: left 150ms ease-in-out;
+    @include media-breakpoint-up(md) {
+      width: 0;
+      position: static;
+      z-index: 0;
+      border-left: 1px solid $default-border-color;
+      transition: width 300ms ease-in-out;
+    }
+
+    svg path {
+      fill: $primary-color
+    }
+  }
+
+  .contacts-list {
+    @include media-breakpoint-up(md) {
+      height: 471px;
+    }
+  }
+
+  .chat-content {
+    @include calc(height, '100vh - 113px');
+    overflow: auto;
+
+    @include media-breakpoint-up(md) {
+      height: 401px;
+      overflow: unset;
+    }
+  }
+
+  &.active {
+    .dsc-text {
+      display: none !important;
+    }
+    .chat-area {
+      margin-right: 0;
+      left: 0;
+      @include media-breakpoint-up(md) {
+        width: 100%;
+      }
+    }
+  }
+}

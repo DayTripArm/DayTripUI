@@ -1,0 +1,12 @@
+.cancelation-container {
+  border-top: 1px solid $default-border-color;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  @include media-breakpoint-up(md) {
+    position: static;
+    border-top: none;
+  }
+}

@@ -1,0 +1,215 @@
+// [Fonts]
+$roboto:                            'Roboto', sans-serif !default;
+
+// [Colors]
+$black:                             #090925 !default;
+$white:                             #FFFFFF !default;
+$semi-white:                        #E5E5E5 !default;
+
+$coral:                             #FE4C30 !default;
+$coral-dark:                        #E24432 !default;
+$blue:                              #100F72 !default;
+
+$grey-light:                        #F2F2F2 !default;
+$grey:                              #BDBDBD !default;
+$grey-dark:                         #757575 !default;
+
+$green:                             #88B800 !default;
+$red:                               #B80000 !default;
+
+// f8f8f8
+// $hovered:                           transparentize($grey, 0.89) !default;
+// $pressed:                           transparentize($grey, 0.84) !default;
+// $selected:                          transparentize($grey, 0.77) !default;
+$hovered:                           #F8F8F8 !default;
+$pressed:                           #F4F4F4 !default;
+$selected:                          #F0F0F0 !default;
+
+$disabled:                          $grey-light !default;
+
+$primary:                           $coral !default;
+$secondary:                         $white !default;
+
+$success:                           $green !default;
+$danger:                            $red !default;
+
+// [Typography]
+$h1-xs:                             28px !default;
+$h1-md:                             32px !default;
+$h1-lg:                             36px !default;
+
+$h2-xs:                             24px !default;
+$h2-md:                             28px !default;
+$h2-lg:                             28px !default;
+
+$h3-xs:                             24px !default;
+$h3-md:                             24px !default;
+$h3-lg:                             24px !default;
+
+$h4-xs:                             20px !default;
+$h4-md:                             20px !default;
+$h4-lg:                             20px !default;
+
+$h-font-weight:                     700 !default;
+
+$text-sm-font-size:                 14px !default;
+$text-sm-line-height:               21px !default;
+
+$text-xs-font-size:                 12px !default;
+$text-xs-line-height:               18px !default;
+
+$primary-font-size:                 16px !default;
+$primary-line-height:               24px !default;
+
+$secondary-font-size:               $text-sm-font-size !default;
+// $secondary-line-height:             $text-sm-line-height !default;
+$secondary-line-height:             19px !default;
+
+$primary-font:                      $roboto !default;
+$primary-color:                     $black !default;
+
+$default-border-color:              $grey !default;
+$primary-border-color:              $black !default;
+$secondary-border-color:            $primary !default;
+
+// [Borders]
+$default-border-radius:             4px !default;
+
+// [Forms and Fields]
+$field-width:                       328px !default;
+$field-height:                      48px !default;
+$field-padding:                     0 16px !default;
+$field-color:                       $blue !default;
+$field-border-radius:               $default-border-radius;
+$field-border-color:                $default-border-color;
+
+$field-font-size:                   $primary-font-size;
+$field-line-height:                 $primary-line-height;
+$field-placeholder-color:           $grey;
+$field-margin-bottom:               24px;
+
+$field-label-color:                 $grey-dark;
+$field-label-font-size:             $text-xs-font-size;
+$field-label-line-height:           $text-xs-line-height;
+$field-label-font-weight:           700;
+
+$field-focused-border-color:        $blue;
+
+$field-error-border-color:          $red;
+$field-error-label-color:           $red;
+
+$field-success-border-color:        $success;
+$field-success-label-color:         $success;
+
+
+// [Main Definitions]
+$btn-main-font-size:                $primary-font-size;
+$btn-main-line-height:              $primary-line-height;
+$btn-main-border-radius:            $default-border-radius;
+$btn-main-padding:                  12px 24px;
+$btn-main-font-weight:              500;
+
+$btn-secondary-padding:             12px 16px;
+
+$btn-md-padding:                    8px 16px;
+
+$btn-sm-font-size:                  $secondary-font-size;
+$btn-sm-line-height:                $secondary-line-height;
+$btn-sm-border-radius:              $default-border-radius;
+$btn-sm-padding:                    5.5px 4px;
+$btn-sm-font-weight:                700;
+
+// [Breakpoints]
+$xs: 0;
+$sm: 360px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+$xxl: 1560px;
+$xxxl: 1760px;
+
+// [Theme Configurations]
+$spacer:                              4px !default;
+$spacers:                             () !default;
+
+$spacers: map-merge(
+  (
+    0: 0,
+    '01': 1px,
+    1: ($spacer), // 4
+    2: ($spacer * 2), // 8
+    3: ($spacer * 3), // 12
+    4: ($spacer * 4), // 16
+    5: ($spacer * 6), // 24
+    6: ($spacer * 8), // 32
+    7: ($spacer * 9), // 36
+    8: ($spacer * 10), // 40
+    9: ($spacer * 12), // 48
+    10: ($spacer * 14), // 56
+    11: ($spacer * 16), // 64
+    12: ($spacer * 18), // 72
+    13: ($spacer * 20), // 80
+    14: ($spacer * 22), // 88
+    15: ($spacer * 24), // 96
+    16: ($spacer * 26), // 104
+    17: ($spacer * 28), // 112
+    18: ($spacer * 30), // 120
+    19: ($spacer * 32), // 128
+    20: ($spacer * 34), // 136
+    21: ($spacer * 36), // 144
+    22: ($spacer * 38), // 152
+    23: ($spacer * 40), // 160
+  ),
+  $spacers
+);
+
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: () !default;
+$sizes: map-merge(
+  (
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    "25vh": 25vh,
+    "50vh": 50vh,
+    "65vh": 65vh,
+    "75vh": 75vh,
+    "80vh": 80vh,
+    "100vh": 100vh,
+    auto: auto
+  ),
+  $sizes
+);
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    "primary":        $primary,
+    "secondary":      $secondary,
+    "grey":           $grey,
+    "danger":         $danger,
+    "success":        $success,
+    "disabled":       $disabled,
+    "body":           $white,
+  ),
+  $theme-colors
+);
+
+$grid-breakpoints: (
+  xs: $xs,
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+  xxl: $xxl,
+  xxxl: $xxxl,
+);
+
+$container-max-widths: (
+  md: $md,
+  lg: $lg,
+  xl: $xl,
+  xxl: $xxl,
+  xxxl: $xxxl,
+);

@@ -1,0 +1,89 @@
+.card-item {
+  .image-container {
+    position: relative;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  .btn-favorite {
+    position: absolute;
+    transition: opacity 150ms ease-in-out;
+    opacity: 0;
+  }
+
+  &__lg {
+    .btn-favorite {
+      top: 16px;
+      right: 16px;
+    }
+    // img {
+    //   height: 310px;
+    //   @include media-breakpoint-up(md) { height: 390px }
+    //   @include media-breakpoint-up(xxl) { height: 500px }
+    // }
+    .image-container {
+      padding-top: 124%;
+      @include media-breakpoint-up(md) {
+        padding-top: 121%;
+      }
+      @include media-breakpoint-up(lg) {
+        padding-top: 135%;
+      }
+      @include media-breakpoint-up(xl) {
+        padding-top: 130%;
+      }
+      @include media-breakpoint-up(xxl) {
+        padding-top: 135%;
+        .btn-favorite {
+          width: 48px;
+          height: 48px;
+          max-height: 48px;
+        }
+      }
+      @include media-breakpoint-up(xxxl) {
+        padding-top: 125%;
+      }
+    }
+  }
+
+  &__sm {
+    .btn-favorite {
+      top: 12px;
+      right: 12px;
+    }
+    .image-container {
+      padding-top: 124%;
+      @include media-breakpoint-up(md) {
+        padding-top: 126%;
+      }
+      @include media-breakpoint-up(lg) {
+        padding-top: 122%;
+      }
+      @include media-breakpoint-up(xl) {
+        padding-top: 124%;
+      }
+      @include media-breakpoint-up(xxl) {
+        padding-top: 118%;
+      }
+      @include media-breakpoint-up(xxxl) {
+        padding-top: 119%;
+      }
+    }
+  }
+
+  .card-star path {
+    fill: $primary
+  }
+
+  &:hover .btn-favorite {
+    opacity: 1;
+  }
+}

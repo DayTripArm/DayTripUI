@@ -1,0 +1,49 @@
+.tour-illustration {
+  height: 396px;
+  @include media-breakpoint-up(lg) {
+    height: 407px;
+  }
+  @include media-breakpoint-up(xl) {
+    height: 509px;
+  }
+  @include media-breakpoint-up(xxl) {
+    height: 620px;
+  }
+  @include media-breakpoint-up(xxxl) {
+    height: 700px;
+  }
+
+  .overlay {
+    background: transparent;
+    bottom: unset;
+  }
+
+  .slick-slider, .slick-list, .slick-track, .slick-slide {
+    height: 100%;
+  }
+
+  .slick-slide {
+    >div, img {
+      height: 100%;
+    }
+  }
+
+  .slick-dots {
+    bottom: 70px;
+    display: none !important;
+    @include media-breakpoint-up(xl) {
+      display: block !important;
+    }
+    @include media-breakpoint-up(xxl) {
+      bottom: 80px;
+    }
+    @include media-breakpoint-up(xxxl) {
+      bottom: 90px;
+    }
+
+    li:not(.slick-active) button:before {
+      opacity: 1;
+      color: $grey;
+    }
+  }
+}

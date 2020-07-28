@@ -1,0 +1,8 @@
+.footer {
+  &-spaced {
+    margin-bottom: 56px;
+    @include media-breakpoint-up(xl) {
+      margin-bottom: 0;
+    }
+  }
+}

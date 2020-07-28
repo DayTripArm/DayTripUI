@@ -1,0 +1,238 @@
+.btn {
+  font-size: $btn-main-font-size;
+  line-height: $btn-main-line-height;
+  font-weight: $btn-main-font-weight;
+  border-radius: $btn-main-border-radius;
+  padding: $btn-main-padding;
+  letter-spacing: 1px;
+  max-height: 48px;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  &-primary {
+    &:hover {
+      background-color: $coral-dark;
+    }
+    &:disabled {
+      border: none;
+      &, &:hover {
+        color: $grey;
+        background-color: $disabled;
+      }
+    }
+  }
+
+  &-secondary {
+    color: $coral;
+    padding: $btn-secondary-padding;
+    background-color: $white;
+    border-color: $white;
+    &:hover {
+      color: $coral;
+      background-color: $hovered;
+      border-color: $hovered;
+    }
+    &:not(:disabled):not(.disabled):active {
+      color: $coral;
+      background-color: $pressed;
+      border-color: $pressed;
+    }
+    &:focus {
+      color: $coral;
+      background-color: $selected;
+      border-color: $selected;
+    }
+    &:disabled {
+      &, &:hover {
+        color: $grey;
+        background-color: $white;
+      }
+    }
+
+    &__grey {
+      color: $grey-dark;
+    }
+    &__black {
+      color: $black;
+    }
+    &__white {
+      color: $white
+    }
+  }
+
+  &-normal {
+    font-weight: 400;
+  }
+  &-bold {
+    font-weight: 600;
+  }
+
+  &-outline-black {
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    background-color: $white;
+
+    &:hover {
+      color: $white;
+      background-color: $primary-color;
+    }
+  }
+
+  &-white {
+    border: 1px solid $white;
+    color: $primary-color;
+    background-color: $white;
+
+    &:hover {
+      border-color: $primary-color;
+      color: $white;
+      background-color: $primary-color;
+    }
+  }
+
+  &-outline-white {
+    border: 1px solid $white;
+    color: $white;
+    background-color: transparent;
+
+    &:hover {
+      color: $primary-color;
+      background-color: $white;
+    }
+  }
+
+  &-text{
+    &:hover {
+      background-color: $hovered;
+      border-color: $hovered;
+    }
+    &:not(:disabled):not(.disabled):active {
+      background-color: $pressed;
+      border-color: $pressed;
+    }
+    &:focus {
+      background-color: $selected;
+      border-color: $selected;
+    }
+    &-white {
+      color: $white;
+      border-color: transparent;
+      background-color: transparent;
+
+      &:hover, &:active, &:focus {
+        color: $primary-color;;
+        border-color: $white;
+        background-color: $white;
+      }
+    }
+  };
+
+  &-facebook {
+    color: $white;
+    background-color: #3B5998;
+    &:hover {
+      color: white;
+      background-color: #334d85;
+    }
+    svg {
+      margin-top: -3px;
+    }
+  }
+
+  &-google {
+    border: 1px solid $default-border-color;
+  }
+
+  &-fixed {
+    width: 100%;
+    @include media-breakpoint-up(md) {
+      width: $field-width;
+    }
+  }
+
+  &-block__md { // 0 - 1024
+    width: 100%;
+    @include media-breakpoint-up(lg) {
+      width: auto;
+    }
+  }
+
+  &-md {
+    padding: $btn-md-padding
+  }
+
+  &-sm {
+    font-size: $btn-sm-font-size;
+    line-height: $btn-sm-line-height;
+    font-weight: $btn-sm-font-weight;
+    border-radius: $btn-sm-border-radius;
+    padding: $btn-sm-padding;
+    text-transform: capitalize;
+    max-height: 32px;
+  }
+
+  &-circle {
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid $primary-color;
+    background-color: $white;
+    @extend .d-inline-flex;
+    @extend .align-items-center;
+    @extend .justify-content-center;
+
+    &:not(.btn-static) {
+      &:hover {
+        background: $hovered;
+      }
+      &:active {
+        background: $pressed;
+      }
+      &:focus {
+        background: $selected;
+      }
+    }
+
+    &.size-fixed {
+      width: 48px;
+      height: 48px;
+    }
+
+    &:not(.size-fixed) {
+      svg {
+        width: 20px;
+        height: 20px;
+        @include media-breakpoint-up(md) {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      @include media-breakpoint-up(md) {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    &.btn-sm {
+      width: 32px;
+      height: 32px;
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  &-xs-block {
+    display: block;
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+      display: inline-block;
+      width: auto;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.translate {
+  &-y {
+    &-16 {
+      @include transform(translateY(16px))
+    }
+  }
+}

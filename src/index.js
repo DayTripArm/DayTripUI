@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import createSagaMiddleware from 'redux-saga';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import rootReducer from "./react_app/reducer/";
-import rootSaga from "./react_app/rootSaga";
-import App from './App';
+import rootReducer from "./reducer/";
+import rootSaga from "./rootSaga";
+import App from './app';
+import 'scss/app.scss';
 
 const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -14,7 +16,13 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+      <Suspense fallback={<div>Loading</div>}>
+        <Router>
+          <Switch>
+            <Route path='/' component={() => <App />} />
+          </Switch>
+        </Router>
+      </Suspense>
     </Provider>,
     document.getElementById('root')
 );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react';SET_USER_TYPE
 import {useSelector} from "react-redux";
 
 import Header from "./Header/Header";

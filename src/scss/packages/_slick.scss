@@ -1,0 +1,87 @@
+.slick-slider {
+  &.slick-cards {
+    padding-top: 68px;
+    margin: 0 -8px;
+    position: static;
+
+    .slick-slide {
+      padding: 0 8px;
+    }
+
+    .slick-list {
+      overflow: visible;
+    }
+
+    >.btn {
+      position: absolute;
+      top: 0;
+      border-color: $default-border-color;
+      display: none !important;
+
+      @include media-breakpoint-up(xl) { display: inline-flex !important; }
+
+      svg path {
+        fill: $default-border-color
+      }
+
+      &:hover {
+        border-color: $primary;
+
+        svg path {
+          fill: $primary
+        }
+      }
+
+      &.btn-prev {
+        left: 1142px;
+        @include media-breakpoint-up(xxl) {
+          left: 1420px;
+        }
+        @include media-breakpoint-up(xxxl) {
+          left: 1620px;
+        }
+      }
+      &.btn-next {
+        left: 1202px;
+        @include media-breakpoint-up(xxl) {
+          left: 1480px;
+        }
+        @include media-breakpoint-up(xxxl) {
+          left: 1680px;
+        }
+      }
+    }
+  }
+
+  &.slick-gallery {
+    margin: 0 -8px;
+
+    .slick-slide {
+      padding: 0 8px;
+    }
+  }
+}
+
+.slick-dots {
+  bottom: -30px;
+  li {
+    button {
+      &:before {
+        font-size: 10px;
+      }
+
+      &:hover:before {
+        color: $primary
+      }
+    }
+    &.slick-active {
+      button {
+        &:before {
+          font-size: 14px;
+          opacity: 1;
+          color: $primary;
+        }
+      }
+    }
+  }
+}

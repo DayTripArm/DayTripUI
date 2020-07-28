@@ -1,0 +1,84 @@
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4 {
+  font-weight: $h-font-weight;
+  margin-bottom: 24px;
+}
+
+h1, .h1 {
+  font-size: $h1-xs;
+  line-height: 42px;
+  @include media-breakpoint-up(md) {
+    font-size: $h1-md;
+    line-height: 48px;
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: $h1-lg;
+    line-height: 54px;
+  }
+}
+
+h2, .h2 {
+  font-size: $h2-xs;
+  line-height: 36px;
+  @include media-breakpoint-up(md) {
+    font-size: $h2-md;
+    line-height: 42px;
+  }
+  @include media-breakpoint-up(lg) { font-size: $h2-lg }
+}
+
+h3, .h3 {
+  font-size: $h3-xs;
+  line-height: 36px;
+  @include media-breakpoint-up(md) { font-size: $h3-md }
+  @include media-breakpoint-up(lg) { font-size: $h3-lg }
+}
+
+h4, .h4 {
+  font-size: $h4-xs;
+  line-height: 30px;
+  @include media-breakpoint-up(md) { font-size: $h4-md }
+  @include media-breakpoint-up(lg) { font-size: $h4-lg }
+}
+
+.text-sm {
+  font-size: $text-sm-font-size;
+  line-height: $text-sm-line-height;
+}
+
+.text-xs {
+  font-size: $text-xs-font-size;
+  line-height: $text-xs-line-height;
+}
+
+p {
+  margin-bottom: 16px;
+}
+
+.lh-42 {
+  line-height: 42px;
+}
+
+.weight-100 { font-weight: 100 !important }
+.weight-200 { font-weight: 200 !important }
+.weight-300 { font-weight: 300 !important }
+.weight-400 { font-weight: 400 !important }
+.weight-500 { font-weight: 500 !important }
+.weight-600 { font-weight: 600 !important }
+.weight-700 { font-weight: 700 !important }
+.weight-800 { font-weight: 800 !important }
+.weight-900 { font-weight: 900 !important }
+
+.text-ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.text-clip {
+  white-space: nowrap;
+  text-overflow: clip;
+  overflow: hidden;
+}

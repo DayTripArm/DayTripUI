@@ -1,0 +1,134 @@
+.border {
+  &, &-style {
+    border: 1px solid;
+  }
+
+  &__left {
+    border-left: 1px solid;
+  }
+  &__left-2 {
+    border-left: 2px solid;
+  }
+
+  &__right {
+    border-right: 1px solid;
+  }
+
+  &__top {
+    border-top: 1px solid;
+  }
+
+  &__bottom {
+    border-bottom: 1px solid;
+  }
+
+  &__dashed {
+    border-style: dashed;
+  }
+
+  &__success {
+    border-color: $success;
+  }
+
+  &__default {
+    border-color: $default-border-color;
+  }
+
+  &__primary {
+    border-color: $primary-border-color
+  }
+
+  &__secondary {
+    border-color: $secondary-border-color
+  }
+
+  &__grey {
+    border-color: $grey;
+  }
+
+  &__disabled {
+    border-color: $disabled;
+  }
+
+  &__danger {
+    border-color: $danger;
+  }
+
+  &__hidden {
+    border-color: transparent;
+  }
+}
+
+.rounded {
+  &__50 {
+    border-radius: 50%;
+  }
+
+  &__2 {
+    border-radius: 2px;
+  }
+  &__3 {
+   border-radius: 3px;
+  }
+  &__4 {
+    border-radius: 4px;
+  }
+  &__8 {
+    border-radius: 8px;
+  }
+  &__10 {
+    border-radius: 10px;
+  }
+  &__16 {
+    border-radius: 16px;
+  }
+  &__30 {
+    border-radius: 30px;
+  }
+  &__0 {
+    border-radius: 0;
+  }
+
+  &-top__2 {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+  &-top__4 {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  &-top__8 {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  &-top__16 {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+  &-top__30 {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+
+  &-bottom__2 {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+  &-bottom__4 {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  &-left__2 {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+  &-left__3 {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+  &-left__4 {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+}

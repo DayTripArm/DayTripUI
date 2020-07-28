@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: $primary-font-size;
+  line-height: $primary-line-height;
+  color: $primary-color;
+  background-color: theme-color('body');
+  font-family: $primary-font;
+}
+
+img {
+  max-width: 100%;
+}

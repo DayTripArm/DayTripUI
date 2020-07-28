@@ -1,0 +1,41 @@
+// .fill {
+//   &-grey {
+//     fill: $grey;
+//   }
+// }
+
+.text {
+  &__grey-light {
+    color: $grey-light
+  }
+  &__grey {
+    color: $grey
+  }
+  &__grey-dark {
+    color: $grey-dark
+  }
+  &__blue {
+    color: $blue
+  }
+  &__black {
+    color: $primary-color;
+  }
+}
+
+.bg {
+  &__grey-light {
+    background-color: $grey-light
+  }
+  &__grey {
+    background-color: $grey
+  }
+  &__grey-dark {
+    background-color: $grey-dark
+  }
+  &__blue {
+    background-color: $blue
+  }
+  &__black {
+    background-color: $primary-color;
+  }
+}
