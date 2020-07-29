@@ -13,12 +13,13 @@ function* signUpRequest(action) {
         const {response, error} = yield call(Api.signUpRequest, body);
 
         if (response) {
-            const {id, user_type} = response.data.user;
+            const {id, user_type, is_prereg} = response.data.user;
 
             if (user_type === Number(TRAVELER_TYPE)) {
                 yield put(actions.signUpTravelerReceiveSuccess(response));
                 yield put(actions.showHideWelcome(true));
             } else {
+                yield put(actions.setPrereg(is_prereg));
                 yield put(actions.signUpDriverReceiveSuccess(response));
             }
 

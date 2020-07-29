@@ -1,37 +1,93 @@
-import React from 'react';
-import { IconPlus, IconMinus } from 'shared/components/Icons';
+import React, {useEffect} from 'react';
 import Checkbox from 'shared/components/Checkbox';
+import FormPlusMinus from 'shared/components/FormPlusMinus.js';
+import {useDispatch, useSelector} from "react-redux";
+import actions from "../../../../actions";
 
-const CarRegistration = () => (
-  <>
-    <h4 className='text__blue mb-4'>How many travelers can fit in your car?</h4>
-    <p className='text__grey-dark'>
-      Check that you have enough sits to fit all your guests comfortably.
-    </p>
-    <div className='d-flex align-items-center mb-7'>
-      <span className='weight-500 mr-1'>Seats</span>
-      <div className='d-flex align-items-center'>
-        <button className='btn btn-circle border-0'>
-          <IconPlus />
-        </button>
-        <span className='mx-1'>4</span>
-        <button className='btn btn-circle border-0'>
-          <IconMinus />
-        </button>
-      </div>
-    </div>
-    <h4 className='text__blue mb-4'>Tell us what you have in the car</h4>
-    <p className='text__grey-dark'>
-      Tell the travelers more about your car and rules. You can add even more after you publish.
-    </p>
-    <Checkbox className='mb-4 w-100' name='check1' label='Car Seat' />
-    <Checkbox className='mb-4 w-100' name='check1' label='Air Conditioning' />
-    <Checkbox className='mb-4 w-100' name='check1' label='Smoke Allowed' />
-    <Checkbox className='mb-4 w-100' name='check1' label='Pets Allowed' />
-    <Checkbox className='mb-4 w-100' name='check1' label='Water' />
-    <Checkbox className='mb-4 w-100' name='check1' label='Snacks' />
-    <Checkbox className='w-100' name='check1' label='WIFI' />
-  </>
-);
+const CarRegistration = () => {
+    const {driverData} = useSelector(state => state);
+    const {preregistered_info} = driverData;
+
+    const {
+        car_seats,
+        car_specs={}
+    } = preregistered_info;
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        document.documentElement.scrollTop = 0;
+    }, []);
+
+
+    return (
+        <>
+            <h4 className='text__blue mb-4'>How many travelers can fit in your car?</h4>
+            <p className='text__grey-dark'>Check that you have enough sits to fit all your guests comfortably.</p>
+
+            <FormPlusMinus
+                label="Seats"
+                name="car_seats"
+                initialValue={car_seats || 4}
+                onChange={(e) => dispatch(actions.setPreregisteredDriverProperty(e.name, e.value))}
+            />
+
+            <h4 className='text__blue mb-4'>Tell us what you have in the car</h4>
+            <p className='text__grey-dark'>Tell the travelers more about your car and rules. You can add even more after you publish.</p>
+
+            <Checkbox
+                className='mb-4 w-100'
+                name='car_seat'
+                label='Car Seat'
+                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('car_seat', e.target.checked))}
+                value={car_specs['car_seat']}
+            />
+
+            <Checkbox
+                className='mb-4 w-100'
+                name='air_condition'
+                label='Air Conditioning'
+                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('air_condition', e.target.checked))}
+                value={car_specs['air_condition']}
+            />
+
+            <Checkbox
+                className='mb-4 w-100'
+                name='smoke_allowed'
+                label='Smoke Allowed'
+                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('smoke_allowed', e.target.checked))}
+                value={car_specs['smoke_allowed']}
+            />
+            <Checkbox
+                className='mb-4 w-100'
+                name='pets_allowd'
+                label='Pets Allowed'
+                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('pets_allowd', e.target.checked))}
+                value={car_specs['pets_allowd']}
+            />
+            <Checkbox
+                className='mb-4 w-100'
+                name='water'
+                label='Water'
+                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('water', e.target.checked))}
+                value={car_specs['water']}
+            />
+            <Checkbox
+                className='mb-4 w-100'
+                name='snacks'
+                label='Snacks'
+                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('snacks', e.target.checked))}
+                value={car_specs['snacks']}
+            />
+            <Checkbox
+                className='w-100'
+                name='wifi'
+                label='WIFI'
+                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('wifi', e.target.checked))}
+                value={car_specs['wifi']}
+            />
+        </>
+    );
+};
 
 export default CarRegistration;

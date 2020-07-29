@@ -1,29 +1,43 @@
-import React from 'react';
-import UploadFile from 'app/routes/UiKit/components/UploadFile';
+import React, {useEffect} from 'react';
+import FormDropZone from 'shared/components/FormDropZone';
+import {useSelector} from "react-redux";
 
-const GovermentAndLicense = () => (
-  <>
-    <h4 className='text__blue mb-4'>Add photos of Governmental ID</h4>
-    <p className='text__grey-dark'>ID help travelers Take You Serious</p>
-    <div className='row row-2'>
-      <div className='col-6 px-2'>
-        <UploadFile size='sm' name='photo' label='Upload Photos' />
-      </div>
-      <div className='col-6 px-2'>
-        <img
-          className='upload-img rounded__4 object-fit-contain object-position-center bg__grey mb-4'
-          src='https://www.gotocourt.com.au/wp-content/uploads/legalnews_images/licencetasmania-2.jpg'
-          alt='car'
-        />
-      </div>
-    </div>
-    <h4 className='text__blue mt-6 mb-4'>Add photos of Governmental ID</h4>
-    <p className='text__grey-dark'>
-      Photos help travelers imagine their future ride. You can start with one and add more after you
-      publish.
-    </p>
-    <UploadFile name='photo' label='Upload Photos' />
-  </>
-);
+const GovermentAndLicense = () => {
+
+    const {driverData} = useSelector(state => state);
+    const {preregistered_info} = driverData;
+    const {
+        gov_photos=[],
+        license_photos=[],
+    } = preregistered_info;
+
+
+    useEffect(() => {
+        document.documentElement.scrollTop = 0;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return(
+        <>
+            <h4 className='text__blue mb-4'>Add photos of Governmental ID</h4>
+            <p className='text__grey-dark'>ID help travelers Take You Serious</p>
+
+            <FormDropZone
+                type="gov_photos"
+                label="Upload Photos"
+                photos={gov_photos}
+            />
+
+            <h4 className='text__blue mt-6 mb-4'>Add photos of Governmental ID</h4>
+            <p className='text__grey-dark'>Photos help travelers imagine their future ride. You can start with one and add more after you publish.</p>
+
+            <FormDropZone
+                type="license_photos"
+                label="Upload Photos"
+                photos={license_photos}
+            />
+        </>
+    );
+};
 
 export default GovermentAndLicense;
