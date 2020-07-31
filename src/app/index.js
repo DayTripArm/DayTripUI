@@ -91,7 +91,7 @@ const App = () => {
           <Route path='/progress' component={Progress} />
           <Route path='/favorites' component={Favorites} />
           <Route path='/refer' component={Refer} />
-          <Route path='/account' component={() => <Account />} />
+          <Route path='/account' component={Account} />
           <Route path='/trips' component={Trips} />
           <Redirect from='*' to='/home' />
         </Switch>
