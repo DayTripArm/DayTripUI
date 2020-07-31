@@ -1,11 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Route, Switch } from 'react-router-dom';
+import {useDispatch} from "react-redux";
 import AccountMain from './routes/AccountMain';
 import Personal from './routes/Personal';
 import LoginSecurity from './routes/LoginSecurity';
 import PaymentPayout from './routes/PaymentPayout';
+import actions from "../../../actions";
 
 const Account = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.userType) {
+      dispatch(actions.profileInfoRequest(localStorage.id));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
 
