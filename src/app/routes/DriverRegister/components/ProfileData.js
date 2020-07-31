@@ -1,17 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import SelectCustom from 'shared/components/SelectCustom';
 import Textarea from 'shared/components/Textarea';
-import Input from 'shared/components/Input';
-import Chips from 'shared/components/Chips';
+import MultiSelect from 'shared/components/MultiSelect';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../../actions";
 import {DAYS, GENDER_LIST, GET_DATE_YEARS, LANGUAGES, MONTH_LIST} from "../../../../constants";
 import _ from "lodash";
 
 const ProfileData = () => {
-
-    const [openDropdown, setOpenDropdown] = useState(false);
-
     const dispatch = useDispatch();
 
     const {driverData} = useSelector(state => state);
@@ -26,9 +22,6 @@ const ProfileData = () => {
         languages=""
     } = preregistered_info;
 
-    const [selectedLanguages, setSelectedLanguages] = useState(languages.split(!_.isEmpty(languages) ? languages.split(',') : []));
-
-
     useEffect(() => {
         document.documentElement.scrollTop = 0;
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,26 +30,23 @@ const ProfileData = () => {
     const selectOnChange = (value, name) => {
 
         if (name === "languages") {
-            console.log(" selectedLanguages ", selectedLanguages);
-            console.log(" value ", value);
-            console.log(" name ", name);
-            // let langString = "";
-            //
-            // event && event.map(item => langString += item.value + ",");
-            // value = langString.slice(0, -1);
+            let langString = "";
+
+            value && value.map(item => langString += item.value + ",");
+            value = langString.slice(0, -1);
         }
 
         dispatch(actions.setPreregisteredDriverProperty(name, value));
     };
 
-    // const languageList = LANGUAGES.map(item => {return {label: item, value: item}});
+    const languageList = LANGUAGES.map(item => {return {label: item, value: item}});
     const genderList   = GENDER_LIST.map(item => {return {label: item, value: item}});
     const monthList    = MONTH_LIST.map((month, i) => {return {label: month, value: i}});
     const days         = DAYS.map(i => {return {label: i, value: i}});
     const yearList     = GET_DATE_YEARS().map(i => {return {label: i, value: i}});
 
-    // let languageValue = [];
-    // languages.split(",").map(i => languageValue.push(_.find(languageList, lang => lang.value === i)));
+    let languageValue = [];
+    languages.split(",").map(i => languageValue.push(_.find(languageList, lang => lang.value === i)));
 
   return (
       <>
@@ -106,54 +96,15 @@ const ProfileData = () => {
               </div>
           </div>
 
-          <div className='form-field'>
-              <label>Languages/Speaks</label>
-              <div className={`rounded__4 border-style border__default pt-3${LANGUAGES.length === selectedLanguages.length ? ' pb-3' : ''}`}>
-                  <div className='px-4'>
-                      {selectedLanguages.map(item => (
-                          <Chips
-                              name={item}
-                              key={item}
-                              className='mr-1 mb-1'
-                              removable
-                              onRemove={() => {
-                                  setSelectedLanguages(selectedLanguages.filter(v => v !== item));
-                              }}
-                          />
-                      ))}
-                  </div>
-
-                  {LANGUAGES.length !== selectedLanguages.length && (
-                      <div className='position-relative d-inline-flex'>
-                          <Input
-                              type='text'
-                              name='field'
-                              className='border-0'
-                              containerClass='mb-0'
-                              placeholder='Choose'
-                              onFocus={() => setOpenDropdown(true)}
-                              onBlur={() => setOpenDropdown(false)}
-                          />
-                          <div className={`dropdown${openDropdown ? ' active' : ''}`}>
-                              <ul className='dropdown-list no-list-style py-2 mb-0'>
-                                  {LANGUAGES.filter(v => !selectedLanguages.includes(v)).map(item => (
-                                      <li
-                                          className='list-item list-item__hover py-2 px-4 text-ellipsis'
-                                          key={item}
-                                          onClick={() => {
-                                              setSelectedLanguages([...selectedLanguages.filter(v => v !== item), item]);
-                                          }}
-                                          role='presentation'
-                                      >
-                                          {item}
-                                      </li>
-                                  ))}
-                              </ul>
-                          </div>
-                      </div>
-                  )}
-              </div>
-          </div>
+          <MultiSelect
+              isMulti={true}
+              name='languages'
+              label="Spoken Language/s"
+              placeholder="Tell us what language(s) do you speak"
+              onChange={event => selectOnChange(event, "languages")}
+              value={languageValue}
+              options={languageList}
+          />
 
           <Textarea
             name='about'

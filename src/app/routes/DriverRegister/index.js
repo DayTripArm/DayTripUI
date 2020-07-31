@@ -29,7 +29,7 @@ const StepPageByNumber = {
 const DriverRegister = () => {
 
   const limit = _.keys(StepPageByNumber).length;
-  const [step, setStep] = useState(7);
+  const [step, setStep] = useState(1);
 
     const dispatch = useDispatch();
 

@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Input from 'shared/components/Input';
 import SelectCustom from 'shared/components/SelectCustom';
+import MultiSelect from 'shared/components/MultiSelect';
 import ModalAside from 'shared/components/ModalAside';
-import { IconDestination, IconQuestionOutlined } from 'shared/components/Icons';
+import { IconQuestionOutlined } from 'shared/components/Icons';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../../react_app/actions";
 import {LOCATIONS} from "../../../../react_app/constants";
@@ -36,19 +37,12 @@ const LocationAndDestination = () => {
     }, []);
 
     const selectOnChange = (value, name) => {
-        // let value = "";
-        // if (typeof event === "string") {
-        //     value = event;
-        // } else {
-        //     value = event.target ? event.target.value : event.value
-        // }
-        //
-        // if (name === "driver_destinations") {
-        //     let destString = "";
-        //
-        //     event && event.map(item => destString += item.value + ",");
-        //     value = destString.slice(0, -1);
-        // }
+        if (name === "driver_destinations") {
+            let destString = "";
+
+            value && value.map(item => destString += item.value + ",");
+            value = destString.slice(0, -1);
+        }
 
         dispatch(actions.setPreregisteredDriverProperty(name, value));
     };
@@ -72,14 +66,14 @@ const LocationAndDestination = () => {
                 options={locationList}
             />
 
-            <Input
-                type='text'
+            <MultiSelect
+                isMulti={true}
                 name='driver_destinations'
                 label='Destinations'
                 placeholder='I want to drive to'
-                icon={IconDestination}
-                iconPosition='right'
-                containerClass='mb-8'
+                onChange={event => selectOnChange(event, "driver_destinations")}
+                value={destinationValue}
+                options={destinationList}
             />
 
             <h4 className='text__blue mb-6'>
@@ -93,7 +87,7 @@ const LocationAndDestination = () => {
                 type='number'
                 name='tariff1'
                 value={tariff1}
-                onChange={(e, name) => selectOnChange(e.target.value, name)}
+                onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
                 label='Set your price per 1 km  for short distance trips (up to 110 km, including waiting time)'
                 placeholder='Price'
                 iconPosition='right'
@@ -142,7 +136,7 @@ const LocationAndDestination = () => {
                 type='number'
                 name='tariff2'
                 value={tariff2}
-                onChange={(e, name) => selectOnChange(e.target.value, name)}
+                onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
                 label='Set your price per 1 km  for long distance trips (over 110 km, including waiting time)'
                 placeholder='Price'
                 iconPosition='right'

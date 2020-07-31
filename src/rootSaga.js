@@ -203,6 +203,7 @@ function* saveDriverPreregData(action) {
                 window.location.href = "/";
                 delete localStorage.id;
                 delete localStorage.userType;
+                delete localStorage.is_prereg;
             }, 300);
         }
     } catch (e) {

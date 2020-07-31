@@ -4,7 +4,7 @@ import Input from 'shared/components/Input';
 import Checkbox from 'shared/components/Checkbox';
 import {useDispatch, useSelector} from "react-redux";
 import { Link } from 'react-router-dom';
-import { IconEye, IconFbClean, IconGoogle } from 'shared/components/Icons';
+import { IconFbClean, IconGoogle } from 'shared/components/Icons';
 import actions from "../../../actions";
 import _ from "lodash";
 
@@ -101,8 +101,10 @@ const ModalLogin = ({ onClose }) => {
         }}>
           {
             generalMsg ?
-              <div className="form-error">
-                <span className="text-error-message">{generalMsg}</span>
+              <div style={{textAlign: "center", color: "#B80000"}}>
+                  <p className='input-message text-xs weight-500 px-1 mt-1'>
+                      {generalMsg}
+                  </p>
               </div>
               :
               null
@@ -115,7 +117,7 @@ const ModalLogin = ({ onClose }) => {
             })}
             name='email'
             label='Email *'
-            isError={getStatusMessage("email") || false}
+            isError={getStatusMessage("email") || generalMsg || false}
             message={getStatusMessage("email")}
             onBlur={validateOnBlur}
             placeholder='Enter your Email'
@@ -130,10 +132,10 @@ const ModalLogin = ({ onClose }) => {
             label='Password *'
             containerClass='mb-0'
             placeholder='Enter your Password'
-            isError={getStatusMessage("password") || passwordMsg || false}
+            isError={getStatusMessage("password") || passwordMsg || generalMsg || false}
             message={getStatusMessage("password") || passwordMsg}
             onBlur={validateOnBlur}
-            icon={IconEye}
+            showEye={true}
             iconPosition='right'
           />
           <div className='d-flex align-items-center justify-content-between px-1 mt-3 mb-3'>

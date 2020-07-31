@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Modal from 'shared/components/Modal';
 import Input from 'shared/components/Input';
 import actions from "../../../actions";
-import { IconEye, IconFbClean, IconGoogle } from 'shared/components/Icons';
+import { IconFbClean, IconGoogle } from 'shared/components/Icons';
 import { Link } from 'react-router-dom';
 import _ from "lodash";
 
@@ -127,10 +127,10 @@ const ModalRegister =  ({ onClose }) => {
           signUpRequest();
         }}>
           {user_info.errors ?
-            <div className="form-error">
+              <div style={{textAlign: "center", color: "#B80000"}}>
               {
                 _.isObject(user_info.errors) && _.keys(user_info.errors).map((key, i) => {
-                  return <span key={i} className="text-error-message">{user_info.errors[key][0]}</span>
+                  return <p className='input-message text-xs weight-500 px-1 mt-1'>{user_info.errors[key][0]}</p>
                 })
               }
             </div>
@@ -153,6 +153,7 @@ const ModalRegister =  ({ onClose }) => {
           <Input
             type='number'
             name='phone'
+            hideApperance={true}
             onChange={e => setForm({
               ...form,
               phone: e.target.value
@@ -185,7 +186,7 @@ const ModalRegister =  ({ onClose }) => {
             })}
             label='Password *'
             placeholder='Enter your Password'
-            icon={IconEye}
+            showEye={true}
             iconPosition='right'
             isError={getStatusMessage("password") || false}
             message={getStatusMessage("password")}
