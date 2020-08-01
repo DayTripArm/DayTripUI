@@ -22,7 +22,7 @@ const FormInputBox = (props) => {
     const [day, setDay] = useState(props.name === "date_of_birth" && !_.isEmpty(props.value) ? new Date(props.value).getDate() : "");
     const [year, setYear] = useState(props.name === "date_of_birth" && !_.isEmpty(props.value) ? new Date(props.value).getFullYear() : "");
 
-    const [languageValue, setLanguageValue] = useState(props.name === "languages" && _.reduce(props.value.split(","), (memo, val) => {
+    const [languageValue, setLanguageValue] = useState(props.name === "languages" && props.value && _.reduce(props.value.split(","), (memo, val) => {
         memo.push(_.find(languageList, lang => lang.value === val.trim()));
 
         return memo;
