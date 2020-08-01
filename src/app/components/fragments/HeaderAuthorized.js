@@ -80,7 +80,15 @@ const HeaderAuthorized = ({ type }) => {
   const {profile={}, user_info={}} = travelerData;
   const {user={}} = user_info;
 
-  let {name} = !_.isEmpty(profile) ? profile : user;
+    let {name} = !_.isEmpty(profile) ? profile : user;
+
+    name = _.split(name, ' ')[0];
+    if (name && name.length > 20) {
+        name = _.truncate(name, {
+            'length': 21,
+            'omission': ''
+        });
+    }
 
   const logOut = () => {
     dispatch(actions.logOut());

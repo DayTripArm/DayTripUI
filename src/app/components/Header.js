@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { IconArrowDown, IconArrowUp, IconZoom } from 'shared/components/Icons';
+import {useDispatch, useSelector} from "react-redux";
 import useOutsideClick from 'shared/hooks/useOutsideClick';
 import Input from 'shared/components/Input';
 import HeaderUnauthorized from './fragments/HeaderUnauthorized';
 import HeaderAuthorized from './fragments/HeaderAuthorized';
+import actions from "../../actions";
+import {DRIVER_TYPE} from "../../constants";
 
 const headerTypes = {
   unauthorized: HeaderUnauthorized,
@@ -13,6 +16,13 @@ const headerTypes = {
 const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
   const themeLight = window.location.pathname.includes('home');
   const hide = window.location.pathname.includes('driverRegister');
+
+  const dispatch = useDispatch();
+  const {travelerData} = useSelector(state => state);
+
+    const {
+        showSignIn,
+    } = travelerData;
 
   const headerClasses = {
     unauthorized: themeLight ? 'py-4' : 'py-3',
@@ -116,7 +126,11 @@ const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
                 <li className='py-5 border__bottom border__default'>Home</li>
                 <li className='py-5 border__bottom border__default'>English</li>
                 <li className='py-5 border__bottom border__default'>$USD</li>
-                <li className='py-5 border__bottom border__default'>Become a Driver</li>
+                <li className='py-5 border__bottom border__default' onClick={(e) => {
+                    e.preventDefault();
+                    !showSignIn && dispatch(actions.showHideSignUp(true));
+                    dispatch(actions.setRegisteredUserType(DRIVER_TYPE));
+                }}>Become a Driver</li>
               </ul>
             </nav>
           </div>
