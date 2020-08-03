@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import { IconTimes, IconArrowUp, IconArrowDown, IconEye, IconEyeClose } from './Icons';
 
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+
 const Input = ({
    value,
    label,
@@ -22,8 +25,9 @@ const Input = ({
    onBlur,
    required,
    autoFocus,
+   phoneCodes
 }) => {
-    const [inputvalue, setInputValue] = useState(value);
+    const [inputValue, setInputValue] = useState(value);
     const [showPwd, swtShowPwd] = useState(false);
     //const Icon = icon;
 
@@ -43,7 +47,7 @@ const Input = ({
             onChange(e, name);
         }
 
-        setInputValue(e.target.value);
+        setInputValue(e.target ? e.target.value : e);
     };
 
     const onBlurHandle = (e, name) => {
@@ -53,7 +57,7 @@ const Input = ({
     };
 
     const add = () => {
-        let value = Number(inputvalue) + 10;
+        let value = Number(inputValue) + 10;
         setInputValue(value);
         onChange(value, name);
     };
@@ -61,8 +65,8 @@ const Input = ({
     const subtract = () => {
         let value = 0;
 
-        if (Number(inputvalue) >= 10) {
-            value = Number(inputvalue) - 10;
+        if (Number(inputValue) >= 10) {
+            value = Number(inputValue) - 10;
         }
 
         setInputValue(value);
@@ -81,19 +85,41 @@ const Input = ({
                 </label>
             )}
             <div className='position-relative'>
-                <input
-                    type={showPwd ? "text" : type}
-                    id={name}
-                    placeholder={placeholder}
-                    name={name}
-                    value={inputvalue}
-                    onChange={(e) => onChangeHandle(e, name)}
-                    onFocus={onFocus}
-                    onBlur={(e) => onBlurHandle(e, name)}
-                    className={setClasses()}
-                    required={required}
-                    autoFocus={autoFocus}
-                />
+                {phoneCodes ?
+                    <PhoneInput
+                        inputStyle={{width: '100%', height: '48px'}}
+                        inputClass={setClasses()}
+                        id={name}
+                        name={name}
+                        masks={{am: '(..) ..-..-..'}}
+                        country={'am'}
+                        autoFocus={autoFocus}
+                        value={inputValue}
+                        placeholder={placeholder}
+                        onChange={(e) => onChangeHandle(e, name)}
+                        onFocus={onFocus}
+                        onBlur={(e) => onBlurHandle(e, name)}
+                        required={required}
+                        inputProps={{
+                            name: name,
+                            required: true
+                        }}
+                    />
+                    :
+                    <input
+                        type={showPwd ? "text" : type}
+                        id={name}
+                        placeholder={placeholder}
+                        name={name}
+                        value={inputValue}
+                        onChange={(e) => onChangeHandle(e, name)}
+                        onFocus={onFocus}
+                        onBlur={(e) => onBlurHandle(e, name)}
+                        className={setClasses()}
+                        required={required}
+                        autoFocus={autoFocus}
+                    />
+                }
                 {message && (
                     <p title={message} className='input-message text-xs weight-500 px-1 mt-1'>
                         {message}

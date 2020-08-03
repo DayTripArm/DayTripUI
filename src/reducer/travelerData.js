@@ -47,6 +47,10 @@ const travelerData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 showSignIn: show,
+                user_info: {
+                    ...state.user_info,
+                    errors: {}    // reset error
+                }
             }
         }
 
@@ -63,7 +67,11 @@ const travelerData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 showSignIn: !state.showSignIn,
-                showSignUp: !state.showSignUp
+                showSignUp: !state.showSignUp,
+                user_info: {
+                    ...state.user_info,
+                    errors: {}    // reset error
+                }
             }
         }
 
@@ -72,7 +80,11 @@ const travelerData = (state = INITIAL_STATE, action) => {
 
             return {
                 ...state,
-                showSignUp: show
+                showSignUp: show,
+                user_info: {
+                    ...state.user_info,
+                    errors: {}    // reset error
+                }
             }
         }
 

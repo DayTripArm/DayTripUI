@@ -153,10 +153,11 @@ const ModalRegister =  ({ onClose }) => {
           <Input
             type='number'
             name='phone'
+            phoneCodes={true}
             hideApperance={true}
             onChange={e => setForm({
               ...form,
-              phone: e.target.value
+              phone: e.target ? e.target.value : e
             })}
             label='Phone *'
             placeholder='Type Your Number'
