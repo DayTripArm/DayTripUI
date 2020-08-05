@@ -5,7 +5,12 @@ export const INITIAL_STATE = {
     showSignIn: false,
     showSignUp: false,
     user_info: {},
-    profile: {}
+    profile: {},
+    heroes: {},
+    trips: [],
+    trip_detail: {},
+    saved_trips: [],
+    hit_the_road: {}
 };
 
 const travelerData = (state = INITIAL_STATE, action) => {
@@ -94,6 +99,51 @@ const travelerData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 profile: data || {}
+            }
+        }
+
+        case actions.HEROES_RECEIVE: {
+            const { data } = action;
+
+            return {
+                ...state,
+                heroes: data || {}
+            }
+        }
+
+        case actions.TRIPS_RECEIVE: {
+            const { data } = action;
+
+            return {
+                ...state,
+                trips: data || []
+            }
+        }
+
+        case actions.HIT_THE_ROAD_RECEIVE: {
+            const { data } = action;
+
+            return {
+                ...state,
+                hit_the_road: data || {}
+            }
+        }
+
+        case actions.SAVED_TRIPS_RECEIVE: {
+            const { data } = action;
+
+            return {
+                ...state,
+                saved_trips: data || []
+            }
+        }
+
+        case actions.TRIP_DETAIL_RECEIVE: {
+            const { data } = action;
+
+            return {
+                ...state,
+                trip_detail: data || {}
             }
         }
 

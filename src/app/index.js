@@ -52,6 +52,10 @@ const App = () => {
     if (localStorage.userType) {
       dispatch(actions.profileInfoRequest(localStorage.id));
     }
+
+    dispatch(actions.heroesRequest());
+    dispatch(actions.tripsRequest());
+    dispatch(actions.hitTheRoadRequest());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -87,7 +91,7 @@ const App = () => {
           <Route path='/drivers' component={Drivers} />
           <Route path='/messaging' component={Messaging} />
           <Route path='/calendar' component={Calendar} />
-          <Route path='/tour' component={Tour} />
+          <Route path='/tour/:id' component={Tour} />
           <Route path='/progress' component={Progress} />
           <Route path='/favorites' component={Favorites} />
           <Route path='/refer' component={Refer} />

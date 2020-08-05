@@ -51,6 +51,42 @@ export default {
             .catch(error => ({error}) );
     },
 
+    getHeroes() {
+        return axios.get(base_urls.day_trip.getHeroes, { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    getTrips(is_top_choice) {
+        return axios.get(template(base_urls.day_trip.getTrips, is_top_choice), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    getHitTheRoad() {
+        return axios.get(base_urls.day_trip.getHitTheRoad, { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    saveTrip(data) {
+        return axios.post(base_urls.day_trip.saveTrip, data, { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    getSavedTrips(login_id) {
+        return axios.get(template(base_urls.day_trip.getSavedTrips, login_id), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    getTripDetail(login_id) {
+        return axios.get(template(base_urls.day_trip.getTripDetail, login_id), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
     saveDriverPreregData(data) {
         return axios.post(base_urls.day_trip.saveDriverPreregData, data,{ handlesError: [400, 417, 500], headers: { 'content-type': 'multipart/form-data' } })
             .then(response => ({response}) )

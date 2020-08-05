@@ -29,7 +29,7 @@ const Input = ({
 }) => {
     const [inputValue, setInputValue] = useState(value);
     const [showPwd, swtShowPwd] = useState(false);
-    //const Icon = icon;
+    const Icon = icon;
 
     const setClasses = () => {
         let classes = [];
@@ -133,6 +133,11 @@ const Input = ({
                                 :
                                 <IconEyeClose />
                         }
+                    </button>
+                )}
+                {icon && (
+                    <button className='btn btn-circle border-0 input-icon'>
+                        <Icon fill='#757575' />
                     </button>
                 )}
                 {type === 'search' && value && (

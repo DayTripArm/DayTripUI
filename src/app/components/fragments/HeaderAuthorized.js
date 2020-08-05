@@ -95,6 +95,7 @@ const HeaderAuthorized = ({ type }) => {
     delete localStorage.userType;
     delete localStorage.is_prereg;
     delete localStorage.id;
+    window.location.href = "/";
   };
 
   return (

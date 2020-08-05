@@ -114,6 +114,70 @@ const actions  = {
         data
     }),
 
+    HEROES_REQUEST: `${nameSpace}_HEROES_REQUEST`,
+    heroesRequest: () => ({
+        type: actions.HEROES_REQUEST,
+    }),
+
+    HEROES_RECEIVE: `${nameSpace}_HEROES_RECEIVE`,
+    heroesReceive: (data) => ({
+        type: actions.HEROES_RECEIVE,
+        data
+    }),
+
+    TRIPS_REQUEST: `${nameSpace}_TRIPS_REQUEST`,
+    tripsRequest: (is_top_choice) => ({
+        type: actions.TRIPS_REQUEST,
+        is_top_choice
+    }),
+
+    TRIPS_RECEIVE: `${nameSpace}_TRIPS_RECEIVE`,
+    tripsReceive: (data) => ({
+        type: actions.TRIPS_RECEIVE,
+        data
+    }),
+
+    TRIP_DETAIL_REQUEST: `${nameSpace}_TRIP_DETAIL_REQUEST`,
+    tripDetailRequest: (trip_id) => ({
+        type: actions.TRIP_DETAIL_REQUEST,
+        trip_id
+    }),
+
+    TRIP_DETAIL_RECEIVE: `${nameSpace}_TRIP_DETAIL_RECEIVE`,
+    tripDetailReceive: (data) => ({
+        type: actions.TRIP_DETAIL_RECEIVE,
+        data
+    }),
+
+    HIT_THE_ROAD_REQUEST: `${nameSpace}_HIT_THE_ROAD_REQUEST`,
+    hitTheRoadRequest: () => ({
+        type: actions.HIT_THE_ROAD_REQUEST
+    }),
+
+    HIT_THE_ROAD_RECEIVE: `${nameSpace}_HIT_THE_ROAD_RECEIVE`,
+    hitTheRoadReceive: (data) => ({
+        type: actions.HIT_THE_ROAD_RECEIVE,
+        data
+    }),
+
+    SAVE_TRIP: `${nameSpace}_SAVE_TRIP`,
+    saveTrip: (is_save, trip_id) => ({
+        type: actions.SAVE_TRIP,
+        is_save,
+        trip_id
+    }),
+
+    SAVED_TRIPS_REQUEST: `${nameSpace}_SAVED_TRIPS_REQUEST`,
+    savedTripsRequest: () => ({
+        type: actions.SAVED_TRIPS_REQUEST
+    }),
+
+    SAVED_TRIPS_RECEIVE: `${nameSpace}_SAVED_TRIPS_RECEIVE`,
+    savedTripsReceive: (data) => ({
+        type: actions.SAVED_TRIPS_RECEIVE,
+        data
+    }),
+
     /*********************driver actions*************************/
 
     SET_PREREGISTERED_DRIVER_PROPERTY: `${nameSpace}_SET_PREREGISTERED_DRIVER_PROPERTY`,

@@ -6,6 +6,7 @@ import {DRIVER_TYPE, TRAVELER_TYPE} from "./constants";
 import dateFormat from "date-format";
 
 const driverDataState = state => state.driverData;
+const travelerDataState = state => state.travelerData;
 
 function* signUpRequest(action) {
     try {
@@ -156,6 +157,105 @@ function* destinationRequest(action) {
     }
 }
 
+function* heroesRequest(action) {
+    try {
+        const {response, error} = yield call(Api.getHeroes);
+
+        if (response) {
+            yield put(actions.heroesReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* tripsRequest(action) {
+    const {is_top_choice=false} = action;
+
+    try {
+        const {response, error} = yield call(Api.getTrips, is_top_choice);
+
+        if (response) {
+            yield put(actions.tripsReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* hitTheRoadRequest(action) {
+
+    try {
+        const {response, error} = yield call(Api.getHitTheRoad);
+
+        if (response) {
+            yield put(actions.hitTheRoadReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* saveTrip(action) {
+    const driverState = yield select(travelerDataState);
+
+    const {is_save, trip_id} = action;
+    const body = {
+        is_save,
+        trip_id,
+        login_id: driverState.profile.id,
+    };
+
+    try {
+        yield call(Api.saveTrip, body);
+        yield put(actions.tripsRequest());
+        yield put(actions.savedTripsRequest());
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* savedTripsRequest(action) {
+    const travelerState = yield select(travelerDataState);
+    const login_id = travelerState.profile.id || Number(localStorage.id);
+
+    try {
+        const {response, error} = yield call(Api.getSavedTrips, login_id);
+
+        if (response) {
+            yield put(actions.savedTripsReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* tripDetailRequest(action) {
+    const {trip_id} = action;
+
+    try {
+        const {response, error} = yield call(Api.getTripDetail, trip_id);
+
+        if (response) {
+            yield put(actions.tripDetailReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* saveDriverPreregData(action) {
     const driverState = yield select(driverDataState);
     const {preregistered_info, profile={}} = driverState;
@@ -221,6 +321,12 @@ function* watcherSaga() {
     yield takeEvery(actions.TIPS_REQUEST, tipsRequest);
     yield takeEvery(actions.DESTINATION_REQUEST, destinationRequest);
     yield takeEvery(actions.SAVE_DRIVER_PREREG_DATA, saveDriverPreregData);
+    yield takeEvery(actions.HEROES_REQUEST, heroesRequest);
+    yield takeEvery(actions.TRIPS_REQUEST, tripsRequest);
+    yield takeEvery(actions.HIT_THE_ROAD_REQUEST, hitTheRoadRequest);
+    yield takeEvery(actions.SAVE_TRIP, saveTrip); // favorite or not
+    yield takeEvery(actions.SAVED_TRIPS_REQUEST, savedTripsRequest); // favorite or not
+    yield takeEvery(actions.TRIP_DETAIL_REQUEST, tripDetailRequest); // favorite or not
 }
 
 export default function* root() {

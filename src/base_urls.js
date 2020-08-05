@@ -12,5 +12,11 @@ export default {
     "getTips": `${HOST}/tips?type={0}`,
     "getDestinations": `${HOST}/destinations`,
     "saveDriverPreregData": `${HOST}/driver_infos`,
+    "getHeroes": `${HOST}/heroes`,
+    "getTrips": `${HOST}/trips?is_top_choice={0}`,
+    "getTripDetail": `${HOST}/trips/{0}`,
+    "getHitTheRoad": `${HOST}/hit_the_road`,
+    "saveTrip": `${HOST}/save_trip`,
+    "getSavedTrips": `${HOST}/saved_trips?login_id={0}`,
   }
 }
