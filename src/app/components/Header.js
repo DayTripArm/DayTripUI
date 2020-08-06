@@ -79,7 +79,7 @@ const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
                 value=''
                 className='border-0'
                 containerClass='mb-0'
-                placeholder='Search'
+                placeholder='Search Destinations'
                 onFocus={() => setOpenSearchDropdown(true)}
                 onBlur={() => setOpenSearchDropdown(false)}
                 icon={IconZoom}

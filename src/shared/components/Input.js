@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import { IconTimes, IconArrowUp, IconArrowDown, IconEye, IconEyeClose } from './Icons';
 
 import PhoneInput from 'react-phone-input-2'
@@ -30,6 +30,7 @@ const Input = ({
     const [inputValue, setInputValue] = useState(value);
     const [showPwd, swtShowPwd] = useState(false);
     const Icon = icon;
+    const inputRef = useRef();
 
     const setClasses = () => {
         let classes = [];
@@ -111,6 +112,7 @@ const Input = ({
                         id={name}
                         placeholder={placeholder}
                         name={name}
+                        ref={inputRef}
                         value={inputValue}
                         onChange={(e) => onChangeHandle(e, name)}
                         onFocus={onFocus}
@@ -136,7 +138,7 @@ const Input = ({
                     </button>
                 )}
                 {icon && (
-                    <button className='btn btn-circle border-0 input-icon'>
+                    <button className='btn btn-circle border-0 input-icon' onClick={() => inputRef.current.focus()}>
                         <Icon fill='#757575' />
                     </button>
                 )}
