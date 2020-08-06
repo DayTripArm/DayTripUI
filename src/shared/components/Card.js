@@ -3,6 +3,7 @@ import { IconStar, IconHeartOutlined, IconHeartFilled } from 'shared/components/
 import actions from "../../actions";
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router";
+import {isAuthorized} from "../../helper";
 
 // Size 'lg' or 'sm'
 const Card = (props) => {
@@ -21,9 +22,14 @@ const Card = (props) => {
     const [isSaved, setSaved] = useState(favorite);
 
     const favoriteHandle = () => {
-        dispatch(actions.saveTrip(!isSaved, id));
 
-        setSaved(!isSaved);
+        if (!isAuthorized()) {
+            dispatch(actions.showHideSignIn(true));
+        } else {
+            dispatch(actions.saveTrip(!isSaved, id));
+
+            setSaved(!isSaved);
+        }
     };
 
     const cardClick = () => {

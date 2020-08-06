@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import { IconArrowLeft, IconHeartOutlined, IconShare, IconHeartFilled } from 'shared/components/Icons';
 import actions from "../../../../actions";
 import {useDispatch} from "react-redux";
+import {isAuthorized} from "../../../../helper";
 
 const TourIllustration = (props) => {
     const dispatch = useDispatch();
@@ -28,12 +29,14 @@ const TourIllustration = (props) => {
     };
 
     const favoriteHandle = () => {
-        dispatch(actions.saveTrip(!isSaved, id));
+        if(!isAuthorized()) {
+            dispatch(actions.showHideSignIn(true));
+        } else {
+            dispatch(actions.saveTrip(!isSaved, id));
 
-        setSaved(!isSaved);
+            setSaved(!isSaved);
+        }
     };
-
-    console.log(" is dsacd", isSaved);
 
     return (
         <div className='tour-illustration box-overlay overflow-hidden'>
