@@ -43,6 +43,7 @@
 .home-search-driver {
   img {
     min-height: 550px;
+    max-height: 600px;
   }
 }
 
@@ -50,6 +51,11 @@
   padding-right: calc((100vw - 155px) / 2);
   overflow: hidden;
   position: relative;
+
+  .slick-track {
+    margin-left: unset;
+    margin-right: unset;
+  }
 
   @include media-breakpoint-up(md) {
     padding-right: calc((100vw - 510px) / 2)

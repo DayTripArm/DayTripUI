@@ -15,7 +15,6 @@ const TourIllustration = (props) => {
         images=[],
         setSaved,
         history,
-        onOpenModal,
     } = props;
 
 
@@ -53,7 +52,6 @@ const TourIllustration = (props) => {
                                 src={src}
                                 alt='car'
                                 className='w-100 object-pos-center object-fit-cover'
-                                onClick={onOpenModal}
                                 role='presentation'
                             />
                         );

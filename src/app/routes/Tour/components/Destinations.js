@@ -1,7 +1,10 @@
 import React from 'react';
 
 const Destinations = (props) => {
-    const {destinations=[]} = props;
+    const {
+        destinations=[],
+        onOpenModal
+    } = props;
 
     return(
         <>
@@ -27,8 +30,9 @@ const Destinations = (props) => {
                                 </div>
                                 <div className='col-12 col-md-7'>
                                     <h4 className='mb-4'>{dest.title}</h4>
-                                    <p className='mb-0'>{dest.description}
-                                        <button className='btn btn-secondary btn-sm d-lg-none'>Read More</button>
+                                    <p className='mb-0'>
+                                        {`${dest.description.substring(0, 250)}...`}
+                                        {dest.description.length >= 250 && <button className='btn btn-secondary btn-sm' onClick={() => onOpenModal()}>Read More</button>}
                                     </p>
                                 </div>
                             </div>

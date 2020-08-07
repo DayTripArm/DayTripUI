@@ -178,6 +178,12 @@ const actions  = {
         data
     }),
 
+    SET_AUTHENTICATION: `${nameSpace}_SET_AUTHENTICATION`,
+    setAuthentication: (isAuthenticated) => ({
+        type: actions.SET_AUTHENTICATION,
+        isAuthenticated
+    }),
+
     /*********************driver actions*************************/
 
     SET_PREREGISTERED_DRIVER_PROPERTY: `${nameSpace}_SET_PREREGISTERED_DRIVER_PROPERTY`,

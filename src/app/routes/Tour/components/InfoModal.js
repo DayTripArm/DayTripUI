@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'shared/components/Modal';
 
-const InfoModal = ({ onClose }) => (
+const InfoModal = ({ onClose, description="" }) => (
   <Modal title='Welcome to Daytrip' showDismissButton onClose={onClose}>
     <div className='py-4 px-0 px-md-8'>
       <img
@@ -9,11 +9,7 @@ const InfoModal = ({ onClose }) => (
         alt='garni'
         src='https://upload.wikimedia.org/wikipedia/commons/c/c5/Garni_Temple_02.JPG'
       />
-      <p className='text-sm mh-100px'>
-        Daytrip Drivers are trusted people with different proffesions and interests who(have an
-        available car) chose to dedicate their free time to traveling around Armenia and making new
-        connections.
-      </p>
+      <p className='text-sm mh-100px'>{description}</p>
     </div>
   </Modal>
 );

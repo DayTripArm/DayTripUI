@@ -50,7 +50,7 @@ const ModalOnboarding = ({ onClose }) => {
         {steps[step]}
         {step === 3 ? (
           <p className='text-center'>
-            <Link to='/home' className='btn btn-primary mr-5' onClick={() => onClose(false)}>
+            <Link to='/home' className='btn btn-primary' onClick={() => onClose(false)}>
               Get Started
             </Link>
           </p>

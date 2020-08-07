@@ -51,6 +51,6 @@ const SearchDriver = () => {
             </div>
         </>
     )
-}
+};
 
 export default SearchDriver;

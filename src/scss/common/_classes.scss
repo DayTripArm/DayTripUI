@@ -90,6 +90,9 @@
 .sticky-panel {
   position: sticky;
   bottom: 56px;
+  &.stick-bottom {
+    bottom: 0;
+  }
   @include media-breakpoint-up(xl) {
     bottom: 0;
   }

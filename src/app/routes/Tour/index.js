@@ -41,7 +41,7 @@ const Tour = ({ history }) => {
 
     return (
         <>
-            <TourIllustration history={history} onOpenModal={() => setOpenInfoModal(true)} isSaved={isSaved} setSaved={setSaved} id={id} images={images} />
+            <TourIllustration history={history} isSaved={isSaved} setSaved={setSaved} id={id} images={images} />
             <div className='rounded-top__30 bg-white pull-t-9 position-relative mb-10 mb-md-13 mb-xxl-15'>
                 <div className='container pt-6 pt-md-8 pt-xl-11'>
                     <div className='row'>
@@ -77,7 +77,7 @@ const Tour = ({ history }) => {
                             <h2 className='mb-4 mb-md-5'>What You'll See</h2>
                         </div>
                         <div className='col-xl-8'>
-                            <Destinations destinations={destinations} />
+                            <Destinations destinations={destinations} onOpenModal={() => setOpenInfoModal(true)} />
                         </div>
                     </div>
                     <div className='row mt-9 mt-md-11 mt-xl-13 mt-xxl-15'>
@@ -106,7 +106,7 @@ const Tour = ({ history }) => {
                 </div>
             </div>
             <SearchPanel />
-            {openInfoModal && <InfoModal onClose={() => setOpenInfoModal(false)} />}
+            {openInfoModal && <InfoModal onClose={() => setOpenInfoModal(false)} description="hi :)" />}
         </>
     );
 };

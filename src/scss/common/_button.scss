@@ -13,11 +13,14 @@
 
   &-primary {
     &:hover {
+      background-color: $coral-light;
+    }
+    &:focus {
       background-color: $coral-dark;
     }
     &:disabled {
       border: none;
-      &, &:hover {
+      &, &:hover, &:focus {
         color: $grey;
         background-color: $disabled;
       }
@@ -69,17 +72,6 @@
     font-weight: 600;
   }
 
-  &-outline-black {
-    border: 1px solid $primary-color;
-    color: $primary-color;
-    background-color: $white;
-
-    &:hover {
-      color: $white;
-      background-color: $primary-color;
-    }
-  }
-
   &-white {
     border: 1px solid $white;
     color: $primary-color;
@@ -92,14 +84,51 @@
     }
   }
 
-  &-outline-white {
-    border: 1px solid $white;
-    color: $white;
-    background-color: transparent;
-
-    &:hover {
+  &-outline {
+    &-black {
+      border: 1px solid $primary-color;
       color: $primary-color;
       background-color: $white;
+
+      &:hover {
+        background-color: $hovered;
+      }
+      &:not(:disabled):not(.disabled):active {
+        background-color: $pressed;
+      }
+      &:focus {
+        background-color: $selected;
+      }
+      &:disabled {
+        &, &:hover {
+          border-color: $grey;
+          background-color: $white;
+        }
+      }
+    }
+    &-white {
+      border: 1px solid $white;
+      color: $white;
+      background-color: transparent;
+
+      &:hover {
+        color: $white;
+        background-color: rgba(189, 189, 189, 0.13);
+      }
+      &:not(:disabled):not(.disabled):active {
+        color: $white;
+        background-color: rgba(189, 189, 189, 0.16);
+      }
+      &:focus {
+        color: $white;
+        background-color: rgba(189, 189, 189, 0.16);
+      }
+      &:disabled {
+        &, &:hover {
+          border-color: $white;
+          background-color: rgba(189, 189, 189, 0.16);
+        }
+      }
     }
   }
 

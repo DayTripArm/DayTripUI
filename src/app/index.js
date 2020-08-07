@@ -38,8 +38,10 @@ const App = () => {
   useEffect(() => {
     if (localStorage.userType && localStorage.userType === TRAVELER_TYPE) {
       dispatch(actions.setUserType(TRAVELER_TYPE));
+        dispatch(actions.setAuthentication(true));
     } else if (localStorage.userType && localStorage.userType === DRIVER_TYPE) {
       dispatch(actions.setUserType(DRIVER_TYPE));
+        dispatch(actions.setAuthentication(true));
     }
 
     if (localStorage.is_prereg && localStorage.is_prereg === "true") {

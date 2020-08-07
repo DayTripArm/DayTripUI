@@ -12,9 +12,14 @@ const SlideNavigation = ({ dir, onClick }) => (
 );
 
 const TopChoises = () => {
+    const {travelerData={}} = useSelector(state => state);
+    const {trips=[]} = travelerData;
+
+    const top_choices = _.filter(trips, item => item.trip.is_top_choice) || [];
+
     const settings = {
         className: 'slick-cards',
-        infinite: true,
+        infinite: top_choices.length > 3,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -35,13 +40,6 @@ const TopChoises = () => {
             },
         ],
     };
-
-    const {travelerData={}} = useSelector(state => state);
-    const {trips=[]} = travelerData;
-
-    const top_choices = _.filter(trips, item => item.trip.is_top_choice) || [];
-
-    //const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
 
     return (
         <>

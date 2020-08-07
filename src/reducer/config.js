@@ -1,6 +1,7 @@
 import actions from "../actions";
 
 export const INITIAL_STATE = {
+    isAuthenticated: false,
     registeredUserType: undefined,
     userType: undefined,
     is_prereg: undefined
@@ -15,6 +16,15 @@ const config = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 registeredUserType: userType
+            }
+        }
+
+        case actions.SET_AUTHENTICATION: {
+            const { isAuthenticated } = action;
+
+            return {
+                ...state,
+                isAuthenticated
             }
         }
 
