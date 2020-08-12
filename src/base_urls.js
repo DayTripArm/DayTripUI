@@ -17,6 +17,7 @@ export default {
     "getTripDetail": `${HOST}/trips/{0}`,
     "getHitTheRoad": `${HOST}/hit_the_road`,
     "saveTrip": `${HOST}/save_trip`,
+    "getDriverInfos": `${HOST}/driver_infos/{0}`,
     "getSavedTrips": `${HOST}/saved_trips?login_id={0}`,
   }
 }

@@ -5,6 +5,7 @@ import { IconUser } from 'shared/components/Icons';
 import {useSelector} from "react-redux";
 import {GENDER_LIST} from "../../../../constants";
 import {LOCATIONS} from "../../../../react_app/constants";
+import _ from "lodash";
 
 const routes = [
     {
@@ -19,8 +20,8 @@ const routes = [
 
 const Personal = () => {
 
-    const {travelerData={}} = useSelector(state => state);
-    const {profile={}} = travelerData;
+    const {travelerData={}, driverData={}} = useSelector(state => state);
+    const {profile={}} = !_.isEmpty(travelerData.profile) ? travelerData : driverData;
 
     const {
         name,

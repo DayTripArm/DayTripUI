@@ -12,7 +12,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 // Load Routes
-import UIKit from './routes/UiKit';
 import Home from './routes/Home';
 import Help from './routes/Help';
 import HelpView from './routes/HelpView';
@@ -66,10 +65,13 @@ const App = () => {
     showWelcome,
   } = travelerData;
 
+  let navigationType = "user"; // traveler
   const {userType, is_prereg=""} = config;
 
   // Conditionally
   const isAuthenticated = userType === "2" && is_prereg.toString() === "true" ? false : userType === "1" || userType === "2";
+
+  if (userType === "2") navigationType = "driver";
 
   return (
     <>
@@ -79,10 +81,9 @@ const App = () => {
           dispatch(actions.showHideWelcome(false));
         }} />
       }
-      <Header type={isAuthenticated ? 'authorized' : 'unauthorized'} navigationType='user' />
+      <Header type={isAuthenticated ? 'authorized' : 'unauthorized'} navigationType={navigationType} />
       <main role='main'>
         <Switch>
-          <Route path='/ui' component={UIKit} />
           <Route path='/home' component={Home} />
           <Route path='/help/:id' component={HelpView} />
           <Route path='/help' component={Help} />
@@ -99,7 +100,7 @@ const App = () => {
           <Route path='/refer' component={Refer} />
           <Route path='/account' component={Account} />
           <Route path='/trips' component={Trips} />
-          <Redirect from='*' to='/home' />
+          <Redirect from='*' to={localStorage.userType === "2" ? '/calendar' : '/home'} />
         </Switch>
       </main>
       <Footer />

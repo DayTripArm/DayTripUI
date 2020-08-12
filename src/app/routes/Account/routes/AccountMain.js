@@ -4,11 +4,12 @@ import IconUser from 'assets/images/ic_user.svg';
 import IconShield from 'assets/images/ic_shield.svg';
 import IconWallet from 'assets/images/ic_wallet.svg';
 import {useSelector} from "react-redux";
+import _ from "lodash";
 
 const AccountMain = ({ match }) => {
 
-  const {travelerData={}} = useSelector(state => state);
-  const {profile={}} = travelerData;
+  const {travelerData={}, driverData={}} = useSelector(state => state);
+  const {profile={}} = !_.isEmpty(travelerData.profile) ? travelerData : driverData;
   const {name} = profile;
 
   return (

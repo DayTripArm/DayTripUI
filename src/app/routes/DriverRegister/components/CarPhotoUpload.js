@@ -6,10 +6,14 @@ import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../../actions";
 import _ from "lodash";
 
-const CarRegistration = () => {
+const title = "Add photos of your car ";
+
+const CarRegistration = (props) => {
     const [openModal, setOpenModal] = useState(false);
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
+
+    const {invalidFields} = props;
 
     const {
         car_photos=[],
@@ -30,7 +34,7 @@ const CarRegistration = () => {
   return (
       <>
           <h4 className='text__blue mb-4'>
-              Add photos of your car{' '}
+              <span className={_.includes(invalidFields, "car_photos") ? "text-danger" : ""}>{_.includes(invalidFields, "car_photos") ? title + "*" : title}</span>
               <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => setOpenModal(true)}>
                   <IconQuestionOutlined fill='#757575' />
               </button>

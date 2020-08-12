@@ -12,7 +12,7 @@ import {GET_DATE_YEARS, DAYS, MONTH_LIST, LANGUAGES} from "../../constants";
 const FormInputBox = (props) => {
 
     const dispatch = useDispatch();
-    const {travelerData} = useSelector(state => state);
+    const {travelerData, driverData} = useSelector(state => state);
 
     const languageList = LANGUAGES.map(item => {return {label: item, value: item}});
 
@@ -46,7 +46,7 @@ const FormInputBox = (props) => {
     });
 
     const handleSave = (e) => {
-        const {profile: profileData} = travelerData;
+        const {profile:profileData} = !_.isEmpty(travelerData.profile) ? travelerData : driverData;
         const {id} = profileData;
         let data = {};
 

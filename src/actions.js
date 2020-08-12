@@ -258,6 +258,17 @@ const actions  = {
     saveDriverPreregData: () => ({
         type: actions.SAVE_DRIVER_PREREG_DATA
     }),
+
+    DRIVER_INFOS_REQUEST: `${nameSpace}_DRIVER_INFOS_REQUEST`,
+    driverInfosRequest: () => ({
+        type: actions.DRIVER_INFOS_REQUEST
+    }),
+
+    DRIVER_INFOS_RECEIVE: `${nameSpace}_DRIVER_INFOS_RECEIVE`,
+    driverInfosReceive: (data) => ({
+        type: actions.DRIVER_INFOS_RECEIVE,
+        data
+    }),
 };
 
 export default actions;

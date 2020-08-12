@@ -9,7 +9,8 @@ import actions from "../../../../react_app/actions";
 import {LOCATIONS} from "../../../../react_app/constants";
 import _ from "lodash";
 
-const LocationAndDestination = () => {
+const LocationAndDestination = (props) => {
+    const {invalidFields} = props;
 
     const dispatch = useDispatch();
     const [openModal, setOpenModal] = useState(false);
@@ -64,6 +65,8 @@ const LocationAndDestination = () => {
                 onChange={(event, opt) => selectOnChange(event.value, opt.name)}
                 value={_.find(locationList, item => item.value === location)}
                 options={locationList}
+                message={_.includes(invalidFields, "location") ? "This field is mandatory" : ""}
+                isError={_.includes(invalidFields, "location")}
             />
 
             <MultiSelect
@@ -74,6 +77,8 @@ const LocationAndDestination = () => {
                 onChange={event => selectOnChange(event, "driver_destinations")}
                 value={destinationValue}
                 options={destinationList}
+                message={_.includes(invalidFields, "driver_destinations") ? "This field is mandatory" : ""}
+                isError={_.includes(invalidFields, "driver_destinations")}
             />
 
             <h4 className='text__blue mb-6'>
@@ -91,6 +96,8 @@ const LocationAndDestination = () => {
                 label='Set your price per 1 km  for short distance trips (up to 110 km, including waiting time)'
                 placeholder='Price'
                 iconPosition='right'
+                message={_.includes(invalidFields, "tariff1") ? "This field is mandatory" : ""}
+                isError={_.includes(invalidFields, "tariff1")}
             />
 
             {
@@ -141,6 +148,8 @@ const LocationAndDestination = () => {
                 placeholder='Price'
                 iconPosition='right'
                 containerClass="mt-6"
+                message={_.includes(invalidFields, "tariff2") ? "This field is mandatory" : ""}
+                isError={_.includes(invalidFields, "tariff2")}
             />
 
             {

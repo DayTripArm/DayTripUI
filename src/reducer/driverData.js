@@ -3,6 +3,7 @@ import actions from "../actions";
 export const INITIAL_STATE = {
     driver_info: {},
     profile: {},
+    driver_details: {},
     preregistered_info: {
         car_mark_list: [],
         car_model_list: [],
@@ -132,6 +133,15 @@ const driverData = (state = INITIAL_STATE, action) => {
                     ...state.preregistered_info,
                     destination_list: destinations
                 }
+            }
+        }
+
+        case actions.DRIVER_INFOS_RECEIVE: {
+            const {data} = action;
+
+            return {
+                ...state,
+                driver_details: data
             }
         }
 

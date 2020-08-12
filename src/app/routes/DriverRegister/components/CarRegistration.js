@@ -5,7 +5,8 @@ import _ from "lodash";
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../../actions";
 
-const CarRegistration = () => {
+const CarRegistration = (props) => {
+    const {invalidFields} = props;
 
     const dispatch = useDispatch();
     const {driverData} = useSelector(state => state);
@@ -53,6 +54,8 @@ const CarRegistration = () => {
                 placeholder='Choose'
                 value={_.find(carTypeList, i => i.value === car_type)}
                 options={carTypeList}
+                message={_.includes(invalidFields, "car_type") ? "This field is mandatory" : ""}
+                isError={_.includes(invalidFields, "car_type")}
             />
             <SelectCustom
                 type='text'
@@ -62,6 +65,8 @@ const CarRegistration = () => {
                 placeholder='Choose'
                 value={_.find(carBrands, i => i.value === car_mark)}
                 options={carBrands}
+                message={_.includes(invalidFields, "car_mark") ? "This field is mandatory" : ""}
+                isError={_.includes(invalidFields, "car_mark")}
             />
             <SelectCustom
                 type='text'
@@ -71,6 +76,8 @@ const CarRegistration = () => {
                 placeholder='Choose'
                 value={_.find(carModels, i => i.value === car_model && i.brand_id === car_mark)}
                 options={carModels}
+                message={_.includes(invalidFields, "car_model") ? "This field is mandatory" : ""}
+                isError={_.includes(invalidFields, "car_model")}
             />
             <SelectCustom
                 type='text'
@@ -80,6 +87,8 @@ const CarRegistration = () => {
                 value={_.find(yearList, i => i.value === car_year)}
                 placeholder="Choose"
                 label="Year"
+                message={_.includes(invalidFields, "car_year") ? "This field is mandatory" : ""}
+                isError={_.includes(invalidFields, "car_year")}
             />
             <SelectCustom
                 type='text'
@@ -89,6 +98,8 @@ const CarRegistration = () => {
                 value={_.find(colorList, i => i.value === car_color)}
                 placeholder="Choose"
                 label="Color"
+                message={_.includes(invalidFields, "car_color") ? "This field is mandatory" : ""}
+                isError={_.includes(invalidFields, "car_color")}
             />
         </>
     );

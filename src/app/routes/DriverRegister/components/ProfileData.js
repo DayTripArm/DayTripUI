@@ -7,8 +7,9 @@ import actions from "../../../../actions";
 import {DAYS, GENDER_LIST, GET_DATE_YEARS, LANGUAGES, MONTH_LIST} from "../../../../constants";
 import _ from "lodash";
 
-const ProfileData = () => {
+const ProfileData = (props) => {
     const dispatch = useDispatch();
+    const {invalidFields} = props;
 
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
@@ -59,6 +60,8 @@ const ProfileData = () => {
               onChange={(event, opt) => selectOnChange(event.value, opt.name)}
               value={_.find(genderList, i => i.value === gender)}
               options={genderList}
+              message={_.includes(invalidFields, "gender") ? "This field is mandatory" : ""}
+              isError={_.includes(invalidFields, "gender")}
           />
 
           <SelectCustom
@@ -69,6 +72,9 @@ const ProfileData = () => {
               onChange={(event, opt) => selectOnChange(event.value, opt.name)}
               value={_.find(monthList, i => i.value === birthMonth)}
               options={monthList}
+              message={_.includes(invalidFields, "birthMonth") ? "This field is mandatory" : ""}
+              isError={_.includes(invalidFields, "birthMonth")}
+
           />
 
           <div className='d-flex mxw-328px'>
@@ -81,6 +87,8 @@ const ProfileData = () => {
                       value={_.find(days, i => i.value === birthDay)}
                       options={days}
                       containerClass='field-flexible flex-fill mb-4'
+                      message={_.includes(invalidFields, "birthDay") ? "This field is mandatory" : ""}
+                      isError={_.includes(invalidFields, "birthDay")}
                   />
               </div>
               <div className='pr-2 flex-fill d-flex'>
@@ -92,6 +100,8 @@ const ProfileData = () => {
                       value={_.find(yearList,i => i.value === birthYear)}
                       options={yearList}
                       containerClass='field-flexible flex-fill mb-4'
+                      message={_.includes(invalidFields, "birthYear") ? "This field is mandatory" : ""}
+                      isError={_.includes(invalidFields, "birthYear")}
                   />
               </div>
           </div>
@@ -104,6 +114,8 @@ const ProfileData = () => {
               onChange={event => selectOnChange(event, "languages")}
               value={languageValue}
               options={languageList}
+              message={_.includes(invalidFields, "languages") ? "This field is mandatory" : ""}
+              isError={_.includes(invalidFields, "languages")}
           />
 
           <Textarea

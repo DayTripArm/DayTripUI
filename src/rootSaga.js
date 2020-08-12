@@ -54,7 +54,7 @@ function* signInRequest(action) {
             } else {
                 yield put(actions.signInReceiveSuccess(response));
                 yield put(actions.showHideSignIn(false));
-                window.location.href = "/home";
+                window.location.href = user_type === Number(DRIVER_TYPE) ? "/calendar" : "/home";
             }
         } else {
             yield put(actions.signInReceiveError(error.response));
@@ -256,6 +256,22 @@ function* tripDetailRequest(action) {
     }
 }
 
+function* driverInfosRequest(action) {
+
+    try {
+        const {response, error} = yield call(Api.driverInfosRequest, Number(localStorage.id));
+
+        if (response) {
+            yield put(actions.driverInfosReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* saveDriverPreregData(action) {
     const driverState = yield select(driverDataState);
     const {preregistered_info, profile={}} = driverState;
@@ -300,9 +316,9 @@ function* saveDriverPreregData(action) {
 
         if (response) {
             setTimeout(() => {
-                window.location.href = "/";
-                delete localStorage.id;
-                delete localStorage.userType;
+                window.location.href = "/calendar";
+                // delete localStorage.id;
+                // delete localStorage.userType;
                 delete localStorage.is_prereg;
             }, 300);
         }
@@ -325,8 +341,9 @@ function* watcherSaga() {
     yield takeEvery(actions.TRIPS_REQUEST, tripsRequest);
     yield takeEvery(actions.HIT_THE_ROAD_REQUEST, hitTheRoadRequest);
     yield takeEvery(actions.SAVE_TRIP, saveTrip); // favorite or not
-    yield takeEvery(actions.SAVED_TRIPS_REQUEST, savedTripsRequest); // favorite or not
-    yield takeEvery(actions.TRIP_DETAIL_REQUEST, tripDetailRequest); // favorite or not
+    yield takeEvery(actions.SAVED_TRIPS_REQUEST, savedTripsRequest);
+    yield takeEvery(actions.TRIP_DETAIL_REQUEST, tripDetailRequest);
+    yield takeEvery(actions.DRIVER_INFOS_REQUEST, driverInfosRequest);
 }
 
 export default function* root() {
