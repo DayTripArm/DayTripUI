@@ -91,7 +91,8 @@ const DriverRegister = () => {
                                 <button className='btn btn-primary text-uppercase' disabled={isSubmit} onClick={() => {
                                     if (!isValid()) return false;
 
-                                    setSubmit(true);
+
+                                    if (step === limit) setSubmit(true);
                                     step !== limit && setStep(step + 1);
                                     step === limit && dispatch(actions.saveDriverPreregData());
                                     setStartValidate(false);
