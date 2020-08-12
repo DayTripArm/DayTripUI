@@ -175,7 +175,7 @@ function* tripsRequest(action) {
     const {is_top_choice=false} = action;
 
     try {
-        const {response, error} = yield call(Api.getTrips, is_top_choice);
+        const {response, error} = yield call(Api.getTrips, localStorage.id || 0, is_top_choice);
 
         if (response) {
             yield put(actions.tripsReceive(response.data));
