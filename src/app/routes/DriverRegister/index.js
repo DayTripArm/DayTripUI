@@ -40,6 +40,7 @@ const StepPageByNumber = {
 const DriverRegister = () => {
     const limit = _.keys(StepPageByNumber).length;
     const [step, setStep] = useState(1);
+    const [isSubmit, setSubmit] = useState(false);
     const [startValidate, setStartValidate] = useState(false);
 
     const invalidFields = [];
@@ -87,9 +88,10 @@ const DriverRegister = () => {
                                 <button className='btn btn-secondary btn-bold btn-secondary__black text-uppercase' onClick={() => setStep(step - 1)} disabled={step === 1}>
                                     Back
                                 </button>
-                                <button className='btn btn-primary text-uppercase' onClick={() => {
+                                <button className='btn btn-primary text-uppercase' disabled={isSubmit} onClick={() => {
                                     if (!isValid()) return false;
 
+                                    setSubmit(true);
                                     step !== limit && setStep(step + 1);
                                     step === limit && dispatch(actions.saveDriverPreregData());
                                     setStartValidate(false);

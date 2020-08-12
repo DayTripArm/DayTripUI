@@ -11,8 +11,6 @@ const GovermentAndLicense = (props) => {
 
     const {invalidFields} = props;
 
-    console.log(" filed ", invalidFields);
-
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
     const {
