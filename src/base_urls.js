@@ -14,7 +14,7 @@ export default {
     "saveDriverPreregData": `${HOST}/driver_infos`,
     "getHeroes": `${HOST}/heroes`,
     "getTrips": `${HOST}/trips?login_id={0}&is_top_choice={1}`,
-    "getTripDetail": `${HOST}/trips/{0}`,
+    "getTripDetail": `${HOST}/trips/{0}?login_id={1}`,
     "getHitTheRoad": `${HOST}/hit_the_road`,
     "saveTrip": `${HOST}/save_trip`,
     "getDriverInfos": `${HOST}/driver_infos/{0}`,

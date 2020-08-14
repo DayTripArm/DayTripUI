@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import TourIllustration from './components/TourIllustration';
 import { IconStar, IconClockOutlined, IconDestination } from 'shared/components/Icons';
 import Destinations from './components/Destinations';
 import Reviews from '../Individuals/routes/Driver/components/Reviews';
 import SearchPanel from './components/SearchPanel';
-import InfoModal from './components/InfoModal';
 import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../actions";
@@ -13,7 +12,6 @@ const Tour = ({ history }) => {
     const dispatch = useDispatch();
 
     const {id: trip_id} = useParams(); // trip_id
-    const [openInfoModal, setOpenInfoModal] = useState(false);
 
     const {travelerData} = useSelector(state => state);
     const {trip_detail={}} = travelerData;
@@ -21,7 +19,7 @@ const Tour = ({ history }) => {
     const {
         id,
         title,
-        images,
+        images=[],
         trip_duration,
         start_location,
         agenda,
@@ -37,11 +35,9 @@ const Tour = ({ history }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const [isSaved, setSaved] = useState(is_saved || false);
-
     return (
         <>
-            <TourIllustration history={history} isSaved={isSaved} setSaved={setSaved} id={id} images={images} />
+            <TourIllustration history={history} isSaved={is_saved} id={id} images={images} />
             <div className='rounded-top__30 bg-white pull-t-9 position-relative mb-10 mb-md-13 mb-xxl-15'>
                 <div className='container pt-6 pt-md-8 pt-xl-11'>
                     <div className='row'>
@@ -77,7 +73,7 @@ const Tour = ({ history }) => {
                             <h2 className='mb-4 mb-md-5'>What You'll See</h2>
                         </div>
                         <div className='col-xl-8'>
-                            <Destinations destinations={destinations} onOpenModal={() => setOpenInfoModal(true)} />
+                            <Destinations destinations={destinations} modalImage={images[0]} />
                         </div>
                     </div>
                     <div className='row mt-9 mt-md-11 mt-xl-13 mt-xxl-15'>
@@ -106,7 +102,6 @@ const Tour = ({ history }) => {
                 </div>
             </div>
             <SearchPanel />
-            {openInfoModal && <InfoModal onClose={() => setOpenInfoModal(false)} description="hi :)" />}
         </>
     );
 };

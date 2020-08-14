@@ -13,7 +13,6 @@ const TourIllustration = (props) => {
         id,
         isSaved,
         images=[],
-        setSaved,
         history,
     } = props;
 
@@ -32,8 +31,6 @@ const TourIllustration = (props) => {
             dispatch(actions.showHideSignIn(true));
         } else {
             dispatch(actions.saveTrip(!isSaved, id));
-
-            setSaved(!isSaved);
         }
     };
 

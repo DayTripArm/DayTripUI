@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { IconStar, IconHeartOutlined, IconHeartFilled } from 'shared/components/Icons';
 import actions from "../../actions";
 import {useDispatch} from "react-redux";
@@ -18,16 +18,12 @@ const Card = (props) => {
         id
     } = props;
 
-    const [isSaved, setSaved] = useState(favorite);
-
     const favoriteHandle = () => {
 
         if (!isAuthorized()) {
             dispatch(actions.showHideSignIn(true));
         } else {
-            dispatch(actions.saveTrip(!isSaved, id));
-
-            setSaved(!isSaved);
+            dispatch(actions.saveTrip(!favorite, id));
         }
     };
 
@@ -42,7 +38,7 @@ const Card = (props) => {
                     />
                 </Link>
                 <button className={`btn btn-favorite btn-circle btn-static border-0 btn-${size}`} onClick={() => favoriteHandle()}>
-                    {isSaved ? <IconHeartFilled fill='#FE4C30'/> : <IconHeartOutlined/>}
+                    {favorite ? <IconHeartFilled fill='#FE4C30'/> : <IconHeartOutlined/>}
                 </button>
             </div>
             {size === 'sm' ? (

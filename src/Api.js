@@ -81,8 +81,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    getTripDetail(login_id) {
-        return axios.get(template(base_urls.day_trip.getTripDetail, login_id), { handlesError: [400, 417, 500] })
+    getTripDetail(trip_id, login_id) {
+        return axios.get(template(base_urls.day_trip.getTripDetail, trip_id, login_id), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },

@@ -1,24 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {STRING_NUMBERS} from "../../../../constants";
+import InfoModal from "./InfoModal";
 
 const Destinations = (props) => {
+    const [openInfoModal, setOpenInfoModal] = useState(false);
+    const [modalData, setModalData] = useState({
+        description: "",
+        image_url: ""
+    });
+
     const {
         destinations=[],
-        onOpenModal
+        modalImage
     } = props;
 
     return(
         <>
             {
-                destinations.map(dest => {
+                destinations.map((dest, i) => {
                     const src = process.env.NODE_ENV === "development"
-                        ? "http://localhost:3000" + dest.image.url
-                        : dest.image.url;
+                        ? "http://localhost:3000" + dest.dest_image.url
+                        : dest.dest_image.url;
 
                     return (
-                        <div key={dest.id} className='step-vertical step-vertical__contained pb-6'>
+                        <div key={i} className='step-vertical step-vertical__contained pb-6'>
                             <h4 className='text__grey-dark mb-4 mb-md-5'>
-                                First stop:{' '}
-                                <span className='weight-400'>Garni Temple (Yerevan to Garni is 27,5 km, estimated time to explore Garni is 1 hour)</span>
+                                {STRING_NUMBERS[i]} stop:{' '}
+                                <span className='weight-400'>{dest.stop_title}</span>
                             </h4>
                             <div className='row'>
                                 <div className='col-12 col-md-5'>
@@ -29,10 +37,16 @@ const Destinations = (props) => {
                                     />
                                 </div>
                                 <div className='col-12 col-md-7'>
-                                    <h4 className='mb-4'>{dest.title}</h4>
+                                    <h4 className='mb-4'>{dest.dest_title}</h4>
                                     <p className='mb-0'>
-                                        {`${dest.description.substring(0, 250)}...`}
-                                        {dest.description.length >= 250 && <button className='btn btn-secondary btn-sm' onClick={() => onOpenModal()}>Read More</button>}
+                                        {`${dest.dest_desc.substring(0, 250)}...`}
+                                        {dest.dest_desc.length >= 250 && <button className='btn btn-secondary btn-sm' onClick={() => {
+                                            setModalData({
+                                                description: dest.dest_desc,
+                                                image_url: modalImage.url
+                                            });
+                                            setOpenInfoModal(true);
+                                        }}>Read More</button>}
                                     </p>
                                 </div>
                             </div>
@@ -40,6 +54,10 @@ const Destinations = (props) => {
                     );
                 })
             }
+            {openInfoModal && <InfoModal
+                onClose={() => setOpenInfoModal(false)}
+                data={modalData}
+            />}
         </>
     )
 };

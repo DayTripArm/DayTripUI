@@ -5,6 +5,8 @@ export const PERSONAL = "PERSONAL";
 export const LOGIN = "LOGIN";
 export const PAYMENTS = "PAYMENTS";
 
+export const STRING_NUMBERS = ["First", "Second", "Third", "Fourth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"];
+
 export const GENDER_LIST = ["Male", "Female"];
 
 export const LANGUAGES = ["Chinese", "Spanish", "French", "English", "Hindi", "Arabic", "Armenian", "Russian", "Japanese"];

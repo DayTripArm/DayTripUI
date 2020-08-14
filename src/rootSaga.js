@@ -216,6 +216,7 @@ function* saveTrip(action) {
         yield call(Api.saveTrip, body);
         yield put(actions.tripsRequest());
         yield put(actions.savedTripsRequest());
+        yield put(actions.tripDetailRequest(trip_id));
     } catch (e) {
         console.log(" error ", e);
     }
@@ -243,7 +244,7 @@ function* tripDetailRequest(action) {
     const {trip_id} = action;
 
     try {
-        const {response, error} = yield call(Api.getTripDetail, trip_id);
+        const {response, error} = yield call(Api.getTripDetail, trip_id, localStorage.id || 0);
 
         if (response) {
             yield put(actions.tripDetailReceive(response.data));
