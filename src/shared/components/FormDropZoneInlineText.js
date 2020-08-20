@@ -15,17 +15,25 @@ function FormDropZoneInlineText(props) {
 
     const {getRootProps, getInputProps, open} = useDropzone({
         onDrop: acceptedFiles => {
+            const newPhotos = [];
 
-            if (!_.find(photos, item => item.name === acceptedFiles.name)) { // if name is unique
-                acceptedFiles.map(file => Object.assign(file, {preview: URL.createObjectURL(file)}));
+            const existingPhotoNames = _.reduce(photos, (memo, item) => {
+                if (!memo) memo = [];
+                memo.push(item.name);
 
+                return memo;
+            }, []);
+
+            acceptedFiles.map(file => {
+                if (!_.includes(existingPhotoNames, file.name)) {
+                    Object.assign(file, {preview: URL.createObjectURL(file)});
+                    newPhotos.push(file);
+                }
+            });
+
+            if (!_.isEmpty(newPhotos)) {
+                dispatch(actions.updateDriverInfosRequest({[type]: newPhotos}));
             }
-
-            const pp = {
-                car_photos: acceptedFiles
-            };
-
-            dispatch(actions.updateDriverInfosRequest(pp));
 
         },
         accept: "image/*",
