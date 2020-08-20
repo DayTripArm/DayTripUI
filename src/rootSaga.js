@@ -273,6 +273,49 @@ function* driverInfosRequest(action) {
     }
 }
 
+function* deleteDriverInfosRequest(action) {
+    const {body} = action;
+
+    try {
+        const {response, error} = yield call(Api.deleteDriverInfos, Number(localStorage.id), body);
+
+        if (response) {
+            yield put(actions.driverInfosRequest());
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* updateDriverInfosRequest(action) {
+    const {body} = action;
+    const formData = new FormData();
+
+    const allPhotos = _.pick(body, 'car_photos');
+
+    _.each(allPhotos, (photos, name) => {
+        photos.map(photo => formData.append(`${name}[${photo.name}]`, photo));
+    });
+
+    formData.append("login_id", localStorage.id);
+
+    try {
+        const {response, error} = yield call(Api.updateDriverInfos, Number(localStorage.id), formData);
+
+        if (response) {
+            yield put(actions.driverInfosRequest());
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* saveDriverPreregData(action) {
     const driverState = yield select(driverDataState);
     const {preregistered_info, profile={}} = driverState;
@@ -345,6 +388,8 @@ function* watcherSaga() {
     yield takeEvery(actions.SAVED_TRIPS_REQUEST, savedTripsRequest);
     yield takeEvery(actions.TRIP_DETAIL_REQUEST, tripDetailRequest);
     yield takeEvery(actions.DRIVER_INFOS_REQUEST, driverInfosRequest);
+    yield takeEvery(actions.DELETE_DRIVER_INFOS_REQUEST, deleteDriverInfosRequest);
+    yield takeEvery(actions.UPDATE_DRIVER_INFOS_REQUEST, updateDriverInfosRequest);
 }
 
 export default function* root() {

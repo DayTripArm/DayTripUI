@@ -88,7 +88,19 @@ export default {
     },
 
     driverInfosRequest(login_id) {
-        return axios.get(template(base_urls.day_trip.getDriverInfos, login_id), { handlesError: [400, 417, 500] })
+        return axios.get(template(base_urls.day_trip.driverInfos, login_id), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    deleteDriverInfos(login_id, body) {
+        return axios.delete(template(base_urls.day_trip.driverInfos, login_id), { handlesError: [400, 417, 500], data: body })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    updateDriverInfos(login_id, body) {
+        return axios.put(template(base_urls.day_trip.driverInfos, login_id), body, { handlesError: [400, 417, 500], headers: { 'content-type': 'multipart/form-data' }})
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },

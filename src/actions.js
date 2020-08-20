@@ -269,6 +269,30 @@ const actions  = {
         type: actions.DRIVER_INFOS_RECEIVE,
         data
     }),
+
+    DELETE_DRIVER_INFOS_REQUEST: `${nameSpace}_DELETE_DRIVER_INFOS_REQUEST`,
+    deleteDriverInfosRequest: (body) => ({
+        type: actions.DELETE_DRIVER_INFOS_REQUEST,
+        body
+    }),
+
+    DELETE_DRIVER_INFOS_RECEIVE: `${nameSpace}_DELETE_DRIVER_INFOS_RECEIVE`,
+    deleteDriverInfosReceive: (data) => ({
+        type: actions.DELETE_DRIVER_INFOS_RECEIVE,
+        data
+    }),
+
+    UPDATE_DRIVER_INFOS_REQUEST: `${nameSpace}_UPDATE_DRIVER_INFOS_REQUEST`,
+    updateDriverInfosRequest: (body) => ({
+        type: actions.UPDATE_DRIVER_INFOS_REQUEST,
+        body
+    }),
+
+    UPDATE_DRIVER_INFOS_RECEIVE: `${nameSpace}_UPDATE_DRIVER_INFOS_RECEIVE`,
+    updateDriverInfosReceive: (data) => ({
+        type: actions.UPDATE_DRIVER_INFOS_RECEIVE,
+        data
+    }),
 };
 
 export default actions;

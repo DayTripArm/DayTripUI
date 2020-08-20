@@ -16,11 +16,7 @@
   .btn-favorite {
     position: absolute;
     transition: opacity 150ms ease-in-out;
-    opacity: 0;
-  }
-
-  .btn-favorite-opacity {
-      opacity: 1;
+    opacity: 1;
   }
 
   &__lg {
@@ -85,9 +81,5 @@
 
   .card-star path {
     fill: $primary
-  }
-
-  &:hover .btn-favorite {
-    opacity: 1;
   }
 }

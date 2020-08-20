@@ -37,7 +37,7 @@ const Card = (props) => {
                         alt='img'
                     />
                 </Link>
-                <button className={`btn btn-favorite btn-circle btn-static border-0 btn-${size} ${favorite ? 'btn-favorite-opacity' : ''}`} onClick={() => favoriteHandle()}>
+                <button className={`btn btn-favorite btn-circle btn-static border-0 btn-${size}`} onClick={() => favoriteHandle()}>
                     {favorite ? <IconHeartFilled fill='#FE4C30'/> : <IconHeartOutlined/>}
                 </button>
             </div>
