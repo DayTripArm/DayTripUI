@@ -5,18 +5,32 @@ import FormCarInputBox from "../../../../shared/components/FormCarInputBox";
 
 const CarDetails = () => {
     const {driverData} = useSelector(state => state);
-    const {driver_details={}} = driverData;
+    const {driver_details={}, preregistered_info={}} = driverData;
 
     const {more_details={}} = driver_details;
-    const {car_seats, car_specs=""} = more_details;
+    const {car_seats, car_specs="", driver_destinations=""} = more_details;
+
+    const {destination_list=[]} = preregistered_info;
 
     const [carOptions, setCarOptions] = useState(typeof car_specs === "string" && !_.isEmpty(car_specs) ? JSON.parse(car_specs) : {});
+
+    const destinationList = destination_list.map(item => {return {label: item.title, value: item.id}});
 
     const key_options = _.reduce(carOptions, (memo, val, key) => {
         if (memo.length === 0) memo = [];
         if (val) memo.push(key);
         return memo;
     },[]);
+
+    let destinationValue = [];
+    let destinationMsg = "";
+    driver_destinations.split(",").map(id => _.find(destinationList, dest => dest.value === Number(id)) && destinationValue.push(_.find(destinationList, dest => dest.value === Number(id))));
+
+    destinationMsg = destinationValue && _.reduce(destinationValue, (memo, obj) => {
+        memo += obj.label + ", ";
+        return memo;
+    }, "").slice(0, -2);
+
 
     return (
         <>
@@ -40,14 +54,17 @@ const CarDetails = () => {
                     setCarOptions={setCarOptions}
                     empty_message={(!_.isEmpty(key_options) && key_options.join(", ")) || "Not Specified"}
                 />
-            </ul>
 
-            <div className='d-flex align-items-start justify-content-between mb-2'>
-                <p className='weight-700 mb-0'>Selected Destinations</p>
-                <button className='btn btn-secondary btn-sm'>Edit</button>
-            </div>
-            <p className='text__grey-dark'>Garni, Dilijan, Alaverdi</p>
-            <hr className='border__top border__default mt-4 mb-0'/>
+                <FormCarInputBox
+                    type="destinations"
+                    name="driver_destinations"
+                    label="Selected Destinations"
+                    placeholder="Choose"
+                    value={driver_destinations}
+                    options={destinationList}
+                    empty_message={destinationMsg || "Not Specified"}
+                />
+            </ul>
         </>
     )
 };

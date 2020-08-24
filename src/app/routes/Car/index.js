@@ -23,6 +23,8 @@ const Car = ({ match }) => {
             const carModels = await Api.getCarModels(Number(car_mark)); // get car models
             dispatch(actions.carModelReceive(carModels.response.data));
 
+            dispatch(actions.destinationRequest()); // get destination list
+
         };
 
         asyncRequest();

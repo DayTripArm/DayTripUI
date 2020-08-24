@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import FormPlusMinus from "./FormPlusMinus";
 import Checkbox from "./Checkbox";
+import MultiSelect from "./MultiSelect";
 import actions from "../../actions";
 import _ from "lodash";
 
@@ -16,11 +17,19 @@ const FormCarInputBox = (props) => {
         label,
         value,
         carOptions,
+        options,
         setCarOptions,
         disabled=false,
         name,
         empty_message,
     } = props;
+
+    const [destinationValue, setDestinationValue] = useState(name === "driver_destinations" && value && _.reduce(value.split(","), (memo, val) => {
+        memo.push(_.find(options, dest => dest.value === Number(val)));
+
+        return memo;
+    }, []));
+
 
     const [field, setField] = useState({
         name: name,
@@ -36,6 +45,12 @@ const FormCarInputBox = (props) => {
 
         if (type === "car_options") {
             value = JSON.stringify(carOptions);
+        } else if (type === "destinations") {
+
+            let destString = "";
+
+            destinationValue && destinationValue.map(item => destString += item.value + ",");
+            value = destString.slice(0, -1);
         }
 
         data = {
@@ -47,6 +62,10 @@ const FormCarInputBox = (props) => {
 
         dispatch(actions.updateDriverInfosRequest(data));
         setEdit(!edit);
+    };
+
+    const selectOnChange = (value) => {
+        setDestinationValue(value);
     };
 
 
@@ -155,11 +174,22 @@ const FormCarInputBox = (props) => {
                             {
                                 type === "car_options" && renderCarOptions()
                             }
+                            {
+                                type === "destinations" &&
+                                <MultiSelect
+                                    isMulti={true}
+                                    name={name}
+                                    placeholder='I want to drive to'
+                                    onChange={event => selectOnChange(event)}
+                                    value={destinationValue}
+                                    options={options}
+                                />
+                            }
                         </div>
                         <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>Save</button>
                     </div>
                     :
-                    <p className='text__grey-dark mb-0'>{type === "car_options" || _.isEmpty(value) ? empty_message : value}</p>
+                    <p className='text__grey-dark mb-0'>{_.includes(["car_options", "destinations"], type) || _.isEmpty(value) ? empty_message : value}</p>
             }
         </li>
     );
