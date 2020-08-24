@@ -56,7 +56,7 @@ const Car = ({ match }) => {
                             <Switch>
                                 <Route path={`${match.path}/view`} component={() => <CarView />}/>
                                 <Route path={`${match.path}/details`} component={() => <CarDetails />}/>
-                                <Route path={`${match.path}/prices`} component={CarPrices}/>
+                                <Route path={`${match.path}/prices`} component={() => <CarPrices />}/>
                                 <Redirect from={match.path} to={`${match.path}/view`}/>
                             </Switch>
                         </div>

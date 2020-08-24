@@ -1,15 +1,26 @@
 import React from 'react';
+import FormCarInputBoxTariff from "../../../../shared/components/FormCarInputBoxTariff";
+import {useSelector} from "react-redux";
 
 const CarPrices = () => {
-    return(
-        <>
-            <div className='d-flex align-items-start justify-content-between mb-2'>
-                <p className='weight-700 mb-0'>How Many Travelers can fit in Your car?</p>
-                <button className='btn btn-secondary btn-sm'>Edit</button>
-            </div>
-            <span className='text__grey-dark'>250AMD</span>
-            <hr className='border__top border__default mt-4'/>
-        </>
+    const {driverData} = useSelector(state => state);
+    const {driver_details={}} = driverData;
+
+    const {prices={}} = driver_details;
+    const {tariff1, tariff2} = prices;
+
+    return (
+
+        <ul className='no-list-style mb-0'>
+            <FormCarInputBoxTariff
+                type="tariff"
+                name={["tariff1", "tariff2"]}
+                label={["Price per 1 km for round-trips with up to 110 km", "Price per 1 km for round-trips with over 110 km"]}
+                placeholder="Choose"
+                value={[tariff1, tariff2]}
+                empty_message={"Not Specified"}
+            />
+        </ul>
     )
 };
 
