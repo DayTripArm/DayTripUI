@@ -1,36 +1,55 @@
-import React from 'react';
-import Checkbox from 'shared/components/Checkbox';
+import React, {useState} from 'react';
+import {useSelector} from "react-redux";
+import _ from "lodash";
+import FormCarInputBox from "../../../../shared/components/FormCarInputBox";
 
-const CarDetails = () => (
-  <>
-    <div className='d-flex align-items-start justify-content-between mb-2'>
-      <p className='weight-700 mb-0'>How Many Travelers can fit in Your car?</p>
-      <button className='btn btn-secondary btn-sm'>Edit</button>
-    </div>
-    <span className='text__grey-dark'>4</span>
-    <hr className='border__top border__default my-4' />
-    <div className='d-flex align-items-start justify-content-between mb-6'>
-      <p className='weight-700 mb-0'>Tell us what you have in the car</p>
-      <button className='btn btn-secondary btn-sm'>Cancel</button>
-    </div>
-    <Checkbox className='mb-4 w-100' name='check1' label='Car Seat' />
-    <Checkbox className='mb-4 w-100' name='check1' label='Air Conditioning' />
-    <Checkbox className='mb-4 w-100' name='check1' label='Smoke Allowed' />
-    <Checkbox className='mb-4 w-100' name='check1' label='Pets Allowed' />
-    <Checkbox className='mb-4 w-100' name='check1' label='Water' />
-    <Checkbox className='mb-4 w-100' name='check1' label='Snacks' />
-    <Checkbox className='w-100 mb-4' name='check1' label='WIFI' />
-    <div className='pt-3'>
-      <button className='btn btn-primary text-uppercase'>Save</button>
-    </div>
-    <hr className='border__top border__default my-4' />
-    <div className='d-flex align-items-start justify-content-between mb-2'>
-      <p className='weight-700 mb-0'>Selected Destinations</p>
-      <button className='btn btn-secondary btn-sm'>Edit</button>
-    </div>
-    <p className='text__grey-dark'>Garni, Dilijan, Alaverdi</p>
-    <hr className='border__top border__default mt-4 mb-0' />
-  </>
-);
+const CarDetails = () => {
+    const {driverData} = useSelector(state => state);
+    const {driver_details={}} = driverData;
+
+    const {more_details={}} = driver_details;
+    const {car_seats, car_specs=""} = more_details;
+
+    const [carOptions, setCarOptions] = useState(typeof car_specs === "string" && !_.isEmpty(car_specs) ? JSON.parse(car_specs) : {});
+
+    const key_options = _.reduce(carOptions, (memo, val, key) => {
+        if (memo.length === 0) memo = [];
+        if (val) memo.push(key);
+        return memo;
+    },[]);
+
+    return (
+        <>
+            <ul className='no-list-style mb-0'>
+                <FormCarInputBox
+                    type="plus_minus"
+                    name="car_seats"
+                    label="How Many Travelers can fit in Your car?"
+                    placeholder="Choose"
+                    value={car_seats}
+                    empty_message={car_seats ? car_seats : "Not Specified"}
+                />
+
+                <FormCarInputBox
+                    type="car_options"
+                    name="car_specs"
+                    label="Tell us what you have in the car"
+                    placeholder="Choose"
+                    value={car_specs}
+                    carOptions={carOptions}
+                    setCarOptions={setCarOptions}
+                    empty_message={(!_.isEmpty(key_options) && key_options.join(", ")) || "Not Specified"}
+                />
+            </ul>
+
+            <div className='d-flex align-items-start justify-content-between mb-2'>
+                <p className='weight-700 mb-0'>Selected Destinations</p>
+                <button className='btn btn-secondary btn-sm'>Edit</button>
+            </div>
+            <p className='text__grey-dark'>Garni, Dilijan, Alaverdi</p>
+            <hr className='border__top border__default mt-4 mb-0'/>
+        </>
+    )
+};
 
 export default CarDetails;

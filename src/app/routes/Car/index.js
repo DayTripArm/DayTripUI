@@ -6,14 +6,26 @@ import CarDetails from './routes/CarDetails';
 import CarPrices from './routes/CarPrices';
 import {useDispatch} from "react-redux";
 import actions from "../../../actions";
+import Api from "../../../Api";
 
 const Car = ({ match }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(actions.driverInfosRequest());
-        dispatch(actions.carMarkRequest());
+        const asyncRequest = async () => {
+            const driverInfo = await Api.driverInfosRequest(Number(localStorage.id));  // driverInfosRequest
+            const {car_mark} = driverInfo.response.data.car_details.car_info;
+            dispatch(actions.driverInfosReceive(driverInfo.response.data));   //driverInfosReceive
 
+            const carMarks = await Api.getCarMarks();  // get car marks
+            dispatch(actions.carMarkReceive(carMarks.response.data)); // set car marks
+
+            const carModels = await Api.getCarModels(Number(car_mark)); // get car models
+            dispatch(actions.carModelReceive(carModels.response.data));
+
+        };
+
+        asyncRequest();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -41,7 +53,7 @@ const Car = ({ match }) => {
                         <div className='col-12 col-lg-8 col-lg-9'>
                             <Switch>
                                 <Route path={`${match.path}/view`} component={() => <CarView />}/>
-                                <Route path={`${match.path}/details`} component={CarDetails}/>
+                                <Route path={`${match.path}/details`} component={() => <CarDetails />}/>
                                 <Route path={`${match.path}/prices`} component={CarPrices}/>
                                 <Redirect from={match.path} to={`${match.path}/view`}/>
                             </Switch>

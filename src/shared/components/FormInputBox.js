@@ -59,6 +59,18 @@ const FormInputBox = (props) => {
                     [name]: stringDate
                 }
             }
+        } else if (_.includes(['car_type', 'car_mark', 'car_model', 'car_year', 'car_color'], name)) {
+
+            if (name === "car_mark") {
+                dispatch(actions.carModelRequest(field.value));
+            }
+
+            data = {
+                login_id: id,
+                car_info: {
+                    [field.name]: field.value
+                }
+            };
         } else {
             let val = field.value;
 
@@ -77,7 +89,12 @@ const FormInputBox = (props) => {
             };
         }
 
-        dispatch(actions.updateProfileInfo(id, data));
+        if (_.includes(['car_type', 'car_mark', 'car_model', 'car_year', 'car_color'], name)) {
+            dispatch(actions.updateDriverInfosRequest(data));
+        } else {
+            dispatch(actions.updateProfileInfo(id, data));
+        }
+
         setEdit(!edit);
     };
 

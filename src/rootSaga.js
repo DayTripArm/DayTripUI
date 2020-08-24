@@ -301,6 +301,9 @@ function* updateDriverInfosRequest(action) {
     });
 
     formData.append("login_id", localStorage.id);
+    if (body.car_info) {
+        formData.append("car_info", JSON.stringify(body.car_info));
+    }
 
     try {
         const {response, error} = yield call(Api.updateDriverInfos, Number(localStorage.id), formData);
