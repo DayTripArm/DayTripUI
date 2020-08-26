@@ -19,5 +19,6 @@ export default {
     "saveTrip": `${HOST}/save_trip`,
     "driverInfos": `${HOST}/driver_infos/{0}`,
     "getSavedTrips": `${HOST}/saved_trips?login_id={0}`,
+    "getCountryCities": `${HOST}/country_cities?city={0}`,
   }
 }

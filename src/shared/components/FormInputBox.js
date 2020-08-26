@@ -8,6 +8,7 @@ import dateFormat from "date-format";
 import _ from "lodash";
 
 import {GET_DATE_YEARS, DAYS, MONTH_LIST, LANGUAGES} from "../../constants";
+import Api from "../../Api";
 
 const FormInputBox = (props) => {
 
@@ -44,6 +45,8 @@ const FormInputBox = (props) => {
         name: name,
         value: value
     });
+
+    const [location, setLocation] = useState(name === "location" && value && value.length ? {label: value.split("-")[0].trim()} : undefined);
 
     const handleSave = (e) => {
         const {profile:profileData} = !_.isEmpty(travelerData.profile) ? travelerData : driverData;
@@ -149,6 +152,21 @@ const FormInputBox = (props) => {
         }
     };
 
+    const loadOptions = (inputText, callback) => {
+        setTimeout(async () => {
+            const response = await Api.getCountryCities(inputText);
+
+            callback(response.response.data.cities.slice(0, 100).map(item => { // limit data to 100
+                return {
+                    label: item.city,
+                    value: item.id,
+                    country: item.country
+                }
+            }));
+
+        }, 500);
+    };
+
     return(
         <li className='border__bottom border__default pt-3 pb-4'>
             <div className='d-flex align-items-center justify-content-between mb-2'>
@@ -184,6 +202,24 @@ const FormInputBox = (props) => {
                                     })}
                                     value={_.find(options, i => i.value === field.value)}
                                     options={options}
+                                />
+                            }
+                            {
+                                type === "async" &&
+                                <SelectCustom
+                                    async={true}
+                                    type='text'
+                                    name={name}
+                                    onChange={e => {
+                                        setLocation({label: e.label});
+                                        setField({
+                                            name,
+                                            value: e.label + " - " + e.country
+                                        })
+                                    }}
+                                    value={location}
+                                    placeholder='Search your city'
+                                    loadOptions={loadOptions}
                                 />
                             }
                             {

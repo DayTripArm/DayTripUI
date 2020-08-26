@@ -110,4 +110,10 @@ export default {
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
+
+    getCountryCities(city="") {
+        return axios.get(template(base_urls.day_trip.getCountryCities, city), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
 }

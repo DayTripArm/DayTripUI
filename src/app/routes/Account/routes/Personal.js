@@ -4,7 +4,6 @@ import FormInputBox from 'shared/components/FormInputBox';
 import { IconUser } from 'shared/components/Icons';
 import {useSelector} from "react-redux";
 import {GENDER_LIST} from "../../../../constants";
-import {LOCATIONS} from "../../../../react_app/constants";
 import _ from "lodash";
 
 const routes = [
@@ -36,7 +35,6 @@ const Personal = () => {
     } = profile;
 
     const genderList = GENDER_LIST.map(item => {return {label: item, value: item}});
-    const locationList = LOCATIONS.map(item => {return {label: item, value: item}});
 
     return (
         <div className='container'>
@@ -106,12 +104,11 @@ const Personal = () => {
                     />
 
                     <FormInputBox
-                        type="select"
+                        type="async"
                         name="location"
                         label="Location"
                         placeholder="Yerevan, Armenia"
                         value={location}
-                        options={locationList}
                         empty_message="Not Written"
                     />
 

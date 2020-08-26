@@ -6,8 +6,8 @@ import ModalAside from 'shared/components/ModalAside';
 import { IconQuestionOutlined } from 'shared/components/Icons';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../../react_app/actions";
-import {LOCATIONS} from "../../../../react_app/constants";
 import _ from "lodash";
+import Api from '../../../../Api';
 
 const LocationAndDestination = (props) => {
     const {invalidFields} = props;
@@ -38,33 +38,59 @@ const LocationAndDestination = (props) => {
     }, []);
 
     const selectOnChange = (value, name) => {
+        let valueStr = value;
         if (name === "driver_destinations") {
-            let destString = "";
+            valueStr = "";
 
-            value && value.map(item => destString += item.value + ",");
-            value = destString.slice(0, -1);
+            value && value.map(item => valueStr += item.value + ",");
+            valueStr = valueStr.slice(0, -1);
+        } else if (name === "location") {
+            valueStr = "";
+            valueStr = value.label + " - " + value.country;
         }
 
-        dispatch(actions.setPreregisteredDriverProperty(name, value));
+        dispatch(actions.setPreregisteredDriverProperty(name, valueStr));
     };
 
-    const locationList = LOCATIONS.map(item => {return {label: item, value: item}});
     const destinationList = destination_list.map(item => {return {label: item.title, value: item.id}});
 
     let destinationValue = [];
     driver_destinations.split(",").map(id => destinationValue.push(_.find(destinationList, dest => dest.value === Number(id))));
 
+    let locationValue;
+    if (location && location.length) {
+        locationValue = {label: location.split("-")[0].trim()}
+    }
+
+    const loadOptions = (inputText, callback) => {
+        setTimeout(async () => {
+            const response = await Api.getCountryCities(inputText);
+
+            callback(response.response.data.cities.slice(0, 100).map(item => { // limit data to 100
+                return {
+                    label: item.city,
+                    value: item.id,
+                    country: item.country
+                }
+            }));
+
+        }, 500);
+    };
+
+
     return(
         <>
             <h4 className='text__blue mb-6'>Let’s Make Your Profile Looks Better</h4>
+
             <SelectCustom
+                async={true}
                 type='text'
                 name='location'
+                onChange={event => selectOnChange(event, "location")}
+                value={locationValue}
                 label='City of Residence'
-                placeholder='Choose'
-                onChange={(event, opt) => selectOnChange(event.value, opt.name)}
-                value={_.find(locationList, item => item.value === location)}
-                options={locationList}
+                placeholder='Search your city'
+                loadOptions={loadOptions}
                 message={_.includes(invalidFields, "location") ? "This field is mandatory" : ""}
                 isError={_.includes(invalidFields, "location")}
             />
