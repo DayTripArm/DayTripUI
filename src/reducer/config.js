@@ -4,7 +4,8 @@ export const INITIAL_STATE = {
     isAuthenticated: false,
     registeredUserType: undefined,
     userType: undefined,
-    is_prereg: undefined
+    is_prereg: undefined,
+    individual_user: {}
 };
 
 const config = (state = INITIAL_STATE, action) => {
@@ -35,6 +36,15 @@ const config = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 userType: String(userType)
+            }
+        }
+
+        case actions.INDIVIDUAL_USER_RECEIVE: {
+            const { data } = action;
+
+            return {
+                ...state,
+                individual_user: data.profile || {}
             }
         }
 

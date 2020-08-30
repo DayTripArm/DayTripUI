@@ -293,6 +293,19 @@ const actions  = {
         type: actions.UPDATE_DRIVER_INFOS_RECEIVE,
         data
     }),
+
+    INDIVIDUAL_USER_REQUEST: `${nameSpace}_INDIVIDUAL_USER_REQUEST`,
+    individualUserRequest: (id, user_type) => ({
+        type: actions.INDIVIDUAL_USER_REQUEST,
+        id,
+        user_type
+    }),
+
+    INDIVIDUAL_USER_RECEIVE: `${nameSpace}_INDIVIDUAL_USER_RECEIVE`,
+    individualUserReceive: (data) => ({
+        type: actions.INDIVIDUAL_USER_RECEIVE,
+        data
+    }),
 };
 
 export default actions;

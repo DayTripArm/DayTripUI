@@ -116,4 +116,10 @@ export default {
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
+
+    getIndividualUser(id, user_type) {
+        return axios.get(template(base_urls.day_trip.getIndividualUser, id, user_type), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
 }

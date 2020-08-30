@@ -20,5 +20,6 @@ export default {
     "driverInfos": `${HOST}/driver_infos/{0}`,
     "getSavedTrips": `${HOST}/saved_trips?login_id={0}`,
     "getCountryCities": `${HOST}/country_cities?city={0}`,
+    "getIndividualUser": `${HOST}/profile_info/{0}?profile=user_profile&user_type={1}`,
   }
 }

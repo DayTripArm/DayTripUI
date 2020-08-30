@@ -63,7 +63,7 @@ function FormDropZoneInlineText(props) {
                             <img
                                 src={file.preview}
                                 alt='car'
-                                className='upload-img-big rounded__4 object-fit-contain object-position-center bg__grey mb-4'
+                                className='upload-img-medium rounded__4 object-fit-contain object-position-center bg__grey mb-4'
                             />
                             <button className='remove-btn position-absolute t-8 r-16 btn btn-circle btn-sm border-0' onClick={() => handleImgDelete(file.name)}>
                                 <IconTimes />

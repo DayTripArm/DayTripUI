@@ -262,10 +262,16 @@ input {
   height: 94px;
 }
 
-.upload-img-big {
+.upload-img-medium {
   width: 100%;
   max-width: 360px;
   height: 185px;
+}
+
+.upload-img-big {
+  width: 100%;
+  max-width: 637px;
+  height: 358px;
 }
 
 .select-container {

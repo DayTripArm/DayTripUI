@@ -319,6 +319,23 @@ function* updateDriverInfosRequest(action) {
     }
 }
 
+function* individualUserRequest(action) {
+    const {id, user_type} = action;
+
+    try {
+        const {response, error} = yield call(Api.getIndividualUser, Number(id), user_type);
+
+        if (response) {
+            yield put(actions.individualUserReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* saveDriverPreregData(action) {
     const driverState = yield select(driverDataState);
     const {preregistered_info, profile={}} = driverState;
@@ -393,6 +410,7 @@ function* watcherSaga() {
     yield takeEvery(actions.DRIVER_INFOS_REQUEST, driverInfosRequest);
     yield takeEvery(actions.DELETE_DRIVER_INFOS_REQUEST, deleteDriverInfosRequest);
     yield takeEvery(actions.UPDATE_DRIVER_INFOS_REQUEST, updateDriverInfosRequest);
+    yield takeEvery(actions.INDIVIDUAL_USER_REQUEST, individualUserRequest);
 }
 
 export default function* root() {

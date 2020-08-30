@@ -201,7 +201,7 @@ const HeaderAuthorized = ({ type }) => {
                         <ul className='dropdown-list no-list-style mb-0'>
                             <li>
                                 <NavLink
-                                    to='/profile'
+                                    to={Number(userType) === 1 ? "/individuals/user" : "/individuals/driver"}
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >

@@ -313,6 +313,51 @@ export const IconNoSmoking = ({ className, view, fill = defaultFill }) => (
     />
   </SvgIcon>
 );
+export const IconSmoking = ({ className, view, fill = defaultFill }) => (
+  <SvgIcon width='24' height='24' viewBox='0 0 24 24' className={className}>
+    <path
+      className={view}
+      fill={fill}
+      d='M2 16h15v3H2zm18.5 0H22v3h-1.5zM18 16h1.5v3H18zm.85-8.27c.62-.61 1-1.45 1-2.38C19.85 3.5 18.35 2 16.5 2v1.5c1.02 0 1.85.83 1.85 1.85S17.52 7.2 16.5 7.2v1.5c2.24 0 4 1.83 4 4.07V15H22v-2.24c0-2.22-1.28-4.14-3.15-5.03zm-2.82 2.47H14.5c-1.02 0-1.85-.98-1.85-2s.83-1.75 1.85-1.75v-1.5c-1.85 0-3.35 1.5-3.35 3.35s1.5 3.35 3.35 3.35h1.53c1.05 0 1.97.74 1.97 2.05V15h1.5v-1.64c0-1.81-1.6-3.16-3.47-3.16z'
+    />
+  </SvgIcon>
+);
+export const IconCarSeat = ({ className, view, fill = defaultFill }) => (
+  <SvgIcon width='24' height='24' viewBox='0 0 24 24' className={className}>
+    <path
+      className={view}
+      fill={fill}
+      d='M13 2v8h8c0-4.42-3.58-8-8-8zm6.32 13.89C20.37 14.54 21 12.84 21 11H6.44l-.95-2H2v2h2.22s1.89 4.07 2.12 4.42c-1.1.59-1.84 1.75-1.84 3.08C4.5 20.43 6.07 22 8 22c1.76 0 3.22-1.3 3.46-3h2.08c.24 1.7 1.7 3 3.46 3 1.93 0 3.5-1.57 3.5-3.5 0-1.04-.46-1.97-1.18-2.61zM8 20c-.83 0-1.5-.67-1.5-1.5S7.17 17 8 17s1.5.67 1.5 1.5S8.83 20 8 20zm9 0c-.83 0-1.5-.67-1.5-1.5S16.17 17 17 17s1.5.67 1.5 1.5S17.83 20 17 20z'
+    />
+  </SvgIcon>
+);
+export const IconWater = ({ className, view, fill = defaultFill }) => (
+  <SvgIcon width='24' height='24' viewBox='0 0 24 24' className={className}>
+    <path
+      className={view}
+      fill={fill}
+      d='M17.66 8L12 2.35 6.34 8C4.78 9.56 4 11.64 4 13.64s.78 4.11 2.34 5.67 3.61 2.35 5.66 2.35 4.1-.79 5.66-2.35S20 15.64 20 13.64 19.22 9.56 17.66 8zM6 14c.01-2 .62-3.27 1.76-4.4L12 5.27l4.24 4.38C17.38 10.77 17.99 12 18 14H6z'
+    />
+  </SvgIcon>
+);
+export const IconAC = ({ className, view, fill = defaultFill }) => (
+  <SvgIcon width='24' height='24' viewBox='0 0 24 24' className={className}>
+    <path
+      className={view}
+      fill={fill}
+      d='M12 12c0-3 2.5-5.5 5.5-5.5S23 9 23 12H12zm0 0c0 3-2.5 5.5-5.5 5.5S1 15 1 12h11zm0 0c-3 0-5.5-2.5-5.5-5.5S9 1 12 1v11zm0 0c3 0 5.5 2.5 5.5 5.5S15 23 12 23V12z'
+    />
+  </SvgIcon>
+);
+export const IconSnack = ({ className, view, fill = defaultFill }) => (
+  <SvgIcon width='24' height='24' viewBox='0 0 24 24' className={className}>
+    <path
+      className={view}
+      fill={fill}
+      d='M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z'
+    />
+  </SvgIcon>
+);
 export const IconPetStep = ({ className, view, fill = defaultFill }) => (
   <SvgIcon width='24' height='24' viewBox='0 0 24 24' className={className}>
     <path
