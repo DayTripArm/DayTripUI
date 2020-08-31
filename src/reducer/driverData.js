@@ -14,6 +14,7 @@ export const INITIAL_STATE = {
         gov_photos: [],
         license_photos: [],
         profile_photos: [],
+        reg_card_photos: [],
         car_seats: 4
     }
 };
