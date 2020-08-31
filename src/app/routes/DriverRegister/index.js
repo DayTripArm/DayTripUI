@@ -18,7 +18,7 @@ const requiredFields = {
     1: ["car_type", "car_mark", "car_model", "car_year", "car_color"],
     2: [], // no validation
     3: ["car_photos"],
-    4: ["gov_photos", "license_photos"],
+    4: ["gov_photos", "license_photos", "reg_card_photos"],
     5: [], //no validation
     6: ["profile_photos"],
     7: ["gender", "birthMonth", "birthDay", "birthYear", "languages"],

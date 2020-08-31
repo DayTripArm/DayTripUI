@@ -346,8 +346,8 @@ function* saveDriverPreregData(action) {
     const preregInfo = _.cloneDeep(_.omit(preregistered_info, ["car_mark_list", "car_model_list", "destination_list", "tips"]));
     const {birthYear="", birthMonth="", birthDay=""} = preregInfo;
 
-    const photos = _.pick(preregInfo, ["car_photos", "gov_photos", "license_photos", "profile_photos"]); // get only photos
-    const attributes = _.omit(preregInfo, ["car_photos", "gov_photos", "license_photos", "profile_photos"]); // get only attributes without photos
+    const photos = _.pick(preregInfo, ["car_photos", "gov_photos", "license_photos", "profile_photos", "reg_card_photos"]); // get only photos
+    const attributes = _.omit(preregInfo, ["car_photos", "gov_photos", "license_photos", "profile_photos", "reg_card_photos"]); // get only attributes without photos
 
     attributes['car_specs'] = JSON.stringify(attributes['car_specs']);
 
