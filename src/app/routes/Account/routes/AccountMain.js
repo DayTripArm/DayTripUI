@@ -8,16 +8,17 @@ import _ from "lodash";
 
 const AccountMain = ({ match }) => {
 
-  const {travelerData={}, driverData={}} = useSelector(state => state);
+  const {travelerData={}, driverData={}, config} = useSelector(state => state);
   const {profile={}} = !_.isEmpty(travelerData.profile) ? travelerData : driverData;
   const {name} = profile;
+  const {userType} = config;
 
   return (
     <div className='container'>
       <h2 className='text__blue mb-4 mt-6 mt-md-9 mt-xl-11 mt-xxl-14 mt-xxxl-13'>Account</h2>
       <div className='d-flex align-items-center mb-5'>
         <p className='text-sm mb-0 mr-5'>{name}</p>
-          <Link to='/individuals/user' className='btn btn-secondary btn-sm ml-5'>
+          <Link to={Number(userType) === 1 ? "/individuals/user" : "/individuals/driver"} className='btn btn-secondary btn-sm ml-5'>
               Go to profile
           </Link>
       </div>
