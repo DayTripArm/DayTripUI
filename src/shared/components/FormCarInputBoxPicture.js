@@ -76,7 +76,7 @@ const FormCarInputBoxPicture = (props) => {
             {
                 edit ?
                     <div className='mt-4 mt-md-5'>
-                        <div className='d-md-flex'>
+                        <div className='w-100 mxw-328px'>
                             <FormDropZone
                                 type={name}
                                 label={label}
