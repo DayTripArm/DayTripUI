@@ -3,7 +3,7 @@ import { IconArrowLeft, IconStar, IconCheckMarkOutlined } from 'shared/component
 import Benefits from './components/Benefits';
 import Gallery from './components/Gallery';
 import Reviews from './components/Reviews';
-import BookPanel from './components/BookPanel';
+// import BookPanel from './components/BookPanel';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {MONTH_LIST, DRIVER_TYPE} from "../../../../../constants";
@@ -100,7 +100,7 @@ const Driver = ({ history }) => {
                     </div>
                 </div>
             </div>
-            <BookPanel />
+            {/*<BookPanel />*/}
         </>
     );
 };

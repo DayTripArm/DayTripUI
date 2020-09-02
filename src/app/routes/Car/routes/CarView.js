@@ -1,6 +1,7 @@
 import React from 'react';
 import FormDropZoneInlineText from "../../../../shared/components/FormDropZoneInlineText";
 import FormInputBox from "../../../../shared/components/FormInputBox";
+import FormCarInputBoxPicture from "../../../../shared/components/FormCarInputBoxPicture";
 import {useSelector} from "react-redux";
 import {CAR_TYPE_LIST, CAR_YEAR_LIST, COLOR_LIST} from "../../../../constants";
 import _ from "lodash";
@@ -10,7 +11,7 @@ const CarView = () => {
     const {driver_details={}, preregistered_info={}} = driverData;
 
     const {car_details={}} = driver_details;
-    const {car_photos=[], car_info={}} = car_details;
+    const {car_photos=[], reg_card_photos=[], license_photos=[], car_info={}} = car_details;
 
     const {
         car_type,
@@ -104,6 +105,22 @@ const CarView = () => {
                     value={car_color}
                     options={colorList}
                     empty_message={!_.isEmpty(colorList) && car_color && (_.find(colorList, item => item.value === car_color).label || "Not Specified")}
+                />
+
+                <FormCarInputBoxPicture
+                    type="photos"
+                    name="license_photos"
+                    label="Driving License"
+                    options={license_photos}
+                    empty_message={license_photos.length > 0 ? "Provided" : "Not Specified"}
+                />
+
+                <FormCarInputBoxPicture
+                    type="photos"
+                    name="reg_card_photos"
+                    label="Technical ID"
+                    options={reg_card_photos}
+                    empty_message={reg_card_photos.length > 0 ? "Provided" : "Not Specified"}
                 />
 
             </ul>

@@ -11,7 +11,8 @@ function FormDropZone(props) {
     const {
         type,
         label,
-        photos=[]
+        photos=[],
+        onChange=undefined,
     } = props;
 
     const {getRootProps, getInputProps} = useDropzone({
@@ -21,8 +22,12 @@ function FormDropZone(props) {
             acceptedFiles.map(file => Object.assign(file, {preview: URL.createObjectURL(file)}));
             uploadedPhotos = _.uniqBy(photos.concat(acceptedFiles), "name");
 
-            // store photos in redux store
-            dispatch(actions.driverUploadPhotos(`${type}`, uploadedPhotos));
+            if (onChange) {
+                onChange(type, uploadedPhotos);
+            } else {
+                // store photos in redux store
+                dispatch(actions.driverUploadPhotos(`${type}`, uploadedPhotos));
+            }
 
         },
         accept: "image/*",
@@ -30,8 +35,12 @@ function FormDropZone(props) {
     });
 
     const handleImgDelete = (name) => {
-        // store photos in redux store
-        dispatch(actions.driverUploadPhotos(`${type}`, _.reject(photos, file => file.name === name)));
+        if (onChange) {
+            onChange(type, _.reject(photos, file => file.name === name), _.filter(photos, file => file.name === name)[0]);
+        } else {
+            // store photos in redux store
+            dispatch(actions.driverUploadPhotos(`${type}`, _.reject(photos, file => file.name === name)));
+        }
     };
 
     return (

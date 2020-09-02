@@ -294,10 +294,18 @@ function* updateDriverInfosRequest(action) {
     const {body} = action;
     const formData = new FormData();
 
-    const allPhotos = _.pick(body, 'car_photos');
+    const photos_key = ['car_photos', 'license_photos', 'reg_card_photos'];
 
-    _.each(allPhotos, (photos, name) => {
-        photos.map(photo => formData.append(`${name}[${photo.name}]`, photo));
+    photos_key.map(key => {
+        _.each(_.pick(body, key), (photos, name) => {
+            photos.map(photo => {
+                if (photo.id) {
+                    formData.append(`${name}[${photo.name}]`, JSON.stringify(photo));
+                } else {
+                    formData.append(`${name}[${photo.name}]`, photo);
+                }
+            });
+        });
     });
 
     formData.append("login_id", localStorage.id);
