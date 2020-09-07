@@ -31,81 +31,81 @@ import Trips from './routes/Trips';
 import ModelOnboarding from "./components/modals/ModalOnboarding";
 
 const App = () => {
-  const dispatch = useDispatch();
-  const {travelerData, config} = useSelector(state => state);
+    const dispatch = useDispatch();
+    const {travelerData, config} = useSelector(state => state);
 
-  useEffect(() => {
-    if (localStorage.userType && localStorage.userType === TRAVELER_TYPE) {
-      dispatch(actions.setUserType(TRAVELER_TYPE));
-        dispatch(actions.setAuthentication(true));
-    } else if (localStorage.userType && localStorage.userType === DRIVER_TYPE) {
-      dispatch(actions.setUserType(DRIVER_TYPE));
-        dispatch(actions.setAuthentication(true));
-    }
+    useEffect(() => {
+        if (localStorage.userType && localStorage.userType === TRAVELER_TYPE) {
+            dispatch(actions.setUserType(TRAVELER_TYPE));
+            dispatch(actions.setAuthentication(true));
+        } else if (localStorage.userType && localStorage.userType === DRIVER_TYPE) {
+            dispatch(actions.setUserType(DRIVER_TYPE));
+            dispatch(actions.setAuthentication(true));
+        }
 
-    if (localStorage.is_prereg && localStorage.is_prereg === "true") {
-      dispatch(actions.setPrereg(localStorage.is_prereg));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+        if (localStorage.is_prereg && localStorage.is_prereg === "true") {
+            dispatch(actions.setPrereg(localStorage.is_prereg));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-  useEffect(() => {
-    if (localStorage.userType) {
-      dispatch(actions.profileInfoRequest(localStorage.id));
-    }
+    useEffect(() => {
+        if (localStorage.userType) {
+            dispatch(actions.profileInfoRequest(localStorage.id));
+        }
 
-    dispatch(actions.heroesRequest());
-    dispatch(actions.tripsRequest());
-    dispatch(actions.hitTheRoadRequest());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+        dispatch(actions.heroesRequest());
+        dispatch(actions.tripsRequest());
+        dispatch(actions.hitTheRoadRequest());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
 
-  const {
-    showWelcome,
-  } = travelerData;
+    const {
+        showWelcome,
+    } = travelerData;
 
-  let navigationType = "user"; // traveler
-  const {userType, is_prereg=""} = config;
+    let navigationType = "user"; // traveler
+    const {userType, is_prereg=""} = config;
 
-  // Conditionally
-  const isAuthenticated = userType === "2" && is_prereg.toString() === "true" ? false : userType === "1" || userType === "2";
+    // Conditionally
+    const isAuthenticated = userType === "2" && is_prereg.toString() === "true" ? false : userType === "1" || userType === "2";
 
-  if (userType === "2") navigationType = "driver";
+    if (userType === "2") navigationType = "driver";
 
-  return (
-    <>
-      { showWelcome &&
-        <ModelOnboarding onClose={() => {
-          dispatch(actions.showHideSignUp(false));
-          dispatch(actions.showHideWelcome(false));
-        }} />
-      }
-      <Header type={isAuthenticated ? 'authorized' : 'unauthorized'} navigationType={navigationType} />
-      <main role='main'>
-        <Switch>
-          <Route path='/home' component={Home} />
-          <Route path='/help/:id' component={HelpView} />
-          <Route path='/help' component={Help} />
-          <Route path='/driverRegister' component={DriverRegister} />
-          <Route path='/car' component={Car} />
-          <Route path='/checkout' component={Checkout} />
-          <Route path='/individuals' component={Individuals} />
-          <Route path='/drivers' component={Drivers} />
-          <Route path='/messaging' component={Messaging} />
-          <Route path='/calendar' component={Calendar} />
-          <Route path='/tour/:id' component={Tour} />
-          <Route path='/progress' component={Progress} />
-          <Route path='/favorites' component={Favorites} />
-          <Route path='/refer' component={Refer} />
-          <Route path='/account' component={Account} />
-          <Route path='/trips' component={Trips} />
-          <Redirect from='*' to={localStorage.userType === "2" ? '/calendar' : '/home'} />
-        </Switch>
-      </main>
-      <Footer />
-    </>
-  );
+    return (
+        <>
+            { showWelcome &&
+            <ModelOnboarding onClose={() => {
+                dispatch(actions.showHideSignUp(false));
+                dispatch(actions.showHideWelcome(false));
+            }} />
+            }
+            <Header type={isAuthenticated ? 'authorized' : 'unauthorized'} navigationType={navigationType} />
+            <main role='main'>
+                <Switch>
+                    <Route path='/home' component={Home} />
+                    <Route path='/help/:id' component={HelpView} />
+                    <Route path='/help' component={Help} />
+                    <Route path='/driverRegister' component={DriverRegister} />
+                    <Route path='/car' component={Car} />
+                    <Route path='/checkout' component={Checkout} />
+                    <Route path='/individuals' component={Individuals} />
+                    <Route path='/drivers' component={Drivers} />
+                    <Route path='/messaging' component={Messaging} />
+                    <Route path='/calendar' component={Calendar} />
+                    <Route path='/tour/:id' component={Tour} />
+                    <Route path='/progress' component={Progress} />
+                    <Route path='/favorites' component={Favorites} />
+                    <Route path='/refer' component={Refer} />
+                    <Route path='/account' component={Account} />
+                    <Route path='/trips' component={Trips} />
+                    <Redirect from='*' to={localStorage.userType === "2" ? '/calendar' : '/home'} />
+                </Switch>
+            </main>
+            <Footer />
+        </>
+    );
 };
 
 export default App;

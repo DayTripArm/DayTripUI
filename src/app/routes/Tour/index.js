@@ -33,7 +33,7 @@ const Tour = ({ history }) => {
         document.documentElement.scrollTop = 0;
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [trip_id]);
 
     return (
         <>
