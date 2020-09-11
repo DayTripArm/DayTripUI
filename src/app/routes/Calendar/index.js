@@ -4,41 +4,36 @@ import 'react-dates/lib/css/_datepicker.css';
 import { IconSetting } from 'shared/components/Icons';
 import TripDetailsModal from '../Messaging/components/TripDetailsModal';
 import SettingsModal from './components/SettingsModal';
-import { DayPickerRangeController } from 'react-dates';
-import isInclusivelyAfterDay from 'react-dates/src/utils/isInclusivelyAfterDay';
+import { DayPickerSingleDateController } from 'react-dates';
+//import isInclusivelyAfterDay from 'react-dates/src/utils/isInclusivelyAfterDay';
+import './react-date-custom-style.css';
 
 import _ from 'lodash';
 import moment from "moment";
 
 
-const START_DATE = 'startDate';
-const END_DATE = 'endDate';
+// const START_DATE = 'startDate';
+// const END_DATE = 'endDate';
 const HORIZONTAL_ORIENTATION = 'horizontal';
 
 const defaultProps = {
     // example props for the demo
-    autoFocusEndDate: false,
-    initialStartDate: null,
-    initialEndDate: null,
-    startDateOffset: undefined,
-    endDateOffset: undefined,
-    showInputs: false,
-    minDate: null,
-    maxDate: null,
+    autoFocus: false,
+    initialDate: null,
+    showInput: false,
 
     // day presentation and interaction related props
     renderCalendarDay: undefined,
     renderDayContents: null,
-    minimumNights: 1,
-    isDayBlocked: () => false,
-    isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
-    isDayHighlighted: () => false,
+    //isDayBlocked: () => false,
+    //isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
+    // isDayHighlighted: (day1) => {
+    //     return day.some(day2 => day1.isSame(day2))
+    // },
     enableOutsideDays: false,
-    daysViolatingMinNightsCanBeClicked: false,
 
     // calendar presentation and interaction related props
     orientation: HORIZONTAL_ORIENTATION,
-    verticalHeight: undefined,
     withPortal: false,
     initialVisibleMonth: null,
     numberOfMonths: 2,
@@ -46,10 +41,6 @@ const defaultProps = {
     keepOpenOnDateSelect: false,
     renderCalendarInfo: null,
     isRTL: false,
-    renderMonthText: null,
-    renderMonthElement: null,
-    renderKeyboardShortcutsButton: undefined,
-    renderKeyboardShortcutsPanel: undefined,
 
     // navigation related props
     navPrev: null,
@@ -58,6 +49,8 @@ const defaultProps = {
     renderNavNextButton: null,
     onPrevMonthClick() {},
     onNextMonthClick() {},
+
+    hideKeyboardShortcutsPanel: true,
 
     // internationalization
     monthFormat: 'MMMM YYYY',
@@ -68,65 +61,64 @@ class Calendar extends React.Component {
         super(props);
 
         this.state = {
-            errorMessage: null,
-            focusedInput: props.autoFocusEndDate ? END_DATE : START_DATE,
-            startDate: props.initialStartDate,
-            endDate: props.initialEndDate,
-            openSettingsModal: false,
-            openDetailsModal: false
+            focused: true,
+            date: null,
+            blocked: []
         };
 
-        this.onDatesChange = this.onDatesChange.bind(this);
+        this.onDateChange = this.onDateChange.bind(this);
         this.onFocusChange = this.onFocusChange.bind(this);
     }
 
     //const [openSettingsModal, setOpenSettingsModal] = useState(false);
     //const [openDetailsModal, setOpenDetailsModal] = useState(false);
 
-    onDatesChange({ startDate, endDate }) {
-        const { daysViolatingMinNightsCanBeClicked, minimumNights } = this.props;
-        let doesNotMeetMinNights = false;
-        if (daysViolatingMinNightsCanBeClicked && startDate && endDate) {
-            const dayDiff = endDate.diff(startDate.clone().startOf('day').hour(12), 'days');
-            doesNotMeetMinNights = dayDiff < minimumNights && dayDiff >= 0;
+    onDateChange(date) {
+        const date_string = moment(date).format('YYYY-MM-DD');
+        const blocked_list = this.state.blocked;
+        let list = [];
+
+        if (_.includes(blocked_list, date_string)) { // remove
+            list = _.filter(blocked_list, date => date !== date_string)
+        } else {
+            list = [...this.state.blocked, moment(date).format('YYYY-MM-DD')]
         }
+
+
         this.setState({
-            startDate,
-            endDate: doesNotMeetMinNights ? null : endDate,
-            errorMessage: doesNotMeetMinNights
-                ? 'That day does not meet the minimum nights requirement'
-                : null,
+            blocked: list
         });
+        //this.setState({ date });
     }
 
-    onFocusChange(focusedInput) {
-        this.setState({
-            // Force the focusedInput to always be truthy so that dates are always selectable
-            focusedInput: !focusedInput ? START_DATE : focusedInput,
-        });
+    onFocusChange() {
+        // Force the focused states to always be truthy so that date is always selectable
+        this.setState({ focused: true });
     }
 
     render() {
 
-        const { renderCalendarInfo: renderCalendarInfoProp } = defaultProps;
-        const {
-            errorMessage,
-            focusedInput,
-            startDate,
-            endDate,
-        } = this.state;
+        // const { showInput } = defaultProps;
+        const { focused, date } = this.state;
 
         const props = _.omit(defaultProps, [
             'autoFocus',
-            'autoFocusEndDate',
-            'initialStartDate',
-            'initialEndDate',
-            'showInputs',
+            'initialDate',
+            'showInput',
         ]);
+
+        //const dateString = date && date.format('YYYY-MM-DD');
 
         // const startDateString = startDate && startDate.format('YYYY-MM-DD');
         // const endDateString = endDate && endDate.format('YYYY-MM-DD');
-        const renderCalendarInfo = errorMessage ? () => <div>{errorMessage}</div> : renderCalendarInfoProp;
+
+        const isBlocked = (day) => {
+            return this.state.blocked.some(date => day.isSame(date), 'day');
+        };
+
+        // const isHiglighted = (day1) => {
+        //     return list_days.some(day2 => day1.isSame(day2));
+        // };
 
 
 
@@ -142,15 +134,17 @@ class Calendar extends React.Component {
                             </button>
                         </div>
 
-                        <DayPickerRangeController
+
+                        <DayPickerSingleDateController
                             {...props}
-                            onDatesChange={this.onDatesChange}
+                            onDateChange={this.onDateChange}
                             onFocusChange={this.onFocusChange}
-                            focusedInput={focusedInput}
-                            startDate={startDate}
-                            endDate={endDate}
-                            renderCalendarInfo={renderCalendarInfo}
+                            focused={focused}
+                            isOutsideRange={date => date.isBefore(moment(), 'day') || date.isAfter(moment().add(1, 'months'), 'day')}
+                            isDayBlocked={isBlocked}
+                            date={date}
                         />
+
 
                         <h2 className='text__blue mt-9 mb-2 mt-md-13 mb-md-6 mt-xl-15'>Overview</h2>
                         <p>March 1, 2020</p>
