@@ -1,11 +1,12 @@
 import React from 'react';
 import {useSelector} from "react-redux";
+import { Link } from 'react-router-dom';
 
 const HomeIllustration = () => {
     const {travelerData={}} = useSelector(state => state);
     const {heroes={}} = travelerData;
     const {
-        // btn_link,
+        btn_link,
         btn_title,
         description,
         image={},
@@ -23,7 +24,9 @@ const HomeIllustration = () => {
                         <div className='col-md-10 col-lg-8 col-xl-6 col-xxl-5 px-0 px-md-4'>
                             <h1 className='text-white mb-4'>{title}</h1>
                             <h4 className='text-white mb-5 weight-300' dangerouslySetInnerHTML={{__html: description}}></h4>
-                            <button className='btn btn-secondary'>{btn_title}</button>
+                            <Link to={`/${btn_link}`}>
+                                <button className='btn btn-secondary'>{btn_title}</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
