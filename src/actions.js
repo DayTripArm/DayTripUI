@@ -306,6 +306,31 @@ const actions  = {
         type: actions.INDIVIDUAL_USER_RECEIVE,
         data
     }),
+
+    CALENDAR_SETTINGS_REQUEST: `${nameSpace}_CALENDAR_SETTINGS_REQUEST`,
+    getCalendarSettingsRequest: (driver_id) => ({
+        type: actions.CALENDAR_SETTINGS_REQUEST,
+        driver_id
+    }),
+
+    CALENDAR_SETTINGS_RECEIVE: `${nameSpace}_CALENDAR_SETTINGS_RECEIVE`,
+    getCalendarSettingsReceive: (data) => ({
+        type: actions.CALENDAR_SETTINGS_RECEIVE,
+        data
+    }),
+
+    UPDATE_CALENDAR_SETTINGS_REQUEST: `${nameSpace}_UPDATE_CALENDAR_SETTINGS_REQUEST`,
+    updateCalendarSettingsRequest: (driver_id, data) => ({
+        type: actions.UPDATE_CALENDAR_SETTINGS_REQUEST,
+        driver_id,
+        data
+    }),
+
+    UPDATE_CALENDAR_SETTINGS_RECEIVE: `${nameSpace}_UPDATE_CALENDAR_SETTINGS_RECEIVE`,
+    updateCalendarSettingsReceive: (data) => ({
+        type: actions.UPDATE_CALENDAR_SETTINGS_RECEIVE,
+        data
+    }),
 };
 
 export default actions;

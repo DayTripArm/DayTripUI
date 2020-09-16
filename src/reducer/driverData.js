@@ -4,6 +4,7 @@ export const INITIAL_STATE = {
     driver_info: {},
     profile: {},
     driver_details: {},
+    calendar_settings: {},
     preregistered_info: {
         car_mark_list: [],
         car_model_list: [],
@@ -143,6 +144,14 @@ const driverData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 driver_details: data
+            }
+        }
+
+        case actions.CALENDAR_SETTINGS_RECEIVE: {
+            const {data} = action;
+            return {
+                ...state,
+                calendar_settings: data
             }
         }
 

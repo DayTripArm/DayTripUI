@@ -399,6 +399,36 @@ function* saveDriverPreregData(action) {
     }
 }
 
+function* getCalendarSettingsRequest(action) {
+    try {
+        const {driver_id} = action;
+        const {response, error} = yield call(Api.getCalendarSettings, Number(driver_id));
+
+        if (response) {
+            yield put(actions.getCalendarSettingsReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* updateCalendarSettingsRequest(action) {
+    try {
+        const {driver_id, data} = action;
+        const {response, error} = yield call(Api.updateCalendarSettings, Number(driver_id), data);
+
+        if (response) {
+            yield put(actions.updateCalendarSettingsReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -419,6 +449,8 @@ function* watcherSaga() {
     yield takeEvery(actions.DELETE_DRIVER_INFOS_REQUEST, deleteDriverInfosRequest);
     yield takeEvery(actions.UPDATE_DRIVER_INFOS_REQUEST, updateDriverInfosRequest);
     yield takeEvery(actions.INDIVIDUAL_USER_REQUEST, individualUserRequest);
+    yield takeEvery(actions.CALENDAR_SETTINGS_REQUEST, getCalendarSettingsRequest);
+    yield takeEvery(actions.UPDATE_CALENDAR_SETTINGS_REQUEST, updateCalendarSettingsRequest);
 }
 
 export default function* root() {

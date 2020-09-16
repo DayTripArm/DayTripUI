@@ -32,3 +32,6 @@ export const CAR_YEAR_LIST = () => {
     for (var i = 1980; i <= date.getFullYear(); i++) year_list.push(i);
     return year_list;
 };
+
+export const AVAILABILITY_WINDOW = ['All future dates', '9 months in advance', '6 months in advance', '3 months in advance', 'Dates unavailable by default']
+export const DRIVER_NOTICE = [1, 2, 3, 7]

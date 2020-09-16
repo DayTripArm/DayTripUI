@@ -57,6 +57,7 @@ const App = () => {
         dispatch(actions.heroesRequest());
         dispatch(actions.tripsRequest());
         dispatch(actions.hitTheRoadRequest());
+        dispatch(actions.tipsRequest(3));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

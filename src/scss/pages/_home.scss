@@ -46,6 +46,17 @@
     max-height: 600px;
   }
 }
+.hit_ther_road_tip{
+    position: relative;
+    top: 9px;
+    left: 9px;
+}
+.home-search-driver .modal{
+    top: 0;
+}
+.home-search-driver .modal-content{
+    max-height: 100vh!important;
+}
 
 .slider-container {
   padding-right: calc((100vw - 155px) / 2);

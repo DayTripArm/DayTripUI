@@ -10,12 +10,14 @@ import './react-date-custom-style.css';
 
 import _ from 'lodash';
 import moment from "moment";
+import actions from "../../../actions";
+import {useDispatch, useSelector} from "react-redux";
 
 
 // const START_DATE = 'startDate';
 // const END_DATE = 'endDate';
 const HORIZONTAL_ORIENTATION = 'horizontal';
-
+//const dispatch = useDispatch();
 const defaultProps = {
     // example props for the demo
     autoFocus: false,
@@ -83,12 +85,11 @@ class Calendar extends React.Component {
         } else {
             list = [...this.state.blocked, moment(date).format('YYYY-MM-DD')]
         }
-
+        //dispatch(actions.updateCalendarSettingsRequest(date_string));
 
         this.setState({
             blocked: list
         });
-        //this.setState({ date });
     }
 
     onFocusChange() {
@@ -101,6 +102,7 @@ class Calendar extends React.Component {
         // const { showInput } = defaultProps;
         const { focused, date } = this.state;
 
+        //const {availability_window, unavailable_days} = useSelector(state => state);
         const props = _.omit(defaultProps, [
             'autoFocus',
             'initialDate',
@@ -137,6 +139,7 @@ class Calendar extends React.Component {
 
                         <DayPickerSingleDateController
                             {...props}
+                            daySize={50}
                             onDateChange={this.onDateChange}
                             onFocusChange={this.onFocusChange}
                             focused={focused}

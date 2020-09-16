@@ -1,5 +1,5 @@
-const HOST = "http://35.188.52.179/api";
-//const HOST = "http://localhost:3000/api";
+//const HOST = "http://35.188.52.179/api";
+const HOST = "http://localhost:3000/api";
 
 export default {
   "day_trip": {
@@ -22,5 +22,8 @@ export default {
     "getSavedTrips": `${HOST}/saved_trips?login_id={0}`,
     "getCountryCities": `${HOST}/country_cities?city={0}`,
     "getIndividualUser": `${HOST}/profile_info/{0}?profile=user_profile&user_type={1}`,
+    "getCalendarSettings": `${HOST}/calendar_settings/{0}`,
+    "updateCalendarSettings": `${HOST}/calendar_settings/{0}`,
+    "searchForDriver": `${HOST}/calendar_settings`,
   }
 }

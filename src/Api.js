@@ -128,4 +128,16 @@ export default {
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
+
+    getCalendarSettings(driver_id) {
+        return axios.get(template(base_urls.day_trip.getCalendarSettings, driver_id), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    updateCalendarSettings(driver_id, data) {
+        return axios.post(template(base_urls.day_trip.updateCalendarSettings, driver_id), data,{ handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
 }

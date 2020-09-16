@@ -129,6 +129,15 @@ const travelerData = (state = INITIAL_STATE, action) => {
             }
         }
 
+        case actions.TIPS_RECEIVE: {
+            const { data } = action;
+
+            return {
+                ...state,
+                htrTips: data || {}
+            }
+        }
+
         case actions.SAVED_TRIPS_RECEIVE: {
             const { data } = action;
 
