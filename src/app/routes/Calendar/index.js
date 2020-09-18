@@ -62,7 +62,10 @@ const Calendar = () => {
     const {driverData} = useSelector(state => state);
 
     const {calendar_settings={}} = driverData;
-    const {unavailable_days=[]} = calendar_settings;
+    let {unavailable_days} = calendar_settings;
+    if (!unavailable_days) {
+        unavailable_days = [];
+    }
 
     const date = null;
     const [focused, setFocused] = useState(true);
