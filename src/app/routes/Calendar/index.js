@@ -76,10 +76,6 @@ const Calendar = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useEffect(() => {
-        setBlocked(unavailable_days);
-    }, [unavailable_days]);
-
     const onDateChange = (date) => {
         const date_string = moment(date).format('YYYY-MM-DD');
         const blocked_list = blocked;
@@ -122,7 +118,7 @@ const Calendar = () => {
         // const endDateString = endDate && endDate.format('YYYY-MM-DD');
 
     const isBlocked = (day) => {
-        return blocked.some(date => day.isSame(date), 'day');
+        return unavailable_days.some(date => day.isSame(date), 'day');
     };
 
         // const isHiglighted = (day1) => {
