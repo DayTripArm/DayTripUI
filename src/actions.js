@@ -324,13 +324,7 @@ const actions  = {
         type: actions.UPDATE_CALENDAR_SETTINGS_REQUEST,
         driver_id,
         data
-    }),
-
-    UPDATE_CALENDAR_SETTINGS_RECEIVE: `${nameSpace}_UPDATE_CALENDAR_SETTINGS_RECEIVE`,
-    updateCalendarSettingsReceive: (data) => ({
-        type: actions.UPDATE_CALENDAR_SETTINGS_RECEIVE,
-        data
-    }),
+    })
 };
 
 export default actions;

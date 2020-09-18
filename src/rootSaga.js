@@ -420,7 +420,7 @@ function* updateCalendarSettingsRequest(action) {
         const {response, error} = yield call(Api.updateCalendarSettings, Number(driver_id), data);
 
         if (response) {
-            yield put(actions.updateCalendarSettingsReceive(response.data));
+            yield put(actions.getCalendarSettingsRequest(driver_id));
         } else {
             console.log(" err ", error);
         }

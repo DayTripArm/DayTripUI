@@ -3,8 +3,7 @@ import { IconQuestionOutlined } from 'shared/components/Icons';
 import ModalAside from 'shared/components/ModalAside';
 import Input from 'shared/components/Input';
 import { Link } from 'react-router-dom';
-import {useDispatch, useSelector} from "react-redux";
-import actions from "../../../../actions";
+import {useSelector} from "react-redux";
 import _ from "lodash";
 
 const validations = {
@@ -17,7 +16,6 @@ const validations = {
 };
 
 const SearchDriver = () => {
-    const dispatch = useDispatch();
     const {travelerData={}} = useSelector(state => state);
     const {hit_the_road={},htrTips={}} = travelerData;
     const [invalidFields, setInvalidFields] = useState({});
@@ -56,10 +54,10 @@ const SearchDriver = () => {
     }
 
     const searchDriver = () => {
-        const body = {
-            date: form.date,
-            travelers: form.travelers
-        };
+        // const body = {
+        //     date: form.date,
+        //     travelers: form.travelers
+        // };
 
         const invalidFields = validateForm();
         if (_.isEmpty(invalidFields)) {
@@ -70,7 +68,7 @@ const SearchDriver = () => {
             }
         }
         setInvalidFields(invalidFields);
-    }
+    };
 
     return(
         <>
