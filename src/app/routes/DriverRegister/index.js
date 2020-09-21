@@ -11,6 +11,8 @@ import CarRegComplete from './components/CarRegComplete';
 import ProfilePicture from './components/ProfilePicture';
 import ProfileData from './components/ProfileData';
 import LocationAndDestination from './components/LocationAndDestination';
+import HitTheRoad from './components/HitTheRoad';
+
 import actions from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -22,7 +24,8 @@ const requiredFields = {
     5: [], //no validation
     6: ["profile_photos"],
     7: ["gender", "birthMonth", "birthDay", "birthYear", "languages"],
-    8: ["location", "driver_destinations", "tariff1", "tariff2"]
+    8: ["location", "driver_destinations", "tariff1", "tariff2"],
+    9: ["hit_the_road_tariff"],
 };
 
 
@@ -35,6 +38,7 @@ const StepPageByNumber = {
     6: {page: ProfilePicture, stepText: "Driver Sign Up", stepNumber: "4"},
     7: {page: ProfileData, stepText: "Driver Sign Up", stepNumber: "5"},
     8: {page: LocationAndDestination, stepText: "Driver Sign Up", stepNumber: "5"},
+    9: {page: HitTheRoad, stepText: "Driver Sign Up", stepNumber: "6"},
 };
 
 const DriverRegister = () => {
@@ -42,8 +46,9 @@ const DriverRegister = () => {
     const [step, setStep] = useState(1);
     const [isSubmit, setSubmit] = useState(false);
     const [startValidate, setStartValidate] = useState(false);
+    const [tariffChecked, setTariffChecked] = useState(false); // for all days trip, page 6
 
-    const invalidFields = [];
+    let invalidFields = [];
 
     const dispatch = useDispatch();
 
@@ -58,6 +63,10 @@ const DriverRegister = () => {
         _.each(requiredFields[step], field => {
             if ((!preregistered_info[field] && preregistered_info[field] !== 0) || (typeof preregistered_info[field] === "object" && _.isEmpty(preregistered_info[field]))) {
                 invalidFields.push(field)
+            }
+
+            if (step === 9 && !tariffChecked) { // for step 6
+                invalidFields = [];
             }
         });
     };
@@ -81,7 +90,7 @@ const DriverRegister = () => {
                 <div className='d-flex justify-content-center mt-3 pt-8 pt-md-10 pt-xl-12'>
                     <div className='w-100 mxw-328px'>
 
-                        <StepPage step={step} setStep={setStep} invalidFields={invalidFields} />
+                        <StepPage step={step} setStep={setStep} invalidFields={invalidFields} tariffChecked={tariffChecked} setTariffChecked={setTariffChecked}  />
 
                         <div className='mt-6'>
                             <div className='d-flex align-items-center justify-content-between'>
