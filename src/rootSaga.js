@@ -370,6 +370,10 @@ function* saveDriverPreregData(action) {
     attributes['prereg_finish'] = true;
     attributes['login_id'] = login_id;
 
+    if (attributes['hit_the_road_tariff'] === undefined) {
+        delete attributes['hit_the_road_tariff'];
+    }
+
     // construct photos
     _.each(photos, (photos, name) => {
         photos.map(photo => formData.append(`${name}[${photo.name}]`, photo));

@@ -6,7 +6,8 @@ import { IconQuestionOutlined } from 'shared/components/Icons';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../../react_app/actions";
 import _ from "lodash";
-import {Switch} from "@material-ui/core";
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
 const HitTheRoad = (props) => {
     const {
@@ -41,49 +42,48 @@ const HitTheRoad = (props) => {
 
     return (
         <>
+            <img className='rounded__4 mb-4' alt='328x213' src={ImgMap} />
+            <h4 className='text__blue mb-6 text-center'>
+                Hit The Road
+                <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => setOpenModal(true)}>
+                    <IconQuestionOutlined fill='#757575'/>
+                </button>
+            </h4>
+            <p className='text-sm mh-100px mb-11'>
+                “Hit The Road” is for the travelers who want to travel across the country without any specific destination preferences, stop for breaks wherever they like. As their driver, you should be available for the whole day.
+            </p>
 
+            <p className='weight-700 mb-3'>Would you like to take this opportunity?</p>
 
-                <img className='rounded__4 mb-4' alt='328x213' src={ImgMap} />
-                <p className='text-center weight-700 mb-3'>
-                    Hit The Road
-                    <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => setOpenModal(true)}>
-                        <IconQuestionOutlined fill='#757575'/>
-                    </button>
-                </p>
-                <p className='text-center text-sm mh-100px mb-11'>
-                    “Hit The Road” is for the travelers who want to travel across the country without any specific destination preferences, stop for breaks wherever they like. As their driver, you should be available for the whole day.
-                </p>
+            <ToggleButtonGroup
+                value={tariffChecked}
+                exclusive
+                onChange={(e, value) => {
+                    setTariffChecked(value);
+                    if (value === false) {
+                        dispatch(actions.setPreregisteredDriverProperty("hit_the_road_tariff", undefined));
+                    }
+                }}
+            >
+                <ToggleButton value={false}>No</ToggleButton>
+                <ToggleButton value={true}>Yes</ToggleButton>
+            </ToggleButtonGroup>
 
-                <p className='text-center weight-700 mb-3'>Would you like to take this opportunity?</p>
-
-                <Switch
-                    checked={tariffChecked}
-                    onChange={() => {
-                        setTariffChecked(!tariffChecked);
-                    }}
-                    name="checkedA"
-                    inputProps={{ 'aria-label': 'secondary checkbox' }}
+            {
+                tariffChecked &&
+                <Input
+                    type='number'
+                    name='hit_the_road_tariff'
+                    value={hit_the_road_tariff}
+                    onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
+                    label='Set your price for booking you for the whole day'
+                    placeholder='Price'
+                    iconPosition='right'
+                    containerClass="mt-6"
+                    message={tariffChecked && _.includes(invalidFields, "hit_the_road_tariff") ? "This field is mandatory" : ""}
+                    isError={tariffChecked && _.includes(invalidFields, "hit_the_road_tariff")}
                 />
-
-                {
-                    tariffChecked &&
-                    <Input
-                        type='number'
-                        name='hit_the_road_tariff'
-                        value={hit_the_road_tariff}
-                        onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
-                        label='Set your price for booking you for the whole day'
-                        placeholder='Price'
-                        iconPosition='right'
-                        containerClass="mt-6"
-                        message={tariffChecked && _.includes(invalidFields, "hit_the_road_tariff") ? "This field is mandatory" : ""}
-                        isError={tariffChecked && _.includes(invalidFields, "hit_the_road_tariff")}
-                    />
-                }
-
-
-
-
+            }
 
             {openModal && (
                 <ModalAside title='Trips' onClose={() => setOpenModal(false)}>
