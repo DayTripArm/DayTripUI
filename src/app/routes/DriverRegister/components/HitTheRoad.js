@@ -8,6 +8,17 @@ import actions from "../../../../react_app/actions";
 import _ from "lodash";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    selected: {
+        backgroundColor: "#FA5B42 !important",
+        color: "#FFFFFF !important",
+        "&:active, &:focus": {
+            outline: "0 !important"
+        }
+    },
+});
 
 const HitTheRoad = (props) => {
     const {
@@ -16,6 +27,7 @@ const HitTheRoad = (props) => {
         tariffChecked
     } = props;
 
+    const classes = useStyles();
     const dispatch = useDispatch();
     const [openModal, setOpenModal] = useState(false);
 
@@ -26,7 +38,7 @@ const HitTheRoad = (props) => {
         hit_the_road_tariff="",
     } = preregistered_info;
 
-    const carTips = tips[3]; // type = 2
+    const carTips = tips[3]; // type = 4
 
 
     useEffect(() => {
@@ -59,14 +71,15 @@ const HitTheRoad = (props) => {
                 value={tariffChecked}
                 exclusive
                 onChange={(e, value) => {
-                    setTariffChecked(value);
+                    if (value !== null) setTariffChecked(value);
+
                     if (value === false) {
                         dispatch(actions.setPreregisteredDriverProperty("hit_the_road_tariff", undefined));
                     }
                 }}
             >
-                <ToggleButton value={false}>No</ToggleButton>
-                <ToggleButton value={true}>Yes</ToggleButton>
+                <ToggleButton value={false} classes={{selected: classes.selected}}>No</ToggleButton>
+                <ToggleButton value={true}  classes={{selected: classes.selected}} >Yes</ToggleButton>
             </ToggleButtonGroup>
 
             {
