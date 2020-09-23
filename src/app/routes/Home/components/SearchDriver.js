@@ -1,10 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import { IconQuestionOutlined } from 'shared/components/Icons';
 import ModalAside from 'shared/components/ModalAside';
 import Input from 'shared/components/Input';
+//import DatePicker from './DatePicker';
 import { Link } from 'react-router-dom';
 import {useSelector} from "react-redux";
+import { useHistory } from "react-router";
 import _ from "lodash";
+//import moment from "moment";
 
 const validations = {
     date: {
@@ -16,6 +19,7 @@ const validations = {
 };
 
 const SearchDriver = () => {
+    const history = useHistory();
     const {travelerData={}} = useSelector(state => state);
     const {hit_the_road={},htrTips={}} = travelerData;
     const [invalidFields, setInvalidFields] = useState({});
@@ -40,6 +44,8 @@ const SearchDriver = () => {
     }
     function validateField(name) {
         const rule = validations[name];
+/*        console.log(form)
+        console.log(form[name])*/
         if (rule) {
             if (rule.required && !form[name].trim()) {
                 return { status: "error", statusMessage: "This field is required" };
@@ -54,15 +60,10 @@ const SearchDriver = () => {
     }
 
     const searchDriver = () => {
-        // const body = {
-        //     date: form.date,
-        //     travelers: form.travelers
-        // };
-
         const invalidFields = validateForm();
         if (_.isEmpty(invalidFields)) {
             try {
-                //dispatch(actions.searchForDrivers(body));
+                history.push('/drivers?date='+form.date+'&travelers='+form.travelers)
             } catch (e) {
                 console.log(" err ", e.response);
             }
@@ -110,13 +111,26 @@ const SearchDriver = () => {
                         }}>
                         <div
                             className='bg-white rounded__10 px-4 px-lg-5 pb-5 pt-4 d-flex flex-column flex-lg-row align-items-end'>
-                            <Input
+{/*                            <div class="form-field mr-lg-4 mb-lg-0">
+                                <label class="mb-1 px-1">Date *</label>
+                                <div class="position-relative">
+                                    <DatePicker
+                                        date={form.date}
+                                        name='date'
+                                        isError={getStatusMessage("date")  || false}
+                                        containerClass='mr-lg-4 mb-lg-0'
+                                        onChange={e => setForm({
+                                            ...form,
+                                            date: e.target.value
+                                        })} />
+                                </div>
+                            </div>*/}
+                           <Input
                                 type='text'
                                 name='date'
                                 label='Date *'
                                 placeholder='Select your Date'
                                 isError={getStatusMessage("date")  || false}
-                                //message={getStatusMessage("date")}
                                 onChange={e => setForm({
                                     ...form,
                                     date: e.target.value
@@ -129,7 +143,6 @@ const SearchDriver = () => {
                                 label='Travelers *'
                                 placeholder='Count'
                                 isError={getStatusMessage("travelers") || false}
-                                //message={getStatusMessage("travelers")}
                                 containerClass='mr-lg-4 mb-lg-0'
                                 itemClass="htr_item"
                                 onChange={e => setForm({
@@ -139,9 +152,9 @@ const SearchDriver = () => {
                                 hideApperance
                             />
                             <div class="form-field-flexible mr-lg-4 mb-lg-0">
-                                <label class="mb-1 px-1">&nbsp;</label>
+                                <label className="mb-1 px-1">&nbsp;</label>
                                 <div class="position-relative">
-                                    <Link className='btn btn-primary btn-block__md htr_search' style={{transform: 'translate(0%, -80%);'}} onClick={(e) => {
+                                    <Link to="/drivers" className='btn btn-primary btn-block__md htr_search' onClick={(e) => {
                                         e.preventDefault();
                                         searchDriver();
                                     }}>

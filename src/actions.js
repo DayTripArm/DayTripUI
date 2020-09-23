@@ -324,7 +324,25 @@ const actions  = {
         type: actions.UPDATE_CALENDAR_SETTINGS_REQUEST,
         driver_id,
         data
-    })
+    }),
+
+    UPDATE_CALENDAR_SETTINGS_RECEIVE: `${nameSpace}_UPDATE_CALENDAR_SETTINGS_RECEIVE`,
+    updateCalendarSettingsReceive: (data) => ({
+        type: actions.UPDATE_CALENDAR_SETTINGS_RECEIVE,
+        data
+    }),
+
+    DRIVERS_LIST_REQUEST: `${nameSpace}_DRIVERS_LIST_REQUEST`,
+    searchForDriversRequest: (body) => ({
+        type: actions.DRIVERS_LIST_REQUEST,
+        body
+    }),
+
+    DRIVERS_LIST_RECEIVE: `${nameSpace}_DRIVERS_LIST_RECEIVE`,
+    searchForDriverReceive: (data) => ({
+        type: actions.DRIVERS_LIST_RECEIVE,
+        data
+    }),
 };
 
 export default actions;

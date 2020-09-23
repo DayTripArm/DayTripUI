@@ -8,6 +8,7 @@ export const INITIAL_STATE = {
     profile: {},
     heroes: {},
     trips: [],
+    search_for_drivers: {},
     trip_detail: {},
     saved_trips: [],
     hit_the_road: {}
@@ -135,6 +136,14 @@ const travelerData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 htrTips: data || {}
+            }
+        }
+
+        case actions.DRIVERS_LIST_RECEIVE: {
+            const { data } = action;
+            return {
+                ...state,
+                search_for_drivers: data || {}
             }
         }
 

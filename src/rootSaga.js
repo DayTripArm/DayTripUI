@@ -429,6 +429,24 @@ function* updateCalendarSettingsRequest(action) {
     }
 }
 
+
+function* driversListRequest(action) {
+    try {
+
+        const {body} = action;
+        const {date, travelers, trip_id=0} = body;
+        const {response, error} = yield call(Api.searchForDriver, date, Number(travelers), Number(trip_id));
+
+        if (response) {
+            yield put(actions.searchForDriverReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -451,6 +469,7 @@ function* watcherSaga() {
     yield takeEvery(actions.INDIVIDUAL_USER_REQUEST, individualUserRequest);
     yield takeEvery(actions.CALENDAR_SETTINGS_REQUEST, getCalendarSettingsRequest);
     yield takeEvery(actions.UPDATE_CALENDAR_SETTINGS_REQUEST, updateCalendarSettingsRequest);
+    yield takeEvery(actions.DRIVERS_LIST_REQUEST, driversListRequest);
 }
 
 export default function* root() {
