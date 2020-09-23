@@ -32,7 +32,7 @@ const HitTheRoad = (props) => {
     useEffect(() => {
         document.documentElement.scrollTop = 0;
 
-        dispatch(actions.tipsRequest(3));
+        dispatch(actions.tipsRequest(4));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
