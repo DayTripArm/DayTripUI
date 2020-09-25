@@ -127,8 +127,22 @@ const Calendar = () => {
         // const isHiglighted = (day1) => {
         //     return list_days.some(day2 => day1.isSame(day2));
         // };
+    const renderDay=(day)=> {
+        if (day.day() % 6 === 5){
+            return (
+                <div style={{ backgroundColor: 'orange', height: '100%', color: 'white', position:'relative' }} >
+                    <div style={{position:'absolute'}}><img src="https://www.iconninja.com/files/445/434/573/man-user-person-male-profile-avatar-icon.png" width="32px" height="32px"/></div>
+                    <span >{day.format('D')}</span>
 
+                </div>
+            )
+        }else{
+            return (
+                <span>{day.format('D')}</span>
+            )
+        }
 
+    };
 
     return (
         <>
@@ -145,10 +159,11 @@ const Calendar = () => {
 
                     <DayPickerSingleDateController
                         {...props}
-                        daySize={50}
+                        daySize={70}
                         onDateChange={onDateChange}
                         onFocusChange={onFocusChange}
                         focused={focused}
+                        renderDayContents={renderDay}
                         isOutsideRange={date => date.isBefore(moment(), 'day') || date.isAfter(moment().add(1, 'months'), 'day')}
                         isDayBlocked={isBlocked}
                         date={date}
