@@ -130,7 +130,7 @@ const Calendar = () => {
     const renderDay=(day)=> {
         if (day.day() % 6 === 5){
             return (
-                <div style={{ backgroundColor: 'orange', height: '100%', color: 'white', position:'relative' }} >
+                <div style={{ backgroundColor: '#FE4C30', height: '100%', color: 'white', position:'relative' }} >
                     <div style={{position:'absolute'}}><img src="https://www.iconninja.com/files/445/434/573/man-user-person-male-profile-avatar-icon.png" width="32px" height="32px"/></div>
                     <span >{day.format('D')}</span>
 
@@ -159,7 +159,7 @@ const Calendar = () => {
 
                     <DayPickerSingleDateController
                         {...props}
-                        daySize={70}
+                        daySize={78, 69}
                         onDateChange={onDateChange}
                         onFocusChange={onFocusChange}
                         focused={focused}
