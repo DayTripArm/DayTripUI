@@ -1,13 +1,15 @@
-import React, {useState} from 'react'
+import React, {useState, setState, useEffect} from 'react'
 import { IconQuestionOutlined } from 'shared/components/Icons';
 import ModalAside from 'shared/components/ModalAside';
 import Input from 'shared/components/Input';
-//import DatePicker from './DatePicker';
+import DatePicker from './DatePicker';
+import "react-dates/initialize";
+import "react-dates/lib/css/_datepicker.css";
 import { Link } from 'react-router-dom';
 import {useSelector} from "react-redux";
 import { useHistory } from "react-router";
 import _ from "lodash";
-//import moment from "moment";
+import moment from "moment";
 
 const validations = {
     date: {
@@ -24,6 +26,8 @@ const SearchDriver = () => {
     const {hit_the_road={},htrTips={}} = travelerData;
     const [invalidFields, setInvalidFields] = useState({});
     const [openModal, setOpenModal] = useState(false);
+    const [showDatePicker,setShowDatePicker] = useState(false);
+    const [focused,setFocused] = useState(false);
     const {
         title,
         description,
@@ -32,6 +36,15 @@ const SearchDriver = () => {
 
     const [form, setForm] = useState({date: "", travelers: ""});
     const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
+    //const [dateValue, setValue] = useState("")
+    const onDaySelect = ((day) => {
+        setForm({
+            ...form,
+            date: moment(day).format('YYYY-MM-DD')
+        });
+        //setValue(moment(day).format('YYYY-MM-DD'))
+        setShowDatePicker(false)
+    })
 
     function validateForm() {
 
@@ -44,8 +57,6 @@ const SearchDriver = () => {
     }
     function validateField(name) {
         const rule = validations[name];
-/*        console.log(form)
-        console.log(form[name])*/
         if (rule) {
             if (rule.required && !form[name].trim()) {
                 return { status: "error", statusMessage: "This field is required" };
@@ -74,7 +85,7 @@ const SearchDriver = () => {
     return(
         <>
             <h2 className='text__blue'> Hit The Road </h2>
-            <div className='home-search-driver box-overlay rounded__10 overflow-hidden'>
+            <div className='home-search-driver box-overlay rounded__10'>
                 <img src={src} alt='home' className='w-100 object-pos-center object-fit-cover'/>
                 <div className='overlay d-flex align-items-center justify-content-center'>
                     <div className='d-flex flex-column align-items-center'>
@@ -110,31 +121,17 @@ const SearchDriver = () => {
                             searchDriver();
                         }}>
                         <div
-                            className='bg-white rounded__10 px-4 px-lg-5 pb-5 pt-4 d-flex flex-column flex-lg-row align-items-end'>
-{/*                            <div class="form-field mr-lg-4 mb-lg-0">
-                                <label class="mb-1 px-1">Date *</label>
-                                <div class="position-relative">
-                                    <DatePicker
-                                        date={form.date}
-                                        name='date'
-                                        isError={getStatusMessage("date")  || false}
-                                        containerClass='mr-lg-4 mb-lg-0'
-                                        onChange={e => setForm({
-                                            ...form,
-                                            date: e.target.value
-                                        })} />
-                                </div>
-                            </div>*/}
-                           <Input
+                            className='bg-white rounded__10 px-4 px-lg-5 pb-5 pt-4 d-flex flex-column flex-lg-row align-items-end hit_the_road_search'>
+                            <Input
                                 type='text'
                                 name='date'
                                 label='Date *'
+                                value={form.date}
                                 placeholder='Select your Date'
                                 isError={getStatusMessage("date")  || false}
-                                onChange={e => setForm({
-                                    ...form,
-                                    date: e.target.value
-                                })}
+                                onFocus={() =>
+                                    setShowDatePicker(!showDatePicker)
+                                }
                                 containerClass='mr-lg-4 mb-lg-0'
                             />
                             <Input
@@ -151,9 +148,9 @@ const SearchDriver = () => {
                                 })}
                                 hideApperance
                             />
-                            <div class="form-field-flexible mr-lg-4 mb-lg-0">
+                            <div className="form-field-flexible mr-lg-4 mb-lg-0">
                                 <label className="mb-1 px-1">&nbsp;</label>
-                                <div class="position-relative">
+                                <div className="position-relative">
                                     <Link to="/drivers" className='btn btn-primary btn-block__md htr_search' onClick={(e) => {
                                         e.preventDefault();
                                         searchDriver();
@@ -161,6 +158,15 @@ const SearchDriver = () => {
                                         Search for Driver
                                     </Link>
                                 </div>
+                            </div>
+                            <div className="calendar_wrapper">
+                                {showDatePicker && (
+
+                                    <DatePicker
+                                        onDateChange={(date) => onDaySelect(date)}
+                                        withFullScreenPortal={window.innerWidth < 400}
+                                    />
+                                )}
                             </div>
                         </div>
                         </form>

@@ -51,6 +51,14 @@
     top: 9px;
     left: 9px;
 }
+.hit_the_road_search{
+    position: relative;
+}
+.calendar_wrapper{
+    position:absolute;
+    top: 100px;
+    z-index: 999;
+}
 .home-search-driver .modal{
     top: 0;
 }
