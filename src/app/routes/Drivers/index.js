@@ -50,7 +50,9 @@ const Drivers = ({ history }) => {
                         </div>
                         <div className='mb-9 mb-md-10 mb-xl-11'>
                             <Chips name={moment(day).format('MMM-DD')} className='mr-4 mb-md-5'/>
-                            <Chips name={travelers_count} />
+                            <Chips name={travelers_count} className='mr-4 mb-md-5' />
+                            <Chips name="Reviews" className='mr-4 mb-md-5'/>
+                            <Chips name="Price" />
                         </div>
                         <h2 className='text__blue mb-4 mb-md-5'>Available Drivers</h2>
                         {drivers_list && (<DriversList driversList={drivers_list}/>)}
