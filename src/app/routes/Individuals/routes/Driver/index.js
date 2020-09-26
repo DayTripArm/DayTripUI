@@ -4,7 +4,7 @@ import Benefits from './components/Benefits';
 import Gallery from './components/Gallery';
 import Reviews from './components/Reviews';
 // import BookPanel from './components/BookPanel';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {MONTH_LIST, DRIVER_TYPE} from "../../../../../constants";
 import actions from "../../../../../actions";
@@ -13,10 +13,11 @@ const Driver = ({ history }) => {
     const dispatch = useDispatch();
     const {config} = useSelector(state => state);
     const {individual_user, userType} = config;
-
+    const locate = useLocation();
     const {
         created_at,
         user_name,
+        profile_photo,
         about,
         location,
         languages,
@@ -32,11 +33,15 @@ const Driver = ({ history }) => {
     const member_since = MONTH_LIST[created_date.getMonth()] + " " + created_date.getFullYear();
 
     const benefits = {location, languages, car_specs, car_seats, car_mark, car_model, car_full_name};
-
+    const src = process.env.NODE_ENV === "development"
+        ? "http://localhost:3000" + profile_photo
+        : profile_photo;
 
     useEffect(() => {
         // TODO need also to get individual user by passing id in routes for non registered users
-        dispatch(actions.individualUserRequest(Number(localStorage.id), Number(localStorage.userType)));
+        const user_id = locate.state ? Number(locate.state.driver_id) : Number(localStorage.id)
+        const user_type = locate.state? Number(locate.state.user_type) : Number(localStorage.userType)
+        dispatch(actions.individualUserRequest(user_id, user_type));
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -56,7 +61,7 @@ const Driver = ({ history }) => {
                                     <img
                                         width='80'
                                         height='80'
-                                        src='https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png'
+                                        src={src}
                                         alt='garni'
                                         className='rounded__50 object-pos-center object-fit-cover mr-3 mr-md-5'
                                     />

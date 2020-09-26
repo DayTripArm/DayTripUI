@@ -24,9 +24,8 @@ const DatePicker = ({ date, onDateChange }) => {
             {...props}
             date={date}
             onDateChange={(date) => {
-                onDateChange({ target: { value: date } })
+                onDateChange(date)
             }}
-            withFullScreenPortal={window.innerWidth < 400}
         />
     );
 }

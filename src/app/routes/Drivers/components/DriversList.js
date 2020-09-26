@@ -71,7 +71,13 @@ const DriversList = (props) => {
                                 </div>
                             </div>
                             <div className='text-right'>
-                                <Link to='/individuals/driver' className='btn weight-700 btn-sm btn-text'>
+                                <Link to={{
+                                    pathname: '/individuals/driver',
+                                        state: {
+                                            driver_id: driver.id,
+                                            user_type: driver.user_type
+                                        }
+                                }} className='btn weight-700 btn-sm btn-text'>
                                     Learn More
                                 </Link>
                             </div>

@@ -21,6 +21,7 @@ const Input = ({
    showClearIcon,
    hideApperance,
    onChange,
+   dayPicked,
    onFocus,
    onBlur,
    required,
@@ -54,6 +55,10 @@ const Input = ({
     const onBlurHandle = (e, name) => {
         if (onBlur) {
             onBlur(e, name);
+            if(dayPicked){
+                e.target.value = value
+                setInputValue(e.target ? e.target.value : e);
+            }
         }
     };
 

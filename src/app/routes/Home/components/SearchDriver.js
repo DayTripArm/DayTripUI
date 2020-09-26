@@ -27,7 +27,6 @@ const SearchDriver = () => {
     const [invalidFields, setInvalidFields] = useState({});
     const [openModal, setOpenModal] = useState(false);
     const [showDatePicker,setShowDatePicker] = useState(false);
-    const [focused,setFocused] = useState(false);
     const {
         title,
         description,
@@ -36,13 +35,13 @@ const SearchDriver = () => {
 
     const [form, setForm] = useState({date: "", travelers: ""});
     const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
-    //const [dateValue, setValue] = useState("")
+    const [dayPicked, setDayPicked] = useState(false)
     const onDaySelect = ((day) => {
         setForm({
             ...form,
             date: moment(day).format('YYYY-MM-DD')
         });
-        //setValue(moment(day).format('YYYY-MM-DD'))
+        setDayPicked(true)
         setShowDatePicker(false)
     })
 
@@ -74,7 +73,13 @@ const SearchDriver = () => {
         const invalidFields = validateForm();
         if (_.isEmpty(invalidFields)) {
             try {
-                history.push('/drivers?date='+form.date+'&travelers='+form.travelers)
+                history.push({
+                    pathname: '/drivers',
+                    state: {
+                        date: form.date,
+                        travelers: form.travelers
+                    },
+                })
             } catch (e) {
                 console.log(" err ", e.response);
             }
@@ -129,8 +134,12 @@ const SearchDriver = () => {
                                 value={form.date}
                                 placeholder='Select your Date'
                                 isError={getStatusMessage("date")  || false}
+                                dayPicked={dayPicked}
                                 onFocus={() =>
                                     setShowDatePicker(!showDatePicker)
+                                }
+                                onBlur={() =>
+                                    setDayPicked(false)
                                 }
                                 containerClass='mr-lg-4 mb-lg-0'
                             />
@@ -161,11 +170,7 @@ const SearchDriver = () => {
                             </div>
                             <div className="calendar_wrapper">
                                 {showDatePicker && (
-
-                                    <DatePicker
-                                        onDateChange={(date) => onDaySelect(date)}
-                                        withFullScreenPortal={window.innerWidth < 400}
-                                    />
+                                    <DatePicker onDateChange={(date) => onDaySelect(date)} />
                                 )}
                             </div>
                         </div>

@@ -9,9 +9,9 @@ import moment from "moment";
 
 const Drivers = ({ history }) => {
     const dispatch = useDispatch();
-    const url_params = new URLSearchParams(window.location.search)
-    const day = url_params.get('date');
-    const travelers_count = url_params.get('travelers');
+    const day = history.location.state?.date;
+    const travelers_count =  history.location.state?.travelers;
+
     useEffect(() => {
         const body = {
             date: day,
