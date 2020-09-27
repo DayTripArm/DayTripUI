@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { IconTimes, IconArrowUp, IconArrowDown, IconEye, IconEyeClose } from './Icons';
 
 import PhoneInput from 'react-phone-input-2'
@@ -21,7 +21,6 @@ const Input = ({
    showClearIcon,
    hideApperance,
    onChange,
-   dayPicked,
    onFocus,
    onBlur,
    required,
@@ -55,10 +54,6 @@ const Input = ({
     const onBlurHandle = (e, name) => {
         if (onBlur) {
             onBlur(e, name);
-            if(dayPicked){
-                e.target.value = value
-                setInputValue(e.target ? e.target.value : e);
-            }
         }
     };
 
@@ -82,6 +77,10 @@ const Input = ({
     const showHidePwd = () => {
         swtShowPwd(!showPwd);
     };
+
+    useEffect(() => {
+        setInputValue(value);
+    }, [value]);
 
     return (
         <div className={`form-field ${containerClass}`}>
