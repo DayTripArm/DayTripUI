@@ -1,4 +1,4 @@
-import React, {useState, setState, useEffect} from 'react'
+import React, {useState} from 'react'
 import { IconQuestionOutlined } from 'shared/components/Icons';
 import ModalAside from 'shared/components/ModalAside';
 import Input from 'shared/components/Input';

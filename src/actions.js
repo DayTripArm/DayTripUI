@@ -343,6 +343,12 @@ const actions  = {
         type: actions.DRIVERS_LIST_RECEIVE,
         data
     }),
+
+    UPDATE_VALIDATION_LIST: `${nameSpace}_UPDATE_VALIDATION_LIST`,
+    updateValidationList: (name) => ({
+        type: actions.UPDATE_VALIDATION_LIST,
+        name
+    }),
 };
 
 export default actions;

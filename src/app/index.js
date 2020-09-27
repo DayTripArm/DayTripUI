@@ -46,6 +46,8 @@ const App = () => {
         if (localStorage.is_prereg && localStorage.is_prereg === "true") {
             dispatch(actions.setPrereg(localStorage.is_prereg));
         }
+
+        delete localStorage.proceed_once; // we don't need this attribute in first time
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

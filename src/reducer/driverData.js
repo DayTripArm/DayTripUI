@@ -1,4 +1,5 @@
 import actions from "../actions";
+import _ from 'lodash';
 
 export const INITIAL_STATE = {
     driver_info: {},
@@ -17,7 +18,8 @@ export const INITIAL_STATE = {
         profile_photos: [],
         reg_card_photos: [],
         car_seats: 4
-    }
+    },
+    validationList: ["car_type", "car_mark", "car_model", "car_color"]
 };
 
 const driverData = (state = INITIAL_STATE, action) => {
@@ -152,6 +154,15 @@ const driverData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 calendar_settings: data
+            }
+        }
+
+        case actions.UPDATE_VALIDATION_LIST: {
+            const {name} = action;
+
+            return {
+                ...state,
+                validationList: _.filter(state.validationList, i => i !== name)
             }
         }
 

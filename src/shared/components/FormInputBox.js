@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import Input from "./Input";
+import InfoModal from "./InfoModal";
 import SelectCustom from "./SelectCustom";
 import MultiSelect from "./MultiSelect";
 import actions from "../../actions";
 import dateFormat from "date-format";
+import { useHistory } from "react-router-dom";
 import _ from "lodash";
 
 import {GET_DATE_YEARS, DAYS, MONTH_LIST, LANGUAGES} from "../../constants";
@@ -12,8 +14,11 @@ import Api from "../../Api";
 
 const FormInputBox = (props) => {
 
+    let history = useHistory();
     const dispatch = useDispatch();
     const {travelerData, driverData} = useSelector(state => state);
+
+    const {validationList} = driverData; // for pop up and validation, car details page
 
     const languageList = LANGUAGES.map(item => {return {label: item, value: item}});
 
@@ -40,6 +45,9 @@ const FormInputBox = (props) => {
         options,
         empty_message,
     } = props;
+
+    const [proceed, setProceed] = useState(false); // for pop up
+    const [openInfoModal, setOpenInfoModal] = useState(false);
 
     const [field, setField] = useState({
         name: name,
@@ -167,10 +175,28 @@ const FormInputBox = (props) => {
         }, 500);
     };
 
-    return(
+    // this block only for car details pop up
+    useEffect(() => {
+        let once = localStorage.proceed_once;
+
+        if (proceed && once === undefined) {
+            handleSave();
+            localStorage.setItem("proceed_once", "true");
+            dispatch(actions.updateValidationList(name));
+        }
+    }, [proceed]);
+
+    const box_label = localStorage.proceed_once === "true" && _.includes(validationList, name)
+        ?
+        <p className='mb-0 weight-700 text-danger'>{label}</p>
+        :
+        <p className='mb-0 weight-700'>{label}</p>;
+
+    return (
+        <>
         <li className='border__bottom border__default pt-3 pb-4'>
             <div className='d-flex align-items-center justify-content-between mb-2'>
-                <p className='mb-0 weight-700'>{label}</p>
+                {box_label}
                 <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? "Edit" : "Cancel"}</button>
             </div>
             {
@@ -237,12 +263,29 @@ const FormInputBox = (props) => {
                                 />
                             }
                         </div>
-                        <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>Save</button>
+                        <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => {
+                            if (history.location.pathname === "/car/view") { // only for car details pop up
+                                let once = localStorage.proceed_once;
+
+                                if (once === undefined && name !== "car_year") {
+                                    setOpenInfoModal(true);
+                                } else {
+                                    handleSave();
+                                    dispatch(actions.updateValidationList(name));
+                                }
+                            } else {
+                                handleSave();
+                            }
+
+
+                        }}>Save</button>
                     </div>
                     :
                     <p className='text__grey-dark mb-0'>{_.isEmpty(value) ? empty_message : value}</p>
             }
         </li>
+        { openInfoModal && <InfoModal onProceed={() => setProceed(true)} onClose={() => setOpenInfoModal(false)} /> }
+    </>
     );
 };
 
