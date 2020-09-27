@@ -13,6 +13,7 @@ const User = () => {
     const {
         created_at,
         user_name,
+        profile_photo,
         about,
         location,
         languages
@@ -20,6 +21,9 @@ const User = () => {
 
     const created_date = new Date(created_at || "");
     const member_since = MONTH_LIST[created_date.getMonth()] + " " + created_date.getFullYear();
+    const src = profile_photo ? (process.env.NODE_ENV === "development"
+        ? "http://localhost:3000" + profile_photo
+        : profile_photo) : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
 
 
     useEffect(() => {
@@ -41,7 +45,7 @@ const User = () => {
                                     <img
                                         width='80'
                                         height='80'
-                                        src='https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png'
+                                        src={src}
                                         alt='garni'
                                         className='rounded__50 object-pos-center object-fit-cover mr-3 mr-md-5'
                                     />
