@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { DayPickerSingleDateController } from "react-dates";
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
-import moment from "moment/moment";
 
 const DatePicker = ({ date, onDateChange }) => {
-    const [focused, setFocused] = useState(false);
+
     const props = {
         renderCalendarDay: undefined,
         renderDayContents: null,
@@ -28,5 +27,6 @@ const DatePicker = ({ date, onDateChange }) => {
             }}
         />
     );
-}
-export default DatePicker
+};
+
+export default DatePicker;

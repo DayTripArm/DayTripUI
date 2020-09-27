@@ -23,10 +23,13 @@ const validations = {
 const SearchDriver = () => {
     const history = useHistory();
     const {travelerData={}} = useSelector(state => state);
+
     const {hit_the_road={},htrTips={}} = travelerData;
+
     const [invalidFields, setInvalidFields] = useState({});
     const [openModal, setOpenModal] = useState(false);
-    const [showDatePicker,setShowDatePicker] = useState(false);
+    const [showDatePicker, setShowDatePicker] = useState(false);
+
     const {
         title,
         description,
@@ -35,15 +38,14 @@ const SearchDriver = () => {
 
     const [form, setForm] = useState({date: "", travelers: ""});
     const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
-    const [dayPicked, setDayPicked] = useState(false)
+
     const onDaySelect = ((day) => {
         setForm({
             ...form,
             date: moment(day).format('YYYY-MM-DD')
         });
-        setDayPicked(true)
-        setShowDatePicker(false)
-    })
+        setShowDatePicker(false);
+    });
 
     function validateForm() {
 
@@ -134,13 +136,7 @@ const SearchDriver = () => {
                                 value={form.date}
                                 placeholder='Select your Date'
                                 isError={getStatusMessage("date")  || false}
-                                dayPicked={dayPicked}
-                                onFocus={() =>
-                                    setShowDatePicker(!showDatePicker)
-                                }
-                                onBlur={() =>
-                                    setDayPicked(false)
-                                }
+                                onFocus={() => setShowDatePicker(!showDatePicker)}
                                 containerClass='mr-lg-4 mb-lg-0'
                             />
                             <Input
