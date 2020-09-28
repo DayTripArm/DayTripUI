@@ -146,4 +146,10 @@ export default {
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
+    confirmTripBookingCheckout(body) {
+        return axios.post(base_urls.day_trip.confirmTripBookingCheckout, body,{ handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
 }

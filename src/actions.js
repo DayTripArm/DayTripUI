@@ -349,6 +349,12 @@ const actions  = {
         type: actions.UPDATE_VALIDATION_LIST,
         name
     }),
+
+    CONFIRM_CHECKOUT_RECEIVE: `${nameSpace}_UPDATE_VALIDATION_LIST`,
+    confirmTripBookingCheckout: (body) => ({
+        type: actions.CONFIRM_CHECKOUT_RECEIVE,
+        body
+    }),
 };
 
 export default actions;

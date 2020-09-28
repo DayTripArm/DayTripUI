@@ -451,6 +451,26 @@ function* driversListRequest(action) {
     }
 }
 
+function* confirmTripBookingCheckout(action) {
+    const {body} = action;
+
+    try {
+        const {response, error} = yield call(Api.confirmTripBookingCheckout, body);
+
+        if (response) {
+            console.log(response)
+            setTimeout(() => {
+                window.location.href = "/checkout/success";
+            })
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -474,6 +494,7 @@ function* watcherSaga() {
     yield takeEvery(actions.CALENDAR_SETTINGS_REQUEST, getCalendarSettingsRequest);
     yield takeEvery(actions.UPDATE_CALENDAR_SETTINGS_REQUEST, updateCalendarSettingsRequest);
     yield takeEvery(actions.DRIVERS_LIST_REQUEST, driversListRequest);
+    yield takeEvery(actions.CONFIRM_CHECKOUT_RECEIVE, confirmTripBookingCheckout);
 }
 
 export default function* root() {

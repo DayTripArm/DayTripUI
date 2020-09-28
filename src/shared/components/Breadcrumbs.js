@@ -7,7 +7,7 @@ const Breadcrumbs = ({ routes, className = '' }) => {
     <div className={`text-sm d-flex align-items-center ${className}`}>
       {routes.map((item, i) => (
         <div key={i}>
-          <Link to={item.route} className='text__blue weight-500'>
+          <Link to={item.route} className='text__blue weight-500' onClick={ (event) => event.preventDefault() }>
             {item.name}
           </Link>
           {i < routes.length - 1 && <IconArrowRight />}

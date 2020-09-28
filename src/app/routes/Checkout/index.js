@@ -14,11 +14,11 @@ import Success from './routes/Success';
 // Conditionally
 const routes = [
   {
-    route: '/',
+    route: 'checkout/review',
     name: 'Review Your Trip',
   },
   {
-    route: '/',
+    route: 'checkout/payment',
     name: 'Payment Information',
   },
 ];

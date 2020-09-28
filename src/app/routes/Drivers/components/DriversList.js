@@ -1,11 +1,22 @@
 import React from 'react';
-import { IconStar, IconGlobe, IconNoSmoking, IconCar, IconSeat } from 'shared/components/Icons';
-import { Link } from 'react-router-dom';
+import { IconStar,
+    IconGlobe,
+    IconSnack,
+    IconSmoking,
+    IconPetStep,
+    IconCarSeat,
+    IconWifi,
+    IconWater,
+    IconAC,
+    IconCar,
+    IconSeat } from 'shared/components/Icons';
+import { Link, useLocation } from 'react-router-dom';
 import {CAR_SPECS} from "../../../../constants";
 
 
 const DriversList = (props) => {
     const drivers_list = props.driversList || [];
+    const location = useLocation();
     return (<>
             <ul className='no-list-style mb-0'>
               {
@@ -32,7 +43,24 @@ const DriversList = (props) => {
                                     </p>
                                 </div>
                             </div>
-                            <Link to='/checkout' className='btn btn-primary text-uppercase btn-xs-block'>
+                            <Link to={{
+                                pathname: '/checkout/review',
+                                state: {
+                                    driver_id: driver.id,
+                                    traveler_id: Number(localStorage.id),
+                                    trip_id: null,
+                                    driver_img: src,
+                                    trip_img: null,
+                                    driver_name: driver.driver_name,
+                                    car_full_name: driver.car_full_name,
+                                    car_specs: driver.car_specs,
+                                    price: driver.hit_the_road_tariff,
+                                    languages: driver.languages,
+                                    trip_day: location.state.date,
+                                    trip_duration: 12,
+                                    travelers_count: location.state.travelers
+                                }
+                            }} className='btn btn-primary text-uppercase btn-xs-block'>
                                 Book for ${driver.hit_the_road_tariff}
                             </Link>
                         </div>
@@ -49,7 +77,13 @@ const DriversList = (props) => {
                                     Object.keys(driver.car_specs).map((opt, i) => {
                                     return (
                                         <div className='col-md-6 px-0 d-flex mb-4' key={i}>
-                                            <IconNoSmoking className='mr-2' />
+                                            {opt === "car_seat" && (<IconCarSeat className='mr-2' />) }
+                                            {opt === "smoke_allowed" && (<IconSmoking className='mr-2' />) }
+                                            {opt === "pets_allowd"  && (<IconPetStep className='mr-2' />) }
+                                            {opt === "wifi"  && (<IconWifi className='mr-2' />) }
+                                            {opt === "snacks"  && (<IconSnack className='mr-2' />) }
+                                            {opt === "air_condition"  && (<IconAC className='mr-2' />) }
+                                            {opt === "water"  && (<IconWater className='mr-2' />) }
                                             <p className='mb-0'>
                                                 {CAR_SPECS[opt]}: <span className='weight-500 text__grey-dark'>{driver.car_specs[opt]? "Yes" : "No"}</span>
                                             </p>
@@ -66,7 +100,7 @@ const DriversList = (props) => {
                                 <div className='col-md-6 px-0 d-flex mb-4'>
                                     <IconSeat className='mr-2' />
                                     <p className='mb-0'>
-                                        Seats: <span className='weight-500 text__grey-dark'>{driver.seats}</span>
+                                        Seats: <span className='weight-500 text__grey-dark'>{driver.car_seats}</span>
                                     </p>
                                 </div>
                             </div>

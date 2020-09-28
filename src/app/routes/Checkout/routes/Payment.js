@@ -2,7 +2,11 @@ import React from 'react';
 import Input from 'shared/components/Input';
 import Checkbox from 'shared/components/Checkbox';
 import { IconStar, IconCheckMarkFilled } from 'shared/components/Icons';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import actions from "actions";
+import moment from "moment";
+import _ from "lodash";
 
 const CardRegistrationForm = () => (
   <>
@@ -61,7 +65,21 @@ const CardInformation = () => (
 );
 
 const Payment = () => {
+  const dispatch = useDispatch();
   const cardExists = false;
+  const location = useLocation();
+  const checkout_info = location.state;
+  const trip_img_src = checkout_info.trip_img ? (process.env.NODE_ENV === "development"
+    ? "http://localhost:3000" + checkout_info.trip_img
+    : checkout_info.trip_img) : '';
+  const driver_img_src = checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
+
+
+  const completeCheckout = () => {
+    const body = _.omit(checkout_info,["driver_img", "trip_img", "driver_name", "car_specs", "car_full_name", "trip_location", "car_full_name", "languages", "trip_duration"])
+    dispatch(actions.confirmTripBookingCheckout(body))
+  }
+
   return (
     <>
       <div className='col-lg-5 col-xl-4 col-xxl-3 pl-0 pr-0 pr-md-4 mb-10'>
@@ -70,43 +88,43 @@ const Payment = () => {
       </div>
       <div className='col-lg-5 col-xl-4 col-xxl-3 px-0'>
         <div className='rounded__4 border-style border__default'>
-          <div className='p-4 d-flex'>
+        {trip_img_src && <div className='p-4 d-flex'>
             <img
               width='106'
               height='136'
-              src='https://upload.wikimedia.org/wikipedia/commons/c/c5/Garni_Temple_02.JPG'
-              alt='garni'
+              src={trip_img_src}
+              alt={checkout_info.trip_title}
               className='rounded__4 object-pos-center object-fit-cover mr-3'
-            />
-            <div>
-              <p className='weight-500 mb-2'>Garni Temple and Geghard Monastery</p>
+            /> }
+            {checkout_info.trip_title && <div>
+            <p className='weight-500 mb-2'>{checkout_info.trip_title}</p>
               <p className='mb-0'>
                 <span className='weight-700'>5.0</span>
                 <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
                 <span className='text-sm text__grey-dark'>(125 reviews)</span>
               </p>
-            </div>
-          </div>
+            </div>}
+          </div>}
           <hr className='border__top border__default m-0' />
           <div className='p-4'>
             <div className='d-flex justify-content-between mb-2'>
               <span className='text-sm text__grey-dark'>Day</span>
-              <span className='weight-500'>September 1</span>
+              <span className='weight-500'>{moment(checkout_info.trip_day).format('MMMM DD')}</span>
             </div>
             <div className='d-flex justify-content-between mb-2'>
               <span className='text-sm text__grey-dark'>Travelers</span>
-              <span className='weight-500'>3 Adults</span>
+              <span className='weight-500'>{checkout_info.travelers_count} Adults</span>
             </div>
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>Trip Duration</span>
-              <span className='weight-500'>8 hours</span>
+              <span className='weight-500'>{checkout_info.trip_duration} hours</span>
             </div>
           </div>
           <hr className='border__top border__default m-0' />
           <div className='p-4'>
             <div className='d-flex justify-content-between mb-2'>
               <span className='text-sm text__grey-dark'>Trip Price</span>
-              <span className='weight-500'>$44.00</span>
+              <span className='weight-500'>${parseFloat(checkout_info.price)+".00"}</span>
             </div>
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>Service Fee</span>
@@ -115,7 +133,7 @@ const Payment = () => {
             <hr className='border__top border__default my-4' />
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>Total</span>
-              <span className='weight-500'>$48.00</span>
+              <span className='weight-500'>${parseFloat(checkout_info.price+4)+".00"}</span>
             </div>
           </div>
           <hr className='border__top border__default m-0' />
@@ -125,7 +143,10 @@ const Payment = () => {
             </Link>
           </div>
         </div>
-        <Link to='/checkout/success' className='btn btn-block btn-primary text-uppercase mt-5'>
+        <Link to='/checkout/success' className='btn btn-block btn-primary text-uppercase mt-5' onClick={(e) => {
+            e.preventDefault();
+            completeCheckout();
+        }}>
           Checkout
         </Link>
       </div>
