@@ -16,7 +16,9 @@ const Drivers = ({ history }) => {
         const body = {
             date: day,
             travelers: travelers_count,
-            trip_id: 0
+            trip_id: 0,
+            offset: 0,
+            limit: 10
         };
         dispatch(actions.searchForDriversRequest(body))
     },[])

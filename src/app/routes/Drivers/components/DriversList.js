@@ -11,12 +11,27 @@ import { IconStar,
     IconCar,
     IconSeat } from 'shared/components/Icons';
 import { Link, useLocation } from 'react-router-dom';
+import {useDispatch} from "react-redux";
 import {CAR_SPECS} from "../../../../constants";
+import actions from "actions";
+import moment from "moment";
 
 
 const DriversList = (props) => {
     const drivers_list = props.driversList || [];
     const location = useLocation();
+    const dispatch = useDispatch();
+    const loadDriverList = () => {
+        const body = {
+            date: location.state.date,
+            travelers: location.state.travelers,
+            trip_id: 0,
+            offset: drivers_list.length > 10 ? drivers_list.length + 1 : 0,
+            limit: 10
+        };
+        dispatch(actions.searchForDriversRequest(body))
+    }
+
     return (<>
             <ul className='no-list-style mb-0'>
               {
@@ -56,9 +71,9 @@ const DriversList = (props) => {
                                     car_specs: driver.car_specs,
                                     price: driver.hit_the_road_tariff,
                                     languages: driver.languages,
-                                    trip_day: location.state.date,
+                                    trip_day: location.state?.date || moment().format('YYYY-MM-DD'),
                                     trip_duration: 12,
-                                    travelers_count: location.state.travelers
+                                    travelers_count: location.state?.travelers || 2
                                 }
                             }} className='btn btn-primary text-uppercase btn-xs-block'>
                                 Book for ${driver.hit_the_road_tariff}
@@ -122,7 +137,7 @@ const DriversList = (props) => {
               }
             </ul>
             <div className='text-center mt-5 mt-xl-6'>
-                <button className='btn btn-primary text-uppercase'>Load More</button>
+                <button onClick={e => loadDriverList()} className='btn btn-primary text-uppercase'>Load More</button>
             </div>
         </>
     );
