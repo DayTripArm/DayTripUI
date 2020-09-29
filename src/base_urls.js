@@ -24,7 +24,7 @@ export default {
     "getIndividualUser": `${HOST}/profile_info/{0}?profile=user_profile&user_type={1}`,
     "getCalendarSettings": `${HOST}/calendar_settings/{0}`,
     "updateCalendarSettings": `${HOST}/calendar_settings/{0}`,
-    "searchForDriver": `${HOST}/search_drivers?date={0}&travelers={1}&trip_id={2}`,
+    "searchForDriver": `${HOST}/search_drivers?date={0}&travelers={1}&trip_id={2}&offset={3}&limit={4}`,
     "confirmTripBookingCheckout": `${HOST}/booked_trips`,
   }
 }
