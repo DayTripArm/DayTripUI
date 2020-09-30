@@ -12,6 +12,7 @@ import _ from 'lodash';
 import moment from "moment";
 import actions from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
+import Api from "../../../Api";
 
 
 // const START_DATE = 'startDate';
@@ -62,10 +63,13 @@ const Calendar = () => {
     const {driverData} = useSelector(state => state);
 
     const {calendar_settings={}} = driverData;
+    const {driver_calendar={}} = driverData
     let {unavailable_days} = calendar_settings;
     if (!unavailable_days) {
         unavailable_days = [];
     }
+
+    let {calendar_info} = driver_calendar;
 
     const date = null;
     const [focused, setFocused] = useState(true);
@@ -75,8 +79,9 @@ const Calendar = () => {
     const [openDetailsModal, setOpenDetailsModal] = useState(false);
 
     useEffect (() => {
-        dispatch(actions.getCalendarSettingsRequest(Number(localStorage.id)));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+            dispatch(actions.getBookedTripsRequest(Number(localStorage.id)));
+            dispatch(actions.getCalendarSettingsRequest(Number(localStorage.id)));
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const onDateChange = (date) => {
@@ -128,7 +133,7 @@ const Calendar = () => {
         //     return list_days.some(day2 => day1.isSame(day2));
         // };
     const renderDay=(day)=> {
-        if (day.day() % 6 === 5){
+        if (calendar_info && (_.find(calendar_info, {trip_day: day.format("YYYY-MM-DD")})) ){
             return (
                 <div style={{ backgroundColor: '#FE4C30', height: '100%', color: 'white', position:'relative' }} >
                     <div style={{position:'absolute'}}><img src="https://www.iconninja.com/files/445/434/573/man-user-person-male-profile-avatar-icon.png" width="32px" height="32px"/></div>

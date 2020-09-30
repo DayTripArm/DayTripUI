@@ -17,6 +17,7 @@ export const INITIAL_STATE = {
         license_photos: [],
         profile_photos: [],
         reg_card_photos: [],
+        driver_calendar: {},
         car_seats: 4
     },
     validationList: ["car_type", "car_mark", "car_model", "car_color"]
@@ -163,6 +164,14 @@ const driverData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 validationList: _.filter(state.validationList, i => i !== name)
+            }
+        }
+
+        case actions.BOOKED_TRIPS_RECEIVE:{
+            const {data} = action;
+            return {
+                ...state,
+                driver_calendar: data
             }
         }
 

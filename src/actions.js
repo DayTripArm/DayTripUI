@@ -355,6 +355,18 @@ const actions  = {
         type: actions.CONFIRM_CHECKOUT_RECEIVE,
         body
     }),
+
+    BOOKED_TRIPS_REQUEST: `${nameSpace}_BOOKED_TRIPS_REQUEST`,
+    getBookedTripsRequest: (driver_id) => ({
+        type: actions.BOOKED_TRIPS_REQUEST,
+        driver_id
+    }),
+
+    BOOKED_TRIPS_RECEIVE: `${nameSpace}_BOOKED_TRIPS_RECEIVE`,
+    getBookedTripsReceive: (data) => ({
+        type: actions.BOOKED_TRIPS_RECEIVE,
+        data
+    }),
 };
 
 export default actions;
