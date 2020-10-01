@@ -69,7 +69,7 @@ const Calendar = () => {
         unavailable_days = [];
     }
 
-    let {calendar_info} = driver_calendar;
+    let {calendar_info, overview_trips} = driver_calendar;
 
     const date = null;
     const [focused, setFocused] = useState(true);
@@ -174,9 +174,12 @@ const Calendar = () => {
                         date={date}
                     />
 
-
-                    <h2 className='text__blue mt-9 mb-2 mt-md-13 mb-md-6 mt-xl-15'>Overview</h2>
-                    <p>March 1, 2020</p>
+                    {overview_trips &&
+                    overview_trips.map((item, src)=>(
+                     src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + item.trip.trip_image : item.trip.trip_image,
+                    <React.Fragment  key={item.id}>
+                        <h2 className='text__blue mt-9 mb-2 mt-md-13 mb-md-6 mt-xl-15'>Overview</h2>
+                    <p>{ moment(item.trip_day).format("D MMMM YYYY")}</p>
                     <div
                         className='rounded__4 border-style border__default d-md-flex justify-content-between align-items-center'>
                         <div>
@@ -184,15 +187,15 @@ const Calendar = () => {
                                 <img
                                     width='78'
                                     height='98'
-                                    src='https://upload.wikimedia.org/wikipedia/commons/c/c5/Garni_Temple_02.JPG'
-                                    alt='garni'
+                                    src={src}
+                                    alt={item.trip.title}
                                     className='rounded__4 object-pos-center object-fit-cover mr-3'
                                 />
                                 <div>
-                                    <p className='weight-500 mb-1'>Garni Temple and Geghard Monastery</p>
+                                    <p className='weight-500 mb-1'>{item.trip.title}</p>
                                     <p className='mb-1 text-xs'>
                                         <span className='weight-500'>Day:</span>{' '}
-                                        <span className='weight-500 text__grey-dark'>September 1</span>
+                                        <span className='weight-500 text__grey-dark'>{ moment(item.trip_day).format("MMMM D")}</span>
                                     </p>
                                     <p className='mb-0 text-xs'>
                                         <span className='weight-500'>Travelers:</span>{' '}
@@ -215,6 +218,7 @@ const Calendar = () => {
                             <button className='btn btn-secondary text-uppercase'>Contact Traveler</button>
                         </div>
                     </div>
+                    </React.Fragment>))}
                 </div>
             </div>
             {openSettingsModal && <SettingsModal onClose={() => setOpenSettingsModal(false)}/>}
