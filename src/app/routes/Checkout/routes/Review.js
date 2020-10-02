@@ -118,7 +118,6 @@ const Review = (props) => {
           name='notes'
           label='Notes'
           placeholder='Notes'
-          value=''
           className='h-152px'
           onChange={e => setForm({
                 ...form,

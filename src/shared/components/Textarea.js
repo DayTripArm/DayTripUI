@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 const Textarea = ({
   value,
@@ -10,11 +10,19 @@ const Textarea = ({
   message,
   className = '',
   containerClass = '',
-  onChange = () => {},
+  onChange,
   onFocus,
   onBlur,
   required,
 }) => {
+    const [inputValue, setInputValue] = useState(value);
+    const onChangeHandle = (e, name) => {
+        if (onChange) {
+            onChange(e, name);
+        }
+
+        setInputValue(e.target ? e.target.value : e);
+    };
   const setClasses = () => {
     let classes = [];
     if (className) classes.push(className);
@@ -23,6 +31,9 @@ const Textarea = ({
     if (isSuccess) classes.push('is-success');
     return classes.join(' ');
   };
+  useEffect(() => {
+    setInputValue(value);
+  }, [value]);
   return (
     <div className={`form-field ${containerClass}`}>
       {label && (
@@ -34,8 +45,8 @@ const Textarea = ({
         <textarea
           id={name}
           placeholder={placeholder}
-          value={value}
-          onChange={onChange}
+          value={inputValue}
+          onChange={onChangeHandle}
           onFocus={onFocus}
           onBlur={onBlur}
           className={setClasses()}
