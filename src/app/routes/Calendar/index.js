@@ -4,6 +4,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { IconSetting } from 'shared/components/Icons';
 import TripDetailsModal from '../Messaging/components/TripDetailsModal';
 import SettingsModal from './components/SettingsModal';
+import BookedTripItem from './components/BookedTripItem';
 import { DayPickerSingleDateController } from 'react-dates';
 //import isInclusivelyAfterDay from 'react-dates/src/utils/isInclusivelyAfterDay';
 import './react-date-custom-style.css';
@@ -12,7 +13,6 @@ import _ from 'lodash';
 import moment from "moment";
 import actions from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
-import Api from "../../../Api";
 
 
 // const START_DATE = 'startDate';
@@ -74,6 +74,7 @@ const Calendar = () => {
     const date = null;
     const [focused, setFocused] = useState(true);
     const [blocked, setBlocked] = useState([]);
+    const [tab, setTab] = useState(1);
 
     const [openSettingsModal, setOpenSettingsModal] = useState(false);
     const [openDetailsModal, setOpenDetailsModal] = useState(false);
@@ -174,51 +175,34 @@ const Calendar = () => {
                         date={date}
                     />
 
-                    {overview_trips &&
-                    overview_trips.map((item, src)=>(
-                     src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + item.trip.trip_image : item.trip.trip_image,
-                    <React.Fragment  key={item.id}>
-                        <h2 className='text__blue mt-9 mb-2 mt-md-13 mb-md-6 mt-xl-15'>Overview</h2>
-                    <p>{ moment(item.trip_day).format("D MMMM YYYY")}</p>
-                    <div
-                        className='rounded__4 border-style border__default d-md-flex justify-content-between align-items-center'>
-                        <div>
-                            <div className='px-4 pt-4 pb-11 pt-md-5 pb-md-5 px-md-5 d-flex position-relative'>
-                                <img
-                                    width='78'
-                                    height='98'
-                                    src={src}
-                                    alt={item.trip.title}
-                                    className='rounded__4 object-pos-center object-fit-cover mr-3'
-                                />
-                                <div>
-                                    <p className='weight-500 mb-1'>{item.trip.title}</p>
-                                    <p className='mb-1 text-xs'>
-                                        <span className='weight-500'>Day:</span>{' '}
-                                        <span className='weight-500 text__grey-dark'>{ moment(item.trip_day).format("MMMM D")}</span>
-                                    </p>
-                                    <p className='mb-0 text-xs'>
-                                        <span className='weight-500'>Travelers:</span>{' '}
-                                        <span className='weight-500 text__grey-dark'>3 Adults</span>
-                                    </p>
-                                    <div className='cancelation-container d-inline-block text-center py-2 py-md-0'>
-                                        <button className='btn btn-secondary btn-sm'>Cancelation</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr className='border__top border__default my-0'/>
-                        <div className='py-3 d-flex flex-column flex-lg-row align-items-center pr-lg-5'>
-                            <button
-                                className='btn btn-secondary btn-secondary__grey text-uppercase mb-1'
-                                onClick={() => setOpenDetailsModal(true)}
+                    <h2 className='text__blue mb-0 mt-6 mb-5 mt-md-9 mb-md-9 mt-xl-11 mt-xxl-13'>Overview</h2>
+                    <div className='tabs mb-6'>
+                        <ul className='no-list-style mb-3 mb-lg-0 clearfix'>
+                            <li
+                                className={tab === 1 ? 'active' : ''}
+                                onClick={() => setTab(1)}
+                                role='presentation'
                             >
-                                Details
-                            </button>
-                            <button className='btn btn-secondary text-uppercase'>Contact Traveler</button>
-                        </div>
+                                Upcoming Trips
+                            </li>
+                            <li
+                                className={tab === 2 ? 'active' : ''}
+                                onClick={() => setTab(2)}
+                                role='presentation'
+                            >
+                                Past Trips
+                            </li>
+                        </ul>
                     </div>
-                    </React.Fragment>))}
+                    {tab === 1 &&  overview_trips && overview_trips.map((item) => {
+                        return (moment(item.trip_day).isAfter(moment(), 'day') &&
+                            <BookedTripItem key={item.id} item={item} onOpenSettingsModal={() => setOpenSettingsModal(true)}/>)
+                    })}
+                    {tab === 2 &&  overview_trips && overview_trips.map((item) => {
+                        return (moment(item.trip_day).isBefore(moment(), 'day') &&
+                            <BookedTripItem key={item.id} item={item} onOpenSettingsModal={() => setOpenSettingsModal(true)}/>)
+                    })}
+
                 </div>
             </div>
             {openSettingsModal && <SettingsModal onClose={() => setOpenSettingsModal(false)}/>}
