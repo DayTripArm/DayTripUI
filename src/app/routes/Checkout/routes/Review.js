@@ -35,9 +35,9 @@ const Review = (props) => {
     const [form, setForm] = useState({pickup_time: "", pickup_location: "", notes: ""});
 
     const checkout_info = locate.state;
-    const trip_img_src = checkout_info.trip_img ? (process.env.NODE_ENV === "development"
+    const trip_img_src =  process.env.NODE_ENV === "development"
         ? "http://localhost:3000" + checkout_info.trip_img
-        : checkout_info.trip_img) : '';
+        : checkout_info.trip_img;
     const driver_img_src = checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
 
    //  Validate checkout form
@@ -133,7 +133,7 @@ const Review = (props) => {
       </div>
       <div className='col-lg-5 col-xl-4 col-xxl-3 px-0'>
         <div className='rounded__4 border-style border__default'>
-        {trip_img_src && <div className='p-4 d-flex'>
+         <div className='p-4 d-flex'>
             <img
               width='106'
               height='136'
@@ -141,15 +141,15 @@ const Review = (props) => {
               alt={checkout_info.trip_title}
               className='rounded__4 object-pos-center object-fit-cover mr-3'
             />
-            {checkout_info.trip_title && <div>
+            <div>
               <p className='weight-500 mb-2'>{checkout_info.trip_title}</p>
               <p className='mb-0'>
                 <span className='weight-700'>5.0</span>
                 <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
                 <span className='text-sm text__grey-dark'>(125 reviews)</span>
               </p>
-            </div> }
-          </div> }
+            </div>
+          </div>
           <hr className='border__top border__default m-0' />
           <div className='p-4'>
             <div className='d-flex justify-content-between mb-2'>

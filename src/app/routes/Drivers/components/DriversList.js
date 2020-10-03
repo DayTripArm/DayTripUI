@@ -10,17 +10,22 @@ import { IconStar,
     IconAC,
     IconCar,
     IconSeat } from 'shared/components/Icons';
+import ModalLogin from 'app/components/modals/ModalLogin';
 import { Link, useLocation } from 'react-router-dom';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import { useHistory } from "react-router";
 import {CAR_SPECS} from "../../../../constants";
 import actions from "actions";
 import moment from "moment";
 
 
 const DriversList = (props) => {
-    const drivers_list = props.driversList || [];
+    const drivers_list = props.driversList || []
+    const {travelerData} = useSelector(state => state);
+    const {profile} = travelerData;
     const location = useLocation();
     const dispatch = useDispatch();
+    const history = useHistory();
     const loadDriverList = () => {
         const body = {
             date: location.state.date,
@@ -31,12 +36,44 @@ const DriversList = (props) => {
         };
         dispatch(actions.searchForDriversRequest(body))
     }
+    const {
+        showSignIn,
+        showSignUp,
+    } = travelerData;
+
+    const bookTrip = (e, driver) => {
+        e.preventDefault(driver);
+        const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + driver.profile_photos.full_path : driver.profile_photos.full_path;
+        if (localStorage.id) {
+            history.push({
+                pathname: '/checkout/review',
+                state: {
+                    driver_id: driver.id,
+                    traveler_id: Number(localStorage.id),
+                    trip_id: null,
+                    driver_img: src,
+                    trip_title: driver.trip_title ? driver.trip_title: "Hit the road "+(profile.name ? profile.name : ''),
+                    trip_img: location.state?.hit_the_road_img || '',
+                    driver_name: driver.driver_name,
+                    car_full_name: driver.car_full_name,
+                    car_specs: driver.car_specs,
+                    price: driver.hit_the_road_tariff,
+                    languages: driver.languages,
+                    trip_day: location.state?.date || moment().format('YYYY-MM-DD'),
+                    trip_duration: 12,
+                    travelers_count: location.state?.travelers || 2
+                }
+            });
+        } else {
+            !showSignUp && dispatch(actions.showHideSignIn(true))
+        }
+    }
 
     return (<>
             <ul className='no-list-style mb-0'>
               {
                 drivers_list.map((driver, i) => {
-                const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + driver.profile_photos.full_path : driver.profile_photos.full_path;
+            const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + driver.profile_photos.full_path : driver.profile_photos.full_path;
                 return (
                   <li className='mb-2 mb-md-4 mb-xl-5' key={i}>
                     <div className='rounded__4 border-style border__default'>
@@ -58,26 +95,9 @@ const DriversList = (props) => {
                                     </p>
                                 </div>
                             </div>
-                            <Link to={{
-                                pathname: '/checkout/review',
-                                state: {
-                                    driver_id: driver.id,
-                                    traveler_id: Number(localStorage.id),
-                                    trip_id: null,
-                                    driver_img: src,
-                                    trip_img: null,
-                                    driver_name: driver.driver_name,
-                                    car_full_name: driver.car_full_name,
-                                    car_specs: driver.car_specs,
-                                    price: driver.hit_the_road_tariff,
-                                    languages: driver.languages,
-                                    trip_day: location.state?.date || moment().format('YYYY-MM-DD'),
-                                    trip_duration: 12,
-                                    travelers_count: location.state?.travelers || 2
-                                }
-                            }} className='btn btn-primary text-uppercase btn-xs-block'>
+                            <button onClick={(e) => bookTrip(e, driver)} className='btn btn-primary text-uppercase btn-xs-block'>
                                 Book for ${driver.hit_the_road_tariff}
-                            </Link>
+                            </button>
                         </div>
                         <div className='pt-5 px-4 pb-4 pb-md-5'>
                             <div className='d-md-flex flex-wrap'>
@@ -139,6 +159,7 @@ const DriversList = (props) => {
             <div className='text-center mt-5 mt-xl-6'>
                 <button onClick={e => loadDriverList()} className='btn btn-primary text-uppercase'>Load More</button>
             </div>
+            {showSignIn && <ModalLogin onClose={() => dispatch(actions.showHideSignIn(false))} />}
         </>
     );
 }

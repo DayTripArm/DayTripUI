@@ -79,7 +79,8 @@ const SearchDriver = () => {
                     pathname: '/drivers',
                     state: {
                         date: form.date,
-                        travelers: form.travelers
+                        travelers: form.travelers,
+                        hit_the_road_img: image.url
                     },
                 })
             } catch (e) {
