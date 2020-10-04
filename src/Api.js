@@ -152,8 +152,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    getBookedTrips(driver_id) {
-        return axios.get(template(base_urls.day_trip.getBookedTrips, driver_id), { handlesError: [400, 417, 500] })
+    getBookedTrips(driver_id, user_type) {
+        return axios.get(template(base_urls.day_trip.getBookedTrips, driver_id, user_type), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },

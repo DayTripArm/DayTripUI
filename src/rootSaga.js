@@ -473,8 +473,8 @@ function* confirmTripBookingCheckout(action) {
 
 function* getBookedTripsRequest(action) {
     try {
-        const {driver_id} = action;
-        const {response, error} = yield call(Api.getBookedTrips, Number(driver_id));
+        const {driver_id, user_type} = action;
+        const {response, error} = yield call(Api.getBookedTrips, Number(driver_id), Number(user_type));
         if (response) {
             yield put(actions.getBookedTripsReceive(response.data));
         } else {

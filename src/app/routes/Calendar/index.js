@@ -80,7 +80,7 @@ const Calendar = () => {
     const [openDetailsModal, setOpenDetailsModal] = useState(false);
 
     useEffect (() => {
-            dispatch(actions.getBookedTripsRequest(Number(localStorage.id)));
+            dispatch(actions.getBookedTripsRequest(Number(localStorage.id), Number(localStorage.userType)));
             dispatch(actions.getCalendarSettingsRequest(Number(localStorage.id)));
             // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

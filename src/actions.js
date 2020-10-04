@@ -357,9 +357,10 @@ const actions  = {
     }),
 
     BOOKED_TRIPS_REQUEST: `${nameSpace}_BOOKED_TRIPS_REQUEST`,
-    getBookedTripsRequest: (driver_id) => ({
+    getBookedTripsRequest: (driver_id, user_type) => ({
         type: actions.BOOKED_TRIPS_REQUEST,
-        driver_id
+        driver_id,
+        user_type
     }),
 
     BOOKED_TRIPS_RECEIVE: `${nameSpace}_BOOKED_TRIPS_RECEIVE`,
