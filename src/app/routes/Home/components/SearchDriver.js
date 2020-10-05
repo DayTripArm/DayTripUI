@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { IconQuestionOutlined } from 'shared/components/Icons';
 import ModalAside from 'shared/components/ModalAside';
 import Input from 'shared/components/Input';
-import DatePicker from './DatePicker';
+import DatePicker from 'shared/components/DatePicker';
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { Link } from 'react-router-dom';
