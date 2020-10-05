@@ -35,9 +35,6 @@ const Review = (props) => {
     const [form, setForm] = useState({pickup_time: "", pickup_location: "", notes: ""});
 
     const checkout_info = locate.state;
-    const trip_img_src =  process.env.NODE_ENV === "development"
-        ? "http://localhost:3000" + checkout_info.trip_img
-        : checkout_info.trip_img;
     const driver_img_src = checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
 
    //  Validate checkout form
@@ -137,7 +134,7 @@ const Review = (props) => {
             <img
               width='106'
               height='136'
-              src={trip_img_src}
+              src={checkout_info.trip_img}
               alt={checkout_info.trip_title}
               className='rounded__4 object-pos-center object-fit-cover mr-3'
             />

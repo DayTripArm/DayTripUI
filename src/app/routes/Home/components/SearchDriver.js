@@ -80,7 +80,7 @@ const SearchDriver = () => {
                     state: {
                         date: form.date,
                         travelers: form.travelers,
-                        hit_the_road_img: image.url
+                        trip_id: null
                     },
                 })
             } catch (e) {

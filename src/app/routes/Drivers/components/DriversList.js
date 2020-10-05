@@ -19,8 +19,7 @@ import actions from "actions";
 import moment from "moment";
 
 
-const DriversList = (props) => {
-    const drivers_list = props.driversList || []
+const DriversList = ({drivers_list,trip_details}) => {
     const {travelerData} = useSelector(state => state);
     const {profile} = travelerData;
     const location = useLocation();
@@ -30,7 +29,7 @@ const DriversList = (props) => {
         const body = {
             date: location.state.date,
             travelers: location.state.travelers,
-            trip_id: 0,
+            trip_id: trip_details?.trip_id || null,
             offset: drivers_list.length > 10 ? drivers_list.length + 1 : 0,
             limit: 10
         };
@@ -44,23 +43,26 @@ const DriversList = (props) => {
     const bookTrip = (e, driver) => {
         e.preventDefault(driver);
         const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + driver.profile_photos.full_path : driver.profile_photos.full_path;
+        const trip_img = trip_details.images ? trip_details.images[0].url : trip_details.image.url
+        const trip_img_src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + trip_img : trip_img;
+
         if (localStorage.id) {
             history.push({
                 pathname: '/checkout/review',
                 state: {
                     driver_id: driver.id,
                     traveler_id: Number(localStorage.id),
-                    trip_id: null,
+                    trip_id: location.state?.trip_id || null,
                     driver_img: src,
-                    trip_title: driver.trip_title ? driver.trip_title: "Hit the road "+(profile.name ? profile.name : ''),
-                    trip_img: location.state?.hit_the_road_img || '',
+                    trip_title: location.state?.trip_id ? trip_details.title: "Hit the road "+(profile.name ? profile.name : ''),
+                    trip_img: trip_img_src,
                     driver_name: driver.driver_name,
                     car_full_name: driver.car_full_name,
                     car_specs: driver.car_specs,
-                    price: driver.hit_the_road_tariff,
+                    price: location.state?.trip_id ? driver.tariff1 : driver.hit_the_road_tariff,
                     languages: driver.languages,
                     trip_day: location.state?.date || moment().format('YYYY-MM-DD'),
-                    trip_duration: 12,
+                    trip_duration: trip_details.trip_duration || 12,
                     travelers_count: location.state?.travelers || 2
                 }
             });
@@ -73,7 +75,7 @@ const DriversList = (props) => {
             <ul className='no-list-style mb-0'>
               {
                 drivers_list.map((driver, i) => {
-            const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + driver.profile_photos.full_path : driver.profile_photos.full_path;
+                const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + driver.profile_photos.full_path : driver.profile_photos.full_path;
                 return (
                   <li className='mb-2 mb-md-4 mb-xl-5' key={i}>
                     <div className='rounded__4 border-style border__default'>
@@ -83,7 +85,7 @@ const DriversList = (props) => {
                                     width='56'
                                     height='56'
                                     src={src}
-                                    alt='user'
+                                    alt={driver.driver_name}
                                     className='rounded__50 object-pos-center object-fit-cover mr-3'
                                 />
                                 <div>
@@ -96,7 +98,7 @@ const DriversList = (props) => {
                                 </div>
                             </div>
                             <button onClick={(e) => bookTrip(e, driver)} className='btn btn-primary text-uppercase btn-xs-block'>
-                                Book for ${driver.hit_the_road_tariff}
+                                Book for ${location.state?.trip_id ? driver.tariff1 : driver.hit_the_road_tariff}
                             </button>
                         </div>
                         <div className='pt-5 px-4 pb-4 pb-md-5'>

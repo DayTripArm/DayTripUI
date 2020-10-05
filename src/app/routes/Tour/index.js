@@ -3,7 +3,7 @@ import TourIllustration from './components/TourIllustration';
 import { IconStar, IconClockOutlined, IconDestination } from 'shared/components/Icons';
 import Destinations from './components/Destinations';
 import Reviews from '../Individuals/routes/Driver/components/Reviews';
-// import SearchPanel from './components/SearchPanel';
+import SearchPanel from './components/SearchPanel';
 import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../actions";
@@ -101,7 +101,7 @@ const Tour = ({ history }) => {
                     </div>
                 </div>
             </div>
-            {/*<SearchPanel />*/}
+            <SearchPanel trip_detail={trip_detail.trip || {}} />
         </>
     );
 };

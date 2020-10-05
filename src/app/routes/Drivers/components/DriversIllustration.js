@@ -1,21 +1,25 @@
 import React from 'react';
 import { IconArrowLeft } from 'shared/components/Icons';
 
-const DriversIllustration = ({ history }) => (
-  <div className='drivers-illustration box-overlay'>
-    <img
-      src='https://upload.wikimedia.org/wikipedia/commons/c/c5/Garni_Temple_02.JPG'
-      alt='garni'
-      className='w-100 h-100 object-pos-center object-fit-cover'
-    />
-    <div className='overlay'>
-      <div className='container pt-4 pt-xl-5'>
-        <button className='back-btn btn btn-circle border-0' onClick={() => history.goBack()}>
-          <IconArrowLeft />
-        </button>
-      </div>
-    </div>
-  </div>
-);
+const DriversIllustration = ({ history, trip_details}) => {
+    const trip_img = trip_details.images ? trip_details.images[0].url : trip_details.image.url
+    const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + trip_img : trip_img;
+    return (
+        <div className='drivers-illustration box-overlay'>
+            <img
+                src={src}
+                alt={trip_details.title}
+                className='w-100 h-100 object-pos-center object-fit-cover'
+            />
+            <div className='overlay'>
+                <div className='container pt-4 pt-xl-5'>
+                    <button className='back-btn btn btn-circle border-0' onClick={() => history.goBack()}>
+                        <IconArrowLeft />
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+}
 
 export default DriversIllustration;
