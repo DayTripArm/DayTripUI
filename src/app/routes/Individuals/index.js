@@ -7,6 +7,7 @@ import Driver from './routes/Driver';
 import User from './routes/User';
 
 const Individuals = ({ match }) => {
+
     return (
         <Switch>
             <Route path={`${match.path}/driver`} component={Driver}/>

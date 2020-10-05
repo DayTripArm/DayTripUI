@@ -158,4 +158,10 @@ export default {
             .catch(error => ({error}) );
     },
 
+    getBookedTrip(booked_id) {
+        return axios.get(template(base_urls.day_trip.getBookedTrip, booked_id), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
 }

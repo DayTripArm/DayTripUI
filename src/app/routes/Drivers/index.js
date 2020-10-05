@@ -12,7 +12,6 @@ const Drivers = ({ history }) => {
     const day = history.location.state?.date;
     const travelers_count = history.location.state?.travelers;
     const trip_id = history.location.state?.trip_id || null;
-    const trip_img = history.location.state?.trip_image || 0;
 
     useEffect(() => {
         const body = {
@@ -24,7 +23,8 @@ const Drivers = ({ history }) => {
         };
 
         dispatch(actions.searchForDriversRequest(body))
-    },[])
+    },[]);
+
     const {travelerData} = useSelector(state => state);
     const {search_for_drivers} = travelerData;
     const {drivers_list, trip_details} = search_for_drivers;

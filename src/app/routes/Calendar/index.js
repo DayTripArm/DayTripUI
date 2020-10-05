@@ -6,7 +6,6 @@ import TripDetailsModal from '../Messaging/components/TripDetailsModal';
 import SettingsModal from './components/SettingsModal';
 import BookedTripItem from './components/BookedTripItem';
 import { DayPickerSingleDateController } from 'react-dates';
-//import isInclusivelyAfterDay from 'react-dates/src/utils/isInclusivelyAfterDay';
 import './react-date-custom-style.css';
 
 import _ from 'lodash';
@@ -15,8 +14,6 @@ import actions from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
 
 
-// const START_DATE = 'startDate';
-// const END_DATE = 'endDate';
 const HORIZONTAL_ORIENTATION = 'horizontal';
 const defaultProps = {
     // example props for the demo
@@ -62,8 +59,8 @@ const Calendar = () => {
     const dispatch = useDispatch();
     const {driverData} = useSelector(state => state);
 
-    const {calendar_settings={}} = driverData;
-    const {driver_calendar={}} = driverData
+    const {calendar_settings={}, driver_calendar={}} = driverData;
+
     let {unavailable_days} = calendar_settings;
     if (!unavailable_days) {
         unavailable_days = [];
@@ -88,21 +85,41 @@ const Calendar = () => {
     const onDateChange = (date) => {
         const date_string = moment(date).format('YYYY-MM-DD');
         const blocked_list = blocked;
+        const booked_day_list = _.reduce(calendar_info, (memo, obj) => {
+            memo.push(obj.trip_day);
+
+            return memo;
+        }, []);
         let list = [];
 
-        if (_.includes(blocked_list, date_string)) { // remove
-            list = _.filter(blocked_list, date => date !== date_string)
-        } else {
-            list = [...blocked, moment(date).format('YYYY-MM-DD')]
+        // ****************************************************
+        // on calendar booked trip click
+        if (_.includes(booked_day_list, date_string)) {
+            const booked_obj = _.find(calendar_info, item => item.trip_day === date_string);
+
+            onBookedTripClick(booked_obj.id, booked_obj.traveler_id);
+        } else { // *********************************** block/unblock part
+            if (_.includes(blocked_list, date_string)) {
+                list = _.filter(blocked_list, date => date !== date_string)
+            } else {
+                list = [...blocked, moment(date).format('YYYY-MM-DD')]
+            }
+
+            let settings_obj = {
+                driver_id: Number(localStorage.id),
+                day: date_string
+            };
+            dispatch(actions.updateCalendarSettingsRequest(Number(localStorage.id), settings_obj));
+
+            setBlocked(list);
         }
+    };
 
-        let settings_obj = {
-            driver_id: Number(localStorage.id),
-            day: date_string
-        };
-        dispatch(actions.updateCalendarSettingsRequest(Number(localStorage.id), settings_obj));
+    const onBookedTripClick = (booked_id, traveler_id) => {
+        dispatch(actions.getBookedTripRequest(booked_id));
+        dispatch(actions.bookedProfileInfoRequest(traveler_id));
 
-        setBlocked(list);
+        setOpenDetailsModal(true);
     };
 
     const onFocusChange = () => {
@@ -110,34 +127,21 @@ const Calendar = () => {
         setFocused(true);
     };
 
-
-    // const { showInput } = defaultProps;
-    //const { focused, date } = this.state;
-
-    //const {availability_window, unavailable_days} = useSelector(state => state);
     const props = _.omit(defaultProps, [
         'autoFocus',
         'initialDate',
         'showInput',
     ]);
 
-        //const dateString = date && date.format('YYYY-MM-DD');
-
-        // const startDateString = startDate && startDate.format('YYYY-MM-DD');
-        // const endDateString = endDate && endDate.format('YYYY-MM-DD');
-
     const isBlocked = (day) => {
         return unavailable_days.some(date => day.isSame(date), 'day');
     };
 
-        // const isHiglighted = (day1) => {
-        //     return list_days.some(day2 => day1.isSame(day2));
-        // };
     const renderDay=(day)=> {
         if (calendar_info && (_.find(calendar_info, {trip_day: day.format("YYYY-MM-DD")})) ){
             return (
                 <div style={{ backgroundColor: '#FE4C30', height: '100%', color: 'white', position:'relative' }} >
-                    <div style={{position:'absolute'}}><img src="https://www.iconninja.com/files/445/434/573/man-user-person-male-profile-avatar-icon.png" width="32px" height="32px"/></div>
+                    <div style={{position:'absolute'}}><img alt="" src="https://www.iconninja.com/files/445/434/573/man-user-person-male-profile-avatar-icon.png" width="32px" height="32px"/></div>
                     <span >{day.format('D')}</span>
 
                 </div>
@@ -165,7 +169,7 @@ const Calendar = () => {
 
                     <DayPickerSingleDateController
                         {...props}
-                        daySize={78, 69}
+                        daySize={69}
                         onDateChange={onDateChange}
                         onFocusChange={onFocusChange}
                         focused={focused}
@@ -196,11 +200,11 @@ const Calendar = () => {
                     </div>
                     {tab === 1 &&  overview_trips && overview_trips.map((item) => {
                         return (moment(item.trip_day).isAfter(moment(), 'day') &&
-                            <BookedTripItem key={item.id} item={item} onOpenSettingsModal={() => setOpenSettingsModal(true)}/>)
+                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.traveler_id)} />)
                     })}
                     {tab === 2 &&  overview_trips && overview_trips.map((item) => {
                         return (moment(item.trip_day).isBefore(moment(), 'day') &&
-                            <BookedTripItem key={item.id} item={item} onOpenSettingsModal={() => setOpenSettingsModal(true)}/>)
+                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.traveler_id)} />)
                     })}
 
                 </div>

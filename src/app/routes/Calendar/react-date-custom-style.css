@@ -9,11 +9,8 @@
 .CalendarDay__default span{
     position: absolute;
     bottom: 2%;
-    right: 2%;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
+    right: 12%;
+    font-size: 16px;
     line-height: 30px;
 }
 .CalendarDay__blocked_calendar span{

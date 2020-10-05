@@ -485,6 +485,39 @@ function* getBookedTripsRequest(action) {
     }
 }
 
+function* getBookedTripRequest(action) {
+    const {booked_id} = action;
+
+    try {
+        const {response, error} = yield call(Api.getBookedTrip, Number(booked_id));
+        if (response) {
+            yield put(actions.getBookedTripReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* bookedProfileInfoRequest(action) {
+    const {id} = action;
+
+    const driverState = yield select(driverDataState);
+    const {profile} = driverState;
+
+    try {
+        const {response, error} = yield call(Api.getIndividualUser, Number(id), profile.user_type === 2 ? Number(1) : Number(2));
+        if (response) {
+            yield put(actions.bookedProfileInfoReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -510,6 +543,8 @@ function* watcherSaga() {
     yield takeEvery(actions.DRIVERS_LIST_REQUEST, driversListRequest);
     yield takeEvery(actions.CONFIRM_CHECKOUT_RECEIVE, confirmTripBookingCheckout);
     yield takeEvery(actions.BOOKED_TRIPS_REQUEST, getBookedTripsRequest);
+    yield takeEvery(actions.BOOKED_TRIP_REQUEST, getBookedTripRequest);
+    yield takeEvery(actions.BOOKED_PROFILE_INFO_REQUEST, bookedProfileInfoRequest);
 }
 
 export default function* root() {

@@ -4,7 +4,6 @@ import { IconStar } from 'shared/components/Icons';
 import Input from 'shared/components/Input';
 import DatePicker from 'shared/components/DatePicker';
 import { Link } from 'react-router-dom';
-import {useSelector} from "react-redux";
 import { useHistory } from "react-router";
 import _ from "lodash";
 import moment from "moment";
