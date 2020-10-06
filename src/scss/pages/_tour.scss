@@ -47,3 +47,14 @@
     }
   }
 }
+.tour_calendar_wrapper {
+    position: absolute;
+    bottom: 75px;
+    z-index: 999;
+    @include media-breakpoint-between(lg,xl) {
+        right: 27.3%;
+    }
+    @include media-breakpoint-between(xl,xxl) {
+        right: 22%;
+    }
+}

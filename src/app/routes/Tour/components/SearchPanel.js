@@ -92,33 +92,34 @@ const SearchPanel = ({trip_detail}) => {
             </div>
             <div className='d-flex justify-content-end flex-fill'>
               <div className='d-none d-md-flex flex-fill justify-content-lg-end'>
-              <Input
-                type='text'
-                name='date'
-                value={form.date}
-                placeholder='Select your Date'
-                isError={getStatusMessage("date")  || false}
-                onFocus={() => setShowDatePicker(!showDatePicker)}
-                containerClass='mb-0 mr-3 mnw-0 w-156px'
-              />
-              <div className="calendar_wrapper">
-                {showDatePicker && ( <DatePicker onDateChange={(date) => onDaySelect(date)} />)}
-              </div>
-              <Input
-                type='number'
-                name='travelers'
-                placeholder='Count'
-                isError={getStatusMessage("travelers") || false}
-                containerClass='mb-0 mr-3 mnw-0 w-156px'
-                itemClass="htr_item"
-                onChange={e => setForm({
-                    ...form,
-                    travelers: e.target.value
-                })}
-                hideApperance
-              />
+                <div className="tour_calendar_wrapper">
+                   {showDatePicker && ( <DatePicker onDateChange={(date) => onDaySelect(date)} />)}
+                </div>
+                <Input
+                    type='text'
+                    name='date'
+                    value={form.date}
+                    placeholder='Select your Date'
+                    isError={getStatusMessage("date")  || false}
+                    onFocus={() => setShowDatePicker(!showDatePicker)}
+                    containerClass='mb-0 mr-3 mnw-0 w-156px'
+                />
+                <Input
+                    type='number'
+                    name='travelers'
+                    placeholder='Count'
+                    isError={getStatusMessage("travelers") || false}
+                    containerClass='mb-0 mr-3 mnw-0 w-156px'
+                    itemClass="htr_item"
+                    onChange={e => setForm({
+                        ...form,
+                        travelers: e.target.value
+                    })}
+                    hideApperance
+               />
 
               </div>
+
               <Link to='/drivers' className='btn btn-primary text-uppercase btn-xs-block' onClick={(e) => {
                  e.preventDefault();
                  searchDriver();
