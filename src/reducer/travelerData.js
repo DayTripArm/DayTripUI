@@ -11,7 +11,8 @@ export const INITIAL_STATE = {
     search_for_drivers: {},
     trip_detail: {},
     saved_trips: [],
-    hit_the_road: {}
+    hit_the_road: {},
+    booked_trips: {}
 };
 
 const travelerData = (state = INITIAL_STATE, action) => {
@@ -162,6 +163,14 @@ const travelerData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 trip_detail: data || {}
+            }
+        }
+
+        case actions.BOOKED_TRIPS_RECEIVE:{
+            const {data} = action;
+            return {
+                ...state,
+                booked_trips: data
             }
         }
 

@@ -195,7 +195,7 @@ const Calendar = () => {
                         </ul>
                     </div>
                     {tab === 1 &&  overview_trips && overview_trips.map((item) => {
-                        return (moment(item.trip_day).isAfter(moment(), 'day') &&
+                        return (moment(item.trip_day).isSameOrAfter(moment(), 'day') &&
                             <BookedTripItem key={item.id} item={item} onOpenSettingsModal={() => setOpenSettingsModal(true)}/>)
                     })}
                     {tab === 2 &&  overview_trips && overview_trips.map((item) => {
