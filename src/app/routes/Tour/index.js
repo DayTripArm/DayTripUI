@@ -16,6 +16,15 @@ const Tour = ({ history }) => {
     const {travelerData} = useSelector(state => state);
     const {trip_detail={}} = travelerData;
 
+    const {location:history_location={}} = history;
+    let {state:history_state={}} = history_location;
+
+    if (!history_state) history_state={};
+
+    const {
+        booked_trip=false,
+    } = history_state;
+
     const {
         id,
         title,
@@ -37,7 +46,7 @@ const Tour = ({ history }) => {
 
     return (
         <>
-            <TourIllustration history={history} isSaved={is_saved} id={id} images={images} />
+            <TourIllustration booked_trip={booked_trip} history={history} isSaved={is_saved} id={id} images={images} />
             <div className='rounded-top__30 bg-white pull-t-9 position-relative mb-10 mb-md-13 mb-xxl-15'>
                 <div className='container pt-6 pt-md-8 pt-xl-11'>
                     <div className='row'>
@@ -101,7 +110,7 @@ const Tour = ({ history }) => {
                     </div>
                 </div>
             </div>
-            <SearchPanel trip_detail={trip_detail.trip || {}} />
+            {!booked_trip && <SearchPanel trip_detail={trip_detail.trip || {}} />}
         </>
     );
 };

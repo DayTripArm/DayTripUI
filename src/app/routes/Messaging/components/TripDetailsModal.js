@@ -32,24 +32,33 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
         );
     };
 
+    const moreAbout = () => {
+        history.push(`/tour/${trip_tour.id}`,
+             {
+                booked_trip: true,
+                from: "driver"
+            }
+        );
+    };
+
     return (
         <ModalAside title={title} onClose={onClose}>
             {!_.isEmpty(trip_tour) &&
             <>
                 <div className='d-flex align-items-center justify-content-between mb-5'>
                     <h4 className='mb-0 text__grey-dark'>Trip Tour</h4>
-                    <button className='btn btn-secondary btn-sm'>More About</button>
+                    <button className='btn btn-secondary btn-sm' onClick={() => moreAbout()}>More About</button>
                 </div>
                 <div className='d-flex'>
                     <img
                         width='106'
                         height='136'
-                        src='https://upload.wikimedia.org/wikipedia/commons/c/c5/Garni_Temple_02.JPG'
+                        src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + trip_tour.image: trip_tour.image}
                         alt='garni'
                         className='rounded__4 object-pos-center object-fit-cover mr-2'
                     />
                     <div>
-                        <p className='weight-500 mb-2'>Garni Temple and Geghard Monastery</p>
+                        <p className='weight-500 mb-2'>{trip_tour.title}</p>
                         <p className='mb-0'>
                             <span className='weight-700'>5.0</span>
                             <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
@@ -62,7 +71,7 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
             }
             <div className='d-flex align-items-center justify-content-between mb-5'>
                 <h4 className='mb-0 text__grey-dark'>Trip Info</h4>
-                <button className='btn btn-secondary btn-sm'>Edit</button>
+                {/*<button className='btn btn-secondary btn-sm'>Edit</button>*/}
             </div>
             <div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
@@ -89,7 +98,7 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
             <hr className='border__top border__default my-4'/>
             <div className='d-flex align-items-center justify-content-between mb-5'>
                 <h4 className='mb-0 text__grey-dark'>Pick Up Info</h4>
-                <button className='btn btn-secondary btn-sm'>Edit</button>
+                {/*<button className='btn btn-secondary btn-sm'>Edit</button>*/}
             </div>
             <div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
@@ -122,7 +131,7 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
                     className='rounded__50 object-pos-center object-fit-cover mr-3'
                 />
                 <div>
-                    <p className='weight-500 pt-1 mb-0'>{traveler_info.name}</p>
+                    <p className='weight-500 pt-1 mb-0'>{traveler_info.user_name}</p>
                     <p className='mb-0'>
                         <span className='weight-700'>5.0</span>
                         <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
