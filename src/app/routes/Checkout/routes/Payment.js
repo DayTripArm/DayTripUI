@@ -69,13 +69,13 @@ const Payment = () => {
   const cardExists = false;
   const location = useLocation();
   const checkout_info = location.state;
-  const driver_img_src = checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
+  // const driver_img_src = checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
 
 
   const completeCheckout = () => {
-    const body = _.omit(checkout_info,["driver_img", "trip_img", "driver_name", "car_specs", "car_full_name", "trip_location", "car_full_name", "languages", "trip_duration"])
+    const body = _.omit(checkout_info,["driver_img", "trip_img", "driver_name", "car_specs", "car_full_name", "trip_location", "car_full_name", "languages", "trip_duration"]);
     dispatch(actions.confirmTripBookingCheckout(body))
-  }
+  };
 
   return (
     <>

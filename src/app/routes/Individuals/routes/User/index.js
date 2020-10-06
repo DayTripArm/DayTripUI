@@ -5,10 +5,21 @@ import actions from "../../../../../actions";
 import {MONTH_LIST, TRAVELER_TYPE} from "../../../../../constants";
 import {Link} from "react-router-dom";
 
-const User = () => {
+const User = ({history={}}) => {
     const dispatch = useDispatch();
-    const {config} = useSelector(state => state);
+    const {config, driverData={}} = useSelector(state => state);
     const {individual_user, userType} = config;
+
+    const {traveler_info={}} = driverData;
+
+    const {location:history_location={}} = history;
+    let {state:history_state={}} = history_location;
+
+    if (!history_state) history_state={};
+
+    const {
+        booked_trip=false,
+    } = history_state;
 
     const {
         created_at,
@@ -17,7 +28,7 @@ const User = () => {
         about,
         location,
         languages
-    } = individual_user;
+    } = booked_trip ? traveler_info : individual_user;
 
     const created_date = new Date(created_at || "");
     const member_since = MONTH_LIST[created_date.getMonth()] + " " + created_date.getFullYear();

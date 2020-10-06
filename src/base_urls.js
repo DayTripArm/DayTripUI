@@ -27,5 +27,6 @@ export default {
     "searchForDriver": `${HOST}/search_drivers?date={0}&travelers={1}&trip_id={2}&offset={3}&limit={4}`,
     "confirmTripBookingCheckout": `${HOST}/booked_trips`,
     "getBookedTrips": `${HOST}/booked_trips?user_id={0}&utype={1}`,
+    "getBookedTrip": `${HOST}/booked_trips/{0}`,
   }
 }

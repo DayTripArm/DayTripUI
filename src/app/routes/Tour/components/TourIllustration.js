@@ -14,6 +14,7 @@ const TourIllustration = (props) => {
         isSaved,
         images=[],
         history,
+        booked_trip
     } = props;
 
 
@@ -61,9 +62,12 @@ const TourIllustration = (props) => {
                         <IconArrowLeft />
                     </button>
                     <div>
-                        <button className='back-btn btn btn-circle border-0 mr-2 mr-md-4' onClick={() => favoriteHandle()}>
-                            {isSaved ? <IconHeartFilled fill='#FE4C30'/> : <IconHeartOutlined/>}
-                        </button>
+                        { !booked_trip &&
+                            <button className='back-btn btn btn-circle border-0 mr-2 mr-md-4'
+                                    onClick={() => favoriteHandle()}>
+                                {isSaved ? <IconHeartFilled fill='#FE4C30'/> : <IconHeartOutlined/>}
+                            </button>
+                        }
                         <button className='back-btn btn btn-circle border-0'>
                             <IconShare />
                         </button>
