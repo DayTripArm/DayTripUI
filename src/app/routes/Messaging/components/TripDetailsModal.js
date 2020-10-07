@@ -180,7 +180,7 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
                 </div>
             </div>
             <div className='shadow__4-up p-4 row position-sticky fixed-bottom bg-white translate-y-16'>
-                <button className='btn btn-primary btn-block text-uppercase'>Contact to Nane</button>
+                <button className='btn btn-primary btn-block text-uppercase'>Contact to {traveler_info.user_name}</button>
             </div>
         </ModalAside>
     )

@@ -3,7 +3,7 @@ import moment from "moment";
 import { IconStar } from 'shared/components/Icons';
 import ReviewModal from './ReviewModal';
 
-const PastTripItem = ({ item, onDetailsModal, onReviewModal}) => {
+const PastTripItem = ({ item, onBookedTripClick, onReviewModal}) => {
     let src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + item.trip.trip_image : item.trip.trip_image;
     return (
         <React.Fragment key={item.id}>
@@ -46,7 +46,7 @@ const PastTripItem = ({ item, onDetailsModal, onReviewModal}) => {
             <div className='py-3 d-flex flex-column flex-lg-row align-items-center pr-lg-5'>
                 <button
                     className='btn btn-secondary btn-secondary__grey text-uppercase mb-1'
-                    onClick={onDetailsModal}
+                    onClick={onBookedTripClick}
                 >
                     Details
                 </button>
