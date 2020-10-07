@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { IconStar } from 'shared/components/Icons';
 import ReviewModal from './components/ReviewModal';
-import DetailsModal from './components/DetailsModal';
+import TripDetailsModal from '../Messaging/components/TripDetailsModal';
 import NoResults from './components/NoResults';
 import UpcomingTripItem from './components/UpcomingTripItem';
 import PastTripItem from './components/PastTripItem';
@@ -22,6 +22,14 @@ const Trips = () => {
   const [tab, setTab] = useState(1);
   const [openDetailsModal, setOpenDetailsModal] = useState(false);
   const [openReviewModal, setOpenReviewModal] = useState(false);
+
+
+    const onBookedTripClick = (booked_id, traveler_id) => {
+        dispatch(actions.getBookedTripRequest(booked_id));
+        dispatch(actions.bookedProfileInfoRequest(traveler_id));
+
+        setOpenDetailsModal(true);
+    };
 
   useEffect (() => {
       dispatch(actions.getBookedTripsRequest(Number(localStorage.id), Number(localStorage.userType)));
@@ -55,16 +63,18 @@ const Trips = () => {
           </div>
             {tab === 1 &&  travelers_trips && travelers_trips.map((item) => {
                 return (moment(item.trip_day).isSameOrAfter(moment(), 'day') &&
-                    <UpcomingTripItem key={item.id} item={item} onDetailsModal={() => setOpenDetailsModal(true)}/>)
+                    <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.driver_id)}/>)
             })}
             {tab === 2 &&  travelers_trips && travelers_trips.map((item) => {
                 return (moment(item.trip_day).isBefore(moment(), 'day') &&
-                    <PastTripItem key={item.id} item={item} onDetailsModal={() => setOpenDetailsModal(true)} onReviewModal={() => setOpenReviewModal(true)}/>)
+                    <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.driver_id)} onReviewModal={() => setOpenReviewModal(true)}/>)
             })}
 
         </div>
       </div>
-      {openDetailsModal && <DetailsModal onClose={() => setOpenDetailsModal(false)} />}
+        {openDetailsModal && (
+            <TripDetailsModal title='Trips' onClose={() => setOpenDetailsModal(false)}/>
+        )}
       {openReviewModal && <ReviewModal onClose={() => setOpenReviewModal(false)} />}
     </>
   );

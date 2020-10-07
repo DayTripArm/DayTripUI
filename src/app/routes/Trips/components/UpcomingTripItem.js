@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from "moment";
 
-const UpcomingTripItem = ({ item, onDetailsModal}) => {
+const UpcomingTripItem = ({ item, onBookedTripClick}) => {
     let src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + item.trip.trip_image : item.trip.trip_image;
     return (
         <React.Fragment key={item.id}>
@@ -40,7 +40,7 @@ const UpcomingTripItem = ({ item, onDetailsModal}) => {
             <div className='py-3 d-flex flex-column flex-lg-row align-items-center pr-lg-5'>
                 <button
                     className='btn btn-secondary btn-secondary__grey text-uppercase mb-1'
-                    onClick={onDetailsModal}
+                    onClick={onBookedTripClick}
                 >
                     Details
                 </button>
