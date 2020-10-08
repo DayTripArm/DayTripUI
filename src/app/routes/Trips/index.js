@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import { IconStar } from 'shared/components/Icons';
 import ReviewModal from './components/ReviewModal';
 import TripDetailsModal from '../Messaging/components/TripDetailsModal';
 import NoResults from './components/NoResults';
 import UpcomingTripItem from './components/UpcomingTripItem';
 import PastTripItem from './components/PastTripItem';
 
+import _ from 'lodash';
 import moment from "moment";
 import actions from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
@@ -17,7 +17,9 @@ const Trips = () => {
 
   const {booked_trips={}} = travelerData
   let {travelers_trips} = booked_trips;
-  let  dataLength = (travelers_trips && travelers_trips.length >0) || false;
+  let  dataLength = travelers_trips && travelers_trips.length;
+  let upcoming_trips  = travelers_trips &&  _.filter(travelers_trips, item => moment(item.trip_day).isSameOrAfter(moment(), 'day'));
+  let past_trips  = travelers_trips && _.filter(travelers_trips, item => moment(item.trip_day).isBefore(moment(), 'day'));
 
   const [tab, setTab] = useState(1);
   const [openDetailsModal, setOpenDetailsModal] = useState(false);
@@ -36,7 +38,7 @@ const Trips = () => {
        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!dataLength) return <NoResults />;
+  if (dataLength && dataLength===0) return <NoResults message={`There aren't Any Trips Yet`}/>;
 
   return (
     <>
@@ -61,14 +63,16 @@ const Trips = () => {
               </li>
             </ul>
           </div>
-            {tab === 1 &&  travelers_trips && travelers_trips.map((item) => {
-                return (moment(item.trip_day).isSameOrAfter(moment(), 'day') &&
-                    <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.driver_id)}/>)
-            })}
-            {tab === 2 &&  travelers_trips && travelers_trips.map((item) => {
-                return (moment(item.trip_day).isBefore(moment(), 'day') &&
-                    <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.driver_id)} onReviewModal={() => setOpenReviewModal(true)}/>)
-            })}
+            {tab === 1  &&
+                   (upcoming_trips && upcoming_trips.length > 0 ?
+                    upcoming_trips.map((item) => {return <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.driver_id)}/>}) :
+                    <NoResults message={`You Have No Upcoming Trips`}/>)
+            }
+            {tab === 2 &&
+                (past_trips && past_trips.length > 0 ?
+                past_trips.map((item) => {return <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.driver_id)} onReviewModal={() => setOpenReviewModal(true)}/>}) :
+                <NoResults message={`You Have No Past Trips`}/>)
+            }
 
         </div>
       </div>

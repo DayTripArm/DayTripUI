@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from "moment";
 import { IconStar } from 'shared/components/Icons';
-import ReviewModal from './ReviewModal';
 
 const PastTripItem = ({ item, onBookedTripClick, onReviewModal}) => {
     let src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + item.trip.trip_image : item.trip.trip_image;
