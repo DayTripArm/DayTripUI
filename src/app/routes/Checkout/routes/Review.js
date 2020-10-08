@@ -14,6 +14,7 @@ import {
 } from 'shared/components/Icons';
 import {CAR_SPECS} from "../../../../constants";
 import Textarea from 'shared/components/Textarea';
+import TimeKeeper from 'react-timekeeper';
 import { Link, useLocation } from 'react-router-dom';
 import { useHistory } from "react-router";
 import _ from "lodash";
@@ -32,6 +33,7 @@ const Review = (props) => {
     const locate = useLocation();
     const history = useHistory();
     const [invalidFields, setInvalidFields] = useState({});
+    const [showTimePicker, setShowTimePicker] = useState(false);
     const [form, setForm] = useState({pickup_time: "", pickup_location: "", notes: ""});
 
     const checkout_info = locate.state;
@@ -86,17 +88,33 @@ const Review = (props) => {
       <div className='col-lg-5 col-xl-4 col-xxl-3 px-0 mb-10'>
         <h2 className='text__blue'>Review Your Trip</h2>
         <h4 className='text__grey-dark mb-4'>Pick Up Information</h4>
-        <Input
-            type='text'
-            name="pickup_time"
-            label='Pick Up Time'
-            placeholder='Select the time'
-            isError={getStatusMessage("pickup_time")  || false}
-            onChange={e => setForm({
-                ...form,
-                pickup_time: e.target.value
-            })}
-        />
+        <div className="position-relative">
+            <Input
+                type='text'
+                name="pickup_time"
+                value={form.pickup_time}
+                label='Pick Up Time'
+                placeholder='Select the time'
+                isError={getStatusMessage("pickup_time")  || false}
+                onFocus={() => setShowTimePicker(!showTimePicker)}
+            />
+            { showTimePicker &&
+              <div className="timepicker_wrapper">
+                <TimeKeeper
+                    hour24Mode
+                    switchToMinuteOnHourSelect={true}
+                    closeOnMinuteSelect
+                    onDoneClick={(newTime) => {
+                        setForm({
+                            ...form,
+                            pickup_time: newTime.formatted24
+                        });
+                        setShowTimePicker(false);
+                    }}
+                />
+              </div>
+            }
+        </div>
         <Input
           type='text'
           name='pickup_location'

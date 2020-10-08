@@ -1,0 +1,25 @@
+.timepicker_wrapper {
+    position: absolute;
+    z-index: 2;
+    top: 80px;
+    width: 100%;
+    display: inline-block;
+}
+
+.timepicker_wrapper .react-timekeeper__clock-wrapper,
+.timepicker_wrapper .react-timekeeper__done-button {
+    background: white;
+}
+
+.timepicker_wrapper .react-timekeeper__top-bar {
+    display: none;
+}
+
+.timepicker_wrapper .react-timekeeper{
+    width: 325px;
+    @include media-breakpoint-down(sm) {
+        width: 100%;
+    }
+}
+
+
