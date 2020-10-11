@@ -5,6 +5,7 @@ import ReactCrop from 'react-image-crop';
 import Modal from 'shared/components/Modal';
 import 'scss/packages/_react-image-crop-custom.scss';
 import { IconUser } from 'shared/components/Icons';
+import _ from "lodash";
 
 import {
     image64toCanvasRef,
@@ -17,8 +18,10 @@ import actions from "../../actions";
 const CropContainer = ({setShowCropContainer, profilePhoto}) => {
     const dispatch = useDispatch();
 
-    const {travelerData} = useSelector(state => state);
-    const {profile={}} = travelerData;
+    const {travelerData, driverData} = useSelector(state => state);
+
+    const {profile:profileData} = !_.isEmpty(travelerData.profile) ? travelerData : driverData;
+    const {id} = profileData;
 
     const imagePreviewCanvasRef = React.createRef();
     const [imgSrc, setImgSrc] = useState({});
@@ -61,7 +64,7 @@ const CropContainer = ({setShowCropContainer, profilePhoto}) => {
             profile_photos: newFile
         };
 
-        dispatch(actions.updateProfileInfo(profile.id, data));
+        dispatch(actions.updateProfileInfo(id, data));
         setShowCropContainer(false);
     };
 
@@ -123,7 +126,7 @@ const FormDropZoneInlineText = (props) => {
             <div {...getRootProps({className: 'd-flex flex-column align-items-center mb-5'})}>
                 {
                     profile_photo_src ?
-                        <img src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + profile_photo_src : profile_photo_src} alt="" />
+                        <img className="rounded__50" src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + profile_photo_src : profile_photo_src} alt="" />
                         :
                         <IconUser width='72' height='72' fill='#757575' className='mb-4 op-5' />
                 }
