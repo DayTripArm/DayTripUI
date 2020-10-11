@@ -1,10 +1,10 @@
 import React from 'react';
 import Breadcrumbs from 'shared/components/Breadcrumbs';
 import FormInputBox from 'shared/components/FormInputBox';
-import { IconUser } from 'shared/components/Icons';
 import {useSelector} from "react-redux";
 import {GENDER_LIST} from "../../../../constants";
 import _ from "lodash";
+import FormDropZoneImageCrop from "../../../../shared/components/FormDropZoneImageCrop";
 
 const routes = [
     {
@@ -31,7 +31,8 @@ const Personal = () => {
         about,
         location,
         languages="",
-        work
+        work,
+        profile_photo
     } = profile;
 
     const genderList = GENDER_LIST.map(item => {return {label: item, value: item}});
@@ -44,11 +45,11 @@ const Personal = () => {
                 <h2 className='text__blue mb-6 mb-md-7'>Personal Info</h2>
 
                 {/*picture upload*/}
-                <div className='d-flex flex-column align-items-center mb-5'>
-                    <IconUser width='72' height='72' fill='#757575' className='mb-4 op-5' />
-                    <label htmlFor='file' className='btn btn-sm text__grey-dark mb-0'>Upload</label>
-                    <input id='file' type='file' className='d-none' />
-                </div>
+                <FormDropZoneImageCrop
+                    type="profile_photo"
+                    label="Upload Photos"
+                    profile_photo_src={profile_photo}
+                />
 
                 <hr className='border__top border__default my-0' />
                 <ul className='no-list-style mb-0'>
