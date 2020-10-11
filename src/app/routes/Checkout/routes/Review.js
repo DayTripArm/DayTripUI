@@ -14,7 +14,7 @@ import {
 } from 'shared/components/Icons';
 import {CAR_SPECS} from "../../../../constants";
 import Textarea from 'shared/components/Textarea';
-import TimeKeeper from 'react-timekeeper';
+import Timepicker from "shared/components/Timepicker";
 import { Link, useLocation } from 'react-router-dom';
 import { useHistory } from "react-router";
 import _ from "lodash";
@@ -35,9 +35,16 @@ const Review = (props) => {
     const [invalidFields, setInvalidFields] = useState({});
     const [showTimePicker, setShowTimePicker] = useState(false);
     const [form, setForm] = useState({pickup_time: "", pickup_location: "", notes: ""});
+    const [pickTime, setPickTime] = useState({hour: "08", minute: "00", meridiem: "am"});
 
     const checkout_info = locate.state;
-    const driver_img_src = checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
+    const driver_img_src = checkout_info && checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
+
+    // Select time
+    function onTimeSet(){
+        setForm({...form, pickup_time: pickTime.hour + ":" + pickTime.minute + " " +pickTime.meridiem})
+        setShowTimePicker(!showTimePicker)
+    }
 
    //  Validate checkout form
     function validateForm() {
@@ -96,22 +103,26 @@ const Review = (props) => {
                 label='Pick Up Time'
                 placeholder='Select the time'
                 isError={getStatusMessage("pickup_time")  || false}
-                onFocus={() => setShowTimePicker(!showTimePicker)}
+                onClick={() => {
+                    if (showTimePicker){
+                        document.body.style.overflowY = 'hidden';
+                    } else {
+                        document.body.style.overflowY = 'auto';
+                    }
+                    setShowTimePicker(!showTimePicker);
+                }}
+                onFocus={() => {
+                    setShowTimePicker(!showTimePicker);
+                    document.body.style.overflowY = 'hidden';
+                }}
             />
             { showTimePicker &&
               <div className="timepicker_wrapper">
-                <TimeKeeper
-                    hour24Mode
-                    switchToMinuteOnHourSelect={true}
-                    closeOnMinuteSelect
-                    onDoneClick={(newTime) => {
-                        setForm({
-                            ...form,
-                            pickup_time: newTime.formatted24
-                        });
-                        setShowTimePicker(false);
-                    }}
-                />
+                <div className="tp_header">
+                    <span className="btn btn-secondary btn-sm btn-clear" onClick={() => setShowTimePicker(!showTimePicker)}>Clear</span>
+                    <span className="btn btn-secondary btn-sm btn-save" onClick={() => onTimeSet()}>Save</span>
+                </div>
+                <Timepicker pickTime={pickTime} />
               </div>
             }
         </div>
