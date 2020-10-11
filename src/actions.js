@@ -350,7 +350,7 @@ const actions  = {
         name
     }),
 
-    CONFIRM_CHECKOUT_RECEIVE: `${nameSpace}_UPDATE_VALIDATION_LIST`,
+    CONFIRM_CHECKOUT_RECEIVE: `${nameSpace}_CONFIRM_CHECKOUT_RECEIVE`,
     confirmTripBookingCheckout: (body) => ({
         type: actions.CONFIRM_CHECKOUT_RECEIVE,
         body
