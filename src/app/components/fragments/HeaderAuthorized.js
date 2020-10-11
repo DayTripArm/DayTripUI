@@ -87,7 +87,7 @@ const HeaderAuthorized = ({ type }) => {
         obj = !_.isEmpty(driverProfile) ? driverProfile : user;
     }
 
-    let {name} = obj;
+    let {name, profile_photo} = obj;
 
     name = _.split(name, ' ')[0];
     if (name && name.length > 20) {
@@ -190,7 +190,13 @@ const HeaderAuthorized = ({ type }) => {
                         onClick={() => setOpenDropdown(!openDropdown)}
                         role='presentation'
                     >
-                    <IconUser className='mr-md-1' />
+                    {profile_photo ? <img
+                        width='24'
+                        height='24'
+                        className='object-pos-center object-fit-cover rounded__50 mr-2'
+                        src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + profile_photo : profile_photo}
+                        alt='avatar'
+                    /> : <IconUser className='mr-md-1' /> }
                     <span className='d-none d-md-inline-block'>{name}</span>
                   </span>
                     <div
