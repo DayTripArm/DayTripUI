@@ -41,7 +41,7 @@ export const CAR_SPECS = {"air_condition": "Air Condition", "car_seat" : "Car Se
 
 export const HOURS = () => {
     var times = [];
-    for (var i = 1; i < 13; i++) times.push(("0" + i).slice(-2));
+    for (var i = 1; i < 24; i++) times.push(("0" + i).slice(-2));
     return times;
 };
 
