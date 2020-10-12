@@ -30,9 +30,11 @@ const BookedTripItem = ({ item, onBookedTripClick}) => {
                             <span className='weight-500'>Travelers:</span>{' '}
                             <span className='weight-500 text__grey-dark'>{item.travelers_count} Guests</span>
                         </p>
-                        <div className='cancelation-container d-inline-block text-center py-2 py-md-0'>
+                        {moment(item.trip_day).isSameOrAfter(moment(), 'day') &&
+                         <div className='cancelation-container d-inline-block text-center py-2 py-md-0'>
                             <button className='btn btn-secondary btn-sm'>Cancelation</button>
                         </div>
+                        }
                     </div>
                 </div>
             </div>
