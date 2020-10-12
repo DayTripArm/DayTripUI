@@ -120,7 +120,10 @@ const Review = (props) => {
             { showTimePicker &&
               <div className="timepicker_wrapper">
                 <div className="tp_header">
-                    <span className="btn btn-secondary btn-sm btn-clear" onClick={() => setShowTimePicker(!showTimePicker)}>Clear</span>
+                    <span className="btn btn-secondary btn-sm btn-clear" onClick={() => {
+                        setShowTimePicker(!showTimePicker);
+                        document.body.style.overflowY = 'auto';
+                    }}>Clear</span>
                     <span className="btn btn-secondary btn-sm btn-save" onClick={() => onTimeSet()}>Save</span>
                 </div>
                 <Timepicker pickTime={pickTime} />
