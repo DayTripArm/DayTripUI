@@ -38,3 +38,15 @@ export const AVAILABILITY_WINDOW = ['All future dates', '9 months in advance', '
 export const DRIVER_NOTICE = [1, 2, 3, 7]
 
 export const CAR_SPECS = {"air_condition": "Air Condition", "car_seat" : "Car Seat", "pets_allowd": "Pets Allowed", "smoke_allowed": "Smoke Allowed", "snacks": "Snacks", "water": "Water"}
+
+export const HOURS = () => {
+    var times = [];
+    for (var i = 1; i < 13; i++) times.push(("0" + i).slice(-2));
+    return times;
+};
+
+export const MINUTES = () => {
+    var times = [];
+    for (var i = 0; i < 60; i++) times.push(("0" + i).slice(-2));
+    return times;
+};

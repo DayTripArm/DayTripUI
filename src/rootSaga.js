@@ -85,7 +85,14 @@ function* profileInfoRequest(action) {
 function* updateProfileInfo(action) {
     try {
         const { id, data } = action;
-        const {response, error} = yield call(Api.updateProfileInfo, id, data);
+        const formData = new FormData();
+
+        if (data.profile_photos) {
+            formData.append("profile", data.profile);
+            formData.append(`profile_photos[${data.profile_photos.name}]`, data.profile_photos);
+        }
+
+        const {response, error} = yield call(Api.updateProfileInfo, id, data.profile_photos ? formData : data);
 
         if (response) {
             yield put(actions.profileInfoRequest(id));
