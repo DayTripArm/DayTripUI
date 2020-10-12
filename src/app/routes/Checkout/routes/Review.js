@@ -35,7 +35,7 @@ const Review = (props) => {
     const [invalidFields, setInvalidFields] = useState({});
     const [showTimePicker, setShowTimePicker] = useState(false);
     const [form, setForm] = useState({pickup_time: "", pickup_location: "", notes: ""});
-    const [pickTime, setPickTime] = useState({hour: "08", minute: "00", meridiem: "am"});
+    const pickTime = {hour: "08", minute: "00", meridiem: "am"};
 
     const checkout_info = locate.state;
     const driver_img_src = checkout_info && checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
@@ -44,6 +44,7 @@ const Review = (props) => {
     function onTimeSet(){
         setForm({...form, pickup_time: pickTime.hour + ":" + pickTime.minute + " " +pickTime.meridiem})
         setShowTimePicker(!showTimePicker)
+        document.body.style.overflowY = 'auto';
     }
 
    //  Validate checkout form
