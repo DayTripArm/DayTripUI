@@ -8,14 +8,11 @@ class Timepicker extends React.Component {
         super(props);
         this.slide_hour = this.slide_hour.bind(this);
         this.slider_minute = this.slider_minute.bind(this);
-        this.slide_meridiem = this.slide_meridiem.bind(this);
         this.hoursSlider = null;
         this.minutesSlider = null;
-        this.meridiemSlider = null;
         this.props = props;
         this.hours = HOURS();
         this.minutes = MINUTES();
-        this.meridiem = ['am', 'pm'];
     }
 
     slide_hour(y) {
@@ -30,12 +27,6 @@ class Timepicker extends React.Component {
         }
     }
 
-    slide_meridiem(y) {
-        if (y.target.closest(".meridiemSlider")) {
-            y.wheelDelta > 0 ? this.meridiemSlider.slickNext() : this.meridiemSlider.slickPrev();
-        }
-    }
-
     componentWillMount() {
         window.addEventListener("wheel", (e) => {
             if (this.hoursSlider) {
@@ -43,9 +34,6 @@ class Timepicker extends React.Component {
             }
             if (this.minutesSlider) {
                 this.slider_minute(e);
-            }
-            if (this.meridiemSlider) {
-                this.slide_meridiem(e);
             }
         });
     }
@@ -59,8 +47,7 @@ class Timepicker extends React.Component {
             vertical: true,
             verticalSwiping: true,
             swipeToSlide: true,
-            arrows: false,
-            adaptiveHeight: false,
+            arrows: false
 
         };
         return (
@@ -87,21 +74,9 @@ class Timepicker extends React.Component {
                         <div key={minutes}>{minutes}</div>
                     ))}
                 </Slider>
-                <Slider
-                    {...settings}
-                    infinite={false}
-                    className="slider-entity ampm meridiemSlider"
-                    initialSlide={this.meridiem.indexOf(this.props.pickTime.meridiem)}
-                    ref={(slider) => (this.meridiemSlider = slider)}
-                    afterChange={(index) => { this.props.pickTime.meridiem = this.meridiem[index] }}
-                >
-                    <div>AM</div>
-                    <div>PM</div>
-                </Slider>
                 <div className="mask">
                     <div className="mask-item"></div>
                     <div className="mask-item"></div>
-                    <div className="mask-item"/>
                 </div>
             </div>
         );

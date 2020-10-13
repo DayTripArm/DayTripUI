@@ -35,14 +35,14 @@ const Review = (props) => {
     const [invalidFields, setInvalidFields] = useState({});
     const [showTimePicker, setShowTimePicker] = useState(false);
     const [form, setForm] = useState({pickup_time: "", pickup_location: "", notes: ""});
-    const pickTime = {hour: "08", minute: "00", meridiem: "am"};
+    const pickTime = !_.isEmpty(form.pickup_time) ? {hour: _.split(form.pickup_time,":")[0], minute: _.split(form.pickup_time,":")[1]} : {hour: "08", minute: "30"};
 
     const checkout_info = locate.state;
     const driver_img_src = checkout_info && checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
 
     // Select time
     function onTimeSet(){
-        setForm({...form, pickup_time: pickTime.hour + ":" + pickTime.minute + " " +pickTime.meridiem})
+        setForm({...form, pickup_time: pickTime.hour + ":" + pickTime.minute})
         setShowTimePicker(!showTimePicker)
         document.body.style.overflowY = 'auto';
     }
