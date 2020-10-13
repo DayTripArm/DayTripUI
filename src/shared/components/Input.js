@@ -25,6 +25,7 @@ const Input = ({
    onBlur,
    required,
    autoFocus,
+   autoComplete,
    phoneCodes
 }) => {
     const [inputValue, setInputValue] = useState(value);
@@ -124,6 +125,7 @@ const Input = ({
                         className={setClasses()}
                         required={required}
                         autoFocus={autoFocus}
+                        autoComplete={autoComplete}
                     />
                 }
                 {message && (
