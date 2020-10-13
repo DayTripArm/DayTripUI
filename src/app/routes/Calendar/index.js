@@ -61,7 +61,7 @@ const Calendar = () => {
 
     const {calendar_settings={}, driver_calendar={}} = driverData;
 
-    let {unavailable_days} = calendar_settings;
+    let {unavailable_days, availability_window} = calendar_settings;
     if (!unavailable_days) {
         unavailable_days = [];
     }
@@ -137,6 +137,23 @@ const Calendar = () => {
         return unavailable_days.some(date => day.isSame(date), 'day');
     };
 
+    const isOutsideRange = (date) => {
+        switch (availability_window) {
+            case 0: // all days
+                return date.isBefore(moment(), 'day');
+            case 1: // 9 month
+                return date.isBefore(moment(), 'day') || date.isAfter(moment().add(9, 'months'), 'day');
+            case 2: // 6 month
+                return date.isBefore(moment(), 'day') || date.isAfter(moment().add(6, 'months'), 'day');
+            case 3: // 3 month
+                return date.isBefore(moment(), 'day') || date.isAfter(moment().add(3, 'months'), 'day');
+            case 4: // unavailable days
+                return date.isBefore(moment(), 'day') || date.isAfter(moment().add(0, 'months'), 'day');
+            default: // unavailable days
+                return date.isBefore(moment(), 'day') || date.isAfter(moment().add(0, 'months'), 'day');
+        }
+    };
+
     const renderDay=(day)=> {
         if (calendar_info && (_.find(calendar_info, {trip_day: day.format("YYYY-MM-DD")})) ){
             const info = _.find(calendar_info, {trip_day: day.format("YYYY-MM-DD")});
@@ -176,7 +193,7 @@ const Calendar = () => {
                         onFocusChange={onFocusChange}
                         focused={focused}
                         renderDayContents={renderDay}
-                        isOutsideRange={date => date.isBefore(moment(), 'day') || date.isAfter(moment().add(1, 'months'), 'day')}
+                        isOutsideRange={date => isOutsideRange(date)}
                         isDayBlocked={isBlocked}
                         date={date}
                     />
