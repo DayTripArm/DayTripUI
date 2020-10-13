@@ -126,7 +126,7 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
                 <img
                     width='56'
                     height='56'
-                    src='https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png'
+                    src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + traveler_info.profile_photo: traveler_info.profile_photo}
                     alt='user'
                     className='rounded__50 object-pos-center object-fit-cover mr-3'
                 />

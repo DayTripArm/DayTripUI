@@ -139,9 +139,11 @@ const Calendar = () => {
 
     const renderDay=(day)=> {
         if (calendar_info && (_.find(calendar_info, {trip_day: day.format("YYYY-MM-DD")})) ){
+            const info = _.find(calendar_info, {trip_day: day.format("YYYY-MM-DD")});
+
             return (
                 <div style={{ backgroundColor: '#FE4C30', height: '100%', color: 'white', position:'relative' }} >
-                    <div style={{position:'absolute'}}><img alt="" src="https://www.iconninja.com/files/445/434/573/man-user-person-male-profile-avatar-icon.png" width="32px" height="32px"/></div>
+                    <div style={{position:'absolute'}}><img className="rounded__50" alt="" src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + info.traveler_photo : info.traveler_photo} width="32px" height="32px"/></div>
                     <span >{day.format('D')}</span>
 
                 </div>
