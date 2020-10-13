@@ -176,6 +176,7 @@ const SearchDriver = () => {
                                             name="children"
                                             max={9}
                                             min={1}
+                                            initialValue={count.children}
                                             onChange={(obj) => setCount({...count,  children: obj.value })}
                                         />
                                         <div className="trvl_cnt_footer">

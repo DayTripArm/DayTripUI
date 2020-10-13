@@ -3,6 +3,7 @@ import StickyPanel from 'shared/components/StickyPanel';
 import { IconStar } from 'shared/components/Icons';
 import Input from 'shared/components/Input';
 import DatePicker from 'shared/components/DatePicker';
+import Modal from 'shared/components/Modal';
 import FormPlusMinus from 'shared/components/FormPlusMinus';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router";
@@ -23,6 +24,7 @@ const SearchPanel = ({trip_detail}) => {
     const [invalidFields, setInvalidFields] = useState({});
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [showCountPopup, setShowCountPopup] = useState(false);
+    const [showSearchPopup, setShowSearchPopup] = useState(false);
     const [form, setForm] = useState({date: "", travelers: ""});
     const [count, setCount] = useState({adults: 1, children: 0});
     const onDaySelect = ((day) => {
@@ -31,6 +33,12 @@ const SearchPanel = ({trip_detail}) => {
             date: moment(day).format('YYYY-MM-DD')
         });
         setShowDatePicker(false);
+    });
+
+    window.addEventListener("resize", (e) => {
+        if(window.innerWidth >= 768){
+            setShowSearchPopup(false)
+        }
     });
 
     function validateForm() {
@@ -58,22 +66,27 @@ const SearchPanel = ({trip_detail}) => {
     }
 
     const searchDriver = () => {
-        const invalidFields = validateForm();
-        if (_.isEmpty(invalidFields)) {
-            try {
-                history.push({
-                    pathname: '/drivers',
-                    state: {
-                        date: form.date,
-                        travelers: form.travelers,
-                        trip_id: trip_detail.id
-                    },
-                })
-            } catch (e) {
-                console.log(" err ", e.response);
+        if(window.innerWidth <= 768){
+            setShowSearchPopup(true)
+        } else {
+            const invalidFields = validateForm();
+            if (_.isEmpty(invalidFields)) {
+                try {
+                    history.push({
+                        pathname: '/drivers',
+                        state: {
+                            date: form.date,
+                            travelers: form.travelers,
+                            trip_id: trip_detail.id
+                        },
+                    })
+                } catch (e) {
+                    console.log(" err ", e.response);
+                }
             }
+            setInvalidFields(invalidFields);
         }
-        setInvalidFields(invalidFields);
+
     };
 
     return(
@@ -127,6 +140,7 @@ const SearchPanel = ({trip_detail}) => {
                                     name="children"
                                     max={9}
                                     min={1}
+                                    initialValue={count.children}
                                     onChange={(obj) => setCount({...count,  children: obj.value })}
                                 />
                                 <div className="trvl_cnt_footer">
@@ -156,14 +170,22 @@ const SearchPanel = ({trip_detail}) => {
                         hideApperance
                      />
                  </div>
-
-                  <Link to='/drivers' className='btn btn-primary text-uppercase btn-xs-block' onClick={(e) => {
-                     e.preventDefault();
-                     searchDriver();
-                  }}>
-                    Search For Drivers
-                  </Link>
               </div>
+              <Link to='/drivers' className='btn btn-primary text-uppercase btn-xs-block' onClick={(e) => {
+                e.preventDefault();
+                searchDriver();
+              }}>
+              Search For Drivers
+             </Link>
+            {
+                showSearchPopup && (
+                    <Modal size='md' title="Search For Driver" onClose={() => setShowSearchPopup(false)}>
+                        <div className='py-4 px-0 px-md-8'>
+
+                        </div>
+                    </Modal>
+                )
+            }
             </div>
           </div>
         </div>
