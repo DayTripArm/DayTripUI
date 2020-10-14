@@ -23,7 +23,7 @@ const SelectCustomSearch = (props) => {
         setTimeout(async (value) => {
             let response = await Api.searchTrips(value || "");
 
-            setOptions(response.response.data.slice(0, 30)); // show first 30 items
+            setOptions(response.response? response.response.data.slice(0, 30) : {}); // show first 30 items
         }, 300, value);
     };
 
