@@ -370,9 +370,10 @@ const actions  = {
     }),
 
     BOOKED_TRIP_REQUEST: `${nameSpace}_BOOKED_TRIP_REQUEST`,
-    getBookedTripRequest: (booked_id) => ({
+    getBookedTripRequest: (booked_id, user_type) => ({
         type: actions.BOOKED_TRIP_REQUEST,
-        booked_id
+        booked_id,
+        user_type
     }),
 
     BOOKED_TRIP_RECEIVE: `${nameSpace}_BOOKED_TRIP_RECEIVE`,

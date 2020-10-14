@@ -26,9 +26,8 @@ const Trips = () => {
   const [openReviewModal, setOpenReviewModal] = useState(false);
 
 
-    const onBookedTripClick = (booked_id, traveler_id) => {
-        dispatch(actions.getBookedTripRequest(booked_id));
-        dispatch(actions.bookedProfileInfoRequest(traveler_id));
+    const onBookedTripClick = (booked_id) => {
+        dispatch(actions.getBookedTripRequest(booked_id, 2));
 
         setOpenDetailsModal(true);
     };
@@ -65,12 +64,12 @@ const Trips = () => {
           </div>
             {tab === 1  &&
                    (upcoming_trips && upcoming_trips.length > 0 ?
-                    upcoming_trips.map((item) => {return <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.driver_id)}/>}) :
+                    upcoming_trips.map((item) => {return <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)}/>}) :
                     <NoResults message={`You Have No Upcoming Trips`}/>)
             }
             {tab === 2 &&
                 (past_trips && past_trips.length > 0 ?
-                past_trips.map((item) => {return <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.driver_id)} onReviewModal={() => setOpenReviewModal(true)}/>}) :
+                past_trips.map((item) => {return <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onReviewModal={() => setOpenReviewModal(true)}/>}) :
                 <NoResults message={`You Have No Past Trips`}/>)
             }
 

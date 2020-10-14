@@ -115,9 +115,8 @@ const Calendar = () => {
         }
     };
 
-    const onBookedTripClick = (booked_id, traveler_id) => {
-        dispatch(actions.getBookedTripRequest(booked_id));
-        dispatch(actions.bookedProfileInfoRequest(traveler_id));
+    const onBookedTripClick = (booked_id) => {
+        dispatch(actions.getBookedTripRequest(booked_id, 1));
 
         setOpenDetailsModal(true);
     };
@@ -219,12 +218,12 @@ const Calendar = () => {
                     </div>
                     {tab === 1 &&  overview_trips && overview_trips.map((item) => {
                         return (moment(item.trip_day).isSameOrAfter(moment(), 'day') &&
-                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.traveler_id)} />)
+                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} />)
 
                     })}
                     {tab === 2 &&  overview_trips && overview_trips.map((item) => {
                         return (moment(item.trip_day).isBefore(moment(), 'day') &&
-                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id, item.traveler_id)} />)
+                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} />)
                     })}
 
                 </div>

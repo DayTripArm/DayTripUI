@@ -11,15 +11,14 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
     const {driverData} = useSelector(state => state);
 
     const {
-        booked_trip_details={},
-        traveler_info={},
+        booked_trip_details={}
     } = driverData;
 
     const {
         trip_tour={},
         trip_info={},
         pickup_info={},
-        traveler={},
+        user_info={},
         price,
     } = booked_trip_details;
 
@@ -126,12 +125,12 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
                 <img
                     width='56'
                     height='56'
-                    src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + traveler_info.profile_photo: traveler_info.profile_photo}
+                    src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + user_info.profile_photo: user_info.profile_photo}
                     alt='user'
                     className='rounded__50 object-pos-center object-fit-cover mr-3'
                 />
                 <div>
-                    <p className='weight-500 pt-1 mb-0'>{traveler_info.user_name}</p>
+                    <p className='weight-500 pt-1 mb-0'>{user_info.user_name}</p>
                     <p className='mb-0'>
                         <span className='weight-700'>5.0</span>
                         <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
@@ -144,19 +143,19 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
                 <div className='d-flex mb-4'>
                     <IconFlag className='mr-2'/>
                     <p className='mb-0'>
-                        Nation: <span className='weight-500 text__grey-dark'>{traveler.location}</span>
+                        Nation: <span className='weight-500 text__grey-dark'>{user_info.location}</span>
                     </p>
                 </div>
                 <div className='d-flex mb-4'>
                     <IconGlobe className='mr-2'/>
                     <p className='mb-0'>
-                        Languages: <span className='weight-500 text__grey-dark'>{traveler.languages}</span>
+                        Languages: <span className='weight-500 text__grey-dark'>{user_info.languages}</span>
                     </p>
                 </div>
                 <div className='d-flex mb-4'>
                     <IconPhone className='mr-2'/>
                     <p className='mb-0'>
-                        Number: <span className='weight-500 text__grey-dark'>{traveler.phone}</span>
+                        Number: <span className='weight-500 text__grey-dark'>{user_info.phone}</span>
                     </p>
                 </div>
             </div>
@@ -180,7 +179,7 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
                 </div>
             </div>
             <div className='shadow__4-up p-4 row position-sticky fixed-bottom bg-white translate-y-16'>
-                <button className='btn btn-primary btn-block text-uppercase'>Contact to {traveler_info.user_name}</button>
+                <button className='btn btn-primary btn-block text-uppercase'>Contact to {user_info.user_name}</button>
             </div>
         </ModalAside>
     )
