@@ -3,6 +3,8 @@ import StickyPanel from 'shared/components/StickyPanel';
 import { IconStar } from 'shared/components/Icons';
 import Input from 'shared/components/Input';
 import DatePicker from 'shared/components/DatePicker';
+import Modal from 'shared/components/Modal';
+import FormPlusMinus from 'shared/components/FormPlusMinus';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router";
 import _ from "lodash";
@@ -21,13 +23,22 @@ const SearchPanel = ({trip_detail}) => {
     const history = useHistory();
     const [invalidFields, setInvalidFields] = useState({});
     const [showDatePicker, setShowDatePicker] = useState(false);
+    const [showCountPopup, setShowCountPopup] = useState(false);
+    const [showSearchPopup, setShowSearchPopup] = useState(false);
     const [form, setForm] = useState({date: "", travelers: ""});
+    const [count, setCount] = useState({adults: 1, children: 0});
     const onDaySelect = ((day) => {
         setForm({
             ...form,
             date: moment(day).format('YYYY-MM-DD')
         });
         setShowDatePicker(false);
+    });
+
+    window.addEventListener("resize", (e) => {
+        if(window.innerWidth >= 768){
+            setShowSearchPopup(false)
+        }
     });
 
     function validateForm() {
@@ -55,22 +66,27 @@ const SearchPanel = ({trip_detail}) => {
     }
 
     const searchDriver = () => {
-        const invalidFields = validateForm();
-        if (_.isEmpty(invalidFields)) {
-            try {
-                history.push({
-                    pathname: '/drivers',
-                    state: {
-                        date: form.date,
-                        travelers: form.travelers,
-                        trip_id: trip_detail.id
-                    },
-                })
-            } catch (e) {
-                console.log(" err ", e.response);
+        if(window.innerWidth <= 768){
+            setShowSearchPopup(true)
+        } else {
+            const invalidFields = validateForm();
+            if (_.isEmpty(invalidFields)) {
+                try {
+                    history.push({
+                        pathname: '/drivers',
+                        state: {
+                            date: form.date,
+                            travelers: form.travelers,
+                            trip_id: trip_detail.id
+                        },
+                    })
+                } catch (e) {
+                    console.log(" err ", e.response);
+                }
             }
+            setInvalidFields(invalidFields);
         }
-        setInvalidFields(invalidFields);
+
     };
 
     return(
@@ -92,40 +108,84 @@ const SearchPanel = ({trip_detail}) => {
             </div>
             <div className='d-flex justify-content-end flex-fill'>
               <div className='d-none d-md-flex flex-fill justify-content-lg-end'>
-                <div className="tour_calendar_wrapper">
-                   {showDatePicker && ( <DatePicker onDateChange={(date) => onDaySelect(date)} />)}
-                </div>
-                <Input
-                    type='text'
-                    name='date'
-                    value={form.date}
-                    placeholder='Select your Date'
-                    isError={getStatusMessage("date")  || false}
-                    onFocus={() => setShowDatePicker(!showDatePicker)}
-                    containerClass='mb-0 mr-3 mnw-0 w-156px'
-                />
-                <Input
-                    type='number'
-                    name='travelers'
-                    placeholder='Count'
-                    isError={getStatusMessage("travelers") || false}
-                    containerClass='mb-0 mr-3 mnw-0 w-156px'
-                    itemClass="htr_item"
-                    onChange={e => setForm({
-                        ...form,
-                        travelers: e.target.value
-                    })}
-                    hideApperance
-               />
-
+                  <div className="tour_seach_items">
+                    <div className="tour_calendar_popup">
+                        {showDatePicker && ( <DatePicker onDateChange={(date) => onDaySelect(date)} />)}
+                    </div>
+                    <Input
+                        type='text'
+                        name='date'
+                        value={form.date}
+                        placeholder='Select your Date'
+                        autoComplete='off'
+                        isError={getStatusMessage("date")  || false}
+                        onFocus={() => setShowDatePicker(!showDatePicker)}
+                        containerClass='mb-0 mr-3 mnw-0 w-156px'
+                    />
+                  </div>
+                  <div className="tour_seach_items">
+                     <div className="tour_travelers_count_popup">
+                        {showCountPopup && (
+                            <div className="trvlr_count_container">
+                                <FormPlusMinus
+                                    label="Adults"
+                                    name="adults"
+                                    max={9}
+                                    min={2}
+                                    initialValue={count.adults}
+                                    onChange={(obj) => setCount({...count, adults: obj.value })}
+                                />
+                                <FormPlusMinus
+                                    label="Children"
+                                    name="children"
+                                    max={9}
+                                    min={1}
+                                    initialValue={count.children}
+                                    onChange={(obj) => setCount({...count,  children: obj.value })}
+                                />
+                                <div className="trvl_cnt_footer">
+                                    <span className="btn btn-secondary btn-sm btn-clear" onClick={() => {
+                                        setShowCountPopup(!showCountPopup);
+                                    }}>Close</span>
+                                    <span className="btn btn-secondary btn-sm btn-done" onClick={() => {
+                                        setForm({
+                                            ...form,
+                                            travelers: (count.adults + count.children).toString()
+                                        });
+                                        setShowCountPopup(false);
+                                    }}>Done</span>
+                                </div>
+                            </div>
+                        )}
+                     </div>
+                     <Input
+                        type='text'
+                        name='travelers'
+                        placeholder='Count'
+                        value={!_.isEmpty(form.travelers)? form.travelers + " Travelers" : ""}
+                        isError={getStatusMessage("travelers") || false}
+                        containerClass='mb-0 mr-3 mnw-0 w-156px'
+                        autoComplete='off'
+                        onFocus={() => setShowCountPopup(!showCountPopup)}
+                        hideApperance
+                     />
+                 </div>
               </div>
-
               <Link to='/drivers' className='btn btn-primary text-uppercase btn-xs-block' onClick={(e) => {
-                 e.preventDefault();
-                 searchDriver();
+                e.preventDefault();
+                searchDriver();
               }}>
-                Search For Drivers
-              </Link>
+              Search For Drivers
+             </Link>
+            {
+                showSearchPopup && (
+                    <Modal size='md' title="Search For Driver" onClose={() => setShowSearchPopup(false)}>
+                        <div className='py-4 px-0 px-md-8'>
+
+                        </div>
+                    </Modal>
+                )
+            }
             </div>
           </div>
         </div>

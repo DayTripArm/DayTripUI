@@ -59,6 +59,8 @@ function Step_2(props) {
                 label="Seats"
                 name="car_seats"
                 initialValue={car_seats || 4}
+                max={9}
+                min={2}
                 onChange={(e) => dispatch(actions.setPreregisteredDriverProperty(e.name, e.value))}
                 customLabelClassName="marginRight16"
                 wrapperClassName="marginBottom46"

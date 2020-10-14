@@ -165,6 +165,8 @@ const FormCarInputBox = (props) => {
                                 <FormPlusMinus
                                     name={name}
                                     initialValue={field.value}
+                                    max={9}
+                                    min={2}
                                     onChange={(obj) => setField({
                                         name: obj.name,
                                         value: obj.value

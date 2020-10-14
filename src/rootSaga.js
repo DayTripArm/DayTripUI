@@ -493,10 +493,10 @@ function* getBookedTripsRequest(action) {
 }
 
 function* getBookedTripRequest(action) {
-    const {booked_id} = action;
+    const {booked_id, user_type} = action;
 
     try {
-        const {response, error} = yield call(Api.getBookedTrip, Number(booked_id));
+        const {response, error} = yield call(Api.getBookedTrip, Number(booked_id), Number(user_type));
         if (response) {
             yield put(actions.getBookedTripReceive(response.data));
         } else {

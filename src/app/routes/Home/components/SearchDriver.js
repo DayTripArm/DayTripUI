@@ -3,6 +3,7 @@ import { IconQuestionOutlined } from 'shared/components/Icons';
 import ModalAside from 'shared/components/ModalAside';
 import Input from 'shared/components/Input';
 import DatePicker from 'shared/components/DatePicker';
+import FormPlusMinus from 'shared/components/FormPlusMinus';
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { Link } from 'react-router-dom';
@@ -29,6 +30,7 @@ const SearchDriver = () => {
     const [invalidFields, setInvalidFields] = useState({});
     const [openModal, setOpenModal] = useState(false);
     const [showDatePicker, setShowDatePicker] = useState(false);
+    const [showCountPopup, setShowCountPopup] = useState(false);
 
     const {
         title,
@@ -37,6 +39,7 @@ const SearchDriver = () => {
     } = hit_the_road;
 
     const [form, setForm] = useState({date: "", travelers: ""});
+    const [count, setCount] = useState({adults: 1, children: 0});
     const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
 
     const onDaySelect = ((day) => {
@@ -124,36 +127,77 @@ const SearchDriver = () => {
                                 }
                             </ModalAside>
                         )}
-                        <form onSubmit={(e) => {
-                            e.preventDefault();
-                            searchDriver();
-                        }}>
                         <div
                             className='bg-white rounded__10 px-4 px-lg-5 pb-5 pt-4 d-flex flex-column flex-lg-row align-items-end hit_the_road_search'>
-                            <Input
-                                type='text'
-                                name='date'
-                                label='Date *'
-                                value={form.date}
-                                placeholder='Select your Date'
-                                isError={getStatusMessage("date")  || false}
-                                onFocus={() => setShowDatePicker(!showDatePicker)}
-                                containerClass='mr-lg-4 mb-lg-0'
-                            />
-                            <Input
-                                type='number'
-                                name='travelers'
-                                label='Travelers *'
-                                placeholder='Count'
-                                isError={getStatusMessage("travelers") || false}
-                                containerClass='mr-lg-4 mb-lg-0'
-                                itemClass="htr_item"
-                                onChange={e => setForm({
-                                    ...form,
-                                    travelers: e.target.value
-                                })}
-                                hideApperance
-                            />
+                            <div className="home_seach_items">
+                                <Input
+                                    type='text'
+                                    name='date'
+                                    label='Date *'
+                                    value={form.date}
+                                    placeholder='Select your Date'
+                                    autoComplete='off'
+                                    isError={getStatusMessage("date")  || false}
+                                    onFocus={() => setShowDatePicker(!showDatePicker)}
+                                    containerClass='mr-lg-4 mb-lg-0'
+                                />
+                               <div className="calendar_popup">
+                                   {showDatePicker && (
+                                        <DatePicker onDateChange={(date) => onDaySelect(date)} />
+                                    )}
+                                </div>
+                            </div>
+                            <div className="home_seach_items">
+                                <Input
+                                    type='text'
+                                    name='travelers'
+                                    label='Travelers *'
+                                    placeholder='Count'
+                                    autoComplete='off'
+                                    value={!_.isEmpty(form.travelers)? form.travelers + " Travelers" : ""}
+                                    isError={getStatusMessage("travelers") || false}
+                                    containerClass='mr-lg-4 mb-lg-0'
+                                    onFocus={() => setShowCountPopup(!showCountPopup)}
+                                    hideApperance
+                                />
+                                <div className="travelers_count_popup">
+                                    {showCountPopup && (
+                                    <div className="trvlr_count_container">
+                                        <FormPlusMinus
+                                            label="Adults"
+                                            name="adults"
+                                            max={9}
+                                            min={2}
+                                            initialValue={count.adults}
+                                            onChange={(obj) => setCount({...count, adults: obj.value })}
+                                        />
+                                        <FormPlusMinus
+                                            label="Children"
+                                            name="children"
+                                            max={9}
+                                            min={1}
+                                            initialValue={count.children}
+                                            onChange={(obj) => setCount({...count,  children: obj.value })}
+                                        />
+                                        <div className="trvl_cnt_footer">
+                                            <span className="btn btn-secondary btn-sm btn-clear" onClick={() => {
+                                                setShowCountPopup(!showCountPopup);
+                                            }}>Close</span>
+                                            <span className="btn btn-secondary btn-sm btn-done" onClick={() => {
+                                                setForm({
+                                                    ...form,
+                                                    travelers: (count.adults + count.children).toString()
+                                                });
+                                                setShowCountPopup(false);
+                                            }}
+                                            >Done</span>
+                                        </div>
+                                    </div>
+                                    )}
+                                </div>
+                            </div>
+
+
                             <div className="form-field-flexible mr-lg-4 mb-lg-0">
                                 <label className="mb-1 px-1">&nbsp;</label>
                                 <div className="position-relative">
@@ -165,13 +209,9 @@ const SearchDriver = () => {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="calendar_wrapper">
-                                {showDatePicker && (
-                                    <DatePicker onDateChange={(date) => onDaySelect(date)} />
-                                )}
-                            </div>
+
+
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>

@@ -28,6 +28,8 @@ const CarRegistration = () => {
             <FormPlusMinus
                 label="Seats"
                 name="car_seats"
+                max={9}
+                min={2}
                 initialValue={car_seats || 4}
                 onChange={(e) => dispatch(actions.setPreregisteredDriverProperty(e.name, e.value))}
             />

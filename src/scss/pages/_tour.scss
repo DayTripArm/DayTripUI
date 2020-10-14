@@ -47,14 +47,44 @@
     }
   }
 }
-.tour_calendar_wrapper {
-    position: absolute;
-    bottom: 75px;
-    z-index: 999;
-    @include media-breakpoint-between(lg,xl) {
-        right: 27.3%;
+
+.tour_seach_items{
+    position: relative;
+    .tour_calendar_popup {
+        position: absolute;
+        bottom: 55px;
+        z-index: 999;
     }
-    @include media-breakpoint-between(xl,xxl) {
-        right: 22%;
+    .tour_travelers_count_popup{
+        position: absolute;
+        bottom: 55px;
+        z-index: 999;
+        height: 164px;
+        width: 326px;
+
+        .trvlr_count_container{
+            box-shadow: 0 2px 6px rgba(0,0,0,.05), 0 0 0 1px rgba(0,0,0,.07);
+            border-radius: 3px;
+            background: white;
+            padding: 16px 16px;
+            height: 100%;
+        }
+        .trvlr_count_container > .d-flex > span{
+            display: inline-block;
+            width: 60%;
+        }
+        .trvlr_count_container > .d-flex{
+            margin-bottom: 0!important;
+        }
+        .trvl_cnt_footer{
+            margin: 0 5px;
+            padding: 5px 0px;
+        }
+        .btn-clear{
+            color: #757577;
+        }
+        .btn-done{
+            float:right;
+        }
     }
 }
