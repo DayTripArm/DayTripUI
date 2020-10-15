@@ -33,6 +33,7 @@
     "react-phone-input-2": "^2.13.7",
     "react-progressbar": "^15.4.1",
     "react-redux": "^7.2.0",
+    "react-responsive": "^8.1.0",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",

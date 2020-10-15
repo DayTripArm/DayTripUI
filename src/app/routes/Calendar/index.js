@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import Responsive from "react-responsive";
 import { IconSetting } from 'shared/components/Icons';
 import TripDetailsModal from '../Messaging/components/TripDetailsModal';
 import SettingsModal from './components/SettingsModal';
@@ -53,6 +54,7 @@ const defaultProps = {
 
     // internationalization
     monthFormat: 'MMMM YYYY',
+    weekDayFormat: 'ddd'
 };
 
 const Calendar = () => {
@@ -137,20 +139,21 @@ const Calendar = () => {
     };
 
     const isOutsideRange = (date) => {
-        switch (availability_window) {
-            case 0: // all days
-                return date.isBefore(moment(), 'day');
-            case 1: // 9 month
-                return date.isBefore(moment(), 'day') || date.isAfter(moment().add(9, 'months'), 'day');
-            case 2: // 6 month
-                return date.isBefore(moment(), 'day') || date.isAfter(moment().add(6, 'months'), 'day');
-            case 3: // 3 month
-                return date.isBefore(moment(), 'day') || date.isAfter(moment().add(3, 'months'), 'day');
-            case 4: // unavailable days
-                return date.isBefore(moment(), 'day') || date.isAfter(moment().add(0, 'months'), 'day');
-            default: // unavailable days
-                return date.isBefore(moment(), 'day') || date.isAfter(moment().add(0, 'months'), 'day');
-        }
+        return date.isBefore(moment(), 'day');
+        // switch (availability_window) {
+        //     case 0: // all days
+        //         return date.isBefore(moment(), 'day');
+        //     case 1: // 9 month
+        //         return date.isBefore(moment(), 'day') || date.isAfter(moment().add(9, 'months'), 'day');
+        //     case 2: // 6 month
+        //         return date.isBefore(moment(), 'day') || date.isAfter(moment().add(6, 'months'), 'day');
+        //     case 3: // 3 month
+        //         return date.isBefore(moment(), 'day') || date.isAfter(moment().add(3, 'months'), 'day');
+        //     case 4: // unavailable days
+        //         return date.isBefore(moment(), 'day') || date.isAfter(moment().add(0, 'months'), 'day');
+        //     default: // unavailable days
+        //         return date.isBefore(moment(), 'day') || date.isAfter(moment().add(0, 'months'), 'day');
+        // }
     };
 
     const renderDay=(day)=> {
@@ -158,8 +161,9 @@ const Calendar = () => {
             const info = _.find(calendar_info, {trip_day: day.format("YYYY-MM-DD")});
 
             return (
-                <div style={{ backgroundColor: '#FE4C30', height: '100%', color: 'white', position:'relative' }} >
-                    <div style={{position:'absolute'}}><img className="rounded__50" alt="" src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + info.traveler_photo : info.traveler_photo} width="32px" height="32px"/></div>
+                <div className={moment(day).isSameOrAfter(moment(), 'day')? 'CalendarProfileActive' : 'CalendarProfileInactive'} >
+                    <div style={{position:'absolute', padding:'5px'}}>
+                        <img className={moment(day).isSameOrAfter(moment(), 'day')? 'CalendarProfileImgActive' : 'CalendarProfileImgInactive'} alt="" src="https://www.iconninja.com/files/445/434/573/man-user-person-male-profile-avatar-icon.png"/></div>
                     <span >{day.format('D')}</span>
 
                 </div>
@@ -184,18 +188,35 @@ const Calendar = () => {
                         </button>
                     </div>
 
-
-                    <DayPickerSingleDateController
-                        {...props}
-                        daySize={69}
-                        onDateChange={onDateChange}
-                        onFocusChange={onFocusChange}
-                        focused={focused}
-                        renderDayContents={renderDay}
-                        isOutsideRange={date => isOutsideRange(date)}
-                        isDayBlocked={isBlocked}
-                        date={date}
-                    />
+                    <Mobile>
+                        <DayPickerSingleDateController
+                            {...props}
+                            noBorder={true}
+                            daySize={68}
+                            numberOfMonths = {1}
+                            onDateChange={onDateChange}
+                            onFocusChange={onFocusChange}
+                            focused={focused}
+                            renderDayContents={renderDay}
+                            isOutsideRange={date => isOutsideRange(date)}
+                            isDayBlocked={isBlocked}
+                            date={date}
+                        />
+                    </Mobile>
+                    <Default>
+                        <DayPickerSingleDateController
+                            {...props}
+                            noBorder={true}
+                            daySize={68}
+                            onDateChange={onDateChange}
+                            onFocusChange={onFocusChange}
+                            focused={focused}
+                            renderDayContents={renderDay}
+                            isOutsideRange={date => isOutsideRange(date)}
+                            isDayBlocked={isBlocked}
+                            date={date}
+                        />
+                    </Default>
 
                     <h2 className='text__blue mb-0 mt-6 mb-5 mt-md-9 mb-md-9 mt-xl-11 mt-xxl-13'>Overview</h2>
                     <div className='tabs mb-6'>
@@ -235,5 +256,6 @@ const Calendar = () => {
         </>
     );
 };
-
+export const Mobile = props => <Responsive {...props} maxWidth={767} />;
+export const Default = props => <Responsive {...props} minWidth={768} />;
 export default Calendar;
