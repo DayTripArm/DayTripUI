@@ -48,6 +48,58 @@
   }
 }
 
+.sfd_popup_form{
+    .tour_seach_items{
+        width: 325px;
+        min-width: 325px;
+        margin: 10px auto;
+    }
+    .tour_seach_items > .form-field{
+        width: 100%;
+    }
+    .tour_calendar_popup {
+        position: absolute;
+        top: 55px;
+        z-index: 999;
+        width: 100%;
+    }
+    .sfd_travelers_count_popup{
+        position: absolute;
+        top: 55px;
+        z-index: 999;
+        width: 100%;
+
+        .trvlr_count_container{
+            box-shadow: 0 2px 6px rgba(0,0,0,.05), 0 0 0 1px rgba(0,0,0,.07);
+            border-radius: 3px;
+            background: white;
+            padding: 16px 16px;
+            height: 100%;
+        }
+        .trvlr_count_container > .d-flex > span{
+            display: inline-block;
+            width: 75%;
+        }
+        .trvlr_count_container > .d-flex{
+            margin-bottom: 0!important;
+        }
+        .trvl_cnt_footer{
+            margin: 0 5px;
+            padding: 5px 0px;
+        }
+        .btn-clear{
+            color: #757577;
+        }
+        .btn-done{
+            float:right;
+        }
+    }
+    .btn-sfd {
+        width: 325px;
+        margin: 15px auto;
+    }
+}
+
 .tour_seach_items{
     position: relative;
     .tour_calendar_popup {
