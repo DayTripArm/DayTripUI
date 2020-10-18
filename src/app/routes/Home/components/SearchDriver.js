@@ -143,7 +143,7 @@ const SearchDriver = () => {
                                 />
                                <div className="calendar_popup">
                                    {showDatePicker && (
-                                        <DatePicker onDateChange={(date) => onDaySelect(date)} />
+                                        <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
                                     )}
                                 </div>
                             </div>

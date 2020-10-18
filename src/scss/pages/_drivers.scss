@@ -17,3 +17,12 @@
     background: rgba(5, 4, 62, 0.23)
   }
 }
+
+.chips_container {
+    .home_seach_items{
+        display: inline-block;
+    }
+    .calendar_popup, .travelers_count_popup {
+        top: 40px;
+    }
+}

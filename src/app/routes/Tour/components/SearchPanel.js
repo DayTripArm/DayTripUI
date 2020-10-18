@@ -111,7 +111,7 @@ const SearchPanel = ({trip_detail}) => {
               <div className='d-none d-md-flex flex-fill justify-content-lg-end'>
                   <div className="tour_seach_items">
                     <div className="tour_calendar_popup">
-                        {showDatePicker && ( <DatePicker onDateChange={(date) => onDaySelect(date)} />)}
+                        {showDatePicker && ( <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />)}
                     </div>
                     <Input
                         type='text'

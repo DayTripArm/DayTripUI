@@ -10,3 +10,94 @@
     border-top: none;
   }
 }
+
+.calendar-page {
+    .CalendarDay__default {
+        position: relative;
+        height: 70px !important;
+        background-color: #F2F2F2;
+    }
+
+    .CalendarDay__blocked_calendar {
+        border: 1px solid #e4e7e7;
+        color: #484848;
+        background: #fff;
+    }
+
+    .CalendarDay__blocked_out_of_range,
+    .CalendarDay__blocked_out_of_range:hover {
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="M0 99 L99 0 L100 1 L1 100" fill="grey" /></svg>');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 100%, auto;
+        border: 1px solid #e4e7e7;
+        color: #cacccd;
+        background-color: #F2F2F2;
+    }
+
+    .CalendarDay__blocked_out_of_range span {
+        text-decoration-line: none !important;
+    }
+
+    .CalendarDay__blocked_calendar span {
+        text-decoration-line: none !important;
+    }
+
+    .CalendarDay__default span {
+        position: absolute;
+        bottom: 2%;
+        right: 12%;
+        font-size: 16px;
+        line-height: 30px;
+        text-decoration-line: line-through;
+        text-decoration-color: black;
+    }
+
+    .DayPickerNavigation_button__default {
+        border: 2px solid #FE4C30;
+        background-color: #fff;
+        color: #FE4C30;
+        border-radius: 50px;
+    }
+
+    .DayPickerNavigation_svg__horizontal {
+        height: 19px;
+        width: 19px;
+        fill: #FE4C30;
+        display: block;
+    }
+
+    .CalendarProfileImgActive {
+        border: 2px solid #FFF;
+        border-radius: 50%;
+        left: 3px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .CalendarProfileImgInactive {
+        border: 2px solid #FFF;
+        border-radius: 50%;
+        left: 3px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .CalendarProfileActive {
+        background-color: #FE4C30;
+        color: #FFF;
+        height: 100%;
+        position: relative;
+    }
+
+    .CalendarProfileActive span {
+        text-decoration-line: none !important;
+    }
+
+    .CalendarProfileInactive {
+        background-color: #F2F2F2;
+        color: #BDBDBD;
+        height: 100%;
+        position: relative;
+    }
+}

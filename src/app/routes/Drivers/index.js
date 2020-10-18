@@ -1,16 +1,19 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import DriversIllustration from './components/DriversIllustration';
 import Chips from 'shared/components/Chips';
 import { IconClockOutlined, IconDestination } from 'shared/components/Icons';
+import DatePicker from 'shared/components/DatePicker';
 import DriversList from './components/DriversList';
+import FormPlusMinus from 'shared/components/FormPlusMinus';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../actions";
+import _ from "lodash";
 import moment from "moment";
 
 const Drivers = ({ history }) => {
     const dispatch = useDispatch();
-    const day = history.location.state?.date;
-    const travelers_count = history.location.state?.travelers;
+    const day = history.location.state?.date || moment().format('YYYY-MM-DD');
+    const travelers_count = history.location.state?.travelers || "1";
     const trip_id = history.location.state?.trip_id || null;
 
     useEffect(() => {
@@ -31,6 +34,45 @@ const Drivers = ({ history }) => {
     const trip_duration = trip_details ? trip_details.trip_duration : 12;
     const start_location = trip_details ?  trip_details.start_location : 'Yerevan';
 
+    const [openCalendar, setOpenCalendar] = useState(false)
+    const [openCount, setOpenCount] = useState(false)
+    const [form, setForm] = useState({date: day, travelers: travelers_count});
+    const [count, setCount] = useState({adults: 1, children: 0});
+
+    const onDaySelect = ((day) => {
+        setForm({
+            ...form,
+            date: moment(day).format('YYYY-MM-DD')
+        });
+        setOpenCalendar(false);
+        const body = {
+            date: moment(day).format('YYYY-MM-DD'),
+            travelers: form.travelers
+        };
+        updateDriversList(body);
+    });
+
+    const onSetCount = (() => {
+        setForm({
+            ...form,
+            travelers: (count.adults + count.children).toString()
+        });
+        setOpenCount(false);
+        const body = {
+            date: form.date,
+            travelers: count.adults + count.children
+        }
+        updateDriversList(body)
+    });
+
+    const updateDriversList = ((body) => {
+        dispatch(actions.searchForDriversRequest({
+            ...body,
+            trip_id: trip_id,
+            offset: 0,
+            limit: 10
+        }));
+    });
 
     return (
         <>
@@ -53,9 +95,45 @@ const Drivers = ({ history }) => {
                                 </p>
                             </div>
                         </div>
-                        <div className='mb-9 mb-md-10 mb-xl-11'>
-                            <Chips name={moment(day).format('MMM-DD')} className='mr-4 mb-md-5'/>
-                            <Chips name={travelers_count} className='mr-4 mb-md-5' />
+                        <div className='mb-9 mb-md-10 mb-xl-11 chips_container'>
+                            <div className="home_seach_items">
+                                <Chips name={moment(form.date).format('MMM-DD')} className='mr-4 mb-md-5' onClick={() => setOpenCalendar(!openCalendar)} />
+                                <div className="calendar_popup">
+                                    {openCalendar && ( <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />)}
+                                </div>
+                            </div>
+                            <div className="home_seach_items">
+                                <Chips name={form.travelers+" Travelers"} className='mr-4 mb-md-5' onClick={() => setOpenCount(!openCount)} />
+                                <div className="travelers_count_popup">
+                                    {openCount && (
+                                        <div className="trvlr_count_container">
+                                            <FormPlusMinus
+                                                label="Adults"
+                                                name="adults"
+                                                max={9}
+                                                min={2}
+                                                initialValue={count.adults}
+                                                onChange={(obj) => setCount({...count, adults: obj.value })}
+                                            />
+                                            <FormPlusMinus
+                                                label="Children"
+                                                name="children"
+                                                max={9}
+                                                min={1}
+                                                initialValue={count.children}
+                                                onChange={(obj) => setCount({...count,  children: obj.value })}
+                                            />
+                                            <div className="trvl_cnt_footer">
+                                                <span className="btn btn-secondary btn-sm btn-clear" onClick={() => {
+                                                    setOpenCount(!setOpenCount);
+                                                }}>Close</span>
+                                                <span className="btn btn-secondary btn-sm btn-done" onClick={() => onSetCount()}
+                                                >Done</span>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
                             <Chips name="Reviews" className='mr-4 mb-md-5'/>
                             <Chips name="Price" />
                         </div>
