@@ -7,7 +7,7 @@ import TripDetailsModal from '../Messaging/components/TripDetailsModal';
 import SettingsModal from './components/SettingsModal';
 import BookedTripItem from './components/BookedTripItem';
 import { DayPickerSingleDateController } from 'react-dates';
-import './react-date-custom-style.css';
+//import './react-date-custom-style';
 
 import _ from 'lodash';
 import moment from "moment";
@@ -178,7 +178,7 @@ const Calendar = () => {
 
     return (
         <>
-            <div className='container'>
+            <div className='calendar-page container'>
                 <div className='col-xl-9 col-xxl-8 col-xxxl-7 m-auto p-0'>
                     <div
                         className='d-flex align-items-center justify-content-between mt-6 mb-5 mt-md-9 mb-md-9 mt-xl-11 mt-xxl-13 '>
