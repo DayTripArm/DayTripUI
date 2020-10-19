@@ -159,6 +159,13 @@ const travelerData = (state = INITIAL_STATE, action) => {
             }
         }
 
+        case actions.TRIP_DETAIL_REQUEST: {
+            return {
+                ...state,
+                trip_detail: {}
+            }
+        }
+
         case actions.TRIP_DETAIL_RECEIVE: {
             const { data } = action;
 

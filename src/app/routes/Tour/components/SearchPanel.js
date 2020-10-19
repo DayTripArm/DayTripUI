@@ -3,7 +3,6 @@ import StickyPanel from 'shared/components/StickyPanel';
 import { IconStar } from 'shared/components/Icons';
 import Input from 'shared/components/Input';
 import DatePicker from 'shared/components/DatePicker';
-import Modal from 'shared/components/Modal';
 import FormPlusMinus from 'shared/components/FormPlusMinus';
 import SearchForDriverModal from './SearchForDriverModal';
 import { Link } from 'react-router-dom';

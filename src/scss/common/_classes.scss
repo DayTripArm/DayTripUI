@@ -310,6 +310,7 @@
 // [Max Width]
 .mxw-160px { max-width: 160px; }
 .mxw-328px { max-width: 328px }
+.mxw-25 { max-width: 25%; }
 .mxw-md-328px {
   @include media-breakpoint-up(md) {
     max-width: 328px

@@ -126,7 +126,7 @@ const FormDropZoneInlineText = (props) => {
             <div {...getRootProps({className: 'd-flex flex-column align-items-center mb-5'})}>
                 {
                     profile_photo_src ?
-                        <img className="rounded__50" src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + profile_photo_src : profile_photo_src} alt="" />
+                        <img className="rounded__50 mxw-25" src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + profile_photo_src : profile_photo_src} alt="" />
                         :
                         <IconUser width='72' height='72' fill='#757575' className='mb-4 op-5' />
                 }

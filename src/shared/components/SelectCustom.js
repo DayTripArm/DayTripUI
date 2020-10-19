@@ -2,6 +2,7 @@ import React from 'react';
 import Select, { components } from 'react-select';
 import { IconArrowDown, IconArrowUp } from './Icons';
 import AsyncSelect from "react-select/async/dist/react-select.esm";
+import Spinner from '@atlaskit/spinner';
 
 // Static Components
 const selectComponents = {
@@ -116,7 +117,10 @@ const SelectCustom = ({
                                         <div className="small text__grey-dark">{props.data.country}</div>
                                     </components.Option>
                                 );
-                            }
+                            },
+                            LoadingIndicator: props => (
+                                <Spinner size="medium" />
+                            ),
                         }}
                     />
                     :

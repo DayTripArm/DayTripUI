@@ -34,8 +34,14 @@ export const CAR_YEAR_LIST = () => {
     return year_list;
 };
 
-export const AVAILABILITY_WINDOW = ['All future dates', '9 months in advance', '6 months in advance', '3 months in advance', 'Dates unavailable by default']
-export const DRIVER_NOTICE = [1, 2, 3, 7]
+export const AVAILABILITY_WINDOW = {
+    'All future dates': 12,
+    '9 months in advance': 9,
+    '6 months in advance': 6,
+    '3 months in advance': 3,
+    'Dates unavailable by default': 0
+};
+export const DRIVER_NOTICE = [1, 2, 3, 7];
 
 export const CAR_SPECS = {"air_condition": "Air Condition", "car_seat" : "Car Seat", "pets_allowd": "Pets Allowed", "smoke_allowed": "Smoke Allowed", "snacks": "Snacks", "water": "Water"}
 

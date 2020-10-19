@@ -4,6 +4,7 @@ import { IconArrowLeft, IconHeartOutlined, IconShare, IconHeartFilled } from 'sh
 import actions from "../../../../actions";
 import {useDispatch} from "react-redux";
 import {isAuthorized} from "../../../../helper";
+import ProgressiveImage from "react-progressive-image-loading";
 
 const TourIllustration = (props) => {
     const dispatch = useDispatch();
@@ -40,17 +41,15 @@ const TourIllustration = (props) => {
             <Slider {...settings}>
                 {
                     images.map((image, i) => {
-                        const src = process.env.NODE_ENV === "development"
-                            ? "http://localhost:3000" + image.url
-                            : image.url;
+                        const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
 
                         return (
-                            <img
-                                key={i}
+                            <ProgressiveImage
                                 src={src}
-                                alt='car'
-                                className='w-100 object-pos-center object-fit-cover'
-                                role='presentation'
+                                key={i}
+                                transitionTime={800}
+                                render={(src, style) => <img key={i} src={src} style={style} alt='car' className='w-100 object-pos-center object-fit-cover' role='presentation'/>}
+                                preview={src}
                             />
                         );
                     })

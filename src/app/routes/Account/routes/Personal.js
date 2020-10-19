@@ -4,7 +4,7 @@ import FormInputBox from 'shared/components/FormInputBox';
 import {useSelector} from "react-redux";
 import {GENDER_LIST} from "../../../../constants";
 import _ from "lodash";
-import FormDropZoneImageCrop from "../../../../shared/components/FormDropZoneImageCrop";
+import FormDropZoneImageCrop from "shared/components/FormDropZoneImageCrop";
 
 const routes = [
     {

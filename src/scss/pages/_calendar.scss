@@ -11,17 +11,22 @@
   }
 }
 
-.calendar-page {
+
     .CalendarDay__default {
         position: relative;
         height: 70px !important;
         background-color: #F2F2F2;
     }
 
-    .CalendarDay__blocked_calendar {
+    .CalendarDay__highlighted_calendar {
         border: 1px solid #e4e7e7;
         color: #484848;
         background: #fff;
+    }
+
+    .CalendarDay__highlighted_calendar:hover {
+        color: #484848;
+        background-color: #fff;
     }
 
     .CalendarDay__blocked_out_of_range,
@@ -39,7 +44,7 @@
         text-decoration-line: none !important;
     }
 
-    .CalendarDay__blocked_calendar span {
+    .CalendarDay__highlighted_calendar span {
         text-decoration-line: none !important;
     }
 
@@ -100,4 +105,3 @@
         height: 100%;
         position: relative;
     }
-}

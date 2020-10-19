@@ -12,6 +12,7 @@ import ProfilePicture from './components/ProfilePicture';
 import ProfileData from './components/ProfileData';
 import LocationAndDestination from './components/LocationAndDestination';
 import HitTheRoad from './components/HitTheRoad';
+import Loader from "shared/components/Loader";
 
 import actions from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
@@ -48,7 +49,11 @@ const DriverRegister = () => {
     const [startValidate, setStartValidate] = useState(false);
     const [tariffChecked, setTariffChecked] = useState(false); // for all days trip, page 6
 
+    const [loading, setLoading] = useState(false);
+
     let invalidFields = [];
+
+    const loaderText = "Please Wait While We are Saving Your Data";
 
     const dispatch = useDispatch();
 
@@ -100,10 +105,12 @@ const DriverRegister = () => {
                                 <button className='btn btn-primary text-uppercase' disabled={isSubmit} onClick={() => {
                                     if (!isValid()) return false;
 
-
-                                    if (step === limit) setSubmit(true);
                                     step !== limit && setStep(step + 1);
-                                    step === limit && dispatch(actions.saveDriverPreregData());
+                                    if (step === limit) {
+                                        setSubmit(true);
+                                        setLoading(true);
+                                        dispatch(actions.saveDriverPreregData());
+                                    }
                                     setStartValidate(false);
                                 }}>
                                     {step !== limit ? "Next" : "Save"}
@@ -113,6 +120,7 @@ const DriverRegister = () => {
                     </div>
                 </div>
             </div>
+            {loading && <Loader text={loaderText} />}
         </>
     );
 };

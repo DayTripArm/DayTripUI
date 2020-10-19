@@ -1,6 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import { Link } from 'react-router-dom';
+import ProgressiveImage from "react-progressive-image-loading";
 
 const HomeIllustration = () => {
     const {travelerData={}} = useSelector(state => state);
@@ -18,7 +19,14 @@ const HomeIllustration = () => {
     return (
         <>
             <div className='home-illustration box-overlay'>
-                <img src={src} alt='' className='w-100 object-pos-center object-fit-cover'/>
+                {/* if src is undefined  show empty img for keep container width/height (via style) proportion  */}
+                {image.url ? <ProgressiveImage
+                    src={src}
+                    transitionTime={1000}
+                    render={(src, style) => <img src={src} style={style} alt='' className='w-100 object-pos-center object-fit-cover'/>}
+                    preview={src}
+                /> : <img src="" alt="" />}
+
                 <div className='overlay'>
                     <div className='container illustration-inner'>
                         <div className='col-md-10 col-lg-8 col-xl-6 col-xxl-5 px-0 px-md-4'>

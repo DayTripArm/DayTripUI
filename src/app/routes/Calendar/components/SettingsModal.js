@@ -20,19 +20,20 @@ const SettingsModal = ({ onClose, title = 'Settings' }) => {
         settings_obj[field_name] = event.value;
         let excluded_days = [];
         let dateuse  = moment();
-        let endDate = moment().add(0, 'months');
+        let endDate = moment().add(event.value, 'months');
 
-        while (dateuse.isSameOrBefore(endDate)){
-            excluded_days.push(dateuse.format('YYYY-MM-DD'))
+        while (dateuse.isSameOrBefore(endDate)) {
+            excluded_days.push(dateuse.format('YYYY-MM-DD'));
             dateuse.add(1, 'days');
         }
         settings_obj["unavailable_days"] = {
             "excluded_days": excluded_days
         };
+
         dispatch(actions.updateCalendarSettingsRequest(profile.id, settings_obj));
 
     };
-    const available_days = AVAILABILITY_WINDOW.map((value, key) => {return {label: value, value: key}});
+    const available_days = _.keys(AVAILABILITY_WINDOW).map(key => {return {label: key, value: AVAILABILITY_WINDOW[key]}});
     const advance_notices = DRIVER_NOTICE.map((value, key) => {return {label: "At least " + value + " day’s notice", value: key}});
 
 
