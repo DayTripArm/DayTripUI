@@ -138,7 +138,15 @@ const Drivers = ({ history }) => {
                             <Chips name="Price" />
                         </div>
                         <h2 className='text__blue mb-4 mb-md-5'>Available Drivers</h2>
-                        {drivers_list && (<DriversList drivers_list={drivers_list} trip_details={trip_details} />)}
+                        {drivers_list && (<DriversList
+                                drivers_list={drivers_list}
+                                trip_details={trip_details}
+                                req_body={{
+                                    date: form.date,
+                                    travelers: count.adults + count.children,
+                                    trip_id: trip_id
+                                }}
+                         />)}
                     </div>
                 </div>
             </div>

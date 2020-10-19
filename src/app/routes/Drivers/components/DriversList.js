@@ -19,7 +19,7 @@ import actions from "actions";
 import moment from "moment";
 
 
-const DriversList = ({drivers_list,trip_details}) => {
+const DriversList = ({drivers_list,trip_details, req_body}) => {
     const {travelerData} = useSelector(state => state);
     const {profile} = travelerData;
     const location = useLocation();
@@ -27,9 +27,9 @@ const DriversList = ({drivers_list,trip_details}) => {
     const history = useHistory();
     const loadDriverList = () => {
         const body = {
-            date: location.state.date,
-            travelers: location.state.travelers,
-            trip_id: trip_details?.trip_id || null,
+            date: req_body ? req_body.date : location.state.date,
+            travelers: req_body ? req_body.travelers : location.state.travelers,
+            trip_id: req_body ? req_body.trip_id : (trip_details?.trip_id || null),
             offset: drivers_list.length > 10 ? drivers_list.length + 1 : 0,
             limit: 10
         };
