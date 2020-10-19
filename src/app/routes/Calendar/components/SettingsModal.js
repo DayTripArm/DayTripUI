@@ -17,15 +17,19 @@ const SettingsModal = ({ onClose, title = 'Settings' }) => {
     let setSettingsOptions = (event, opt) => {
         const field_name = opt.name;
         let settings_obj = {driver_id: profile.id};
-        settings_obj[field_name] = event.value;
+        const availability_window =  event.value;
+        settings_obj[field_name] = availability_window;
         let excluded_days = [];
         let dateuse  = moment();
-        let endDate = moment().add(event.value, 'months');
+        let endDate = moment().add(availability_window, 'months');
 
-        while (dateuse.isSameOrBefore(endDate)) {
-            excluded_days.push(dateuse.format('YYYY-MM-DD'));
-            dateuse.add(1, 'days');
+        if (availability_window !== 0) {
+            while (dateuse.isSameOrBefore(endDate)) {
+                excluded_days.push(dateuse.format('YYYY-MM-DD'));
+                dateuse.add(1, 'days');
+            }
         }
+
         settings_obj["unavailable_days"] = {
             "excluded_days": excluded_days
         };
