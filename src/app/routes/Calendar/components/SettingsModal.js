@@ -5,6 +5,7 @@ import {AVAILABILITY_WINDOW, DRIVER_NOTICE} from "../../../../constants";
 import actions from "../../../../actions";
 import {useDispatch, useSelector} from "react-redux";
 import _ from "lodash";
+import moment from "moment";
 
 const SettingsModal = ({ onClose, title = 'Settings' }) => {
     const dispatch = useDispatch();
@@ -17,6 +18,17 @@ const SettingsModal = ({ onClose, title = 'Settings' }) => {
         const field_name = opt.name;
         let settings_obj = {driver_id: profile.id};
         settings_obj[field_name] = event.value;
+        let excluded_days = [];
+        let dateuse  = moment();
+        let endDate = moment().add(0, 'months');
+
+        while (dateuse.isSameOrBefore(endDate)){
+            excluded_days.push(dateuse.format('YYYY-MM-DD'))
+            dateuse.add(1, 'days');
+        }
+        settings_obj["unavailable_days"] = {
+            "excluded_days": excluded_days
+        };
         dispatch(actions.updateCalendarSettingsRequest(profile.id, settings_obj));
 
     };
