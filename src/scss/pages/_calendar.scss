@@ -95,7 +95,7 @@
         position: relative;
     }
 
-    .CalendarProfileActive span {
+    .CalendarProfileActive, .CalendarProfileInactive span {
         text-decoration-line: none !important;
     }
 

@@ -139,7 +139,15 @@ const Calendar = () => {
     };
 
     const isOutsideRange = (date) => {
-        return date.isBefore(moment(), 'day');
+        if (calendar_info) {
+            const list = _.reduce(calendar_info, (memo, obj) => {
+                memo.push(obj.trip_day);
+
+                return memo;
+            }, []);;
+            let isIncluded = _.includes(list, date.format('YYYY-MM-DD'));
+            return date.isBefore(moment(), 'day') && !isIncluded;
+        }
     };
 
     const renderDayContents=(day, i)=> {
