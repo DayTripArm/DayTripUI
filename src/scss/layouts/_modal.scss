@@ -66,7 +66,7 @@
 
   &-aside {
     @include media-breakpoint-up(md) {
-      top: 72px;
+      //top: 72px;
     }
     .modal-content {
       max-width: 100%;
@@ -77,7 +77,7 @@
       @include translate(100%, 0);
       @include media-breakpoint-up(md) {
         width: 360px;
-        @include calc(max-height, '100vh - 74px')
+        //@include calc(max-height, '100vh - 74px')
       }
     }
     &.active {
