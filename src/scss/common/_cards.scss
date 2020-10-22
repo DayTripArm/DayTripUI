@@ -79,7 +79,34 @@
     }
   }
 
+    &__s {
+        .btn-favorite {
+            top: 10px;
+            right: 10px;
+        }
+
+        .image-container {
+            padding-top: 73%;
+            @include media-breakpoint-up(md) {
+                padding-top:  106%;
+            }
+            @include media-breakpoint-up(lg) {
+                padding-top: 75%;
+            }
+            @include media-breakpoint-up(xl) {
+                padding-top: 72%;
+            }
+            @include media-breakpoint-up(xxl) {
+                padding-top: 65%;
+            }
+        }
+    }
+
   .card-star path {
     fill: $primary
   }
+
+    &:hover .btn-favorite {
+        opacity: 1;
+    }
 }
