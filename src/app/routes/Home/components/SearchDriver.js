@@ -198,7 +198,7 @@ const SearchDriver = () => {
                             </div>
 
 
-                            <div className="form-field-flexible mr-lg-4 mb-lg-0">
+                            <div className="form-field-sfd mr-lg-4 mb-lg-0">
                                 <label className="mb-1 px-1">&nbsp;</label>
                                 <div className="position-relative">
                                     <Link to="/drivers" className='btn btn-primary btn-block__md htr_search' onClick={(e) => {

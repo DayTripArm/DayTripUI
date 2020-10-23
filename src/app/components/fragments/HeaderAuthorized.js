@@ -208,6 +208,7 @@ const HeaderAuthorized = ({ type }) => {
                             <li>
                                 <NavLink
                                     to={Number(userType) === 1 ? "/individuals/user" : "/individuals/driver"}
+                                    onClick={() => setOpenDropdown(false)}
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >
@@ -217,6 +218,7 @@ const HeaderAuthorized = ({ type }) => {
                             <li>
                                 <NavLink
                                     to='/account'
+                                    onClick={() => setOpenDropdown(false)}
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >
@@ -226,6 +228,7 @@ const HeaderAuthorized = ({ type }) => {
                             <li>
                                 <NavLink
                                     to='/refer'
+                                    onClick={() => setOpenDropdown(false)}
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >
@@ -237,6 +240,7 @@ const HeaderAuthorized = ({ type }) => {
                             <li>
                                 <NavLink
                                     to='/switchDrive'
+                                    onClick={() => setOpenDropdown(false)}
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >
@@ -248,6 +252,7 @@ const HeaderAuthorized = ({ type }) => {
                             <li>
                                 <NavLink
                                     to='/currency'
+                                    onClick={() => setOpenDropdown(false)}
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >
@@ -257,6 +262,7 @@ const HeaderAuthorized = ({ type }) => {
                             <li>
                                 <NavLink
                                     to='/language'
+                                    onClick={() => setOpenDropdown(false)}
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >
@@ -266,6 +272,7 @@ const HeaderAuthorized = ({ type }) => {
                             <li>
                                 <NavLink
                                     to='/help'
+                                    onClick={() => setOpenDropdown(false)}
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >

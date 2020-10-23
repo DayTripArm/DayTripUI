@@ -45,6 +45,14 @@
     min-height: 550px;
     max-height: 600px;
   }
+  .form-field-sfd{
+    @include media-breakpoint-down(md) {
+        width: 328px;
+    }
+    @include media-breakpoint-down(sm) {
+        min-width: 288px;
+    }
+  }
 }
 .hit_ther_road_tip{
     position: relative;
