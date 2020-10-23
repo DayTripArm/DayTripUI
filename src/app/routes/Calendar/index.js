@@ -162,8 +162,6 @@ const Calendar = () => {
                             className={moment(day).isSameOrAfter(moment(), 'day') ? 'CalendarProfileImgActive' : 'CalendarProfileImgInactive'}
                             alt=""
                             src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + info.traveler_photo : info.traveler_photo}
-                            width="32px"
-                            height="32px"
                         /></div>
                     <span >{day.format('D')}</span>
 
