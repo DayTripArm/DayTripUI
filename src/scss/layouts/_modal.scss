@@ -87,3 +87,18 @@
     }
   }
 }
+#booked_trip_modal {
+    .user_info{
+        .mxw-60pc{
+            word-break: break-all;
+            display: inline-block;
+            width: 180px;
+            vertical-align: top;
+            float: right;
+            text-align: right;
+        }
+        .mb-0{
+            width: 100%;
+        }
+    }
+}

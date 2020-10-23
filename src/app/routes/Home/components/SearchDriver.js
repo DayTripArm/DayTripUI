@@ -103,7 +103,7 @@ const SearchDriver = () => {
                         <div className='text-white text-center px-4 px-lg-5'>
                             <h2 className='h1 mb-4'>{title}
                                 <button className='btn btn-sm border-0 pull-t-5 hit_ther_road_tip' onClick={() => setOpenModal(true)}>
-                                    <IconQuestionOutlined fill='#757575' />
+                                    <IconQuestionOutlined fill='#fff' />
                                 </button>
                             </h2>
                             <h4 className='mb-5 weight-300' dangerouslySetInnerHTML={{__html: description}}></h4>

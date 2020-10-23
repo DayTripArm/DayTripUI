@@ -41,7 +41,7 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
     };
 
     return (
-        <ModalAside title={title} onClose={onClose}>
+        <ModalAside title={title} onClose={onClose} id="booked_trip_modal">
             {!_.isEmpty(trip_tour) &&
             <>
                 <div className='d-flex align-items-center justify-content-between mb-5'>
@@ -139,23 +139,25 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
                 </div>
             </div>
             <hr className='border__top border__default my-4'/>
-            <div>
+            <div className="user_info">
                 <div className='d-flex mb-4'>
                     <IconFlag className='mr-2'/>
                     <p className='mb-0'>
-                        Nation: <span className='weight-500 text__grey-dark'>{user_info.location}</span>
+                        Nation: <span className='weight-500 text__grey-dark  mxw-60pc'>{user_info.location}</span>
                     </p>
                 </div>
                 <div className='d-flex mb-4'>
                     <IconGlobe className='mr-2'/>
                     <p className='mb-0'>
-                        Languages: <span className='weight-500 text__grey-dark'>{user_info.languages}</span>
+                        <span className='text__grey-dark'>Languages:</span>
+                        <span className='weight-500 text__grey-dark  mxw-60pc'>{user_info.languages}</span>
                     </p>
                 </div>
                 <div className='d-flex mb-4'>
                     <IconPhone className='mr-2'/>
                     <p className='mb-0'>
-                        Number: <span className='weight-500 text__grey-dark'>{user_info.phone}</span>
+                        <span className='text__grey-dark'>Number:</span>
+                        <span className='weight-500 text__grey-dark mxw-60pc'>{user_info.phone}</span>
                     </p>
                 </div>
             </div>
