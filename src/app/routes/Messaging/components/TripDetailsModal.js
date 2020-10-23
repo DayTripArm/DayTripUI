@@ -4,8 +4,9 @@ import { IconStar, IconDestination, IconFlag, IconGlobe, IconPhone } from 'share
 import {useSelector} from "react-redux";
 import { useHistory } from "react-router";
 import _ from "lodash";
+import moment from "moment";
 
-const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
+const TripDetailsModal = ({ onClose}) => {
     const history = useHistory();
 
     const {driverData} = useSelector(state => state);
@@ -40,8 +41,19 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
         );
     };
 
+    const fetchName =(name) => {
+        name = _.split(user_info.user_name, ' ')[0];
+        if (name && name.length > 10) {
+            name = _.truncate(name, {
+                'length': 11,
+                'omission': ''
+            });
+        }
+        return name;
+    };
+
     return (
-        <ModalAside title={title} onClose={onClose} id="booked_trip_modal">
+        <ModalAside title={moment(trip_info.trip_day).format("MMMM D")} onClose={onClose} id="booked_trip_modal">
             {!_.isEmpty(trip_tour) &&
             <>
                 <div className='d-flex align-items-center justify-content-between mb-5'>
@@ -75,7 +87,7 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
             <div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
                     <span className='text__grey-dark'>Day</span>
-                    <span className='mxw-60pc weight-700'>{trip_info.trip_day}</span>
+                    <span className='mxw-60pc weight-700'>{moment(trip_info.trip_day).format("MMMM D")}</span>
                 </div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
                     <span className='text__grey-dark'>Travelers</span>
@@ -181,7 +193,7 @@ const TripDetailsModal = ({ onClose, title = 'Trips' }) => {
                 </div>
             </div>
             <div className='shadow__4-up p-4 row position-sticky fixed-bottom bg-white translate-y-16'>
-                <button className='btn btn-primary btn-block text-uppercase'>Contact to {user_info.user_name}</button>
+                <button className='btn btn-primary btn-block text-uppercase'>Contact to {fetchName(user_info.user_name)}</button>
             </div>
         </ModalAside>
     )

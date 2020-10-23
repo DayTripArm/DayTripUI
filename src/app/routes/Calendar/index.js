@@ -250,7 +250,7 @@ const Calendar = () => {
             </div>
             {openSettingsModal && <SettingsModal onClose={() => setOpenSettingsModal(false)}/>}
             {openDetailsModal && (
-                <TripDetailsModal title='March 18' onClose={() => setOpenDetailsModal(false)}/>
+                <TripDetailsModal onClose={() => setOpenDetailsModal(false)}/>
             )}
         </>
     );
