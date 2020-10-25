@@ -49,12 +49,12 @@
 }
 
 .sfd_popup_form{
-    .tour_seach_items{
+    .tour_search_items{
         width: 325px;
         min-width: 325px;
         margin: 10px auto;
     }
-    .tour_seach_items > .form-field{
+    .tour_search_items > .form-field{
         width: 100%;
     }
     .tour_calendar_popup {
@@ -100,7 +100,7 @@
     }
 }
 
-.tour_seach_items{
+.tour_search_items{
     position: relative;
     .tour_calendar_popup {
         position: absolute;
@@ -111,7 +111,7 @@
         position: absolute;
         bottom: 55px;
         z-index: 999;
-        height: 164px;
+        height: 130px;
         width: 326px;
 
         .trvlr_count_container{

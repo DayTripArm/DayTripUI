@@ -83,7 +83,7 @@
         top: 80px;
         z-index: 999;
         width: 326px;
-        height: 164px;
+        height: 130px;
         @include media-breakpoint-down(sm) {
             width: 288px;
         }
@@ -100,16 +100,6 @@
         }
         .trvlr_count_container > .d-flex{
             margin-bottom: 0!important;
-        }
-        .trvl_cnt_footer{
-            margin: 0 5px;
-            padding: 5px 0px;
-        }
-        .btn-clear{
-            color: #757577;
-        }
-        .btn-done{
-            float:right;
         }
     }
 }
