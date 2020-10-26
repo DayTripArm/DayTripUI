@@ -25,7 +25,7 @@ const Destinations = (props) => {
                         : dest.dest_image.url;
 
                     return (
-                        <div key={i} className='step-vertical step-vertical__contained pb-6'>
+                        <div key={i} className={`step-vertical  ${!_.isEmpty(dest.dest_title) && "step-vertical__contained pb-6"}`}>
                             <h4 className='text__grey-dark mb-4 mb-md-5'>
                                 {STRING_NUMBERS[i]} stop:{' '}
                                 <span className='weight-400'>{dest.stop_title}</span>
@@ -41,10 +41,10 @@ const Destinations = (props) => {
                                 <div className='col-12 col-md-7'>
                                     <h4 className='mb-4'>{dest.dest_title}</h4>
                                     <p className='mb-0'>
-                                        <div dangerouslySetInnerHTML={{__html: dest.dest_desc.substring(0, 250)}}></div>
+                                        <span dangerouslySetInnerHTML={{__html: dest.dest_desc.substring(0, 250)}}></span>
                                         {dest.dest_desc.length >= 250 && <button className='btn btn-secondary btn-sm' onClick={() => {
                                             setModalData({
-                                                description: <div dangerouslySetInnerHTML={{__html: dest.dest_desc}}></div>,
+                                                description: <span dangerouslySetInnerHTML={{__html: dest.dest_desc}}></span>,
                                                 image_url: modalImage.url
                                             });
                                             setOpenInfoModal(true);
