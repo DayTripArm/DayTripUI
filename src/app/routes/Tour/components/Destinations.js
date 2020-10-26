@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {STRING_NUMBERS} from "../../../../constants";
 import InfoModal from "./InfoModal";
 
+import _ from "lodash";
+
 const Destinations = (props) => {
     const [openInfoModal, setOpenInfoModal] = useState(false);
     const [modalData, setModalData] = useState({
@@ -28,7 +30,7 @@ const Destinations = (props) => {
                                 {STRING_NUMBERS[i]} stop:{' '}
                                 <span className='weight-400'>{dest.stop_title}</span>
                             </h4>
-                            <div className='row'>
+                            {!_.isEmpty(dest.dest_title) && <div className='row'>
                                 <div className='col-12 col-md-5'>
                                     <img
                                         src={src}
@@ -50,6 +52,7 @@ const Destinations = (props) => {
                                     </p>
                                 </div>
                             </div>
+                            }
                         </div>
                     );
                 })
