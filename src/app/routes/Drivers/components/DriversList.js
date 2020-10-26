@@ -109,11 +109,11 @@ const DriversList = ({drivers_list,trip_details, req_body}) => {
                                     <div className="card-item card-item__s col-md-4 pt-4 px-4">
                                         <Slider {...settings}>
                                             {
-                                                driver.car_photos.map(photo => {
+                                                driver.car_photos.map((photo, index) => {
                                                     const car_photo = process.env.NODE_ENV === "development" ? "http://localhost:3000" + photo.full_path : photo.full_path;
 
                                                     return (
-                                                        <div className='image-container mb-4'>
+                                                        <div key={index} className='image-container mb-4'>
                                                             <img src={car_photo} className='object-pos-center object-fit-cover bg__grey-dark rounded__10' alt='img' />
                                                         </div>
                                                     )

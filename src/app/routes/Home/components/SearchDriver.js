@@ -169,7 +169,14 @@ const SearchDriver = () => {
                                             max={9}
                                             min={2}
                                             initialValue={count.adults}
-                                            onChange={(obj) => setCount({...count, adults: obj.value })}
+                                            onChange={(obj) => {
+                                                setCount({...count, adults: obj.value });
+                                                setForm({
+                                                    ...form,
+                                                    travelers: (count.children + obj.value).toString()
+                                                });
+                                                setShowCountPopup(false);
+                                            }}
                                         />
                                         <FormPlusMinus
                                             label="Children"
@@ -177,21 +184,15 @@ const SearchDriver = () => {
                                             max={9}
                                             min={1}
                                             initialValue={count.children}
-                                            onChange={(obj) => setCount({...count,  children: obj.value })}
-                                        />
-                                        <div className="trvl_cnt_footer">
-                                            <span className="btn btn-secondary btn-sm btn-clear" onClick={() => {
-                                                setShowCountPopup(!showCountPopup);
-                                            }}>Close</span>
-                                            <span className="btn btn-secondary btn-sm btn-done" onClick={() => {
+                                            onChange={(obj) => {
+                                                setCount({...count,  children: obj.value });
                                                 setForm({
                                                     ...form,
-                                                    travelers: (count.adults + count.children).toString()
+                                                    travelers: (count.adults + obj.value).toString()
                                                 });
                                                 setShowCountPopup(false);
                                             }}
-                                            >Done</span>
-                                        </div>
+                                        />
                                     </div>
                                     )}
                                 </div>

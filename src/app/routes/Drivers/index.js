@@ -9,6 +9,8 @@ import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../actions";
 import _ from "lodash";
 import moment from "moment";
+import { Grid } from "@material-ui/core";
+import RangeSlider from "./components/RangeSlider";
 
 const Drivers = ({ history }) => {
     const dispatch = useDispatch();
@@ -34,10 +36,17 @@ const Drivers = ({ history }) => {
     const trip_duration = trip_details ? trip_details.trip_duration : 12;
     const start_location = trip_details ?  trip_details.start_location : 'Yerevan';
 
-    const [openCalendar, setOpenCalendar] = useState(false);
-    const [openCount, setOpenCount] = useState(false);
+    const [openCalendar, setOpenCalendar] = useState(false)
+    const [openCount, setOpenCount] = useState(false)
+    const [isPricePopupOpened, setPricePopupOpened] = useState(false)
     const [form, setForm] = useState({date: day, travelers: travelers_count});
     const [count, setCount] = useState({adults: 1, children: 0});
+    const [price_range, setPriceRange] = useState([10, 1100]);
+
+    const prices = [];
+    for (let i = 10; i <= 1000; i++) {
+        prices.push(Math.floor(Math.random() * 1100) + 10);
+    }
 
     const onDaySelect = ((day) => {
         setForm({
@@ -52,15 +61,14 @@ const Drivers = ({ history }) => {
         updateDriversList(body);
     });
 
-    const onSetCount = (() => {
+    const onSetCount = ((total_passangers) => {
         setForm({
             ...form,
-            travelers: (count.adults + count.children).toString()
+            travelers: total_passangers.toString()
         });
-        setOpenCount(false);
         const body = {
             date: form.date,
-            travelers: count.adults + count.children
+            travelers: total_passangers
         };
         updateDriversList(body)
     });
@@ -113,7 +121,10 @@ const Drivers = ({ history }) => {
                                                 max={9}
                                                 min={2}
                                                 initialValue={count.adults}
-                                                onChange={(obj) => setCount({...count, adults: obj.value })}
+                                                onChange={(obj) => {
+                                                    setCount({...count, adults: obj.value })
+                                                    onSetCount(count.children + obj.value);
+                                                }}
                                             />
                                             <FormPlusMinus
                                                 label="Children"
@@ -121,21 +132,34 @@ const Drivers = ({ history }) => {
                                                 max={9}
                                                 min={1}
                                                 initialValue={count.children}
-                                                onChange={(obj) => setCount({...count,  children: obj.value })}
+                                                onChange={(obj) => {
+                                                    setCount({...count,  children: obj.value })
+                                                    onSetCount(count.adults + obj.value);
+                                                }}
                                             />
-                                            <div className="trvl_cnt_footer">
-                                                <span className="btn btn-secondary btn-sm btn-clear" onClick={() => {
-                                                    setOpenCount(!setOpenCount);
-                                                }}>Close</span>
-                                                <span className="btn btn-secondary btn-sm btn-done" onClick={() => onSetCount()}
-                                                >Done</span>
-                                            </div>
                                         </div>
                                     )}
                                 </div>
                             </div>
                             <Chips name="Reviews" className='mr-4 mb-md-5'/>
-                            <Chips name="Price" />
+                            <div className="home_seach_items">
+                                <Chips name={"$"+price_range[0]+" to $"+price_range[1]} onClick={() => setPricePopupOpened(!isPricePopupOpened)} />
+                                <div className="price_popup">
+                                    {isPricePopupOpened && (
+                                        <div className="price_container">
+                                            <div className="price_slider">
+                                                <Grid container justify="center">
+                                                  <Grid item xs={12} style={{ textAlign: "center" }}>
+                                                  </Grid>
+                                                  <Grid item xs={12} lg={8}>
+                                                    <RangeSlider data={prices} price_range={price_range} />
+                                                  </Grid>
+                                                </Grid>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
                         </div>
                         <h2 className='text__blue mb-4 mb-md-5'>Available Drivers</h2>
                         {drivers_list && (<DriversList

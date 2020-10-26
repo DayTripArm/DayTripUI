@@ -108,7 +108,7 @@ const SearchPanel = ({trip_detail}) => {
             </div>
             <div className='d-flex justify-content-end flex-fill'>
               <div className='d-none d-md-flex flex-fill justify-content-lg-end'>
-                  <div className="tour_seach_items">
+                  <div className="tour_search_items">
                     <div className="tour_calendar_popup">
                         {showDatePicker && ( <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />)}
                     </div>
@@ -123,7 +123,7 @@ const SearchPanel = ({trip_detail}) => {
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                     />
                   </div>
-                  <div className="tour_seach_items">
+                  <div className="tour_search_items">
                      <div className="tour_travelers_count_popup">
                         {showCountPopup && (
                             <div className="trvlr_count_container">
@@ -133,7 +133,14 @@ const SearchPanel = ({trip_detail}) => {
                                     max={9}
                                     min={2}
                                     initialValue={count.adults}
-                                    onChange={(obj) => setCount({...count, adults: obj.value })}
+                                    onChange={(obj) => {
+                                        setCount({...count, adults: obj.value });
+                                        setForm({
+                                                ...form,
+                                            travelers: (count.children + obj.value).toString()
+                                        });
+                                        setShowCountPopup(false);
+                                    }}
                                 />
                                 <FormPlusMinus
                                     label="Children"
@@ -141,20 +148,15 @@ const SearchPanel = ({trip_detail}) => {
                                     max={9}
                                     min={1}
                                     initialValue={count.children}
-                                    onChange={(obj) => setCount({...count,  children: obj.value })}
-                                />
-                                <div className="trvl_cnt_footer">
-                                    <span className="btn btn-secondary btn-sm btn-clear" onClick={() => {
-                                        setShowCountPopup(!showCountPopup);
-                                    }}>Close</span>
-                                    <span className="btn btn-secondary btn-sm btn-done" onClick={() => {
+                                    onChange={(obj) => {
+                                        setCount({...count,  children: obj.value });
                                         setForm({
                                             ...form,
-                                            travelers: (count.adults + count.children).toString()
+                                            travelers: (count.adults + obj.value).toString()
                                         });
                                         setShowCountPopup(false);
-                                    }}>Done</span>
-                                </div>
+                                    }}
+                                />
                             </div>
                         )}
                      </div>
