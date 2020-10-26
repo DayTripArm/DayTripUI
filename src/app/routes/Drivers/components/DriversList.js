@@ -1,12 +1,8 @@
 import React from 'react';
 import { IconStar,
     IconGlobe,
-    IconSnack,
     IconSmoking,
-    IconPetStep,
     IconCarSeat,
-    IconWifi,
-    IconWater,
     IconAC,
     IconCar,
     IconSeat } from 'shared/components/Icons';
@@ -15,7 +11,6 @@ import ModalLogin from 'app/components/modals/ModalLogin';
 import { Link, useLocation } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router";
-import {CAR_SPECS} from "../../../../constants";
 import actions from "actions";
 import moment from "moment";
 
@@ -122,7 +117,7 @@ const DriversList = ({drivers_list,trip_details, req_body}) => {
                                         </Slider>
                                     </div>
                                     <div className="col-md-8">
-                                        <div className='pt-4 px-4 pb-5 rounded__4 border__bottom border__default d-md-flex align-items-center justify-content-between'>
+                                        <div className='pt-4 pb-5 rounded__4 border__bottom border__default d-md-flex align-items-center justify-content-between'>
                                             <div className='d-flex mb-5 mb-md-0'>
                                                 <img
                                                     width='56'
@@ -144,46 +139,56 @@ const DriversList = ({drivers_list,trip_details, req_body}) => {
                                                 Book for ${location.state?.trip_id ? driver.tariff1 : driver.hit_the_road_tariff}
                                             </button>
                                         </div>
-                                        <div className='pt-5 px-4 pb-4 pb-md-5'>
-                                            <div className='d-md-flex flex-wrap'>
-                                                <div className='col-md-6 px-0 d-flex mb-4'>
+                                        <div className='pt-5 pt-md-4 pb-4'>
+                                            <div className='d-md-flex flex-wrap justify-content-between'>
+
+                                                <div className='col-md-8 px-0 d-flex mb-4'>
+                                                    <IconCar className='mr-2' />
+                                                    <p className='mb-0'>
+                                                        Car: <span className='weight-500 text__grey-dark'>{driver.car_full_name}</span>
+                                                    </p>
+                                                </div>
+
+                                                <div className='col-md-4 px-0 d-flex mb-4'>
+                                                    <IconSeat className='mr-2' />
+                                                    <p className='mb-0'>
+                                                        Seats: <span className='weight-500 text__grey-dark'>{driver.car_seats}</span>
+                                                    </p>
+                                                </div>
+
+                                                <div className='col-md-8 px-0 d-flex mb-4'>
                                                     <IconGlobe className='mr-2' />
                                                     <p className='mb-0'>
                                                         Languages:{' '}
                                                         <span className='weight-500 text__grey-dark'>{driver.languages}</span>
                                                     </p>
                                                 </div>
-                                                {
-                                                    Object.keys(driver.car_specs).map((opt, i) => {
-                                                        return (
-                                                            <div className='col-md-6 px-0 d-flex mb-4' key={i}>
-                                                                {opt === "car_seat" && (<IconCarSeat className='mr-2' />) }
-                                                                {opt === "smoke_allowed" && (<IconSmoking className='mr-2' />) }
-                                                                {opt === "pets_allowd"  && (<IconPetStep className='mr-2' />) }
-                                                                {opt === "wifi"  && (<IconWifi className='mr-2' />) }
-                                                                {opt === "snacks"  && (<IconSnack className='mr-2' />) }
-                                                                {opt === "air_condition"  && (<IconAC className='mr-2' />) }
-                                                                {opt === "water"  && (<IconWater className='mr-2' />) }
-                                                                <p className='mb-0'>
-                                                                    {CAR_SPECS[opt]}: <span className='weight-500 text__grey-dark'>{driver.car_specs[opt]? "Yes" : "No"}</span>
-                                                                </p>
-                                                            </div>
-                                                        )
-                                                    })
-                                                }
-                                                <div className='col-md-6 px-0 d-flex mb-4'>
-                                                    <IconCar className='mr-2' />
+
+                                                <div className='col-md-4 px-0 d-flex mb-4'>
+                                                    <IconCarSeat className='mr-2' />
                                                     <p className='mb-0'>
-                                                        Car: <span className='weight-500 text__grey-dark'>{driver.car_full_name}</span>
+                                                        Car Seat:{' '}
+                                                        <span className='weight-500 text__grey-dark'>{driver.car_seat ? "Yes" : "No"}</span>
                                                     </p>
                                                 </div>
-                                                <div className='col-md-6 px-0 d-flex mb-4'>
-                                                    <IconSeat className='mr-2' />
+
+                                                <div className='col-md-8 px-0 d-flex mb-4'>
+                                                    <IconSmoking className='mr-2' />
                                                     <p className='mb-0'>
-                                                        Seats: <span className='weight-500 text__grey-dark'>{driver.car_seats}</span>
+                                                        Smoke Allowed:{' '}
+                                                        <span className='weight-500 text__grey-dark'>{driver.smoke_allowed ? "Yes" : "No"}</span>
+                                                    </p>
+                                                </div>
+
+                                                <div className='col-md-4 px-0 d-flex mb-4'>
+                                                    <IconAC className='mr-2' />
+                                                    <p className='mb-0'>
+                                                        Air Condition:{' '}
+                                                        <span className='weight-500 text__grey-dark'>{driver.air_condition ? "Yes" : "No"}</span>
                                                     </p>
                                                 </div>
                                             </div>
+
                                             <div className='text-right'>
                                                 <Link to={{
                                                     pathname: '/individuals/driver',
