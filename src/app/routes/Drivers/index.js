@@ -36,9 +36,9 @@ const Drivers = ({ history }) => {
     const trip_duration = trip_details ? trip_details.trip_duration : 12;
     const start_location = trip_details ?  trip_details.start_location : 'Yerevan';
 
-    const [openCalendar, setOpenCalendar] = useState(false)
-    const [openCount, setOpenCount] = useState(false)
-    const [isPricePopupOpened, setPricePopupOpened] = useState(false)
+    const [openCalendar, setOpenCalendar] = useState(false);
+    const [openCount, setOpenCount] = useState(false);
+    const [isPricePopupOpened, setPricePopupOpened] = useState(false);
     const [form, setForm] = useState({date: day, travelers: travelers_count});
     const [count, setCount] = useState({adults: 1, children: 0});
     const [price_range, setPriceRange] = useState([10, 1100]);

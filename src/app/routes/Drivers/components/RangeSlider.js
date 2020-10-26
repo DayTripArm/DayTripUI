@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Button, TextField, InputAdornment } from "@material-ui/core";
+import { Grid, TextField, InputAdornment } from "@material-ui/core";
 import { Slider, Rail, Handles, Tracks, Ticks } from "react-compound-slider";
 import { MuiRail, MuiHandle, MuiTrack, MuiTick } from "./components";
 import BarChart from "./BarChart";
@@ -21,8 +21,8 @@ class RangeSlider extends React.Component {
   }
 
   render() {
-    const { domain, values, update, inputValues, price_range } = this.state;
-      console.log(this.state)
+    const { domain, values, update, inputValues } = this.state;
+
     return (
       <Grid container>
         <Grid item xs={12}>
@@ -41,8 +41,8 @@ class RangeSlider extends React.Component {
                 width: "100%"
               }}
               onUpdate={(update) => {
-                this.setState({ update, inputValues: update})
-                this.setState({ update, price_range: update})
+                this.setState({ update, inputValues: update});
+                this.setState({ update, price_range: update});
               }}
               onChange={(values) => {this.setState({ values }); this.setState({price_range: values})}}
               values={values}
