@@ -41,10 +41,10 @@ const Destinations = (props) => {
                                 <div className='col-12 col-md-7'>
                                     <h4 className='mb-4'>{dest.dest_title}</h4>
                                     <p className='mb-0'>
-                                        {`${dest.dest_desc.substring(0, 250)}...`}
+                                        <div dangerouslySetInnerHTML={{__html: dest.dest_desc.substring(0, 250)}}></div>
                                         {dest.dest_desc.length >= 250 && <button className='btn btn-secondary btn-sm' onClick={() => {
                                             setModalData({
-                                                description: dest.dest_desc,
+                                                description: <div dangerouslySetInnerHTML={{__html: dest.dest_desc}}></div>,
                                                 image_url: modalImage.url
                                             });
                                             setOpenInfoModal(true);
