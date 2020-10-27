@@ -25,7 +25,7 @@ const ReviewModal = ({ onClose }) => {
         </div>
         <p className='text-center weight-700'>Share your experience</p>
         <Textarea name='note' placeholder='Write a review' value='' className='h-152px' />
-        <button className='btn btn-primary btn-block text-uppercase'>Enter a Review</button>
+        <button className='btn btn-primary btn-block text-uppercase'>Submit</button>
       </div>
     </Modal>
   );

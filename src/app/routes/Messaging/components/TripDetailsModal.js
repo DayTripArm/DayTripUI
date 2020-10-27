@@ -162,7 +162,7 @@ const TripDetailsModal = ({ onClose}) => {
                 <div className='d-flex mb-4'>
                     <IconGlobe className='mr-2'/>
                     <p className='mb-0'>
-                        <span className='text__grey-dark'>Languages:</span>
+                        <span className='text__grey-dark'>Speaks:</span>
                         <span className='weight-500 text__grey-dark  mxw-60pc'>{user_info.languages}</span>
                     </p>
                 </div>
@@ -194,7 +194,7 @@ const TripDetailsModal = ({ onClose}) => {
                 </div>
             </div>
             <div className='shadow__4-up p-4 row position-sticky fixed-bottom bg-white translate-y-16'>
-                <button className='btn btn-primary btn-block text-uppercase'>Contact to {fetchName(user_info.user_name)}</button>
+                <button className='btn btn-primary btn-block text-uppercase'>Contact {fetchName(user_info.user_name)}</button>
             </div>
         </ModalAside>
     )
