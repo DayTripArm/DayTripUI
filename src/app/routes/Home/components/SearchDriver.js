@@ -135,7 +135,7 @@ const SearchDriver = () => {
                                     name='date'
                                     label='Date *'
                                     value={form.date}
-                                    placeholder='Select your Date'
+                                    placeholder='Select the Date'
                                     autoComplete='off'
                                     isError={getStatusMessage("date")  || false}
                                     onFocus={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);} }
@@ -152,7 +152,7 @@ const SearchDriver = () => {
                                     type='text'
                                     name='travelers'
                                     label='Travelers *'
-                                    placeholder='Count'
+                                    placeholder='Add Travelers'
                                     autoComplete='off'
                                     value={!_.isEmpty(form.travelers)? form.travelers + " Travelers" : ""}
                                     isError={getStatusMessage("travelers") || false}
