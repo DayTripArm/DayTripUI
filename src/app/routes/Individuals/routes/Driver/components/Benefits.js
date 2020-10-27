@@ -57,11 +57,11 @@ const Benefits = (props) => {
                 <IconWater className='mr-2'/>
                 <p className='mb-0'>Water: <span className='weight-500 text__grey-dark'>{car_features['water'] ? "Yes" : "No"}</span></p>
             </div>
-            <div className='col-md-6 d-flex'>
+            <div className='col-md-6 d-flex mb-4'>
                 <IconPetStep className='mr-2'/>
                 <p className='mb-0'>Pets Allowed: <span className='weight-500 text__grey-dark'>{car_features['pets_allowd'] ? "Yes" : "No"}</span></p>
             </div>
-            <div className='col-md-6 d-flex'>
+            <div className='col-md-6 d-flex mb-4'>
                 <IconWifi className='mr-2'/>
                 <p className='mb-0'>Wifi: <span className='weight-500 text__grey-dark'>{car_features['wifi'] ? "Yes" : "No"}</span></p>
             </div>
