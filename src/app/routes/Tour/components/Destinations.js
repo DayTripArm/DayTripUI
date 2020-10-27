@@ -38,13 +38,13 @@ const Destinations = (props) => {
                                         className='w-100 rounded__4 mb-5 mb-md-0'
                                     />
                                 </div>
-                                <div className='col-12 col-md-7'>
+                                <div className='col-12 col-md-7 text-break'>
                                     <h4 className='mb-4'>{dest.dest_title}</h4>
                                     <p className='mb-0'>
-                                        <span dangerouslySetInnerHTML={{__html: dest.dest_desc.substring(0, 250)}}></span>
-                                        {dest.dest_desc.length >= 250 && <button className='btn btn-secondary btn-sm' onClick={() => {
+                                        <span dangerouslySetInnerHTML={{__html: `${dest.dest_desc.substring(0, 300)}...`}}/>
+                                        {dest.dest_desc.length >= 300 && <button className='btn btn-secondary btn-sm' onClick={() => {
                                             setModalData({
-                                                description: <span dangerouslySetInnerHTML={{__html: dest.dest_desc}}></span>,
+                                                description: dest.dest_desc,
                                                 image_url: modalImage.url
                                             });
                                             setOpenInfoModal(true);

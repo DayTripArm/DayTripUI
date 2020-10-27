@@ -23,7 +23,7 @@ const BookedTripItem = ({ item, onBookedTripClick}) => {
                     <div>
                         <p className='weight-500 mb-1'>{item.trip.title}</p>
                         <p className='mb-1 text-xs'>
-                            <span className='weight-500'>Day:</span>{' '}
+                            <span className='weight-500'>Date:</span>{' '}
                             <span className='weight-500 text__grey-dark'>{moment(item.trip_day).format("MMMM D")}</span>
                         </p>
                         <p className='mb-0 text-xs'>

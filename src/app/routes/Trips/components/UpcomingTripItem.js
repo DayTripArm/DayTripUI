@@ -23,12 +23,12 @@ const UpcomingTripItem = ({ item, onBookedTripClick}) => {
                     <div>
                         <p className='weight-500 mb-1'>{item.trip.title}</p>
                         <p className='mb-1 text-xs'>
-                            <span className='weight-500'>Day:</span>{' '}
+                            <span className='weight-500'>Date:</span>{' '}
                             <span className='weight-500 text__grey-dark'>{moment(item.trip_day).format("D MMMM")}</span>
                         </p>
                         <p className='mb-0 text-xs'>
                             <span className='weight-500'>Travelers:</span>{' '}
-                            <span className='weight-500 text__grey-dark'>{item.travelers_count} Guests</span>
+                            <span className='weight-500 text__grey-dark'>{item.travelers_count}</span>
                         </p>
                         <div className='cancelation-container d-inline-block text-center py-2 py-md-0'>
                             <button className='btn btn-secondary btn-sm'>Cancelation</button>
@@ -44,7 +44,7 @@ const UpcomingTripItem = ({ item, onBookedTripClick}) => {
                 >
                     Details
                 </button>
-                <button className='btn btn-secondary btn-secondary__grey text-uppercase mb-1'>Contact Traveler</button>
+                <button className='btn btn-secondary btn-secondary__grey text-uppercase mb-1'>Contact Driver</button>
             </div>
         </div>
     </React.Fragment>

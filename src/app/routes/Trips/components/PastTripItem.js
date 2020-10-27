@@ -24,12 +24,12 @@ const PastTripItem = ({ item, onBookedTripClick, onReviewModal}) => {
                     <div>
                         <p className='weight-500 mb-1'>{item.trip.title}</p>
                         <p className='mb-1 text-xs'>
-                            <span className='weight-500'>Day:</span>{' '}
+                            <span className='weight-500'>Date:</span>{' '}
                             <span className='weight-500 text__grey-dark'>{moment(item.trip_day).format("D MMMM")}</span>
                         </p>
                         <p className='mb-0 text-xs'>
                             <span className='weight-500'>Travelers:</span>{' '}
-                            <span className='weight-500 text__grey-dark'>{item.travelers_count} Guests</span>
+                            <span className='weight-500 text__grey-dark'>{item.travelers_count}</span>
                         </p>
                         <div className='cancelation-container d-md-inline-block d-flex justify-content-center py-3 py-md-0'>
                             <div className='d-flex align-items-center'>
@@ -53,7 +53,7 @@ const PastTripItem = ({ item, onBookedTripClick, onReviewModal}) => {
                     className='btn btn-secondary btn-secondary__grey text-uppercase mb-1'
                     onClick={onReviewModal}
                 >
-                    Write a review
+                    Rate and Review
                 </button>
             </div>
         </div>

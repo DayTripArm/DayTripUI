@@ -91,7 +91,7 @@ const User = ({history={}}) => {
                             <div className='col-md-6 d-flex mb-4'>
                                 <IconHome className='mr-2' />
                                 <p className='mb-0'>
-                                    Lives: <span className='weight-500 text__grey-dark'>{location}</span>
+                                    Lives in: <span className='weight-500 text__grey-dark'>{location}</span>
                                 </p>
                             </div>
                             <div className='col-md-6 d-flex mb-4'>

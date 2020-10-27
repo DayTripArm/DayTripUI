@@ -1,6 +1,6 @@
 import React from 'react';
 import ModalAside from 'shared/components/ModalAside';
-import { IconStar, IconDestination, IconFlag, IconGlobe, IconPhone } from 'shared/components/Icons';
+import { IconStar, IconDestination, IconHome, IconGlobe, IconPhone } from 'shared/components/Icons';
 import {useSelector} from "react-redux";
 import { useHistory } from "react-router";
 import _ from "lodash";
@@ -57,7 +57,7 @@ const TripDetailsModal = ({ onClose}) => {
             {!_.isEmpty(trip_tour) &&
             <>
                 <div className='d-flex align-items-center justify-content-between mb-5'>
-                    <h4 className='mb-0 text__grey-dark'>Trip Tour</h4>
+                    <h4 className='mb-0 text__grey-dark'>Trip</h4>
                     <button className='btn btn-secondary btn-sm' onClick={() => moreAbout()}>More About</button>
                 </div>
                 <div className='d-flex'>
@@ -86,7 +86,7 @@ const TripDetailsModal = ({ onClose}) => {
             </div>
             <div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
-                    <span className='text__grey-dark'>Day</span>
+                    <span className='text__grey-dark'>Date</span>
                     <span className='mxw-60pc weight-700'>{moment(trip_info.trip_day).format("MMMM D")}</span>
                 </div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
@@ -130,7 +130,7 @@ const TripDetailsModal = ({ onClose}) => {
             </div>
             <hr className='border__top border__default my-4'/>
             <div className='d-flex align-items-center justify-content-between mb-5'>
-                <h4 className='mb-0 text__grey-dark'>Traveler</h4>
+                <h4 className='mb-0 text__grey-dark'>Driver</h4>
                 <button className='btn btn-secondary btn-sm' onClick={() => viewProfile()}>View Profile</button>
             </div>
             <div className='d-flex'>
@@ -153,9 +153,9 @@ const TripDetailsModal = ({ onClose}) => {
             <hr className='border__top border__default my-4'/>
             <div className="user_info">
                 <div className='d-flex mb-4'>
-                    <IconFlag className='mr-2'/>
+                    <IconHome className='mr-2' />
                     <p className='mb-0'>
-                        Nation: <span className='weight-500 text__grey-dark  mxw-60pc'>{user_info.location}</span>
+                        Lives in: <span className='weight-500 text__grey-dark  mxw-60pc'>{user_info.location}</span>
                     </p>
                 </div>
                 <div className='d-flex mb-4'>
@@ -177,7 +177,7 @@ const TripDetailsModal = ({ onClose}) => {
             <h4 className='mb-5 text__grey-dark'>Price</h4>
             <div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
-                    <span className='text__grey-dark'>Total Price</span>
+                    <span className='text__grey-dark'>Trip Price</span>
                     <span className='mxw-60pc weight-700'>$44.00</span>
                 </div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
@@ -188,7 +188,7 @@ const TripDetailsModal = ({ onClose}) => {
             <hr className='border__top border__default my-4'/>
             <div className='mb-3'>
                 <div className='d-flex align-items-center justify-content-between text-sm'>
-                    <span className='text__grey-dark'>Total</span>
+                    <span className='text__grey-dark'>Total price</span>
                     <span className='mxw-60pc weight-700'>{price}</span>
                 </div>
             </div>

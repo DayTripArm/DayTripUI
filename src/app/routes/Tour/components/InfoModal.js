@@ -24,7 +24,7 @@ const InfoModal = (props) => {
                     alt=''
                     src={src}
                 />
-                <p className='text-sm mh-100px'>{description}</p>
+                <p className='text-sm mh-100px text-break' dangerouslySetInnerHTML={{__html: description}}></p>
             </div>
         </Modal>
     )
