@@ -10,7 +10,8 @@ const User = ({history={}}) => {
     const {config, driverData={}} = useSelector(state => state);
     const {individual_user, userType} = config;
 
-    const {traveler_info={}} = driverData;
+    const {booked_trip_details} = driverData;
+    const {user_info={}} = booked_trip_details;
 
     const {location:history_location={}} = history;
     let {state:history_state={}} = history_location;
@@ -28,7 +29,7 @@ const User = ({history={}}) => {
         about,
         location,
         languages
-    } = booked_trip ? traveler_info : individual_user;
+    } = booked_trip ? user_info : individual_user;
 
     const created_date = new Date(created_at || "");
     const member_since = MONTH_LIST[created_date.getMonth()] + " " + created_date.getFullYear();

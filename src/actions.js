@@ -381,18 +381,6 @@ const actions  = {
         type: actions.BOOKED_TRIP_RECEIVE,
         data
     }),
-
-    BOOKED_PROFILE_INFO_REQUEST: `${nameSpace}_BOOKED_PROFILE_INFO_REQUEST`,
-    bookedProfileInfoRequest: (id) => ({
-        type: actions.BOOKED_PROFILE_INFO_REQUEST,
-        id
-    }),
-
-    BOOKED_PROFILE_INFO_RECEIVE: `${nameSpace}_BOOKED_PROFILE_INFO_RECEIVE`,
-    bookedProfileInfoReceive: (data) => ({
-        type: actions.BOOKED_PROFILE_INFO_RECEIVE,
-        data
-    }),
 };
 
 export default actions;

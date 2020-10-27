@@ -47,7 +47,7 @@ const TourIllustration = (props) => {
                             <ProgressiveImage
                                 src={src}
                                 key={i}
-                                transitionTime={800}
+                                transitionTime={100}
                                 render={(src, style) => <img key={i} src={src} style={style} alt='car' className='w-100 object-pos-center object-fit-cover' role='presentation'/>}
                                 preview={src}
                             />
