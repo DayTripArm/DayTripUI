@@ -65,12 +65,12 @@ const Trips = () => {
             {tab === 1  &&
                    (upcoming_trips && upcoming_trips.length > 0 ?
                     upcoming_trips.map((item) => {return <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)}/>}) :
-                    <NoResults message={`You Have No Upcoming Trips`}/>)
+                    <NoResults message={`You don’t Have Any Upcoming Trips`}/>)
             }
             {tab === 2 &&
                 (past_trips && past_trips.length > 0 ?
                 past_trips.map((item) => {return <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onReviewModal={() => setOpenReviewModal(true)}/>}) :
-                <NoResults message={`You Have No Past Trips`}/>)
+                <NoResults message={`You don’t Have Any Past Trips`}/>)
             }
 
         </div>
