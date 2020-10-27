@@ -105,15 +105,25 @@ const Drivers = ({ history }) => {
                         </div>
                         <div className='mb-9 mb-md-10 mb-xl-11 chips_container'>
                             <div className="home_seach_items">
-                                <Chips name={moment(form.date).format('MMM-DD')} className='mr-4 mb-md-5' onClick={() => setOpenCalendar(!openCalendar)} />
-                                <div className="calendar_popup">
-                                    {openCalendar && ( <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />)}
-                                </div>
+                                <Chips name={moment(form.date).format('MMM-DD')} className='mr-4 mb-md-5'
+                                    onClick={() => {
+                                        setOpenCalendar(!openCalendar);
+                                        setOpenCount(false);
+                                        setPricePopupOpened(false);
+                                    }} />
+                                {openCalendar && (<div className="calendar_popup">
+                                     <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
+                                </div>)}
                             </div>
                             <div className="home_seach_items">
-                                <Chips name={form.travelers+" Travelers"} className='mr-4 mb-md-5' onClick={() => setOpenCount(!openCount)} />
-                                <div className="travelers_count_popup">
-                                    {openCount && (
+                                <Chips name={form.travelers+" Travelers"} className='mr-4 mb-md-5'
+                                    onClick={() => {
+                                    setOpenCalendar(false);
+                                    setOpenCount(!openCount);
+                                    setPricePopupOpened(false);
+                                }} />
+                                {openCount && (
+                                    <div className="travelers_count_popup">
                                         <div className="trvlr_count_container">
                                             <FormPlusMinus
                                                 label="Adults"
@@ -138,27 +148,33 @@ const Drivers = ({ history }) => {
                                                 }}
                                             />
                                         </div>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
                             </div>
-                            <Chips name="Reviews" className='mr-4 mb-md-5'/>
                             <div className="home_seach_items">
-                                <Chips name={"$"+price_range[0]+" to $"+price_range[1]} onClick={() => setPricePopupOpened(!isPricePopupOpened)} />
-                                <div className="price_popup">
-                                    {isPricePopupOpened && (
-                                        <div className="price_container">
-                                            <div className="price_slider">
-                                                <Grid container justify="center">
-                                                  <Grid item xs={12} style={{ textAlign: "center" }}>
-                                                  </Grid>
-                                                  <Grid item xs={12} lg={8}>
-                                                    <RangeSlider data={prices} price_range={price_range} />
-                                                  </Grid>
-                                                </Grid>
-                                            </div>
+                                <Chips name="Reviews" className='mr-4 mb-md-5'/>
+                            </div>
+                            <div className="home_seach_items">
+                                <Chips name={"$"+price_range[0]+" to $"+price_range[1]}
+                                    onClick={() => {
+                                        setOpenCalendar(false);
+                                        setOpenCount(false);
+                                        setPricePopupOpened(!isPricePopupOpened);
+                                    }
+                                } />
+                                {isPricePopupOpened && (<div className="price_popup">
+                                    <div className="price_container">
+                                        <div className="price_slider">
+                                            <Grid container justify="center">
+                                              <Grid item xs={12} style={{ textAlign: "center" }}>
+                                              </Grid>
+                                              <Grid item xs={12} lg={8}>
+                                                <RangeSlider data={prices} price_range={price_range} />
+                                              </Grid>
+                                            </Grid>
                                         </div>
-                                    )}
-                                </div>
+                                    </div>
+                                </div>)}
                             </div>
                         </div>
                         <h2 className='text__blue mb-4 mb-md-5'>Available Drivers</h2>

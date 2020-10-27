@@ -110,7 +110,11 @@ const SearchPanel = ({trip_detail}) => {
               <div className='d-none d-md-flex flex-fill justify-content-lg-end'>
                   <div className="tour_search_items">
                     <div className="tour_calendar_popup">
-                        {showDatePicker && ( <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />)}
+                        {showDatePicker && (
+                            <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
+                                onDateChange={(date) => onDaySelect(date)}
+                            />
+                        )}
                     </div>
                     <Input
                         type='text'
@@ -119,13 +123,13 @@ const SearchPanel = ({trip_detail}) => {
                         placeholder='Select your Date'
                         autoComplete='off'
                         isError={getStatusMessage("date")  || false}
-                        onFocus={() => setShowDatePicker(!showDatePicker)}
+                        onFocus={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                     />
                   </div>
                   <div className="tour_search_items">
-                     <div className="tour_travelers_count_popup">
                         {showCountPopup && (
+                        <div className="tour_travelers_count_popup">
                             <div className="trvlr_count_container">
                                 <FormPlusMinus
                                     label="Adults"
@@ -139,7 +143,6 @@ const SearchPanel = ({trip_detail}) => {
                                                 ...form,
                                             travelers: (count.children + obj.value).toString()
                                         });
-                                        setShowCountPopup(false);
                                     }}
                                 />
                                 <FormPlusMinus
@@ -154,12 +157,11 @@ const SearchPanel = ({trip_detail}) => {
                                             ...form,
                                             travelers: (count.adults + obj.value).toString()
                                         });
-                                        setShowCountPopup(false);
                                     }}
                                 />
                             </div>
-                        )}
                      </div>
+                     )}
                      <Input
                         type='text'
                         name='travelers'
@@ -168,7 +170,7 @@ const SearchPanel = ({trip_detail}) => {
                         isError={getStatusMessage("travelers") || false}
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                         autoComplete='off'
-                        onFocus={() => setShowCountPopup(!showCountPopup)}
+                        onFocus={() =>{ setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                         hideApperance
                      />
                  </div>
