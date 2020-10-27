@@ -204,7 +204,7 @@ const SearchDriver = () => {
                                         e.preventDefault();
                                         searchDriver();
                                     }}>
-                                        Search for Driver
+                                        Search for Drivers
                                     </Link>
                                 </div>
                             </div>

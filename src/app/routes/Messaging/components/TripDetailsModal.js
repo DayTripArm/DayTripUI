@@ -12,7 +12,8 @@ const TripDetailsModal = ({ onClose}) => {
     const {driverData} = useSelector(state => state);
 
     const {
-        booked_trip_details={}
+        booked_trip_details={},
+        profile={}
     } = driverData;
 
     const {
@@ -130,7 +131,7 @@ const TripDetailsModal = ({ onClose}) => {
             </div>
             <hr className='border__top border__default my-4'/>
             <div className='d-flex align-items-center justify-content-between mb-5'>
-                <h4 className='mb-0 text__grey-dark'>Driver</h4>
+                <h4 className='mb-0 text__grey-dark'>{profile && profile.user_type === 2 ? 'Traveler' : 'Driver'}</h4>
                 <button className='btn btn-secondary btn-sm' onClick={() => viewProfile()}>View Profile</button>
             </div>
             <div className='d-flex'>

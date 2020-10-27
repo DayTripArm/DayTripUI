@@ -233,7 +233,7 @@ const HeaderAuthorized = ({ type }) => {
                                     activeClassName='active'
                                 >
                   <span className='d-block py-4 border__bottom border__default'>
-                    Refer a friends
+                    Refer a Friend
                   </span>
                                 </NavLink>
                             </li>
@@ -245,7 +245,7 @@ const HeaderAuthorized = ({ type }) => {
                                     activeClassName='active'
                                 >
                   <span className='d-block py-4 border__bottom border__default'>
-                    Switch to drive
+                    Switch to Driver
                   </span>
                                 </NavLink>
                             </li>
