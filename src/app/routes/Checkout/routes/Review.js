@@ -102,7 +102,7 @@ const Review = (props) => {
                 name="pickup_time"
                 value={form.pickup_time}
                 label='Pick Up Time'
-                placeholder='Select the time'
+                placeholder='Select Time'
                 isError={getStatusMessage("pickup_time")  || false}
                 onClick={() => {
                     if (showTimePicker){
@@ -147,7 +147,7 @@ const Review = (props) => {
         <Textarea
           name='notes'
           label='Notes'
-          placeholder='Notes'
+          placeholder='Add a note'
           className='h-152px'
           onChange={e => setForm({
                 ...form,
@@ -183,16 +183,16 @@ const Review = (props) => {
           <hr className='border__top border__default m-0' />
           <div className='p-4'>
             <div className='d-flex justify-content-between mb-2'>
-              <span className='text-sm text__grey-dark'>Day</span>
+              <span className='text-sm text__grey-dark'>Date</span>
               <span className='weight-500'>{moment(checkout_info.trip_day).format('MMMM DD')}</span>
             </div>
             <div className='d-flex justify-content-between mb-2'>
               <span className='text-sm text__grey-dark'>Travelers</span>
-              <span className='weight-500'>{checkout_info.travelers_count} Adults</span>
+              <span className='weight-500'>{checkout_info.travelers_count}</span>
             </div>
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>Trip Duration</span>
-              <span className='weight-500'>{checkout_info.trip_duration} hours</span>
+              <span className='weight-500'>{checkout_info.trip_duration}</span>
             </div>
           </div>
           <hr className='border__top border__default m-0' />
@@ -207,7 +207,7 @@ const Review = (props) => {
             </div>
             <hr className='border__top border__default my-4' />
             <div className='d-flex justify-content-between'>
-              <span className='text-sm text__grey-dark'>Total</span>
+              <span className='text-sm text__grey-dark'>Total Price</span>
               <span className='weight-500'>${parseFloat(checkout_info.price+4)+".00"}</span>
             </div>
           </div>
@@ -237,7 +237,7 @@ const Review = (props) => {
             <div className='d-flex mb-4'>
               <IconGlobe className='mr-2' />
               <p className='mb-0'>
-                Languages:{' '}
+                Speaks:{' '}
                 <span className='weight-500 text__grey-dark'>{checkout_info.languages}</span>
               </p>
             </div>
