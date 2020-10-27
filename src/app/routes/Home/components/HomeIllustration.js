@@ -22,7 +22,7 @@ const HomeIllustration = () => {
                 {/* if src is undefined  show empty img for keep container width/height (via style) proportion  */}
                 {image.url ? <ProgressiveImage
                     src={src}
-                    transitionTime={1000}
+                    transitionTime={100}
                     render={(src, style) => <img src={src} style={style} alt='' className='w-100 object-pos-center object-fit-cover'/>}
                     preview={src}
                 /> : <img src="" alt="" />}

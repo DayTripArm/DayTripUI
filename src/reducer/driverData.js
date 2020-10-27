@@ -4,7 +4,6 @@ import _ from 'lodash';
 export const INITIAL_STATE = {
     driver_info: {},
     profile: {},
-    traveler_info: {},
     driver_details: {},
     calendar_settings: {},
     booked_trip_details: {},
@@ -182,15 +181,6 @@ const driverData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 booked_trip_details: data
-            }
-        }
-
-        case actions.BOOKED_PROFILE_INFO_RECEIVE:{
-            const {data={}} = action;
-
-            return {
-                ...state,
-                traveler_info: data.profile
             }
         }
 

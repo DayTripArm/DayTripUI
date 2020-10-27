@@ -63,16 +63,16 @@ const Calendar = () => {
 
     const {calendar_settings={}, driver_calendar={}} = driverData;
 
-    let {unavailable_days} = calendar_settings;
-    if (!unavailable_days) {
-        unavailable_days = [];
+    let {available_days} = calendar_settings;
+    if (!available_days) {
+        available_days = [];
     }
 
     let {calendar_info, overview_trips} = driver_calendar;
 
     const date = null;
     const [focused, setFocused] = useState(true);
-    const [blocked, setBlocked] = useState([]);
+
     const [tab, setTab] = useState(1);
 
     const [openSettingsModal, setOpenSettingsModal] = useState(false);
@@ -86,13 +86,14 @@ const Calendar = () => {
 
     const onDateChange = (date) => {
         const date_string = moment(date).format('YYYY-MM-DD');
-        const blocked_list = blocked;
+
         const booked_day_list = _.reduce(calendar_info, (memo, obj) => {
             memo.push(obj.trip_day);
 
             return memo;
         }, []);
-        let list = [];
+
+        let included_days = [];
 
         // ****************************************************
         // on calendar booked trip click
@@ -101,19 +102,21 @@ const Calendar = () => {
 
             onBookedTripClick(booked_obj.id, booked_obj.traveler_id);
         } else { // *********************************** block/unblock part
-            if (_.includes(blocked_list, date_string)) {
-                list = _.filter(blocked_list, date => date !== date_string)
+
+            if (_.includes(available_days, date_string)) {
+                included_days = _.filter(available_days, date => date !== date_string)
             } else {
-                list = [...blocked, moment(date).format('YYYY-MM-DD')]
+                included_days = [...available_days, moment(date).format('YYYY-MM-DD')]
             }
 
-            let settings_obj = {
+            const settings_obj = {
                 driver_id: Number(localStorage.id),
-                day: date_string
+                available_days: {
+                    included_days
+                }
             };
-            dispatch(actions.updateCalendarSettingsRequest(Number(localStorage.id), settings_obj));
 
-            setBlocked(list);
+            dispatch(actions.updateCalendarSettingsRequest(Number(localStorage.id), settings_obj));
         }
     };
 
@@ -135,7 +138,7 @@ const Calendar = () => {
     ]);
 
     const isDayHighlighted = (day) => {
-        return unavailable_days.some(date => day.isSame(date, 'day'));
+        return available_days.some(date => day.isSame(date, 'day'));
     };
 
     const isOutsideRange = (date) => {
@@ -144,7 +147,7 @@ const Calendar = () => {
                 memo.push(obj.trip_day);
 
                 return memo;
-            }, []);;
+            }, []);
             let isIncluded = _.includes(list, date.format('YYYY-MM-DD'));
             return date.isBefore(moment(), 'day') && !isIncluded;
         }

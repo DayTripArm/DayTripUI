@@ -19,19 +19,19 @@ const SettingsModal = ({ onClose, title = 'Settings' }) => {
         let settings_obj = {driver_id: profile.id};
         const availability_window =  event.value;
         settings_obj[field_name] = availability_window;
-        let excluded_days = [];
+        let included_days = [];
         let dateuse  = moment();
         let endDate = moment().add(availability_window, 'months');
 
         if (availability_window !== 0) {
             while (dateuse.isSameOrBefore(endDate)) {
-                excluded_days.push(dateuse.format('YYYY-MM-DD'));
+                included_days.push(dateuse.format('YYYY-MM-DD'));
                 dateuse.add(1, 'days');
             }
         }
 
-        settings_obj["unavailable_days"] = {
-            "excluded_days": excluded_days
+        settings_obj["available_days"] = {
+            "included_days": included_days
         };
 
         dispatch(actions.updateCalendarSettingsRequest(profile.id, settings_obj));
