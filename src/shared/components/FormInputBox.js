@@ -256,7 +256,7 @@ const FormInputBox = (props) => {
                                 <MultiSelect
                                     isMulti={true}
                                     name='languages'
-                                    placeholder="Tell us what language(s) do you speak"
+                                    placeholder="Tell us what languages you speak"
                                     onChange={event => selectOnChange(event, "languages")}
                                     value={languageValue}
                                     options={languageList}
