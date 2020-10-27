@@ -21,6 +21,14 @@
 .chips_container {
     .home_seach_items{
         display: inline-block;
+        margin-bottom: 10px;
+        &:hover{
+            .chips {
+                cursor: pointer;
+                color: #FE4C30;
+                background: rgba(189, 189, 189, 0.13);
+            }
+        }
     }
     .calendar_popup, .travelers_count_popup {
         top: 40px;

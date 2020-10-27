@@ -138,7 +138,7 @@ const SearchDriver = () => {
                                     placeholder='Select your Date'
                                     autoComplete='off'
                                     isError={getStatusMessage("date")  || false}
-                                    onFocus={() => setShowDatePicker(!showDatePicker)}
+                                    onFocus={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);} }
                                     containerClass='mr-lg-4 mb-lg-0'
                                 />
                                <div className="calendar_popup">
@@ -157,7 +157,7 @@ const SearchDriver = () => {
                                     value={!_.isEmpty(form.travelers)? form.travelers + " Travelers" : ""}
                                     isError={getStatusMessage("travelers") || false}
                                     containerClass='mr-lg-4 mb-lg-0'
-                                    onFocus={() => setShowCountPopup(!showCountPopup)}
+                                    onFocus={() => {setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                                     hideApperance
                                 />
                                 <div className="travelers_count_popup">
@@ -175,7 +175,6 @@ const SearchDriver = () => {
                                                     ...form,
                                                     travelers: (count.children + obj.value).toString()
                                                 });
-                                                setShowCountPopup(false);
                                             }}
                                         />
                                         <FormPlusMinus
@@ -190,7 +189,6 @@ const SearchDriver = () => {
                                                     ...form,
                                                     travelers: (count.adults + obj.value).toString()
                                                 });
-                                                setShowCountPopup(false);
                                             }}
                                         />
                                     </div>
