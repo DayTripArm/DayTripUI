@@ -57,7 +57,7 @@ const Personal = () => {
                     <FormInputBox
                         type="input"
                         name="name"
-                        label="User Name"
+                        label="Name"
                         value={name}
                         placeholder="John Doe"
                     />
@@ -69,7 +69,7 @@ const Personal = () => {
                         value={gender}
                         options={genderList}
                         placeholder="Choose"
-                        empty_message="Not Specified"
+                        empty_message="Not specified"
                     />
 
                     <FormInputBox
@@ -77,7 +77,7 @@ const Personal = () => {
                         name="date_of_birth"
                         label="Date of Birth"
                         value={date_of_birth}
-                        empty_message="Not Specified"
+                        empty_message="Not specified"
                     />
 
                     <FormInputBox
@@ -93,42 +93,43 @@ const Personal = () => {
                         name="phone"
                         label="Phone Number"
                         value={phone}
-                        empty_message="Not Specified"
+                        empty_message="Not specified"
                     />
 
                     <FormInputBox
                         type="input"
                         name="about"
                         label="About"
+                        placeholder="Tell us a bit about yourself"
                         value={about}
-                        empty_message="Not Written"
+                        empty_message="Not specified"
                     />
 
                     <FormInputBox
                         type="async"
                         name="location"
-                        label="Location"
+                        label="City of Residence"
                         placeholder="Yerevan, Armenia"
                         value={location}
-                        empty_message="Not Written"
+                        empty_message="Not specified"
                     />
 
                     <FormInputBox
                         type="multiSelect"
                         name="languages"
-                        label="Languages/Speaks"
+                        label="Languages"
                         placeholder="English, Russian, French"
                         value={languages}
-                        empty_message="Not Written"
+                        empty_message="Not specified"
                     />
 
                     <FormInputBox
                         type="input"
                         name="work"
-                        label="Work"
+                        label="Occupation"
                         placeholder=""
                         value={work}
-                        empty_message="Not Written"
+                        empty_message="Not specified"
                     />
                 </ul>
             </div>
