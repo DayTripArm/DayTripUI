@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import { IconQuestionOutlined } from 'shared/components/Icons';
 import ModalAside from 'shared/components/ModalAside';
 import Input from 'shared/components/Input';
 import DatePicker from 'shared/components/DatePicker';
 import FormPlusMinus from 'shared/components/FormPlusMinus';
+import useOutsideClick from 'shared/hooks/useOutsideClick';
 import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import { Link } from 'react-router-dom';
@@ -23,15 +24,17 @@ const validations = {
 
 const SearchDriver = () => {
     const history = useHistory();
+    const container1 = useRef();
+    const container2 = useRef();
     const {travelerData={}} = useSelector(state => state);
-
     const {hit_the_road={},htrTips={}} = travelerData;
-
     const [invalidFields, setInvalidFields] = useState({});
     const [openModal, setOpenModal] = useState(false);
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [showCountPopup, setShowCountPopup] = useState(false);
 
+    useOutsideClick(container1, () => setShowDatePicker(false));
+    useOutsideClick(container2, () => setShowCountPopup(false));
     const {
         title,
         description,
@@ -141,7 +144,7 @@ const SearchDriver = () => {
                                     onFocus={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);} }
                                     containerClass='mr-lg-4 mb-lg-0'
                                 />
-                               <div className="calendar_popup">
+                               <div className="calendar_popup" ref={container1}>
                                    {showDatePicker && (
                                         <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
                                     )}
@@ -160,7 +163,7 @@ const SearchDriver = () => {
                                     onFocus={() => {setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                                     hideApperance
                                 />
-                                <div className="travelers_count_popup">
+                                <div className="travelers_count_popup" ref={container2}>
                                     {showCountPopup && (
                                     <div className="trvlr_count_container">
                                         <FormPlusMinus

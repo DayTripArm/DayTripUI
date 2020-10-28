@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import DriversIllustration from './components/DriversIllustration';
 import Chips from 'shared/components/Chips';
 import { IconClockOutlined, IconDestination } from 'shared/components/Icons';
 import DatePicker from 'shared/components/DatePicker';
 import DriversList from './components/DriversList';
 import FormPlusMinus from 'shared/components/FormPlusMinus';
+import useOutsideClick from 'shared/hooks/useOutsideClick';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../actions";
 import _ from "lodash";
@@ -14,6 +15,10 @@ import RangeSlider from "./components/RangeSlider";
 
 const Drivers = ({ history }) => {
     const dispatch = useDispatch();
+    const container1 = useRef();
+    const container2 = useRef();
+    //const container3 = useRef();  //for review popup
+    const container4 = useRef();
     const day = history.location.state?.date || moment().format('YYYY-MM-DD');
     const travelers_count = history.location.state?.travelers || "1";
     const trip_id = history.location.state?.trip_id || null;
@@ -42,6 +47,11 @@ const Drivers = ({ history }) => {
     const [form, setForm] = useState({date: day, travelers: travelers_count});
     const [count, setCount] = useState({adults: 1, children: 0});
     const [price_range, setPriceRange] = useState([10, 1100]);
+
+    useOutsideClick(container1, () => setOpenCalendar(false));
+    useOutsideClick(container2, () => setOpenCount(false));
+    //useOutsideClick(container3, () => setShowCountPopup(false));  //for review popup
+    useOutsideClick(container4, () => setPricePopupOpened(false));
 
     const prices = [];
     for (let i = 10; i <= 1000; i++) {
@@ -111,7 +121,7 @@ const Drivers = ({ history }) => {
                                         setOpenCount(false);
                                         setPricePopupOpened(false);
                                     }} />
-                                {openCalendar && (<div className="calendar_popup">
+                                {openCalendar && (<div className="calendar_popup" ref={container1}>
                                      <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
                                 </div>)}
                             </div>
@@ -123,7 +133,7 @@ const Drivers = ({ history }) => {
                                     setPricePopupOpened(false);
                                 }} />
                                 {openCount && (
-                                    <div className="travelers_count_popup">
+                                    <div className="travelers_count_popup" ref={container2}>
                                         <div className="trvlr_count_container">
                                             <FormPlusMinus
                                                 label="Adults"
@@ -162,7 +172,7 @@ const Drivers = ({ history }) => {
                                         setPricePopupOpened(!isPricePopupOpened);
                                     }
                                 } />
-                                {isPricePopupOpened && (<div className="price_popup">
+                                {isPricePopupOpened && (<div className="price_popup" ref={container4}>
                                     <div className="price_container">
                                         <div className="price_slider">
                                             <Grid container justify="center">

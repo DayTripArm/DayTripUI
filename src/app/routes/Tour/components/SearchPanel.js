@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import StickyPanel from 'shared/components/StickyPanel';
 import { IconStar } from 'shared/components/Icons';
 import Input from 'shared/components/Input';
 import DatePicker from 'shared/components/DatePicker';
 import FormPlusMinus from 'shared/components/FormPlusMinus';
 import SearchForDriverModal from './SearchForDriverModal';
+import useOutsideClick from 'shared/hooks/useOutsideClick';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router";
 import _ from "lodash";
@@ -21,12 +22,17 @@ const validations = {
 
 const SearchPanel = ({trip_detail}) => {
     const history = useHistory();
+    const container1 = useRef();
+    const container2 = useRef();
     const [invalidFields, setInvalidFields] = useState({});
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [showCountPopup, setShowCountPopup] = useState(false);
     const [showSearchPopup, setShowSearchPopup] = useState(false);
     const [form, setForm] = useState({date: "", travelers: ""});
     const [count, setCount] = useState({adults: 1, children: 0});
+
+    useOutsideClick(container1, () => setShowDatePicker(false));
+    useOutsideClick(container2, () => setShowCountPopup(false));
     const onDaySelect = ((day) => {
         setForm({
             ...form,
@@ -109,7 +115,7 @@ const SearchPanel = ({trip_detail}) => {
             <div className='d-flex justify-content-end flex-fill'>
               <div className='d-none d-md-flex flex-fill justify-content-lg-end'>
                   <div className="tour_search_items">
-                    <div className="tour_calendar_popup">
+                    <div className="tour_calendar_popup" ref={container1}>
                         {showDatePicker && (
                             <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
                                 onDateChange={(date) => onDaySelect(date)}
@@ -129,7 +135,7 @@ const SearchPanel = ({trip_detail}) => {
                   </div>
                   <div className="tour_search_items">
                         {showCountPopup && (
-                        <div className="tour_travelers_count_popup">
+                        <div className="tour_travelers_count_popup" ref={container2}>
                             <div className="trvlr_count_container">
                                 <FormPlusMinus
                                     label="Adults"
