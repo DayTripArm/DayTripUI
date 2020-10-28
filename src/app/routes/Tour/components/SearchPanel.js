@@ -126,7 +126,7 @@ const SearchPanel = ({trip_detail}) => {
                         type='text'
                         name='date'
                         value={form.date}
-                        placeholder='Select your Date'
+                        placeholder='Select the Date'
                         autoComplete='off'
                         isError={getStatusMessage("date")  || false}
                         onFocus={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
@@ -171,7 +171,7 @@ const SearchPanel = ({trip_detail}) => {
                      <Input
                         type='text'
                         name='travelers'
-                        placeholder='Count'
+                        placeholder='Add Travelers'
                         value={!_.isEmpty(form.travelers)? form.travelers + " Travelers" : ""}
                         isError={getStatusMessage("travelers") || false}
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
