@@ -43,11 +43,11 @@ const Benefits = (props) => {
             </div>
             <div className='col-md-6 d-flex mb-4'>
                 <IconAC className='mr-2'/>
-                <p className='mb-0'>A/C: <span className='weight-500 text__grey-dark'>{car_features['air_condition'] ? "Yes" : "No"}</span></p>
+                <p className='mb-0'>Air Conditioning: <span className='weight-500 text__grey-dark'>{car_features['air_condition'] ? "Yes" : "No"}</span></p>
             </div>
             <div className='col-md-6 d-flex mb-4'>
                 <IconSmoking className='mr-2'/>
-                <p className='mb-0'>Smoking: <span className='weight-500 text__grey-dark'>{car_features['smoke_allowed'] ? "Yes" : "No"}</span></p>
+                <p className='mb-0'>Smoking Allowed: <span className='weight-500 text__grey-dark'>{car_features['smoke_allowed'] ? "Yes" : "No"}</span></p>
             </div>
             <div className='col-md-6 d-flex mb-4'>
                 <IconSnack className='mr-2'/>
