@@ -88,8 +88,8 @@ const FormInputBox = (props) => {
             if (name === "languages") {
                 let langString = "";
 
-                languageValue && languageValue.map(item => langString += item.value + ",");
-                val = langString.slice(0, -1);
+                languageValue && languageValue.map(item => langString += item.value + ", ");
+                val = langString.slice(0, -2);
             }
 
             data = {
