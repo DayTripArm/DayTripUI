@@ -156,7 +156,8 @@ const TripDetailsModal = ({ onClose}) => {
                 <div className='d-flex mb-4'>
                     <IconHome className='mr-2' />
                     <p className='mb-0'>
-                        Lives in: <span className='weight-500 text__grey-dark  mxw-60pc'>{user_info.location}</span>
+                        <span className='text__grey-dark'>Lives in:</span>
+                        <span className='weight-500 text__grey-dark  mxw-60pc'>{user_info.location}</span>
                     </p>
                 </div>
                 <div className='d-flex mb-4'>
