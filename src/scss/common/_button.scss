@@ -220,9 +220,11 @@
       &:active {
         background: $pressed;
       }
-      &:focus {
-        background: $selected;
-      }
+
+      // DT-251, no need to show active state after blur
+      //&:focus {
+      //  background: $selected;
+      //}
     }
 
     &.size-fixed {
