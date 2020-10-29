@@ -12,6 +12,7 @@ import _ from "lodash";
 import moment from "moment";
 import { Grid } from "@material-ui/core";
 import RangeSlider from "./components/RangeSlider";
+import NoResults from './components/NoResults';
 
 const Drivers = ({ history }) => {
     const dispatch = useDispatch();
@@ -187,8 +188,14 @@ const Drivers = ({ history }) => {
                                 </div>)}
                             </div>
                         </div>
-                        <h2 className='text__blue mb-4 mb-md-5'>Available Drivers</h2>
-                        {drivers_list && (<DriversList
+
+                        { _.isEmpty(drivers_list)
+                            ?
+                            <NoResults/>
+                            :
+                            <>
+                                <h2 className='text__blue mb-4 mb-md-5'>Available Drivers</h2>
+                                <DriversList
                                 drivers_list={drivers_list}
                                 trip_details={trip_details}
                                 req_body={{
@@ -196,7 +203,8 @@ const Drivers = ({ history }) => {
                                     travelers: count.adults + count.children,
                                     trip_id: trip_id
                                 }}
-                         />)}
+                         />
+                         </>}
                     </div>
                 </div>
             </div>
