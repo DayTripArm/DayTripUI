@@ -19,7 +19,7 @@ const TopChoises = () => {
 
     const settings = {
         className: 'slick-cards',
-        infinite: top_choices.length > 3,
+        infinite: false,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,

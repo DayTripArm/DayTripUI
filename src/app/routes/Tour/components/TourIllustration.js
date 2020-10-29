@@ -21,7 +21,7 @@ const TourIllustration = (props) => {
 
     const settings = {
         className: 'slick-gallery',
-        infinite: true,
+        infinite: false,
         dots: true,
         speed: 500,
         slidesToShow: 1,
