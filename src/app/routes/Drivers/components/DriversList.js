@@ -159,7 +159,7 @@ const DriversList = ({drivers_list,trip_details, req_body}) => {
                                                 <div className='col-md-8 px-0 d-flex mb-4'>
                                                     <IconGlobe className='mr-2' />
                                                     <p className='mb-0'>
-                                                        Languages:{' '}
+                                                        Speaks:{' '}
                                                         <span className='weight-500 text__grey-dark'>{driver.languages}</span>
                                                     </p>
                                                 </div>
@@ -175,7 +175,7 @@ const DriversList = ({drivers_list,trip_details, req_body}) => {
                                                 <div className='col-md-8 px-0 d-flex mb-4'>
                                                     <IconSmoking className='mr-2' />
                                                     <p className='mb-0'>
-                                                        Smoke Allowed:{' '}
+                                                        Smoking Allowed:{' '}
                                                         <span className='weight-500 text__grey-dark'>{driver.smoke_allowed ? "Yes" : "No"}</span>
                                                     </p>
                                                 </div>
@@ -183,7 +183,7 @@ const DriversList = ({drivers_list,trip_details, req_body}) => {
                                                 <div className='col-md-4 px-0 d-flex mb-4'>
                                                     <IconAC className='mr-2' />
                                                     <p className='mb-0'>
-                                                        Air Condition:{' '}
+                                                        Air Conditioning:{' '}
                                                         <span className='weight-500 text__grey-dark'>{driver.air_condition ? "Yes" : "No"}</span>
                                                     </p>
                                                 </div>

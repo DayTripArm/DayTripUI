@@ -103,7 +103,7 @@ const Drivers = ({ history }) => {
                             <div className='d-flex mb-4 mr-md-4'>
                                 <IconClockOutlined className='mr-2'/>
                                 <p className='mb-0'>
-                                    Trip duration: <span className='weight-500 text__grey-dark'>{trip_duration} hours</span>
+                                    Trip duration: <span className='weight-500 text__grey-dark'>{trip_duration}</span>
                                 </p>
                             </div>
                             <div className='d-flex mb-5'>
