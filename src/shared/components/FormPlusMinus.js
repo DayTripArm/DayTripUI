@@ -15,7 +15,7 @@ const FormPlusMinus = (props) => {
         min
     } = props;
     const MAX_VALUE = max || 9;
-    const MIN_VALUE = min || 1;
+    const MIN_VALUE = min || 0;
     const handleClick = (operation) => {
         // eslint-disable-next-line no-eval
         const steps = eval(`${value} ${operation} 1`);

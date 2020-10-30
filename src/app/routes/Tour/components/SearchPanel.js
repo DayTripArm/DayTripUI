@@ -28,8 +28,8 @@ const SearchPanel = ({trip_detail}) => {
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [showCountPopup, setShowCountPopup] = useState(false);
     const [showSearchPopup, setShowSearchPopup] = useState(false);
-    const [form, setForm] = useState({date: "", travelers: ""});
-    const [count, setCount] = useState({adults: 1, children: 0});
+    const [form, setForm] = useState({date: "", travelers: 0});
+    const [count, setCount] = useState({adults: 0, children: 0});
 
     useOutsideClick(container1, () => setShowDatePicker(false));
     useOutsideClick(container2, () => setShowCountPopup(false));
@@ -43,7 +43,7 @@ const SearchPanel = ({trip_detail}) => {
 
     window.addEventListener("resize", (e) => {
         if(window.innerWidth >= 768){
-            setShowSearchPopup(false)
+            setShowSearchPopup(false);
         }
     });
 
@@ -51,15 +51,15 @@ const SearchPanel = ({trip_detail}) => {
 
         return _.reduce(validations, (errors, rule, name) => {
             const result = validateField(name);
-        if (result) { errors[name] = result; }
+            if (result) { errors[name] = result; }
 
-        return errors;
-    }, {});
+            return errors;
+        }, {});
     }
     function validateField(name) {
         const rule = validations[name];
         if (rule) {
-            if (rule.required && !form[name].trim()) {
+            if (rule.required && _.isEmpty(form[name])) {
                 return { status: "error", statusMessage: "This field is required" };
             }
 
@@ -141,7 +141,7 @@ const SearchPanel = ({trip_detail}) => {
                                     label="Adults"
                                     name="adults"
                                     max={9}
-                                    min={2}
+                                    min={1}
                                     initialValue={count.adults}
                                     onChange={(obj) => {
                                         setCount({...count, adults: obj.value });
@@ -172,7 +172,7 @@ const SearchPanel = ({trip_detail}) => {
                         type='text'
                         name='travelers'
                         placeholder='Add Travelers'
-                        value={!_.isEmpty(form.travelers)? form.travelers + " Travelers" : ""}
+                        value={Number(form.travelers) > 0 ?  form.travelers + " Travelers": "" }
                         isError={getStatusMessage("travelers") || false}
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                         autoComplete='off'

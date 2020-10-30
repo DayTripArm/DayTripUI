@@ -43,7 +43,7 @@ class RangeSlider extends React.Component {
             />
             <Slider
               mode={3}
-              step={1}
+              step={10}
               domain={domain}
               rootStyle={{
                 position: "relative",

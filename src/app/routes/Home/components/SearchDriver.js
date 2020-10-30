@@ -41,8 +41,8 @@ const SearchDriver = () => {
         image={}
     } = hit_the_road;
 
-    const [form, setForm] = useState({date: "", travelers: ""});
-    const [count, setCount] = useState({adults: 1, children: 0});
+    const [form, setForm] = useState({date: "", travelers: 0});
+    const [count, setCount] = useState({adults: 0, children: 0});
     const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
 
     const onDaySelect = ((day) => {
@@ -65,7 +65,7 @@ const SearchDriver = () => {
     function validateField(name) {
         const rule = validations[name];
         if (rule) {
-            if (rule.required && !form[name].trim()) {
+            if (rule.required && _.isEmpty(form[name])) {
                 return { status: "error", statusMessage: "This field is required" };
             }
 
@@ -146,7 +146,9 @@ const SearchDriver = () => {
                                 />
                                <div className="calendar_popup" ref={container1}>
                                    {showDatePicker && (
-                                        <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
+                                        <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
+                                        onDateChange={(date) => onDaySelect(date)}
+                                        />
                                     )}
                                 </div>
                             </div>
@@ -157,9 +159,10 @@ const SearchDriver = () => {
                                     label='Travelers *'
                                     placeholder='Add Travelers'
                                     autoComplete='off'
-                                    value={!_.isEmpty(form.travelers)? form.travelers + " Travelers" : ""}
+                                    value={Number(form.travelers) > 0 ?  form.travelers + " Travelers": "" }
                                     isError={getStatusMessage("travelers") || false}
                                     containerClass='mr-lg-4 mb-lg-0'
+                                    onChange={(e) => e.preventDefault()}
                                     onFocus={() => {setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                                     hideApperance
                                 />
@@ -170,7 +173,7 @@ const SearchDriver = () => {
                                             label="Adults"
                                             name="adults"
                                             max={9}
-                                            min={2}
+                                            min={1}
                                             initialValue={count.adults}
                                             onChange={(obj) => {
                                                 setCount({...count, adults: obj.value });

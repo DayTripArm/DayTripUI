@@ -21,10 +21,10 @@ class BarChart extends React.Component {
         {
           backgroundColor: barDataValues.map((val, i) =>
             i >= highlight[0] && i <= highlight[1]
-              ? "rgba(135, 206, 235, 1)"
-              : "rgba(255, 99, 132, 0.2)"
+              ? "rgba(0, 0, 0, 1)"
+              : "rgba(75, 75, 75, 0.5)"
           ),
-          hoverBackgroundColor: "rgba(255,99,132,0.4)",
+          hoverBackgroundColor: "rgba(75,75,75,0.6)",
           data: barDataValues
         }
       ]

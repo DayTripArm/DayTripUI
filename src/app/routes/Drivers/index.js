@@ -48,7 +48,7 @@ const Drivers = ({ history }) => {
     const [openCount, setOpenCount] = useState(false);
     const [isPricePopupOpened, setPricePopupOpened] = useState(false);
     const [form, setForm] = useState({date: day, travelers: travelers_count});
-    const [count, setCount] = useState({adults: 0, children: 0});
+    const [count, setCount] = useState({adults: 1, children: 0});
     const [price_range, setPriceRange] = useState(null);
 
     useOutsideClick(container1, () => setOpenCalendar(false));
@@ -164,6 +164,7 @@ const Drivers = ({ history }) => {
                                                 label="Adults"
                                                 name="adults"
                                                 max={9}
+                                                min={2}
                                                 initialValue={count.adults}
                                                 onChange={(obj) => {
                                                     setCount({...count, adults: obj.value })
@@ -174,6 +175,7 @@ const Drivers = ({ history }) => {
                                                 label="Children"
                                                 name="children"
                                                 max={9}
+                                                min={0}
                                                 initialValue={count.children}
                                                 onChange={(obj) => {
                                                     setCount({...count,  children: obj.value })
