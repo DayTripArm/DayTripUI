@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { IconStar, IconHeartOutlined, IconHeartFilled } from 'shared/components/Icons';
 import actions from "../../actions";
 import {useDispatch} from "react-redux";
@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 // Size 'lg' or 'sm'
 const Card = (props) => {
     const dispatch = useDispatch();
+
+    const [hover, setHover] = useState(false);
 
     const {
         size = 'lg',
@@ -37,8 +39,17 @@ const Card = (props) => {
                         alt='img'
                     />
                 </Link>
-                <button className={`btn btn-favorite btn-circle btn-static border-0 btn-${size}`} onClick={() => favoriteHandle()}>
-                    {favorite ? <IconHeartFilled fill='#FE4C30'/> : <IconHeartOutlined/>}
+                <button
+                    className={`btn btn-favorite btn-circle btn-static border-0 btn-${size} btn-sarixach`}
+                    onMouseEnter={() => setHover(true)}
+                    onMouseLeave={() => setHover(false)}
+                    onClick={() => favoriteHandle()}
+                >
+                    {favorite ?
+                        <IconHeartFilled fill='#FE4C30'/>
+                        :
+                        hover ? <IconHeartFilled fill='#FE4C30'/> : <IconHeartOutlined/>
+                    }
                 </button>
             </div>
             {size === 'sm' ? (
