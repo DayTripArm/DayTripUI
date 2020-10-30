@@ -284,7 +284,7 @@ const FormInputBox = (props) => {
                     <p className='text__grey-dark mb-0'>{_.isEmpty(value) ? empty_message : value}</p>
             }
         </li>
-        { openInfoModal && <InfoModal onProceed={() => setProceed(true)} onClose={() => setOpenInfoModal(false)} /> }
+        { openInfoModal && <InfoModal title="Profile Changes" onProceed={() => setProceed(true)} onClose={() => setOpenInfoModal(false)} /> }
     </>
     );
 };

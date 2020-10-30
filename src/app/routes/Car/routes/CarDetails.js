@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 import _ from "lodash";
 import FormCarInputBox from "../../../../shared/components/FormCarInputBox";
+import {CAR_SPECS} from "../../../../constants";
 
 const CarDetails = () => {
     const {driverData} = useSelector(state => state);
@@ -18,7 +19,7 @@ const CarDetails = () => {
 
     const key_options = _.reduce(carOptions, (memo, val, key) => {
         if (memo.length === 0) memo = [];
-        if (val) memo.push(key);
+        if (val) memo.push(CAR_SPECS[key]);
         return memo;
     },[]);
 
