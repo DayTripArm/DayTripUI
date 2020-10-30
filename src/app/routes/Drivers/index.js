@@ -21,23 +21,25 @@ const Drivers = ({ history }) => {
     //const container3 = useRef();  //for review popup
     const container4 = useRef();
     const day = history.location.state?.date || moment().format('YYYY-MM-DD');
-    const travelers_count = history.location.state?.travelers || "1";
+    const travelers_count = history.location.state?.travelers || 0;
     const trip_id = history.location.state?.trip_id || null;
 
     useEffect(() => {
         const body = {
             date: day,
             travelers: travelers_count,
+            price_range: price_range || [10, 100000],
             trip_id: trip_id,
             offset: 0,
             limit: 10
         };
 
         dispatch(actions.searchForDriversRequest(body))
+        dispatch(actions.loadPricesListRequest(trip_id? true: false))
     },[]);
 
     const {travelerData} = useSelector(state => state);
-    const {search_for_drivers} = travelerData;
+    const {search_for_drivers, prices_list} = travelerData;
     const {drivers_list, trip_details} = search_for_drivers;
     const trip_duration = trip_details ? trip_details.trip_duration : 12;
     const start_location = trip_details ?  trip_details.start_location : 'Yerevan';
@@ -46,18 +48,26 @@ const Drivers = ({ history }) => {
     const [openCount, setOpenCount] = useState(false);
     const [isPricePopupOpened, setPricePopupOpened] = useState(false);
     const [form, setForm] = useState({date: day, travelers: travelers_count});
-    const [count, setCount] = useState({adults: 1, children: 0});
-    const [price_range, setPriceRange] = useState([10, 1100]);
+    const [count, setCount] = useState({adults: 0, children: 0});
+    const [price_range, setPriceRange] = useState(null);
 
     useOutsideClick(container1, () => setOpenCalendar(false));
     useOutsideClick(container2, () => setOpenCount(false));
     //useOutsideClick(container3, () => setShowCountPopup(false));  //for review popup
     useOutsideClick(container4, () => setPricePopupOpened(false));
 
-    const prices = [];
-    for (let i = 10; i <= 1000; i++) {
-        prices.push(Math.floor(Math.random() * 1100) + 10);
-    }
+    const displayPrice = (() => {
+        let price_text = "Prices";
+        if (price_range) {
+            if (price_range[0] && price_range[1]){
+                price_text = "$"+price_range[0]+" - $"+price_range[1];
+            } else {
+                price_text = "Up to $"+(price_range[1] || "1000+");
+            }
+
+        }
+        return price_text;
+    })
 
     const onDaySelect = ((day) => {
         setForm({
@@ -67,7 +77,8 @@ const Drivers = ({ history }) => {
         setOpenCalendar(false);
         const body = {
             date: moment(day).format('YYYY-MM-DD'),
-            travelers: form.travelers
+            travelers: form.travelers,
+            price_range: price_range
         };
         updateDriversList(body);
     });
@@ -79,7 +90,19 @@ const Drivers = ({ history }) => {
         });
         const body = {
             date: form.date,
-            travelers: total_passangers
+            travelers: total_passangers,
+            price_range: price_range
+        };
+        console.log(price_range)
+        console.log(body)
+        updateDriversList(body)
+    });
+
+    const onSetPrice = ((price_range) => {
+        const body = {
+            date: form.date,
+            travelers: form.travelers,
+            price_range: price_range || [10, 1100]
         };
         updateDriversList(body)
     });
@@ -123,7 +146,8 @@ const Drivers = ({ history }) => {
                                         setPricePopupOpened(false);
                                     }} />
                                 {openCalendar && (<div className="calendar_popup" ref={container1}>
-                                     <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
+                                     <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
+                                     onDateChange={(date) => onDaySelect(date)} />
                                 </div>)}
                             </div>
                             <div className="home_seach_items">
@@ -140,7 +164,6 @@ const Drivers = ({ history }) => {
                                                 label="Adults"
                                                 name="adults"
                                                 max={9}
-                                                min={2}
                                                 initialValue={count.adults}
                                                 onChange={(obj) => {
                                                     setCount({...count, adults: obj.value })
@@ -151,7 +174,6 @@ const Drivers = ({ history }) => {
                                                 label="Children"
                                                 name="children"
                                                 max={9}
-                                                min={1}
                                                 initialValue={count.children}
                                                 onChange={(obj) => {
                                                     setCount({...count,  children: obj.value })
@@ -166,7 +188,7 @@ const Drivers = ({ history }) => {
                                 <Chips name="Reviews" className='mr-4 mb-md-5'/>
                             </div>
                             <div className="home_seach_items">
-                                <Chips name={"$"+price_range[0]+" to $"+price_range[1]}
+                                <Chips name={displayPrice()}
                                     onClick={() => {
                                         setOpenCalendar(false);
                                         setOpenCount(false);
@@ -180,7 +202,13 @@ const Drivers = ({ history }) => {
                                               <Grid item xs={12} style={{ textAlign: "center" }}>
                                               </Grid>
                                               <Grid item xs={12} lg={8}>
-                                                <RangeSlider data={prices} price_range={price_range} />
+                                                <RangeSlider prices_list={prices_list}
+                                                    range={price_range || [10, 1100]}
+                                                    onChange={(price_range) => {
+                                                        setPriceRange(price_range);
+                                                        onSetPrice(price_range);
+                                                    }}
+                                                 />
                                               </Grid>
                                             </Grid>
                                         </div>

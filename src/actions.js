@@ -381,6 +381,19 @@ const actions  = {
         type: actions.BOOKED_TRIP_RECEIVE,
         data
     }),
+
+    PRICES_LIST_REQUEST: `${nameSpace}_PRICES_LIST_REQUEST`,
+    loadPricesListRequest: (is_trip) => ({
+        type: actions.PRICES_LIST_REQUEST,
+        is_trip
+    }),
+
+    PRICES_LIST_RECEIVE: `${nameSpace}_PRICES_LIST_RECEIVE`,
+    loadPricesListReceive: (data) => ({
+        type: actions.PRICES_LIST_RECEIVE,
+        data
+    }),
+
 };
 
 export default actions;

@@ -14,7 +14,8 @@ export const INITIAL_STATE = {
     hit_the_road: {},
     booked_trips: {},
     booked_trip_details: {},
-    traveler_info: {}
+    traveler_info: {},
+    prices_list: {},
 };
 
 const travelerData = (state = INITIAL_STATE, action) => {
@@ -199,6 +200,15 @@ const travelerData = (state = INITIAL_STATE, action) => {
                 traveler_info: data.profile
             }
         }
+        case actions.PRICES_LIST_RECEIVE:{
+            const {data={}} = action;
+
+            return {
+                ...state,
+                prices_list: data
+            }
+        }
+
 
         case actions.LOG_OUT: {
 

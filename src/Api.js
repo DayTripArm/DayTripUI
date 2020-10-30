@@ -141,8 +141,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    searchForDriver(date, travelers, trip_id, offset, limit) {
-        return axios.get(template(base_urls.day_trip.searchForDriver, date, travelers,trip_id,offset,limit), { handlesError: [400, 417, 500] })
+    searchForDriver(date, travelers, price_range, trip_id, offset, limit) {
+        return axios.get(template(base_urls.day_trip.searchForDriver, date, travelers, price_range, trip_id,offset,limit), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
@@ -163,5 +163,11 @@ export default {
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
+
+    loadPricesList(is_trip){
+        return axios.get(template(base_urls.day_trip.loadPricesList, is_trip), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    }
 
 }

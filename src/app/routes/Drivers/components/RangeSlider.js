@@ -8,16 +8,24 @@ class RangeSlider extends React.Component {
   constructor(props) {
     super(props);
 
-    const range = [props.price_range[0], props.price_range[1]];
+      this.price_range = [];
+      for (let i = 10; i <= 1000; i++) {
+          this.price_range.push(Math.floor(Math.random() * 1100) + 10);
+      }
+      const sortedData = this.price_range.slice().sort((a, b) => a - b);
+      const range = [sortedData[0], sortedData[sortedData.length - 1]];
 
     this.state = {
       domain: range,
-      update: range,
-      values: range,
-      inputValues: range,
-      price_range: this.props.price_range
+      update: this.props.range || [10, 1100],
+      values: this.props.range || [10, 1100],
+      inputValues: range
     };
-      console.log(this.state)
+      this.onChange = (price_range) => {
+          if (this.props.onChange) {
+              this.props.onChange(price_range);
+          }
+      };
   }
 
   render() {
@@ -28,7 +36,8 @@ class RangeSlider extends React.Component {
         <Grid item xs={12}>
           <div style={{ margin: "4%", height: 120, width: "90%" }}>
             <BarChart
-              data={this.props.data}
+              data={this.price_range}
+              prices_list={this.props.prices_list}
               highlight={update}
               domain={domain}
             />
@@ -42,9 +51,9 @@ class RangeSlider extends React.Component {
               }}
               onUpdate={(update) => {
                 this.setState({ update, inputValues: update});
-                this.setState({ update, price_range: update});
+                this.onChange(update)
               }}
-              onChange={(values) => {this.setState({ values }); this.setState({price_range: values})}}
+              onChange={(values) => {this.setState({ values }); this.onChange(update);}}
               values={values}
             >
               <Rail>
@@ -103,6 +112,7 @@ class RangeSlider extends React.Component {
                     const value = evt.target.value;
                     const newState = [value, inputValues[1]];
                     this.setState({ inputValues: newState });
+                    this.onChange(newState);
                     if (value && value >= domain[0]) {
                       this.setState({ values: newState });
                     }
@@ -126,6 +136,7 @@ class RangeSlider extends React.Component {
                     const value = evt.target.value;
                     const newState = [inputValues[0], value];
                     this.setState({ inputValues: newState });
+                    this.onChange(newState);
                     if (value && value <= domain[1] && value >= values[0]) {
                       this.setState({ values: newState });
                     }

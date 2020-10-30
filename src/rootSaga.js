@@ -445,8 +445,8 @@ function* driversListRequest(action) {
     try {
 
         const {body} = action;
-        const {date, travelers, trip_id=0,offset=0,limit=10} = body;
-        const {response, error} = yield call(Api.searchForDriver, date, Number(travelers), Number(trip_id), Number(offset),Number(limit));
+        const {date, travelers, price_range=[10, 1000], trip_id=0,offset=0,limit=10} = body;
+        const {response, error} = yield call(Api.searchForDriver, date, Number(travelers), price_range, Number(trip_id), Number(offset),Number(limit));
 
         if (response) {
             yield put(actions.searchForDriverReceive(response.data));
@@ -507,6 +507,20 @@ function* getBookedTripRequest(action) {
     }
 }
 
+function* loadPricesListRequest(action) {
+    try {
+        const {is_trip=false} = action;
+        const {response, error} = yield call(Api.loadPricesList, is_trip);
+        if (response) {
+            yield put(actions.loadPricesListReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -533,6 +547,7 @@ function* watcherSaga() {
     yield takeEvery(actions.CONFIRM_CHECKOUT_RECEIVE, confirmTripBookingCheckout);
     yield takeEvery(actions.BOOKED_TRIPS_REQUEST, getBookedTripsRequest);
     yield takeEvery(actions.BOOKED_TRIP_REQUEST, getBookedTripRequest);
+    yield takeEvery(actions.PRICES_LIST_REQUEST, loadPricesListRequest);
 }
 
 export default function* root() {
