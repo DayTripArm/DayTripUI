@@ -144,13 +144,13 @@ const SearchDriver = () => {
                                     onFocus={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);} }
                                     containerClass='mr-lg-4 mb-lg-0'
                                 />
+                               {showDatePicker && (
                                <div className="calendar_popup" ref={container1}>
-                                   {showDatePicker && (
-                                        <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
-                                        onDateChange={(date) => onDaySelect(date)}
-                                        />
-                                    )}
+                                    <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
+                                    onDateChange={(date) => onDaySelect(date)}
+                                    />
                                 </div>
+                                )}
                             </div>
                             <div className="home_seach_items">
                                 <Input
@@ -166,8 +166,8 @@ const SearchDriver = () => {
                                     onFocus={() => {setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                                     hideApperance
                                 />
+                                {showCountPopup && (
                                 <div className="travelers_count_popup" ref={container2}>
-                                    {showCountPopup && (
                                     <div className="trvlr_count_container">
                                         <FormPlusMinus
                                             label="Adults"
@@ -198,8 +198,8 @@ const SearchDriver = () => {
                                             }}
                                         />
                                     </div>
-                                    )}
                                 </div>
+                                )}
                             </div>
 
 
