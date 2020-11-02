@@ -24,6 +24,7 @@ const Input = ({
    onFocus,
    onBlur,
    required,
+   readonly,
    autoFocus,
    autoComplete,
    phoneCodes
@@ -38,6 +39,7 @@ const Input = ({
         if (className) classes.push(className);
         if (value) classes.push('is-active');
         if (isError) classes.push('is-error');
+        if (readonly) classes.push('is-readonly');
         if (isSuccess) classes.push('is-success');
         if (type === 'search') classes.push('is-search');
         if (icon || showEye) classes.push(iconPosition === 'left' ? 'icon-left' : 'icon-right');
@@ -123,9 +125,9 @@ const Input = ({
                         onFocus={onFocus}
                         onBlur={(e) => onBlurHandle(e, name)}
                         className={setClasses()}
-                        required={required}
                         autoFocus={autoFocus}
                         autoComplete={autoComplete}
+                        readOnly={readonly}
                     />
                 }
                 {message && (

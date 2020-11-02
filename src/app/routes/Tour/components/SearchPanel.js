@@ -129,6 +129,7 @@ const SearchPanel = ({trip_detail}) => {
                         placeholder='Select the Date'
                         autoComplete='off'
                         isError={getStatusMessage("date")  || false}
+                        readonly={true}
                         onFocus={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                     />
@@ -176,6 +177,7 @@ const SearchPanel = ({trip_detail}) => {
                         isError={getStatusMessage("travelers") || false}
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                         autoComplete='off'
+                        readonly={true}
                         onFocus={() =>{ setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                         hideApperance
                      />
