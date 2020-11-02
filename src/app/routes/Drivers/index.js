@@ -22,6 +22,7 @@ const Drivers = ({ history }) => {
     const container4 = useRef();
     const day = history.location.state?.date || moment().format('YYYY-MM-DD');
     const travelers_count = history.location.state?.travelers || 0;
+    const passenger_count = history.location.state?.passenger_count || {adults: 0, children: 0};
     const trip_id = history.location.state?.trip_id || null;
 
     useEffect(() => {
@@ -48,7 +49,7 @@ const Drivers = ({ history }) => {
     const [openCount, setOpenCount] = useState(false);
     const [isPricePopupOpened, setPricePopupOpened] = useState(false);
     const [form, setForm] = useState({date: day, travelers: travelers_count});
-    const [count, setCount] = useState({adults: 1, children: 0});
+    const [count, setCount] = useState(passenger_count);
     const [price_range, setPriceRange] = useState(null);
 
     useOutsideClick(container1, () => setOpenCalendar(false));

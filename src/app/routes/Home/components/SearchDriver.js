@@ -86,7 +86,8 @@ const SearchDriver = () => {
                     state: {
                         date: form.date,
                         travelers: form.travelers,
-                        trip_id: null
+                        trip_id: null,
+                        passenger_count: count
                     },
                 })
             } catch (e) {

@@ -30,6 +30,16 @@
             }
         }
     }
+    .CalendarDay__selected {
+        border: 1px solid #e4e7e7;
+        color: #484848;
+        background-color: #FE4C30;
+    }
+
+    .CalendarDay__selected:hover {
+        color: #484848;
+        background-color: #FE4C30;
+    }
     .calendar_popup, .travelers_count_popup {
         top: 40px;
     }

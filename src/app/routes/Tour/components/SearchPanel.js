@@ -83,7 +83,8 @@ const SearchPanel = ({trip_detail}) => {
                         state: {
                             date: form.date,
                             travelers: form.travelers,
-                            trip_id: trip_detail.id
+                            trip_id: trip_detail.id,
+                            passenger_count: count
                         },
                     })
                 } catch (e) {
