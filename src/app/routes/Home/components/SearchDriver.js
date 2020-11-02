@@ -140,6 +140,7 @@ const SearchDriver = () => {
                                     value={form.date}
                                     placeholder='Select the Date'
                                     autoComplete='off'
+                                    readonly={true}
                                     isError={getStatusMessage("date")  || false}
                                     onFocus={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);} }
                                     containerClass='mr-lg-4 mb-lg-0'
@@ -159,6 +160,7 @@ const SearchDriver = () => {
                                     label='Travelers *'
                                     placeholder='Add Travelers'
                                     autoComplete='off'
+                                    readonly={true}
                                     value={Number(form.travelers) > 0 ?  form.travelers + " Travelers": "" }
                                     isError={getStatusMessage("travelers") || false}
                                     containerClass='mr-lg-4 mb-lg-0'
