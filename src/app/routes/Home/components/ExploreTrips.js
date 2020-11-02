@@ -32,7 +32,7 @@ const ExploreTrips = () => {
                 }
             </div>
             <div className='text-center'>
-                <button className='btn btn-primary'>Load More</button>
+                <button className='btn btn-primary text-uppercase'>Load More</button>
             </div>
         </>
     )
