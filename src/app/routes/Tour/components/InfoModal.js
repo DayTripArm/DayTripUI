@@ -13,7 +13,7 @@ const InfoModal = (props) => {
     } = data;
 
     return (
-        <Modal title='Welcome to Daytrip' showDismissButton onClose={onClose}>
+        <Modal title={data.title} showDismissButton onClose={onClose}>
             <div className='py-4 px-0 px-md-8'>
                 <img
                     className='rounded__4 mb-4'
