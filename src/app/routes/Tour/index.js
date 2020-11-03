@@ -82,7 +82,7 @@ const Tour = ({ history }) => {
                             <h2 className='mb-4 mb-md-5'>What You'll See</h2>
                         </div>
                         <div className='col-xl-8'>
-                            <Destinations destinations={destinations} modalImage={images[0]} />
+                            <Destinations destinations={destinations} />
                         </div>
                     </div>
                     <div className='row mt-9 mt-md-11 mt-xl-13 mt-xxl-15'>

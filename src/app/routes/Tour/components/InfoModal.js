@@ -12,17 +12,13 @@ const InfoModal = (props) => {
         image_url,
     } = data;
 
-    const src = process.env.NODE_ENV === "development"
-        ? "http://localhost:3000" + image_url
-        : image_url;
-
     return (
         <Modal title='Welcome to Daytrip' showDismissButton onClose={onClose}>
             <div className='py-4 px-0 px-md-8'>
                 <img
                     className='rounded__4 mb-4'
                     alt=''
-                    src={src}
+                    src={image_url}
                 />
                 <p className='text-sm mh-100px text-break' dangerouslySetInnerHTML={{__html: description}}></p>
             </div>

@@ -12,8 +12,7 @@ const Destinations = (props) => {
     });
 
     const {
-        destinations=[],
-        modalImage
+        destinations=[]
     } = props;
 
     return(
@@ -45,7 +44,7 @@ const Destinations = (props) => {
                                         {dest.dest_desc.length >= 300 && <button className='btn btn-secondary btn-sm' onClick={() => {
                                             setModalData({
                                                 description: dest.dest_desc,
-                                                image_url: modalImage.url
+                                                image_url: src
                                             });
                                             setOpenInfoModal(true);
                                         }}>Read More</button>}
