@@ -21,7 +21,7 @@ const UpcomingTripItem = ({ item, onBookedTripClick}) => {
                         className='rounded__4 object-pos-center object-fit-cover mr-3'
                     />
                     <div>
-                        <p className='weight-500 mb-1'>{item.trip.title}</p>
+                        <p className='weight-500 mb-1'>{<p className='weight-500 mb-1'>{item.trip.title.length >= 53 ? item.trip.title.slice(0,53) + "..." : item.trip.title}</p>}</p>
                         <p className='mb-1 text-xs'>
                             <span className='weight-500'>Date:</span>{' '}
                             <span className='weight-500 text__grey-dark'>{moment(item.trip_day).format("D MMMM")}</span>
