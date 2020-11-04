@@ -55,9 +55,12 @@ const App = () => {
         if (localStorage.userType) {
             dispatch(actions.profileInfoRequest(localStorage.id));
         }
-
+        const body = {
+            offset: 0,
+            limit: 12
+        };
         dispatch(actions.heroesRequest());
-        dispatch(actions.tripsRequest());
+        dispatch(actions.tripsRequest(body));
         dispatch(actions.hitTheRoadRequest());
         dispatch(actions.tipsRequest(3));
         // eslint-disable-next-line react-hooks/exhaustive-deps

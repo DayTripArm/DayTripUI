@@ -1,17 +1,30 @@
 import React from 'react';
 import Card from 'shared/components/Card';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import actions from "actions";
 
+let limit = 12;
 const ExploreTrips = () => {
     const {travelerData={}} = useSelector(state => state);
-    const {trips=[]} = travelerData;
+    const {trips} = travelerData;
+    const {tripsList=[], tripsTotalCount} = trips;
+    const dispatch = useDispatch();
 
+    const loadTripsList = (lmt) => {
+        limit = lmt +12;
+        const body = {
+            is_top_choice: false,
+            offset: 0,
+            limit: limit
+        };
+        dispatch(actions.tripsRequest(body))
+    };
     return (
         <>
             <h2 className='text__blue'> Explore All Day Trips </h2>
             <div className='row row-1'>
                 {
-                    trips.map(trip => {
+                    tripsList.map(trip => {
                         const src = process.env.NODE_ENV === "development"
                             ? "http://localhost:3000" + trip.trip.images[0].url
                             : trip.trip.images[0].url;
@@ -31,9 +44,12 @@ const ExploreTrips = () => {
                     })
                 }
             </div>
+            {(limit < tripsTotalCount) &&
             <div className='text-center'>
-                <button className='btn btn-primary text-uppercase'>Load More</button>
+                <button onClick={e => loadTripsList(limit)} className='btn btn-primary text-uppercase'>Load More
+                </button>
             </div>
+            }
         </>
     )
 };

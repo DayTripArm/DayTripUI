@@ -13,7 +13,7 @@ export default {
     "getDestinations": `${HOST}/destinations`,
     "saveDriverPreregData": `${HOST}/driver_infos`,
     "getHeroes": `${HOST}/heroes`,
-    "getTrips": `${HOST}/trips?login_id={0}&is_top_choice={1}`,
+    "getTrips": `${HOST}/trips?login_id={0}&is_top_choice={1}&offset={2}&limit={3}`,
     "searchTrips": `${HOST}/trips?query={0}`,
     "getTripDetail": `${HOST}/trips/{0}?login_id={1}`,
     "getHitTheRoad": `${HOST}/hit_the_road`,

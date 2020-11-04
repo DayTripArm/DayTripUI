@@ -13,9 +13,10 @@ const SlideNavigation = ({ dir, onClick }) => (
 
 const TopChoises = () => {
     const {travelerData={}} = useSelector(state => state);
-    const {trips=[]} = travelerData;
+    const {trips} = travelerData;
+    const {tripsList=[], tripsTotalCount} = trips;
 
-    const top_choices = _.filter(trips, item => item.trip.is_top_choice) || [];
+    const top_choices = _.filter(tripsList, item => item.trip.is_top_choice) || [];
 
     const settings = {
         className: 'slick-cards',

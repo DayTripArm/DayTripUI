@@ -57,8 +57,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    getTrips(login_id, is_top_choice) {
-        return axios.get(template(base_urls.day_trip.getTrips, login_id, is_top_choice), { handlesError: [400, 417, 500] })
+    getTrips(login_id, is_top_choice, offset, limit) {
+        return axios.get(template(base_urls.day_trip.getTrips, login_id, is_top_choice, offset, limit), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },

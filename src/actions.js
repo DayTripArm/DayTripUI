@@ -126,9 +126,9 @@ const actions  = {
     }),
 
     TRIPS_REQUEST: `${nameSpace}_TRIPS_REQUEST`,
-    tripsRequest: (is_top_choice) => ({
+    tripsRequest: (body) => ({
         type: actions.TRIPS_REQUEST,
-        is_top_choice
+        body
     }),
 
     TRIPS_RECEIVE: `${nameSpace}_TRIPS_RECEIVE`,
