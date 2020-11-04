@@ -8,7 +8,8 @@ const Destinations = (props) => {
     const [openInfoModal, setOpenInfoModal] = useState(false);
     const [modalData, setModalData] = useState({
         description: "",
-        image_url: ""
+        image_url: "",
+        title: "",
     });
 
     const {
@@ -44,7 +45,8 @@ const Destinations = (props) => {
                                         {dest.dest_desc.length >= 300 && <button className='btn btn-secondary btn-sm' onClick={() => {
                                             setModalData({
                                                 description: dest.dest_desc,
-                                                image_url: src
+                                                image_url: src,
+                                                title: dest.dest_title,
                                             });
                                             setOpenInfoModal(true);
                                         }}>Read More</button>}
