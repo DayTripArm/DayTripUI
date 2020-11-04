@@ -32,7 +32,7 @@ const Drivers = ({ history }) => {
             price_range: price_range || [10, 100000],
             trip_id: trip_id,
             offset: 0,
-            limit: 10
+            limit: 5
         };
 
         dispatch(actions.searchForDriversRequest(body))
@@ -41,7 +41,7 @@ const Drivers = ({ history }) => {
 
     const {travelerData} = useSelector(state => state);
     const {search_for_drivers, prices_list} = travelerData;
-    const {drivers_list, trip_details} = search_for_drivers;
+    const {drivers_list, trip_details, driversTotalCount} = search_for_drivers;
     const trip_duration = trip_details ? trip_details.trip_duration : 12;
     const start_location = trip_details ?  trip_details.start_location : 'Yerevan';
 
@@ -113,7 +113,7 @@ const Drivers = ({ history }) => {
             ...body,
             trip_id: trip_id,
             offset: 0,
-            limit: 10
+            limit: 5
         }));
     });
 
@@ -229,6 +229,7 @@ const Drivers = ({ history }) => {
                                 <DriversList
                                 drivers_list={drivers_list}
                                 trip_details={trip_details}
+                                driversTotalCount={driversTotalCount}
                                 req_body={{
                                     date: form.date,
                                     travelers: count.adults + count.children,

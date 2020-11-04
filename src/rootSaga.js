@@ -445,7 +445,7 @@ function* driversListRequest(action) {
     try {
 
         const {body} = action;
-        const {date, travelers, price_range=[10, 1000], trip_id=0,offset=0,limit=10} = body;
+        const {date, travelers, price_range=[10, 1000], trip_id=0,offset=0,limit=5} = body;
         const {response, error} = yield call(Api.searchForDriver, date, Number(travelers), price_range, Number(trip_id), Number(offset),Number(limit));
 
         if (response) {

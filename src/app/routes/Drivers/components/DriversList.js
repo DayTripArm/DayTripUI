@@ -37,21 +37,23 @@ const settings = {
     ],
 };
 
+let limit = 5;
 
-const DriversList = ({drivers_list,trip_details, req_body}) => {
+const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) => {
     const {travelerData} = useSelector(state => state);
     const {profile} = travelerData;
     const location = useLocation();
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const loadDriverList = () => {
+    const loadDriverList = (lmt) => {
+        limit = lmt +5;
         const body = {
             date: req_body ? req_body.date : location.state.date,
             travelers: req_body ? req_body.travelers : location.state.travelers,
             trip_id: req_body ? req_body.trip_id : (trip_details?.trip_id || null),
-            offset: drivers_list.length > 10 ? drivers_list.length + 1 : 0,
-            limit: 10
+            offset: 0,
+            limit: limit
         };
         dispatch(actions.searchForDriversRequest(body))
     };
@@ -207,9 +209,12 @@ const DriversList = ({drivers_list,trip_details, req_body}) => {
                     })
                 }
             </ul>
-            <div className='text-center mt-5 mt-xl-6'>
-                <button onClick={e => loadDriverList()} className='btn btn-primary text-uppercase'>Load More</button>
-            </div>
+            {(limit < driversTotalCount) &&
+                <div className='text-center mt-5 mt-xl-6'>
+                    <button onClick={e => loadDriverList(limit)} className='btn btn-primary text-uppercase'>Load More
+                    </button>
+                </div>
+            }
             {showSignIn && <ModalLogin onClose={() => dispatch(actions.showHideSignIn(false))} />}
         </>
     );
