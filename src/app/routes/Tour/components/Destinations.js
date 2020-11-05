@@ -23,11 +23,11 @@ const Destinations = (props) => {
                     const src = process.env.NODE_ENV === "development"
                         ? "http://localhost:3000" + dest.dest_image.url
                         : dest.dest_image.url;
-
+                     const finalIndex = destinations.length -1;
                     return (
                         <div key={i} className={`step-vertical  ${!_.isEmpty(dest.dest_title) && "step-vertical__contained pb-6"}`}>
                             <h4 className='text__grey-dark mb-4 mb-md-5'>
-                                {STRING_NUMBERS[i]} stop:{' '}
+                                {finalIndex === i ? `Final stop:${' '}` : `${STRING_NUMBERS[i]} stop:${' '} `}
                                 <span className='weight-400'>{dest.stop_title}</span>
                             </h4>
                             {!_.isEmpty(dest.dest_title) && <div className='row'>
