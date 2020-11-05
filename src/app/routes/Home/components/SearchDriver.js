@@ -41,7 +41,7 @@ const SearchDriver = () => {
         image={}
     } = hit_the_road;
 
-    const [form, setForm] = useState({date: "", travelers: 0});
+    const [form, setForm] = useState({date: "", travelers: "0"});
     const [count, setCount] = useState({adults: 0, children: 0});
     const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
 
@@ -65,7 +65,7 @@ const SearchDriver = () => {
     function validateField(name) {
         const rule = validations[name];
         if (rule) {
-            if (rule.required && _.isEmpty(form[name])) {
+            if (rule.required && (_.isEmpty(form[name]) || _.isEqual(form[name], "0"))) {
                 return { status: "error", statusMessage: "This field is required" };
             }
 
