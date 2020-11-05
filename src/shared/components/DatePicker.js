@@ -18,6 +18,7 @@ const DatePicker = ({ date, onDateChange }) => {
         onOutsideClick() {},
         keepOpenOnDateSelect: false,
         renderCalendarInfo: null,
+        focused: true,
         hideKeyboardShortcutsPanel: true,
         monthFormat: 'MMMM YYYY',
     };
