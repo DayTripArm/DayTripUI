@@ -49,6 +49,7 @@
 }
 
 .sfd_popup_form{
+    width:100%;
     .tour_search_items{
         width: 325px;
         min-width: 325px;
@@ -57,43 +58,35 @@
     .tour_search_items > .form-field{
         width: 100%;
     }
-    .tour_calendar_popup {
-        position: absolute;
-        top: 55px;
-        z-index: 999;
-        width: 100%;
-    }
-    .sfd_travelers_count_popup{
-        position: absolute;
-        top: 55px;
-        z-index: 999;
-        width: 100%;
+    .sfd-items-aligned {
+        margin: 15px auto;
+        h4 {
+            color: #100F72
+        }
+        .CalendarDay__selected {
+            border: 1px solid #e4e7e7;
+            color: #484848;
+            background-color: #FE4C30;
+        }
 
-        .trvlr_count_container{
-            box-shadow: 0 2px 6px rgba(0,0,0,.05), 0 0 0 1px rgba(0,0,0,.07);
-            border-radius: 3px;
-            background: white;
-            padding: 16px 16px;
-            height: 100%;
-        }
-        .trvlr_count_container > .d-flex > span{
-            display: inline-block;
-            width: 75%;
-        }
-        .trvlr_count_container > .d-flex{
-            margin-bottom: 0!important;
-        }
-        .trvl_cnt_footer{
-            margin: 0 5px;
-            padding: 5px 0px;
-        }
-        .btn-clear{
-            color: #757577;
-        }
-        .btn-done{
-            float:right;
+        .CalendarDay__selected:hover {
+            color: #484848;
+            background-color: #FE4C30;
         }
     }
+    .trvlr_count_container{
+        border-radius: 3px;
+        background: white;
+        height: 100%;
+    }
+    .trvlr_count_container > .d-flex > span{
+        display: inline-block;
+        width: 75%;
+    }
+    .trvlr_count_container > .d-flex{
+        margin-bottom: 15px !important;
+    }
+
     .btn-sfd {
         width: 325px;
         margin: 15px auto;
@@ -136,7 +129,7 @@
             width: 60%;
         }
         .trvlr_count_container > .d-flex{
-            margin-bottom: 0!important;
+            margin-bottom: 15px!important;
         }
         .trvl_cnt_footer{
             margin: 0 5px;
@@ -148,5 +141,21 @@
         .btn-done{
             float:right;
         }
+    }
+}
+.trvlr_count_container{
+    .btn-circle:not(.size-fixed) svg {
+        width: 35px;
+        height: 35px;
+    }
+}
+.sticky_panel{
+    modal{
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        -webkit-transition: max-height 0.5s ease-in-out;
+        -moz-transition: max-height 0.5s ease-in-out;
+        -o-transition: max-height 0.5s ease-in-out;
+        transition: max-height 0.5s ease-in-out;
     }
 }

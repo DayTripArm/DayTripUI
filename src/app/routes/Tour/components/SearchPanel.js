@@ -28,7 +28,7 @@ const SearchPanel = ({trip_detail}) => {
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [showCountPopup, setShowCountPopup] = useState(false);
     const [showSearchPopup, setShowSearchPopup] = useState(false);
-    const [form, setForm] = useState({date: "", travelers: 0});
+    const [form, setForm] = useState({date: "", travelers: "0"});
     const [count, setCount] = useState({adults: 0, children: 0});
 
     useOutsideClick(container1, () => setShowDatePicker(false));
@@ -59,7 +59,10 @@ const SearchPanel = ({trip_detail}) => {
     function validateField(name) {
         const rule = validations[name];
         if (rule) {
-            if (rule.required && _.isEmpty(form[name])) {
+            console.log(form[name])
+            console.log(_.isEmpty(form[name]))
+            console.log(typeof form[name])
+            if (rule.required && (_.isEmpty(form[name]) || _.isEqual(form[name], "0"))) {
                 return { status: "error", statusMessage: "This field is required" };
             }
 
@@ -191,12 +194,12 @@ const SearchPanel = ({trip_detail}) => {
               Search For Drivers
              </Link>
             </div>
+    {
+        showSearchPopup && <SearchForDriverModal trip_id={trip_detail.id} onCloseShowPopup={() => setShowSearchPopup(false)} />
+    }
           </div>
         </div>
       </StickyPanel>
-        {
-            showSearchPopup && <SearchForDriverModal trip_id={trip_detail.id} onCloseShowPopup={() => setShowSearchPopup(false)} />
-        }
         </>
     );
 }
