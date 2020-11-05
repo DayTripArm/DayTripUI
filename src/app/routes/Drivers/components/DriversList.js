@@ -8,7 +8,7 @@ import { IconStar,
     IconSeat } from 'shared/components/Icons';
 import Slider from 'react-slick';
 import ModalLogin from 'app/components/modals/ModalLogin';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router";
 import actions from "actions";
@@ -63,17 +63,19 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
         showSignUp,
     } = travelerData;
 
-    const bookTrip = (e, driver) => {
-        e.preventDefault(driver);
+    const bookTrip = (e, driver, learn_more) => {
+        e.preventDefault();
         const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + driver.profile_photos.full_path : driver.profile_photos.full_path;
         const trip_img = trip_details.images ? trip_details.images[0].url : trip_details.image.url;
         const trip_img_src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + trip_img : trip_img;
 
         if (localStorage.id) {
             history.push({
-                pathname: '/checkout/review',
+                pathname: learn_more ? '/individuals/driver' : '/checkout/review',
                 state: {
                     driver_id: driver.id,
+                    user_type: driver.user_type,
+                    booked_trip: true,
                     traveler_id: Number(localStorage.id),
                     trip_id: location.state?.trip_id || null,
                     driver_img: src,
@@ -191,16 +193,10 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                                 </div>
                                             </div>
 
-                                            <div className='text-right'>
-                                                <Link to={{
-                                                    pathname: '/individuals/driver',
-                                                    state: {
-                                                        driver_id: driver.id,
-                                                        user_type: driver.user_type
-                                                    }
-                                                }} className='btn weight-700 btn-sm btn-text'>
+                                            <div className='text-right' onClick={(e) => bookTrip(e, driver, true)}>
+                                                <button className='btn weight-700 btn-sm btn-text'>
                                                     Learn More
-                                                </Link>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

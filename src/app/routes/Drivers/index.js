@@ -94,8 +94,6 @@ const Drivers = ({ history }) => {
             travelers: total_passangers,
             price_range: price_range
         };
-        console.log(price_range)
-        console.log(body)
         updateDriversList(body)
     });
 

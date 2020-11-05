@@ -3,7 +3,7 @@ import { IconArrowLeft, IconStar, IconCheckMarkOutlined } from 'shared/component
 import Benefits from './components/Benefits';
 import Gallery from './components/Gallery';
 import Reviews from './components/Reviews';
-// import BookPanel from './components/BookPanel';
+import BookPanel from './components/BookPanel';
 import { Link, useLocation } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {MONTH_LIST, DRIVER_TYPE} from "../../../../../constants";
@@ -32,13 +32,14 @@ const Driver = ({ history }) => {
     const created_date = new Date(created_at || "");
     const member_since = MONTH_LIST[created_date.getMonth()] + " " + created_date.getFullYear();
 
+    const checkout_info = locate.state;
+
     const benefits = {location, languages, car_specs, car_seats, car_mark, car_model, car_full_name};
     const src = process.env.NODE_ENV === "development"
         ? "http://localhost:3000" + profile_photo
         : profile_photo;
 
     useEffect(() => {
-        // TODO need also to get individual user by passing id in routes for non registered users
         const user_id = locate.state ? Number(locate.state.driver_id) : Number(localStorage.id)
         const user_type = locate.state? Number(locate.state.user_type) : Number(localStorage.userType)
         dispatch(actions.individualUserRequest(user_id, user_type));
@@ -105,7 +106,7 @@ const Driver = ({ history }) => {
                     </div>
                 </div>
             </div>
-            {/*<BookPanel />*/}
+            {checkout_info && checkout_info.booked_trip && <BookPanel checkout_info={checkout_info} />}
         </>
     );
 };

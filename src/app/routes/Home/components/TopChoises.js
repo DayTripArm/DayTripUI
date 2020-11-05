@@ -14,7 +14,7 @@ const SlideNavigation = ({ dir, onClick }) => (
 const TopChoises = () => {
     const {travelerData={}} = useSelector(state => state);
     const {trips} = travelerData;
-    const {tripsList=[], tripsTotalCount} = trips;
+    const {tripsList=[]} = trips;
 
     const top_choices = _.filter(tripsList, item => item.trip.is_top_choice) || [];
 

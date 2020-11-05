@@ -59,9 +59,6 @@ const SearchPanel = ({trip_detail}) => {
     function validateField(name) {
         const rule = validations[name];
         if (rule) {
-            console.log(form[name])
-            console.log(_.isEmpty(form[name]))
-            console.log(typeof form[name])
             if (rule.required && (_.isEmpty(form[name]) || _.isEqual(form[name], "0"))) {
                 return { status: "error", statusMessage: "This field is required" };
             }
