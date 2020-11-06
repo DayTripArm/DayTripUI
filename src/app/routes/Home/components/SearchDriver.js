@@ -101,8 +101,8 @@ const SearchDriver = () => {
         <>
             <h2 className='text__blue'> Hit The Road </h2>
             <div className='home-search-driver box-overlay rounded__10'>
-                <img src={src} alt='home' className='w-100 object-pos-center object-fit-cover'/>
-                <div className='overlay d-flex align-items-center justify-content-center'>
+                <img src={src} alt='home' className='w-100 object-pos-center object-fit-cover rounded__10'/>
+                <div className='overlay d-flex align-items-center justify-content-center rounded__10'>
                     <div className='d-flex flex-column align-items-center'>
                         <div className='text-white text-center px-4 px-lg-5'>
                             <h2 className='h1 mb-4'>{title}
