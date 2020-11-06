@@ -191,9 +191,9 @@ const SearchPanel = ({trip_detail}) => {
               Search For Drivers
              </Link>
             </div>
-    {
-        showSearchPopup && <SearchForDriverModal trip_id={trip_detail.id} onCloseShowPopup={() => setShowSearchPopup(false)} />
-    }
+            {
+                showSearchPopup && <SearchForDriverModal trip_id={trip_detail.id} onCloseShowPopup={() => setShowSearchPopup(false)} />
+            }
           </div>
         </div>
       </StickyPanel>

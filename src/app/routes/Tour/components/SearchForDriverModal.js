@@ -10,7 +10,7 @@ import moment from "moment";
 const SearchForDriverModal = (props) => {
     const history = useHistory();
     const [form, setForm] = useState({date: "", travelers: ""});
-    const [count, setCount] = useState({adults: 1, children: 0});
+    const [count, setCount] = useState({adults: 0, children: 0});
     const {trip_id, onCloseShowPopup} = props
     const onDaySelect = ((day) => {
         setForm({
@@ -79,13 +79,13 @@ const SearchForDriverModal = (props) => {
                         />
                     </div>
                  </div>
+                 <Link to='/drivers' className='btn btn-primary text-uppercase btn-xs-block btn-sfd' onClick={(e) => {
+                    e.preventDefault();
+                    searchDriver();
+                }}>
+                Search For Drivers
+                </Link>
             </div>
-            <Link to='/drivers' className='btn btn-primary text-uppercase btn-xs-block btn-sfd' onClick={(e) => {
-                e.preventDefault();
-                searchDriver();
-            }}>
-            Search For Drivers
-            </Link>
         </Modal>
     )
 };

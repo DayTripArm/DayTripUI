@@ -12,6 +12,7 @@ import _ from "lodash";
 import moment from "moment";
 import { Grid } from "@material-ui/core";
 import RangeSlider from "./components/RangeSlider";
+import FiltersModal from "./components/FiltersModal";
 import NoResults from './components/NoResults';
 
 const Drivers = ({ history }) => {
@@ -29,7 +30,7 @@ const Drivers = ({ history }) => {
         const body = {
             date: day,
             travelers: travelers_count,
-            price_range: price_range || [10, 100000],
+            price_range: [10, 100000],
             trip_id: trip_id,
             offset: 0,
             limit: 5
@@ -46,24 +47,35 @@ const Drivers = ({ history }) => {
     const start_location = trip_details ?  trip_details.start_location : 'Yerevan';
 
     const [openCalendar, setOpenCalendar] = useState(false);
+    const [singleFilter, showSingleFilter] = useState(false);
+    const [filtersPopup, openFiltersPopup] = useState(false);
     const [openCount, setOpenCount] = useState(false);
     const [isPricePopupOpened, setPricePopupOpened] = useState(false);
-    const [form, setForm] = useState({date: day, travelers: travelers_count});
+    const [form, setForm] = useState({date: day, travelers: travelers_count, price_range: null});
     const [count, setCount] = useState(passenger_count);
-    const [price_range, setPriceRange] = useState(null);
 
     useOutsideClick(container1, () => setOpenCalendar(false));
     useOutsideClick(container2, () => setOpenCount(false));
     //useOutsideClick(container3, () => setShowCountPopup(false));  //for review popup
     useOutsideClick(container4, () => setPricePopupOpened(false));
 
+    window.addEventListener("resize", showChips, false);
+    window.addEventListener("load", showChips, false);
+
+    function showChips(e){
+        if(window.innerWidth >= 768){
+            showSingleFilter(false);
+        } else {
+            showSingleFilter(true);
+        }
+    }
     const displayPrice = (() => {
         let price_text = "Prices";
-        if (price_range) {
-            if (price_range[0] && price_range[1]){
-                price_text = "$"+price_range[0]+" - $"+price_range[1];
+        if (form.price_range) {
+            if (form.price_range[0] && form.price_range[1]){
+                price_text = "$"+form.price_range[0]+" - $"+form.price_range[1];
             } else {
-                price_text = "Up to $"+(price_range[1] || "1000+");
+                price_text = "Up to $"+(form.price_range[1] || "1000+");
             }
 
         }
@@ -79,7 +91,7 @@ const Drivers = ({ history }) => {
         const body = {
             date: moment(day).format('YYYY-MM-DD'),
             travelers: form.travelers,
-            price_range: price_range
+            price_range: form.price_range
         };
         updateDriversList(body);
     });
@@ -92,7 +104,7 @@ const Drivers = ({ history }) => {
         const body = {
             date: form.date,
             travelers: total_passangers,
-            price_range: price_range
+            price_range: form.price_range
         };
         updateDriversList(body)
     });
@@ -137,85 +149,109 @@ const Drivers = ({ history }) => {
                             </div>
                         </div>
                         <div className='mb-9 mb-md-10 mb-xl-11 chips_container'>
-                            <div className="home_seach_items">
-                                <Chips name={moment(form.date).format('MMM-DD')} className='mr-4 mb-md-5'
-                                    onClick={() => {
-                                        setOpenCalendar(!openCalendar);
-                                        setOpenCount(false);
-                                        setPricePopupOpened(false);
-                                    }} />
-                                {openCalendar && (<div className="calendar_popup" ref={container1}>
-                                     <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
-                                     onDateChange={(date) => onDaySelect(date)} />
-                                </div>)}
-                            </div>
-                            <div className="home_seach_items">
-                                <Chips name={form.travelers+" Travelers"} className='mr-4 mb-md-5'
-                                    onClick={() => {
-                                    setOpenCalendar(false);
-                                    setOpenCount(!openCount);
-                                    setPricePopupOpened(false);
-                                }} />
-                                {openCount && (
-                                    <div className="travelers_count_popup" ref={container2}>
-                                        <div className="trvlr_count_container">
-                                            <FormPlusMinus
-                                                label="Adults"
-                                                name="adults"
-                                                max={9}
-                                                min={2}
-                                                initialValue={count.adults}
-                                                onChange={(obj) => {
-                                                    setCount({...count, adults: obj.value })
-                                                    onSetCount(count.children + obj.value);
-                                                }}
-                                            />
-                                            <FormPlusMinus
-                                                label="Children"
-                                                name="children"
-                                                max={9}
-                                                min={0}
-                                                initialValue={count.children}
-                                                onChange={(obj) => {
-                                                    setCount({...count,  children: obj.value })
-                                                    onSetCount(count.adults + obj.value);
-                                                }}
-                                            />
-                                        </div>
+                            {
+                                singleFilter ?
+                                    <div className="home_seach_items">
+                                        <Chips name="Filters" className='mr-4 mb-md-5'
+                                            onClick={() => {
+                                                openFiltersPopup(!filtersPopup);
+                                            }} />
+                                        {filtersPopup && <FiltersModal
+                                            trip_id={trip_id}
+                                            prices_list={prices_list}
+                                            filters={form}
+                                            passengers_count={count}
+                                            onSetCalendarDate={(date) => setForm({...form, date: date})}
+                                            onSetTravelersCount={(trvl_count) => setForm({...form, travelers: trvl_count})}
+                                            onSetPriceRange={(price_range) => setForm({...form, price_range: price_range})}
+                                            onCloseShowPopup={() => openFiltersPopup(false)}
+                                            />}
                                     </div>
-                                )}
-                            </div>
-                            <div className="home_seach_items">
-                                <Chips name="Reviews" className='mr-4 mb-md-5'/>
-                            </div>
-                            <div className="home_seach_items">
-                                <Chips name={displayPrice()}
-                                    onClick={() => {
-                                        setOpenCalendar(false);
-                                        setOpenCount(false);
-                                        setPricePopupOpened(!isPricePopupOpened);
-                                    }
-                                } />
-                                {isPricePopupOpened && (<div className="price_popup" ref={container4}>
-                                    <div className="price_container">
-                                        <div className="price_slider">
-                                            <Grid container justify="center">
-                                              <Grid item xs={12} style={{ textAlign: "center" }}>
-                                              </Grid>
-                                              <Grid item xs={12} lg={8}>
-                                                <RangeSlider prices_list={prices_list}
-                                                    range={price_range || [10, 1100]}
-                                                    onChange={(price_range) => {
-                                                        setPriceRange(price_range);
-                                                        onSetPrice(price_range);
-                                                    }}
-                                                 />
-                                              </Grid>
-                                            </Grid>
+                                    : <>
+                                        <div className="home_seach_items">
+                                            <Chips name={moment(form.date).format('MMM-DD')} className='mr-4 mb-md-5'
+                                                onClick={() => {
+                                                    setOpenCalendar(!openCalendar);
+                                                    setOpenCount(false);
+                                                    setPricePopupOpened(false);
+                                                }} />
+                                            {openCalendar && (<div className="calendar_popup" ref={container1}>
+                                                 <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
+                                                 onDateChange={(date) => onDaySelect(date)} />
+                                            </div>)}
                                         </div>
-                                    </div>
-                                </div>)}
-                            </div>
+                                        <div className="home_seach_items">
+                                            <Chips name={form.travelers+" Travelers"} className='mr-4 mb-md-5'
+                                                onClick={() => {
+                                                setOpenCalendar(false);
+                                                setOpenCount(!openCount);
+                                                setPricePopupOpened(false);
+                                            }} />
+                                            {openCount && (
+                                                <div className="travelers_count_popup" ref={container2}>
+                                                    <div className="trvlr_count_container">
+                                                        <FormPlusMinus
+                                                            label="Adults"
+                                                            name="adults"
+                                                            max={9}
+                                                            min={2}
+                                                            initialValue={count.adults}
+                                                            onChange={(obj) => {
+                                                                setCount({...count, adults: obj.value })
+                                                                onSetCount(count.children + obj.value);
+                                                            }}
+                                                        />
+                                                        <FormPlusMinus
+                                                            label="Children"
+                                                            name="children"
+                                                            max={9}
+                                                            min={0}
+                                                            initialValue={count.children}
+                                                            onChange={(obj) => {
+                                                                setCount({...count,  children: obj.value })
+                                                                onSetCount(count.adults + obj.value);
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="home_seach_items">
+                                            <Chips name="Reviews" className='mr-4 mb-md-5'/>
+                                        </div>
+                                        <div className="home_seach_items">
+                                            <Chips name={displayPrice()}
+                                                onClick={() => {
+                                                    setOpenCalendar(false);
+                                                    setOpenCount(false);
+                                                    setPricePopupOpened(!isPricePopupOpened);
+                                                }
+                                            } />
+                                            {isPricePopupOpened && (<div className="price_popup" ref={container4}>
+                                                <div className="price_container">
+                                                    <div className="price_slider">
+                                                        <Grid container justify="center">
+                                                          <Grid item xs={12} style={{ textAlign: "center" }}>
+                                                          </Grid>
+                                                          <Grid item xs={12} lg={8}>
+                                                            <RangeSlider prices_list={prices_list}
+                                                                range={form.price_range || [10, 1100]}
+                                                                onChange={(price_range) => {
+                                                                    setForm({
+                                                                        ...form,
+                                                                        price_range: price_range
+                                                                    });
+                                                                    onSetPrice(price_range);
+                                                                }}
+                                                             />
+                                                          </Grid>
+                                                        </Grid>
+                                                    </div>
+                                                </div>
+                                            </div>)}
+                                        </div>
+                                     </>
+                                }
                         </div>
 
                         { _.isEmpty(drivers_list)
