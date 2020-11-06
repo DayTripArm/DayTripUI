@@ -26,10 +26,10 @@ const CropContainer = ({setShowCropContainer, profilePhoto}) => {
     const imagePreviewCanvasRef = React.createRef();
     const [imgSrc, setImgSrc] = useState({});
     const [crop, setCrop] = useState({
-        unit: '%',
+        unit: 'px',
         aspect: 1,
-        width: 30,
-        height: 30,
+        width: 200,
+        height: 200,
         x: 10,
         y: 10,
     });
@@ -77,6 +77,7 @@ const CropContainer = ({setShowCropContainer, profilePhoto}) => {
                     crop={crop}
                     onImageLoaded={handleImageLoaded}
                     onChange={handleOnCrop}
+                    locked={true}
                     handleOnCrop={handleOnCrop}
                 />
 
