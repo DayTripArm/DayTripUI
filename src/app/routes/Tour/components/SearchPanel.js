@@ -97,7 +97,7 @@ const SearchPanel = ({trip_detail}) => {
     };
 
     return(<>
-      <StickyPanel className='border__top border__default'>
+      <StickyPanel className='border__top border__default trip_sfd_panel'>
         <div className='container'>
           <div className='d-flex align-items-center justify-content-between py-4'>
             <div className='d-none d-lg-block'>
