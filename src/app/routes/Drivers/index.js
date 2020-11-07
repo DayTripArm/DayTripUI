@@ -23,7 +23,7 @@ const Drivers = ({ history }) => {
     const container4 = useRef();
     const day = history.location.state?.date || moment().format('YYYY-MM-DD');
     const travelers_count = history.location.state?.travelers || 0;
-    const passenger_count = history.location.state?.passenger_count || {adults: 0, children: 0};
+    const passengers_count = history.location.state?.passengers_count || {adults: 1, children: 0};
     const trip_id = history.location.state?.trip_id || null;
 
     useEffect(() => {
@@ -47,12 +47,11 @@ const Drivers = ({ history }) => {
     const start_location = trip_details ?  trip_details.start_location : 'Yerevan';
 
     const [openCalendar, setOpenCalendar] = useState(false);
-    const [singleFilter, showSingleFilter] = useState(false);
+    const [singleFilter, showSingleFilter] = useState(window.innerWidth >= 768? false : true);
     const [filtersPopup, openFiltersPopup] = useState(false);
     const [openCount, setOpenCount] = useState(false);
     const [isPricePopupOpened, setPricePopupOpened] = useState(false);
-    const [form, setForm] = useState({date: day, travelers: travelers_count, price_range: null});
-    const [count, setCount] = useState(passenger_count);
+    const [form, setForm] = useState({date: day, travelers: travelers_count, passengers_count: passengers_count,  price_range: null});
 
     useOutsideClick(container1, () => setOpenCalendar(false));
     useOutsideClick(container2, () => setOpenCount(false));
@@ -60,7 +59,6 @@ const Drivers = ({ history }) => {
     useOutsideClick(container4, () => setPricePopupOpened(false));
 
     window.addEventListener("resize", showChips, false);
-    window.addEventListener("load", showChips, false);
 
     function showChips(e){
         if(window.innerWidth >= 768){
@@ -90,7 +88,7 @@ const Drivers = ({ history }) => {
         setOpenCalendar(false);
         const body = {
             date: moment(day).format('YYYY-MM-DD'),
-            travelers: form.travelers,
+            travelers: form.passengers_count.adults + form.passengers_count.children,
             price_range: form.price_range
         };
         updateDriversList(body);
@@ -112,7 +110,7 @@ const Drivers = ({ history }) => {
     const onSetPrice = ((price_range) => {
         const body = {
             date: form.date,
-            travelers: form.travelers,
+            travelers: form.passengers_count.adults + form.passengers_count.children,
             price_range: price_range || [10, 1100]
         };
         updateDriversList(body)
@@ -160,9 +158,10 @@ const Drivers = ({ history }) => {
                                             trip_id={trip_id}
                                             prices_list={prices_list}
                                             filters={form}
-                                            passengers_count={count}
-                                            onSetCalendarDate={(date) => setForm({...form, date: date})}
+                                            onSetCalendarDate={(date) => setForm({...form, date: moment(date).format('YYYY-MM-DD')})}
                                             onSetTravelersCount={(trvl_count) => setForm({...form, travelers: trvl_count})}
+                                            onSetAdultsCount={(adults) => setForm({...form, passengers_count: {adults: adults, children: form.passengers_count.children}})}
+                                            onSetChildrenCount={(children) => setForm({...form, passengers_count: {adults: form.passengers_count.adults, children: children}})}
                                             onSetPriceRange={(price_range) => setForm({...form, price_range: price_range})}
                                             onCloseShowPopup={() => openFiltersPopup(false)}
                                             />}
@@ -195,10 +194,10 @@ const Drivers = ({ history }) => {
                                                             name="adults"
                                                             max={9}
                                                             min={2}
-                                                            initialValue={count.adults}
+                                                            initialValue={form.passengers_count.adults}
                                                             onChange={(obj) => {
-                                                                setCount({...count, adults: obj.value })
-                                                                onSetCount(count.children + obj.value);
+                                                                setForm({...form, passengers_count: {adults: obj.value, children: form.children}});
+                                                                onSetCount(form.passengers_count.children + obj.value);
                                                             }}
                                                         />
                                                         <FormPlusMinus
@@ -206,10 +205,10 @@ const Drivers = ({ history }) => {
                                                             name="children"
                                                             max={9}
                                                             min={0}
-                                                            initialValue={count.children}
+                                                            initialValue={form.passengers_count.children}
                                                             onChange={(obj) => {
-                                                                setCount({...count,  children: obj.value })
-                                                                onSetCount(count.adults + obj.value);
+                                                                setForm({...form, passengers_count: {adults: form.adults, children: obj.value}});
+                                                                onSetCount(form.passengers_count.adults + obj.value);
                                                             }}
                                                         />
                                                     </div>
@@ -266,7 +265,7 @@ const Drivers = ({ history }) => {
                                 driversTotalCount={driversTotalCount}
                                 req_body={{
                                     date: form.date,
-                                    travelers: count.adults + count.children,
+                                    travelers: form.passengers_count.adults + form.passengers_count.children,
                                     trip_id: trip_id
                                 }}
                          />

@@ -51,6 +51,8 @@
 .sfd_popup_form{
     width: 360px;
     margin: 0 auto;
+    height: calc(100vh - 100px);
+    position: relative;
     .tour_search_items{
         width: 325px;
         min-width: 325px;
@@ -60,7 +62,7 @@
         width: 100%;
     }
     .sfd-items-aligned {
-        margin: 15px auto;
+        margin: 0 auto 15px;
         h4 {
             color: #100F72
         }
@@ -90,8 +92,8 @@
 
     .btn-sfd {
         width: 100%;
-        position: relative;
-        bottom: -60px;
+        position: absolute;
+        bottom: 0;
     }
 }
 
@@ -151,7 +153,8 @@
         height: 35px;
     }
 }
-.sticky_panel{
+.trip_sfd_panel{
+    z-index: 2;
     modal{
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);

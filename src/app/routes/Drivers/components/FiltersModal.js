@@ -14,21 +14,18 @@ import moment from "moment";
 const FiltersModal = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const {trip_id, prices_list, filters, passengers_count, onSetCalendarDate, onSetTravelersCount, onSetPriceRange, onCloseShowPopup} = props
+    const {trip_id, prices_list, filters, onSetCalendarDate, onSetTravelersCount,onSetAdultsCount, onSetChildrenCount, onSetPriceRange, onCloseShowPopup} = props
     const [form, setForm] = useState(filters);
-    const [count, setCount] = useState({adults: passengers_count.adults, children: passengers_count.children});
     const onDaySelect = ((day) => {
-        setForm({
-            ...form,
-            date: moment(day).format('YYYY-MM-DD')
-        });
+        setForm({...form, date: moment(day).format('YYYY-MM-DD')});
     })
 
-    const onSetCount = ((total_passangers) => {
-        setForm({
-            ...form,
-            travelers: total_passangers.toString()
-        });
+    const setAdultsCount = ((adult) => {
+        setForm({...form, passengers_count: {adults: adult, children: form.passengers_count.children}});
+    });
+
+    const setChildrenCount = ((children) => {
+        setForm({...form, passengers_count: {adults: form.passengers_count.adults, children: children}});
     });
 
     const onSetPrice = ((price_range) => {
@@ -41,7 +38,7 @@ const FiltersModal = (props) => {
     const updateDriversList = (() => {
         dispatch(actions.searchForDriversRequest({
             date: form.date,
-            travelers: form.travelers,
+            travelers: form.passengers_count.adults + form.passengers_count.children,
             price_range: form.price_range,
             trip_id: trip_id,
             offset: 0,
@@ -58,8 +55,7 @@ const FiltersModal = (props) => {
                     </div>
                     <DatePicker daySize={50}
                         date={!_.isEmpty(form.date)? moment(form.date) : moment()}
-                        onSetCalendarDate={(date) => onDaySelect(date)}
-                        onDateChange={(date) => onDaySelect(date)} />
+                        onDateChange={(date) => {onDaySelect(date); onSetCalendarDate(date)}}/>
                   </div>
                   <div className="sfd-items-aligned">
                     <hr className="border__top border__default my-4"></hr>
@@ -72,11 +68,11 @@ const FiltersModal = (props) => {
                             name="adults"
                             max={9}
                             min={2}
-                            initialValue={count.adults}
+                            initialValue={form.passengers_count?.adults || 1}
                             onChange={(obj) => {
-                                setCount({...count, adults: obj.value });
-                                onSetCount((count.children + obj.value).toString());
-                                onSetTravelersCount((count.adults + obj.value).toString());
+                                setAdultsCount(obj.value);
+                                onSetAdultsCount(obj.value);
+                                onSetTravelersCount((form.passengers_count.adults + obj.value).toString());
                             }}
                         />
                         <FormPlusMinus
@@ -84,11 +80,11 @@ const FiltersModal = (props) => {
                             name="children"
                             max={9}
                             min={1}
-                            initialValue={count.children}
+                            initialValue={form.passengers_count?.children  || 0}
                             onChange={(obj) => {
-                                setCount({...count,  children: obj.value });
-                                onSetCount((count.adults + obj.value).toString());
-                                onSetTravelersCount((count.adults + obj.value).toString());
+                                setChildrenCount(obj.value);
+                                onSetChildrenCount(obj.value)
+                                onSetTravelersCount((form.passengers_count.adults + obj.value).toString());
                             }}
                         />
                     </div>
@@ -121,7 +117,7 @@ const FiltersModal = (props) => {
                 e.preventDefault();
                 updateDriversList();
             }}>
-            SHOW RESULTS
+            Show Results
             </Link>
         </Modal>
     )
