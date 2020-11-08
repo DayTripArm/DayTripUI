@@ -113,7 +113,7 @@ const SearchDriver = () => {
                             <h4 className='mb-5 weight-300' dangerouslySetInnerHTML={{__html: description}}></h4>
                         </div>
                         {openModal && (
-                            <ModalAside title='Hit the Road' onClose={() => setOpenModal(false)} className="htr_slider">
+                            <ModalAside title='Hit the Road' onClose={() => setOpenModal(false)} containerClass="htr_modal" className="htr_slider">
                                 <h4 className='text__blue'>{!_.isEmpty(htrTips) && htrTips.title}</h4>
 
                                 {
