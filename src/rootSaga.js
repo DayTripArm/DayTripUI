@@ -180,8 +180,8 @@ function* heroesRequest(action) {
 
 function* tripsRequest(action) {
     try {
-        const {body} = action;
-        const {is_top_choice=false, offset,limit} = body;
+        const {body={}} = action;
+        const {is_top_choice=false, offset=0,limit=12} = body;
         const {response, error} = yield call(Api.getTrips, localStorage.id || 0, is_top_choice,  Number(offset),Number(limit));
 
         if (response) {
