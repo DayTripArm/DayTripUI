@@ -21,9 +21,10 @@ const Drivers = ({ history }) => {
     const container2 = useRef();
     //const container3 = useRef();  //for review popup
     const container4 = useRef();
-    const day = history.location.state?.date || moment().format('YYYY-MM-DD');
-    const travelers_count = history.location.state?.travelers || 0;
-    const passengers_count = history.location.state?.passengers_count || {adults: 1, children: 0};
+    const filters = JSON.parse(localStorage.getItem('sfd_filters')) || history.location.state
+    const day = filters?.date || moment().format('YYYY-MM-DD');
+    const travelers_count = filters?.travelers || 0;
+    const passengers_count = filters?.passengers_count || {adults: 1, children: 0};
     const trip_id = history.location.state?.trip_id || null;
 
     useEffect(() => {
@@ -51,7 +52,7 @@ const Drivers = ({ history }) => {
     const [filtersPopup, openFiltersPopup] = useState(false);
     const [openCount, setOpenCount] = useState(false);
     const [isPricePopupOpened, setPricePopupOpened] = useState(false);
-    const [form, setForm] = useState({date: day, travelers: travelers_count, passengers_count: passengers_count,  price_range: null});
+    const [form, setForm] = useState({date: day, travelers: travelers_count, passengers_count: passengers_count,  price_range: filters?.price_range|| null});
 
     useOutsideClick(container1, () => setOpenCalendar(false));
     useOutsideClick(container2, () => setOpenCount(false));
@@ -66,6 +67,15 @@ const Drivers = ({ history }) => {
         } else {
             showSingleFilter(true);
         }
+    }
+    function keepFiltersState(){
+        localStorage.setItem('sfd_filters', JSON.stringify({
+            date: form.date,
+            reviews: '',
+            passengers_count: form.passengers_count,
+            travelers: form.travelers_count,
+            price_range: form.price_range
+        }));
     }
     const displayPrice = (() => {
         let price_text = "Prices";
@@ -92,6 +102,7 @@ const Drivers = ({ history }) => {
             price_range: form.price_range
         };
         updateDriversList(body);
+        keepFiltersState();
     });
 
     const onSetCount = ((total_passangers) => {
@@ -104,7 +115,8 @@ const Drivers = ({ history }) => {
             travelers: total_passangers,
             price_range: form.price_range
         };
-        updateDriversList(body)
+        updateDriversList(body);
+        //keepFiltersState();
     });
 
     const onSetPrice = ((price_range) => {
@@ -113,7 +125,8 @@ const Drivers = ({ history }) => {
             travelers: form.passengers_count.adults + form.passengers_count.children,
             price_range: price_range || [10, 1100]
         };
-        updateDriversList(body)
+        updateDriversList(body);
+        keepFiltersState();
     });
 
     const updateDriversList = ((body) => {
@@ -196,8 +209,15 @@ const Drivers = ({ history }) => {
                                                             min={2}
                                                             initialValue={form.passengers_count.adults}
                                                             onChange={(obj) => {
-                                                                setForm({...form, passengers_count: {adults: obj.value, children: form.children}});
+                                                                setForm({...form, passengers_count: {adults: obj.value, children: form.passengers_count.children}});
                                                                 onSetCount(form.passengers_count.children + obj.value);
+                                                                localStorage.setItem('sfd_filters', JSON.stringify({
+                                                                    date: form.date,
+                                                                    reviews: '',
+                                                                    passengers_count: {adults: obj.value, children: form.passengers_count.children},
+                                                                    travelers: form.passengers_count.children + obj.value,
+                                                                    price_range: form.price_range
+                                                                }));
                                                             }}
                                                         />
                                                         <FormPlusMinus
@@ -207,8 +227,15 @@ const Drivers = ({ history }) => {
                                                             min={0}
                                                             initialValue={form.passengers_count.children}
                                                             onChange={(obj) => {
-                                                                setForm({...form, passengers_count: {adults: form.adults, children: obj.value}});
+                                                                setForm({...form, passengers_count: {adults: form.passengers_count.adults, children: obj.value}});
                                                                 onSetCount(form.passengers_count.adults + obj.value);
+                                                                localStorage.setItem('sfd_filters', JSON.stringify({
+                                                                    date: form.date,
+                                                                    reviews: '',
+                                                                    passengers_count: {adults: form.passengers_count.adults, children: obj.value},
+                                                                    travelers: form.passengers_count.adults + obj.value,
+                                                                    price_range: form.price_range
+                                                                }));
                                                             }}
                                                         />
                                                     </div>
