@@ -78,6 +78,13 @@ const SearchPanel = ({trip_detail}) => {
             const invalidFields = validateForm();
             if (_.isEmpty(invalidFields)) {
                 try {
+                    localStorage.setItem('sfd_filters', JSON.stringify({
+                        date: form.date,
+                        reviews: '',
+                        travelers: form.travelers,
+                        passengers_count: count,
+                        price_range: [10, 1000],
+                    }));
                     history.push({
                         pathname: '/drivers',
                         state: {

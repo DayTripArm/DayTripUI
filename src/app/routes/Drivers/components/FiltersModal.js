@@ -15,7 +15,7 @@ const FiltersModal = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const {trip_id, prices_list, filters, onSetCalendarDate, onSetTravelersCount,onSetAdultsCount, onSetChildrenCount, onSetPriceRange, onCloseShowPopup} = props
-    const [form, setForm] = useState(filters);
+    const [form, setForm] = useState(JSON.parse(localStorage.getItem('sfd_filters')) || filters);
     const onDaySelect = ((day) => {
         setForm({...form, date: moment(day).format('YYYY-MM-DD')});
     })
@@ -31,7 +31,7 @@ const FiltersModal = (props) => {
     const onSetPrice = ((price_range) => {
         setForm({
             ...form,
-            price_range: form.price_range || [10, 1100]
+            price_range: price_range || [10, 1100]
         });
     });
 
@@ -43,6 +43,14 @@ const FiltersModal = (props) => {
             trip_id: trip_id,
             offset: 0,
             limit: 5
+        }));
+        console.log(form)
+        localStorage.setItem('sfd_filters', JSON.stringify({
+            date: form.date,
+            reviews: '',
+            travelers: form.travelers,
+            passengers_count: form.passengers_count,
+            price_range: form.price_range
         }));
         onCloseShowPopup();
     });
