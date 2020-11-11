@@ -69,7 +69,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
         const trip_img = trip_details.images ? trip_details.images[0].url : trip_details.image.url;
         const trip_img_src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + trip_img : trip_img;
 
-        if (localStorage.id) {
+        if (localStorage.id || learn_more) {
             history.push({
                 pathname: learn_more ? '/individuals/driver' : '/checkout/review',
                 state: {
