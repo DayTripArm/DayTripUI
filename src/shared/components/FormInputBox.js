@@ -51,7 +51,8 @@ const FormInputBox = (props) => {
 
     const [field, setField] = useState({
         name: name,
-        value: value
+        value: value,
+        initialValue: value
     });
 
     const [location, setLocation] = useState(name === "location" && value && value.length ? {label: value.split("-")[0].trim()} : undefined);
@@ -197,7 +198,15 @@ const FormInputBox = (props) => {
         <li className='border__bottom border__default pt-3 pb-4'>
             <div className='d-flex align-items-center justify-content-between mb-2'>
                 {box_label}
-                <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? "Edit" : "Cancel"}</button>
+                <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => {
+                    setEdit(!edit);
+                    if (!edit) {
+                        setField({
+                            ...field,
+                            value: field.initialValue
+                        });
+                    }
+                }}>{!edit ? "Edit" : "Cancel"}</button>
             </div>
             {
                 edit ?
@@ -208,6 +217,7 @@ const FormInputBox = (props) => {
                                 <Input
                                     type='text'
                                     onChange={(e) => setField({
+                                        initialValue: field.initialValue,
                                         name,
                                         value: e.target.value
                                     })}
@@ -223,6 +233,7 @@ const FormInputBox = (props) => {
                                     name={name}
                                     placeholder={placeholder}
                                     onChange={e => setField({
+                                        initialValue: field.initialValue,
                                         name: name,
                                         value: e.value
                                     })}
@@ -284,7 +295,16 @@ const FormInputBox = (props) => {
                     <p className='text__grey-dark mb-0'>{_.isEmpty(value) ? empty_message : value}</p>
             }
         </li>
-        { openInfoModal && <InfoModal title="Profile Changes" onProceed={() => setProceed(true)} onClose={() => setOpenInfoModal(false)} /> }
+        { openInfoModal && <InfoModal title="Profile Changes" onProceed={() => setProceed(true)} onClose={() => {
+            setOpenInfoModal(false);
+            setEdit(false);
+            if (type === "select") { // set initial value after click cancel button in pop up
+                setField({
+                    ...field,
+                    value: field.initialValue
+                });
+            }
+        }} /> }
     </>
     );
 };
