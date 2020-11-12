@@ -301,7 +301,7 @@ function* updateDriverInfosRequest(action) {
     const {body} = action;
     const formData = new FormData();
 
-    const photos_key = ['car_photos', 'license_photos', 'reg_card_photos'];
+    const photos_key = ['car_photos', 'license_photos', 'reg_card_photos', 'gov_photos'];
 
     photos_key.map(key => {
         _.each(_.pick(body, key), (photos, name) => {

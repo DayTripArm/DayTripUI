@@ -11,7 +11,7 @@ const CarView = () => {
     const {driver_details={}, preregistered_info={}} = driverData;
 
     const {car_details={}} = driver_details;
-    const {car_photos=[], reg_card_photos=[], license_photos=[], car_info={}} = car_details;
+    const {car_photos=[], reg_card_photos=[], license_photos=[], car_info={}, gov_photos=[]} = car_details;
 
     const {
         car_type,
@@ -121,6 +121,14 @@ const CarView = () => {
                     label="Technical ID"
                     options={reg_card_photos}
                     empty_message={reg_card_photos.length > 0 ? "Provided" : "Not Specified"}
+                />
+
+                <FormCarInputBoxPicture
+                    type="photos"
+                    name="gov_photos"
+                    label="Government ID"
+                    options={gov_photos}
+                    empty_message={gov_photos.length > 0 ? "Provided" : "Not Specified"}
                 />
 
             </ul>
