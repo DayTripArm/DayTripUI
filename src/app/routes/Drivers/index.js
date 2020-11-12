@@ -225,7 +225,7 @@ const Drivers = ({ history }) => {
                                                             label="Children"
                                                             name="children"
                                                             max={9}
-                                                            min={0}
+                                                            min={1}
                                                             initialValue={form.passengers_count.children}
                                                             onChange={(obj) => {
                                                                 const adults = form.passengers_count.adults;
