@@ -178,6 +178,17 @@ const Calendar = () => {
 
     };
 
+    const daySize = window.matchMedia("(max-width: 350px)")
+        .matches ? 33 :  window.matchMedia("(max-width: 400px)")
+        .matches ? 38 :  window.matchMedia("(max-width: 500px)")
+        .matches ? 48 :  window.matchMedia("(max-width: 720px)")
+        .matches ? 70 :  window.matchMedia("(max-width: 768px)")
+        .matches ? 90 :  window.matchMedia("(max-width: 1030px)")
+        .matches ? 45 : window.matchMedia("(max-width: 1279px)")
+        .matches ? 65 : window.matchMedia("(max-width: 1559px)")
+        .matches ? 60 : 66;
+    const numberOfMonths = window.matchMedia("(max-width: 768px)").matches ? 1 : 2;
+
     return (
         <>
             <div className='calendar-page container'>
@@ -190,12 +201,13 @@ const Calendar = () => {
                         </button>
                     </div>
 
-                    <Mobile>
+                    {/*<Mobile>*/}
                         <DayPickerSingleDateController
                             {...props}
+                            verticalHeight={370}
                             noBorder={true}
-                            daySize={68}
-                            numberOfMonths = {1}
+                            daySize={daySize}
+                            numberOfMonths = {numberOfMonths}
                             onDateChange={onDateChange}
                             onFocusChange={onFocusChange}
                             focused={focused}
@@ -204,21 +216,9 @@ const Calendar = () => {
                             isDayHighlighted={isDayHighlighted}
                             date={date}
                         />
-                    </Mobile>
-                    <Default>
-                        <DayPickerSingleDateController
-                            {...props}
-                            noBorder={true}
-                            daySize={68}
-                            onDateChange={onDateChange}
-                            onFocusChange={onFocusChange}
-                            focused={focused}
-                            renderDayContents={renderDayContents}
-                            isOutsideRange={date => isOutsideRange(date)}
-                            isDayHighlighted={isDayHighlighted}
-                            date={date}
-                        />
-                    </Default>
+
+                    {/*</Mobile>*/}
+
 
                     <h2 className='text__blue mb-0 mt-6 mb-5 mt-md-9 mb-md-9 mt-xl-11 mt-xxl-13'>Overview</h2>
                     <div className='tabs mb-6'>
