@@ -22,6 +22,13 @@ const SearchForDriverModal = (props) => {
     const searchDriver = () => {
         try {
             onCloseShowPopup();
+            localStorage.setItem('sfd_filters', JSON.stringify({
+                date: form.date,
+                reviews: {"wonderfull": false, "excelent": false, "good": false},
+                travelers: form.travelers,
+                passengers_count: count,
+                price_range: [10, 1000],
+            }));
             history.push({
                 pathname: '/drivers',
                 state: {
@@ -35,18 +42,18 @@ const SearchForDriverModal = (props) => {
         }
     };
     return (
-        <Modal size='md' title="Search For Drivers" onClose={() => onCloseShowPopup()}>
+        <Modal size='md' containerClass="sfd_modal" title="Search For Drivers" onClose={() => onCloseShowPopup()}>
             <div className='py-4 px-0 px-md-8 sfd_popup_form'>
                   <div className="sfd-items-aligned">
                     <div className="d-flex align-items-center justify-content-between mb-5">
-                        <h4 className="mb-0 text__grey-dark">Date</h4>
+                        <h4 className="mb-0 text__grey-dark">Add Date</h4>
                     </div>
-                    <DatePicker daySize={50} date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
+                    <DatePicker daySize={15} date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
                   </div>
                   <div className="sfd-items-aligned">
                     <hr className="border__top border__default my-4"></hr>
                     <div className="d-flex align-items-center justify-content-between mb-5">
-                        <h4 className="mb-0 text__grey-dark">Travelers</h4>
+                        <h4 className="mb-0 text__grey-dark">Add Travelers</h4>
                     </div>
                     <div className="trvlr_count_container">
                         <FormPlusMinus
@@ -79,13 +86,13 @@ const SearchForDriverModal = (props) => {
                         />
                     </div>
                  </div>
-                 <Link to='/drivers' className='btn btn-primary text-uppercase btn-xs-block btn-sfd' onClick={(e) => {
-                    e.preventDefault();
-                    searchDriver();
-                }}>
-                Search For Drivers
-                </Link>
             </div>
+            <Link to='/drivers' className='btn btn-primary text-uppercase btn-xs-block btn-sfd' onClick={(e) => {
+                e.preventDefault();
+                searchDriver();
+            }}>
+            Search For Drivers
+            </Link>
         </Modal>
     )
 };

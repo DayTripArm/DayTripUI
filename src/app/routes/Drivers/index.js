@@ -24,7 +24,7 @@ const Drivers = ({ history }) => {
 
     const filters = JSON.parse(localStorage.getItem('sfd_filters')) || history.location.state;;
     if (filters){
-        const filters = history.location.state? history.location.state : { date: moment().format('YYYY-MM-DD'), travelers: 1, passengers_count: {adults: 1, children: 0},  price_range: null}
+        const filters = history.location.state? history.location.state : { date: moment().format('YYYY-MM-DD'), travelers: 1, passengers_count: {adults: 1, children: 0}, reviews: {"wonderfull": false, "excelent": false, "good": false},  price_range: null}
     }
     const trip_id = history.location.state?.trip_id || null;
 
@@ -172,6 +172,7 @@ const Drivers = ({ history }) => {
                                             onSetTravelersCount={(trvl_count) => setForm({...form, travelers: trvl_count})}
                                             onSetAdultsCount={(adults) => setForm({...form, passengers_count: {adults: adults, children: form.passengers_count.children}})}
                                             onSetChildrenCount={(children) => setForm({...form, passengers_count: {adults: form.passengers_count.adults, children: children}})}
+                                            onSetReviewScore={(reviews) => setForm({...form, reviews: reviews})}
                                             onSetPriceRange={(price_range) => setForm({...form, price_range: price_range})}
                                             onCloseShowPopup={() => openFiltersPopup(false)}
                                             />}
@@ -264,7 +265,7 @@ const Drivers = ({ history }) => {
                                                         <Grid container justify="center">
                                                           <Grid item xs={12} style={{ textAlign: "center" }}>
                                                           </Grid>
-                                                          <Grid item xs={12} lg={8}>
+                                                          <Grid item xs={12} lg={12}>
                                                             <RangeSlider prices_list={prices_list}
                                                                 range={form.price_range || [10, 1100]}
                                                                 onChange={(price_range) => {

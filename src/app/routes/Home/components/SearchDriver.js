@@ -83,7 +83,7 @@ const SearchDriver = () => {
             try {
                 localStorage.setItem('sfd_filters', JSON.stringify({
                     date: form.date,
-                    reviews: '',
+                    reviews: {"wonderfull": false, "excelent": false, "good": false},
                     travelers: form.travelers,
                     passengers_count: count,
                     price_range: [10,1000],
