@@ -58,16 +58,22 @@
     }
 
     .DayPickerNavigation_button__default {
-        border: 2px solid #FE4C30;
+        border: white;
         background-color: #fff;
-        color: #FE4C30;
-        border-radius: 50px;
+        color: #fff;
+    }
+
+    .DayPickerNavigation_button__horizontalDefault {
+        position: absolute;
+        top: 18px;
+        line-height: .78;
+        border-radius: 0px;
+        padding: 0px;
     }
 
     .DayPickerNavigation_svg__horizontal {
-        height: 19px;
-        width: 19px;
-        fill: #FE4C30;
+        height: 36px;
+        width: 36px;
         display: block;
     }
 

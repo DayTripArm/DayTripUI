@@ -6,6 +6,8 @@ import { IconSetting } from 'shared/components/Icons';
 import TripDetailsModal from '../Messaging/components/TripDetailsModal';
 import SettingsModal from './components/SettingsModal';
 import BookedTripItem from './components/BookedTripItem';
+import NavNext from './components/NavNext';
+import NavPrev from './components/NavPrev';
 import { DayPickerSingleDateController } from 'react-dates';
 //import './react-date-custom-style';
 
@@ -211,6 +213,8 @@ const Calendar = () => {
                             onDateChange={onDateChange}
                             onFocusChange={onFocusChange}
                             focused={focused}
+                            navNext={<NavNext/>}
+                            navPrev={<NavPrev/>}
                             renderDayContents={renderDayContents}
                             isOutsideRange={date => isOutsideRange(date)}
                             isDayHighlighted={isDayHighlighted}
