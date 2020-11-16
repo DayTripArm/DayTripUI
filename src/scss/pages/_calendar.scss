@@ -57,6 +57,10 @@
         text-decoration-color: black;
     }
 
+    .DayPicker__horizontal {
+        background: #fff;
+        z-index: 0;
+    }
     .DayPickerNavigation_button__default {
         border: white;
         background-color: #fff;
