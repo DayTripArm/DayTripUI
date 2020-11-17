@@ -33,8 +33,8 @@ const ProfileData = (props) => {
         if (name === "languages") {
             let langString = "";
 
-            value && value.map(item => langString += item.value + ",");
-            value = langString.slice(0, -1);
+            value && value.map(item => langString += item.value + ", ");
+            value = langString.slice(0, -2);
         }
 
         dispatch(actions.setPreregisteredDriverProperty(name, value));
@@ -47,7 +47,7 @@ const ProfileData = (props) => {
     const yearList     = GET_DATE_YEARS().map(i => {return {label: i, value: i}});
 
     let languageValue = [];
-    languages.split(",").map(i => languageValue.push(_.find(languageList, lang => lang.value === i)));
+    languages.split(", ").map(i => languageValue.push(_.find(languageList, lang => lang.value === i)));
 
   return (
       <>

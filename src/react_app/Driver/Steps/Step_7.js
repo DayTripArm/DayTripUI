@@ -61,8 +61,8 @@ function Step_7(props) {
         if (name === "languages") {
             let langString = "";
 
-            event && event.map(item => langString += item.value + ",");
-            value = langString.slice(0, -1);
+            event && event.map(item => langString += item.value + ", ");
+            value = langString.slice(0, -2);
         }
 
 
@@ -76,7 +76,7 @@ function Step_7(props) {
     const yearList     = GET_DATE_YEARS().map(i => {return {label: i, value: i}});
 
     let languageValue = [];
-    languages.split(",").map(i => languageValue.push(_.find(languageList, lang => lang.value === i)));
+    languages.split(", ").map(i => languageValue.push(_.find(languageList, lang => lang.value === i)));
 
     return (
         <div className="driver-preregistration">
