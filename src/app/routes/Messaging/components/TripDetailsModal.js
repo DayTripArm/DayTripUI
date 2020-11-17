@@ -57,8 +57,8 @@ const TripDetailsModal = ({ onClose}) => {
         <ModalAside title={moment(trip_info.trip_day).format("MMMM D")} onClose={onClose} id="booked_trip_modal">
             {!_.isEmpty(trip_tour) &&
             <>
-                <div className='d-flex align-items-center justify-content-between mb-5'>
-                    <h4 className='mb-0 text__grey-dark'>Trip</h4>
+                <div className='mb-0 d-flex justify-content-between mb-5'>
+                    <h4 className='text__grey-dark'>Trip</h4>
                     <button className='btn btn-secondary btn-sm' onClick={() => moreAbout()}>More About</button>
                 </div>
                 <div className='d-flex'>
@@ -119,7 +119,7 @@ const TripDetailsModal = ({ onClose}) => {
                 </div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
                     <span className='text__grey-dark'>Address</span>
-                    <div className='mxw-60pc d-flex align-items-center weight-700'>
+                    <div className='mxw-60pc weight-700'>
                         <IconDestination fill='#757575' className='mr-1'/>
                         {pickup_info.pickup_location}
                     </div>
@@ -130,8 +130,8 @@ const TripDetailsModal = ({ onClose}) => {
                 </div>
             </div>
             <hr className='border__top border__default my-4'/>
-            <div className='d-flex align-items-center justify-content-between mb-5'>
-                <h4 className='mb-0 text__grey-dark'>{profile && profile.user_type === 2 ? 'Traveler' : 'Driver'}</h4>
+            <div className='mb-0 d-flex justify-content-between mb-5'>
+                <h4 className='text__grey-dark'>{profile && profile.user_type === 2 ? 'Traveler' : 'Driver'}</h4>
                 <button className='btn btn-secondary btn-sm' onClick={() => viewProfile()}>View Profile</button>
             </div>
             <div className='d-flex'>
