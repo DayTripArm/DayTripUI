@@ -109,7 +109,7 @@ const SearchPanel = ({trip_detail}) => {
           <div className='d-flex align-items-center justify-content-between py-4'>
             <div className='d-none d-lg-block'>
               <div className='d-flex align-items-center'>
-                <h4 className='mb-1 text__blue mr-2'>{trip_detail.title && trip_detail.title.length >= 40 ? trip_detail.title.slice(0,40) + "..." : trip_detail.title}</h4>
+                <h4 className='mb-1 text__blue mr-2'>{trip_detail.title && trip_detail.title.length >= 38 ? trip_detail.title.slice(0,38) + "..." : trip_detail.title}</h4>
                 <p className='mb-0 d-none d-xl-block'>
                   <span className='weight-700'>5.0</span>
                   <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />

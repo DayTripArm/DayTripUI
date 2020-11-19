@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import createSagaMiddleware from 'redux-saga';
@@ -16,13 +16,11 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <Provider store={store}>
-      <Suspense fallback={<div>Loading</div>}>
         <Router>
           <Switch>
             <Route path='/' component={() => <App />} />
           </Switch>
         </Router>
-      </Suspense>
     </Provider>,
     document.getElementById('root')
 );
