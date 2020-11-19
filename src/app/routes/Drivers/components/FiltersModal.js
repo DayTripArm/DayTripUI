@@ -165,12 +165,14 @@ const FiltersModal = (props) => {
                     </div>
                  </div>
             </div>
-            <Link to='/drivers' className='btn btn-primary text-uppercase btn-xs-block btn-sfd' onClick={(e) => {
-                e.preventDefault();
-                updateDriversList();
-            }}>
-            Show Results
-            </Link>
+            <div className="pinned_btn">
+                <Link to='/drivers' className='btn btn-primary text-uppercase btn-xs-block btn-sfd' onClick={(e) => {
+                    e.preventDefault();
+                    updateDriversList();
+                }}>
+                Show Results
+                </Link>
+            </div>
         </Modal>
     )
 };
