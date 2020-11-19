@@ -162,9 +162,9 @@ const Calendar = () => {
 
             return (
                 <div className={moment(day).isSameOrAfter(moment(), 'day')? 'CalendarProfileActive' : 'CalendarProfileInactive'} >
-                    <div style={{position:'absolute', padding:'5px'}}>
+                    <div style={{position:'absolute', padding: window.matchMedia("(max-width: 400px)").matches ? '0px': window.matchMedia("(max-width: 500px)").matches ? '2px': '5px'}}>
                         <img
-                            className={moment(day).isSameOrAfter(moment(), 'day') ? 'CalendarProfileImgActive' : 'CalendarProfileImgInactive'}
+                            className="CalendarProfileImg"
                             alt=""
                             src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + info.traveler_photo : info.traveler_photo}
                         /></div>
@@ -181,15 +181,26 @@ const Calendar = () => {
     };
 
     const daySize = window.matchMedia("(max-width: 350px)")
-        .matches ? 33 :  window.matchMedia("(max-width: 400px)")
+        .matches ? 35 :  window.matchMedia("(max-width: 400px)")
         .matches ? 38 :  window.matchMedia("(max-width: 500px)")
         .matches ? 48 :  window.matchMedia("(max-width: 720px)")
         .matches ? 70 :  window.matchMedia("(max-width: 768px)")
-        .matches ? 90 :  window.matchMedia("(max-width: 1030px)")
-        .matches ? 45 : window.matchMedia("(max-width: 1279px)")
+        .matches ? 90 :  window.matchMedia("(max-width: 950px)")
+        .matches ? 45 : window.matchMedia("(max-width: 1030px)")
+        .matches ? 60 : window.matchMedia("(max-width: 1279px)")
         .matches ? 65 : window.matchMedia("(max-width: 1559px)")
         .matches ? 60 : 66;
     const numberOfMonths = window.matchMedia("(max-width: 768px)").matches ? 1 : 2;
+
+
+    const nextMonthClick=(d)=>{
+        const allowedRange = moment().add(3, 'months');
+        let a = d.isSameOrAfter(allowedRange);
+        const prevBtn = document.getElementsByClassName('DayPickerNavigation_leftButton__horizontalDefault')[0];
+        const nextBtn = document.getElementsByClassName('DayPickerNavigation_rightButton__horizontalDefault')[0];
+        // nextBtn.style.display = 'none';
+        // Use the prevBtn.style.display = 'none' or 'block' to controll the navBtn
+    }
 
     return (
         <>
@@ -212,6 +223,7 @@ const Calendar = () => {
                             numberOfMonths = {numberOfMonths}
                             onDateChange={onDateChange}
                             onFocusChange={onFocusChange}
+                            onNextMonthClick={d => nextMonthClick(d)}
                             focused={focused}
                             navNext={<NavNext/>}
                             navPrev={<NavPrev/>}
