@@ -89,3 +89,8 @@ p {
   text-overflow: clip;
   overflow: hidden;
 }
+/* Set min width and height on svg icon to avoid resizing in case of multi lines. */
+.fixed-svg {
+    min-width: 24px;
+    min-height: 24px;
+}
