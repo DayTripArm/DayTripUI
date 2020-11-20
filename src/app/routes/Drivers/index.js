@@ -22,9 +22,9 @@ const Drivers = ({ history }) => {
     //const container3 = useRef();  //for review popup
     const container4 = useRef();
 
-    const filters = JSON.parse(localStorage.getItem('sfd_filters')) || history.location.state;;
-    if (filters){
-        const filters = history.location.state? history.location.state : { date: moment().format('YYYY-MM-DD'), travelers: 1, passengers_count: {adults: 1, children: 0}, reviews: {"wonderfull": false, "excelent": false, "good": false},  price_range: null}
+    let filters = JSON.parse(localStorage.getItem('sfd_filters')) || history.location.state;;
+    if (_.isEmpty(filters)){
+        filters = history.location.state? history.location.state : { date: moment().format('YYYY-MM-DD'), travelers: 1, passengers_count: {adults: 1, children: 0}, reviews: {"wonderfull": false, "excelent": false, "good": false},  price_range: null}
     }
     const trip_id = history.location.state?.trip_id || null;
 
@@ -242,7 +242,7 @@ const Drivers = ({ history }) => {
                                                                     travelers: adults + obj.value,
                                                                     price_range: form.price_range
                                                                 }));
-                                                            }}in
+                                                            }}
                                                         />
                                                     </div>
                                                 </div>

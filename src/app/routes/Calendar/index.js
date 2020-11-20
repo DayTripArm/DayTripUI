@@ -194,10 +194,10 @@ const Calendar = () => {
 
 
     const nextMonthClick=(d)=>{
-        const allowedRange = moment().add(3, 'months');
-        let a = d.isSameOrAfter(allowedRange);
+        //const allowedRange = moment().add(3, 'months');
+        /*let a = d.isSameOrAfter(allowedRange);
         const prevBtn = document.getElementsByClassName('DayPickerNavigation_leftButton__horizontalDefault')[0];
-        const nextBtn = document.getElementsByClassName('DayPickerNavigation_rightButton__horizontalDefault')[0];
+        const nextBtn = document.getElementsByClassName('DayPickerNavigation_rightButton__horizontalDefault')[0];*/
         // nextBtn.style.display = 'none';
         // Use the prevBtn.style.display = 'none' or 'block' to controll the navBtn
     }

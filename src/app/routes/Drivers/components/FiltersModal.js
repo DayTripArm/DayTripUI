@@ -7,13 +7,11 @@ import { Grid } from "@material-ui/core";
 import RangeSlider from "./RangeSlider";
 import {useDispatch} from "react-redux";
 import { Link } from 'react-router-dom';
-import { useHistory } from "react-router";
 import _ from "lodash";
 import actions from "../../../../actions";
 import moment from "moment";
 
 const FiltersModal = (props) => {
-    const history = useHistory();
     const dispatch = useDispatch();
     const {trip_id, prices_list, filters, reviews, onSetCalendarDate, onSetTravelersCount,onSetAdultsCount, onSetChildrenCount, onSetReviewScore, onSetPriceRange, onCloseShowPopup} = props
     const [form, setForm] = useState(JSON.parse(localStorage.getItem('sfd_filters')) || filters);

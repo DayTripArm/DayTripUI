@@ -9,7 +9,7 @@ class RangeSlider extends React.Component {
     super(props);
 
       this.price_range = [];
-      for (let i = 10; i <= 1000; i++) {
+      for (let i = 10; i <= 1000; i=i+10) {
           this.price_range.push(Math.floor(Math.random() * 1100) + 10);
       }
       const sortedData = this.price_range.slice().sort((a, b) => a - b);
@@ -34,7 +34,7 @@ class RangeSlider extends React.Component {
     return (
       <Grid container>
         <Grid item xs={12}>
-          <div style={{ margin: "4%", height: 120, width: "90%" }}>
+          <div style={{ margin: "4%", height: 100, width: "90%" }}>
             <BarChart
               data={this.price_range}
               prices_list={this.props.prices_list}
@@ -107,6 +107,7 @@ class RangeSlider extends React.Component {
                 <TextField
                   variant="outlined"
                   label="min price"
+                    type="number"
                   value={inputValues[0]}
                   onChange={(evt) => {
                     const value = evt.target.value;
@@ -131,6 +132,7 @@ class RangeSlider extends React.Component {
                 <TextField
                   variant="outlined"
                   label="max price"
+                    type="number"
                   value={inputValues[1]}
                   onChange={(evt) => {
                     const value = evt.target.value;

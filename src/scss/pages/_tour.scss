@@ -164,6 +164,11 @@
         box-shadow: 0px -1px 4px rgba(5, 4, 62, 0.23);
     }
 }
+.price_slider{
+    .MuiOutlinedInput-input {
+        padding: 13px 13px 13px 0!important;
+    }
+}
 .trip_sfd_panel{
     z-index: 2;
     modal{
