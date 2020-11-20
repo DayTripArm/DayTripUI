@@ -161,7 +161,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                                 </div>
 
                                                 <div className='col-md-8 px-0 d-flex mb-4'>
-                                                    <IconGlobe className='mr-2' />
+                                                    <IconGlobe className='mr-2 fixed-svg' />
                                                     <p className='mb-0'>
                                                         Speaks:{' '}
                                                         <span className='weight-500 text__grey-dark'>{driver.languages}</span>

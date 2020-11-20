@@ -96,7 +96,7 @@ const User = ({history={}}) => {
                                 </p>
                             </div>
                             <div className='col-md-6 d-flex mb-4'>
-                                <IconGlobe className='mr-2' />
+                                <IconGlobe className='mr-2 fixed-svg' />
                                 <p className='mb-0'>
                                     Speaks: <span className='weight-500 text__grey-dark'>{languages}</span>
                                 </p>

@@ -235,7 +235,7 @@ const Review = (props) => {
             </div>
             <hr className='border__top border__default my-4' />
             <div className='d-flex mb-4'>
-              <IconGlobe className='mr-2' />
+              <IconGlobe className='mr-2 fixed-svg' />
               <p className='mb-0'>
                 Speaks:{' '}
                 <span className='weight-500 text__grey-dark'>{checkout_info.languages}</span>
