@@ -49,10 +49,10 @@
 }
 
 .sfd_popup_form{
-    width: 310px;
     margin: 0 auto;
     position: relative;
     min-height: calc(100vh - 145px);
+    padding: 16px !important;
     .tour_search_items{
         width: 325px;
         min-width: 325px;
@@ -84,7 +84,7 @@
     }
     .trvlr_count_container > .d-flex > span{
         display: inline-block;
-        width: 75%;
+        width: 85%;
     }
     .trvlr_count_container > .d-flex{
         margin-bottom: 15px !important;
@@ -148,10 +148,20 @@
     }
 }
 .sfd_modal{
-    .modal-body{ min-height: calc(100vh - 145px); }
+    .modal-body{ min-height: calc(100vh - 145px); padding: 0!important }
     .btn-sfd {
-        width: 310px;
         margin: 0 auto;
+        width: calc(100% - 32px);
+    }
+    .pinned_btn {
+        position: sticky;
+        background-color: #fff;
+        left: 0;
+        bottom: 0;
+        padding: 10px 0;
+        width: 100%;
+        z-index: 5;
+        box-shadow: 0px -1px 4px rgba(5, 4, 62, 0.23);
     }
 }
 .trip_sfd_panel{
