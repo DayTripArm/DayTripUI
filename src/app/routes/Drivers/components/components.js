@@ -79,7 +79,7 @@ function MuiHandleComponent({
       aria-valuemax={max}
       aria-valuenow={value}
       className={classes.root}
-      style={{ left: `${percent}%` }}
+      style={{ left: `${percent}%`, backgroundColor: `#FE4C30` }}
       {...getHandleProps(id)}
     />
   );
@@ -122,10 +122,11 @@ const muiTrackStyle = theme => ({
 function MuiTrackComponent({ classes, source, target, getTrackProps }) {
   const left = `${source.percent}%`;
   const width = `${target.percent - source.percent}%`;
+  const backgroundColor = `#FE4C30`;
 
   return (
     <Fragment>
-      <div className={classes.track} style={{ left, width }} />
+      <div className={classes.track} style={{ left, width, backgroundColor }} />
       <div
         className={classes.trackHotspot}
         style={{ left, width }}
