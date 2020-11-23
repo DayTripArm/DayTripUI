@@ -154,7 +154,7 @@ const ModalLogin = ({ onClose }) => {
                     </button>
                     <button className='btn btn-google btn-fixed text__grey-dark mb-5'>
                         <IconGoogle fill='#FFFFFF' className='mr-3'/>
-                        Login With Facebook
+                        Login With Google
                     </button>
                     <p className='pt-1 mb-0 weight-700 text-center'>
                         Don't have an account? <Link to='/register' onClick={(e) => {

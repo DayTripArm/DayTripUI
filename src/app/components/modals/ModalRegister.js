@@ -199,11 +199,11 @@ const ModalRegister =  ({ onClose }) => {
           </div>
           <button className='btn btn-facebook btn-fixed mb-3'>
             <IconFbClean fill='#FFFFFF' className='mr-3'/>
-            Login With Facebook
+            Sign Up With Facebook
           </button>
           <button className='btn btn-google btn-fixed text__grey-dark mb-5'>
             <IconGoogle fill='#FFFFFF' className='mr-3'/>
-            Login With Facebook
+            Sign Up With Google
           </button>
           <p className='pt-1 mb-0 weight-700 text-center'>
             Already have an account? <Link to='/login' onClick={(e) => {
