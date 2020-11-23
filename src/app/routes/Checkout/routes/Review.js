@@ -34,6 +34,7 @@ const Review = (props) => {
     const history = useHistory();
     const [invalidFields, setInvalidFields] = useState({});
     const [showTimePicker, setShowTimePicker] = useState(false);
+    const [showMoreDetails, setShowMoreDetails] = useState(false);
     const [form, setForm] = useState({pickup_time: "", pickup_location: "", notes: ""});
     const pickTime = !_.isEmpty(form.pickup_time) ? {hour: _.split(form.pickup_time,":")[0], minute: _.split(form.pickup_time,":")[1]} : {hour: "08", minute: "30"};
 
@@ -214,8 +215,10 @@ const Review = (props) => {
           <hr className='border__top border__default m-0' />
           <div className='pt-3 px-4 pb-4'>
             <p className='text-center'>
-              <button className='btn btn-secondary btn-sm'>Less Details</button>
+              <button className='btn btn-secondary btn-sm' onClick={() => setShowMoreDetails(!showMoreDetails)}>{showMoreDetails ? 'Less Details': 'More Details'}</button>
             </p>
+            {showMoreDetails &&
+            <>
             <div className='d-flex'>
               <img
                 width='56'
@@ -259,6 +262,7 @@ const Review = (props) => {
                      )
                 })
             }
+          </>}
           </div>
         </div>
       </div>
