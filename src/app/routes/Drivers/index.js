@@ -74,7 +74,7 @@ const Drivers = ({ history }) => {
             date: form.date,
             reviews: '',
             passengers_count: form.passengers_count,
-            travelers: form.travelers_count,
+            travelers: form.travelers,
             price_range: form.price_range
         }));
     }
