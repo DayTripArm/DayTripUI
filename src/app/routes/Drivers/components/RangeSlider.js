@@ -9,8 +9,8 @@ class RangeSlider extends React.Component {
     super(props);
 
       this.price_range = [];
-      for (let i = 10; i <= 1000; i=i+10) {
-          this.price_range.push(Math.floor(Math.random() * 1100) + 10);
+      for (let i = 0; i <= 1000; i = i + 10) {
+          this.price_range.push(i);
       }
       const sortedData = this.price_range.slice().sort((a, b) => a - b);
       const range = [sortedData[0], sortedData[sortedData.length - 1]];

@@ -25,7 +25,7 @@ export default {
     "getCalendarSettings": `${HOST}/calendar_settings/{0}`,
     "updateCalendarSettings": `${HOST}/calendar_settings/{0}`,
     "searchForDriver": `${HOST}/search_drivers?date={0}&travelers={1}&price_range={2}&trip_id={3}&offset={4}&limit={5}`,
-    "loadPricesList": `${HOST}/price_list?is_trip={1}`,
+    "loadPricesList": `${HOST}/price_list?is_trip={0}`,
     "confirmTripBookingCheckout": `${HOST}/booked_trips`,
     "getBookedTrips": `${HOST}/booked_trips?user_id={0}&utype={1}`,
     "getBookedTrip": `${HOST}/booked_trips/{0}?utype={1}`,

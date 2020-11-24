@@ -3,16 +3,16 @@ import { Bar } from "react-chartjs-2";
 
 class BarChart extends React.Component {
   render() {
-    const { prices_list, highlight, domain } = this.props;
-
+    const { data, prices_list, highlight, domain } = this.props;
     // calculate frequency of data
     var counts = {};
-    for (var i = 0; i < prices_list.length; i++)
-      if (prices_list[i].price) counts[prices_list[i].price] = prices_list[i].price_count || 0;
+    for (var i = 0; i < data.length; i++) {
+        counts[data[i]] = prices_list[data[i]] || 0.03;
+    }
 
     // generate data
     const barDataValues = [];
-    for (let i = 10; i < domain[1]; i++) {
+    for (let i = 0; i < domain[1]; i++) {
       barDataValues.push(counts[i] || 0);
     }
     const barData = {
@@ -21,11 +21,13 @@ class BarChart extends React.Component {
         {
           backgroundColor: barDataValues.map((val, i) =>
             i >= highlight[0] && i <= highlight[1]
-              ? "rgba(0, 0, 0, 1)"
-              : "rgba(75, 75, 75, 0.5)"
+              ? "#D7D8D8"
+              : "#EEEEEE"
           ),
-          hoverBackgroundColor: "rgba(75,75,75,0.6)",
-          data: barDataValues
+          data: barDataValues,
+          barPercentage: 1.5,
+          barThickness: 10,
+          minBarLength: 10
         }
       ]
     };
@@ -38,7 +40,8 @@ class BarChart extends React.Component {
       scales: {
         xAxes: [
           {
-            display: false
+            display: false,
+            barPercentage: 10
           }
         ],
         yAxes: [
