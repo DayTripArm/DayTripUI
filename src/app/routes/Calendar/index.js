@@ -193,13 +193,16 @@ const Calendar = () => {
     const numberOfMonths = window.matchMedia("(max-width: 768px)").matches ? 1 : 2;
 
 
-    const nextMonthClick=(d)=>{
-        //const allowedRange = moment().add(3, 'months');
-        /*let a = d.isSameOrAfter(allowedRange);
-        const prevBtn = document.getElementsByClassName('DayPickerNavigation_leftButton__horizontalDefault')[0];
-        const nextBtn = document.getElementsByClassName('DayPickerNavigation_rightButton__horizontalDefault')[0];*/
-        // nextBtn.style.display = 'none';
-        // Use the prevBtn.style.display = 'none' or 'block' to controll the navBtn
+    const onMonthClick=(d)=>{
+        const allowedRange = moment().add(12, 'months');
+        let b = d.diff(allowedRange, 'months', true);
+        const nextBtn = document.getElementsByClassName('DayPickerNavigation_rightButton__horizontalDefault')[0];
+        if(b > -1.5) {
+            nextBtn.style.display = 'none';
+        }else{
+            nextBtn.style.display = 'block';
+        }
+        // Use the nextBtn.style.display = 'none' or 'block' to controll the navBtn
     }
 
     return (
@@ -223,7 +226,8 @@ const Calendar = () => {
                             numberOfMonths = {numberOfMonths}
                             onDateChange={onDateChange}
                             onFocusChange={onFocusChange}
-                            onNextMonthClick={d => nextMonthClick(d)}
+                            onNextMonthClick={d => onMonthClick(d)}
+                            onPrevMonthClick={d => onMonthClick(d)}
                             focused={focused}
                             navNext={<NavNext/>}
                             navPrev={<NavPrev/>}
