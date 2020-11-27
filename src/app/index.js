@@ -88,7 +88,7 @@ const App = () => {
             }} />
             }
             <Header type={isAuthenticated ? 'authorized' : 'unauthorized'} navigationType={navigationType} />
-            <main role='main'>
+            <main role='main' className="mh-min-screen">
                 <Switch>
                     <Route path='/home' component={Home} />
                     <Route path='/help/:id' component={HelpView} />

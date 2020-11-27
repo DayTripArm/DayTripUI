@@ -13,11 +13,11 @@ import moment from "moment";
 
 const FiltersModal = (props) => {
     const dispatch = useDispatch();
-    const {trip_id, prices_list, filters, reviews, onSetCalendarDate, onSetTravelersCount,onSetAdultsCount, onSetChildrenCount, onSetReviewScore, onSetPriceRange, onCloseShowPopup} = props
+    const {trip_id, prices_list, filters, onSetCalendarDate, onSetTravelersCount,onSetAdultsCount, onSetChildrenCount, onSetReviewScore, onSetPriceRange, onCloseShowPopup} = props;
     const [form, setForm] = useState(JSON.parse(localStorage.getItem('sfd_filters')) || filters);
     const onDaySelect = ((day) => {
         setForm({...form, date: moment(day).format('YYYY-MM-DD')});
-    })
+    });
 
     const setAdultsCount = ((adult) => {
         setForm({...form, passengers_count: {adults: adult, children: form.passengers_count.children}});
