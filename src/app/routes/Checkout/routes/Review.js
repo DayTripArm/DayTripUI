@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import Input from 'shared/components/Input';
 import {
   IconDestination,
@@ -12,6 +12,7 @@ import {
   IconWater,
   IconAC
 } from 'shared/components/Icons';
+import useOutsideClick from 'shared/hooks/useOutsideClick';
 import {CAR_SPECS} from "../../../../constants";
 import Textarea from 'shared/components/Textarea';
 import Timepicker from "shared/components/Timepicker";
@@ -32,6 +33,7 @@ const validations = {
 const Review = (props) => {
     const locate = useLocation();
     const history = useHistory();
+    const container1 = useRef();
     const [invalidFields, setInvalidFields] = useState({});
     const [showTimePicker, setShowTimePicker] = useState(false);
     const [showMoreDetails, setShowMoreDetails] = useState(false);
@@ -97,7 +99,7 @@ const Review = (props) => {
       <div className='col-lg-5 col-xl-4 col-xxl-3 px-0 mb-10'>
         <h2 className='text__blue'>Review Your Trip</h2>
         <h4 className='text__grey-dark mb-4'>Pick Up Information</h4>
-        <div className="position-relative">
+        <div className="position-relative" >
             <Input
                 type='text'
                 name="pickup_time"
@@ -105,7 +107,7 @@ const Review = (props) => {
                 label='Pick Up Time'
                 placeholder='Select Time'
                 isError={getStatusMessage("pickup_time")  || false}
-                onClick={() => {
+                onMouseDown={() => {
                     if (showTimePicker){
                         document.body.style.overflowY = 'hidden';
                     } else {
@@ -113,9 +115,13 @@ const Review = (props) => {
                     }
                     setShowTimePicker(!showTimePicker);
                 }}
-                onFocus={() => {
+                onTouchEnd={() => {
+                    if (showTimePicker){
+                        document.body.style.overflowY = 'hidden';
+                    } else {
+                        document.body.style.overflowY = 'auto';
+                    }
                     setShowTimePicker(!showTimePicker);
-                    document.body.style.overflowY = 'hidden';
                 }}
             />
             { showTimePicker &&

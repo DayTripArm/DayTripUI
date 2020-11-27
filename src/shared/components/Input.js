@@ -22,6 +22,8 @@ const Input = ({
    hideApperance,
    onChange,
    onFocus,
+   onMouseDown,
+   onTouchEnd,
    onBlur,
    required,
    readonly,
@@ -123,6 +125,8 @@ const Input = ({
                         value={inputValue}
                         onChange={(e) => onChangeHandle(e, name)}
                         onFocus={onFocus}
+                        onMouseDown={onMouseDown}
+                        onTouchEnd={onTouchEnd}
                         onBlur={(e) => onBlurHandle(e, name)}
                         className={setClasses()}
                         autoFocus={autoFocus}
