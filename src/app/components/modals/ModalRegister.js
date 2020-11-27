@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Modal from 'shared/components/Modal';
 import Input from 'shared/components/Input';
 import actions from "../../../actions";
-// import { IconFbClean, IconGoogle } from 'shared/components/Icons';
+import { IconFbClean, IconGoogle } from 'shared/components/Icons';
 import { Link } from 'react-router-dom';
 import _ from "lodash";
 import {makeStyles} from "@material-ui/core/styles";
@@ -11,51 +11,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import {indigo} from "@material-ui/core/colors";
-
-const useStyles = makeStyles((theme) => ({
-    facebook: {
-        backgroundColor: indigo[500],
-        borderRadius: "4px",
-        width: "328px",
-        height: "48px",
-        fontSize: "16px",
-        fontWeight: "bold",
-        color: "#FFFFFF",
-        letterSpacing: "0.05em",
-        cursor: "pointer",
-        marginTop: "25px",
-        textTransform: "uppercase",
-        '&:hover': {
-            backgroundColor: indigo[800]
-        },
-        '&:active': {
-            boxShadow: 'none'
-        }
-    },
-
-    google: {
-        backgroundColor: "#FFFFFF",
-        borderRadius: "4px",
-        border: "1px solid #BDBDBD",
-        width: "328px",
-        height: "48px",
-        fontSize: "16px",
-        fontWeight: "bold",
-        color: "#757575",
-        marginTop: "15px",
-        letterSpacing: "0.05em",
-        cursor: "pointer",
-        textTransform: "uppercase",
-        '&:active': {
-            boxShadow: 'none'
-        },
-        '&:hover': {
-            backgroundColor: "#ECECEC"
-        },
-    },
-
-}));
-
 
 const validations = {
     name: {
@@ -80,7 +35,6 @@ const validations = {
 
 const ModalRegister =  ({ onClose }) => {
     const dispatch = useDispatch();
-    const classes = useStyles();
     const [invalidFields, setInvalidFields] = useState({});
     const [form, setForm] = useState({name: "", phone: "", email: "", password: ""});
 
@@ -261,17 +215,22 @@ const ModalRegister =  ({ onClose }) => {
                         fields="name,email,picture"
                         scope="public_profile,email"
                         callback={responseFacebook}
-                        textButton="Login with facebook"
-                        cssClass={classes.facebook}
+                        icon={<IconFbClean fill='#FFFFFF' className='mr-3'/>}
+                        textButton="Sign Up With Facebook"
+                        cssClass={`btn btn-facebook btn-fixed mb-3`}
                     />
 
                     <GoogleLogin
                         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-                        buttonText="Login with google"
+                        render={renderProps => (
+                            <button onClick={renderProps.onClick} className='btn btn-google btn-fixed text__grey-dark mb-5'>
+                                <IconGoogle fill='#FFFFFF' className='mr-3'/>
+                                Sign Up With Google
+                            </button>
+                        )}
                         fields="select_account"
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
-                        className={classes.google}
                     />
 
                     <p className='pt-1 mb-0 weight-700 text-center'>

@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { IconFbClean, IconGoogle } from 'shared/components/Icons';
 import actions from "../../../actions";
 import _ from "lodash";
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 
 const validations = {
     email: {
@@ -91,6 +93,13 @@ const ModalLogin = ({ onClose }) => {
 
         setInvalidFields(invalidFields);
     }
+    const responseFacebook = (response) => {
+        console.log(response);
+    };
+
+    const responseGoogle = (response) => {
+        console.log(response);
+    };
 
     return (
         <Modal title='Please Login' showDismissButton onClose={() => onClose(false)}>
@@ -148,14 +157,28 @@ const ModalLogin = ({ onClose }) => {
                     <div className='text-separator my-7'>
                         <span className='separator-content px-5'>or</span>
                     </div>
-                    <button className='btn btn-facebook btn-fixed mb-3'>
-                        <IconFbClean fill='#FFFFFF' className='mr-3'/>
-                        Login With Facebook
-                    </button>
-                    <button className='btn btn-google btn-fixed text__grey-dark mb-5'>
-                        <IconGoogle fill='#FFFFFF' className='mr-3'/>
-                        Login With Google
-                    </button>
+                    <FacebookLogin
+                        appId={process.env.REACT_APP_FB_API_KEY}
+                        fields="name,email,picture"
+                        scope="public_profile,email"
+                        callback={responseFacebook}
+                        icon={<IconFbClean fill='#FFFFFF' className='mr-3'/>}
+                        textButton="Login With Facebook"
+                        cssClass={`btn btn-facebook btn-fixed mb-3`}
+                    />
+
+                    <GoogleLogin
+                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+                        render={renderProps => (
+                            <button onClick={renderProps.onClick} className='btn btn-google btn-fixed text__grey-dark mb-5'>
+                                <IconGoogle fill='#FFFFFF' className='mr-3'/>
+                                Login With Google
+                            </button>
+                        )}
+                        fields="select_account"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                    />
                     <p className='pt-1 mb-0 weight-700 text-center'>
                         Don't have an account? <Link to='/register' onClick={(e) => {
                         e.preventDefault();
