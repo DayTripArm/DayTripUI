@@ -6,11 +6,9 @@ import actions from "../../../actions";
 import { IconFbClean, IconGoogle } from 'shared/components/Icons';
 import { Link } from 'react-router-dom';
 import _ from "lodash";
-import {makeStyles} from "@material-ui/core/styles";
 
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
-import {indigo} from "@material-ui/core/colors";
 
 const validations = {
     name: {
