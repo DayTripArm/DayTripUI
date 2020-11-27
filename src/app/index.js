@@ -90,23 +90,46 @@ const App = () => {
             <Header type={isAuthenticated ? 'authorized' : 'unauthorized'} navigationType={navigationType} />
             <main role='main' className="mh-min-screen">
                 <Switch>
+                    {
+                        localStorage.userType === "1" && // for travelers
+                            <>
+                                <Route path='/home' component={Home} />
+                                <Route path='/help/:id' component={HelpView} />
+                                <Route path='/tour/:id' component={Tour} />
+                                <Route path='/help' component={Help} />
+                                <Route path='/checkout' component={Checkout} />
+                                <Route path='/individuals' component={Individuals} />
+                                <Route path='/drivers' component={Drivers} />
+                                <Route path='/messaging' component={Messaging} />
+                                <Route path='/favorites' component={Favorites} />
+                                <Route path='/refer' component={Refer} />
+                                <Route path='/account' component={Account} />
+                                <Route path='/trips' component={Trips} />
+                                <Redirect from='*' to={'/home'} />
+                            </>
+                    }
+
+                    {
+                        localStorage.userType === "2" && // for driver
+                            <>
+                                <Route path='/help/:id' component={HelpView} />
+                                <Route path='/help' component={Help} />
+                                <Route path='/driverRegister' component={DriverRegister} />
+                                <Route path='/car' component={Car} />
+                                <Route path='/individuals' component={Individuals} />
+                                <Route path='/messaging' component={Messaging} />
+                                <Route path='/calendar' component={Calendar} />
+                                <Route path='/progress' component={Progress} />
+                                <Route path='/refer' component={Refer} />
+                                <Route path='/account' component={Account} />
+                                <Redirect from='*' to={'/calendar'} />
+                            </>
+                    }
+
                     <Route path='/home' component={Home} />
-                    <Route path='/help/:id' component={HelpView} />
-                    <Route path='/help' component={Help} />
-                    <Route path='/driverRegister' component={DriverRegister} />
-                    <Route path='/car' component={Car} />
-                    <Route path='/checkout' component={Checkout} />
-                    <Route path='/individuals' component={Individuals} />
-                    <Route path='/drivers' component={Drivers} />
-                    <Route path='/messaging' component={Messaging} />
-                    <Route path='/calendar' component={Calendar} />
                     <Route path='/tour/:id' component={Tour} />
-                    <Route path='/progress' component={Progress} />
-                    <Route path='/favorites' component={Favorites} />
-                    <Route path='/refer' component={Refer} />
-                    <Route path='/account' component={Account} />
-                    <Route path='/trips' component={Trips} />
-                    <Redirect from='*' to={localStorage.userType === "2" ? '/calendar' : '/home'} />
+                    <Route path='/driverRegister' component={DriverRegister} />
+                    <Redirect from='*' to={'/home'} />
                 </Switch>
             </main>
             <Footer />
