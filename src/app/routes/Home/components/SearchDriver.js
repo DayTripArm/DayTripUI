@@ -140,7 +140,7 @@ const SearchDriver = () => {
                         )}
                         <div
                             className='bg-white rounded__10 px-4 px-lg-5 pb-5 pt-4 d-flex flex-column flex-lg-row align-items-end hit_the_road_search'>
-                            <div className="home_seach_items">
+                            <div className="home_seach_items" ref={container1}>
                                 <Input
                                     type='text'
                                     name='date'
@@ -150,18 +150,25 @@ const SearchDriver = () => {
                                     autoComplete='off'
                                     readonly={true}
                                     isError={getStatusMessage("date")  || false}
-                                    onFocus={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);} }
+                                    onMouseDown={() => {
+                                        setShowDatePicker(!showDatePicker);
+                                        setShowCountPopup(false);
+                                    }}
+                                    onTouchEnd={() => {
+                                        setShowDatePicker(!showDatePicker);
+                                        setShowCountPopup(false);
+                                    }}
                                     containerClass='mr-lg-4 mb-lg-0'
                                 />
                                {showDatePicker && (
-                               <div className="calendar_popup" ref={container1}>
+                               <div className="calendar_popup">
                                     <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
                                     onDateChange={(date) => onDaySelect(date)}
                                     />
                                 </div>
                                 )}
                             </div>
-                            <div className="home_seach_items">
+                            <div className="home_seach_items" ref={container2}>
                                 <Input
                                     type='text'
                                     name='travelers'
@@ -169,15 +176,23 @@ const SearchDriver = () => {
                                     placeholder='Add Travelers'
                                     autoComplete='off'
                                     readonly={true}
+                                    ref={container2}
                                     value={Number(form.travelers) > 0 ?  form.travelers + " Travelers": "" }
-                                    isError={getStatusMessage("travelers") || false}
+                                    isError={getStatusMessage ("travelers") || false}
                                     containerClass='mr-lg-4 mb-lg-0'
+                                    onMouseDown={() => {
+                                        setShowCountPopup(!showCountPopup);
+                                        setShowDatePicker(false);
+                                    }}
+                                    onTouchEnd={() => {
+                                        setShowCountPopup(!showCountPopup);
+                                        setShowDatePicker(false);
+                                    }}
                                     onChange={(e) => e.preventDefault()}
-                                    onFocus={() => {setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                                     hideApperance
                                 />
                                 {showCountPopup && (
-                                <div className="travelers_count_popup" ref={container2}>
+                                <div className="travelers_count_popup">
                                     <div className="trvlr_count_container">
                                         <FormPlusMinus
                                             label="Adults"

@@ -122,8 +122,8 @@ const SearchPanel = ({trip_detail}) => {
             </div>
             <div className='d-flex justify-content-end flex-fill'>
               <div className='d-none d-md-flex flex-fill justify-content-lg-end'>
-                  <div className="tour_search_items">
-                    <div className="tour_calendar_popup" ref={container1}>
+                  <div className="tour_search_items" ref={container1}>
+                    <div className="tour_calendar_popup">
                         {showDatePicker && (
                             <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
                                 onDateChange={(date) => onDaySelect(date)}
@@ -138,13 +138,14 @@ const SearchPanel = ({trip_detail}) => {
                         autoComplete='off'
                         isError={getStatusMessage("date")  || false}
                         readonly={true}
-                        onFocus={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
+                        onMouseUp={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
+                        onTouchEnd={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                     />
                   </div>
-                  <div className="tour_search_items">
+                  <div className="tour_search_items" ref={container2}>
                         {showCountPopup && (
-                        <div className="tour_travelers_count_popup" ref={container2}>
+                        <div className="tour_travelers_count_popup">
                             <div className="trvlr_count_container">
                                 <FormPlusMinus
                                     label="Adults"
@@ -186,7 +187,8 @@ const SearchPanel = ({trip_detail}) => {
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                         autoComplete='off'
                         readonly={true}
-                        onFocus={() =>{ setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
+                        onMouseUp={() =>{ setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
+                        onTouchEnd={() =>{ setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                         hideApperance
                      />
                  </div>
