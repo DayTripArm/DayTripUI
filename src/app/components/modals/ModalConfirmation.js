@@ -4,11 +4,12 @@ import Modal from 'shared/components/Modal';
 const ModalConfirmation = () => {
 
     return (
-        <Modal title='Create your profile' >
+        <Modal title='Verify Your Account' >
             <div className='py-4 px-0 px-md-8'>
                     <div class="text__blue text-center mb-0">
-                        <p><h3>Check your email</h3></p>
-                        <p><h6 className={`text-wrap`}>Tap the link in the email we sent you. Confirming your email address helps us send you trip information.</h6></p>
+                        <p><h3>Check your Email</h3></p>
+                        <p><h6 className={`text-wrap`}>Please confirm your email address by clicking on the link we have sent</h6></p>
+                        <button className={`btn`}>Resend Email</button>
                     </div>
             </div>
         </Modal>
