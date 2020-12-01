@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react';
 import Input from 'shared/components/Input';
 import {
   IconDestination,
@@ -12,7 +12,6 @@ import {
   IconWater,
   IconAC
 } from 'shared/components/Icons';
-import useOutsideClick from 'shared/hooks/useOutsideClick';
 import {CAR_SPECS} from "../../../../constants";
 import Textarea from 'shared/components/Textarea';
 import Timepicker from "shared/components/Timepicker";
@@ -33,7 +32,6 @@ const validations = {
 const Review = (props) => {
     const locate = useLocation();
     const history = useHistory();
-    const container1 = useRef();
     const [invalidFields, setInvalidFields] = useState({});
     const [showTimePicker, setShowTimePicker] = useState(false);
     const [showMoreDetails, setShowMoreDetails] = useState(false);
@@ -45,8 +43,8 @@ const Review = (props) => {
 
     // Select time
     function onTimeSet(){
-        setForm({...form, pickup_time: pickTime.hour + ":" + pickTime.minute})
-        setShowTimePicker(!showTimePicker)
+        setForm({...form, pickup_time: pickTime.hour + ":" + pickTime.minute});
+        setShowTimePicker(!showTimePicker);
         document.body.style.overflowY = 'auto';
     }
 
