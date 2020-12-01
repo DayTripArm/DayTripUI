@@ -43,13 +43,13 @@ const Modal = ({
           if (scroll_pos >= 72){
               modal_el.setAttribute("style", "top: 0; max-height: calc(100vh - "+(menu_height)+"px)");
               modal_el.firstChild.setAttribute("style","max-height: calc(100vh - "+(menu_height)+"px)");
-              if (modal_el.id == 'booked_trip_modal') {
+              if (modal_el.id === 'booked_trip_modal') {
                   modal_el.querySelector('.modal-body').setAttribute("style","max-height: calc(100vh - "+(menu_height+57)+"px)");
               }
           } else {
               modal_el.setAttribute("style", "top: "+(72 - scroll_pos)+"px; max-height: calc(100vh - "+(72 - scroll_pos + menu_height)+"px)");
               modal_el.firstChild.setAttribute("style","max-height: calc(100vh - "+(72 - scroll_pos + menu_height)+"px)");
-              if (modal_el.id == 'booked_trip_modal'){
+              if (modal_el.id === 'booked_trip_modal'){
                   modal_el.querySelector('.modal-body').setAttribute("style","max-height: calc(100vh - "+(72 - scroll_pos + menu_height+57)+"px)");
               }
           }

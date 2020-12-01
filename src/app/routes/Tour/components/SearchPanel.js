@@ -159,7 +159,7 @@ const SearchPanel = ({trip_detail}) => {
                         autoComplete='off'
                         isError={getStatusMessage("date")  || false}
                         readonly={true}
-                        onMouseUp={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
+                        onMouseDown={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
                         onTouchEnd={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                     />
@@ -208,7 +208,7 @@ const SearchPanel = ({trip_detail}) => {
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                         autoComplete='off'
                         readonly={true}
-                        onMouseUp={() =>{ setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
+                        onMouseDown={() =>{ setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                         onTouchEnd={() =>{ setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                         hideApperance
                      />
