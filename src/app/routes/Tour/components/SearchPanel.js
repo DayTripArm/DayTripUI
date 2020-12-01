@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import StickyPanel from 'shared/components/StickyPanel';
 import { IconStar } from 'shared/components/Icons';
 import Input from 'shared/components/Input';
@@ -31,6 +31,12 @@ const SearchPanel = ({trip_detail}) => {
     const [form, setForm] = useState({date: "", travelers: "0"});
     const [count, setCount] = useState({adults: 0, children: 0});
 
+    let [tripTitle, setTitle] = useState("");
+
+    useEffect(() => {
+            calculateTitleWidth();
+    }, [trip_detail.title]);
+
     useOutsideClick(container1, () => setShowDatePicker(false));
     useOutsideClick(container2, () => setShowCountPopup(false));
     const onDaySelect = ((day) => {
@@ -45,7 +51,22 @@ const SearchPanel = ({trip_detail}) => {
         if(window.innerWidth >= 768){
             setShowSearchPopup(false);
         }
+
+        // calculate title length in different screen
+        calculateTitleWidth();
     });
+
+    const calculateTitleWidth = () => {
+        if (trip_detail.title) {
+            if (window.innerWidth < 1280) {
+                setTitle(trip_detail.title.length >= 35 ? trip_detail.title.slice(0,35) + "..." : trip_detail.title)
+            } else if (window.innerWidth >= 1280 && window.innerWidth < 1560) {
+                setTitle(trip_detail.title.length >= 70 ? trip_detail.title.slice(0,70) + "..." : trip_detail.title);
+            } else if (window.innerWidth >= 1560) {
+                setTitle(trip_detail.title.length >= 105 ? trip_detail.title.slice(0,105) + "..." : trip_detail.title);
+            }
+        }
+    };
 
     function validateForm() {
 
@@ -106,17 +127,17 @@ const SearchPanel = ({trip_detail}) => {
     return(<>
       <StickyPanel className='border__top border__default trip_sfd_panel'>
         <div className='container'>
-          <div className='d-flex align-items-center justify-content-between py-4'>
+          <div className='d-flex justify-content-between py-4'>
             <div className='d-none d-lg-block'>
               <div className='d-flex align-items-center'>
-                <h4 className='mb-1 text__blue mr-2'>{trip_detail.title && trip_detail.title.length >= 38 ? trip_detail.title.slice(0,38) + "..." : trip_detail.title}</h4>
-                <p className='mb-0 d-none d-xl-block'>
+                <h6 className='mb-1 text__blue mr-2'>{tripTitle}</h6>
+                <p className='mb-0 d-xl-block'>
                   <span className='weight-700'>5.0</span>
                   <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
                   <span className='text-sm text__grey-dark'>(125 reviews)</span>
                 </p>
               </div>
-              <p className='text-sm weight-500 mb-0 d-none d-xl-block'>
+              <p className='text-sm weight-500 mb-0 d-xl-block'>
                 Trip Duration: <span className='text__grey-dark'>{trip_detail.trip_duration } hours</span>
               </p>
             </div>
