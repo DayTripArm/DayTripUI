@@ -2,6 +2,7 @@ import actions from "../actions";
 
 export const INITIAL_STATE = {
     showWelcome: false,
+    showConfirmation: false,
     showSignIn: false,
     showSignUp: false,
     user_info: {},
@@ -70,6 +71,15 @@ const travelerData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 showWelcome: show,
+            }
+        }
+
+        case actions.SHOW_HIDE_CONFIRMATION: {
+            const { show } = action;
+
+            return {
+                ...state,
+                showConfirmation: show
             }
         }
 

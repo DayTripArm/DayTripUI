@@ -1,10 +1,10 @@
 import React from 'react';
 import Modal from 'shared/components/Modal';
 
-const ModalConfirmation = () => {
+const ModalConfirmation = ({onClose}) => {
 
     return (
-        <Modal title='Verify Your Account' >
+        <Modal title='Verify Your Account' showDismissButton onClose={() => onClose(false)}>
             <div className='py-4 px-0 px-md-8'>
                     <div className="text__blue text-center mb-0">
                         <h3>Check your Email</h3>

@@ -60,6 +60,18 @@ const actions  = {
         show
     }),
 
+    SHOW_HIDE_CONFIRMATION: `${nameSpace}_SHOW_HIDE_CONFIRMATION`,
+    showHideConfirmation: (show) => ({
+        type: actions.SHOW_HIDE_CONFIRMATION,
+        show
+    }),
+
+    SET_CONFIRMATION: `${nameSpace}_SET_CONFIRMATION`,
+    setConfirmation: (confirmed_at) => ({
+        type: actions.SET_CONFIRMATION,
+        confirmed_at
+    }),
+
     SHOW_HIDE_SIGN_UP: `${nameSpace}_SHOW_HIDE_SIGN_UP`,
     showHideSignUp: (show) => ({
         type: actions.SHOW_HIDE_SIGN_UP,

@@ -5,6 +5,7 @@ export const INITIAL_STATE = {
     registeredUserType: undefined,
     userType: undefined,
     is_prereg: undefined,
+    confirmed_at: undefined,
     individual_user: {}
 };
 
@@ -36,6 +37,15 @@ const config = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 userType: String(userType)
+            }
+        }
+
+        case actions.SET_CONFIRMATION: {
+            const { confirmed_at } = action;
+
+            return {
+                ...state,
+                confirmed_at
             }
         }
 

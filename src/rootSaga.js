@@ -14,18 +14,24 @@ function* signUpRequest(action) {
         const {response, error} = yield call(Api.signUpRequest, body);
 
         if (response) {
-            const {id, user_type, is_prereg} = response.data.user;
+            const {confirmed_at} = response.data;
 
-            if (user_type === Number(TRAVELER_TYPE)) {
-                yield put(actions.signUpTravelerReceiveSuccess(response));
-                yield put(actions.showHideWelcome(true));
-            } else {
-                yield put(actions.setPrereg(is_prereg));
-                yield put(actions.signUpDriverReceiveSuccess(response));
+            if (!confirmed_at) {
+                // hide sign up form and show confirmation pop up
+                yield put(actions.showHideSignUp(false));
+                yield put(actions.showHideConfirmation(true));
             }
 
-            localStorage.setItem("id", id);
-            yield put(actions.setUserType(user_type));
+            // if (user_type === Number(TRAVELER_TYPE)) {
+            //     yield put(actions.signUpTravelerReceiveSuccess(response));
+            //     yield put(actions.showHideWelcome(true));
+            // } else {
+            //     yield put(actions.setPrereg(is_prereg));
+            //     yield put(actions.signUpDriverReceiveSuccess(response));
+            // }
+            //
+            // localStorage.setItem("id", id);
+            // yield put(actions.setUserType(user_type));
         } else {
             yield put(actions.signUpReceiveError(error.response));
         }
@@ -40,22 +46,27 @@ function* signInRequest(action) {
         const {response, error} = yield call(Api.signInRequest, body);
 
         if (response) {
-            const {id, user_type, is_prereg} = response.data.user;
-
-            yield put(actions.setUserType(user_type));
-            yield put(actions.setPrereg(is_prereg));
-            localStorage.setItem("id", id);
-
-            // redirect to /driver page for complete registration
-            if (is_prereg && user_type === Number(DRIVER_TYPE)) {
-                setTimeout(() => {
-                    window.location.href = "/driverRegister";
-                }, 300);
-            } else {
-                yield put(actions.signInReceiveSuccess(response));
+            if (_.isEmpty(response.data.user)) { // not confirm part
+                // hide sign in form and show confirmation pop up
                 yield put(actions.showHideSignIn(false));
-                window.location.href = user_type === Number(DRIVER_TYPE) ? "/calendar" : "/home";
+                yield put(actions.showHideConfirmation(true));
             }
+            //const {id, user_type, is_prereg} = response.data.user;
+
+            // yield put(actions.setUserType(user_type));
+            // yield put(actions.setPrereg(is_prereg));
+            // localStorage.setItem("id", id);
+            //
+            // // redirect to /driver page for complete registration
+            // if (is_prereg && user_type === Number(DRIVER_TYPE)) {
+            //     setTimeout(() => {
+            //         window.location.href = "/driverRegister";
+            //     }, 300);
+            // } else {
+            //     yield put(actions.signInReceiveSuccess(response));
+            //     yield put(actions.showHideSignIn(false));
+            //     window.location.href = user_type === Number(DRIVER_TYPE) ? "/calendar" : "/home";
+            // }
         } else {
             yield put(actions.signInReceiveError(error.response));
         }

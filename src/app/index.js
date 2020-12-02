@@ -29,6 +29,7 @@ import Refer from './routes/Refer';
 import Account from './routes/Account';
 import Trips from './routes/Trips';
 import ModelOnboarding from "./components/modals/ModalOnboarding";
+import ModalConfirmation from "./components/modals/ModalConfirmation";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -69,7 +70,9 @@ const App = () => {
 
     const {
         showWelcome,
+        showConfirmation,
     } = travelerData;
+
 
     let navigationType = "user"; // traveler
     const {userType, is_prereg=""} = config;
@@ -81,11 +84,18 @@ const App = () => {
 
     return (
         <>
+            { showConfirmation &&
+                <ModalConfirmation onClose={() => {
+                    dispatch(actions.showHideSignUp(false));
+                    dispatch(actions.showHideConfirmation(false));
+                }} />
+            }
+
             { showWelcome &&
-            <ModelOnboarding onClose={() => {
-                dispatch(actions.showHideSignUp(false));
-                dispatch(actions.showHideWelcome(false));
-            }} />
+                <ModelOnboarding onClose={() => {
+                    dispatch(actions.showHideSignUp(false));
+                    dispatch(actions.showHideWelcome(false));
+                }} />
             }
             <Header type={isAuthenticated ? 'authorized' : 'unauthorized'} navigationType={navigationType} />
             <main role='main' className="mh-min-screen">
@@ -127,6 +137,7 @@ const App = () => {
                     }
 
                     <Route path='/home' component={Home} />
+                    <Route path='/drivers' component={Drivers} />
                     <Route path='/tour/:id' component={Tour} />
                     <Route path='/driverRegister' component={DriverRegister} />
                     <Redirect from='*' to={'/home'} />
