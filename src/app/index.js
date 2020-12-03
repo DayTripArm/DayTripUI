@@ -53,7 +53,7 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        if (localStorage.userType) {
+        if (localStorage.id) {
             dispatch(actions.profileInfoRequest(localStorage.id));
         }
         const body = {

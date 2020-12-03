@@ -46,27 +46,31 @@ function* signInRequest(action) {
         const {response, error} = yield call(Api.signInRequest, body);
 
         if (response) {
-            if (_.isEmpty(response.data.user)) { // not confirm part
+            const {confirmed_at, id} = response.data.user;
+
+            if (!confirmed_at && !id) { // not confirm part
                 // hide sign in form and show confirmation pop up
                 yield put(actions.showHideSignIn(false));
                 yield put(actions.showHideConfirmation(true));
-            }
-            //const {id, user_type, is_prereg} = response.data.user;
+            } else { // normal login flow
+                const {id, user_type, is_prereg} = response.data.user;
 
-            // yield put(actions.setUserType(user_type));
-            // yield put(actions.setPrereg(is_prereg));
-            // localStorage.setItem("id", id);
-            //
-            // // redirect to /driver page for complete registration
-            // if (is_prereg && user_type === Number(DRIVER_TYPE)) {
-            //     setTimeout(() => {
-            //         window.location.href = "/driverRegister";
-            //     }, 300);
-            // } else {
-            //     yield put(actions.signInReceiveSuccess(response));
-            //     yield put(actions.showHideSignIn(false));
-            //     window.location.href = user_type === Number(DRIVER_TYPE) ? "/calendar" : "/home";
-            // }
+                localStorage.setItem("id", id);
+
+                // redirect to /driver page for complete registration
+                if (is_prereg && user_type === Number(DRIVER_TYPE)) {
+                    setTimeout(() => {
+                        window.location.href = "/driverRegister";
+                    }, 100);
+                } else {
+                    yield put(actions.setUserType(user_type));
+                    yield put(actions.setPrereg(is_prereg));
+
+                    yield put(actions.signInReceiveSuccess(response));
+                    yield put(actions.showHideSignIn(false));
+                    window.location.href = user_type === Number(DRIVER_TYPE) ? "/calendar" : "/home";
+                }
+            }
         } else {
             yield put(actions.signInReceiveError(error.response));
         }
@@ -407,6 +411,7 @@ function* saveDriverPreregData(action) {
 
     try {
         const {response} = yield call(Api.saveDriverPreregData, formData);
+        yield put(actions.setUserType(DRIVER_TYPE));
 
         if (response) {
             setTimeout(() => {
