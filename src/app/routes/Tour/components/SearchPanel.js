@@ -94,7 +94,8 @@ const SearchPanel = ({trip_detail}) => {
 
     const searchDriver = () => {
         if(window.innerWidth <= 768){
-            setShowSearchPopup(true)
+            setShowSearchPopup(true);
+            window.location.hash = "modal"
         } else {
             const invalidFields = validateForm();
             if (_.isEmpty(invalidFields)) {

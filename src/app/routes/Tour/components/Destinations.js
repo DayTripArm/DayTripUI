@@ -49,6 +49,7 @@ const Destinations = (props) => {
                                                 title: dest.dest_title,
                                             });
                                             setOpenInfoModal(true);
+                                            window.location.hash = "modal"
                                         }}>Read More</button>}
                                     </p>
                                 </div>

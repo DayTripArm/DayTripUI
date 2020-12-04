@@ -35,6 +35,12 @@ const Modal = ({
     //eslint-disable-next-line
   }, []);
 
+    window.addEventListener("hashchange", function (event, data) {
+        if(event.currentTarget.location.hash === ''){
+            onClose();
+        }
+    });
+
   function resizeModal(){
       const modal_el = document.querySelector('.modal-aside');
       if (modal_el && !modal_el.classList.contains('htr_modal')) {

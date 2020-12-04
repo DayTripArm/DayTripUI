@@ -163,6 +163,7 @@ const Drivers = ({ history }) => {
                                         <Chips name="Filters" className='mr-4 mb-md-5'
                                             onClick={() => {
                                                 openFiltersPopup(!filtersPopup);
+                                                window.location.hash = "modal"
                                             }} />
                                         {filtersPopup && <FiltersModal
                                             trip_id={trip_id}

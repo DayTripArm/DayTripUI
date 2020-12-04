@@ -109,7 +109,7 @@ const LocationAndDestination = (props) => {
 
             <h4 className='text__blue mb-6'>
                 Price per 1 Km{' '}
-                <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => setOpenModal(true)}>
+                <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>
                     <IconQuestionOutlined fill='#757575'/>
                 </button>
             </h4>

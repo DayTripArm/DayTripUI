@@ -280,6 +280,7 @@ const FormInputBox = (props) => {
 
                                 if (once === undefined && name !== "car_year") {
                                     setOpenInfoModal(true);
+                                    window.location.hash = "modal"
                                 } else {
                                     handleSave();
                                     dispatch(actions.updateValidationList(name));

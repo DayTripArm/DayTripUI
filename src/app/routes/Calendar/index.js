@@ -126,6 +126,7 @@ const Calendar = () => {
         dispatch(actions.getBookedTripRequest(booked_id, 1));
 
         setOpenDetailsModal(true);
+        window.location.hash = "modal"
     };
 
     const onFocusChange = () => {
@@ -212,7 +213,10 @@ const Calendar = () => {
                     <div
                         className='d-flex align-items-center justify-content-between mt-6 mb-5 mt-md-9 mb-md-9 mt-xl-11 mt-xxl-13 '>
                         <h2 className='text__blue mb-0'>Calendar</h2>
-                        <button className='btn btn-circle border-0' onClick={() => setOpenSettingsModal(true)}>
+                        <button className='btn btn-circle border-0' onClick={() => {
+                            setOpenSettingsModal(true);
+                            window.location.hash = "modal"
+                        }}>
                             <IconSetting/>
                         </button>
                     </div>

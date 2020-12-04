@@ -35,6 +35,12 @@ const Modal = ({
     //eslint-disable-next-line
   }, []);
 
+    window.addEventListener("hashchange", function (event, data) {
+        if(event.currentTarget.location.hash === ''){
+            onClose();
+        }
+    });
+
   return (
     <div
       id={id}

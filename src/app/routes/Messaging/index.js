@@ -57,7 +57,7 @@ const Messaging = () => {
                   <p className='mb-0 text-xs text__grey-dark'>Yesterday</p>
                 </div>
               </div>
-              <button className='btn btn-secondary btn-sm' onClick={() => setOpenModal(true)}>
+              <button className='btn btn-secondary btn-sm' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>
                 Trip Details
               </button>
             </div>
@@ -88,7 +88,7 @@ const Messaging = () => {
           </div>
         </div>
       </div>
-      {openModal && <TripDetailsModal onClose={() => setOpenModal(false)} />}
+      {openModal && <TripDetailsModal onClose={() => {setOpenModal(false); window.location.hash = "modal"}} />}
     </>
   );
 };

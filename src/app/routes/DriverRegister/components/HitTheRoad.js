@@ -57,7 +57,7 @@ const HitTheRoad = (props) => {
             <img className='rounded__4 mb-4' alt='328x213' src={ImgMap} />
             <h4 className='text__blue mb-6 text-center'>
                 Hit The Road
-                <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => setOpenModal(true)}>
+                <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>
                     <IconQuestionOutlined fill='#757575'/>
                 </button>
             </h4>

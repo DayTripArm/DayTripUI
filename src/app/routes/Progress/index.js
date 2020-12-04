@@ -10,7 +10,7 @@ const Progress = () => {
         <div className='container pt-6 pt-md-8 pt-xl-11 xxl-13'>
           <div className='col-xl-10 col-xxl-9 col-xxxl-8 m-auto p-0'>
             <h2 className='text__blue mb-5 mb-md-6 mb-xl-9'>Progress</h2>
-            <ProgressList onOpenModal={() => setOpenModal(true)} />
+            <ProgressList onOpenModal={() => {setOpenModal(true); window.location.hash = "modal"}} />
           </div>
         </div>
       </div>

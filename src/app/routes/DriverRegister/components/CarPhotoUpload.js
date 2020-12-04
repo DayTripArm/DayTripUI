@@ -35,7 +35,10 @@ const CarRegistration = (props) => {
       <>
           <h4 className='text__blue mb-4'>
               <span className={_.includes(invalidFields, "car_photos") ? "text-danger" : ""}>{_.includes(invalidFields, "car_photos") ? title + "*" : title}</span>
-              <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => setOpenModal(true)}>
+              <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => {
+                  setOpenModal(true);
+                  window.location.hash = "modal"
+              }}>
                   <IconQuestionOutlined fill='#757575' />
               </button>
           </h4>
