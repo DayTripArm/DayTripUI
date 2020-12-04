@@ -30,6 +30,7 @@ const Trips = () => {
         dispatch(actions.getBookedTripRequest(booked_id, 2));
 
         setOpenDetailsModal(true);
+        window.location.hash = "modal"
     };
 
   useEffect (() => {

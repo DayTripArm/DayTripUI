@@ -88,7 +88,7 @@ const Messaging = () => {
           </div>
         </div>
       </div>
-      {openModal && <TripDetailsModal onClose={() => {setOpenModal(false); window.location.hash = "modal"}} />}
+      {openModal && <TripDetailsModal onClose={() => setOpenModal(false)} />}
     </>
   );
 };
