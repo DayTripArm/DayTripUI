@@ -72,6 +72,12 @@ const actions  = {
         confirmed_at
     }),
 
+    SET_EMAIL: `${nameSpace}_SET_EMAIL`,
+    setEmail: (email) => ({
+        type: actions.SET_EMAIL,
+        email
+    }),
+
     SHOW_HIDE_SIGN_UP: `${nameSpace}_SHOW_HIDE_SIGN_UP`,
     showHideSignUp: (show) => ({
         type: actions.SHOW_HIDE_SIGN_UP,
@@ -404,6 +410,12 @@ const actions  = {
     loadPricesListReceive: (data) => ({
         type: actions.PRICES_LIST_RECEIVE,
         data
+    }),
+
+    RESEND_CONFIRMATION: `${nameSpace}_RESEND_CONFIRMATION`,
+    resendConfirmation: (email) => ({
+        type: actions.RESEND_CONFIRMATION,
+        email
     }),
 
 };

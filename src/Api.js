@@ -168,6 +168,12 @@ export default {
         return axios.get(template(base_urls.day_trip.loadPricesList, is_trip), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
+    },
+
+    resendConfirmation(email){
+        return axios.get(template(base_urls.day_trip.resendConfirmation, email), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
     }
 
 }

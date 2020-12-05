@@ -14,10 +14,11 @@ function* signUpRequest(action) {
         const {response, error} = yield call(Api.signUpRequest, body);
 
         if (response) {
-            const {confirmed_at} = response.data;
+            const {confirmed_at, email} = response.data;
 
             if (!confirmed_at) {
                 // hide sign up form and show confirmation pop up
+                yield put(actions.setEmail(email));
                 yield put(actions.showHideSignUp(false));
                 yield put(actions.showHideConfirmation(true));
             }
@@ -46,10 +47,11 @@ function* signInRequest(action) {
         const {response, error} = yield call(Api.signInRequest, body);
 
         if (response) {
-            const {confirmed_at, id} = response.data.user;
+            const {confirmed_at, id, email} = response.data.user;
 
             if (!confirmed_at && !id) { // not confirm part
                 // hide sign in form and show confirmation pop up
+                yield put(actions.setEmail(email));
                 yield put(actions.showHideSignIn(false));
                 yield put(actions.showHideConfirmation(true));
             } else { // normal login flow
@@ -537,6 +539,16 @@ function* loadPricesListRequest(action) {
     }
 }
 
+function* resendConfirmation(action) {
+    try {
+        const {email} = action;
+        yield call(Api.resendConfirmation, email);
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -564,6 +576,7 @@ function* watcherSaga() {
     yield takeEvery(actions.BOOKED_TRIPS_REQUEST, getBookedTripsRequest);
     yield takeEvery(actions.BOOKED_TRIP_REQUEST, getBookedTripRequest);
     yield takeEvery(actions.PRICES_LIST_REQUEST, loadPricesListRequest);
+    yield takeEvery(actions.RESEND_CONFIRMATION, resendConfirmation);
 }
 
 export default function* root() {

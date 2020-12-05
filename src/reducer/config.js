@@ -6,6 +6,7 @@ export const INITIAL_STATE = {
     userType: undefined,
     is_prereg: undefined,
     confirmed_at: undefined,
+    email: undefined,
     individual_user: {}
 };
 
@@ -46,6 +47,14 @@ const config = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 confirmed_at
+            }
+        }
+        case actions.SET_EMAIL: {
+            const { email } = action;
+
+            return {
+                ...state,
+                email
             }
         }
 

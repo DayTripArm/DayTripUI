@@ -75,7 +75,7 @@ const App = () => {
 
 
     let navigationType = "user"; // traveler
-    const {userType, is_prereg=""} = config;
+    const {userType, is_prereg="", email} = config;
 
     // Conditionally
     const isAuthenticated = userType === "2" && is_prereg.toString() === "true" ? false : userType === "1" || userType === "2";
@@ -85,7 +85,7 @@ const App = () => {
     return (
         <>
             { showConfirmation &&
-                <ModalConfirmation onClose={() => {
+                <ModalConfirmation email={email} onClose={() => {
                     dispatch(actions.showHideSignUp(false));
                     dispatch(actions.showHideConfirmation(false));
                 }} />
