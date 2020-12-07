@@ -86,6 +86,7 @@ const HeaderUnauthorized = () => {
                 e.preventDefault();
                 !showSignIn && dispatch(actions.showHideSignUp(true));
                 dispatch(actions.setRegisteredUserType(DRIVER_TYPE));
+                window.location.hash = 'modal'
               }}>Become a Driver</Link>
             </li>
           </ul>
@@ -95,8 +96,9 @@ const HeaderUnauthorized = () => {
                   onClick={() => {
                     !showSignIn && dispatch(actions.showHideSignUp(true));
                     dispatch(actions.setRegisteredUserType(TRAVELER_TYPE));
+                    window.location.hash = 'modal'
           }}>Sign Up</button>
-          <button className={`btn btn-md btn-normal btn-outline-${themeLight ? 'white' : 'black'}`} onClick={() => !showSignUp && dispatch(actions.showHideSignIn(true))}>Login</button>
+          <button className={`btn btn-md btn-normal btn-outline-${themeLight ? 'white' : 'black'}`} onClick={() => {!showSignUp && dispatch(actions.showHideSignIn(true)); window.location.hash = 'modal'}}>Login</button>
         </div>
       </div>
       {showSignIn && <ModalLogin onClose={() => dispatch(actions.showHideSignIn(false))} />}

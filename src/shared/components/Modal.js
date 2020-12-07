@@ -20,6 +20,7 @@ const Modal = ({
     if (preventOutsideClick) return;
     container.current.classList.remove('active');
     setTimeout(() => onClose && onClose(), 150);
+    window.history.replaceState('', document.title, window.location.href.replace(/#.*$/, ''))
   };
 
   useEffect(() => {

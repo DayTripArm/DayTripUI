@@ -19,6 +19,7 @@ const Modal = ({
     if (preventOutsideClick) return;
     container.current.classList.remove('active');
     setTimeout(() => onClose && onClose(), 150);
+    window.history.replaceState('', document.title, window.location.href.replace(/#.*$/, ''))
   };
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const Modal = ({
 
   function resizeModal(){
       const modal_el = document.querySelector('.modal-aside');
-      if (modal_el && !modal_el.classList.contains('htr_modal')) {
+      if (modal_el) {
           const scroll_pos = window.pageYOffset || document.documentElement.scrollTop;
           const menu_height = document.body.clientWidth < 1280 ? document.querySelector('.guest-menu')? document.querySelector('.guest-menu').clientHeight: 0 : 0;
           if (scroll_pos >= 72){
