@@ -4,7 +4,7 @@ import "react-dates/initialize";
 import "react-dates/lib/css/_datepicker.css";
 import moment from "moment";
 
-const DatePicker = ({ date, onDateChange }) => {
+const DatePicker = ({ date, onDateChange, daySize }) => {
     const isOutsideRange = (date) => {
         return date.isBefore(moment(), 'day')
     };
@@ -14,6 +14,7 @@ const DatePicker = ({ date, onDateChange }) => {
         enableOutsideDays: false,
         orientation: 'horizontal',
         initialVisibleMonth: null,
+        daySize: null,
         numberOfMonths: 1,
         onOutsideClick() {},
         keepOpenOnDateSelect: false,
@@ -26,6 +27,7 @@ const DatePicker = ({ date, onDateChange }) => {
         <DayPickerSingleDateController
             {...props}
             date={date}
+            daySize={daySize}
             isOutsideRange={date => isOutsideRange(date)}
             onDateChange={(date) => {
                 onDateChange(date)

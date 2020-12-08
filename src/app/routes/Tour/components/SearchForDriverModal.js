@@ -41,6 +41,13 @@ const SearchForDriverModal = (props) => {
             console.log(" err ", e.response);
         }
     };
+    const daySize = window.matchMedia("(max-width: 350px)")
+        .matches ? 35 : window.matchMedia("(max-width: 400px)")
+        .matches ? 40 : window.matchMedia("(max-width: 450px)")
+        .matches ? 45 : window.matchMedia("(max-width: 500px)")
+        .matches ? 50 : window.matchMedia("(max-width: 550px)")
+        .matches ? 70 : window.matchMedia("(max-width: 767px)")
+        .matches ? 95 : 40;
     return (
         <Modal size='md' containerClass="sfd_modal" title="Search For Drivers" onClose={() => onCloseShowPopup()}>
             <div className='py-4 px-0 px-md-8 sfd_popup_form'>
@@ -48,7 +55,7 @@ const SearchForDriverModal = (props) => {
                     <div className="d-flex align-items-center justify-content-between mb-5">
                         <h4 className="mb-0 text__grey-dark">Select a Date</h4>
                     </div>
-                    <DatePicker daySize={15} date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
+                    <DatePicker daySize={daySize} date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
                   </div>
                   <div className="sfd-items-aligned">
                     <hr className="border__top border__default my-4"></hr>

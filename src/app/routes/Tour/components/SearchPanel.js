@@ -124,6 +124,9 @@ const SearchPanel = ({trip_detail}) => {
         }
 
     };
+    const daySize = window.matchMedia("(max-width: 350px)")
+        .matches ? 35 : window.matchMedia("(max-width: 767px)")
+        .matches ? 40 : 40;
 
     return(<>
       <StickyPanel className='border__top border__default trip_sfd_panel'>
@@ -149,6 +152,7 @@ const SearchPanel = ({trip_detail}) => {
                         {showDatePicker && (
                             <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
                                 onDateChange={(date) => onDaySelect(date)}
+                                daySize={daySize}
                             />
                         )}
                     </div>

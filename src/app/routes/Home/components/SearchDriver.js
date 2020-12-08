@@ -103,7 +103,9 @@ const SearchDriver = () => {
         }
         setInvalidFields(invalidFields);
     };
-
+    const daySize = window.matchMedia("(max-width: 350px)")
+        .matches ? 30 : window.matchMedia("(max-width: 767px)")
+        .matches ? 35 : 40
     return(
         <>
             <h2 className='text__blue'> Hit The Road </h2>
@@ -164,6 +166,7 @@ const SearchDriver = () => {
                                <div className="calendar_popup">
                                     <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
                                     onDateChange={(date) => onDaySelect(date)}
+                                    daySize={daySize}
                                     />
                                 </div>
                                 )}
