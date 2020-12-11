@@ -27,6 +27,8 @@ const Driver = ({ history }) => {
         car_model,
         car_full_name,
         car_photos=[],
+        review_stats={},
+        reviews=[]
     } = individual_user;
 
     const created_date = new Date(created_at || "");
@@ -68,11 +70,14 @@ const Driver = ({ history }) => {
                                     />
                                     <div>
                                         <p className='weight-500 pt-2 mb-0'>{user_name}</p>
-                                        <p className='mb-0'>
-                                            <span className='weight-700'>5.0</span>
-                                            <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                                            <span className='text-sm text__grey-dark'>(125 reviews)</span>
-                                        </p>
+                                        {review_stats && review_stats.rate ?
+                                           <>
+                                            <span className='weight-700'>{review_stats.rate}</span>
+                                            <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
+                                            <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>
+                                           </>:
+                                           <p className='weight-400 text-sm'>No Reviews</p>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -102,7 +107,8 @@ const Driver = ({ history }) => {
                         <hr className='border__top border__default my-4 mt-md-1 mb-md-5' />
 
                         <Gallery car_photos={car_photos}/>
-                        <Reviews />
+
+                        <Reviews reviews={reviews} review_stats={review_stats} />
                     </div>
                 </div>
             </div>

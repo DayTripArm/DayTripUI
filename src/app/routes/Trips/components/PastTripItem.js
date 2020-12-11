@@ -33,9 +33,24 @@ const PastTripItem = ({ item, onBookedTripClick, onReviewModal}) => {
                         </p>
                         <div className='cancelation-container d-md-inline-block d-flex justify-content-center py-3 py-md-0'>
                             <div className='d-flex align-items-center'>
-                                <p className='text-xs mb-0 mr-2'>Already wrote a review</p>
-                                <p className='weight-700 mb-0'>5.0</p>
-                                <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
+                                <p className='text-xs mb-0 mr-2'>Trip review:</p>
+                                {item.reviews.trip_review ?
+                                   <>
+                                    <p className='weight-700 mb-0'>{item.reviews.trip_review}</p>
+                                    <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
+                                   </>:
+                                   <p className='weight-700 mb-0'>Not Reviewed</p>
+                                }
+                            </div>
+                            <div className='d-flex align-items-center'>
+                                <p className='text-xs mb-0 mr-2'>Driver review:</p>
+                                {item.reviews.driver_review ?
+                                    <>
+                                     <p className='weight-700 mb-0'>{item.reviews.driver_review}</p>
+                                     <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
+                                   </>:
+                                   <p className='weight-700 mb-0'>Not Reviewed</p>
+                                }
                             </div>
                         </div>
                     </div>

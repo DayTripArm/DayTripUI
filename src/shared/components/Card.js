@@ -17,6 +17,7 @@ const Card = (props) => {
         imageUrl,
         title="Garni Temple and Geghard Monastery",
         trip_duration="8",
+        review_stats,
         id
     } = props;
 
@@ -63,9 +64,14 @@ const Card = (props) => {
             )}
             <p className='text__grey-dark weight-700 mb-2'>Trip duration : {trip_duration} hours</p>
             <p className='mb-0'>
-                <span className='weight-700'>5.0</span>
-                <IconStar className='card-star mx-1 pull-t-1'/>
-                <span className='text-sm text__grey-dark'>(125 reviews)</span>
+                {review_stats.rate ?
+                <>
+                    <span className='weight-700'>{review_stats.rate}</span>
+                    <IconStar className='card-star mx-1 pull-t-1'/>
+                    <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>
+                </>:
+                <p className='weight-400 text-sm'>No Reviews</p>
+                }
             </p>
         </div>
     )

@@ -20,7 +20,7 @@ const validations = {
     },
 };
 
-const SearchPanel = ({trip_detail}) => {
+const SearchPanel = ({trip_detail, review_stats}) => {
     const history = useHistory();
     const container1 = useRef();
     const container2 = useRef();
@@ -136,9 +136,14 @@ const SearchPanel = ({trip_detail}) => {
               <div className='d-flex align-items-center'>
                 <h6 className='mb-1 text__blue mr-2'>{tripTitle}</h6>
                 <p className='mb-0 d-xl-block'>
-                  <span className='weight-700'>5.0</span>
-                  <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                  <span className='text-sm text__grey-dark'>(125 reviews)</span>
+                {review_stats.rate ?
+                   <>
+                    <p className='weight-700 mb-0'>{review_stats.rate}</p>
+                    <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
+                    <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>
+                   </>:
+                   <p className='weight-400 text-sm'>No Reviews</p>
+                }
                 </p>
               </div>
               <p className='text-sm weight-500 mb-0 d-xl-block'>

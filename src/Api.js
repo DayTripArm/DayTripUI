@@ -174,6 +174,12 @@ export default {
         return axios.get(template(base_urls.day_trip.resendConfirmation, email), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
+    },
+
+    addTripReviewRequest(body) {
+        return axios.post(template(base_urls.day_trip.addTripReview), body, { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
     }
 
 }
