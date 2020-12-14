@@ -548,6 +548,21 @@ function* resendConfirmation(action) {
         console.log(" error ", e);
     }
 }
+function* addTripReviewRequest(action) {
+    try {
+        const {body} = action;
+        const {response, error} = yield call(Api.addTripReviewRequest, body);
+
+        if (response) {
+            yield put(actions.addTripReviewRecieve(response));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
 
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
@@ -577,6 +592,7 @@ function* watcherSaga() {
     yield takeEvery(actions.BOOKED_TRIP_REQUEST, getBookedTripRequest);
     yield takeEvery(actions.PRICES_LIST_REQUEST, loadPricesListRequest);
     yield takeEvery(actions.RESEND_CONFIRMATION, resendConfirmation);
+    yield takeEvery(actions.ADD_REVIEW_REQUEST, addTripReviewRequest);
 }
 
 export default function* root() {

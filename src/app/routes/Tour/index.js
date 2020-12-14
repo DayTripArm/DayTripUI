@@ -35,7 +35,7 @@ const Tour = ({ history }) => {
         map_image=[],
     } = trip_detail.trip || {};
 
-    const {is_saved, destinations=[]} = trip_detail;
+    const {is_saved, destinations=[], review_stats={}, reviews=[]} = trip_detail;
 
     useEffect(() => {
         dispatch(actions.tripDetailRequest(trip_id));
@@ -52,11 +52,14 @@ const Tour = ({ history }) => {
                     <div className='row'>
                         <div className='col-xl-4'>
                             <h2 className='text__blue mb-1'>{title}</h2>
-                            <p>
-                                <span className='weight-700'>5.0</span>
+                            {review_stats.rate ?
+                            <>
+                                <span className='weight-700'>{review_stats.rate}</span>
                                 <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                                <span className='text-sm text__grey-dark'>(125 reviews)</span>
-                            </p>
+                                <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>
+                            </>:
+                            <p className='weight-400 text-sm'>No Reviews</p>
+                            }
                         </div>
                         <div className='col-xl-8 d-xl-flex align-items-end pb-xl-4'>
                             <div className='d-md-flex'>
@@ -105,12 +108,12 @@ const Tour = ({ history }) => {
                     <div className='row'>
                         <div className='col-xl-4' />
                         <div className='col-xl-8'>
-                            <Reviews />
+                            <Reviews reviews={reviews} review_stats={review_stats} />
                         </div>
                     </div>
                 </div>
             </div>
-            {!booked_trip && <SearchPanel trip_detail={trip_detail.trip || {}} />}
+            {!booked_trip && <SearchPanel trip_detail={trip_detail.trip || {}} review_stats={review_stats} />}
         </>
     );
 };

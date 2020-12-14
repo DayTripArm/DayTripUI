@@ -417,6 +417,17 @@ const actions  = {
         type: actions.RESEND_CONFIRMATION,
         email
     }),
+    ADD_REVIEW_REQUEST: `${nameSpace}_ADD_REVIEW_REQUEST`,
+    addTripReviewRequest: (body) => ({
+        type: actions.ADD_REVIEW_REQUEST,
+        body
+    }),
+
+    ADD_REVIEW_RECEIVE: `${nameSpace}_ADD_REVIEW_RECEIVE`,
+    addTripReviewRecieve: (data) => ({
+        type: actions.ADD_REVIEW_RECEIVE,
+        data
+    })
 
 };
 

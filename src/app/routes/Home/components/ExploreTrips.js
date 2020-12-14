@@ -37,6 +37,7 @@ const ExploreTrips = () => {
                                     imageUrl={src}
                                     title={trip.trip.title}
                                     trip_duration={trip.trip.trip_duration}
+                                    review_stats={trip.review_stats}
                                     id={trip.trip.id}
                                 />
                             </div>

@@ -115,7 +115,6 @@ const App = () => {
                                 <Route path='/refer' component={Refer} />
                                 <Route path='/account' component={Account} />
                                 <Route path='/trips' component={Trips} />
-                                <Redirect from='*' to={'/home'} />
                             </>
                     }
 
