@@ -7,20 +7,18 @@ const Reviews = ({reviews, review_stats}) => (
   <>
     <div className='mt-14 mt-md-15 mt-xl-16'>
       <h2 className='text__blue mt-4'>Reviews</h2>
-      <p className='pb-1'>
         {review_stats && review_stats.rate ?
-        <>
+        <p className='pb-1'>
             <span className='weight-700'>{review_stats.rate}</span>
             <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
             <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>
-        </>:
-        <p className='weight-400 text-sm'>No Reviews</p>
+        </p>:
+        <p className='pb-1'><span className='weight-400 text-sm'>No Reviews</span></p>
         }
-      </p>
     </div>
     <ul className='no-list-style mb-0'>
-      {reviews && reviews.map((review) => (
-          <li className='mt-4'>
+      {reviews && reviews.map((review, i) => (
+          <li className='mt-4' key={i}>
             <div className='d-flex'>
               <img
                 width='48'

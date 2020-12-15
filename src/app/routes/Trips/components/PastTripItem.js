@@ -34,23 +34,13 @@ const PastTripItem = ({ item, onBookedTripClick, onReviewModal}) => {
                         <div className='cancelation-container d-md-inline-block d-flex justify-content-center py-3 py-md-0'>
                             <div className='d-flex align-items-center'>
                                 <p className='text-xs mb-0 mr-2'>Trip review:</p>
-                                {item.reviews.trip_review ?
-                                   <>
-                                    <p className='weight-700 mb-0'>{item.reviews.trip_review}</p>
-                                    <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                                   </>:
-                                   <p className='weight-700 mb-0'>Not Reviewed</p>
-                                }
+                                <p className='weight-700 mb-0'>{item.reviews.trip_review?.rate || 'Not Reviewed Yet'}</p>
+                                <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
                             </div>
                             <div className='d-flex align-items-center'>
                                 <p className='text-xs mb-0 mr-2'>Driver review:</p>
-                                {item.reviews.driver_review ?
-                                    <>
-                                     <p className='weight-700 mb-0'>{item.reviews.driver_review}</p>
-                                     <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                                   </>:
-                                   <p className='weight-700 mb-0'>Not Reviewed</p>
-                                }
+                                <p className='weight-700 mb-0'>{item.reviews.driver_review?.rate || 'Not Reviewed Yet'}</p>
+                                <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
                             </div>
                         </div>
                     </div>
@@ -65,10 +55,11 @@ const PastTripItem = ({ item, onBookedTripClick, onReviewModal}) => {
                     Details
                 </button>
                 <button
-                    className='btn btn-secondary btn-secondary__grey text-uppercase mb-1'
+                    className={`btn btn-secondary btn-secondary__grey text-uppercase mb-1 ${item.reviews.trip_review?.rate && item.reviews.driver_review?.rate ? 'btn-disabled': ''}`}
                     onClick={onReviewModal}
                 >
-                    Rate and Review
+                   {item.reviews.trip_review?.rate && item.reviews.driver_review?.rate
+                        ? 'See Your Review' : 'Rate and Review' }
                 </button>
             </div>
         </div>

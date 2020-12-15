@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { IconStar } from 'shared/components/Icons';
-
+import _ from "lodash";
 const rates = [5, 4, 3, 2, 1];
 
 const Rating = (props) => {
-  const [rating, setRate] = useState(props.initValue);
-
-    const {
-        name,
-        onClick,
-    } = props;
+    const {initValue, onClick} = props;
+    const [rating, setRate] = useState(initValue);
     const onChangeRate = (rate) => {
         setRate(rate);
 

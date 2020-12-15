@@ -74,6 +74,9 @@ input {
         color: $success;
       }
     }
+    &.is-readonly {
+      background-color: $disabled;
+    }
 
     &.icon-left {
       padding-left: 44px;

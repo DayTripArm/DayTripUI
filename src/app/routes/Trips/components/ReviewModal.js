@@ -16,8 +16,8 @@ const ReviewModal = ({ onClose, reviewTrip }) => {
   const dispatch = useDispatch();
   const [tab, setTab] = useState(1);
   const [invalidFields, setInvalidFields] = useState({});
-  const [tripForm, setTripRateForm] = useState({rate: null, notes: ""});
-  const [driverForm, setDriverRateForm] = useState({rate: null, notes: ""});
+  const [tripForm, setTripRateForm] = useState(reviewTrip.reviews.trip_review || {rate: "0.0", notes: ""});
+  const [driverForm, setDriverRateForm] = useState(reviewTrip.reviews.driver_review || {rate: "0.0", notes: ""});
 
   function validateForm() {
 
@@ -31,7 +31,7 @@ const ReviewModal = ({ onClose, reviewTrip }) => {
   function validateField(form, name) {
     const rule = validations[name];
     if (rule) {
-        if (rule.required && !_.isEmpty(form[name])) {
+        if (rule.required && _.isEmpty(form[name])) {
             return { status: "error", statusMessage: "This field is required" };
         }
     }
@@ -48,7 +48,7 @@ const ReviewModal = ({ onClose, reviewTrip }) => {
           if (tab === 1) {
               const body = {
                   "login_id" : Number(localStorage.id),
-                  "trip_id": reviewTrip.trip_id,
+                  "booked_trip_id": reviewTrip.id,
                   "review_text": tripForm.notes,
                   "rate": tripForm.rate
               };
@@ -59,10 +59,11 @@ const ReviewModal = ({ onClose, reviewTrip }) => {
               const body = {
                   "traveler_id" : Number(localStorage.id),
                   "driver_id": reviewTrip.driver_id,
+                  "booked_trip_id": reviewTrip.id,
                   "review_text": driverForm.notes,
                   "rate": driverForm.rate
               };
-              //dispatch(actions.addDriverReviewRequest(body));
+              dispatch(actions.addDriverReviewRequest(body));
               console.log(body)
           }
 
@@ -93,14 +94,19 @@ const ReviewModal = ({ onClose, reviewTrip }) => {
         </div>
         <p className='text-center weight-700'>Share your experience</p>
         <Textarea name='note' placeholder='Write a review' value={tab === 1 ? tripForm.notes: driverForm.notes} className='h-152px'
+            readonly={tab === 1 ? (!_.isEmpty(reviewTrip.reviews.trip_review.notes) ? true: false) : (!_.isEmpty(reviewTrip.reviews.driver_review.notes) ? true: false) }
             onChange={(e) => {
                         tab === 1 ? setTripRateForm({...tripForm, notes: e.target.value }):
                         setDriverRateForm({...driverForm, notes: e.target.value })
             }} />
-        <button className='btn btn-primary btn-block text-uppercase' onClick={(e) => {
+        {tab === 1 && _.isEmpty(reviewTrip.reviews.trip_review?.rate) && <button className={`btn btn-primary btn-block text-uppercase`} onClick={(e) => {
             e.preventDefault();
             writeReview()
-        }}>Submit</button>
+        }}>Submit</button> }
+        {tab === 2 && _.isEmpty(reviewTrip.reviews.driver_review?.rate) && <button className={`btn btn-primary btn-block text-uppercase`} onClick={(e) => {
+            e.preventDefault();
+            writeReview()
+        }}>Submit</button> }
       </div>
     </Modal>
   );

@@ -180,6 +180,11 @@ export default {
         return axios.post(template(base_urls.day_trip.addTripReview), body, { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
-    }
+    },
 
+    addDriverReviewRequest(body) {
+        return axios.post(template(base_urls.day_trip.addDriverReview), body, { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    }
 }

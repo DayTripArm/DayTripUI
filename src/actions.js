@@ -417,15 +417,27 @@ const actions  = {
         type: actions.RESEND_CONFIRMATION,
         email
     }),
-    ADD_REVIEW_REQUEST: `${nameSpace}_ADD_REVIEW_REQUEST`,
+    ADD_TRIP_REVIEW_REQUEST: `${nameSpace}_ADD_TRIP_REVIEW_REQUEST`,
     addTripReviewRequest: (body) => ({
-        type: actions.ADD_REVIEW_REQUEST,
+        type: actions.ADD_TRIP_REVIEW_REQUEST,
         body
     }),
 
-    ADD_REVIEW_RECEIVE: `${nameSpace}_ADD_REVIEW_RECEIVE`,
+    ADD_TRIP_REVIEW_RECEIVE: `${nameSpace}_ADD_TRIP_REVIEW_RECEIVE`,
     addTripReviewRecieve: (data) => ({
-        type: actions.ADD_REVIEW_RECEIVE,
+        type: actions.ADD_TRIP_REVIEW_RECEIVE,
+        data
+    }),
+
+    ADD_DRIVER_REVIEW_REQUEST: `${nameSpace}_ADD_DRIVER_REVIEW_REQUEST`,
+        addDriverReviewRequest: (body) => ({
+        type: actions.ADD_DRIVER_REVIEW_REQUEST,
+        body
+    }),
+
+    ADD_DRIVER_REVIEW_RECEIVE: `${nameSpace}_ADD_DRIVER_REVIEW_RECEIVE`,
+        addDriverReviewRecieve: (data) => ({
+        type: actions.ADD_DRIVER_REVIEW_RECEIVE,
         data
     })
 
