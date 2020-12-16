@@ -18,24 +18,25 @@ const FormCarInputBoxTariff = (props) => {
     } = props;
 
 
-    const [tariff1, setTariff1] = useState(value[0] || 0);
-    const [tariff2, setTariff2] = useState(value[1] || 0);
+    const [tariff1, setTariff1] = useState(value[0]);
+    const [tariff2, setTariff2] = useState(value[1]);
 
 
     const handleSave = (e) => {
         const {profile:profileData} = !_.isEmpty(travelerData.profile) ? travelerData : driverData;
         const {id} = profileData;
+        if (tariff1!=="" && tariff2!=="") {
+            let data = {
+                login_id: id,
+                car_info: {
+                    tariff1,
+                    tariff2
+                }
+            };
 
-        let data = {
-            login_id: id,
-            car_info: {
-                tariff1,
-                tariff2
-            }
-        };
-
-        dispatch(actions.updateDriverInfosRequest(data));
-        setEdit(!edit);
+            dispatch(actions.updateDriverInfosRequest(data));
+            setEdit(!edit);
+        }else{return false;}
     };
 
 
@@ -59,6 +60,8 @@ const FormCarInputBoxTariff = (props) => {
                                     onChange={(e) => setTariff1(e.target ? e.target.value : e)}
                                     placeholder='Price'
                                     iconPosition='right'
+                                    message={tariff1===""? "This field is mandatory" : ""}
+                                    isError={tariff1===""}
                                 />
                             </>
                         }
@@ -124,6 +127,8 @@ const FormCarInputBoxTariff = (props) => {
                                     onChange={(e) => setTariff2(e.target ? e.target.value : e)}
                                     placeholder='Price'
                                     iconPosition='right'
+                                    message={tariff2===""? "This field is mandatory" : ""}
+                                    isError={tariff2===""}
                                 />
                             }
                         </div>
