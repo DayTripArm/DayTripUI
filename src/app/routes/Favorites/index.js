@@ -38,6 +38,7 @@ const Favorites = () => {
                                                     size='sm'
                                                     title={trip.title}
                                                     trip_duration={trip.trip_duration}
+                                                    review_stats={trip.review_stats}
                                                     favorite={true}
                                                     imageUrl={src}
                                                 />
