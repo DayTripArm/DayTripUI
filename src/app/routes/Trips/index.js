@@ -23,7 +23,7 @@ const Trips = () => {
 
   const [tab, setTab] = useState(1);
   const [openDetailsModal, setOpenDetailsModal] = useState(false);
-  const [openReviewModal, setOpenReviewModal] = useState(false);
+  const [openReviewModal, setOpenReviewModal] = useState({open: false, currentTab: 1});
   const [reviewTrip, setReviewTrip] = useState({});
 
 
@@ -71,7 +71,7 @@ const Trips = () => {
             }
             {tab === 2 &&
                 (past_trips && past_trips.length > 0 ?
-                past_trips.map((item) => {return <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onReviewModal={(e) => {setOpenReviewModal(true); setReviewTrip(item); window.location.hash = "modal"}}/>}) :
+                past_trips.map((item) => {return <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} activeTab={1} onReviewModal={(openReviewPopup) => {setOpenReviewModal(openReviewPopup); setReviewTrip(item); window.location.hash = "modal"}}/>}) :
                 <NoResults message={`You don’t Have Any Past Trips`}/>)
             }
 
@@ -80,7 +80,7 @@ const Trips = () => {
         {openDetailsModal && (
             <TripDetailsModal title='Trips' onClose={() => setOpenDetailsModal(false)}/>
         )}
-      {openReviewModal && <ReviewModal reviewTrip={reviewTrip} onClose={() => setOpenReviewModal(false)} />}
+      {openReviewModal?.open && <ReviewModal reviewTrip={reviewTrip} activeTab={openReviewModal?.currentTab || 1} onClose={() => setOpenReviewModal({open: false})} />}
     </>
   );
 };

@@ -14,7 +14,7 @@ const Textarea = ({
   onFocus,
   onBlur,
   required,
-  readonly
+  disabled
 }) => {
     const [inputValue, setInputValue] = useState(value);
     const onChangeHandle = (e, name) => {
@@ -29,7 +29,7 @@ const Textarea = ({
     if (className) classes.push(className);
     if (value) classes.push('is-active');
     if (isError) classes.push('is-error');
-    if (readonly) classes.push('is-readonly');
+    if (disabled) classes.push('is-disabled');
     if (isSuccess) classes.push('is-success');
     return classes.join(' ');
   };
@@ -53,7 +53,7 @@ const Textarea = ({
           onBlur={onBlur}
           className={setClasses()}
           required={required}
-          readOnly={readonly}
+          disabled={disabled}
         />
         {message && (
           <p title={message} className='input-message text-xs weight-500 px-1 mt-1'>

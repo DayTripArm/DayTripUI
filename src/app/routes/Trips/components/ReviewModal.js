@@ -12,27 +12,28 @@ const validations = {
     }
 };
 
-const ReviewModal = ({ onClose, reviewTrip }) => {
+const ReviewModal = ({ onClose, reviewTrip, activeTab }) => {
   const dispatch = useDispatch();
-  const [tab, setTab] = useState(1);
+  const [tab, setTab] = useState(activeTab);
   const [invalidFields, setInvalidFields] = useState({});
-  const [tripForm, setTripRateForm] = useState(reviewTrip.reviews.trip_review || {rate: "0.0", notes: ""});
-  const [driverForm, setDriverRateForm] = useState(reviewTrip.reviews.driver_review || {rate: "0.0", notes: ""});
+  const [isRated, setIsRated] = useState(false);
+  const [tripForm, setTripRateForm] = useState(reviewTrip.reviews.trip_review || {rate: null, notes: ""});
+  const [driverForm, setDriverRateForm] = useState(reviewTrip.reviews.driver_review || {rate: null, notes: ""});
 
-  function validateForm() {
+  function validateForm(validate) {
 
     return _.reduce(validations, (errors, rule, name) => {
-        const result = validateField(tab === 1 ? tripForm: driverForm, name);
+        const result = validateField(tab === 1 ? tripForm: driverForm, name,validate);
         if (result) { errors[name] = result; }
 
         return errors;
     }, {});
   }
-  function validateField(form, name) {
+  function validateField(form, name,validate) {
     const rule = validations[name];
     if (rule) {
-        if (rule.required && _.isEmpty(form[name])) {
-            return { status: "error", statusMessage: "This field is required" };
+        if (rule.required && (!form[name] || form[name] && form[name]===0) && validate) {
+            return { status: "error", statusMessage: "Please rate your "+(tab === 1 ? 'trip': 'driver') };
         }
     }
   }
@@ -43,7 +44,7 @@ const ReviewModal = ({ onClose, reviewTrip }) => {
   }
 
   function writeReview(){
-      const invalidFields = validateForm();
+      const invalidFields = validateForm(true);
       if (_.isEmpty(invalidFields)) {
           if (tab === 1) {
               const body = {
@@ -52,7 +53,6 @@ const ReviewModal = ({ onClose, reviewTrip }) => {
                   "review_text": tripForm.notes,
                   "rate": tripForm.rate
               };
-              console.log(body)
               dispatch(actions.addTripReviewRequest(body));
           }
           else {
@@ -66,19 +66,24 @@ const ReviewModal = ({ onClose, reviewTrip }) => {
               dispatch(actions.addDriverReviewRequest(body));
               console.log(body)
           }
-
+          setIsRated(true);
+          dispatch(actions.getBookedTripsRequest(Number(localStorage.id), Number(localStorage.userType)));
       }
       setInvalidFields(invalidFields);
   }
   return (
     <Modal title='Rate and Review' showDismissButton onClose={() => onClose(false)}>
+      {isRated ?
+      <div className='py-4 px-0 px-md-8'>
+          <p className='text-center weight-700'>Thank You For Your Feedback!</p>
+      </div> :
       <div className='py-4 px-0 px-md-8'>
         <div className='tabs tabs__fit mb-6'>
           <ul className='no-list-style mb-3 mb-lg-0 clearfix'>
-            <li className={tab === 1 ? 'active' : ''} onClick={() => setTab(1)} role='presentation'>
+            <li className={tab === 1 ? 'active' : ''} onClick={() => {setTab(1); validateForm(false); setInvalidFields({});}} role='presentation'>
               Your Trip
             </li>
-            <li className={tab === 2 ? 'active' : ''} onClick={() => setTab(2)} role='presentation'>
+            <li className={tab === 2 ? 'active' : ''} onClick={() => {setTab(2); validateForm(false); setInvalidFields({});}} role='presentation'>
               Your Driver
             </li>
           </ul>
@@ -86,15 +91,29 @@ const ReviewModal = ({ onClose, reviewTrip }) => {
         <p className='text-center weight-700'>Did you enjoy your day? Please rate the trip and the driver</p>
         <div className='mb-6'>
             {tab === 1 &&
-                (<Rating initValue={tripForm.rate} onClick={(rating) => setTripRateForm({...tripForm, rate: rating })} />)
+                (
+                  <>
+                    <Rating initValue={tripForm.rate} onClick={(rating) => setTripRateForm({...tripForm, rate: rating })} />
+                    {getStatusMessage("rate") ? <div style={{textAlign: "center", color: "#B80000"}}>
+                      <span className="text-error-message">{getStatusMessage("rate")}</span>
+                    </div> : null}
+                  </>
+                )
             }
             {tab === 2 &&
-                (<Rating initValue={driverForm.rate} onClick={(rating) => setDriverRateForm({...driverForm, rate: rating })} />)
+                (
+                    <>
+                    <Rating initValue={driverForm.rate} onClick={(rating) => setDriverRateForm({...driverForm, rate: rating })} />
+                    {getStatusMessage("rate") ? <div style={{textAlign: "center", color: "#B80000"}}>
+                        <span className="text-error-message">{getStatusMessage("rate")}</span>
+                    </div> : null}
+                    </>
+                )
             }
         </div>
         <p className='text-center weight-700'>Share your experience</p>
         <Textarea name='note' placeholder='Write a review' value={tab === 1 ? tripForm.notes: driverForm.notes} className='h-152px'
-            readonly={tab === 1 ? (!_.isEmpty(reviewTrip.reviews.trip_review.notes) ? true: false) : (!_.isEmpty(reviewTrip.reviews.driver_review.notes) ? true: false) }
+            disabled={tab === 1 ? (!_.isEmpty(reviewTrip.reviews.trip_review.notes) ? true: false) : (!_.isEmpty(reviewTrip.reviews.driver_review.notes) ? true: false) }
             onChange={(e) => {
                         tab === 1 ? setTripRateForm({...tripForm, notes: e.target.value }):
                         setDriverRateForm({...driverForm, notes: e.target.value })
@@ -107,7 +126,7 @@ const ReviewModal = ({ onClose, reviewTrip }) => {
             e.preventDefault();
             writeReview()
         }}>Submit</button> }
-      </div>
+      </div>}
     </Modal>
   );
 };

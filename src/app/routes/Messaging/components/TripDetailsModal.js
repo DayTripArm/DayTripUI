@@ -75,14 +75,11 @@ const TripDetailsModal = ({ onClose}) => {
                     />
                     <div>
                         <p className='weight-500 mb-2'>{trip_tour.title}</p>
-                        {reviews.trip_review && reviews.trip_review.rate ?
-                           <p className='mb-0'>
-                            <span className='weight-700'>{reviews.trip_review.rate}</span>
+                        <p className='mb-0'>
+                            <span className='weight-700'>{reviews.trip_review?.rate || 'No reviews yet'}</span>
                             <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
-                            <span className='text-sm text__grey-dark'>({reviews.trip_review.count} reviews)</span>
-                           </p>:
-                           <p className='mb-0'><span className='weight-400 text-sm'>No Reviews</span></p>
-                        }
+                            {reviews.trip_review?.rate && <span className='text-sm text__grey-dark'>({reviews.trip_review.count} reviews)</span>}
+                        </p>
                     </div>
                 </div>
                 <hr className='border__top border__default my-4'/>
@@ -151,14 +148,11 @@ const TripDetailsModal = ({ onClose}) => {
                 />
                 <div>
                     <p className='weight-500 pt-1 mb-0'>{user_info.user_name}</p>
-                    {reviews.driver_review && reviews.driver_review.rate ?
-                      <p className='mb-0'>
-                        <span className='weight-700'>{reviews.driver_review.rate}</span>
+                    {user_info?.user_type === 2 && <p className='mb-0'>
+                        <span className='weight-700'>{reviews.driver_review?.rate || 'No review yet'}</span>
                         <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
-                        <span className='text-sm text__grey-dark'>({reviews.driver_review.count} reviews)</span>
-                       </p>:
-                       <p className='mb-0'><span className='weight-400 text-sm'>No Reviews</span></p>
-                    }
+                        {reviews.driver_review?.rate && <span className='text-sm text__grey-dark'>({reviews.driver_review.count} reviews)</span>}
+                    </p>}
                 </div>
             </div>
             <hr className='border__top border__default my-4'/>

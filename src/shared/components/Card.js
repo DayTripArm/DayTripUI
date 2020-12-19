@@ -63,14 +63,11 @@ const Card = (props) => {
                 </Link>
             )}
             <p className='text__grey-dark weight-700 mb-2'>Trip duration : {trip_duration} hours</p>
-            {review_stats && review_stats.rate ?
-             <p className='mb-0'>
-                <span className='weight-700'>{review_stats.rate}</span>
+            <p className='mb-0'>
+                <span className='weight-700'>{review_stats?.rate || 'No reviews yet'}</span>
                 <IconStar className='card-star mx-1 pull-t-1'/>
-                <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>
-             </p>:
-             <p className='mb-0'><span className='weight-400 text-sm'>No Reviews</span></p>
-            }
+                {review_stats?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>}
+            </p>
         </div>
     )
 };

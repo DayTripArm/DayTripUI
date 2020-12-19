@@ -135,15 +135,11 @@ const SearchPanel = ({trip_detail, review_stats}) => {
             <div className='d-none d-lg-block'>
               <div className='d-flex align-items-center'>
                 <h6 className='mb-1 text__blue mr-2'>{tripTitle}</h6>
-
-                {review_stats.rate ?
-                 <p className='mb-0 d-xl-block'>
-                    <span className='weight-700 mb-0'>{review_stats.rate}</span>
+                  <p className='mb-0 d-xl-block'>
+                    <span className='weight-700 mb-0'>{review_stats?.rate || 'No Reviews Yet'}</span>
                     <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                    <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>
-                  </p>:
-                  <p className='mb-0 d-xl-block'><span className='weight-400 text-sm'>No Reviews</span></p>
-                }
+                    {review_stats?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>}
+                  </p>
               </div>
               <p className='text-sm weight-500 mb-0 d-xl-block'>
                 Trip Duration: <span className='text__grey-dark'>{trip_detail.trip_duration } hours</span>

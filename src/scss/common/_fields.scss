@@ -74,7 +74,7 @@ input {
         color: $success;
       }
     }
-    &.is-readonly {
+    &.is-disabled {
       background-color: $disabled;
     }
 

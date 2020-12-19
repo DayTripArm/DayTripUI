@@ -33,13 +33,21 @@ const PastTripItem = ({ item, onBookedTripClick, onReviewModal}) => {
                         </p>
                         <div className='cancelation-container d-md-inline-block d-flex justify-content-center py-3 py-md-0'>
                             <div className='d-flex align-items-center'>
-                                <p className='text-xs mb-0 mr-2'>Trip review:</p>
-                                <p className='weight-700 mb-0'>{item.reviews.trip_review?.rate || 'Not Reviewed Yet'}</p>
+                                <p className='text-xs mb-0 mr-2'>Trip rating:</p>
+                                { item.reviews.trip_review?.rate ?
+                                    <p className='weight-700 mb-0'>{item.reviews.trip_review?.rate}</p>:
+                                    <button className='btn btn-secondary btn-sm'
+                                        onClick={(e) => {onReviewModal({open: true, currentTab: 1});} }>Rate</button>
+                                }
                                 <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
                             </div>
                             <div className='d-flex align-items-center'>
-                                <p className='text-xs mb-0 mr-2'>Driver review:</p>
-                                <p className='weight-700 mb-0'>{item.reviews.driver_review?.rate || 'Not Reviewed Yet'}</p>
+                                <p className='text-xs mb-0 mr-2'>Driver rating:</p>
+                                { item.reviews.driver_review?.rate ?
+                                    <p className='weight-700 mb-0'>{item.reviews.driver_review?.rate}</p>:
+                                    <button className='btn btn-secondary btn-sm'
+                                        onClick={(e) => {onReviewModal({open: true, currentTab: 2});} }>Rate</button>
+                                }
                                 <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
                             </div>
                         </div>
@@ -56,7 +64,7 @@ const PastTripItem = ({ item, onBookedTripClick, onReviewModal}) => {
                 </button>
                 <button
                     className={`btn btn-secondary btn-secondary__grey text-uppercase mb-1 ${item.reviews.trip_review?.rate && item.reviews.driver_review?.rate ? 'btn-disabled': ''}`}
-                    onClick={onReviewModal}
+                    onClick={(e) => {onReviewModal({open: true, currentTab: 1});}}
                 >
                    {item.reviews.trip_review?.rate && item.reviews.driver_review?.rate
                         ? 'See Your Review' : 'Rate and Review' }
