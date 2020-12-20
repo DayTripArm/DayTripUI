@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { IconStar } from 'shared/components/Icons';
-import _ from "lodash";
 const rates = [5, 4, 3, 2, 1];
 
 const Rating = (props) => {
-    const {initValue, onClick} = props;
+    const {initValue, onClick, isDisabled} = props;
     const [rating, setRate] = useState(initValue);
     const onChangeRate = (rate) => {
         setRate(rate);
@@ -19,9 +18,9 @@ const Rating = (props) => {
     >
       {rates.map((item, i) => (
         <button
-          className={`btn btn-circle btn-static border-0${5 - rating === i ? ' active' : ''}`}
+          className={`btn btn-circle btn-static border-0${5 - rating === i ? ' active' : ''} ${rating < 5-i && isDisabled ? 'btn-inactive': ''}`}
           key={item}
-          onClick={() => onChangeRate(5 - i)}
+          onClick={() => !isDisabled ? onChangeRate(5 - i): {}}
         >
           <IconStar />
         </button>
