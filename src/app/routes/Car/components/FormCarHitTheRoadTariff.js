@@ -96,6 +96,9 @@ const FormCarHitTheRoadTariff = (props) => {
                                 type='number'
                                 name={hit_the_road_tariff}
                                 value={hit_the_road_tariff}
+                                tariff={true}
+                                min={25000}
+                                precision={100}
                                 onChange={(e) => setHitTheRoadTariff(e.target ? e.target.value : e)}
                                 label='Set your price for booking you for the whole day'
                                 placeholder='Price'

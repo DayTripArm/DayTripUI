@@ -35,7 +35,7 @@ const HitTheRoad = (props) => {
     const {preregistered_info} = driverData;
     const {
         tips={},
-        hit_the_road_tariff="",
+        hit_the_road_tariff=25000,
     } = preregistered_info;
 
     const carTips = tips[3]; // type = 4
@@ -87,6 +87,9 @@ const HitTheRoad = (props) => {
                 <Input
                     type='number'
                     name='hit_the_road_tariff'
+                    tariff={true}
+                    min={25000}
+                    precision={100}
                     value={hit_the_road_tariff}
                     onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
                     label='Set your price for booking you for the whole day'

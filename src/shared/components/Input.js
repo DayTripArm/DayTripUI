@@ -9,6 +9,9 @@ const Input = ({
    label,
    name,
    type,
+   min,
+   max,
+   precision,
    placeholder,
    isError,
    isSuccess,
@@ -29,7 +32,8 @@ const Input = ({
    readonly,
    autoFocus,
    autoComplete,
-   phoneCodes
+   phoneCodes,
+   tariff
 }) => {
     const [inputValue, setInputValue] = useState(value);
     const [showPwd, swtShowPwd] = useState(false);
@@ -63,16 +67,16 @@ const Input = ({
     };
 
     const add = () => {
-        let value = Number(inputValue) + 10;
+        let value = Number(inputValue) + precision;
         setInputValue(value);
         onChange(value, name);
     };
 
     const subtract = () => {
-        let value = 0;
+        let value = min;
 
-        if (Number(inputValue) >= 10) {
-            value = Number(inputValue) - 10;
+        if (Number(inputValue) - precision > min) {
+            value = Number(inputValue) - precision;
         }
 
         setInputValue(value);
@@ -114,6 +118,27 @@ const Input = ({
                             name: name,
                             required: true
                         }}
+                    />
+                    :
+                    tariff?
+                    <input
+                        type={type}
+                        id={name}
+                        placeholder={placeholder}
+                        name={name}
+                        min={min}
+                        max={max}
+                        precision={precision}
+                        ref={inputRef}
+                        value={inputValue}
+                        onChange={(e) => onChangeHandle(e, name)}
+                        onFocus={onFocus}
+                        onMouseDown={onMouseDown}
+                        onTouchEnd={onTouchEnd}
+                        onBlur={(e) => onBlurHandle(e, name)}
+                        className={setClasses()}
+                        autoFocus={autoFocus}
+                        readOnly
                     />
                     :
                     <input
