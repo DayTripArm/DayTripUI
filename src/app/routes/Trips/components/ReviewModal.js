@@ -93,7 +93,7 @@ const ReviewModal = ({ onClose, reviewTrip, activeTab }) => {
             {tab === 1 &&
                 (
                   <>
-                    <Rating initValue={tripForm.rate} onClick={(rating) => setTripRateForm({...tripForm, rate: rating })} />
+                    <Rating isDisabled={reviewTrip.reviews.trip_review?.rate>=1 ? true: false} initValue={tripForm.rate} onClick={(rating) => setTripRateForm({...tripForm, rate: rating })} />
                     {getStatusMessage("rate") ? <div style={{textAlign: "center", color: "#B80000"}}>
                       <span className="text-error-message">{getStatusMessage("rate")}</span>
                     </div> : null}
@@ -103,7 +103,7 @@ const ReviewModal = ({ onClose, reviewTrip, activeTab }) => {
             {tab === 2 &&
                 (
                     <>
-                    <Rating initValue={driverForm.rate} onClick={(rating) => setDriverRateForm({...driverForm, rate: rating })} />
+                    <Rating isDisabled={reviewTrip.reviews.driver_review?.rate>=1 ? true: false} initValue={driverForm.rate} onClick={(rating) => setDriverRateForm({...driverForm, rate: rating })} />
                     {getStatusMessage("rate") ? <div style={{textAlign: "center", color: "#B80000"}}>
                         <span className="text-error-message">{getStatusMessage("rate")}</span>
                     </div> : null}

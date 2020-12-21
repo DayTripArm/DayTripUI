@@ -264,7 +264,7 @@
 
   button {
     &:hover, &.active {
-      &, &~button {
+      &:not(.btn-inactive), &~button:not(.btn-inactive) {
         svg path, path {
           fill: $primary;
         }
