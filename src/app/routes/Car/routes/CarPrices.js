@@ -29,7 +29,7 @@ const CarPrices = () => {
                 name={"hit_the_road_tariff"}
                 label={"Price for Hit The Road"}
                 placeholder="Choose"
-                value={hit_the_road_tariff && hit_the_road_tariff!=null? hit_the_road_tariff : 25000}
+                value={hit_the_road_tariff && hit_the_road_tariff!=null? hit_the_road_tariff : ""}
                 empty_message={"Not Specified"}
                 carTips={carTips}
             />

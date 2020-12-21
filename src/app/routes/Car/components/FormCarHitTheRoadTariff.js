@@ -74,6 +74,9 @@ const FormCarHitTheRoadTariff = (props) => {
                             exclusive
                             onChange={(e, value) => {
                                 if (value !== null) setTariffChecked(value);
+                                if(value === true && hit_the_road_tariff ===""){
+                                    setHitTheRoadTariff(25000); //set initial value for input field.
+                                }
                                 if (value === false) {
                                     setHitTheRoadTariff("");
                                     let data = {
@@ -104,8 +107,6 @@ const FormCarHitTheRoadTariff = (props) => {
                                 placeholder='Price'
                                 iconPosition='right'
                                 containerClass="mt-6"
-                                message={tariffChecked && hit_the_road_tariff < 1 ? "This field is mandatory" : ""}
-                                isError={tariffChecked && hit_the_road_tariff < 1}
                             />
                             <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>Save</button>
                             </>
