@@ -31,6 +31,8 @@ const Driver = ({ history }) => {
         reviews=[]
     } = individual_user;
 
+    console.log(locate.state)
+    console.log(created_at)
     const created_date = new Date(created_at || "");
     const member_since = MONTH_LIST[created_date.getMonth()] + " " + created_date.getFullYear();
 
@@ -42,8 +44,8 @@ const Driver = ({ history }) => {
         : profile_photo;
 
     useEffect(() => {
-        const user_id = locate.state ? Number(locate.state.driver_id) : Number(localStorage.id)
-        const user_type = locate.state? Number(locate.state.user_type) : Number(localStorage.userType)
+        const user_id = locate.state?.user_id ? Number(locate.state.user_id) : Number(localStorage.id)
+        const user_type = locate.state?.user_type ? Number(locate.state.user_type) : Number(localStorage.userType)
         dispatch(actions.individualUserRequest(user_id, user_type));
 
         // eslint-disable-next-line react-hooks/exhaustive-deps

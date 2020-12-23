@@ -29,9 +29,12 @@ const TripDetailsModal = ({ onClose}) => {
     } = booked_trip_details;
 
     const viewProfile = () => {
-        history.push("/individuals/user",
+        console.log(user_info)
+        history.push(user_info.user_type == 1? "/individuals/user": "/individuals/driver",
              {
-                booked_trip: true,
+                booked_trip: false,
+                user_id: user_info.user_id,
+                user_type: user_info.user_type,
                 from: "driver"
             }
         );
@@ -184,7 +187,7 @@ const TripDetailsModal = ({ onClose}) => {
             <div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
                     <span className='text__grey-dark'>Trip Price</span>
-                    <span className='mxw-60pc weight-700'>$44.00</span>
+                    <span className='mxw-60pc weight-700'>${price}.00</span>
                 </div>
                 <div className='d-flex align-items-center justify-content-between text-sm mb-2'>
                     <span className='text__grey-dark'>Service Fee</span>
@@ -195,7 +198,7 @@ const TripDetailsModal = ({ onClose}) => {
             <div className='mb-3'>
                 <div className='d-flex align-items-center justify-content-between text-sm'>
                     <span className='text__grey-dark'>Total price</span>
-                    <span className='mxw-60pc weight-700'>{price}</span>
+                        <span className='mxw-60pc weight-700'>{price+4}.00</span>
                 </div>
             </div>
             <div className='shadow__4-up p-4 row position-sticky fixed-bottom bg-white translate-y-16'>
