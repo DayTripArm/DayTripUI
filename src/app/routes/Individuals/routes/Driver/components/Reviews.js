@@ -8,7 +8,7 @@ const Reviews = ({reviews, review_stats}) => (
     <div className='mt-14 mt-md-15 mt-xl-16'>
       <h2 className='text__blue mt-4'>Reviews</h2>
       <p className='pb-1'>
-            <span className='weight-700'>{review_stats?.rate || 'No reviews yet'}</span>
+            <span className='weight-700'>{review_stats?.rate || 'No reviews'}</span>
             <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
             {review_stats?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>}
       </p>

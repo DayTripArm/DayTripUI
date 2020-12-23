@@ -76,7 +76,7 @@ const TripDetailsModal = ({ onClose}) => {
                     <div>
                         <p className='weight-500 mb-2'>{trip_tour.title}</p>
                         <p className='mb-0'>
-                            <span className='weight-700'>{reviews.trip_review?.rate || 'No reviews yet'}</span>
+                            <span className='weight-700'>{reviews.trip_review?.rate || 'No reviews'}</span>
                             <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
                             {reviews.trip_review?.rate && <span className='text-sm text__grey-dark'>({reviews.trip_review.count} reviews)</span>}
                         </p>

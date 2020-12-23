@@ -64,7 +64,7 @@ const Card = (props) => {
             )}
             <p className='text__grey-dark weight-700 mb-2'>Trip duration : {trip_duration} hours</p>
             <p className='mb-0'>
-                <span className='weight-700'>{review_stats?.rate || 'No reviews yet'}</span>
+                <span className='weight-700'>{review_stats?.rate || 'No reviews'}</span>
                 <IconStar className='card-star mx-1 pull-t-1'/>
                 {review_stats?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>}
             </p>

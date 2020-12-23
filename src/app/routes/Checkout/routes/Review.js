@@ -39,7 +39,7 @@ const Review = (props) => {
     const pickTime = !_.isEmpty(form.pickup_time) ? {hour: _.split(form.pickup_time,":")[0], minute: _.split(form.pickup_time,":")[1]} : {hour: "08", minute: "30"};
 
     const checkout_info = locate.state;
-    const driver_img_src = checkout_info && checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
+    const driver_img_src = checkout_info?.driver_img || 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
 
     // Select time
     function onTimeSet(){
@@ -172,16 +172,16 @@ const Review = (props) => {
             <img
               width='106'
               height='136'
-              src={checkout_info.trip_img}
-              alt={checkout_info.trip_title}
+              src={checkout_info?.trip_img}
+              alt={checkout_info?.trip_title}
               className='rounded__4 object-pos-center object-fit-cover mr-3'
             />
             <div>
-              <p className='weight-500 mb-2'>{checkout_info.trip_title}</p>
+              <p className='weight-500 mb-2'>{checkout_info?.trip_title}</p>
               <p className='mb-0'>
-                <span className='weight-700'>5.0</span>
+                <span className='weight-700'>{checkout_info?.trip_review?.rate || "No reviews"}</span>
                 <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                <span className='text-sm text__grey-dark'>(125 reviews)</span>
+                {checkout_info?.trip_review?.rate && <span className='text-sm text__grey-dark'>({checkout_info?.trip_review?.count} reviews)</span>}
               </p>
             </div>
           </div>
@@ -189,22 +189,22 @@ const Review = (props) => {
           <div className='p-4'>
             <div className='d-flex justify-content-between mb-2'>
               <span className='text-sm text__grey-dark'>Date</span>
-              <span className='weight-500'>{moment(checkout_info.trip_day).format('MMMM DD')}</span>
+              <span className='weight-500'>{moment(checkout_info?.trip_day).format('MMMM DD')}</span>
             </div>
             <div className='d-flex justify-content-between mb-2'>
               <span className='text-sm text__grey-dark'>Travelers</span>
-              <span className='weight-500'>{checkout_info.travelers_count}</span>
+              <span className='weight-500'>{checkout_info?.travelers_count}</span>
             </div>
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>Trip Duration</span>
-              <span className='weight-500'>{checkout_info.trip_duration}</span>
+              <span className='weight-500'>{checkout_info?.trip_duration}</span>
             </div>
           </div>
           <hr className='border__top border__default m-0' />
           <div className='p-4'>
             <div className='d-flex justify-content-between mb-2'>
               <span className='text-sm text__grey-dark'>Trip Price</span>
-              <span className='weight-500'>${parseFloat(checkout_info.price)+".00"}</span>
+              <span className='weight-500'>${parseFloat(checkout_info?.price)+".00"}</span>
             </div>
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>Service Fee</span>
@@ -213,7 +213,7 @@ const Review = (props) => {
             <hr className='border__top border__default my-4' />
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>Total Price</span>
-              <span className='weight-500'>${parseFloat(checkout_info.price+4)+".00"}</span>
+              <span className='weight-500'>${parseFloat((checkout_info?.price || 0)+4)+".00"}</span>
             </div>
           </div>
           <hr className='border__top border__default m-0' />
@@ -234,9 +234,9 @@ const Review = (props) => {
               <div>
                 <p className='weight-500 pt-1 mb-0'>{checkout_info.driver_name}</p>
                 <p className='mb-0'>
-                  <span className='weight-700'>5.0</span>
+                  <span className='weight-700'>{checkout_info?.review.rate || 'No reviews'}</span>
                   <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                  <span className='text-sm text__grey-dark'>(125 reviews)</span>
+                  {checkout_info?.review?.rate && <span className='text-sm text__grey-dark'>({checkout_info?.review?.count} reviews)</span>}
                 </p>
               </div>
             </div>
@@ -245,11 +245,11 @@ const Review = (props) => {
               <IconGlobe className='mr-2 fixed-svg' />
               <p className='mb-0'>
                 Speaks:{' '}
-                <span className='weight-500 text__grey-dark'>{checkout_info.languages}</span>
+                <span className='weight-500 text__grey-dark'>{checkout_info?.languages}</span>
               </p>
             </div>
             {
-                Object.keys(checkout_info.car_specs).map((opt, i) => {
+                Object.keys(checkout_info?.car_specs).map((opt, i) => {
                     return (
                         <div className='d-flex mb-4' key={i}>
                           {opt === "car_seat" && (<IconCarSeat className='mr-2' />) }

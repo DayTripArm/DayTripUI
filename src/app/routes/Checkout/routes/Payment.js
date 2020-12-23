@@ -1,7 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Input from 'shared/components/Input';
 import Checkbox from 'shared/components/Checkbox';
-import { IconStar, IconCheckMarkFilled } from 'shared/components/Icons';
+import {
+    IconDestination,
+    IconStar,
+    IconGlobe,
+    IconNoSmoking,
+    IconPetStep,
+    IconSnack,
+    IconCarSeat,
+    IconWifi,
+    IconWater,
+    IconAC,
+    IconCheckMarkFilled
+} from 'shared/components/Icons';
+import {CAR_SPECS} from "../../../../constants";
 import { Link, useLocation } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import actions from "actions";
@@ -69,7 +82,8 @@ const Payment = () => {
   const cardExists = false;
   const location = useLocation();
   const checkout_info = location.state;
-  // const driver_img_src = checkout_info.driver_img ? checkout_info.driver_img : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
+  const [showMoreDetails, setShowMoreDetails] = useState(false);
+  const driver_img_src = checkout_info?.driver_img || 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
 
 
   const completeCheckout = () => {
@@ -96,9 +110,9 @@ const Payment = () => {
             <div>
             <p className='weight-500 mb-2'>{checkout_info.trip_title}</p>
               <p className='mb-0'>
-                <span className='weight-700'>5.0</span>
+                <span className='weight-700'>{checkout_info?.trip_review?.rate || "No reviews"}</span>
                 <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                <span className='text-sm text__grey-dark'>(125 reviews)</span>
+                {checkout_info?.trip_review?.rate && <span className='text-sm text__grey-dark'>({checkout_info?.trip_review?.count} reviews)</span>}
               </p>
             </div>
           </div>
@@ -134,10 +148,56 @@ const Payment = () => {
             </div>
           </div>
           <hr className='border__top border__default m-0' />
-          <div className='text-center py-3'>
-            <Link to='/tour' className='btn btn-secondary btn-sm'>
-              More Details
-            </Link>
+          <div className='pt-3 px-4 pb-4'>
+              <p className='text-center'>
+                 <button className='btn btn-secondary btn-sm' onClick={() => setShowMoreDetails(!showMoreDetails)}>{showMoreDetails ? 'Less Details': 'More Details'}</button>
+              </p>
+              {showMoreDetails &&
+                <>
+                <div className='d-flex'>
+                  <img
+                    width='56'
+                    height='56'
+                    src={driver_img_src}
+                    alt='user'
+                    className='rounded__50 object-pos-center object-fit-cover mr-3'
+                  />
+                  <div>
+                    <p className='weight-500 pt-1 mb-0'>{checkout_info.driver_name}</p>
+                    <p className='mb-0'>
+                      <span className='weight-700'>{checkout_info?.review.rate || 'No reviews'}</span>
+                      <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
+                      {checkout_info?.review?.rate && <span className='text-sm text__grey-dark'>({checkout_info?.review?.count} reviews)</span>}
+                    </p>
+                  </div>
+                </div>
+                <hr className='border__top border__default my-4' />
+                <div className='d-flex mb-4'>
+                  <IconGlobe className='mr-2 fixed-svg' />
+                  <p className='mb-0'>
+                    Speaks:{' '}
+                    <span className='weight-500 text__grey-dark'>{checkout_info.languages}</span>
+                  </p>
+                </div>
+                {
+                    Object.keys(checkout_info.car_specs).map((opt, i) => {
+                        return (
+                            <div className='d-flex mb-4' key={i}>
+                              {opt === "car_seat" && (<IconCarSeat className='mr-2' />) }
+                              {opt === "smoke_allowed" && (<IconNoSmoking className='mr-2' />) }
+                              {opt === "pets_allowd"  && (<IconPetStep className='mr-2' />) }
+                              {opt === "wifi"  && (<IconWifi className='mr-2' />) }
+                              {opt === "snacks"  && (<IconSnack className='mr-2' />) }
+                              {opt === "air_condition"  && (<IconAC className='mr-2' />) }
+                              {opt === "water"  && (<IconWater className='mr-2' />) }
+                              <p className='mb-0'>
+                                {CAR_SPECS[opt]}: <span className='weight-500 text__grey-dark'>{checkout_info.car_specs[opt]? "Yes" : "No"}</span>
+                              </p>
+                            </div>
+                         )
+                    })
+                }
+              </>}
           </div>
         </div>
         <Link to='/checkout/success' className='btn btn-block btn-primary text-uppercase mt-5' onClick={(e) => {

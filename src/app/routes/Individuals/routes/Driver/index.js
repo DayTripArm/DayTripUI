@@ -70,7 +70,7 @@ const Driver = ({ history }) => {
                                     />
                                     <div>
                                         <p className='weight-500 pt-2 mb-0'>{user_name}</p>
-                                        <span className='weight-700'>{review_stats?.rate || 'No reviews yet'}</span>
+                                        <span className='weight-700'>{review_stats?.rate || 'No reviews'}</span>
                                         <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
                                         {review_stats?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>}
                                     </div>

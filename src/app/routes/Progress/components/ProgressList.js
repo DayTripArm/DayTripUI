@@ -21,7 +21,7 @@ const ProgressList = ({ onOpenModal, driver_progress }) => (
         </button>
       </div>
       <h2 className='mb-2 d-flex align-items-center'>
-        <span className='weight-700'>{driver_progress?.overall_rating || "No reviews yet"}</span>
+        <span className='weight-700'>{driver_progress?.overall_rating || "No reviews"}</span>
         <IconStar fill='#FE4C30' width='32' height='32' className='ml-2' />
       </h2>
       <p className='text__grey-dark mb-0'>All time</p>

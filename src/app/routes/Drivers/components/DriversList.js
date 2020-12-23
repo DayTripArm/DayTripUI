@@ -87,6 +87,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                     price: location.state?.trip_id ? driver.tariff1 : driver.hit_the_road_tariff,
                     languages: driver.languages,
                     review: driver.review,
+                    trip_review: learn_more ? {}: location.state?.review,
                     trip_day: location.state?.date || moment().format('YYYY-MM-DD'),
                     trip_duration: trip_details.trip_duration || 12,
                     travelers_count: location.state?.travelers || 2
@@ -134,7 +135,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                                 <div>
                                                     <p className='weight-500 pt-1 mb-0'>{driver.driver_name}</p>
                                                     <p className='mb-0'>
-                                                        <span className='weight-700'>{driver.review?.rate || 'No reviews yet'}</span>
+                                                        <span className='weight-700'>{driver.review?.rate || 'No reviews'}</span>
                                                         <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
                                                         {driver.review?.rate && <span className='text-sm text__grey-dark'>({driver.review.count} reviews)</span>}
                                                     </p>

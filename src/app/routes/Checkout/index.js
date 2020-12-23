@@ -16,10 +16,12 @@ const routes = [
   {
     route: 'checkout/review',
     name: 'Review Your Trip',
+    isActive: true
   },
   {
     route: 'checkout/payment',
     name: 'Payment Information',
+    isActive: false
   },
 ];
 
