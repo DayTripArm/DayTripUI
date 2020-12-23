@@ -7,6 +7,7 @@ export const INITIAL_STATE = {
     driver_details: {},
     calendar_settings: {},
     booked_trip_details: {},
+    driver_progress: {},
     preregistered_info: {
         car_mark_list: [],
         car_model_list: [],
@@ -148,6 +149,15 @@ const driverData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 driver_details: data
+            }
+        }
+
+        case actions.DRIVER_PROGRESS_RECEIVE: {
+            const {data} = action;
+
+            return {
+                ...state,
+                driver_progress: data
             }
         }
 

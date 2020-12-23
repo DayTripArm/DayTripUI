@@ -19,6 +19,7 @@ export default {
     "getHitTheRoad": `${HOST}/hit_the_road`,
     "saveTrip": `${HOST}/save_trip`,
     "driverInfos": `${HOST}/driver_infos/{0}`,
+    "driverProgress": `${HOST}/driver_infos/{0}/driver_progress`,
     "getSavedTrips": `${HOST}/saved_trips?login_id={0}`,
     "getCountryCities": `${HOST}/country_cities?city={0}`,
     "getIndividualUser": `${HOST}/profile_info/{0}?profile=user_profile&user_type={1}`,

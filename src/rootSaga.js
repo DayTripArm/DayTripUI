@@ -580,6 +580,23 @@ function* addDriverReviewRequest(action) {
     }
 }
 
+function* driverProgressRequest(action) {
+    try {
+        const {driver_id} = action;
+        const {response, error} = yield call(Api.driverProgressRequest, driver_id);
+
+        if (response) {
+            yield put(actions.driverProgressReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -596,6 +613,7 @@ function* watcherSaga() {
     yield takeEvery(actions.SAVE_TRIP, saveTrip); // favorite or not
     yield takeEvery(actions.SAVED_TRIPS_REQUEST, savedTripsRequest);
     yield takeEvery(actions.TRIP_DETAIL_REQUEST, tripDetailRequest);
+    yield takeEvery(actions.DRIVER_PROGRESS_REQUEST, driverProgressRequest);
     yield takeEvery(actions.DRIVER_INFOS_REQUEST, driverInfosRequest);
     yield takeEvery(actions.DELETE_DRIVER_INFOS_REQUEST, deleteDriverInfosRequest);
     yield takeEvery(actions.UPDATE_DRIVER_INFOS_REQUEST, updateDriverInfosRequest);

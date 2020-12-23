@@ -107,6 +107,18 @@ const actions  = {
         data
     }),
 
+    DRIVER_PROGRESS_REQUEST: `${nameSpace}_DRIVER_PROGRESS_REQUEST`,
+    driverProgressRequest: (driver_id) => ({
+        type: actions.DRIVER_PROGRESS_REQUEST,
+        driver_id
+    }),
+
+    DRIVER_PROGRESS_RECEIVE: `${nameSpace}_DRIVER_PROGRESS_RECEIVE`,
+    driverProgressReceive: (data) => ({
+        type: actions.DRIVER_PROGRESS_RECEIVE,
+        data
+    }),
+
     SET_USER_TYPE: `${nameSpace}_SET_USER_TYPE`,
     setUserType: (userType) => ({
         type: actions.SET_USER_TYPE,

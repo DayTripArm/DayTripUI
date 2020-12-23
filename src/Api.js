@@ -186,5 +186,12 @@ export default {
         return axios.post(template(base_urls.day_trip.addDriverReview), body, { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
-    }
+    },
+
+    driverProgressRequest(driver_id) {
+        return axios.get(template(base_urls.day_trip.driverProgress, driver_id), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
 }
