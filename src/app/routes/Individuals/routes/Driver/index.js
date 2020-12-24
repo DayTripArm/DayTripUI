@@ -31,8 +31,6 @@ const Driver = ({ history }) => {
         reviews=[]
     } = individual_user;
 
-    console.log(locate.state)
-    console.log(created_at)
     const created_date = new Date(created_at || "");
     const member_since = MONTH_LIST[created_date.getMonth()] + " " + created_date.getFullYear();
 

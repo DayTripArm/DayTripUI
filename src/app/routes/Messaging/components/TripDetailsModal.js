@@ -29,7 +29,6 @@ const TripDetailsModal = ({ onClose}) => {
     } = booked_trip_details;
 
     const viewProfile = () => {
-        console.log(user_info)
         history.push(user_info.user_type == 1? "/individuals/user": "/individuals/driver",
              {
                 booked_trip: false,

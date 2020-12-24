@@ -125,14 +125,15 @@ const App = () => {
                                 <Route path='/help' component={Help} />
                                 <Route path='/driverRegister' component={DriverRegister} />
                                 <Route path='/car' component={Car} />
+                                <Route path='/tour/:id' component={Tour} />
                                 <Route path='/individuals' component={Individuals} />
                                 <Route path='/messaging' component={Messaging} />
-                                <Route path='/calendar' component={Calendar} />
+                                <Route path='/calendar' component={Calendar}  />
                                 <Route path='/progress' component={Progress} />
                                 <Route path='/refer' component={Refer} />
                                 <Route path='/account' component={Account} />
-                                <Redirect from='*' to={'/calendar'} />
-                            </>
+                                <Route component={Calendar} />
+                    </>
                     }
 
                     <Route path='/home' component={Home} />
