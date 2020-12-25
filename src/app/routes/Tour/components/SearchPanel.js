@@ -165,7 +165,6 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                         isError={getStatusMessage("date")  || false}
                         readonly={true}
                         onMouseDown={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
-                        onTouchEnd={() => {setShowDatePicker(!showDatePicker); setShowCountPopup(false);}}
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                     />
                   </div>
@@ -214,7 +213,6 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                         autoComplete='off'
                         readonly={true}
                         onMouseDown={() =>{ setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
-                        onTouchEnd={() =>{ setShowCountPopup(!showCountPopup); setShowDatePicker(false);}}
                         hideApperance
                      />
                  </div>

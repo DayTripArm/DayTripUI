@@ -113,14 +113,6 @@ const Review = (props) => {
                     }
                     setShowTimePicker(!showTimePicker);
                 }}
-                onTouchEnd={() => {
-                    if (showTimePicker){
-                        document.body.style.overflowY = 'hidden';
-                    } else {
-                        document.body.style.overflowY = 'auto';
-                    }
-                    setShowTimePicker(!showTimePicker);
-                }}
             />
             { showTimePicker &&
               <div className="timepicker_wrapper">

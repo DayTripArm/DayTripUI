@@ -110,7 +110,7 @@ const SearchDriver = () => {
         <>
             <h2 className='text__blue'> Hit The Road </h2>
             <div className='home-search-driver box-overlay rounded__10'>
-                <img src={src} alt='home' className='w-100 object-pos-center object-fit-cover rounded__10'/>
+                <img src={src} className='w-100 object-pos-center object-fit-cover rounded__10'/>
                 <div className='overlay d-flex align-items-center justify-content-center rounded__10'>
                     <div className='d-flex flex-column align-items-center'>
                         <div className='text-white text-center px-4 px-lg-5'>
@@ -156,10 +156,6 @@ const SearchDriver = () => {
                                         setShowDatePicker(!showDatePicker);
                                         setShowCountPopup(false);
                                     }}
-                                    onTouchEnd={() => {
-                                        setShowDatePicker(!showDatePicker);
-                                        setShowCountPopup(false);
-                                    }}
                                     containerClass='mr-lg-4 mb-lg-0'
                                 />
                                {showDatePicker && (
@@ -184,10 +180,6 @@ const SearchDriver = () => {
                                     isError={getStatusMessage ("travelers") || false}
                                     containerClass='mr-lg-4 mb-lg-0'
                                     onMouseDown={() => {
-                                        setShowCountPopup(!showCountPopup);
-                                        setShowDatePicker(false);
-                                    }}
-                                    onTouchEnd={() => {
                                         setShowCountPopup(!showCountPopup);
                                         setShowDatePicker(false);
                                     }}

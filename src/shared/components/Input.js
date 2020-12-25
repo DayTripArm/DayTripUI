@@ -26,7 +26,6 @@ const Input = ({
    onChange,
    onFocus,
    onMouseDown,
-   onTouchEnd,
    onBlur,
    required,
    readonly,
@@ -134,7 +133,6 @@ const Input = ({
                         onChange={(e) => onChangeHandle(e, name)}
                         onFocus={onFocus}
                         onMouseDown={onMouseDown}
-                        onTouchEnd={onTouchEnd}
                         onBlur={(e) => onBlurHandle(e, name)}
                         className={setClasses()}
                         autoFocus={autoFocus}
@@ -151,7 +149,6 @@ const Input = ({
                         onChange={(e) => onChangeHandle(e, name)}
                         onFocus={onFocus}
                         onMouseDown={onMouseDown}
-                        onTouchEnd={onTouchEnd}
                         onBlur={(e) => onBlurHandle(e, name)}
                         className={setClasses()}
                         autoFocus={autoFocus}
