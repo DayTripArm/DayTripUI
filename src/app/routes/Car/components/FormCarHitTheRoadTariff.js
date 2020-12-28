@@ -36,9 +36,21 @@ const FormCarHitTheRoadTariff = (props) => {
     const [openModal, setOpenModal] = useState(false);
     const [edit, setEdit] = useState(false);
     const classes = useStyles();
+    let errorMsg;
 
+    const isValid = () => {
+        errorMsg = "";
+        if (hit_the_road_tariff === null || hit_the_road_tariff === ""){
+            errorMsg = "This field is mandatory";
+            return false;
+        }
+        else if (hit_the_road_tariff < 25000){
+            errorMsg = "Minimal price for full day drive is 25000 AMD";
+            return false;
+        }else{return true;}
+    }
     const handleSave = (e) => {
-            if (tariffChecked  && hit_the_road_tariff!=="") {
+            if (tariffChecked  && isValid()) {
                 let data = {
                     login_id: id,
                     car_info: {
@@ -107,6 +119,8 @@ const FormCarHitTheRoadTariff = (props) => {
                                 placeholder='Price'
                                 iconPosition='right'
                                 containerClass="mt-6"
+                                isError={tariffChecked && !isValid()}
+                                message={errorMsg}
                             />
                             <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>Save</button>
                             </>

@@ -136,7 +136,6 @@ const Input = ({
                         onBlur={(e) => onBlurHandle(e, name)}
                         className={setClasses()}
                         autoFocus={autoFocus}
-                        readOnly
                     />
                     :
                     <input
