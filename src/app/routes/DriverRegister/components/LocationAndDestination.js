@@ -61,6 +61,7 @@ const LocationAndDestination = (props) => {
     if (location && location.length) {
         locationValue = {label: location.split("-")[0].trim()}
     }
+    let errorMsgTariff1, errorMsgTariff2 = "";
 
     const loadOptions = (inputText, callback) => {
         setTimeout(async () => {
@@ -77,6 +78,28 @@ const LocationAndDestination = (props) => {
         }, 500);
     };
 
+    const isValidTariff1 = () => {
+        errorMsgTariff1 = "";
+        if (tariff1 === ""){
+            errorMsgTariff1 = "This field is mandatory";
+            return false;
+        }
+        else if (tariff1 < 50 ){
+            errorMsgTariff1 = "Minimal price for 1km is 50 AMD";
+            return false;
+        }else{return true;}
+    }
+    const isValidTariff2 = () => {
+        errorMsgTariff2 = "";
+        if ( tariff2 === ""){
+            errorMsgTariff2 = "This field is mandatory";
+            return false;
+        }
+        else if (tariff2 < 50){
+            errorMsgTariff2 = "Minimal price for 1km is 50 AMD";
+            return false;
+        }else{return true;}
+    }
 
     return(
         <>
@@ -125,8 +148,8 @@ const LocationAndDestination = (props) => {
                 label='Set your price per 1 km  for short distance trips (up to 110 km, including waiting time)'
                 placeholder='Price'
                 iconPosition='right'
-                message={_.includes(invalidFields, "tariff1") ? "This field is mandatory" : ""}
-                isError={_.includes(invalidFields, "tariff1")}
+                isError={!isValidTariff1()}
+                message={errorMsgTariff1}
             />
 
             {
@@ -180,8 +203,8 @@ const LocationAndDestination = (props) => {
                 placeholder='Price'
                 iconPosition='right'
                 containerClass="mt-6"
-                message={_.includes(invalidFields, "tariff2") ? "This field is mandatory" : ""}
-                isError={_.includes(invalidFields, "tariff2")}
+                isError={!isValidTariff2()}
+                message={errorMsgTariff2}
             />
 
             {
