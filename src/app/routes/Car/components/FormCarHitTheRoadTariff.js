@@ -45,7 +45,7 @@ const FormCarHitTheRoadTariff = (props) => {
             return false;
         }
         else if (hit_the_road_tariff < 25000){
-            errorMsg = "Minimal price for full day drive is 25000 AMD";
+            errorMsg = "Minimal price for full day drive is 25.000 AMD";
             return false;
         }else{return true;}
     }
