@@ -132,7 +132,7 @@ const App = () => {
                                 <Route path='/progress' component={Progress} />
                                 <Route path='/refer' component={Refer} />
                                 <Route path='/account' component={Account} />
-                                <Route component={Calendar} />
+                                <Redirect to="/calendar" component={Calendar} />
                     </>
                     }
 
