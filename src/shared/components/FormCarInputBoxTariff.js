@@ -20,7 +20,30 @@ const FormCarInputBoxTariff = (props) => {
 
     const [tariff1, setTariff1] = useState(value[0]);
     const [tariff2, setTariff2] = useState(value[1]);
+    let errorMsgTariff1, errorMsgTariff2 = "";
 
+    const isValidTariff1 = () => {
+        errorMsgTariff1 = "";
+        if (tariff1 === ""){
+            errorMsgTariff1 = "This field is mandatory";
+            return false;
+        }
+        else if (tariff1 < 50 ){
+            errorMsgTariff1 = "Minimal price for 1km is 50 AMD";
+            return false;
+        }else{return true;}
+    }
+    const isValidTariff2 = () => {
+        errorMsgTariff2 = "";
+        if ( tariff2 === ""){
+            errorMsgTariff2 = "This field is mandatory";
+            return false;
+        }
+        else if (tariff2 < 50){
+            errorMsgTariff2 = "Minimal price for 1km is 50 AMD";
+            return false;
+        }else{return true;}
+    }
 
     const handleSave = (e) => {
         const {profile:profileData} = !_.isEmpty(travelerData.profile) ? travelerData : driverData;
@@ -57,12 +80,12 @@ const FormCarInputBoxTariff = (props) => {
                                     value={tariff1}
                                     tariff={true}
                                     min={50}
-                                    precision={10}
+                                    precision={5}
                                     onChange={(e) => setTariff1(e.target ? e.target.value : e)}
                                     placeholder='Price'
                                     iconPosition='right'
-                                    message={tariff1===""? "This field is mandatory" : ""}
-                                    isError={tariff1===""}
+                                    isError={!isValidTariff1()}
+                                    message={errorMsgTariff1}
                                 />
                             </>
                         }
@@ -127,12 +150,12 @@ const FormCarInputBoxTariff = (props) => {
                                     value={tariff2}
                                     tariff={true}
                                     min={50}
-                                    precision={10}
+                                    precision={5}
                                     onChange={(e) => setTariff2(e.target ? e.target.value : e)}
                                     placeholder='Price'
                                     iconPosition='right'
-                                    message={tariff2===""? "This field is mandatory" : ""}
-                                    isError={tariff2===""}
+                                    isError={!isValidTariff2()}
+                                    message={errorMsgTariff2}
                                 />
                             }
                         </div>

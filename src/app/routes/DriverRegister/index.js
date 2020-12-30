@@ -25,8 +25,7 @@ const requiredFields = {
     5: [], //no validation
     6: ["profile_photos"],
     7: ["gender", "birthMonth", "birthDay", "birthYear", "languages"],
-    8: ["location", "driver_destinations", "tariff1", "tariff2"],
-    9: ["hit_the_road_tariff"],
+    8: ["location", "driver_destinations"],
 };
 
 

@@ -35,10 +35,11 @@ const HitTheRoad = (props) => {
     const {preregistered_info} = driverData;
     const {
         tips={},
-        hit_the_road_tariff=25000,
+        hit_the_road_tariff,
     } = preregistered_info;
 
     const carTips = tips[3]; // type = 4
+    let errorMsg;
 
 
     useEffect(() => {
@@ -51,6 +52,18 @@ const HitTheRoad = (props) => {
     const selectOnChange = (value, name) => {
         dispatch(actions.setPreregisteredDriverProperty(name, value));
     };
+
+    const isValid = () => {
+        errorMsg = "";
+        if (hit_the_road_tariff === null || hit_the_road_tariff === ""){
+            errorMsg = "This field is mandatory";
+            return false;
+        }
+        else if (hit_the_road_tariff < 25000){
+            errorMsg = "Minimal price for full day drive is 25.000 AMD";
+            return false;
+        }else{return true;}
+    }
 
     return (
         <>
@@ -96,8 +109,8 @@ const HitTheRoad = (props) => {
                     placeholder='Price'
                     iconPosition='right'
                     containerClass="mt-6"
-                    message={tariffChecked && _.includes(invalidFields, "hit_the_road_tariff") ? "This field is mandatory" : ""}
-                    isError={tariffChecked && _.includes(invalidFields, "hit_the_road_tariff")}
+                    isError={tariffChecked && !isValid()}
+                    message={errorMsg}
                 />
             }
 
