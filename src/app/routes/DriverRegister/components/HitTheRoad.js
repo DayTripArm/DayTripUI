@@ -35,7 +35,7 @@ const HitTheRoad = (props) => {
     const {preregistered_info} = driverData;
     const {
         tips={},
-        hit_the_road_tariff=25000,
+        hit_the_road_tariff,
     } = preregistered_info;
 
     const carTips = tips[3]; // type = 4

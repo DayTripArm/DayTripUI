@@ -22,8 +22,8 @@ const LocationAndDestination = (props) => {
         destination_list=[],
         driver_destinations="",
         tips={},
-        tariff1=50,
-        tariff2=50,
+        tariff1,
+        tariff2,
     } = preregistered_info;
 
     const carTips = tips[2]; // type = 2
@@ -142,7 +142,7 @@ const LocationAndDestination = (props) => {
                 name='tariff1'
                 value={tariff1}
                 min={50}
-                precision={10}
+                precision={5}
                 tariff={true}
                 onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
                 label='Set your price per 1 km  for short distance trips (up to 110 km, including waiting time)'
@@ -196,7 +196,7 @@ const LocationAndDestination = (props) => {
                 name='tariff2'
                 value={tariff2}
                 min={50}
-                precision={10}
+                precision={5}
                 tariff={true}
                 onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
                 label='Set your price per 1 km  for long distance trips (over 110 km, including waiting time)'

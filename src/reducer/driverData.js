@@ -20,7 +20,10 @@ export const INITIAL_STATE = {
         profile_photos: [],
         reg_card_photos: [],
         driver_calendar: {},
-        car_seats: 4
+        car_seats: 4,
+        tariff1: 50,
+        tariff2: 50,
+        hit_the_road_tariff: 25000,
     },
     validationList: ["car_type", "car_mark", "car_model", "car_color"]
 };
