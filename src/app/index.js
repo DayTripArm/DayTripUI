@@ -99,10 +99,11 @@ const App = () => {
             }
             <Header type={isAuthenticated ? 'authorized' : 'unauthorized'} navigationType={navigationType} />
             <main role='main' className="mh-min-screen">
-                <Switch>
+
                     {
                         localStorage.userType === "1" && // for travelers
                             <>
+                            <Switch>
                                 <Route path='/home' component={Home} />
                                 <Route path='/help/:id' component={HelpView} />
                                 <Route path='/tour/:id' component={Tour} />
@@ -115,12 +116,16 @@ const App = () => {
                                 <Route path='/refer' component={Refer} />
                                 <Route path='/account' component={Account} />
                                 <Route path='/trips' component={Trips} />
+                                <Redirect from='*' to={'/home'} />
+                            </Switch>
+
                             </>
                     }
 
                     {
                         localStorage.userType === "2" && // for driver
                             <>
+                            <Switch>
                                 <Route path='/help/:id' component={HelpView} />
                                 <Route path='/help' component={Help} />
                                 <Route path='/driverRegister' component={DriverRegister} />
@@ -133,15 +138,22 @@ const App = () => {
                                 <Route path='/refer' component={Refer} />
                                 <Route path='/account' component={Account} />
                                 <Redirect to="/calendar" component={Calendar} />
+                            </Switch>
                     </>
                     }
+                {
+                    !localStorage.userType && // for driver
+                    <>
+                        <Switch>
+                            <Route path='/home' component={Home} />
+                            <Route path='/drivers' component={Drivers} />
+                            <Route path='/tour/:id' component={Tour} />
+                            <Route path='/driverRegister' component={DriverRegister} />
+                            <Redirect from='*' to={'/home'} />
+                        </Switch>
+                    </>
+                }
 
-                    <Route path='/home' component={Home} />
-                    <Route path='/drivers' component={Drivers} />
-                    <Route path='/tour/:id' component={Tour} />
-                    <Route path='/driverRegister' component={DriverRegister} />
-                    <Redirect from='*' to={'/home'} />
-                </Switch>
             </main>
             <Footer />
         </>
