@@ -47,7 +47,7 @@ const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
     if (hide) return null;
 
     return (
-        <header className={`header header-default ${headerClasses[type]}${!themeLight ? ' border__bottom border__default' : ' theme-light'}`}>
+        <header className={`header header-default ${headerClasses[type]}${!themeLight ? ' border__bottom border__default' : ' theme-light'} ${window.location.pathname.includes('tour') ? 'static-header': ''}`}>
             <div className='container'>
                 <div className='d-flex align-items-center justify-content-between'>
                     <div className='d-flex align-items-center'>
