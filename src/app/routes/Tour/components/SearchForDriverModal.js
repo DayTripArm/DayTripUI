@@ -46,7 +46,9 @@ const SearchForDriverModal = (props) => {
         .matches ? 40 : window.matchMedia("(max-width: 450px)")
         .matches ? 45 : window.matchMedia("(max-width: 500px)")
         .matches ? 50 : window.matchMedia("(max-width: 550px)")
-        .matches ? 70 : window.matchMedia("(max-width: 767px)")
+        .matches ? 60 : window.matchMedia("(max-width: 600px)")
+        .matches ? 70 : window.matchMedia("(max-width: 700px)")
+        .matches ? 75 : window.matchMedia("(max-width: 767px)")
         .matches ? 95 : 40;
     return (
         <Modal size='md' containerClass="sfd_modal" title="Search For Drivers" onClose={() => onCloseShowPopup()}>

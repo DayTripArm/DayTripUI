@@ -52,6 +52,17 @@ const FiltersModal = (props) => {
         }));
         onCloseShowPopup();
     });
+
+    const daySize = window.matchMedia("(max-width: 350px)")
+        .matches ? 35 : window.matchMedia("(max-width: 400px)")
+        .matches ? 40 : window.matchMedia("(max-width: 450px)")
+        .matches ? 45 : window.matchMedia("(max-width: 500px)")
+        .matches ? 50 : window.matchMedia("(max-width: 550px)")
+        .matches ? 60 : window.matchMedia("(max-width: 600px)")
+        .matches ? 70 : window.matchMedia("(max-width: 700px)")
+        .matches ? 75 : window.matchMedia("(max-width: 767px)")
+        .matches ? 95 : 40;
+
     return (
         <Modal size='md' containerClass="sfd_modal" title="Filters" onClose={() => onCloseShowPopup()}>
             <div className='py-4 px-0 px-md-8 sfd_popup_form'>
@@ -59,7 +70,7 @@ const FiltersModal = (props) => {
                     <div className="d-flex align-items-center justify-content-between mb-5">
                         <h4 className="mb-0 text__grey-dark">Add Date</h4>
                     </div>
-                    <DatePicker daySize={50}
+                    <DatePicker daySize={daySize}
                         date={!_.isEmpty(form.date)? moment(form.date) : moment()}
                         onDateChange={(date) => {onDaySelect(date); onSetCalendarDate(date)}}/>
                   </div>
