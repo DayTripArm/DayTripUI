@@ -451,8 +451,20 @@ const actions  = {
         addDriverReviewRecieve: (data) => ({
         type: actions.ADD_DRIVER_REVIEW_RECEIVE,
         data
-    })
+    }),
 
+    VIEW_PROGRESS_DETAILS_REQUEST: `${nameSpace}_VIEW_PROGRESS_DETAILS_REQUEST`,
+    viewProgressDetailsRequest: (driver_id, section_type) => ({
+        type: actions.VIEW_PROGRESS_DETAILS_REQUEST,
+        driver_id,
+        section_type
+    }),
+
+    VIEW_PROGRESS_DETAILS_RECEIVE: `${nameSpace}_VIEW_PROGRESS_DETAILS_RECEIVE`,
+    viewProgressDetailsRecieve: (data) => ({
+        type: actions.VIEW_PROGRESS_DETAILS_RECEIVE,
+        data
+    }),
 };
 
 export default actions;
