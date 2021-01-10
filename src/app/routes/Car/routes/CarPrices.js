@@ -18,7 +18,7 @@ const CarPrices = () => {
             <FormCarInputBoxTariff
                 type="tariff"
                 name={["tariff1", "tariff2"]}
-                label={["Price per 1 km for round-trips with up to 110 km", "Price per 1 km for round-trips with over 110 km"]}
+                label={["Round-trips with up to 110 km", "Round-trips with over 110 km"]}
                 placeholder="Choose"
                 value={[tariff1, tariff2]}
                 empty_message={"Not Specified"}

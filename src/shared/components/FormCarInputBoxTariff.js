@@ -64,8 +64,12 @@ const FormCarInputBoxTariff = (props) => {
     return (
         <li className='border__bottom border__default pt-3 pb-4'>
             <div className='d-flex align-items-center justify-content-between mb-2'>
-                <p className='mb-0 weight-700'>{label[0]}</p>
+                <p className='mb-0 weight-700'>Price per 1 km</p>
                 <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? "Edit" : "Cancel"}</button>
+            </div>
+            <br/>
+            <div className='d-flex align-items-center justify-content-between mb-2 mt-2'>
+                <p className='mb-0 weight-700'>{label[0]}</p>
             </div>
             {
                 edit ?

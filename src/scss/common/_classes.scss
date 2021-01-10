@@ -140,6 +140,7 @@
   a {
     display: block;
     color: $primary-color;
+    text-decoration: none;
     width: 244px;
 
     &.active {
@@ -147,6 +148,10 @@
       font-weight: 600;
       @extend .border__left-2;
       @extend .border__secondary;
+    }
+    &:hover {
+       @extend .border__left-2;
+       @extend .border__secondary;
     }
   }
 
@@ -206,6 +211,10 @@
       &.active {
         color: $primary;
         font-weight: 700;
+        border-left-width: 0;
+        border-bottom: 4px solid $primary;
+      }
+      &:hover {
         border-left-width: 0;
         border-bottom: 4px solid $primary;
       }
