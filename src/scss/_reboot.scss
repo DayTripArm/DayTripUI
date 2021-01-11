@@ -12,7 +12,13 @@ body {
   background-color: theme-color('body');
   font-family: $primary-font;
 }
+@media only screen and (max-width: 360px) {
 
+    body {
+        font-size: $secondary-font-size;
+    }
+
+}
 img {
   max-width: 100%;
 }

@@ -99,7 +99,7 @@ const Personal = () => {
                     <FormInputBox
                         type="input"
                         name="about"
-                        label="About"
+                        label="Short Bio"
                         placeholder="Tell us a bit about yourself"
                         value={about}
                         empty_message="Not specified"

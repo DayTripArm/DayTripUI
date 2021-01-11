@@ -27,7 +27,7 @@ const CarPrices = () => {
         <ul className='no-list-style mb-0'>
             <FormCarHitTheRoadTariff
                 name={"hit_the_road_tariff"}
-                label={"Price for Hit The Road"}
+                label={"Price for Full Day Drive"}
                 placeholder="Choose"
                 value={hit_the_road_tariff && hit_the_road_tariff!=null? hit_the_road_tariff : ""}
                 empty_message={"Not Specified"}
