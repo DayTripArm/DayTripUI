@@ -150,8 +150,10 @@
       @extend .border__secondary;
     }
     &:hover {
-       @extend .border__left-2;
-       @extend .border__secondary;
+        @include media-breakpoint-up(lg) {
+            border-color: #FE4C30!important;
+            border-left: 2px solid;
+        }
     }
   }
 
