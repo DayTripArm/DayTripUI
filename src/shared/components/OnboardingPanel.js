@@ -9,7 +9,7 @@ const OnboardingPanel = ({ step, name, progress, fixed }) => (
           <span className='d-md-none'>D</span>
         </h3>
         <p className='mb-0 d-inline-block text__grey-dark'>
-          <span className='weight-700'>Step {step}:</span> {name}
+          <span className='weight-700'>STEP {step}:</span> {name}
         </p>
       </div>
     </div>

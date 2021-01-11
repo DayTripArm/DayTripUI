@@ -45,12 +45,16 @@ const CarRegistration = (props) => {
 
     return(
         <>
-            <h4 className='text__blue mb-6'>What kind of car are you driving</h4>
+
+            <h2 className='text__blue mb-6'>Welcome to DayTrip!</h2>
+            <p className='text__grey-dark'>Now, give us some details about your car so we can publish your listing.</p>
+
+            <h4 className='text__blue mb-6'>What car are you driving?</h4>
             <SelectCustom
                 type='text'
                 name='car_type'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
-                label='What is Your Car type?'
+                label='What is Your Car Type?'
                 placeholder='Choose'
                 value={_.find(carTypeList, i => i.value === car_type)}
                 options={carTypeList}
@@ -61,7 +65,7 @@ const CarRegistration = (props) => {
                 type='text'
                 name='car_mark'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
-                label='What is Your Car Mark?'
+                label='What is Your Car Make?'
                 placeholder='Choose'
                 value={_.find(carBrands, i => i.value === car_mark)}
                 options={carBrands}
@@ -72,7 +76,7 @@ const CarRegistration = (props) => {
                 type='text'
                 name='car_model'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
-                label='What is Your Car model?'
+                label='What is Your Car Model?'
                 placeholder='Choose'
                 value={_.find(carModels, i => i.value === car_model && i.brand_id === car_mark)}
                 options={carModels}

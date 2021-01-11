@@ -4,9 +4,9 @@ import {useSelector} from "react-redux";
 import _ from "lodash";
 
 
-const gov_title = "Add photos of Governmental ID";
-const license_title = "Add your Driving License";
-const reg_card_title = "Add your Registration Card";
+const gov_title = "Add Your Government ID";
+const license_title = "Add Your Driving License";
+const reg_card_title = "Add Your Registration Card";
 
 const GovermentAndLicense = (props) => {
 
@@ -31,7 +31,7 @@ const GovermentAndLicense = (props) => {
             <h4 className='text__blue mb-4'>
                 <span className={_.includes(invalidFields, "gov_photos") ? "text-danger" : ""}>{_.includes(invalidFields, "gov_photos") ? gov_title + " *" : gov_title}</span>
             </h4>
-            <p className='text__grey-dark'>ID help travelers Take You Serious</p>
+            <p className='text__grey-dark'>Verifying identities enhances trust and safety by reducing fraud and antisocial behavior.</p>
 
             <FormDropZone
                 type="gov_photos"
@@ -42,7 +42,7 @@ const GovermentAndLicense = (props) => {
             <h4 className='text__blue mt-6 mb-4'>
                 <span className={_.includes(invalidFields, "license_photos") ? "text-danger" : ""}>{_.includes(invalidFields, "license_photos") ? license_title + " *" : license_title}</span>
             </h4>
-            <p className='text__grey-dark'>Photos help travelers imagine their future ride. You can start with one and add more after you publish.</p>
+            <p className='text__grey-dark'>Verifying your driving license will allow us to ensure maximum safety for our users.</p>
 
             <FormDropZone
                 type="license_photos"
@@ -53,7 +53,7 @@ const GovermentAndLicense = (props) => {
             <h4 className='text__blue mt-6 mb-4'>
                 <span className={_.includes(invalidFields, "reg_card_photos") ? "text-danger" : ""}>{_.includes(invalidFields, "reg_card_photos") ? reg_card_title + " *" : reg_card_title}</span>
             </h4>
-            <p className='text__grey-dark'>Photos help travelers imagine their future ride. You can start with one and add more after you publish.</p>
+            <p className='text__grey-dark'>Verifying your vehicle registration will allow us to ensure maximum safety for our users.</p>
 
             <FormDropZone
                 type="reg_card_photos"

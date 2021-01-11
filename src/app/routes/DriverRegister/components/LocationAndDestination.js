@@ -103,7 +103,7 @@ const LocationAndDestination = (props) => {
 
     return(
         <>
-            <h4 className='text__blue mb-6'>Let’s Make Your Profile Looks Better</h4>
+            <h4 className='text__blue mb-6'>Few More Details</h4>
 
             <SelectCustom
                 async={true}
@@ -122,7 +122,7 @@ const LocationAndDestination = (props) => {
                 isMulti={true}
                 name='driver_destinations'
                 label='Destinations'
-                placeholder='I want to drive to'
+                placeholder='I can drive to'
                 onChange={event => selectOnChange(event, "driver_destinations")}
                 value={destinationValue}
                 options={destinationList}
@@ -131,7 +131,7 @@ const LocationAndDestination = (props) => {
             />
 
             <h4 className='text__blue mb-6'>
-                Price per 1 Km{' '}
+                Set Your Price per 1 Km{' '}
                 <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>
                     <IconQuestionOutlined fill='#757575'/>
                 </button>
@@ -145,7 +145,7 @@ const LocationAndDestination = (props) => {
                 precision={5}
                 tariff={true}
                 onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
-                label='Set your price per 1 km  for short distance trips (up to 110 km, including waiting time)'
+                label='Set your price per 1 Km for short-distance trips (up to 110 Km, including waiting time)'
                 placeholder='Price'
                 iconPosition='right'
                 isError={!isValidTariff1()}
@@ -155,7 +155,7 @@ const LocationAndDestination = (props) => {
             {
                 Number(tariff1) > 0 &&
                     <>
-                        <p className='text__grey-dark'>According to the 1km price, you will earn the following amounts for these example trips.</p>
+                        <p className='text__grey-dark'>The following examples show how much you will earn based on your 1 Km tariff.</p>
                         <ul className='no-list-style mb-0'>
                             <li className='rounded__4 border-style border__default p-4 mb-2'>
                                 <div className='d-flex justify-content-between'>
@@ -199,7 +199,7 @@ const LocationAndDestination = (props) => {
                 precision={5}
                 tariff={true}
                 onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
-                label='Set your price per 1 km  for long distance trips (over 110 km, including waiting time)'
+                label='Set your price per 1 Km for long-distance trips (over 110 Km, including waiting time)'
                 placeholder='Price'
                 iconPosition='right'
                 containerClass="mt-6"
@@ -210,7 +210,7 @@ const LocationAndDestination = (props) => {
             {
                 Number(tariff2) > 0 &&
                 <>
-                    <p className='text__grey-dark'>According to the 1km price, you will earn the following amounts for these example trips.</p>
+                    <p className='text__grey-dark'>The following examples show how much you will earn based on your 1 Km tariff.</p>
                     <ul className='no-list-style mb-0'>
                         <li className='rounded__4 border-style border__default p-4 mb-2'>
                             <div className='d-flex justify-content-between'>

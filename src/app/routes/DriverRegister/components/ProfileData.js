@@ -51,11 +51,11 @@ const ProfileData = (props) => {
 
   return (
       <>
-          <h4 className='text__blue mb-6'>Let’s Make Your Profile Looks Better</h4>
+          <h4 className='text__blue mb-6'>Let’s Make Your Profile Look Better</h4>
           <SelectCustom
               type='text'
               name='gender'
-              label='Choose your Gender'
+              label='Gender'
               placeholder='Choose'
               onChange={(event, opt) => selectOnChange(event.value, opt.name)}
               value={_.find(genderList, i => i.value === gender)}
@@ -109,8 +109,8 @@ const ProfileData = (props) => {
           <MultiSelect
               isMulti={true}
               name='languages'
-              label="Spoken Language/s"
-              placeholder="Tell us what language(s) do you speak"
+              label="Languages"
+              placeholder="Tell us what languages you speak"
               onChange={event => selectOnChange(event, "languages")}
               value={languageValue}
               options={languageList}
@@ -120,8 +120,8 @@ const ProfileData = (props) => {
 
           <Textarea
             name='about'
-            label='About'
-            placeholder="Tell travelers about yourself, your interest and hobbies."
+            label='Short Bio'
+            placeholder="Tell the travelers a bit about yourself and why they should want to travel with you. Share your interests and hobbies."
             value={about}
             onChange={event => selectOnChange(event.target.value, "about")}
             className='h-152px'
@@ -129,7 +129,7 @@ const ProfileData = (props) => {
 
           <Textarea
               name='work'
-              label='Work/Specialty'
+              label='Occupation'
               placeholder='What is your specialty?'
               onChange={event => selectOnChange(event.target.value, "work")}
               value={work}

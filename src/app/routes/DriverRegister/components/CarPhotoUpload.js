@@ -42,7 +42,7 @@ const CarRegistration = (props) => {
                   <IconQuestionOutlined fill='#757575' />
               </button>
           </h4>
-          <p className='text__grey-dark'>Photos help travelers imagine their future ride. You can start with one and add more after you publish.</p>
+          <p className='text__grey-dark'>Photos help travelers imagine their future ride. You can add more photos after you publish.</p>
 
           <FormDropZone
               type="car_photos"

@@ -18,7 +18,7 @@ const CarRegComplete = (props) => {
     return(
         <>
             <h4 className='text__blue mb-4'>Great Progress, {name}!</h4>
-            <p className='text__grey-dark'>Now let’s get some details abou your car so you can publish your listing.</p>
+            <p className='text__grey-dark'>You have provided all required information about the car.</p>
             <div className='d-flex align-items-center text-xs'>
                 <IconCheckMarkFilled className='mr-2'/>
                 Model, Number of Seats, What’s included and more
@@ -28,8 +28,8 @@ const CarRegComplete = (props) => {
             </div>
             <hr className='border__top border__default mt-4 mb-5'/>
             <p className='text__blue'>STEP: 4</p>
-            <p className='weight-600 mb-2'>Let’s fill in some data about you.</p>
-            <p>Profile Picture, languages you speak etc.</p>
+            <p className='weight-600 mb-2'>Now, let’s add some personal details.</p>
+            <p>Profile picture, languages you speak etc.</p>
         </>
     );
 };

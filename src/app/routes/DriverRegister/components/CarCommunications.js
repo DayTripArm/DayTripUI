@@ -22,8 +22,8 @@ const CarRegistration = () => {
 
     return (
         <>
-            <h4 className='text__blue mb-4'>How many travelers can fit in your car?</h4>
-            <p className='text__grey-dark'>Check that you have enough sits to fit all your guests comfortably.</p>
+            <h4 className='text__blue mb-4'>How many passengers can travel in your car?</h4>
+            <p className='text__grey-dark'>Make sure you have enough seats for all travelers.</p>
 
             <FormPlusMinus
                 label="Seats"
@@ -35,7 +35,7 @@ const CarRegistration = () => {
             />
 
             <h4 className='text__blue mb-4'>Tell us what you have in the car</h4>
-            <p className='text__grey-dark'>Tell the travelers more about your car and rules. You can add even more after you publish.</p>
+            <p className='text__grey-dark'>Tell travelers more about your car and rules. You can add even more after you publish.</p>
 
             <Checkbox
                 className='mb-4 w-100'
@@ -56,7 +56,7 @@ const CarRegistration = () => {
             <Checkbox
                 className='mb-4 w-100'
                 name='smoke_allowed'
-                label='Smoke Allowed'
+                label='Smoking Allowed'
                 onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('smoke_allowed', e.target.checked))}
                 value={car_specs['smoke_allowed']}
             />
