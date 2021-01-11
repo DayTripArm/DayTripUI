@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Input from 'shared/components/Input';
 import Checkbox from 'shared/components/Checkbox';
 import {
-    IconDestination,
     IconStar,
     IconGlobe,
     IconNoSmoking,

@@ -596,6 +596,21 @@ function* driverProgressRequest(action) {
     }
 }
 
+function* viewProgressDetails(action) {
+    try {
+        const {driver_id, section_type} = action;
+        const {response, error} = yield call(Api.viewProgressDetailsRequest, driver_id, section_type);
+
+        if (response) {
+            yield put(actions.viewProgressDetailsRecieve(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
 
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
@@ -628,6 +643,7 @@ function* watcherSaga() {
     yield takeEvery(actions.RESEND_CONFIRMATION, resendConfirmation);
     yield takeEvery(actions.ADD_TRIP_REVIEW_REQUEST, addTripReviewRequest);
     yield takeEvery(actions.ADD_DRIVER_REVIEW_REQUEST, addDriverReviewRequest);
+    yield takeEvery(actions.VIEW_PROGRESS_DETAILS_REQUEST, viewProgressDetails);
 }
 
 export default function* root() {

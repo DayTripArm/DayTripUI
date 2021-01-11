@@ -194,4 +194,9 @@ export default {
             .catch(error => ({error}) );
     },
 
+    viewProgressDetailsRequest(driver_id, section_type) {
+        return axios.get(template(base_urls.day_trip.driverProgressDetails, driver_id, section_type), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
 }

@@ -8,6 +8,7 @@ export const INITIAL_STATE = {
     calendar_settings: {},
     booked_trip_details: {},
     driver_progress: {},
+    driver_progress_details: {},
     preregistered_info: {
         car_mark_list: [],
         car_model_list: [],
@@ -161,6 +162,15 @@ const driverData = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 driver_progress: data
+            }
+        }
+
+        case actions.VIEW_PROGRESS_DETAILS_RECEIVE: {
+            const {data} = action;
+
+            return {
+                ...state,
+                driver_progress_details: data
             }
         }
 
