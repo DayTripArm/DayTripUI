@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router";
 import actions from "actions";
 import moment from "moment";
+import _ from "lodash";
 
 const settings = {
     className: 'slick-cards-sm',
@@ -66,7 +67,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
     const bookTrip = (e, driver, learn_more) => {
         e.preventDefault();
         const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + driver.profile_photos.full_path : driver.profile_photos.full_path;
-        const trip_img = trip_details.images ? trip_details.images[0].url : trip_details.image.url;
+        const trip_img = !_.isEmpty(trip_details?.images) ? trip_details?.images[0].url : trip_details?.image?.url;
         const trip_img_src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + trip_img : trip_img;
 
         if (localStorage.id || learn_more) {

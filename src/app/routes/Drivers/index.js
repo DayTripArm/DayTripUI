@@ -45,8 +45,8 @@ const Drivers = ({ history }) => {
     const {travelerData} = useSelector(state => state);
     const {search_for_drivers, prices_list} = travelerData;
     const {drivers_list, trip_details, driversTotalCount} = search_for_drivers;
-    const trip_duration = trip_details ? trip_details.trip_duration : 12;
-    const start_location = trip_details ?  trip_details.start_location : 'Yerevan';
+    const trip_duration = trip_details?.trip_duration || 12;
+    const start_location = trip_details?.start_location || 'Yerevan';
 
     const [openCalendar, setOpenCalendar] = useState(false);
     const [singleFilter, showSingleFilter] = useState(window.innerWidth >= 768? false : true);
@@ -137,7 +137,7 @@ const Drivers = ({ history }) => {
 
     return (
         <>
-            {trip_details && <DriversIllustration history={history} trip_details={trip_details} />}
+            {!_.isEmpty(trip_details) && <DriversIllustration history={history} trip_details={trip_details} />}
             <div className='rounded-top__30 bg-white pull-t-9 position-relative'>
                 <div className='container pt-6 pt-lg-8 pt-xl-11'>
                     <div className='col-xl-10 col-xxl-9 col-xxxl-8 m-auto p-0'>
