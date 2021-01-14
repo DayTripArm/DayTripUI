@@ -54,7 +54,7 @@ const DetailsModal = ({ onClose, activeSection}) => {
             }
             {
                 activeSection === 5 && !_.isEmpty(driver_progress_details) &&
-                <PopularTrips details={driver_progress_details?.popular_trips} />
+                <PopularTrips popular_trips={driver_progress_details?.popular_trips} />
             }
             {
                 activeSection === 6 && !_.isEmpty(driver_progress_details) &&

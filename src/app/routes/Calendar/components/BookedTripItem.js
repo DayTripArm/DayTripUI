@@ -13,13 +13,17 @@ const BookedTripItem = ({ item, onBookedTripClick}) => {
             className='rounded__4 border-style border__default d-md-flex justify-content-between align-items-center'>
             <div>
                 <div className='px-4 pt-4 pb-11 pt-md-5 pb-md-5 px-md-5 d-flex position-relative'>
-                    <img
-                        width='78'
-                        height='98'
-                        src={src}
-                        alt={item.trip.title}
-                        className='rounded__4 object-pos-center object-fit-cover mr-3'
-                    />
+                    {item.trip.trip_image ?
+                        <img
+                            width='78'
+                            height='98'
+                            src={src}
+                            alt={item.trip.title}
+                            className='rounded__4 object-pos-center object-fit-cover mr-3'
+                        /> :
+                        <div className='img_overlay_lg rounded__4 object-pos-center object-fit-cover mr-3'>
+                        </div>
+                    }
                     <div>
                         <p className='weight-500 mb-1'>{item.trip.title}</p>
                         <p className='mb-1 text-xs'>

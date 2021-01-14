@@ -66,7 +66,7 @@ const Trips = () => {
           </div>
             {tab === 1  &&
                    (upcoming_trips && upcoming_trips.length > 0 ?
-                    upcoming_trips.map((item) => {return <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)}/>}) :
+                    upcoming_trips.map((item) => { return <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)}/>}) :
                     <NoResults message={`You don’t Have Any Upcoming Trips`}/>)
             }
             {tab === 2 &&
