@@ -41,7 +41,7 @@ const ProgressList = ({ onOpenModal, driver_progress }) => (
           View Details
         </button>
       </div>
-      <h2 className='mb-2'>{driver_progress?.upcoming_trips || 0}</h2>
+      <h2 className='mb-2'>{driver_progress?.completed_trips || 0}</h2>
       <p className='text__grey-dark mb-0'>Last Month</p>
     </li>
     <li className='border__bottom border__default pb-4 mb-3'>
