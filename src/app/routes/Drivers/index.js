@@ -22,11 +22,16 @@ const Drivers = ({ history }) => {
     //const container3 = useRef();  //for review popup
     const container4 = useRef();
 
-    let filters = JSON.parse(localStorage.getItem('sfd_filters')) || history.location.state;;
-    if (_.isEmpty(filters)){
-        filters = history.location.state? history.location.state : { date: moment().format('YYYY-MM-DD'), travelers: 1, passengers_count: {adults: 1, children: 0}, reviews: {"wonderfull": false, "excelent": false, "good": false},  price_range: [10, 1000]}
-    }
+    let filters = JSON.parse(localStorage.getItem('sfd_filters')) || history.location.state;
     const trip_id = history.location.state?.trip_id || null;
+    if (_.isEmpty(filters)){
+        filters = history.location.state? history.location.state : {
+            date: moment().format('YYYY-MM-DD'),
+            travelers: 1,
+            passengers_count: {adults: 1, children: 0},
+            reviews: {"wonderfull": false, "excelent": false, "good": false},
+            price_range: trip_id ? [10, 1000]: [25000, 100000]}
+    }
 
     useEffect(() => {
         const body = {
