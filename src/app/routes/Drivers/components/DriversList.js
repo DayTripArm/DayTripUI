@@ -74,7 +74,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
             history.push({
                 pathname: learn_more ? '/individuals/driver' : '/checkout/review',
                 state: {
-                    user_id: driver.id,
+                    driver_id: driver.id,
                     user_type: driver.user_type,
                     booked_trip: true,
                     traveler_id: Number(localStorage.id),

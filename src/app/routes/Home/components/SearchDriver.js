@@ -86,7 +86,7 @@ const SearchDriver = () => {
                     reviews: {"wonderfull": false, "excelent": false, "good": false},
                     travelers: form.travelers,
                     passengers_count: count,
-                    price_range: [10,1000],
+                    price_range: [25000, 85000],
                 }));
                 history.push({
                     pathname: '/drivers',
@@ -175,7 +175,6 @@ const SearchDriver = () => {
                                     placeholder='Add Travelers'
                                     autoComplete='off'
                                     readonly={true}
-                                    ref={container2}
                                     value={Number(form.travelers) > 0 ?  form.travelers + " Travelers": "" }
                                     isError={getStatusMessage ("travelers") || false}
                                     containerClass='mr-lg-4 mb-lg-0'

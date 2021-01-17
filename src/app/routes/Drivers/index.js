@@ -273,7 +273,8 @@ const Drivers = ({ history }) => {
                                                           </Grid>
                                                           <Grid item xs={12} lg={12}>
                                                             <RangeSlider prices_list={prices_list}
-                                                                range={form.price_range || [10, 1100]}
+                                                                range={trip_id ? form.price_range || [10, 1000]: [25000, 85000]}
+                                                                isTrip={trip_id ? true: false}
                                                                 onChange={(price_range) => {
                                                                     setForm({
                                                                         ...form,

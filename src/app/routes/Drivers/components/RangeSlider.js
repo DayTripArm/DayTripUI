@@ -9,7 +9,7 @@ class RangeSlider extends React.Component {
     super(props);
 
       this.price_range = [];
-      for (let i = 0; i <= 1000; i = i + 10) {
+      for (let i = this.props.range[0]; i <= this.props.range[1]; i = this.props.isTrip ? i + 10: i + 10000) {
           this.price_range.push(i);
       }
       const sortedData = this.price_range.slice().sort((a, b) => a - b);
@@ -17,8 +17,8 @@ class RangeSlider extends React.Component {
 
     this.state = {
       domain: range,
-      update: this.props.range || [10, 1100],
-      values: this.props.range || [10, 1100],
+      update: this.props.range,
+      values: this.props.range,
       inputValues: range
     };
       this.onChange = (price_range) => {
@@ -43,7 +43,7 @@ class RangeSlider extends React.Component {
             />
             <Slider
               mode={3}
-              step={10}
+              step={this.props.isTrip ? 10: 10000}
               domain={domain}
               rootStyle={{
                 position: "relative",

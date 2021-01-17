@@ -86,7 +86,7 @@ const Payment = () => {
 
 
   const completeCheckout = () => {
-    const body = _.omit(checkout_info,["driver_img", "trip_img", "driver_name", "car_specs", "car_full_name", "trip_location", "car_full_name", "languages", "trip_duration"]);
+    const body = _.omit(checkout_info,["driver_img", "trip_img", "driver_name", "car_specs", "car_full_name", "trip_location", "trip_review", "review", "car_full_name", "languages", "trip_duration"]);
     dispatch(actions.confirmTripBookingCheckout(body))
   };
 
