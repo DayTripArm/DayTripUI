@@ -82,8 +82,6 @@ const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
                         <nav className={`mobile-menu d-md-none${mobileMenuActive ? '' : ' d-none'}`}>
                             <ul className='no-list-style mb-0 px-4'>
                                 <li className='py-5 border__bottom border__default'>Home</li>
-                                <li className='py-5 border__bottom border__default'>English</li>
-                                <li className='py-5 border__bottom border__default'>$USD</li>
                                 <li className='py-5 border__bottom border__default' onClick={(e) => {
                                     e.preventDefault();
                                     !showSignIn && dispatch(actions.showHideSignUp(true));
