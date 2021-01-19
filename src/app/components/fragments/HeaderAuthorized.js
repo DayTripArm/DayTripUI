@@ -239,18 +239,6 @@ const HeaderAuthorized = ({ type }) => {
                             </li>
                             <li>
                                 <NavLink
-                                    to='/switchDrive'
-                                    onClick={() => setOpenDropdown(false)}
-                                    className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
-                                    activeClassName='active'
-                                >
-                  <span className='d-block py-4 border__bottom border__default'>
-                    Switch to Driver
-                  </span>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
                                     to='/currency'
                                     onClick={() => setOpenDropdown(false)}
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
