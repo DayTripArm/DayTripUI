@@ -10,10 +10,12 @@ const routes = [
     {
         route: '/account',
         name: 'Account',
+        isActive : false
     },
     {
         route: '/account/personal',
-        name: 'Personal',
+        name: 'Personal Info',
+        isActive : true
     },
 ];
 

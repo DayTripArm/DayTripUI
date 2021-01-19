@@ -11,7 +11,8 @@ const Breadcrumbs = ({ routes, className = '' }) => {
         <div key={i}>
           {!item.isActive?
             <Link to={item.route} className='text__blue weight-500' onClick={ (event) => {
-                event.preventDefault();
+                //event.preventDefault();
+                //history.goBack()
             }}>
                 {item.name}
             </Link>:

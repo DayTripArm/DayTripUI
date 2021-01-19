@@ -4,12 +4,14 @@ import { IconCheckMarkFilled } from 'shared/components/Icons';
 
 const routes = [
   {
-    route: '/',
+    route: '/account',
     name: 'Account',
+    isActive : false
   },
   {
-    route: '/',
-    name: 'Payment & Payout',
+    route: '/payment',
+    name: 'Payments and Payouts',
+    isActive : true
   },
 ];
 
@@ -70,7 +72,7 @@ const PaymentPayout = () => {
         <div className='col-xl-9 col-xxl-8 col-xxxl-7 m-auto p-0'>
           <Breadcrumbs routes={routes} className='pt-4 pb-5 pt-xl-5 pb-xl-6' />
 
-          <h2 className='text__blue mb-5 mb-md-6 mb-xl-7'>Payment & Payout</h2>
+          <h2 className='text__blue mb-5 mb-md-6 mb-xl-7'>Payments and Payouts</h2>
 
           <div className='tabs mb-6'>
             <ul className='no-list-style mb-3 mb-lg-0 clearfix'>
