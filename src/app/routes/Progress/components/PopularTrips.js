@@ -19,9 +19,9 @@ const PopularTrips = ({popular_trips}) => {
                                   height='48'
                                   alt={popular_trip?.trip_details?.title}
                                   src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + popular_trip.trip_details?.image: popular_trip.trip_details?.image}
-                                  className='rounded__50 object-pos-center object-fit-cover mr-3'
+                                  className='object-pos-center object-fit-cover mr-3'
                                 /> :
-                                <div className='img_overlay rounded__50 object-pos-center object-fit-cover mr-3'>
+                                <div className='img_overlay object-pos-center object-fit-cover mr-3'>
                                 </div>
                             }
                             <div>
