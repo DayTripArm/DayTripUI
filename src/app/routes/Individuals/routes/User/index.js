@@ -66,12 +66,6 @@ const User = ({history={}}) => {
                                     </div>
                                 </div>
                             </div>
-                            <hr className='border__top border__default my-0' />
-                            <div className='p-4 p-md-5 p-xxl-6'>
-                                <div className='d-flex mb-4'><IconCheckMarkOutlined className='mr-2' /> ID</div>
-                                <div className='d-flex mb-4'><IconCheckMarkOutlined className='mr-2' /> Phone</div>
-                                <div className='d-flex'><IconCheckMarkOutlined className='mr-2' /> Email Address</div>
-                            </div>
                         </div>
 
                     </div>
