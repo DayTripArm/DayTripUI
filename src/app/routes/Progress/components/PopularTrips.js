@@ -17,7 +17,7 @@ const PopularTrips = ({popular_trips}) => {
                                 <img
                                   width='48'
                                   height='48'
-                                  alt={popular_trip?.trip_details?.title}
+                                  alt={popular_trip?.trip_details?.title || 'Trip'}
                                   src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + popular_trip.trip_details?.image: popular_trip.trip_details?.image}
                                   className='object-pos-center object-fit-cover mr-3'
                                 /> :

@@ -165,7 +165,7 @@ const Review = (props) => {
               width='106'
               height='136'
               src={checkout_info?.trip_img}
-              alt={checkout_info?.trip_title}
+              alt={checkout_info?.trip_title || 'Trip'}
               className='rounded__4 object-pos-center object-fit-cover mr-3'
             />
             <div>

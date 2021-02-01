@@ -148,6 +148,7 @@ const App = () => {
                             <Route path='/home' component={Home} />
                             <Route path='/drivers' component={Drivers} />
                             <Route path='/tour/:id' component={Tour} />
+                            <Route path='/individuals' component={Individuals} />
                             <Route path='/driverRegister' component={DriverRegister} />
                             <Redirect from='*' to={'/home'} />
                         </Switch>
