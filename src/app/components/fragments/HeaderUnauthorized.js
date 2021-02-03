@@ -3,31 +3,32 @@ import {useDispatch, useSelector} from "react-redux";
 import ModalLogin from 'app/components/modals/ModalLogin';
 import ModalRegister from 'app/components/modals/ModalRegister';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
-import { IconArrowDown, IconArrowUp } from 'shared/components/Icons';
+import LanguagesModal from './../modals/LanguagesModal';
+import CurrenciesModal from './../modals/CurrenciesModal';
 import { Link } from 'react-router-dom';
 import actions from "../../../actions";
 import {DRIVER_TYPE, TRAVELER_TYPE} from "../../../constants";
 
 const HeaderUnauthorized = () => {
   const dispatch = useDispatch();
-  const {travelerData} = useSelector(state => state);
+  const {travelerData, config} = useSelector(state => state);
 
   const themeLight = window.location.pathname.includes('home');
 
   const container1 = useRef();
   const container2 = useRef();
 
-  const [openDropdown1, setOpenDropdown1] = useState(false);
-  const [openDropdown2, setOpenDropdown2] = useState(false);
+  const [openLanguagePopup, setOpenLanguagePopup] = useState(false);
+  const [openCurrencyPopup, setOpenCurrencyPopup] = useState(false);
 
-  useOutsideClick(container1, () => setOpenDropdown1(false));
-  useOutsideClick(container2, () => setOpenDropdown2(false));
+  useOutsideClick(container1, () => setOpenLanguagePopup(false));
+  useOutsideClick(container2, () => setOpenCurrencyPopup(false));
 
   const {
     showSignIn,
     showSignUp,
   } = travelerData;
-
+  const {lang, currency} = config;
 
   return (
     <>
@@ -35,52 +36,24 @@ const HeaderUnauthorized = () => {
         {/* Desktop Menu */}
         <nav className='d-none d-md-block'>
           <ul className='no-list-style d-flex align-items-center mb-0'>
-            <li className='mr-lg-2'>
-              <div ref={container1} className='position-relative d-inline-flex'>
+            {window.innerWidth >= 768 && <li className='mr-lg-2'>
+              <div className='position-relative d-inline-flex'>
                 <span
                   className={`pointer text-nowrap px-3${themeLight ? ' text-white' : ''}`}
-                  onClick={() => setOpenDropdown1(!openDropdown1)}
+                  onClick={() => setOpenLanguagePopup(true)}
                   role='presentation'
-                >
-                  ENG
-                  {openDropdown1 ? (
-                    <IconArrowUp fill={themeLight ? '#FFFFFF' : '#090925'} />
-                  ) : (
-                    <IconArrowDown fill={themeLight ? '#FFFFFF' : '#090925'} />
-                  )}
-                </span>
-                <div className={`dropdown${openDropdown1 ? ' active' : ''}`}>
-                  <ul className='dropdown-list no-list-style py-2 mb-0 text-center'>
-                    <li className='list-item list-item__hover py-2 px-4 text-ellipsis'>ENG</li>
-                    <li className='list-item list-item__hover py-2 px-4 text-ellipsis'>RUS</li>
-                    <li className='list-item list-item__hover py-2 px-4 text-ellipsis'>ARM</li>
-                  </ul>
-                </div>
+                >{lang ? lang: localStorage.getItem('lang') || 'Language'}</span>
               </div>
-            </li>
-            <li>
-              <div ref={container2} className='position-relative d-inline-flex'>
+            </li>}
+            {window.innerWidth >= 768 && <li>
+              <div className='position-relative d-inline-flex'>
                 <span
                   className={`pointer text-nowrap px-3${themeLight ? ' text-white' : ''}`}
-                  onClick={() => setOpenDropdown2(!openDropdown2)}
+                  onClick={() => setOpenCurrencyPopup(true)}
                   role='presentation'
-                >
-                  $ USD
-                  {openDropdown2 ? (
-                    <IconArrowUp fill={themeLight ? '#FFFFFF' : '#090925'} />
-                  ) : (
-                    <IconArrowDown fill={themeLight ? '#FFFFFF' : '#090925'} />
-                  )}
-                </span>
-                <div className={`dropdown${openDropdown2 ? ' active' : ''}`}>
-                  <ul className='dropdown-list no-list-style py-2 mb-0 text-center'>
-                    <li className='list-item list-item__hover py-2 px-4 text-ellipsis'>ENG</li>
-                    <li className='list-item list-item__hover py-2 px-4 text-ellipsis'>RUS</li>
-                    <li className='list-item list-item__hover py-2 px-4 text-ellipsis'>ARM</li>
-                  </ul>
-                </div>
+                >{currency? currency : localStorage.getItem('currency') || 'Currency'}</span>
               </div>
-            </li>
+            </li>}
             <li className='mr-4 mr-lg-4'>
               <Link to='/driverRegister' className={`btn weight-400 btn-md${themeLight ? ' btn-text-white' : ''}`} onClick={(e) => {
                 e.preventDefault();
@@ -103,6 +76,8 @@ const HeaderUnauthorized = () => {
       </div>
       {showSignIn && <ModalLogin onClose={() => dispatch(actions.showHideSignIn(false))} />}
       {showSignUp && <ModalRegister onClose={() => dispatch(actions.showHideSignUp(false))} />}
+      { openLanguagePopup && <LanguagesModal onClose={()=> setOpenLanguagePopup(false)} />}
+      { openCurrencyPopup && <CurrenciesModal onClose={()=> setOpenCurrencyPopup(false)} />}
     </>
   );
 };

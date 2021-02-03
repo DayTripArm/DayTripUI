@@ -35,7 +35,7 @@ const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
     const history = useHistory();
 
     const HeaderSection = headerTypes[type];
-    const authorized = (type == 'unauthorized')? false : true;
+    const authorized = (type === 'unauthorized')? false : true;
 
     const [mobileSearchActive, setMobileSearchActive] = useState(false);
     const [mobileMenuActive, setMobileMenuActive] = useState(false);

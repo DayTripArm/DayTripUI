@@ -7,7 +7,9 @@ export const INITIAL_STATE = {
     is_prereg: undefined,
     confirmed_at: undefined,
     email: undefined,
-    individual_user: {}
+    individual_user: {},
+    lang: undefined,
+    currency: undefined
 };
 
 const config = (state = INITIAL_STATE, action) => {
@@ -81,6 +83,21 @@ const config = (state = INITIAL_STATE, action) => {
 
             return {
                 ...INITIAL_STATE
+            }
+        }
+        case actions.SWITCH_LANGUAGE: {
+            const { lang } = action;
+            return {
+                ...state,
+                lang: lang
+            }
+        }
+
+        case actions.SWITCH_CURRENCY: {
+            const { currency } = action;
+            return {
+                ...state,
+                currency: currency
             }
         }
 

@@ -89,6 +89,18 @@ const actions  = {
         type: actions.SWITCH_SIGN_IN_UP
     }),
 
+    SWITCH_LANGUAGE: `${nameSpace}_SET_LANGUAGE`,
+    setLanguage: (lang) => ({
+        type: actions.SWITCH_LANGUAGE,
+        lang
+    }),
+
+    SWITCH_CURRENCY: `${nameSpace}_SWITCH_CURRENCY`,
+    setCurrency: (currency) => ({
+        type: actions.SWITCH_CURRENCY,
+        currency
+    }),
+
     PROFILE_INFO_REQUEST: `${nameSpace}_PROFILE_INFO_REQUEST`,
     profileInfoRequest: (id) => ({
         type: actions.PROFILE_INFO_REQUEST,

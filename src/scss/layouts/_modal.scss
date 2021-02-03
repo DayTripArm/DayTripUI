@@ -86,6 +86,14 @@
       }
     }
   }
+    .language-item, .currency-item{
+        cursor: pointer;
+    }
+    .language-item:hover, .currency-item:hover {
+        //color: #FE4C30;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
 }
 .htr_modal{
     max-height: 100vh;
