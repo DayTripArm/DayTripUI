@@ -162,7 +162,7 @@ const FiltersModal = (props) => {
                               </Grid>
                               <Grid item xs={12} lg={12}>
                                 <RangeSlider prices_list={prices_list}
-                                    range={form.price_range || [10, 1100]}
+                                    range={trip_id ? form.price_range || [10, 1000]: [25000, 85000]}
                                     onChange={(price_range) => {
                                         onSetPrice(price_range);
                                         onSetPriceRange(price_range);

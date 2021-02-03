@@ -102,7 +102,13 @@ const Drivers = ({ history }) => {
             date: moment(day).format('YYYY-MM-DD')
         });
         setOpenCalendar(false);
-        keepFiltersState();
+        localStorage.setItem('sfd_filters', JSON.stringify({
+            date: moment(day).format('YYYY-MM-DD'),
+            reviews: '',
+            passengers_count: form.passengers_count,
+            travelers: form.travelers,
+            price_range: form.price_range
+        }));
         const body = {
             date: moment(day).format('YYYY-MM-DD'),
             travelers: form.passengers_count.adults + form.passengers_count.children,
