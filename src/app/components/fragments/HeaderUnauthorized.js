@@ -8,6 +8,7 @@ import CurrenciesModal from './../modals/CurrenciesModal';
 import { Link } from 'react-router-dom';
 import actions from "../../../actions";
 import {DRIVER_TYPE, TRAVELER_TYPE} from "../../../constants";
+import { IconGlobe, IconCurrecy } from 'shared/components/Icons';
 
 const HeaderUnauthorized = () => {
   const dispatch = useDispatch();
@@ -18,11 +19,20 @@ const HeaderUnauthorized = () => {
   const container1 = useRef();
   const container2 = useRef();
 
+  const [showInHeader, setShowInHeader] = useState(window.innerWidth >= 768 ? true: false);
   const [openLanguagePopup, setOpenLanguagePopup] = useState(false);
   const [openCurrencyPopup, setOpenCurrencyPopup] = useState(false);
 
   useOutsideClick(container1, () => setOpenLanguagePopup(false));
   useOutsideClick(container2, () => setOpenCurrencyPopup(false));
+
+  window.addEventListener("resize", (e) => {
+    if(window.innerWidth >= 768){
+        setShowInHeader(true);
+    } else {
+        setShowInHeader(false);
+    }
+  });
 
   const {
     showSignIn,
@@ -36,22 +46,24 @@ const HeaderUnauthorized = () => {
         {/* Desktop Menu */}
         <nav className='d-none d-md-block'>
           <ul className='no-list-style d-flex align-items-center mb-0'>
-            {window.innerWidth >= 768 && <li className='mr-lg-2'>
+            {showInHeader && <li className='mr-lg-2'>
               <div className='position-relative d-inline-flex'>
+                <IconGlobe />
                 <span
                   className={`pointer text-nowrap px-3${themeLight ? ' text-white' : ''}`}
                   onClick={() => setOpenLanguagePopup(true)}
                   role='presentation'
-                >{lang ? lang: localStorage.getItem('lang') || 'Language'}</span>
+                >{lang ? lang: localStorage.getItem('lang') || 'ENG'}</span>
               </div>
             </li>}
-            {window.innerWidth >= 768 && <li>
+            {showInHeader && <li>
               <div className='position-relative d-inline-flex'>
+                <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || null} />
                 <span
                   className={`pointer text-nowrap px-3${themeLight ? ' text-white' : ''}`}
                   onClick={() => setOpenCurrencyPopup(true)}
                   role='presentation'
-                >{currency? currency : localStorage.getItem('currency') || 'Currency'}</span>
+                >{currency? currency : localStorage.getItem('currency') || '$'}</span>
               </div>
             </li>}
             <li className='mr-4 mr-lg-4'>
