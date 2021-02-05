@@ -63,7 +63,7 @@ const HeaderUnauthorized = () => {
                   className={`pointer text-nowrap px-3${themeLight ? ' text-white' : ''}`}
                   onClick={() => setOpenCurrencyPopup(true)}
                   role='presentation'
-                >{currency? currency : localStorage.getItem('currency') || '$'}</span>
+                >{currency? currency : localStorage.getItem('currency') || 'USD'}</span>
               </div>
             </li>}
             <li className='mr-4 mr-lg-4'>

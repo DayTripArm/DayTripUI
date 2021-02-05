@@ -14,7 +14,7 @@ export const LANGUAGES = ["Afar", "Abkhazian", "Afrikaans", "Akan", "Amharic", "
 export const LOCATIONS = ["Yerevan", "Gyumri", "Vanadzor", "Vagharshapat", "Abovyan", "Kapan", "Hrazdan", "Armavir", "Dilidjan", "Artashat", "Ijevan", "Sevan", "Charentsavan", "Masis", "Ararat", "Goris", "Gavar", "Ashtarak", "Yeghegnadzor", "Caxkadzor", "Yeghvard", "Agarak", "Alaverdi", "Axtala", "Ayrum", "Aparan", "Artik", "Berd",
                           "Byureghavan", "Chambarak", "Maralik", "Martuni", "Mecamor", "Meghri", "Noyemberyan", "Shamlux", "Jermuk", "Sisian", "Spitak", "Stepanavan", "Vayq", "Vardenis", "Vedi", "Tashir", "Kajaran"];
 
-export const LANGUAGES_BY_COUNTRY = [{"country": "US", "lng": "English"}, {"country": "Armenia", "lng": "Հայերեն"},{"country": "Russia", "lng": "Русский"}]
+export const LANGUAGES_BY_COUNTRY = [{"country": "United States", "lng": "English"}, {"country": "Armenia", "lng": "Հայերեն"},{"country": "Russia", "lng": "Русский"}]
 
 export const CURRENCIES = [{"short_name": "EUR", "name": "Euro"}, {"short_name": "USD", "name": "US Dollar"}, {"short_name": "AMD", "name": "Armenian Dram"},{"short_name": "RUB", "name": "Russian Rubli"}]
 
