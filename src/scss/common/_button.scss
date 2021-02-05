@@ -267,3 +267,10 @@
     }
   }
 }
+@media only screen and (max-width: 360px) {
+
+    .btn {
+        font-size: $btn-sm-font-size;
+    }
+
+}
