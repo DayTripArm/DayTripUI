@@ -227,18 +227,6 @@ const HeaderAuthorized = ({ type }) => {
                             </li>
                             <li>
                                 <NavLink
-                                    to='/refer'
-                                    onClick={() => setOpenDropdown(false)}
-                                    className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
-                                    activeClassName='active'
-                                >
-                  <span className='d-block py-4 border__bottom border__default'>
-                    Refer a Friend
-                  </span>
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
                                     to='/help'
                                     onClick={() => setOpenDropdown(false)}
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'

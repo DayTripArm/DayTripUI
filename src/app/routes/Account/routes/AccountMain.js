@@ -29,7 +29,7 @@ const AccountMain = ({ match }) => {
             <div className='rounded__4 border-style border__default p-4 p-md-5 p-xl-6'>
               <img src={IconUser} alt='user' className='mb-4 mb-xl-5' />
               <h4 className='mb-2 mb-md-4'>Personal Info</h4>
-              <p className='mb-0'>Provide personal details and contacts so that we can reach you</p>
+              <p className='mb-0'>Provide personal details and contacts to reach you</p>
             </div>
           </Link>
         </div>
