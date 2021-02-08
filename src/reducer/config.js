@@ -101,6 +101,22 @@ const config = (state = INITIAL_STATE, action) => {
             }
         }
 
+        case actions.GET_CONVERSATION_RECEIVE: {
+            const { data } = action;
+            return {
+                ...state,
+                conversation: data
+            }
+        }
+
+        case actions.CONVERSATIONS_LIST_RECEIVE: {
+            const { data } = action;
+            return {
+                ...state,
+                conversations: data
+            }
+        }
+
         default:
             return state;
     }

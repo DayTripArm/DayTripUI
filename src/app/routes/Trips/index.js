@@ -34,6 +34,16 @@ const Trips = () => {
         window.location.hash = "modal"
     };
 
+    const onContactClick = (sender_id, recipient_id, booked_id) => {
+        const body = {
+            "sender_id" : sender_id,
+            "recipient_id": recipient_id,
+            "booked_trip_id": booked_id
+        };
+        dispatch(actions.getConversationRequest(body));
+
+    };
+
   useEffect (() => {
       dispatch(actions.getBookedTripsRequest(Number(localStorage.id), Number(localStorage.userType)));
        // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,12 +76,12 @@ const Trips = () => {
           </div>
             {tab === 1  &&
                    (upcoming_trips && upcoming_trips.length > 0 ?
-                    upcoming_trips.map((item) => { return <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)}/>}) :
+                    upcoming_trips.map((item) => { return <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)}/>}) :
                     <NoResults message={`You don’t Have Any Upcoming Trips`}/>)
             }
             {tab === 2 &&
                 (past_trips && past_trips.length > 0 ?
-                past_trips.map((item) => {return <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} activeTab={1} onReviewModal={(openReviewPopup) => {setOpenReviewModal(openReviewPopup); setReviewTrip(item); window.location.hash = "modal"}}/>}) :
+                past_trips.map((item) => {return <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)} activeTab={1} onReviewModal={(openReviewPopup) => {setOpenReviewModal(openReviewPopup); setReviewTrip(item); window.location.hash = "modal"}}/>}) :
                 <NoResults message={`You don’t Have Any Past Trips`}/>)
             }
 

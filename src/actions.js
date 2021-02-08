@@ -477,6 +477,31 @@ const actions  = {
         type: actions.VIEW_PROGRESS_DETAILS_RECEIVE,
         data
     }),
+
+    GET_CONVERSATION_REQUEST: `${nameSpace}_GET_CONVERSATION_REQUEST`,
+    getConversationRequest: (body) => ({
+        type: actions.GET_CONVERSATION_REQUEST,
+        body
+    }),
+
+    GET_CONVERSATION_RECEIVE: `${nameSpace}_GET_CONVERSATION_RECEIVE`,
+    getConversationRecieve: (data) => ({
+        type: actions.GET_CONVERSATION_RECEIVE,
+        data
+    }),
+
+    CONVERSATIONS_LIST_REQUEST: `${nameSpace}_CONVERSATIONS_LIST_REQUEST`,
+    conversationsListRequest: (user_id) => ({
+        type: actions.CONVERSATIONS_LIST_REQUEST,
+        user_id
+    }),
+
+    CONVERSATIONS_LIST_RECEIVE: `${nameSpace}_CONVERSATIONS_LIST_RECEIVE`,
+    conversationsListRecieve: (data) => ({
+        type: actions.CONVERSATIONS_LIST_RECEIVE,
+        data
+    }),
+
 };
 
 export default actions;

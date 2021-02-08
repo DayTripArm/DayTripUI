@@ -34,5 +34,7 @@ export default {
     "getBookedTrips": `${HOST}/booked_trips?user_id={0}&utype={1}`,
     "getBookedTrip": `${HOST}/booked_trips/{0}?utype={1}`,
     "resendConfirmation": `${HOST}/resend_confirmation?email={0}`,
+    "getConversation": `${HOST}/conversations`,
+    "loadConversations": `${HOST}/conversations?user_id={0}`,
   }
 }

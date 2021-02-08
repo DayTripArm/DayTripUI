@@ -612,6 +612,38 @@ function* viewProgressDetails(action) {
     }
 }
 
+function* conversationsListRequest(action) {
+    try {
+        const {user_id} = action;
+        const {response, error} = yield call(Api.conversationsListRequest, user_id);
+
+        if (response) {
+            yield put(actions.conversationsListRecieve(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* conversationRequest(action) {
+    try {
+        const {body} = action;
+        const {response, error} = yield call(Api.conversationRequest, body);
+
+        if (response) {
+            yield put(actions.getConversationRecieve(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -644,6 +676,8 @@ function* watcherSaga() {
     yield takeEvery(actions.ADD_TRIP_REVIEW_REQUEST, addTripReviewRequest);
     yield takeEvery(actions.ADD_DRIVER_REVIEW_REQUEST, addDriverReviewRequest);
     yield takeEvery(actions.VIEW_PROGRESS_DETAILS_REQUEST, viewProgressDetails);
+    yield takeEvery(actions.CONVERSATIONS_LIST_REQUEST, conversationsListRequest);
+    yield takeEvery(actions.GET_CONVERSATION_REQUEST, conversationRequest);
 }
 
 export default function* root() {
