@@ -3,6 +3,7 @@ import Modal from 'shared/components/Modal'
 import {useDispatch} from "react-redux";
 import actions from "../../../actions";
 import {CURRENCIES} from '../../../constants';
+import { IconCurrecy } from 'shared/components/Icons';
 
 const CurrenciesModal = ({onClose}) => {
     const dispatch = useDispatch();
@@ -18,8 +19,8 @@ const CurrenciesModal = ({onClose}) => {
                 CURRENCIES.map((currency, i) => {
                     return (
                         <div className='col-12 col-md-6 col-xxl-4 mb-2 mb-md-4 px-2 currency-item'  key={i} onClick={(e)=> { setCurrency(e, currency);}}>
-                            <h4 className='mb-2'>{currency["name"]}</h4>
-                            <p className='text__grey-dark mb-0'>{currency["short_name"]}</p>
+                            <span className='text__grey-dark mb-0 px-1'>{currency["short_name"]}  -  </span>
+                            <IconCurrecy curr_code={currency["short_name"]} fill="#757575" />
                         </div>
                     )
                 })

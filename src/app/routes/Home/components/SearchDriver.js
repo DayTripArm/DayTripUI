@@ -38,12 +38,12 @@ const SearchDriver = () => {
     const {
         title,
         description,
-        image={}
+        image=null
     } = hit_the_road;
 
     const [form, setForm] = useState({date: "", travelers: "0"});
     const [count, setCount] = useState({adults: 0, children: 0});
-    const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
+    const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image?.url : image?.url;
 
     const onDaySelect = ((day) => {
         setForm({
@@ -110,7 +110,11 @@ const SearchDriver = () => {
         <>
             <h2 className='text__blue'> Hit The Road </h2>
             <div className='home-search-driver box-overlay rounded__10'>
-                <img src={src} className='w-100 object-pos-center object-fit-cover rounded__10'/>
+                {image ?
+                    <img src={src} className='w-100 object-pos-center object-fit-cover rounded__10'/> :
+                    <div className='img_overlay_htr w-100 object-pos-center object-fit-cover rounded__10'>
+                    </div>
+                }
                 <div className='overlay d-flex align-items-center justify-content-center rounded__10'>
                     <div className='d-flex flex-column align-items-center'>
                         <div className='text-white text-center px-4 px-lg-5'>

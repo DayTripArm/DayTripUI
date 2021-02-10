@@ -30,29 +30,33 @@ const Footer = () => {
     >
       <div className='container'>
         <div className='d-flex flex-column flex-md-row align-items-center justify-content-between'>
-          {
-            showInFooter ?
-            <div className='mb-5 mb-md-0'>
-              <a href='#modal' className='text__grey-dark mr-3' onClick={(e) => {e.preventDefault(); setOpenLanguagePopup(true); window.location.hash = "modal"}}>
-                <IconGlobe />
-                <span className="">{lang ? lang: localStorage.getItem('lang') || 'ENG'} </span>
-              </a>
-              <a href='#modal' className='text__grey-dark mr-3' onClick={(e) => {e.preventDefault(); setOpenCurrencyPopup(true); window.location.hash = "modal"}}>
-                <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || null} />
-                <span className="">{currency ? currency: localStorage.getItem('currency') || 'USD'}</span>
-              </a>
-            </div> : <></>
-          }
-          <p className='mb-0 order-2 order-md-0'>&copy; Daytrip. All rights reserved.</p>
           <div className='d-flex align-items-center flex-column flex-md-row'>
-            <div className='mb-5 mb-md-0'>
-              <Link to='/terms' className='text__grey-dark mr-4 mr-md-6'>
-                Terms & Conditions
-              </Link>
-              <Link to='/help' className='text__grey-dark mr-md-6'>
-                Help
-              </Link>
-            </div>
+              <p className='align-items-center mb-0 text__grey-dark mr-2 mr-md-3'>&copy; Daytrip. All rights reserved.</p>
+              { window.innerWidth >= 768 && <span className='text__grey-dark mr-2 mr-md-2'> - </span> }
+              <div className='mb-5 mb-md-0'>
+                  <Link to='/terms' className='text__grey-dark mr-2 mr-md-2'>
+                    Terms & Conditions
+                  </Link>
+                  <span className='text__grey-dark mr-2 mr-md-3'> - </span>
+                  <Link to='/help' className='text__grey-dark mr-md-6'>
+                    Help
+                  </Link>
+              </div>
+          </div>
+          <div className='d-flex align-items-center flex-column flex-md-row'>
+            {
+                showInFooter ?
+                <div className='mb-5 mb-md-0'>
+                  <a href='#modal' className='lang_curr_text_icon text__grey-dark mr-3' onClick={(e) => {e.preventDefault(); setOpenLanguagePopup(true); window.location.hash = "modal"}}>
+                    <IconGlobe fill="#757575" />
+                    <span className="pointer text-nowrap px-1">{lang ? lang: localStorage.getItem('lang') || 'ENG'} </span>
+                  </a>
+                  <a href='#modal' className='lang_curr_text_icon text__grey-dark mr-2' onClick={(e) => {e.preventDefault(); setOpenCurrencyPopup(true); window.location.hash = "modal"}}>
+                    <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || null} fill="#757575" />
+                    <span className="pointer text-nowrap px-1">{currency ? currency: localStorage.getItem('currency') || 'USD'}</span>
+                  </a>
+                </div> : <></>
+            }
             <div className='mb-5 mb-md-0'>
               <a href='#' className='mr-3'>
                 <IconFbFilled />

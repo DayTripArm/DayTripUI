@@ -27,7 +27,12 @@
       border-bottom: unset;
     }
   }
-
+  .lang_curr_text_icon{
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      vertical-align: middle;
+  }
   &.theme-light .header-search {
     .input-icon {
       background: transparent;

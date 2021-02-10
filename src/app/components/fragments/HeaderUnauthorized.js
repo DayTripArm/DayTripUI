@@ -47,20 +47,20 @@ const HeaderUnauthorized = () => {
         <nav className='d-none d-md-block'>
           <ul className='no-list-style d-flex align-items-center mb-0'>
             {showInHeader && <li className='mr-lg-2'>
-              <div className='position-relative d-inline-flex'>
-                <IconGlobe />
+              <div className='lang_curr_text_icon position-relative d-inline-flex'>
+                <IconGlobe fill={themeLight ? '#fff' : '#000'} />
                 <span
-                  className={`pointer text-nowrap px-3${themeLight ? ' text-white' : ''}`}
+                  className={`pointer text-nowrap px-1${themeLight ? ' text-white' : ''}`}
                   onClick={() => setOpenLanguagePopup(true)}
                   role='presentation'
                 >{lang ? lang: localStorage.getItem('lang') || 'ENG'}</span>
               </div>
             </li>}
             {showInHeader && <li>
-              <div className='position-relative d-inline-flex'>
-                <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || null} />
+              <div className='lang_curr_text_icon position-relative d-inline-flex'>
+                <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || null} fill={themeLight ? '#fff' : '#000'} />
                 <span
-                  className={`pointer text-nowrap px-3${themeLight ? ' text-white' : ''}`}
+                  className={`pointer text-nowrap px-1${themeLight ? ' text-white' : ''}`}
                   onClick={() => setOpenCurrencyPopup(true)}
                   role='presentation'
                 >{currency? currency : localStorage.getItem('currency') || 'USD'}</span>

@@ -18,8 +18,7 @@ const LanguagesModal = ({onClose}) => {
                 LANGUAGES_BY_COUNTRY.map((lng, i) => {
                     return (
                         <div className='col-12 col-md-6 col-xxl-4 mb-2 mb-md-4 px-2 language-item'  key={i} onClick={(e)=> { setLanguage(e, lng); }}>
-                            <h4 className='mb-2'>{lng["lng"]}</h4>
-                            <p className='text__grey-dark mb-0'>{lng["country"]}</p>
+                            <p className='text__grey-dark mb-0'>{lng["lng"]}</p>
                         </div>
                     )
                 })

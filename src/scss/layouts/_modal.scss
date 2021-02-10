@@ -88,11 +88,16 @@
   }
     .language-item, .currency-item{
         cursor: pointer;
+        font-size: 20px;
+        line-height: 22px;
+    }
+    .currency-item{
+        display: inline-flex;
+        align-items: center;
+        line-height: 30px;
     }
     .language-item:hover, .currency-item:hover {
-        //color: #FE4C30;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+        background-color: #F0F0F0;
     }
 }
 .htr_modal{
