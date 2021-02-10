@@ -9,7 +9,8 @@ export const INITIAL_STATE = {
     email: undefined,
     individual_user: {},
     lang: undefined,
-    currency: undefined
+    currency: undefined,
+    conversations: {}
 };
 
 const config = (state = INITIAL_STATE, action) => {

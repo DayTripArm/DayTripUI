@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import Input from 'shared/components/Input';
 import {
-  IconZoom,
   IconArrowLeft,
-  IconLink,
+  IconDestination,
   IconSmileOutlined,
   IconSend,
 } from 'shared/components/Icons';
@@ -11,14 +10,26 @@ import ContactList from './components/ContactList';
 import ChatContent from './components/ChatContent';
 import TripDetailsModal from './components/TripDetailsModal';
 import NoResults from './components/NoResults';
+import actions from "../../../actions";
+import {useDispatch, useSelector} from "react-redux";
 
 const Messaging = () => {
-  const dataLength = true;
+  const dispatch = useDispatch();
+  const {config} = useSelector(state => state);
+  const {conversations={}} = config;
+  const {conversations_list} = conversations;
+  const dataLength = conversations_list && conversations_list.length;
   const [chatActive, setChatActive] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  if (!dataLength) return <NoResults />;
 
+
+    useEffect (() => {
+        dispatch(actions.conversationsListRequest(Number(localStorage.id)));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    if (dataLength && dataLength===0) return <NoResults message={`There aren't Any Messages Yet`}/>;
   return (
     <>
       <div className='container'>
@@ -26,20 +37,8 @@ const Messaging = () => {
         <div className={`messaging-container rounded__4 d-flex${chatActive ? ' active' : ''}`}>
           {/* Contacts Area */}
           <div className='flex-fill'>
-            <div className='pt-3 pb-md-3 px-md-4'>
-              <Input
-                type='search'
-                name='search'
-                placeholder='Search for messages'
-                icon={IconZoom}
-                iconPosition='left'
-                className='search-bordered'
-                containerClass='mb-4 mb-md-0'
-              />
-            </div>
-            <hr className='border__top border__default d-none d-md-block my-0' />
             <div>
-              <ContactList onClick={() => setChatActive(true)} />
+                <ContactList conversations={conversations_list} onClick={() => setChatActive(true)} />
             </div>
           </div>
           {/* Chat Area */}
@@ -66,7 +65,7 @@ const Messaging = () => {
               <div className='d-flex border__top border__default'>
                 <div className='border__right border__default'>
                   <button className='btn btn-circle size-fixed border-0'>
-                    <IconLink />
+                    <IconDestination />
                   </button>
                 </div>
                 <Input
