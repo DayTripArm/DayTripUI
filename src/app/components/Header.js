@@ -33,8 +33,7 @@ const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
 
     const searchContainer = useRef();
     const history = useHistory();
-
-    const HeaderSection = headerTypes[type];
+    let HeaderSection = headerTypes[type];
     const authorized = (type === 'unauthorized')? false : true;
 
     const [mobileSearchActive, setMobileSearchActive] = useState(false);
@@ -44,6 +43,7 @@ const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
     useOutsideClick(searchContainer, () => setMobileSearchActive(false));
 
     useEffect(() => {
+        let HeaderSection = headerTypes[type];
         document.body.style.overflow = mobileMenuActive ? 'hidden' : 'unset';
     }, [mobileMenuActive]);
 
