@@ -89,15 +89,15 @@
     .language-item, .currency-item{
         cursor: pointer;
         font-size: 20px;
-        line-height: 22px;
+        line-height: 30px;
+        &:hover {
+            background-color: $hovered;
+        }
     }
     .currency-item{
         display: inline-flex;
         align-items: center;
         line-height: 30px;
-    }
-    .language-item:hover, .currency-item:hover {
-        background-color: #F0F0F0;
     }
 }
 .htr_modal{

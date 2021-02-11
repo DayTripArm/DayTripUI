@@ -111,7 +111,7 @@ const SearchDriver = () => {
             <h2 className='text__blue'> Hit The Road </h2>
             <div className='home-search-driver box-overlay rounded__10'>
                 {image ?
-                    <img src={src} className='w-100 object-pos-center object-fit-cover rounded__10'/> :
+                    <img src={src} className='w-100 object-pos-center object-fit-cover rounded__10' alt="Hit the road" /> :
                     <div className='img_overlay_htr w-100 object-pos-center object-fit-cover rounded__10'>
                     </div>
                 }

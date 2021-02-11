@@ -22,7 +22,6 @@ const useStyles = makeStyles({
 
 const HitTheRoad = (props) => {
     const {
-        invalidFields,
         setTariffChecked,
         tariffChecked
     } = props;

@@ -10,13 +10,16 @@ const Footer = () => {
   // Conditionally
   const {config} = useSelector(state => state);
   const [showInFooter, setShowInFooter] = useState(localStorage.getItem('id') ? true: window.innerWidth >= 768 ? false: true);
+  const [showSeparator, setShowSeparator] = useState(window.innerWidth < 768 ? false: true);
   const [openLanguagePopup, setOpenLanguagePopup] = useState(false);
   const [openCurrencyPopup, setOpenCurrencyPopup] = useState(false);
   window.addEventListener("resize", (e) => {
         if(window.innerWidth >= 768){
             setShowInFooter(localStorage.getItem('id') ? true: window.innerWidth >= 768 ? false: true);
+            setShowSeparator(true);
         } else {
             setShowInFooter(localStorage.getItem('id') ? true: window.innerWidth >= 768 ? false: true);
+            setShowSeparator(false);
         }
   });
   // For page or pages which contains sticky panel on the bottom (e.g. /individuals/driver or /tour)
@@ -32,12 +35,12 @@ const Footer = () => {
         <div className='d-flex flex-column flex-md-row align-items-center justify-content-between'>
           <div className='d-flex align-items-center flex-column flex-md-row'>
               <p className='align-items-center mb-0 text__grey-dark mr-2 mr-md-3'>&copy; Daytrip. All rights reserved.</p>
-              { window.innerWidth >= 768 && <span className='text__grey-dark mr-2 mr-md-2'> - </span> }
-              <div className='mb-5 mb-md-0'>
+              { showSeparator && <span className='text__grey-dark mr-2 mr-md-2'>-</span> }
+              <div className='mb-3 mb-md-0'>
                   <Link to='/terms' className='text__grey-dark mr-2 mr-md-2'>
                     Terms & Conditions
                   </Link>
-                  <span className='text__grey-dark mr-2 mr-md-3'> - </span>
+                  <span className='text__grey-dark mr-2 mr-md-2'> - </span>
                   <Link to='/help' className='text__grey-dark mr-md-6'>
                     Help
                   </Link>
@@ -46,8 +49,8 @@ const Footer = () => {
           <div className='d-flex align-items-center flex-column flex-md-row'>
             {
                 showInFooter ?
-                <div className='mb-5 mb-md-0'>
-                  <a href='#modal' className='lang_curr_text_icon text__grey-dark mr-3' onClick={(e) => {e.preventDefault(); setOpenLanguagePopup(true); window.location.hash = "modal"}}>
+                <div className='mb-3 mb-md-0'>
+                  <a href='#modal' className='lang_curr_text_icon text__grey-dark mr-2' onClick={(e) => {e.preventDefault(); setOpenLanguagePopup(true); window.location.hash = "modal"}}>
                     <IconGlobe fill="#757575" />
                     <span className="pointer text-nowrap px-1">{lang ? lang: localStorage.getItem('lang') || 'ENG'} </span>
                   </a>
@@ -57,14 +60,14 @@ const Footer = () => {
                   </a>
                 </div> : <></>
             }
-            <div className='mb-5 mb-md-0'>
-              <a href='#' className='mr-3'>
+            <div className='mb-3 mb-md-0'>
+              <a href='#' className='mr-2'>
                 <IconFbFilled />
               </a>
-              <a href='#' className='mr-3'>
+              <a href='#' className='mr-2'>
                 <IconInstagramOutlined />
               </a>
-              <a href='#' className='mr-3'>
+              <a href='#' className='mr-2'>
                 <IconTwitter />
               </a>
             </div>
