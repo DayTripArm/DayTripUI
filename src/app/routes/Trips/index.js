@@ -9,10 +9,12 @@ import _ from 'lodash';
 import moment from "moment";
 import actions from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
+import { useHistory } from "react-router";
 
 const Trips = () => {
   // Conditionally
   const dispatch = useDispatch();
+  const history = useHistory();
   const {travelerData} = useSelector(state => state);
 
   const {booked_trips={}} = travelerData
@@ -41,6 +43,7 @@ const Trips = () => {
             "booked_trip_id": booked_id
         };
         dispatch(actions.getConversationRequest(body));
+        history.push(`/messaging`);
 
     };
 

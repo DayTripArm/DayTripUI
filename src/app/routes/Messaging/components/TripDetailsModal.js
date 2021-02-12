@@ -1,15 +1,19 @@
 import React from 'react';
 import ModalAside from 'shared/components/ModalAside';
 import { IconStar, IconDestination, IconHome, IconGlobe, IconPhone } from 'shared/components/Icons';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router";
 import _ from "lodash";
 import moment from "moment";
+import actions from "../../../../actions";
 
 const TripDetailsModal = ({ onClose}) => {
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const {driverData} = useSelector(state => state);
+
+    const current_user = Number(localStorage.id);
 
     const {
         booked_trip_details={},
@@ -57,6 +61,17 @@ const TripDetailsModal = ({ onClose}) => {
             });
         }
         return name;
+    };
+
+
+    const onContactClick = (sender_id, recipient_id, booked_id) => {
+        const body = {
+            "sender_id" : sender_id,
+            "recipient_id": recipient_id,
+            "booked_trip_id": booked_id
+        };
+        dispatch(actions.getConversationRequest(body));
+        history.push(`/messaging`);
     };
 
     return (
@@ -201,7 +216,9 @@ const TripDetailsModal = ({ onClose}) => {
                 </div>
             </div>
             <div className='shadow__4-up p-4 row position-sticky fixed-bottom bg-white translate-y-16'>
-                <button className='btn btn-primary btn-block text-uppercase'>Contact {fetchName(user_info.user_name)}</button>
+                <button className='btn btn-primary btn-block text-uppercase' onClick={()=>onContactClick(current_user, user_info.user_id, trip_info.booked_id)}>
+                    Contact {fetchName(user_info.user_name)}
+                </button>
             </div>
         </ModalAside>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from "moment";
 
-const BookedTripItem = ({ item, onBookedTripClick}) => {
+const BookedTripItem = ({ item, onBookedTripClick, onContactClick}) => {
     let src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + item.trip.trip_image : item.trip.trip_image;
     return (
         <React.Fragment key={item.id}>
@@ -50,7 +50,9 @@ const BookedTripItem = ({ item, onBookedTripClick}) => {
                 >
                     Details
                 </button>
-                <button className='btn btn-secondary text-uppercase'>Contact Traveler</button>
+                <button className='btn btn-secondary text-uppercase' onClick={onContactClick}>
+                    Contact Traveler
+                </button>
             </div>
         </div>
     </React.Fragment>

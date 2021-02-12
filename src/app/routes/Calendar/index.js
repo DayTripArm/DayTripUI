@@ -15,6 +15,7 @@ import _ from 'lodash';
 import moment from "moment";
 import actions from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
+import { useHistory } from "react-router";
 
 
 const HORIZONTAL_ORIENTATION = 'horizontal';
@@ -61,6 +62,7 @@ const defaultProps = {
 
 const Calendar = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const {driverData} = useSelector(state => state);
 
     const {calendar_settings={}, driver_calendar={}} = driverData;
@@ -127,6 +129,17 @@ const Calendar = () => {
 
         setOpenDetailsModal(true);
         window.location.hash = "modal"
+    };
+
+    const onContactClick = (sender_id, recipient_id, booked_id) => {
+        const body = {
+            "sender_id" : sender_id,
+            "recipient_id": recipient_id,
+            "booked_trip_id": booked_id
+        };
+        dispatch(actions.getConversationRequest(body));
+        history.push(`/messaging`);
+
     };
 
     const onFocusChange = () => {
@@ -265,12 +278,12 @@ const Calendar = () => {
                     </div>
                     {tab === 1 &&  overview_trips && overview_trips.map((item) => {
                         return (moment(item.trip_day).isSameOrAfter(moment(), 'day') &&
-                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} />)
+                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)} />)
 
                     })}
                     {tab === 2 &&  overview_trips && overview_trips.map((item) => {
                         return (moment(item.trip_day).isBefore(moment(), 'day') &&
-                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} />)
+                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)}/>)
                     })}
 
                 </div>

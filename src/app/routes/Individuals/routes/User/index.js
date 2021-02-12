@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import { IconHome, IconGlobe, IconCheckMarkOutlined } from 'shared/components/Icons';
+import { IconHome, IconGlobe } from 'shared/components/Icons';
 import actions from "../../../../../actions";
 import {MONTH_LIST, TRAVELER_TYPE} from "../../../../../constants";
 import {Link} from "react-router-dom";
