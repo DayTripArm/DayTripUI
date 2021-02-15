@@ -535,3 +535,9 @@ export const IconWifi = ({ className, view, fill = defaultFill }) => (
     />
   </SvgIcon>
 );
+export const IconBullet = ({ className, view, fill = defaultFill }) => (
+  <SvgIcon width='16' height='16' viewBox='0 0 16 16' className={className}>
+    <circle cx='8' cy='8' r='6' fill={fill} />
+    <path d='M8 12H16' fill={fill} />
+  </SvgIcon>
+);

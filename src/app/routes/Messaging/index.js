@@ -4,6 +4,7 @@ import {
   IconArrowLeft,
   IconDestination,
   IconSmileOutlined,
+  IconZoom,
   IconSend,
 } from 'shared/components/Icons';
 import ContactList from './components/ContactList';
@@ -22,8 +23,6 @@ const Messaging = () => {
   const [chatActive, setChatActive] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-
-
     useEffect (() => {
         dispatch(actions.conversationsListRequest(Number(localStorage.id)));
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -37,6 +36,18 @@ const Messaging = () => {
         <div className={`messaging-container rounded__4 d-flex${chatActive ? ' active' : ''}`}>
           {/* Contacts Area */}
           <div className='flex-fill'>
+              <div className='pt-3 pb-md-3 px-md-4'>
+                  <Input
+                      type='search'
+                      name='search'
+                      placeholder='Search for messages'
+                      icon={IconZoom}
+                      iconPosition='left'
+                      className='search-bordered'
+                      containerClass='mb-4 mb-md-0'
+                  />
+              </div>
+              <hr className='border__top border__default d-none d-md-block my-0' />
             <div>
                 <ContactList conversations={conversations_list} onClick={() => setChatActive(true)} />
             </div>

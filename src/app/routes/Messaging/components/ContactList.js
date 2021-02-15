@@ -1,15 +1,17 @@
 import React from 'react';
 import moment from "moment";
+import {
+    IconBullet
+} from 'shared/components/Icons';
 
 const ContactList = ({ conversations, onClick }) => (
-  <>
     <ul className='contacts-list no-list-style mb-0 overflow-auto py-5'>
         {
             conversations && conversations.map((conversation, index) => {
                 return (
                     <React.Fragment key={index}>
-                        <li className='text-separator'>
-                            <span className='separator-content text-xs text__grey-dark py-1 px-2'>{moment(conversation.trip_day).format("D MMMM")}</span>
+                        <li>
+                            <hr className='border__top border__default my-0'/>
                         </li>
                         <li
                             className='p-4 d-flex align-items-center justify-content-between clickable'
@@ -36,7 +38,9 @@ const ContactList = ({ conversations, onClick }) => (
                             <div className='dsc-text col-4 col-xl-5 col-xxl-4 text__grey-dark d-none d-lg-block'>
                                 {`${conversation.pickup_location}, (${moment(conversation.trip_day).format("D MMMM")} - ${moment(conversation.pickup_time).format("HH:SS")}) `}
                             </div>
-                            <span className='weight-500 text-xs'>Pending</span>
+                            <span className='weight-500 text-xs'>
+                               <IconBullet fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
+                            </span>
                         </li>
                         {index === conversations.length-1 &&
                         <li>
@@ -47,7 +51,6 @@ const ContactList = ({ conversations, onClick }) => (
             })
         }
     </ul>
-  </>
 );
 
 export default ContactList;
