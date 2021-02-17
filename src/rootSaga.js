@@ -644,6 +644,54 @@ function* conversationRequest(action) {
     }
 }
 
+function* viewConversationDetails(action) {
+    try {
+        const {conversation_id} = action;
+        const {response, error} = yield call(Api.viewConversationDetailsRequest, conversation_id);
+
+        if (response) {
+            yield put(actions.viewConversationDetailsRecieve(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* sendMessageRequest(action) {
+    try {
+        const {conversation_id, body} = action;
+        const {response, error} = yield call(Api.sendMessageRequest, conversation_id, body);
+
+        if (response) {
+            yield put(actions.sendMessageRecieve(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+function* getConversationMessages(action) {
+    try {
+        const {conversation_id} = action;
+        const {response, error} = yield call(Api.getConversationMessagesRequest, conversation_id);
+
+        if (response) {
+            yield put(actions.getConversationMessagesRecieve(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -678,6 +726,9 @@ function* watcherSaga() {
     yield takeEvery(actions.VIEW_PROGRESS_DETAILS_REQUEST, viewProgressDetails);
     yield takeEvery(actions.CONVERSATIONS_LIST_REQUEST, conversationsListRequest);
     yield takeEvery(actions.GET_CONVERSATION_REQUEST, conversationRequest);
+    yield takeEvery(actions.VIEW_CONVERSATION_DETAILS_REQUEST, viewConversationDetails);
+    yield takeEvery(actions.SEND_MESSAGE_REQUEST, sendMessageRequest);
+    yield takeEvery(actions.GET_CONVERSATION_MESSAGES_REQUEST, getConversationMessages);
 }
 
 export default function* root() {

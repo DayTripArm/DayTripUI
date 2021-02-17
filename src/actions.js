@@ -502,6 +502,44 @@ const actions  = {
         data
     }),
 
+    VIEW_CONVERSATION_DETAILS_REQUEST: `${nameSpace}_VIEW_CONVERSATION_DETAILS_REQUEST`,
+    viewConversationDetailsRequest: (conversation_id) => ({
+        type: actions.VIEW_CONVERSATION_DETAILS_REQUEST,
+        conversation_id
+    }),
+
+    VIEW_CONVERSATION_DETAILS_RECEIVE: `${nameSpace}_VIEW_CONVERSATION_DETAILS_RECEIVE`,
+    viewConversationDetailsRecieve: (data) => ({
+        type: actions.VIEW_CONVERSATION_DETAILS_RECEIVE,
+        data
+    }),
+
+
+    SEND_MESSAGE_REQUEST: `${nameSpace}_SEND_MESSAGE_REQUEST`,
+    sendMessageRequest: (conversation_id, body) => ({
+        type: actions.SEND_MESSAGE_REQUEST,
+        conversation_id,
+        body
+    }),
+
+    SEND_MESSAGE_RECEIVE: `${nameSpace}_SEND_MESSAGE_RECEIVE`,
+    sendMessageRecieve: (data) => ({
+        type: actions.SEND_MESSAGE_RECEIVE,
+        data
+    }),
+
+    GET_CONVERSATION_MESSAGES_REQUEST: `${nameSpace}_GET_CONVERSATION_MESSAGES_REQUEST`,
+    getConversationMessagesRequest: (conversation_id) => ({
+        type: actions.GET_CONVERSATION_MESSAGES_REQUEST,
+        conversation_id
+    }),
+
+    GET_CONVERSATION_MESSAGES_RECEIVE: `${nameSpace}_GET_CONVERSATION_MESSAGES_RECEIVE`,
+    getConversationMessagesRecieve: (data) => ({
+        type: actions.GET_CONVERSATION_MESSAGES_RECEIVE,
+        data
+    }),
+
 };
 
 export default actions;

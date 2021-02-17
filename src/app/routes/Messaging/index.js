@@ -12,21 +12,56 @@ import ChatContent from './components/ChatContent';
 import TripDetailsModal from './components/TripDetailsModal';
 import NoResults from './components/NoResults';
 import actions from "../../../actions";
+import Api from "../../../Api";
 import {useDispatch, useSelector} from "react-redux";
 
 const Messaging = () => {
   const dispatch = useDispatch();
   const {config} = useSelector(state => state);
-  const {conversations={}} = config;
+  const {conversations={}, messages=[]} = config;
   const {conversations_list} = conversations;
   const dataLength = conversations_list && conversations_list.length;
   const [chatActive, setChatActive] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [conversationId, setConversationId] = useState(0);
+  const [messageText, setMessageText] = useState("");
 
     useEffect (() => {
         dispatch(actions.conversationsListRequest(Number(localStorage.id)));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect (() => {
+        conversationId > 0 && dispatch(actions.getConversationMessagesRequest(conversationId));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [conversationId]);
+
+    const searchByAuthor = (e) => {
+        // const value = e.target ? e.target.value : "";
+
+        dispatch(actions.conversationsListRequest(Number(localStorage.id)));
+    };
+
+    const onChatClick =(e)=>{
+        const asyncRequest = async () => {
+            const conv_id = e.target ? e.target.accessKey : -1;
+            setConversationId(conv_id);
+            const conv = await Api.viewConversationDetailsRequest(conv_id);  // get conversation item
+            const {conversation} = conv.response.data;
+            conversation && dispatch(actions.getBookedTripRequest(conversation.booked_trip_id, Number(localStorage.userType)));
+            setChatActive(true);
+        };
+
+        asyncRequest();
+
+    }
+    const sendMessage =()=>{
+        const body = {
+            login_id: Number(localStorage.id),
+            body: messageText
+        }
+        dispatch(actions.sendMessageRequest(conversationId, body));
+    }
 
     if (dataLength && dataLength===0) return <NoResults message={`There aren't Any Messages Yet`}/>;
   return (
@@ -40,8 +75,9 @@ const Messaging = () => {
                   <Input
                       type='search'
                       name='search'
-                      placeholder='Search for messages'
+                      placeholder='Search for author'
                       icon={IconZoom}
+                      onChange={(e) => searchByAuthor(e)}
                       iconPosition='left'
                       className='search-bordered'
                       containerClass='mb-4 mb-md-0'
@@ -49,7 +85,7 @@ const Messaging = () => {
               </div>
               <hr className='border__top border__default d-none d-md-block my-0' />
             <div>
-                <ContactList conversations={conversations_list} onClick={() => setChatActive(true)} />
+                <ContactList conversations={conversations_list} onClick={(e) => onChatClick(e)} />
             </div>
           </div>
           {/* Chat Area */}
@@ -72,7 +108,7 @@ const Messaging = () => {
               </button>
             </div>
             <div className='flex-fill d-flex flex-column'>
-              <ChatContent />
+                <ChatContent messages={messages}/>
               <div className='d-flex border__top border__default'>
                 <div className='border__right border__default'>
                   <button className='btn btn-circle size-fixed border-0'>
@@ -81,15 +117,17 @@ const Messaging = () => {
                 </div>
                 <Input
                   type='text'
-                  name='chat'
+                  name='messageText'
+                  value={messageText}
                   placeholder='Type a message'
                   icon={IconSmileOutlined}
                   iconPosition='right'
                   className='border-0'
                   containerClass='chat-input w-100 mb-0'
+                  onChange={(e) => setMessageText(e.target ? e.target.value : e)}
                 />
                 <div className='border__left border__default'>
-                  <button className='btn btn-circle size-fixed border-0'>
+                  <button className='btn btn-circle size-fixed border-0' onClick={() => {sendMessage()}}>
                     <IconSend />
                   </button>
                 </div>
@@ -98,7 +136,7 @@ const Messaging = () => {
           </div>
         </div>
       </div>
-      {openModal && <TripDetailsModal onClose={() => setOpenModal(false)} />}
+      {openModal && <TripDetailsModal hideContact={true} onClose={() => setOpenModal(false)} />}
     </>
   );
 };

@@ -209,4 +209,22 @@ export default {
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
+
+    viewConversationDetailsRequest(conversation_id) {
+        return axios.get(template(base_urls.day_trip.viewConversation, conversation_id), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    sendMessageRequest(conversation_id, body) {
+        return axios.post(template(base_urls.day_trip.createMessage, conversation_id), body, { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    getConversationMessagesRequest(conversation_id) {
+        return axios.get(template(base_urls.day_trip.getConversationMessages, conversation_id), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
 }

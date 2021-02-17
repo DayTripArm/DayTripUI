@@ -10,7 +10,10 @@ export const INITIAL_STATE = {
     individual_user: {},
     lang: undefined,
     currency: undefined,
-    conversations: {}
+    conversations: {},
+    conversation: {},
+    messages: [],
+    message: undefined
 };
 
 const config = (state = INITIAL_STATE, action) => {
@@ -115,6 +118,30 @@ const config = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 conversations: data
+            }
+        }
+
+        case actions.VIEW_CONVERSATION_DETAILS_RECEIVE: {
+            const { data } = action;
+            return {
+                ...state,
+                conversation: data
+            }
+        }
+
+        case actions.SEND_MESSAGE_RECEIVE: {
+            const { data } = action;
+            return {
+                ...state,
+                message: data
+            }
+        }
+
+        case actions.GET_CONVERSATION_MESSAGES_RECEIVE: {
+            const { data } = action;
+            return {
+                ...state,
+                messages: data
             }
         }
 

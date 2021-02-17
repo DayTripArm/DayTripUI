@@ -7,7 +7,7 @@ import _ from "lodash";
 import moment from "moment";
 import actions from "../../../../actions";
 
-const TripDetailsModal = ({ onClose}) => {
+const TripDetailsModal = ({hideContact=false, onClose}) => {
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -215,11 +215,14 @@ const TripDetailsModal = ({ onClose}) => {
                         <span className='mxw-60pc weight-700'>{price+4}.00</span>
                 </div>
             </div>
+            {!hideContact &&
             <div className='shadow__4-up p-4 row position-sticky fixed-bottom bg-white translate-y-16'>
-                <button className='btn btn-primary btn-block text-uppercase' onClick={()=>onContactClick(current_user, user_info.user_id, trip_info.booked_id)}>
+                <button className='btn btn-primary btn-block text-uppercase'
+                        onClick={() => onContactClick(current_user, user_info.user_id, trip_info.booked_id)}>
                     Contact {fetchName(user_info.user_name)}
                 </button>
             </div>
+            }
         </ModalAside>
     )
 };
