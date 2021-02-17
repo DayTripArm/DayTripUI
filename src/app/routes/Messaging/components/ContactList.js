@@ -14,7 +14,7 @@ const ContactList = ({ conversations, onClick }) => (
                             <hr className='border__top border__default my-0'/>
                         </li>
                         <li
-                            accessKey={conversation.conversation_id}
+                            data-id={conversation.conversation_id}
                             className='p-4 d-flex align-items-center justify-content-between clickable'
                             tabIndex='0'
                             onClick={onClick}
@@ -26,21 +26,21 @@ const ContactList = ({ conversations, onClick }) => (
                                     height='56'
                                     src='https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png'
                                     alt='user'
-                                    accessKey={conversation.conversation_id}
+                                    data-id={conversation.conversation_id}
                                     className='rounded__50 object-pos-center object-fit-cover mr-3'
                                 />
                                 <div>
-                                    <p className='weight-500 pt-2 mb-0 text-sm' accessKey={conversation.conversation_id}>Nane Minasyan</p>
-                                    <p className='mb-0 text-xs text__grey-dark' accessKey={conversation.conversation_id}>{moment(conversation.trip_day).isSameOrAfter(moment(), 'day') ? "Upcoming" : "Past"}</p>
+                                    <p className='weight-500 pt-2 mb-0 text-sm' data-id={conversation.conversation_id}>Nane Minasyan</p>
+                                    <p className='mb-0 text-xs text__grey-dark' data-id={conversation.conversation_id}>{moment(conversation.trip_day).isSameOrAfter(moment(), 'day') ? "Upcoming" : "Past"}</p>
                                 </div>
                             </div>
-                            <div accessKey={conversation.conversation_id} className='dsc-text col-6 col-lg-4 col-xl-3 text__grey-dark weight-700 d-none d-md-block'>
+                            <div data-id={conversation.conversation_id} className='dsc-text col-6 col-lg-4 col-xl-3 text__grey-dark weight-700 d-none d-md-block'>
                                 {conversation.title}
                             </div>
-                            <div accessKey={conversation.conversation_id} className='dsc-text col-4 col-xl-5 col-xxl-4 text__grey-dark d-none d-lg-block'>
-                                {`${conversation.pickup_location}, (${moment(conversation.trip_day).format("D MMMM")} - ${moment(conversation.pickup_time).format("HH:mm")}) `}
+                            <div data-id={conversation.conversation_id} className='dsc-text col-4 col-xl-5 col-xxl-4 text__grey-dark d-none d-lg-block'>
+                                {`${conversation.pickup_location}, (${moment(conversation.trip_day).format("D MMMM")} - ${moment(conversation.pickup_time).format("HH:SS")}) `}
                             </div>
-                            <span accessKey={conversation.conversation_id} className='weight-500 text-xs'>
+                            <span data-id={conversation.conversation_id} className='weight-500 text-xs'>
                                <IconBullet  fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
                             </span>
                         </li>

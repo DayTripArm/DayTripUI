@@ -44,7 +44,7 @@ const Messaging = () => {
 
     const onChatClick =(e)=>{
         const asyncRequest = async () => {
-            const conv_id = e.target ? e.target.accessKey : -1;
+            const conv_id = e.target ? e.target.dataset.id : -1;
             setConversationId(conv_id);
             const conv = await Api.viewConversationDetailsRequest(conv_id);  // get conversation item
             const {conversation} = conv.response.data;
