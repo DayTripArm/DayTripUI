@@ -51,6 +51,7 @@ const SettingsModal = ({ onClose, title = 'Settings' }) => {
                     placeholder='Dates unavailable by default'
                     value={_.find(available_days, i => i.value === availability_window)}
                     options={available_days}
+                    isSearchable={false}
                     onChange={(event, opt) => setSettingsOptions(event, opt)}
                 />
                 <p className='weight-700'>How much notice do you need before a trip day?</p>
@@ -59,6 +60,7 @@ const SettingsModal = ({ onClose, title = 'Settings' }) => {
                     placeholder="At least 1 day’s notice"
                     value={_.find(advance_notices, i => i.value === advance_notice)}
                     options={advance_notices}
+                    isSearchable={false}
                     onChange={(event, opt) => setSettingsOptions(event, opt)}
                 />
             </ModalAside>

@@ -53,6 +53,7 @@ const SelectCustom = ({
     borderWidth = 1,
     className = '',
     containerClass = '',
+    isSearchable = true,
     onChange = () => {},
     }) => {
     const borderColor = isError ? '#B80000' : isSuccess ? '#88B800' : null;
@@ -132,6 +133,7 @@ const SelectCustom = ({
                         defaultValue={value}
                         className={className}
                         placeholder={placeholder}
+                        isSearchable={isSearchable}
                         {...restProps}
                     />
             }

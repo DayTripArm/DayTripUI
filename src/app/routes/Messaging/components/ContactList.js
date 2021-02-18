@@ -24,13 +24,13 @@ const ContactList = ({ conversations, onClick }) => (
                                 <img
                                     width='56'
                                     height='56'
-                                    src='https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png'
+                                    src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + conversation.recipient_img: conversation.recipient_img}
                                     alt='user'
                                     data-id={conversation.conversation_id}
                                     className='rounded__50 object-pos-center object-fit-cover mr-3'
                                 />
                                 <div>
-                                    <p className='weight-500 pt-2 mb-0 text-sm' data-id={conversation.conversation_id}>Nane Minasyan</p>
+                                    <p className='weight-500 pt-2 mb-0 text-sm' data-id={conversation.conversation_id}>{conversation.recipient_name}</p>
                                     <p className='mb-0 text-xs text__grey-dark' data-id={conversation.conversation_id}>{moment(conversation.trip_day).isSameOrAfter(moment(), 'day') ? "Upcoming" : "Past"}</p>
                                 </div>
                             </div>
