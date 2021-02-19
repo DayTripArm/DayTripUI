@@ -23,8 +23,9 @@ const Messaging = () => {
   const dataLength = conversations_list && conversations_list.length;
   const [chatActive, setChatActive] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [conversationId, setConversationId] = useState(0);
+  const [conversation, setConversation] = useState(undefined);
   const [messageText, setMessageText] = useState("");
+  const [newMessage, setNewMessage] = useState("");
 
     useEffect (() => {
         dispatch(actions.conversationsListRequest(Number(localStorage.id)));
@@ -32,9 +33,9 @@ const Messaging = () => {
     }, []);
 
     useEffect (() => {
-        conversationId > 0 && dispatch(actions.getConversationMessagesRequest(conversationId));
+        conversation && conversation.id > 0 && dispatch(actions.getConversationMessagesRequest(conversation.id));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [conversationId]);
+    }, [conversation, newMessage]);
 
     const searchByAuthor = (e) => {
         // const value = e.target ? e.target.value : "";
@@ -42,24 +43,18 @@ const Messaging = () => {
         dispatch(actions.conversationsListRequest(Number(localStorage.id)));
     };
 
-    const onChatClick =(e)=>{
-        const asyncRequest = async () => {
-            const conv_id = e.target ? e.target.dataset.id : -1;
-            setConversationId(conv_id);
-            const conv = await Api.viewConversationDetailsRequest(conv_id);  // get conversation item
-            const {conversation} = conv.response.data;
-            conversation && dispatch(actions.getBookedTripRequest(conversation.booked_trip_id, Number(localStorage.userType)));
-            setChatActive(true);
-        };
-
-        asyncRequest();
-
+    const onChatClick =(conversation)=>{
+        setConversation(conversation);
+        dispatch(actions.getBookedTripRequest(conversation.booked_trip_id, Number(localStorage.userType)));
+        setChatActive(true);
     }
     const sendMessage =()=>{
+        setNewMessage(messageText);
         const body = {
             login_id: Number(localStorage.id),
             body: messageText
         }
+        const conversationId = conversation.id || 0;
         dispatch(actions.sendMessageRequest(conversationId, body));
     }
 
@@ -85,7 +80,7 @@ const Messaging = () => {
               </div>
               <hr className='border__top border__default d-none d-md-block my-0' />
             <div>
-                <ContactList conversations={conversations_list} onClick={(e) => onChatClick(e)} />
+                <ContactList conversations={conversations_list} onClick={(item) => onChatClick(item)} />
             </div>
           </div>
           {/* Chat Area */}
@@ -99,7 +94,7 @@ const Messaging = () => {
                   <IconArrowLeft />
                 </button>
                 <div>
-                  <p className='weight-500 pt-2 mb-0 text-sm'>Nane Minasyan</p>
+                  <p className='weight-500 pt-2 mb-0 text-sm'>{conversation && conversation.recipient_name}</p>
                   <p className='mb-0 text-xs text__grey-dark'>Yesterday</p>
                 </div>
               </div>
@@ -127,7 +122,7 @@ const Messaging = () => {
                   onChange={(e) => setMessageText(e.target ? e.target.value : e)}
                 />
                 <div className='border__left border__default'>
-                  <button className='btn btn-circle size-fixed border-0' onClick={() => {sendMessage()}}>
+                  <button className='btn btn-circle size-fixed border-0' name={newMessage} onClick={() => {sendMessage()}}>
                     <IconSend />
                   </button>
                 </div>
