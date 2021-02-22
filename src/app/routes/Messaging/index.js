@@ -12,7 +12,6 @@ import ChatContent from './components/ChatContent';
 import TripDetailsModal from './components/TripDetailsModal';
 import NoResults from './components/NoResults';
 import actions from "../../../actions";
-import Api from "../../../Api";
 import {useDispatch, useSelector} from "react-redux";
 
 const Messaging = () => {
@@ -38,9 +37,8 @@ const Messaging = () => {
     }, [conversation, newMessage]);
 
     const searchByAuthor = (e) => {
-        // const value = e.target ? e.target.value : "";
-
-        dispatch(actions.conversationsListRequest(Number(localStorage.id)));
+        const contact_name = e.target ? e.target.value : null;
+        dispatch(actions.conversationsListRequest(Number(localStorage.id), contact_name));
     };
 
     const onChatClick =(conversation)=>{
