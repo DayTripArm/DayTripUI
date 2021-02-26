@@ -4,7 +4,7 @@ import moment from "moment";
 const ChatContent = ({messages}) => (
   <>
   <div className='chat-content d-flex flex-fill pt-5 pl-2 pl-md-5 pb-2'>
-    <ul className='w-100 no-list-style mb-0 d-flex flex-column overflow-auto'>
+    <ul id="chat" className='w-100 no-list-style mb-0 d-flex flex-column overflow-auto'>
       {messages && messages.map((message, index) => {
       return (
           <React.Fragment key={index}>
