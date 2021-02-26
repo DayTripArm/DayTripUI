@@ -491,9 +491,10 @@ const actions  = {
     }),
 
     CONVERSATIONS_LIST_REQUEST: `${nameSpace}_CONVERSATIONS_LIST_REQUEST`,
-    conversationsListRequest: (user_id) => ({
+    conversationsListRequest: (user_id, contact_name) => ({
         type: actions.CONVERSATIONS_LIST_REQUEST,
-        user_id
+        user_id,
+        contact_name
     }),
 
     CONVERSATIONS_LIST_RECEIVE: `${nameSpace}_CONVERSATIONS_LIST_RECEIVE`,

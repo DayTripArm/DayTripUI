@@ -614,8 +614,8 @@ function* viewProgressDetails(action) {
 
 function* conversationsListRequest(action) {
     try {
-        const {user_id} = action;
-        const {response, error} = yield call(Api.conversationsListRequest, user_id);
+        const {user_id, contact_name} = action;
+        const {response, error} = yield call(Api.conversationsListRequest, user_id, contact_name);
 
         if (response) {
             yield put(actions.conversationsListRecieve(response.data));

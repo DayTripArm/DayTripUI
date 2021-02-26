@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef } from 'react';
+import React, {useEffect, useState } from 'react';
 import Input from 'shared/components/Input';
 import {
   IconArrowLeft,
@@ -12,12 +12,10 @@ import ChatContent from './components/ChatContent';
 import TripDetailsModal from './components/TripDetailsModal';
 import NoResults from './components/NoResults';
 import actions from "../../../actions";
-import Cable from 'actioncable';
 import {useDispatch, useSelector} from "react-redux";
 
 const Messaging = () => {
   const dispatch = useDispatch();
-  const ref = useRef();
   const {config} = useSelector(state => state);
   const {conversations={}, messages=[]} = config;
   const {conversations_list} = conversations;
@@ -25,10 +23,8 @@ const Messaging = () => {
   const [chatActive, setChatActive] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [conversation, setConversation] = useState(undefined);
-  const [currentMessage, setCurrentMessage] = useState("");
-  const [channel, setChannel] = useState(null)
-
-  let cable = Cable.createConsumer('http://localhost:3000/cable');
+  const [messageText, setMessageText] = useState("");
+  const [newMessage, setNewMessage] = useState("");
 
     useEffect (() => {
         dispatch(actions.conversationsListRequest(Number(localStorage.id)));
@@ -36,77 +32,28 @@ const Messaging = () => {
     }, []);
 
     useEffect (() => {
-        ref.current = [...messages];
-        // Scroll down if message list has been changed.
-        var container = document.getElementById("chat");
-        if (container!=null){
-            container.scrollTop = container.scrollHeight;;
-        }
+        conversation && conversation.id > 0 && dispatch(actions.getConversationMessagesRequest(conversation.id));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [messages]);
-
-    useEffect (() => {
-        if (conversation && conversation.id > 0) {
-
-            dispatch(actions.getConversationMessagesRequest(conversation.id));
-            const channel = cable.subscriptions.create({channel: `ConversationChannel`, conversation_id: conversation.id},  {
-               connected: () => {},
-               received: (data) => {
-                   getResponseMessage(data);
-               },
-               create: function(chatContent) {
-                   this.perform('create', {
-                       body: chatContent,
-                       conversation_id: conversation.id,
-                       login_id: Number(localStorage.id)
-                   });
-               }
-           });
-            setChannel(channel)
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [conversation]);
-
+    }, [conversation, newMessage]);
 
     const searchByAuthor = (e) => {
-        // const value = e.target ? e.target.value : "";
-
-        dispatch(actions.conversationsListRequest(Number(localStorage.id)));
+        const contact_name = e.target ? e.target.value : null;
+        dispatch(actions.conversationsListRequest(Number(localStorage.id), contact_name));
     };
-
-    //User types in new message in chat box
-    const handleNewUserMessage = (newMessage) => {
-        // Now send the message to the backend API
-        channel.create(newMessage);
-        //Update the state of current message
-        setCurrentMessage(newMessage);
-    }
-
-    const getResponseMessage=(message) =>{
-        let list = [];
-
-        //Make sure not to display own message in chat logs
-        if (currentMessage === message) {
-
-            //Reset the current message to null and return empty string
-            setCurrentMessage('');
-            return '';
-        } else {
-            list = ref.current
-            //If it's not an own message, add to the chat log
-            list.push(message);
-            dispatch(actions.getConversationMessagesRecieve(list));
-
-            //Reset the current message to null
-            setCurrentMessage('');
-        }
-    }
-
 
     const onChatClick =(conversation)=>{
         setConversation(conversation);
         dispatch(actions.getBookedTripRequest(conversation.booked_trip_id, Number(localStorage.userType)));
         setChatActive(true);
+    }
+    const sendMessage =()=>{
+        setNewMessage(messageText);
+        const body = {
+            login_id: Number(localStorage.id),
+            body: messageText
+        }
+        const conversationId = conversation.id || 0;
+        dispatch(actions.sendMessageRequest(conversationId, body));
     }
 
     if (dataLength && dataLength===0) return <NoResults message={`There aren't Any Messages Yet`}/>;
@@ -163,17 +110,17 @@ const Messaging = () => {
                 </div>
                 <Input
                   type='text'
-                  name='currentMessage'
-                  value={currentMessage}
+                  name='messageText'
+                  value={messageText}
                   placeholder='Type a message'
                   icon={IconSmileOutlined}
                   iconPosition='right'
                   className='border-0'
                   containerClass='chat-input w-100 mb-0'
-                  onChange={(e) => setCurrentMessage(e.target ? e.target.value : e)}
+                  onChange={(e) => setMessageText(e.target ? e.target.value : e)}
                 />
                 <div className='border__left border__default'>
-                  <button className='btn btn-circle size-fixed border-0' onClick={() => {handleNewUserMessage(currentMessage)}}>
+                  <button className='btn btn-circle size-fixed border-0' name={newMessage} onClick={() => {sendMessage()}}>
                     <IconSend />
                   </button>
                 </div>
