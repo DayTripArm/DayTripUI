@@ -28,7 +28,8 @@ const Messaging = () => {
     const [currentMessage, setCurrentMessage] = useState("");
     const [channel, setChannel] = useState(null)
 
-    let cable = Cable.createConsumer('http://localhost:3000/cable');
+    let cable = Cable.createConsumer('http://104.197.178.29/cable'); //production build
+    //let cable = Cable.createConsumer('http://localhost:3000/cable'); // development environment
 
     useEffect (() => {
         dispatch(actions.conversationsListRequest(Number(localStorage.id)));
