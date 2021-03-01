@@ -21,7 +21,7 @@ const Messaging = () => {
     const {config} = useSelector(state => state);
     const {conversations={}, messages=[]} = config;
     const {conversations_list} = conversations;
-    const dataLength = conversations_list && conversations_list.length;
+    const dataLength = conversations_list && conversations_list.length || 0;
     const [chatActive, setChatActive] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [conversation, setConversation] = useState(undefined);
@@ -108,7 +108,7 @@ const Messaging = () => {
         setChatActive(true);
     }
 
-    if (dataLength && dataLength===0) return <NoResults message={`There aren't Any Messages Yet`}/>;
+    if (dataLength===0) return <NoResults message={`There aren't Any Messages Yet`}/>;
     return (
         <>
             <div className='container'>
