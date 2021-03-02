@@ -26,6 +26,7 @@ const Input = ({
    onChange,
    onFocus,
    onMouseDown,
+   onKeyDown,
    onBlur,
    required,
    readonly,
@@ -148,6 +149,7 @@ const Input = ({
                         onChange={(e) => onChangeHandle(e, name)}
                         onFocus={onFocus}
                         onMouseDown={onMouseDown}
+                        onKeyDown={onKeyDown}
                         onBlur={(e) => onBlurHandle(e, name)}
                         className={setClasses()}
                         autoFocus={autoFocus}

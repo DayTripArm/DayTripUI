@@ -102,6 +102,11 @@ const Messaging = () => {
         }
     }
 
+    const onKeyDown = (event, message) => {
+        if (event.key === "Enter" || event.key === "NumpadEnter") {
+            handleNewUserMessage(message);
+        }
+    }
 
     const onChatClick =(conversation)=>{
         setConversation(conversation);
@@ -171,6 +176,7 @@ const Messaging = () => {
                                     className='border-0'
                                     containerClass='chat-input w-100 mb-0'
                                     onChange={(e) => setCurrentMessage(e.target ? e.target.value : e)}
+                                    onKeyDown={(e) => onKeyDown(e, currentMessage)}
                                 />
                                 <div className='border__left border__default'>
                                     <button className='btn btn-circle size-fixed border-0' onClick={() => {handleNewUserMessage(currentMessage)}}>

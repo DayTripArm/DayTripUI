@@ -8,7 +8,7 @@ const ChatContent = ({messages}) => (
       {messages && messages.map((message, index) => {
       return (
           <React.Fragment key={index}>
-              <li className='mb-4 align-self-center text-xs'>{moment(message.created_at).format("HH:mm")}</li>
+              <li className='mb-4 align-self-center text-xs'>{moment(message.created_at).format("DD MMM HH:mm")}</li>
               <li className={`mb-4 mr-2 mr-md-5  py-3 px-4 text-xs rounded__30 ${message.login_id === Number(localStorage.id) ? "bg-primary text-white align-self-end" : "bg__grey-light align-self-start"}`} >
                   {message.body}
               </li>
