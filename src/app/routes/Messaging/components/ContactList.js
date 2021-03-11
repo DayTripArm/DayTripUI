@@ -39,7 +39,7 @@ const ContactList = ({ conversations, onClick }) => (
                                 {`${conversation.pickup_location}, (${moment(conversation.trip_day).format("D MMMM")} - ${moment(conversation.pickup_time).format("HH:SS")}) `}
                             </div>
                             <span className='weight-500 text-xs'>
-                               <IconBullet  fill='#FE4C30' className='card-star mx-1 pull-t-1'/>
+                                <IconBullet  fill={conversation.unread_messages > 0 ? "#FE4C30" : ""} className='card-star mx-1 pull-t-1'/>
                             </span>
                         </li>
                         {index === conversations.length-1 &&

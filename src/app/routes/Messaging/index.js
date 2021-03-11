@@ -14,6 +14,7 @@ import NoResults from './components/NoResults';
 import actions from "../../../actions";
 import Cable from 'actioncable';
 import {useDispatch, useSelector} from "react-redux";
+import moment from "moment";
 
 const Messaging = () => {
     const dispatch = useDispatch();
@@ -28,8 +29,7 @@ const Messaging = () => {
     const [currentMessage, setCurrentMessage] = useState("");
     const [channel, setChannel] = useState(null)
 
-    let cable = Cable.createConsumer('http://104.197.178.29/cable'); //production build
-    //let cable = Cable.createConsumer('http://localhost:3000/cable'); // development environment
+    let cable = Cable.createConsumer(process.env.NODE_ENV === "development" ? 'http://localhost:3000/cable' : 'http://104.197.178.29/cable');
 
     useEffect (() => {
         dispatch(actions.conversationsListRequest(Number(localStorage.id)));
@@ -49,7 +49,7 @@ const Messaging = () => {
     useEffect (() => {
         if (conversation && conversation.id > 0) {
 
-            dispatch(actions.getConversationMessagesRequest(conversation.id));
+            dispatch(actions.getConversationMessagesRequest(conversation.id, Number(localStorage.id)));
             const channel = cable.subscriptions.create({channel: `ConversationChannel`, conversation_id: conversation.id},  {
                 connected: () => {},
                 received: (data) => {
@@ -114,7 +114,6 @@ const Messaging = () => {
         setChatActive(true);
     }
 
-    if (dataLength===0) return <NoResults message={`There aren't Any Messages Yet`}/>;
     return (
         <>
             <div className='container'>
@@ -135,8 +134,12 @@ const Messaging = () => {
                             />
                         </div>
                         <hr className='border__top border__default d-none d-md-block my-0' />
-                        <div>
-                            <ContactList conversations={conversations_list} onClick={(item) => onChatClick(item)} />
+                        <div>{
+                            dataLength===0 ?
+                                <NoResults message={`There aren't Any Messages Yet`}/>
+                                :
+                                <ContactList conversations={conversations_list} onClick={(item) => onChatClick(item)} />
+                        }
                         </div>
                     </div>
                     {/* Chat Area */}
@@ -151,7 +154,7 @@ const Messaging = () => {
                                 </button>
                                 <div>
                                     <p className='weight-500 pt-2 mb-0 text-sm'>{conversation && conversation.recipient_name}</p>
-                                    <p className='mb-0 text-xs text__grey-dark'>Yesterday</p>
+                                    <p className='mb-0 text-xs text__grey-dark'>{conversation && moment(conversation.created_at).format("MMMM Do")}</p>
                                 </div>
                             </div>
                             <button className='btn btn-secondary btn-sm' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>

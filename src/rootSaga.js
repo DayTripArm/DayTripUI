@@ -678,8 +678,8 @@ function* sendMessageRequest(action) {
 
 function* getConversationMessages(action) {
     try {
-        const {conversation_id} = action;
-        const {response, error} = yield call(Api.getConversationMessagesRequest, conversation_id);
+        const {conversation_id, login_id} = action;
+        const {response, error} = yield call(Api.getConversationMessagesRequest, conversation_id, login_id);
 
         if (response) {
             yield put(actions.getConversationMessagesRecieve(response.data));

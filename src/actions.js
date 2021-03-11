@@ -530,9 +530,10 @@ const actions  = {
     }),
 
     GET_CONVERSATION_MESSAGES_REQUEST: `${nameSpace}_GET_CONVERSATION_MESSAGES_REQUEST`,
-    getConversationMessagesRequest: (conversation_id) => ({
+    getConversationMessagesRequest: (conversation_id, login_id) => ({
         type: actions.GET_CONVERSATION_MESSAGES_REQUEST,
-        conversation_id
+        conversation_id,
+        login_id
     }),
 
     GET_CONVERSATION_MESSAGES_RECEIVE: `${nameSpace}_GET_CONVERSATION_MESSAGES_RECEIVE`,

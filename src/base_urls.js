@@ -39,6 +39,6 @@ export default {
     "loadConversationsByName": `${HOST}/conversations?user_id={0}&contact_name={1}`,
     "viewConversation":  `${HOST}/conversations/{0}`,
     "createMessage": `${HOST}/messages/{0}`,
-    "getConversationMessages":  `${HOST}/messages/{0}`,
+    "getConversationMessages":  `${HOST}/messages/{0}?user_id={1}`,
   }
 }
