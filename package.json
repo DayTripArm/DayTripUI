@@ -21,6 +21,7 @@
     "chroma-js": "^2.1.0",
     "date-format": "^3.0.0",
     "form-data": "^3.0.0",
+    "i18next": "^20.2.1",
     "jquery": "^3.5.1",
     "lodash": "^4.17.20",
     "luxon": "^1.24.1",

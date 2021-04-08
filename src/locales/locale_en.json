@@ -1,0 +1,476 @@
+{
+    "home_page": {
+        "search_dest": "Search Destinations",
+        "top_menu": {
+            "become_driver": "Become a Driver",
+            "sign_up": "Sign up",
+            "login": "Login",
+            "home": "Home",
+            "saved": "Saved",
+            "trips": "Trips",
+            "messages": "Messages",
+            "calenar": "Calendar",
+            "progress": "Progress",
+            "my_car": "My Car",
+            "account": "Account",
+            "help": "Help",
+            "logout": "Log out"
+        },
+        "sign_up": {
+            "title": "Please Sign Up",
+            "name": "Name",
+            "name_placeholder": "e.g John Smith",
+            "email": "Email",
+            "email_placeholder": "Enter your email",
+            "phone": "Phone",
+            "phone_placeholder": "Type your Number",
+            "password": "Password",
+            "password_placeholder": "Enter your password",
+            "sign_up_fb": "Sign up With Facebook",
+            "sign_up_gg": "Sign up With Google",
+            "already_have_account": "Already have an account?",
+            "sign_up_btn": "Sign Up"
+        },
+        "login": {
+            "title": "Please Login",
+            "email": "Email",
+            "email_placeholder": "Enter your email",
+            "password": "Password",
+            "password_placeholder": "Enter your password",
+            "dont_have_account": "Don't have an account?",
+            "login_btn": "Login",
+            "forgot_pass": "Forgot Password?",
+            "remember_me": "Remember Me"
+        },
+        "confirm_account": {
+            "title": "Verify Your Account",
+            "check_email": "Check your Email",
+            "confirm_email_text": "Please confirm your email address by clicking on the link we have sent",
+            "resend_btn": "Resend Email"
+        },
+        "onboarding": {
+            "popup_title": "Welcome to Daytrip",
+            "popup1": {
+                "title2": "Predesigned Day Trips",
+                "text": "Discover what you can do in Armenia in one day. Choose among one-day trip options we made for you."
+            },
+            "popup2": {
+                "title2": "Find Your Driver",
+                "text": "Find a private driver to take you sightseeing. Simply choose from the predesigned trips created by our professionals, set the date, pick your driver and car and go."
+            },
+            "popup3": {
+                "title2": "Who Are Our Drivers?",
+                "text": "Daytrip Drivers are trusted people with different backgrounds who are dedicating their free time to traveling across Armenia and are willing to make new connections."
+            },
+            "get_started_btn": "Get Started"
+        },
+        "top_choices": "Top Choices",
+        "trip_duration": "Trip Duration",
+        "reviews": "Reviews",
+        "hit_the_road": {
+            "section_title": "Hit the Road",
+            "title": "Full Day Road Trip",
+            "info_slider": "Road trips are one of the best ways to really get to know a country.",
+            "desc": "Don’t have any specific destinations in mind? Just drive across the country and decide where to stop on the go.",
+            "date_picker_label": "Date",
+            "date_picker_placeholder": "Select the Date",
+            "travelers_label": "Travelers",
+            "travelers_placeholder": "Add Travelers",
+            "explore_all_trips": "Explore All Day Trips",
+            "btn_sfd": "SEARCH FOR DRIVERS",
+            "btn": "LOAD MORE"
+        }
+    },
+    "trip_details_page": {
+        "duration": "Trip duration",
+        "start": "Starting destination",
+        "title1": "What You’ll Do",
+        "title2": "What You’ll See",
+        "title3": "Where You’ll Be",
+        "show_more": "Show more reviews"
+    },
+    "select_drivers_page": {
+        "chips": {
+            "date_input": "MM-DD",
+            "travelers_input": "Travelers",
+            "rating": "Rating",
+            "price": "Price Range",
+            "no_drivers_title": "There Are No Available Drivers",
+            "no_drivers_text": "Please consider rescheduling your trip. You can edit the date and try again.",
+            "drivers_title": "Available Drivers",
+            "btn": "BOOK FOR",
+            "text_btn": "Learn more"
+        }
+    },
+    "reviews_page": {
+        "pickup_info": {
+            "page_title": "Review Your Trip",
+            "title": "Pick Up Information",
+            "pickup_time": "Pick Up Time",
+            "pickup_placeholder": "Select Time",
+            "pickup_location": "Pick Up Location",
+            "pickup_location_placeholder": "Select Location",
+            "notes": "Pick Up Time",
+            "notes_placeholder": "Add a Note",
+            "btn": "CONTINUE"
+        },
+        "trip_summary": {
+            "date": "Date",
+            "travelers": "Travelers",
+            "duration": "Trip Duration",
+            "price": "Trip Price",
+            "fee": "Service Fee",
+            "total_price": "Total Price",
+            "less_detail": "Less Details",
+            "more_detail": "More Details",
+            "btn": "Checkout"
+        },
+        "payment_page_title": "Payment Information",
+        "payment_title": "Add a Card"
+    },
+    "thank_you_title": "Thank You!",
+    "title1": "Your Trip is Confirmed",
+    "title2": "Don’t forget to take a lot of selfies and have fun",
+    "btn": "HOME",
+    "profiles_page": {
+        "info_box": {
+            "id_number": "ID",
+            "phone": "Phone Number",
+            "email": "Email Address"
+        },
+        "info_area": {
+            "title": "Hi, I am ",
+            "member_since": "Member since",
+            "edit_btn": "Edit Profile"
+        },
+        "details": {
+            "lives_in": "Lives in",
+            "speaks": "Speaks",
+            "occupation": "Occupation"
+        }
+    },
+    "account_page": {
+        "page_title": "Account",
+        "persona_info_title": "Personal Info",
+        "persona_info_desc": "Provide personal details and contacts to reach you",
+        "login_title": "Update your password and secure your account",
+        "login_desc": "Login & Security",
+        "payments_title": "Payments",
+        "payments_desc": "Review payments",
+        "personal_info_page": {
+            "page_title": "Personal Info",
+            "name": "Name",
+            "gender": "Gender",
+            "birthday": "Date of Birth",
+            "email": "Email Address",
+            "phone": "Phone Number",
+            "about_text": "Short Bio",
+            "about_pholder": "Tell us a bit about yourself",
+            "residence_city_text": "City of Residence",
+            "residence_city_pholder": "Search your city",
+            "lang_text": "Languages",
+            "lang_pholder": "Tell us what languages you speak",
+            "occupation": "Occupation",
+            "not_specified": "Not specified"
+        },
+        "login_page": {
+            "page_title": "Login & Security",
+            "section1": "Login",
+            "section1_title": "Password",
+            "section1_pholder": "Last Updated Days ago",
+            "section": "Social Accounts",
+            "section2_title1": "Facebook",
+            "section2_title2": "Google"
+        },
+        "payments": {
+            "page_title": "Payments",
+            "tab1_title": "Payment methods",
+            "no_card_attached": "Add a payment method using our secure payment system, then start planning your next trip.",
+            "add_payment_btn": "ADD A PAYMENT METHOD",
+            "card_attached": "ADD A NEW CARD"
+        }
+    },
+    "saved_page": {
+        "page_title": "Saved Trips",
+        "no_saved_title": "You don’t Have Any Saved Trips",
+        "no_saved_text": "Start exploring ideas for your next trip",
+        "no_saved_btn": "EXPLORE DAYTRIP"
+    },
+    "trips_page": {
+        "page_title": "Trips",
+        "no_trips": "No Trips Here",
+        "explore_btn": "EXPLORE DAYTRIP",
+        "upcoming_tab": "Upcoming Trips",
+        "no_upcoming_title": "You don’t Have Any Upcoming Trips",
+        "no_upcoming_text": "Start exploring ideas for your next trip",
+        "past_tab": "Past Trips",
+        "no_past_title": "You don’t Have Any Past Trips",
+        "no_past_text": "Start exploring ideas for your next trip",
+        "trip_card": {
+            "date": "Date",
+            "travelers": "Travelers",
+            "btn_cancelation": "Cancelation",
+            "btn_details": "Details",
+            "review_added": "Already wrote a review",
+            "contact_driver": "CONTACT DRIVER",
+            "contact_traveler": "CONTACT TRAVELER",
+            "rate_review": "RATE AND REVIEW",
+            "slider": {
+                "more_btn": "More",
+                "trip_info": {
+                    "title": "Trip Info",
+                    "duration": "Trip Duration",
+                    "order_status": "Order Status",
+                    "order_id": "Order ID"
+                },
+                "pickup_info": "Pick Up Info",
+                "pickup_time": "Time",
+                "pickup_address": "Address",
+                "pickup_notes": "Notes",
+                "driver": "Driver",
+                "traveler": "Traveler",
+                "view_profile_btn": "View Profile",
+                "lives_in": "Lives in",
+                "speaks": "Speaks",
+                "phone": "Phone Number",
+                "price_title": "Price",
+                "trip_price": "Trip Price",
+                "service_fee": "Service Fee",
+                "total_price": "Total Price",
+                "contact_btn": "CONTACT "
+            },
+            "rate_review_modal": {
+                "title": "Rate and Review",
+                "tab1": "Your trip",
+                "tab2": "Your driver",
+                "text1": "Did you enjoy your day? Please rate the trip and the driver",
+                "text2": "Share your experience"
+            }
+        }
+    },
+    "driver_sigup": {
+        "header": "Driver Sign Up",
+        "step_header": "Step ",
+        "final_step_header": "Final Step",
+        "step1": {
+            "title": "Welcome to DayTrip!",
+            "text": "Now, give us some details about your car so we can publish your listing.",
+            "page_title": "What car are you driving?",
+            "car_type_label": "What is Your Car Type?",
+            "car_make_label": "What is Your Car Make?",
+            "car_model_label": "What is Your Car Model?",
+            "car_year_label": "Year",
+            "car_color_label": "Color",
+            "select_pholder": "Choose"
+        },
+        "step2": {
+            "title1": "How many passengers can travel in your car?",
+            "title2": "Tell us what you have in the car",
+            "text1": "Make sure you have enough seats for all travelers.",
+            "text2": "Tell travelers more about your car and rules. You can add even more after you publish."
+        },
+        "step3": {
+            "title": "Add photos of your car",
+            "text": "Photos help travelers imagine their future ride. You can add more photos after you publish.",
+            "help_slider_title": "Car photos"
+        },
+        "step4": {
+            "title1": "Add Your Government ID",
+            "text1": "Verifying identities enhances trust and safety by reducing fraud and antisocial behavior",
+            "title2": "Add Your Driving License",
+            "text2": "Verifying your driving license will allow us to ensure maximum safety for our users",
+            "title3": "Add Your Registration Card",
+            "text3": "Verifying your vehicle registration will allow us to ensure maximum safety for our users"
+        },
+        "step5": {
+            "title1": "Great Progress, {{name}}",
+            "title2": "You have provided all required information about the car",
+            "car_details": "Model, Number of Seats, What’s included and more",
+            "text1": "Now, let’s add some personal details.",
+            "text2": "Profile picture, languages you speak etc."
+        },
+        "step6": {
+            "page_title": "Upload Your Profile Picture",
+            "text1": "Let the travelers know their future driver."
+        },
+        "step7": {
+            "page_title": "Let’s Make Your Profile Look Better",
+            "gender": "Gender",
+            "birthday": "Date of Birth",
+            "about_text": "Short Bio",
+            "about_pholder": "Tell the travelers a bit about yourself and why they should want to travel with you. Share your interests and hobbies",
+            "lang_text": "Languages",
+            "lang_pholder": "Tell us what languages you speak",
+            "occupation": "Occupation",
+            "occupation_pholder": "What is your specialty?"
+        },
+        "step8": {
+            "title1": "Few More Details",
+            "residence_text": "City of Residence",
+            "residence_pholder": "Search your city",
+            "dest_text": "Destinations",
+            "dest_pholder": "I can drive to",
+            "title2": "Set Your Price per 1 Km",
+            "price_short": "Set your price per 1 Km for short-distance trips (up to 110 Km, including waiting time)",
+            "price_long": "Set your price per 1 Km for long-distance trips (over 110 Km, including waiting time)",
+            "price_pholder": "Price",
+            "price_info": "The following examples show how much you will earn based on your 1 Km tariff."
+        },
+        "step9": {
+            "illustration_title": "Full Day Drive",
+            "hit_the_road_text": "“Hit The Road” is for the travelers who want to travel across the country without any specific destination preferences, stop for breaks wherever they like. As their driver, you should be available for the whole day.",
+            "hit_the_road_question": "Would you like to take this opportunity?",
+            "hit_the_road_toggle": "Set your price for booking you for the whole day."
+        }
+    },
+    "calendar_page": {
+        "title1": "Calendar",
+        "overview": "Overview",
+        "settings_slider": {
+            "slider_title": "Settings",
+            "title": "Availability Settings",
+            "available_title": "How far into the future can travelers book?",
+            "notice_title": "How much notice do you need before the trip day?",
+            "availability_opts": {
+                "all_dates": "All future dates",
+                "9_months": "9 months in advance",
+                "6_months": "6 months in advance",
+                "3_months": "3 months in advance",
+                "all_unavialable": "Dates unavailable by default"
+            },
+            "notice_opts": {
+                "1_day": "At least 1 day’s notice",
+                "2_day": "At least 2 day’s notice",
+                "3_day": "At least 3 day’s notice",
+                "7_day": "At least 7 day’s notice"
+            }
+        }
+    },
+    "progress_page": {
+        "page_title": "Progress",
+        "section1_title": " Earnings",
+        "section1_text": "Earnings including upcoming bookings",
+        "section2_title": "Rating and Reviews",
+        "section2_value_no_review": "No Reviews",
+        "section2_text": "Average rating",
+        "section3_title": "Bookings",
+        "section3_text": "All past and upcoming bookings",
+        "section4_title": "Completed Trips",
+        "section4_text": "Last month",
+        "section5_title": "Popular Trips",
+        "section5_text": "Overall",
+        "section6_title": "Upcoming Trips",
+        "section6_text": "Overall"
+    },
+    "my_car_page": {
+        "page_title": "My Car",
+        "tabs": {
+            "details": "Car Details",
+            "more": "More Details",
+            "tariffs": "Tariffs"
+        },
+        "car_details": {
+            "images": "Car Images",
+            "car_type": "What is Your Car Type?",
+            "car_make": "What is Your Car Make?",
+            "car_model": "What is Your Car Model?",
+            "year": "Year",
+            "color": "Color",
+            "driving_license": "Driving License",
+            "registration_card": "Registration Card",
+            "input_text": "Provided",
+            "change_profile_title": "Profile Changes",
+            "change_profile_text1": "If you change this field your profile will be temporarily suspended for further verification. If you make any changes here, you will be asked toupdate all car related information.",
+            "change_profile_text2": "NOTE:Please be notified that all your upcoming bookings will be cancelled if you proceed"
+        },
+        "more_details": {
+            "section1_title": "How many passengers can travel in your car?",
+            "section2_title": "Tell us what you have in the car",
+            "section3_title": "Selected destinations"
+        },
+        "tarrifs": {
+            "section_title": "Price per 1 km",
+            "short_trip_text": "Short round-trips (up to 110 km)",
+            "long_trip_text": "Long round-trips (over 110 km)",
+            "price_input": "Price",
+            "info_text": "The following examples show how much you will earn based on your 1 Km tariff.",
+            "full_day_title": "Price for a Full Day Drive"
+        }
+    },
+    "footer": {
+        "terms_conditions": "Terms & Conditions",
+        "help": "Help"
+    },
+    "commons": {
+        "car_options": {
+            "car": "Car",
+            "seats": "Seat",
+            "live_in": "Lives in",
+            "speaks": "Speaks",
+            "car_seat": "Car Seat",
+            "air_cond": "Air Conditioning",
+            "smocking": "Smoking Allowed",
+            "pets": "Pets Allowed",
+            "water": "Water",
+            "snacks": "Snacks",
+            "wifi": "WiFi"
+        },
+        "buttons": {
+            "back_btn": "Back",
+            "next_btn": "Next",
+            "submit_btn": "Submit",
+            "skip_btn": "Skip",
+            "edit_btn": "Edit",
+            "update_btn": "Update",
+            "cancel_btn": "Cancel",
+            "save_btn": "Save",
+            "upload_btn": "Upload",
+            "add_image": "Add A New Image"
+        },
+        "car_types": {
+            "sedan": "Sedan",
+            "hatchback": "Hatchback",
+            "wagon": "Wagon",
+            "coupe": "Coupe",
+            "convertible": "Convertible",
+            "suv": "SUV",
+            "pickup": "Pickup Truck",
+            "van": "Van"
+        },
+        "colors": {
+            "black": "Black",
+            "blue": "Blue",
+            "brown": "Brown",
+            "gold": "Gold",
+            "gray": "Gray",
+            "green": "Green",
+            "orange": "Orange",
+            "purple": "Purple",
+            "red": "Red",
+            "silver": "Silver",
+            "tan": "Tan",
+            "white": "White",
+            "yellow": "Yellow"
+        },
+        "error_msgs":{
+            "name_required": "Name is required",
+            "password_required": "Password is required",
+            "email_invalid": "Email is invalid",
+            "phone_invalid": "Phone is invalid",
+            "required_field": "This field is mandatory"
+        },
+        "choose_currency": "Choose Currency",
+        "choose_lang": "Choose Language",
+        "upload_box_title": "Upload Photos",
+        "loading_save_driver": "Please Wait While We are Saving Your Data",
+        "no_options": "No options",
+        "toogle_yes": "Yes",
+        "toogle_no": "No",
+        "or": "or",
+        "duration": "Trip duration",
+        "distance": "Distance",
+        "view_details_btn": "View Details",
+        "reviews": "Reviews",
+        "not_connected": "Not connected"
+    }
+}

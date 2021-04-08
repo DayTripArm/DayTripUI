@@ -1,0 +1,477 @@
+{
+    "home_page": {
+        "search_dest": "Искать Направления",
+        "top_menu": {
+            "become_driver": "Стать водителем",
+            "sign_up": "Регистрация",
+            "login": "Вход",
+            "home": "Начало",
+            "saved": "Запомнивщиеся",
+            "trips": "Поездки",
+            "messages": "Сообщения",
+            "calenar": "Календарь",
+            "progress": "Прогресс",
+            "my_car": "Моя Машина",
+            "profile": "Профиль",
+            "account": "Аккаунт",
+            "help": "Помощь",
+            "logout": "Выход"
+        },
+        "sign_up": {
+            "title": "Регистрация",
+            "name": "Имя",
+            "name_placeholder": "Имя Фамилия",
+            "email": "Эл. адресс",
+            "email_placeholder": "Введите Эл. Почту",
+            "phone": "Телефон",
+            "phone_placeholder": "Укажите номер телефона",
+            "password": "Пароль",
+            "password_placeholder": "Введите пароль",
+            "sign_up_fb": "Регистрация через Facebook",
+            "sign_up_gg": "Регистрация через Google",
+            "already_have_account": "Уже регистрированы?",
+            "sign_up_btn": "Регистрация"
+        },
+        "login": {
+            "title": "Вход",
+            "email": "Эл. адресс",
+            "email_placeholder": "Введите Эл. адресс",
+            "password": "Пароль",
+            "password_placeholder": "Введите пароль",
+            "dont_have_account": "Еще не регистрированы?",
+            "login_btn": "Вход",
+            "forgot_pass": "Забыли пароль?",
+            "remember_me": "Запомнить"
+        },
+        "confirm_account": {
+            "title": "Потвердите ваш аккаунт",
+            "check_email": "Проверить Эл. адресс",
+            "confirm_email_text": "Пожалуйста потвердите Эл. адресс нажав на ссылку отправленную вам",
+            "resend_btn": "Повторная отправка"
+        },
+        "onboarding": {
+            "popup_title": "Добро пожаловать в DayTrip",
+            "popup1": {
+                "title2": "Однодневные поездки",
+                "text": "Откройте для себя, что можете сделать в Армении в течении одного дня. Выберите один из предложенных вариантов."
+            },
+            "popup2": {
+                "title2": "Найдите своего водителя",
+                "text": "Найдите индивидуального водителя со своей машиной, кто сопроводит вас. Просто выберите однo из направлений, укажите дату, выберите водителя и машину и отправляйтесь в путь."
+            },
+            "popup3": {
+                "title2": "Кто ваши водители?",
+                "text": "Водители DayTrip доверенные лица, которые предпочетают свое свободное время проводить путеществуя по Армении и заводя новые знакомства."
+            },
+            "get_started_btn": "Начать"
+        },
+        "top_choices": "Топовые Направления",
+        "trip_duration": "Длительность",
+        "reviews": "Отзывы",
+        "hit_the_road": {
+            "section_title": "В путь, ",
+            "title": "Поездка на целый день",
+            "info_slider": "Road trips are one of the best ways to really get to know a country.",
+            "desc": "Нет в мыслях конкретное направление? Тогда путешествуйте по стане, а где остановиться, можете решить по пути.",
+            "date_picker_label": "Дата",
+            "date_picker_placeholder": "Выберите дату",
+            "travelers_label": "Пассажиры",
+            "travelers_placeholder": "Укажите число пассажиров",
+            "explore_all_trips": "Все однодневные поездки",
+            "btn_sfd": "Искать водителей",
+            "btn": "Увидеть больше"
+        }
+    },
+    "trip_details_page": {
+        "duration": "Длительность",
+        "start": "Старт",
+        "title1": "Что сделаете",
+        "title2": "Что увидете",
+        "title3": "Где окажетесь",
+        "show_more": "Увидеть больше"
+    },
+    "select_drivers_page": {
+        "chips": {
+            "date_input": "Месяц-День",
+            "travelers_input": "Пассажиры",
+            "rating": "Оценка",
+            "price": "Диапазон цен",
+            "no_drivers_title": "Нет доступных водителей",
+            "no_drivers_text": "Предлогаем изменить дату и попробовать снова",
+            "drivers_title": "Доступные водители",
+            "btn": "Забронировть",
+            "text_btn": "Увидеть больше"
+        }
+    },
+    "reviews_page": {
+        "pickup_info": {
+            "page_title": "Краткое описание",
+            "title": "Информация о встречи",
+            "pickup_time": "Время встречи",
+            "pickup_placeholder": "Выберите дату",
+            "pickup_location": "Место встречи",
+            "pickup_location_placeholder": "Выберите место",
+            "notes": "Заметки",
+            "notes_placeholder": "Добавить заметки",
+            "btn": "Продолжить"
+        },
+        "trip_summary": {
+            "date": "Дата",
+            "travelers": "Пассажиры",
+            "duration": "Длительность",
+            "price": "Цена поездки",
+            "fee": "Плата за услуги",
+            "total_price": "Общая цена",
+            "less_detail": "Меньше",
+            "more_detail": "Больше",
+            "btn": "Платить"
+        },
+        "payment_page_title": "Платежные данные",
+        "payment_title": "Добавить карту"
+    },
+    "thank_you_title": "Спасибо!",
+    "title1": "Ваша поездка потвержденна.",
+    "title2": "Не забудте сделать много селфи и хорошо провести время",
+    "btn": "Начало",
+    "profiles_page": {
+        "info_box": {
+            "id_number": "Идентификационная карта/Пасспорт",
+            "phone": "Телефон",
+            "email": "Эл. адресс"
+        },
+        "info_area": {
+            "title": "Привет, я ",
+            "member_since": "Зарегистрирован с ",
+            "edit_btn": "Редактировать"
+        },
+        "details": {
+            "lives_in": "Место жительства",
+            "speaks": "Языки",
+            "occupation": "Профессия"
+        }
+    },
+    "account_page": {
+        "page_title": "Аккаунт",
+        "persona_info_title": "Личные данные",
+        "persona_info_desc": "Предоставте данные для связи с вами",
+        "login_title": "Обновите парольи обеспечте безопасность аккаунта",
+        "login_desc": "Логин и безопасность",
+        "payments_title": "Платежи",
+        "payments_desc": "Настройте платежные методы",
+        "personal_info_page": {
+            "page_title": "Личные данные",
+            "name": "Имя",
+            "gender": "Пол",
+            "birthday": "Дата рождения",
+            "email": "Эл. адресс",
+            "phone": "Телефон",
+            "about_text": "О вас",
+            "about_pholder": "Вкратце расскажите о вас",
+            "residence_city_text": "Место жительства",
+            "residence_city_pholder": "Искать город",
+            "lang_text": "Языки",
+            "lang_pholder": "На каких языках общяетесь?",
+            "occupation": "Профессия",
+            "not_specified": "Не указан"
+        },
+        "login_page": {
+            "page_title": "Логин и безопасность",
+            "section1": "Логин",
+            "section1_title": "Пароль",
+            "section1_pholder": "Последний раз обновлялся дней назад",
+            "section": "Социальн аккаунт",
+            "section2_title1": "Facebook",
+            "section2_title2": "Google"
+        },
+        "payments": {
+            "page_title": "Платежи",
+            "tab1_title": "Платежные методы",
+            "no_card_attached": "Добавьте платежный метод, используя нашу безопасную платежную систему и начните планировать ваше поездку.",
+            "add_payment_btn": "Добавить новую платежную систему",
+            "card_attached": "Добавить новую карту"
+        }
+    },
+    "saved_page": {
+        "page_title": "Сохраненые поездки",
+        "no_saved_title": "Сохраненых поездок нет",
+        "no_saved_text": "Начните планировать вашу следующую поездку",
+        "no_saved_btn": "ОТКРОЙТЕ DAYTRIP"
+    },
+    "trips_page": {
+        "page_title": "Поездки",
+        "no_trips": "Поездок нет",
+        "explore_btn": "ОТКРОЙТЕ DAYTRIP",
+        "upcoming_tab": "Будущие поездки",
+        "no_upcoming_title": "Будущих поездок нет",
+        "past_tab": "Прошедшие поездки",
+        "no_past_title": "Прошедших поездок нет",
+        "no_trip_text": "Начните планировать ваше поездку",
+        "trip_card": {
+            "date": "Дата",
+            "travelers": "Пассажиры",
+            "btn_cancelation": "Отмена",
+            "btn_details": "Детали",
+            "review_added": "Отзыв написан",
+            "contact_driver": "Связь с водителем",
+            "contact_traveler": "Связь с водителем",
+            "rate_review": "Отзыв и оценка",
+            "slider": {
+                "more_btn": "Более",
+                "trip_info": {
+                    "title": "Данные поездки",
+                    "duration": "Длительность",
+                    "order_status": "Состояние платежа",
+                    "order_id": "Номер платежа"
+                },
+                "pickup_info": "Данные встречи",
+                "pickup_time": "Час",
+                "pickup_address": "Адресс",
+                "pickup_notes": "Заметки",
+                "driver": "Водитель",
+                "traveler": "Пассажир",
+                "view_profile_btn": "Посмотреть профиль",
+                "lives_in": "Проживает",
+                "speaks": "Говорит на",
+                "phone": "Телефон",
+                "price_title": "Цена",
+                "trip_price": "Цена",
+                "service_fee": "Плата за услуги",
+                "total_price": "Итоговая цена",
+                "contact_btn": "Связь "
+            },
+            "rate_review_modal": {
+                "title": "Отзыв и оценка",
+                "tab1": "Поездка",
+                "tab2": "Водитель",
+                "text1": "Как прошел ваш день? Пожалуйста оцените поездку и водителя",
+                "text2": "Поделитесь своими ощущениями"
+            }
+        }
+    },
+    "driver_sigup": {
+        "header": "Регистрация Водителя",
+        "step_header": "ШАГ ",
+        "final_step_header": "Последний шаг",
+        "step1": {
+            "title": "Добро пожаловать в DayTrip!",
+            "text": "Предоставте данние о машине",
+            "page_title": "Какую машину водите?",
+            "car_type_label": "Тип машины",
+            "car_make_label": "Марка машины",
+            "car_model_label": "Модель машины",
+            "car_year_label": "Год",
+            "car_color_label": "Цвет",
+            "select_pholder": "Выбрать"
+        },
+        "step2": {
+            "title1": "Для скольких пассажиров расчитана машина?",
+            "title2": "Что будет в машине?",
+            "text1": "Убедитесь, что все пассажиры удобно усаженны в машине.",
+            "text2": "Информируйте пассажиров о машине и правилах: После регистрации можете изменить."
+        },
+        "step3": {
+            "title": "Добавте фотографии машины",
+            "text": "Фотографии помогут пассажирам имет представленив о предстоящей поездке. После регистрации можете изменить.",
+            "help_slider_title": "Фотографии машины"
+        },
+        "step4": {
+            "title1": "Добавьте Пасспорт/ID",
+            "text1": "Проверка личности повышает доверие и безопасность за счет снижения уровня мошенничества и антиобщественного поведения.",
+            "title2": "Добавьте водительское удостоверение",
+            "text2": "Подтверждение ваших водительских прав позволит нам обеспечить максимальную безопасность для наших пользователей.",
+            "title3": "Добавьте тех. пасспорт машины",
+            "text3": "Подтверждение регистрации вашего автомобиля позволит нам обеспечить максимальную безопасность для наших пользователей."
+        },
+        "step5": {
+            "title1": "Прекрасно, ",
+            "title2": "Вы предоставили всю необходимую информацию о машине",
+            "car_details": "Модель, число пассажирских мест, что включено и т.д.",
+            "text1": "Теперь, добавьте некоторые личные данные",
+            "text2": "Фото, языки общения и т.д։"
+        },
+        "step6": {
+            "page_title": "Добавьте свою фотографию",
+            "text1": "Позвольте пассажирам познакомиться с их будущим водителем"
+        },
+        "step7": {
+            "page_title": "Сделайте ваш профиль лучше",
+            "gender": "Пол",
+            "birthday": "Дата рождения",
+            "about_text": "О вас",
+            "about_pholder": "Расскажите пассажирам о вас, поделитесь вашими хобби.",
+            "lang_text": "Языки",
+            "lang_pholder": "На каких языках вы общяетесь",
+            "occupation": "Профессия",
+            "occupation_pholder": "Какова ваша профессия?"
+        },
+        "step8": {
+            "title1": "Еще несколько данных",
+            "residence_text": "Место жительства",
+            "residence_pholder": "Искать город",
+            "dest_text": "Направления",
+            "dest_pholder": "Я можу вести в",
+            "title2": "Укажите тариф за 1км",
+            "price_short": "Укажите тариф за 1км для коротких поездок(до 110км)",
+            "price_long": "Укажите тариф за 1км для длинных поездок(более 110км)",
+            "price_pholder": "Цена",
+            "price_info": "Данные примеры показывают сколько вы заработаете учитывая тариф за 1км"
+        },
+        "step9": {
+            "illustration_title": "Поездка на целый день",
+            "hit_the_road_text": "Акция «В путь» преднозначена для тех пассажиров, у которых нет конкретного направления поездки. Как водитель вы должны быть доступны весь день.",
+            "hit_the_road_question": "Желаете предоставить такую услугу?",
+            "hit_the_road_toggle": "Укажите ваш тариф для целого дня"
+        }
+    },
+    "calendar_page": {
+        "title1": "Календарь",
+        "overview": "Обзор",
+        "settings_slider": {
+            "slider_title": "Настройки",
+            "title": "Доступность",
+            "available_title": "Открыть дни календаря до",
+            "availability_opts": {
+                "all_dates": "Все будующие месяцы",
+                "9_months": "9 месяцев",
+                "6_months": "6 месяцев",
+                "3_months": "3 месяцев",
+                "all_unavialable": "Все дни закрыты"
+            },
+            "notice_opts": {
+                "1_day": "По крайне мере за 1 день до поездки",
+                "2_day": "По крайне мере за 2 день до поездки",
+                "3_day": "По крайне мере за 3 день до поездки",
+                "7_day": "По крайне мере за 7 день до поездки"
+            },
+            "notice_title": "Минимально за скоько дней до поездки могут вас забронировать?"
+        }
+    },
+    "progress_page": {
+        "page_title": "Прогресс",
+        "section1_title": "Прибыль",
+        "section1_text": "Прибыль включая предстоящие бронирования",
+        "section2_title": "Отзыв и оценка",
+        "section2_value_no_review": "Обзора нет",
+        "section2_text": "Средняя оценка",
+        "section3_title": "Бронирования",
+        "section3_text": "Все прошедшие и предстоящие бронирования",
+        "section4_title": "Завершившийся поездки",
+        "section4_text": "В прошлом месяце",
+        "section5_title": "Предпочтительные поездки",
+        "section5_text": "Итого",
+        "section6_title": "Предстоящие поездки",
+        "section6_text": "Итого"
+    },
+    "my_car_page": {
+        "page_title": "Моя машина",
+        "tabs": {
+            "details": "Данные машины",
+            "more": "Более",
+            "tariffs": "Тарифы"
+        },
+        "car_details": {
+            "images": "Фотографии машины",
+            "car_type": "Тип машины",
+            "car_make": "Марка машины",
+            "car_model": "Модель машины",
+            "year": "Год",
+            "color": "Цвет",
+            "driving_license": "Водительское удостоверение",
+            "registration_card": "Тех. пасспорт",
+            "input_text": "Предоставлена",
+            "change_profile_title": "Изменения профиля",
+            "change_profile_text1": "If you change this field your profile will be temporarily suspended for further verification. If you make any changes here, you will be asked toupdate all car related information.",
+            "change_profile_text2": "NOTE:Please be notified that all your upcoming bookings will be cancelled if you proceed"
+        },
+        "more_details": {
+            "section1_title": "Для скольких пассажиров расчитана машина?",
+            "section2_title": "Что будет в машине?",
+            "section3_title": "Выбранные направления"
+        },
+        "tarrifs": {
+            "section_title": "Тариф за 1км",
+            "short_trip_text": "Короткие поездки с возвратом(до 110км)",
+            "long_trip_text": "Длинные поездки с возвратом(более 110км)",
+            "price_input": "Тариф",
+            "info_text": "Данные примеры показывают сколько вы заработаете учитывая указанный тариф за 1км",
+            "full_day_title": "Тариф для целого дня"
+        }
+    },
+    "footer": {
+        "terms_conditions": "Правила и условия",
+        "help": "Помощь"
+    },
+    "commons":{
+        "car_options": {
+            "car": "Машина",
+            "seats": "Пассажирские места",
+            "live_in": "Место жительства",
+            "speaks": "Языки",
+            "car_seat": "Детское кресло",
+            "air_cond": "Кондиционер",
+            "smocking": "Курить разрешено",
+            "pets": "Животные разрешены",
+            "water": "Вода",
+            "snacks": "Закуски",
+            "wifi": "WiFi"
+        },
+        "buttons": {
+            "back_btn": "Назад",
+            "next_btn": "Далее",
+            "submit_btn": "Отправить",
+            "skip_btn": "Пропустить",
+            "edit_btn": "Изменить",
+            "update_btn": "Обновить",
+            "connect_btn": "Соединить",
+            "cancel_btn": "Отменить",
+            "save_btn": "Сохранить",
+            "upload_btn": "Загрузить",
+            "add_image": "Добавить фото"
+        },
+        "error_msgs":{
+            "name_required": "Имя обязательно",
+            "password_required": "Пароль обязателен",
+            "email_invalid": "Эл. адресс неправелен",
+            "phone_invalid": "Номер телефона неправелен",
+            "required_field": "Эти данные необходимы"
+        },
+        "car_types": {
+            "sedan": "Седан",
+            "hatchback": "Хечбек",
+            "wagon": "Универсал",
+            "coupe": "Купе",
+            "convertible": "Кабриолет",
+            "suv": "Внедорожник",
+            "pickup": "Пикап",
+            "van": "Фургон"
+        },
+        "colors": {
+            "black": "Черный",
+            "blue": "Синий",
+            "brown": "Коричневый",
+            "gold": "Золотой",
+            "gray": "Серый",
+            "green": "Зеленый",
+            "orange": "Оранжевый",
+            "purple": "Фиолетовый",
+            "red": "Красный",
+            "silver": "Серебряный",
+            "tan": "Беж",
+            "white": "Белый",
+            "yellow": "Желтый"
+        },
+        "choose_currency": "Выбрать валюту",
+        "choose_lang": "Выбрать язык",
+        "upload_box_title": "Загрузить фото",
+        "loading_save_driver": "Просим подождать пока ваши данные сохраняются",
+        "no_options": "Нет опций",
+        "toogle_yes": "Да",
+        "toogle_no": "Нет",
+        "or": "или",
+        "duration": "Длительность",
+        "distance": "Расстояние",
+        "view_details_btn": "В деталях",
+        "reviews": "Отзывы",
+        "not_connected": "Не прикрепленно"
+    }
+}

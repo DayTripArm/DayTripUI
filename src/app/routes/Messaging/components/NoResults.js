@@ -1,6 +1,5 @@
 import React from 'react';
 import ImpNoResults from 'assets/images/no_results.svg';
-import { Link } from 'react-router-dom';
 
 const NoResults = ({message}) => (
   <div className='mt-lg-1 text-center mh-min-screen'>

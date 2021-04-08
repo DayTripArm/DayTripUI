@@ -3,11 +3,12 @@ import SelectCustom from 'shared/components/SelectCustom';
 import {CAR_TYPE_LIST, CAR_YEAR_LIST, COLOR_LIST} from "../../../../constants";
 import _ from "lodash";
 import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import actions from "../../../../actions";
 
 const CarRegistration = (props) => {
     const {invalidFields} = props;
-
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
@@ -37,50 +38,50 @@ const CarRegistration = (props) => {
         }
     };
 
-    const carTypeList = CAR_TYPE_LIST.map(item => {return {label: item, value: item}});
+    const carTypeList = CAR_TYPE_LIST.map(item => {return {label: t(`commons.car_types.${item}`), value: t(`commons.car_types.${item}`)}});
     const yearList    = CAR_YEAR_LIST().map(item => {return {label: item, value: item}});
-    const colorList   = COLOR_LIST.map(item => {return {label: item, value: item}});
+    const colorList   = COLOR_LIST.map(item => {return {label: t(`commons.colors.${item}`), value: t(`commons.colors.${item}`)}});
     const carBrands = car_mark_list.map(item => {return {label: item.brand_name, value: item.id}});
     const carModels = car_model_list.map(item => {return {label: item.car_model_name, value: item.id, brand_id: item.brand_id}});
 
     return(
         <>
 
-            <h2 className='text__blue mb-6'>Welcome to DayTrip!</h2>
-            <p className='text__grey-dark'>Now, give us some details about your car so we can publish your listing.</p>
+            <h2 className='text__blue mb-6'>{t("driver_sigup.step1.title")}</h2>
+            <p className='text__grey-dark'>{t("driver_sigup.step1.text")}</p>
 
-            <h4 className='text__blue mb-6'>What car are you driving?</h4>
+            <h4 className='text__blue mb-6'>{t("driver_sigup.step1.page_title")}</h4>
             <SelectCustom
                 type='text'
                 name='car_type'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
-                label='What is Your Car Type?'
-                placeholder='Choose'
+                label={t("driver_sigup.step1.car_type_label")}
+                placeholder={t("driver_sigup.step1.select_pholder")}
                 value={_.find(carTypeList, i => i.value === car_type)}
                 options={carTypeList}
-                message={_.includes(invalidFields, "car_type") ? "This field is mandatory" : ""}
+                message={_.includes(invalidFields, "car_type") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_type")}
             />
             <SelectCustom
                 type='text'
                 name='car_mark'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
-                label='What is Your Car Make?'
-                placeholder='Choose'
+                label={t("driver_sigup.step1.car_make_label")}
+                placeholder={t("driver_sigup.step1.select_pholder")}
                 value={_.find(carBrands, i => i.value === car_mark)}
                 options={carBrands}
-                message={_.includes(invalidFields, "car_mark") ? "This field is mandatory" : ""}
+                message={_.includes(invalidFields, "car_mark") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_mark")}
             />
             <SelectCustom
                 type='text'
                 name='car_model'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
-                label='What is Your Car Model?'
-                placeholder='Choose'
+                label={t("driver_sigup.step1.car_model_label")}
+                placeholder={t("driver_sigup.step1.select_pholder")}
                 value={_.find(carModels, i => i.value === car_model && i.brand_id === car_mark)}
                 options={carModels}
-                message={_.includes(invalidFields, "car_model") ? "This field is mandatory" : ""}
+                message={_.includes(invalidFields, "car_model") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_model")}
             />
             <SelectCustom
@@ -89,9 +90,9 @@ const CarRegistration = (props) => {
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
                 name="car_year"
                 value={_.find(yearList, i => i.value === car_year)}
-                placeholder="Choose"
-                label="Year"
-                message={_.includes(invalidFields, "car_year") ? "This field is mandatory" : ""}
+                label={t("driver_sigup.step1.car_year_label")}
+                placeholder={t("driver_sigup.step1.select_pholder")}
+                message={_.includes(invalidFields, "car_year") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_year")}
             />
             <SelectCustom
@@ -100,9 +101,9 @@ const CarRegistration = (props) => {
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
                 name="car_color"
                 value={_.find(colorList, i => i.value === car_color)}
-                placeholder="Choose"
-                label="Color"
-                message={_.includes(invalidFields, "car_color") ? "This field is mandatory" : ""}
+                label={t("driver_sigup.step1.car_color_label")}
+                placeholder={t("driver_sigup.step1.select_pholder")}
+                message={_.includes(invalidFields, "car_color") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_color")}
             />
         </>

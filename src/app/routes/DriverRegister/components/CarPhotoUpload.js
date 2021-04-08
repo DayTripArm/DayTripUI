@@ -3,23 +3,22 @@ import { IconQuestionOutlined } from 'shared/components/Icons';
 import ModalAside from 'shared/components/ModalAside';
 import FormDropZone from 'shared/components/FormDropZone';
 import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import actions from "../../../../actions";
 import _ from "lodash";
-
-const title = "Add photos of your car ";
 
 const CarRegistration = (props) => {
     const [openModal, setOpenModal] = useState(false);
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
-
+    const { t } = useTranslation();
     const {invalidFields} = props;
 
     const {
         car_photos=[],
         tips={},
     } = preregistered_info;
-
+    const title = t("driver_sigup.step3.title");
     const dispatch = useDispatch();
 
     const carTips = tips[1]; // type = 1
@@ -42,16 +41,16 @@ const CarRegistration = (props) => {
                   <IconQuestionOutlined fill='#757575' />
               </button>
           </h4>
-          <p className='text__grey-dark'>Photos help travelers imagine their future ride. You can add more photos after you publish.</p>
+          <p className='text__grey-dark'>{t("driver_sigup.step3.text")}</p>
 
           <FormDropZone
               type="car_photos"
-              label="Upload Photos"
+              label={t("commons.upload_box_title")}
               photos={car_photos}
           />
 
           {openModal && (
-              <ModalAside title='Trips' onClose={() => setOpenModal(false)}>
+              <ModalAside title={t("driver_sigup.step3.help_slider_title")} onClose={() => setOpenModal(false)}>
                   <h4 className='text__blue'>{!_.isEmpty(carTips) && carTips.title}</h4>
 
                   {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import Modal from 'shared/components/Modal'
 import {useDispatch} from "react-redux";
 import actions from "../../../actions";
@@ -7,13 +8,14 @@ import { IconCurrecy } from 'shared/components/Icons';
 
 const CurrenciesModal = ({onClose}) => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     function setCurrency(e,currency){
         localStorage.setItem('currency', currency["short_name"]);
         dispatch(actions.setCurrency(currency["short_name"]));
         onClose();
     }
     return (
-         <Modal title="Choose Currency" onClose={() => onClose(false)} showDismissButton>
+         <Modal title={t("commons.choose_currency")} onClose={() => onClose(false)} showDismissButton>
             <div className='row row-1'>
             {
                 CURRENCIES.map((currency, i) => {

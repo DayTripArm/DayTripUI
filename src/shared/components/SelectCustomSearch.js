@@ -3,6 +3,7 @@ import {IconZoom } from 'shared/components/Icons';
 import Input from "./Input";
 import Api from "../../Api";
 import _ from 'lodash';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from "react-router-dom";
 
 const SelectCustomSearch = (props) => {
@@ -16,7 +17,7 @@ const SelectCustomSearch = (props) => {
     } = props;
 
     const [options, setOptions] = useState([]);
-
+    const { t } = useTranslation();
     const handleSearch = (e) => {
         const value = e.target ? e.target.value : "";
 
@@ -40,7 +41,7 @@ const SelectCustomSearch = (props) => {
                 value=''
                 className='border-0'
                 containerClass='mb-0'
-                placeholder='Search Destinations'
+                placeholder={t('home_page.search_dest')}
                 onChange={(e) => handleSearch(e)}
                 onFocus={() => setOpenSearchDropdown(true)}
                 onBlur={() => {
@@ -72,7 +73,7 @@ const SelectCustomSearch = (props) => {
                                     {trip.title}
                                 </li>
                                 )
-                        }) : <li className='list-item py-2 px-4 text-ellipsis'>No Options</li>
+                        }) : <li className='list-item py-2 px-4 text-ellipsis'>{t('commons.no_options')}</li>
                     }
                 </ul>
             </div>

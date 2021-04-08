@@ -5,10 +5,13 @@ import { IconFbFilled, IconTwitter, IconInstagramOutlined, IconGlobe, IconCurrec
 import LanguagesModal from './modals/LanguagesModal';
 import CurrenciesModal from './modals/CurrenciesModal';
 import {useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
+import {LANGUAGES_BY_COUNTRY} from "../../constants";
 
 const Footer = () => {
   // Conditionally
   const {config} = useSelector(state => state);
+  const { t } = useTranslation();
   const [showInFooter, setShowInFooter] = useState(localStorage.getItem('id') ? true: window.innerWidth >= 768 ? false: true);
   const [showSeparator, setShowSeparator] = useState(window.innerWidth < 768 ? false: true);
   const [openLanguagePopup, setOpenLanguagePopup] = useState(false);
@@ -38,11 +41,11 @@ const Footer = () => {
               { showSeparator && <span className='text__grey-dark mr-2 mr-md-2'>-</span> }
               <div className='mb-3 mb-md-0'>
                   <Link to='/terms' className='text__grey-dark mr-2 mr-md-2'>
-                    Terms & Conditions
+                  {t('footer.terms_conditions')}
                   </Link>
                   <span className='text__grey-dark mr-2 mr-md-2'> - </span>
                   <Link to='/help' className='text__grey-dark mr-md-6'>
-                    Help
+                  {t('footer.help')}
                   </Link>
               </div>
           </div>
@@ -52,7 +55,7 @@ const Footer = () => {
                 <div className='mb-3 mb-md-0'>
                   <a href='#modal' className='lang_curr_text_icon text__grey-dark mr-2' onClick={(e) => {e.preventDefault(); setOpenLanguagePopup(true); window.location.hash = "modal"}}>
                     <IconGlobe fill="#757575" />
-                    <span className="pointer text-nowrap px-1">{lang ? lang: localStorage.getItem('lang') || 'ENG'} </span>
+                    <span className="pointer text-nowrap px-1">{lang ? LANGUAGES_BY_COUNTRY[lang]: LANGUAGES_BY_COUNTRY[localStorage.getItem('lang')] || 'ENG'} </span>
                   </a>
                   <a href='#modal' className='lang_curr_text_icon text__grey-dark mr-2' onClick={(e) => {e.preventDefault(); setOpenCurrencyPopup(true); window.location.hash = "modal"}}>
                     <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || null} fill="#757575" />

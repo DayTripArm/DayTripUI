@@ -3,6 +3,7 @@ import { IconArrowDown, IconArrowUp, IconZoom } from 'shared/components/Icons';
 import SelectCustomSearch from "../../shared/components/SelectCustomSearch";
 import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
 import HeaderUnauthorized from './fragments/HeaderUnauthorized';
 import HeaderAuthorized from './fragments/HeaderAuthorized';
@@ -20,7 +21,7 @@ const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
 
     const dispatch = useDispatch();
     const {travelerData} = useSelector(state => state);
-
+    const { t } = useTranslation();
     const {
         showSignIn,
     } = travelerData;
@@ -88,13 +89,13 @@ const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
                                     e.preventDefault();
                                     setMobileMenuActive(false);
                                     history.push("/home");
-                                }}>Home</li>
+                                }}>{t('home_page.top_menu.home')}</li>
                                 <li className='py-5 border__bottom border__default' onClick={(e) => {
                                     e.preventDefault();
                                     !showSignIn && dispatch(actions.showHideSignUp(true));
                                     setMobileMenuActive(false);
                                     dispatch(actions.setRegisteredUserType(DRIVER_TYPE));
-                                }}>Become a Driver</li>
+                                }}>{t('home_page.top_menu.become_driver')}</li>
                             </ul>
                         </nav>
                     </div>

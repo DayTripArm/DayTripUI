@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import Modal from 'shared/components/Modal';
 import Input from 'shared/components/Input';
 import actions from "../../../actions";
@@ -10,34 +11,32 @@ import _ from "lodash";
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 
-const validations = {
-    name: {
-        required: true,
-        errorMsg: "Name is invalid"
-    },
-    phone: {
-        required: true,
-        reg: /^\+?[0-9]{3}-?[0-9]{6,12}$/i,
-        errorMsg: "Phone is invalid"
-    },
-    email: {
-        required: true,
-        reg: /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/i,
-        errorMsg: "Email is invalid"
-    },
-    password: {
-        required: true,
-        errorMsg: "Password is invalid"
-    },
-};
-
 const ModalRegister =  ({ onClose }) => {
     const dispatch = useDispatch();
     const [invalidFields, setInvalidFields] = useState({});
     const [form, setForm] = useState({name: "", phone: "", email: "", password: ""});
-
+    const { t } = useTranslation();
     const {travelerData, driverData, config} = useSelector(state => state);
-
+    const validations = {
+        name: {
+            required: true,
+            errorMsg: t("commons.error_msgs.name_required")
+        },
+        phone: {
+            required: true,
+            reg: /^\+?[0-9]{3}-?[0-9]{6,12}$/i,
+            errorMsg: t("commons.error_msgs.phone_invalid")
+        },
+        email: {
+            required: true,
+            reg: /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/i,
+            errorMsg: t("commons.error_msgs.email_invalid")
+        },
+        password: {
+            required: true,
+            errorMsg: t("commons.error_msgs.password_required")
+        },
+    };
     const {
         user_info
     } = travelerData;
@@ -79,7 +78,7 @@ const ModalRegister =  ({ onClose }) => {
 
         if (rule) {
             if (rule.required && !form[name].trim()) {
-                return { status: "error", statusMessage: "This field is required" };
+                return { status: "error", statusMessage: rule.errorMsg };
             }
 
             if (!_.isEmpty(form[name]) && rule.reg && !rule.reg.test(form[name])) {
@@ -130,7 +129,7 @@ const ModalRegister =  ({ onClose }) => {
     };
 
     return (
-        <Modal title='Please Sign Up' showDismissButton onClose={() => onClose(false)}>
+        <Modal title={t("home_page.sign_up.title")} showDismissButton onClose={() => onClose(false)}>
             <div className='py-4 px-0 px-md-8'>
                 <form onSubmit={(e) => {
                     e.preventDefault();
@@ -154,8 +153,8 @@ const ModalRegister =  ({ onClose }) => {
                             ...form,
                             name: e.target.value
                         })}
-                        label='Name *'
-                        placeholder='e.g John Smith'
+                        label={t("home_page.sign_up.name")+' *'}
+                        placeholder={t("home_page.sign_up.name_placeholder")}
                         isError={getStatusMessage("name") || false}
                         message={getStatusMessage("name")}
                         onBlur={validateOnBlur}
@@ -169,8 +168,8 @@ const ModalRegister =  ({ onClose }) => {
                             ...form,
                             phone: e.target ? e.target.value : e
                         })}
-                        label='Phone *'
-                        placeholder='Type Your Number'
+                        label={t("home_page.sign_up.phone")+' *'}
+                        placeholder={t("home_page.sign_up.phone_placeholder")}
                         isError={getStatusMessage("phone") || false}
                         message={getStatusMessage("phone")}
                         onBlur={validateOnBlur}
@@ -182,8 +181,8 @@ const ModalRegister =  ({ onClose }) => {
                             ...form,
                             email: e.target.value
                         })}
-                        label='Email *'
-                        placeholder='Enter your Email'
+                        label={t("home_page.sign_up.email")+' *'}
+                        placeholder={t("home_page.sign_up.email_placeholder")}
                         isError={getStatusMessage("email") || false}
                         message={getStatusMessage("email")}
                         onBlur={validateOnBlur}
@@ -195,17 +194,17 @@ const ModalRegister =  ({ onClose }) => {
                             ...form,
                             password: e.target.value
                         })}
-                        label='Password *'
-                        placeholder='Enter your Password'
+                        label={t("home_page.sign_up.password")+' *'}
+                        placeholder={t("home_page.sign_up.password_placeholder")}
                         showEye={true}
                         iconPosition='right'
                         isError={getStatusMessage("password") || false}
                         message={getStatusMessage("password")}
                         onBlur={validateOnBlur}
                     />
-                    <button className='btn btn-primary btn-fixed'>Sign Up</button>
+                    <button className='btn btn-primary btn-fixed'>{t("home_page.sign_up.sign_up_btn")}</button>
                     <div className='text-separator my-7'>
-                        <span className='separator-content px-5'>or</span>
+                        <span className='separator-content px-5'>{t("commons.or")}</span>
                     </div>
 
                     <FacebookLogin
@@ -214,7 +213,7 @@ const ModalRegister =  ({ onClose }) => {
                         scope="public_profile,email"
                         callback={responseFacebook}
                         icon={<IconFbClean fill='#FFFFFF' className='mr-3'/>}
-                        textButton="Sign Up With Facebook"
+                        textButton={t("home_page.sign_up.sign_up_fb")}
                         cssClass={`btn btn-facebook btn-fixed mb-3`}
                     />
 
@@ -223,7 +222,7 @@ const ModalRegister =  ({ onClose }) => {
                         render={renderProps => (
                             <button onClick={renderProps.onClick} className='btn btn-google btn-fixed text__grey-dark mb-5'>
                                 <IconGoogle fill='#FFFFFF' className='mr-3'/>
-                                Sign Up With Google
+                                {t("home_page.sign_up.sign_up_gg")}
                             </button>
                         )}
                         fields="select_account"
@@ -232,10 +231,10 @@ const ModalRegister =  ({ onClose }) => {
                     />
 
                     <p className='pt-1 mb-0 weight-700 text-center'>
-                        Already have an account? <Link to='/login' onClick={(e) => {
+                        {t("home_page.sign_up.already_have_account")} <Link to='/login' onClick={(e) => {
                         e.preventDefault();
                         dispatch(actions.switchSignInUp());
-                    }}>Login</Link>
+                    }}>{t("home_page.login.title")}</Link>
                     </p>
                 </form>
             </div>

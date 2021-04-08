@@ -6,14 +6,15 @@ import useOutsideClick from 'shared/hooks/useOutsideClick';
 import LanguagesModal from './../modals/LanguagesModal';
 import CurrenciesModal from './../modals/CurrenciesModal';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import actions from "../../../actions";
-import {DRIVER_TYPE, TRAVELER_TYPE} from "../../../constants";
+import {DRIVER_TYPE, TRAVELER_TYPE, LANGUAGES_BY_COUNTRY} from "../../../constants";
 import { IconGlobe, IconCurrecy } from 'shared/components/Icons';
 
 const HeaderUnauthorized = () => {
   const dispatch = useDispatch();
   const {travelerData, config} = useSelector(state => state);
-
+  const { t } = useTranslation();
   const themeLight = window.location.pathname.includes('home');
 
   const container1 = useRef();
@@ -53,7 +54,7 @@ const HeaderUnauthorized = () => {
                   className={`pointer text-nowrap px-1${themeLight ? ' text-white' : ''}`}
                   onClick={() => setOpenLanguagePopup(true)}
                   role='presentation'
-                >{lang ? lang: localStorage.getItem('lang') || 'ENG'}</span>
+                >{lang ? LANGUAGES_BY_COUNTRY[lang]: LANGUAGES_BY_COUNTRY[localStorage.getItem('lang')] || 'English'}</span>
               </div>
             </li>}
             {showInHeader && <li>
@@ -72,7 +73,7 @@ const HeaderUnauthorized = () => {
                 !showSignIn && dispatch(actions.showHideSignUp(true));
                 dispatch(actions.setRegisteredUserType(DRIVER_TYPE));
                 window.location.hash = 'modal'
-              }}>Become a Driver</Link>
+              }}>{t('home_page.top_menu.become_driver')}</Link>
             </li>
           </ul>
         </nav>
@@ -82,8 +83,8 @@ const HeaderUnauthorized = () => {
                     !showSignIn && dispatch(actions.showHideSignUp(true));
                     dispatch(actions.setRegisteredUserType(TRAVELER_TYPE));
                     window.location.hash = 'modal'
-          }}>Sign Up</button>
-          <button className={`btn btn-md btn-normal btn-outline-${themeLight ? 'white' : 'black'}`} onClick={() => {!showSignUp && dispatch(actions.showHideSignIn(true)); window.location.hash = 'modal'}}>Login</button>
+          }}>{t('home_page.top_menu.sign_up')}</button>
+          <button className={`btn btn-md btn-normal btn-outline-${themeLight ? 'white' : 'black'}`} onClick={() => {!showSignUp && dispatch(actions.showHideSignIn(true)); window.location.hash = 'modal'}}>{t('home_page.top_menu.login')}</button>
         </div>
       </div>
       {showSignIn && <ModalLogin onClose={() => dispatch(actions.showHideSignIn(false))} />}

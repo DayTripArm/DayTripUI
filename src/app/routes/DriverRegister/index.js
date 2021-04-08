@@ -16,6 +16,7 @@ import Loader from "shared/components/Loader";
 
 import actions from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 
 const requiredFields = {
     1: ["car_type", "car_mark", "car_model", "car_year", "car_color"],
@@ -28,20 +29,19 @@ const requiredFields = {
     8: ["location", "driver_destinations"],
 };
 
-
-const StepPageByNumber = {
-    1: {page: CarRegistration, stepText: "Driver Sign Up", stepNumber: "1"},
-    2: {page: CarCommunications, stepText: "Driver Sign Up", stepNumber: "1"},
-    3: {page: CarPhotoUpload, stepText: "Driver Sign Up", stepNumber: "2"},
-    4: {page: GovermentAndLicence, stepText: "Driver Sign Up", stepNumber: "3"},
-    5: {page: CarRegComplete, stepText: "Driver Sign Up", stepNumber: "4"},
-    6: {page: ProfilePicture, stepText: "Driver Sign Up", stepNumber: "4"},
-    7: {page: ProfileData, stepText: "Driver Sign Up", stepNumber: "5"},
-    8: {page: LocationAndDestination, stepText: "Driver Sign Up", stepNumber: "5"},
-    9: {page: HitTheRoad, stepText: "Driver Sign Up", stepNumber: "6"},
-};
-
 const DriverRegister = () => {
+    const { t } = useTranslation();
+    const StepPageByNumber = {
+        1: {page: CarRegistration, stepText: t("driver_sigup.header"), stepNumber: "1"},
+        2: {page: CarCommunications, stepText: t("driver_sigup.header"), stepNumber: "1"},
+        3: {page: CarPhotoUpload, stepText: t("driver_sigup.header"), stepNumber: "2"},
+        4: {page: GovermentAndLicence, stepText: t("driver_sigup.header"), stepNumber: "3"},
+        5: {page: CarRegComplete, stepText: t("driver_sigup.header"), stepNumber: "4"},
+        6: {page: ProfilePicture, stepText: t("driver_sigup.header"), stepNumber: "4"},
+        7: {page: ProfileData, stepText: t("driver_sigup.header"), stepNumber: "5"},
+        8: {page: LocationAndDestination, stepText: t("driver_sigup.header"), stepNumber: "5"},
+        9: {page: HitTheRoad, stepText: t("driver_sigup.header"), stepNumber: "6"},
+    };
     const limit = _.keys(StepPageByNumber).length;
     const [step, setStep] = useState(1);
     const [isSubmit, setSubmit] = useState(false);
@@ -52,7 +52,7 @@ const DriverRegister = () => {
 
     let invalidFields = [];
 
-    const loaderText = "Please Wait While We are Saving Your Data";
+    const loaderText = t("commons.loading_save_driver");
 
     const dispatch = useDispatch();
 
@@ -89,17 +89,17 @@ const DriverRegister = () => {
 
     return (
         <>
-            <OnboardingPanel step={stepNumber} name={stepText} progress={(100 / limit) * step} />
+            <OnboardingPanel step={step==9 ? t("driver_sigup.final_step_header") : t("driver_sigup.step_header") + stepNumber} name={stepText} progress={(100 / limit) * step} />
             <div className='container mh-min-screen'>
                 <div className='d-flex justify-content-center mt-3 pt-8 pt-md-10 pt-xl-12'>
                     <div className='w-100 mxw-328px'>
 
-                        <StepPage step={step} setStep={setStep} invalidFields={invalidFields} tariffChecked={tariffChecked} setTariffChecked={setTariffChecked}  />
+                        < StepPage step={step} setStep={setStep} invalidFields={invalidFields} tariffChecked={tariffChecked} setTariffChecked={setTariffChecked}  />
 
                         <div className='mt-6'>
                             <div className='d-flex align-items-center justify-content-between'>
                                 <button className='btn btn-secondary btn-bold btn-secondary__black text-uppercase' onClick={() => setStep(step - 1)} disabled={step === 1}>
-                                    Back
+                                    {t("commons.buttons.back_btn")}
                                 </button>
                                 <button className='btn btn-primary text-uppercase' disabled={isSubmit} onClick={() => {
                                     if (!isValid()) return false;
@@ -112,7 +112,7 @@ const DriverRegister = () => {
                                     }
                                     setStartValidate(false);
                                 }}>
-                                    {step !== limit ? "Next" : "Save"}
+                                    {step !== limit ? t("commons.buttons.next_btn") : t("commons.buttons.save_btn")}
                                 </button>
                             </div>
                         </div>

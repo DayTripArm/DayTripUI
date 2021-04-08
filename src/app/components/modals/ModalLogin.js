@@ -4,28 +4,28 @@ import Input from 'shared/components/Input';
 import Checkbox from 'shared/components/Checkbox';
 import {useDispatch, useSelector} from "react-redux";
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { IconFbClean, IconGoogle } from 'shared/components/Icons';
 import actions from "../../../actions";
 import _ from "lodash";
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 
-const validations = {
-    email: {
-        required: true,
-        reg: /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/i,
-        errorMsg: "Email is invalid"
-    },
-    password: {
-        required: true,
-        errorMsg: "Password is invalid"
-    },
-};
-
 const ModalLogin = ({ onClose }) => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const [invalidFields, setInvalidFields] = useState({});
-
+    const validations = {
+        email: {
+            required: true,
+            reg: /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/i,
+            errorMsg: t("commons.error_msgs.email_invalid")
+        },
+        password: {
+            required: true,
+            errorMsg: t("commons.error_msgs.password_required")
+        },
+    };
     const {travelerData} = useSelector(state => state);
     const {
         user_info
@@ -55,7 +55,7 @@ const ModalLogin = ({ onClose }) => {
 
         if (rule) {
             if (rule.required && !form[name].trim()) {
-                return { status: "error", statusMessage: "This field is required" };
+                return { status: "error", statusMessage: rule.errorMsg };
             }
 
             if (!_.isEmpty(form[name]) && rule.reg && !rule.reg.test(form[name])) {
@@ -102,7 +102,7 @@ const ModalLogin = ({ onClose }) => {
     };
 
     return (
-        <Modal title='Please Login' showDismissButton onClose={() => onClose(false)}>
+        <Modal title={t("home_page.login.title")} showDismissButton onClose={() => onClose(false)}>
             <div className='py-4 px-0 px-md-8'>
                 <form onSubmit={(e) => {
                     e.preventDefault();
@@ -124,12 +124,11 @@ const ModalLogin = ({ onClose }) => {
                             ...form,
                             email: e.target.value
                         })}
-                        name='email'
-                        label='Email *'
+                        label={t("home_page.login.email")+' *'}
+                        placeholder={t("home_page.login.email_placeholder")}
                         isError={getStatusMessage("email") || generalMsg || false}
                         message={getStatusMessage("email")}
                         onBlur={validateOnBlur}
-                        placeholder='Enter your Email'
                     />
                     <Input
                         type='password'
@@ -138,9 +137,9 @@ const ModalLogin = ({ onClose }) => {
                             password: e.target.value
                         })}
                         name='password'
-                        label='Password *'
+                        label={t("home_page.login.password")+' *'}
+                        placeholder={t("home_page.login.password_placeholder")}
                         containerClass='mb-0'
-                        placeholder='Enter your Password'
                         isError={getStatusMessage("password") || passwordMsg || generalMsg || false}
                         message={getStatusMessage("password") || passwordMsg}
                         onBlur={validateOnBlur}
@@ -148,14 +147,14 @@ const ModalLogin = ({ onClose }) => {
                         iconPosition='right'
                     />
                     <div className='d-flex align-items-center justify-content-between px-1 mt-3 mb-3'>
-                        <Checkbox className='mr-5' name='modalCheck' label='Remember Me'/>
+                        <Checkbox className='mr-5' name='modalCheck' label={t("home_page.login.remember_me")}/>
                         <Link to='/forgot' className='text__grey-dark weight-700'>
-                            Forgot Password?
+                            {t("home_page.login.forgot_pass")}
                         </Link>
                     </div>
-                    <button className='btn btn-primary btn-fixed'>Login</button>
+                    <button className='btn btn-primary btn-fixed'>{t("home_page.login.login_btn")}</button>
                     <div className='text-separator my-7'>
-                        <span className='separator-content px-5'>or</span>
+                        <span className='separator-content px-5'>{t("commons.or")}</span>
                     </div>
                     <FacebookLogin
                         appId={process.env.REACT_APP_FB_API_KEY}
@@ -163,7 +162,7 @@ const ModalLogin = ({ onClose }) => {
                         scope="public_profile,email"
                         callback={responseFacebook}
                         icon={<IconFbClean fill='#FFFFFF' className='mr-3'/>}
-                        textButton="Login With Facebook"
+                        textButton={t("home_page.sign_up.sign_up_fb")}
                         cssClass={`btn btn-facebook btn-fixed mb-3`}
                     />
 
@@ -172,7 +171,7 @@ const ModalLogin = ({ onClose }) => {
                         render={renderProps => (
                             <button onClick={renderProps.onClick} className='btn btn-google btn-fixed text__grey-dark mb-5'>
                                 <IconGoogle fill='#FFFFFF' className='mr-3'/>
-                                Login With Google
+                                {t("home_page.sign_up.sign_up_gg")}
                             </button>
                         )}
                         fields="select_account"
@@ -180,10 +179,10 @@ const ModalLogin = ({ onClose }) => {
                         onFailure={responseGoogle}
                     />
                     <p className='pt-1 mb-0 weight-700 text-center'>
-                        Don't have an account? <Link to='/register' onClick={(e) => {
+                        {t("home_page.login.dont_have_account")} <Link to='/register' onClick={(e) => {
                         e.preventDefault();
                         dispatch(actions.switchSignInUp());
-                    }}>Sign up</Link>
+                    }}>{t("home_page.sign_up.title")}</Link>
                     </p>
                 </form>
             </div>
