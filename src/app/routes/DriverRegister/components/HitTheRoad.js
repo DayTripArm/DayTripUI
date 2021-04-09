@@ -4,6 +4,7 @@ import Input from 'shared/components/Input';
 import ModalAside from 'shared/components/ModalAside';
 import { IconQuestionOutlined } from 'shared/components/Icons';
 import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import actions from "../../../../react_app/actions";
 import _ from "lodash";
 import ToggleButton from '@material-ui/lab/ToggleButton';
@@ -25,7 +26,7 @@ const HitTheRoad = (props) => {
         setTariffChecked,
         tariffChecked
     } = props;
-
+    const { t } = useTranslation();
     const classes = useStyles();
     const dispatch = useDispatch();
     const [openModal, setOpenModal] = useState(false);
@@ -55,11 +56,11 @@ const HitTheRoad = (props) => {
     const isValid = () => {
         errorMsg = "";
         if (hit_the_road_tariff === null || hit_the_road_tariff === ""){
-            errorMsg = "This field is mandatory";
+            errorMsg = t("commons.error_msgs.required_field");
             return false;
         }
         else if (hit_the_road_tariff < 25000){
-            errorMsg = "Minimal price for full day drive is 25.000 AMD";
+            errorMsg = t("driver_sigup.step9.min_price_full_day_text", {price: "is 25.000 AMD"});
             return false;
         }else{return true;}
     }
@@ -69,16 +70,16 @@ const HitTheRoad = (props) => {
             <h2 className='text__blue mb-6 text-center'>Final Step</h2>
             <img className='rounded__4 mb-4' alt='328x213' src={ImgMap} />
             <h4 className='text__blue mb-6 text-center'>
-                Full Day Drive
+                {t("driver_sigup.step9.illustration_title")}
                 <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>
                     <IconQuestionOutlined fill='#757575'/>
                 </button>
             </h4>
             <p className='text-sm mh-100px mb-11'>
-                “Hit The Road” is for the travelers who want to travel across the country without any specific destination preferences, stop for breaks wherever they like. As their driver, you should be available for the whole day.
+                {t("driver_sigup.step9.hit_the_road_text")}
             </p>
 
-            <p className='weight-700 mb-3'>Would you like to take this opportunity?</p>
+            <p className='weight-700 mb-3'>{t("driver_sigup.step9.hit_the_road_question")}</p>
 
             <ToggleButtonGroup
                 value={tariffChecked}
@@ -91,8 +92,8 @@ const HitTheRoad = (props) => {
                     }
                 }}
             >
-                <ToggleButton value={false} classes={{selected: classes.selected}}>No</ToggleButton>
-                <ToggleButton value={true}  classes={{selected: classes.selected}} >Yes</ToggleButton>
+                <ToggleButton value={false} classes={{selected: classes.selected}}>{t("commons.toogle_no")}</ToggleButton>
+                <ToggleButton value={true}  classes={{selected: classes.selected}} >{t("commons.toogle_yes")}</ToggleButton>
             </ToggleButtonGroup>
 
             {
@@ -105,8 +106,8 @@ const HitTheRoad = (props) => {
                     precision={100}
                     value={hit_the_road_tariff}
                     onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
-                    label='Set your price for booking you for the whole day'
-                    placeholder='Price'
+                    label={t("driver_sigup.step9.hit_the_road_toggle")}
+                    placeholder={t("driver_sigup.step8.price_pholder")}
                     iconPosition='right'
                     containerClass="mt-6"
                     isError={tariffChecked && !isValid()}
@@ -115,7 +116,7 @@ const HitTheRoad = (props) => {
             }
 
             {openModal && (
-                <ModalAside title='Trips' onClose={() => setOpenModal(false)}>
+                <ModalAside title={t("driver_sigup.step8.tariff_tip_title")} onClose={() => setOpenModal(false)}>
                     <h4 className='text__blue'>{!_.isEmpty(carTips) && carTips.title}</h4>
 
                     {

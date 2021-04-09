@@ -56,7 +56,7 @@ const CarRegistration = (props) => {
                 name='car_type'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
                 label={t("driver_sigup.step1.car_type_label")}
-                placeholder={t("driver_sigup.step1.select_pholder")}
+                placeholder={t("commons.select_pholder")}
                 value={_.find(carTypeList, i => i.value === car_type)}
                 options={carTypeList}
                 message={_.includes(invalidFields, "car_type") ? t("commons.error_msgs.required_field") : ""}
@@ -67,7 +67,7 @@ const CarRegistration = (props) => {
                 name='car_mark'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
                 label={t("driver_sigup.step1.car_make_label")}
-                placeholder={t("driver_sigup.step1.select_pholder")}
+                placeholder={t("commons.select_pholder")}
                 value={_.find(carBrands, i => i.value === car_mark)}
                 options={carBrands}
                 message={_.includes(invalidFields, "car_mark") ? t("commons.error_msgs.required_field") : ""}
@@ -78,7 +78,7 @@ const CarRegistration = (props) => {
                 name='car_model'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
                 label={t("driver_sigup.step1.car_model_label")}
-                placeholder={t("driver_sigup.step1.select_pholder")}
+                placeholder={t("commons.select_pholder")}
                 value={_.find(carModels, i => i.value === car_model && i.brand_id === car_mark)}
                 options={carModels}
                 message={_.includes(invalidFields, "car_model") ? t("commons.error_msgs.required_field") : ""}
@@ -91,7 +91,7 @@ const CarRegistration = (props) => {
                 name="car_year"
                 value={_.find(yearList, i => i.value === car_year)}
                 label={t("driver_sigup.step1.car_year_label")}
-                placeholder={t("driver_sigup.step1.select_pholder")}
+                placeholder={t("commons.select_pholder")}
                 message={_.includes(invalidFields, "car_year") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_year")}
             />
@@ -102,7 +102,7 @@ const CarRegistration = (props) => {
                 name="car_color"
                 value={_.find(colorList, i => i.value === car_color)}
                 label={t("driver_sigup.step1.car_color_label")}
-                placeholder={t("driver_sigup.step1.select_pholder")}
+                placeholder={t("commons.select_pholder")}
                 message={_.includes(invalidFields, "car_color") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_color")}
             />

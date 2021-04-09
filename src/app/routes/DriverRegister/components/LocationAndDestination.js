@@ -5,6 +5,7 @@ import MultiSelect from 'shared/components/MultiSelect';
 import ModalAside from 'shared/components/ModalAside';
 import { IconQuestionOutlined } from 'shared/components/Icons';
 import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import actions from "../../../../react_app/actions";
 import _ from "lodash";
 import Api from '../../../../Api';
@@ -14,7 +15,7 @@ const LocationAndDestination = (props) => {
 
     const dispatch = useDispatch();
     const [openModal, setOpenModal] = useState(false);
-
+    const { t } = useTranslation();
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
     const {
@@ -81,29 +82,29 @@ const LocationAndDestination = (props) => {
     const isValidTariff1 = () => {
         errorMsgTariff1 = "";
         if (tariff1 === ""){
-            errorMsgTariff1 = "This field is mandatory";
+            errorMsgTariff1 = t("commons.error_msgs.required_field");
             return false;
         }
         else if (tariff1 < 50 ){
-            errorMsgTariff1 = "Minimal price for 1km is 50 AMD";
+            errorMsgTariff1 = t("driver_sigup.step8.min_price_km_text", {price: "is 50 AMD"});
             return false;
         }else{return true;}
     }
     const isValidTariff2 = () => {
         errorMsgTariff2 = "";
         if ( tariff2 === ""){
-            errorMsgTariff2 = "This field is mandatory";
+            errorMsgTariff2 = t("commons.error_msgs.required_field");
             return false;
         }
         else if (tariff2 < 50){
-            errorMsgTariff2 = "Minimal price for 1km is 50 AMD";
+            errorMsgTariff2 = t("driver_sigup.step8.min_price_km_text", {price: "is 50 AMD"});
             return false;
         }else{return true;}
     }
 
     return(
         <>
-            <h4 className='text__blue mb-6'>Few More Details</h4>
+            <h4 className='text__blue mb-6'>{t("driver_sigup.step8.title1")}</h4>
 
             <SelectCustom
                 async={true}
@@ -111,27 +112,27 @@ const LocationAndDestination = (props) => {
                 name='location'
                 onChange={event => selectOnChange(event, "location")}
                 value={locationValue}
-                label='City of Residence'
-                placeholder='Search your city'
+                label={t("driver_sigup.step8.residence_label")}
+                placeholder={t("driver_sigup.step8.residence_pholder")}
                 loadOptions={loadOptions}
-                message={_.includes(invalidFields, "location") ? "This field is mandatory" : ""}
+                message={_.includes(invalidFields, "location") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "location")}
             />
 
             <MultiSelect
                 isMulti={true}
                 name='driver_destinations'
-                label='Destinations'
-                placeholder='I can drive to'
+                label={t("driver_sigup.step8.dest_label")}
+                placeholder={t("driver_sigup.step8.dest_pholder")}
                 onChange={event => selectOnChange(event, "driver_destinations")}
                 value={destinationValue}
                 options={destinationList}
-                message={_.includes(invalidFields, "driver_destinations") ? "This field is mandatory" : ""}
+                message={_.includes(invalidFields, "driver_destinations") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "driver_destinations")}
             />
 
             <h4 className='text__blue mb-6'>
-                Set Your Price per 1 Km{' '}
+                {t("driver_sigup.step8.title2")}
                 <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>
                     <IconQuestionOutlined fill='#757575'/>
                 </button>
@@ -145,8 +146,8 @@ const LocationAndDestination = (props) => {
                 precision={5}
                 tariff={true}
                 onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
-                label='Set your price per 1 Km for short-distance trips (up to 110 Km, including waiting time)'
-                placeholder='Price'
+                label={t("driver_sigup.step8.price_short")}
+                placeholder={t("driver_sigup.step8.price_pholder")}
                 iconPosition='right'
                 isError={!isValidTariff1()}
                 message={errorMsgTariff1}
@@ -155,7 +156,7 @@ const LocationAndDestination = (props) => {
             {
                 Number(tariff1) > 0 &&
                     <>
-                        <p className='text__grey-dark'>The following examples show how much you will earn based on your 1 Km tariff.</p>
+                        <p className='text__grey-dark'>{t("driver_sigup.step8.price_info")}</p>
                         <ul className='no-list-style mb-0'>
                             <li className='rounded__4 border-style border__default p-4 mb-2'>
                                 <div className='d-flex justify-content-between'>
@@ -165,10 +166,10 @@ const LocationAndDestination = (props) => {
                                 <hr className='border__top border__default mt-2 mb-3'/>
                                 <div className='d-flex'>
                                     <p className='text-xs text__grey-dark mr-7 mb-0'>
-                                        <span className='weight-500'>Trip duraction</span>: 6 hours
+                                        <span className='weight-500'>{t("commons.duration")}</span>: 6 {t("commons.hours")}
                                     </p>
                                     <p className='text-xs text__grey-dark mb-0'>
-                                        <span className='weight-500'>Distance</span>: 76 km
+                                        <span className='weight-500'>{t("commons.distance")}</span>: 76 {t("commons.km")}
                                     </p>
                                 </div>
                             </li>
@@ -180,10 +181,10 @@ const LocationAndDestination = (props) => {
                                 <hr className='border__top border__default mt-2 mb-3'/>
                                 <div className='d-flex'>
                                     <p className='text-xs text__grey-dark mr-7 mb-0'>
-                                        <span className='weight-500'>Trip duraction</span>: 4 hours
+                                        <span className='weight-500'>{t("commons.duration")}</span>: 4 {t("commons.hours")}
                                     </p>
                                     <p className='text-xs text__grey-dark mb-0'>
-                                        <span className='weight-500'>Distance</span>: 46 km
+                                        <span className='weight-500'>{t("commons.distance")}</span>: 46 {t("commons.km")}
                                     </p>
                                 </div>
                             </li>
@@ -199,8 +200,8 @@ const LocationAndDestination = (props) => {
                 precision={5}
                 tariff={true}
                 onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
-                label='Set your price per 1 Km for long-distance trips (over 110 Km, including waiting time)'
-                placeholder='Price'
+                label={t("driver_sigup.step8.price_long")}
+                placeholder={t("driver_sigup.step8.price_pholder")}
                 iconPosition='right'
                 containerClass="mt-6"
                 isError={!isValidTariff2()}
@@ -210,7 +211,7 @@ const LocationAndDestination = (props) => {
             {
                 Number(tariff2) > 0 &&
                 <>
-                    <p className='text__grey-dark'>The following examples show how much you will earn based on your 1 Km tariff.</p>
+                    <p className='text__grey-dark'>{t("driver_sigup.step8.price_info")}</p>
                     <ul className='no-list-style mb-0'>
                         <li className='rounded__4 border-style border__default p-4 mb-2'>
                             <div className='d-flex justify-content-between'>
@@ -220,10 +221,10 @@ const LocationAndDestination = (props) => {
                             <hr className='border__top border__default mt-2 mb-3'/>
                             <div className='d-flex'>
                                 <p className='text-xs text__grey-dark mr-7 mb-0'>
-                                    <span className='weight-500'>Trip duraction</span>: 14 hours
+                                    <span className='weight-500'>{t("commons.duration")}</span>: 14 {t("commons.hours")}
                                 </p>
                                 <p className='text-xs text__grey-dark mb-0'>
-                                    <span className='weight-500'>Distance</span>: 530 km
+                                    <span className='weight-500'>{t("commons.distance")}</span>: 530 {t("commons.km")}
                                 </p>
                             </div>
                         </li>
@@ -235,10 +236,10 @@ const LocationAndDestination = (props) => {
                             <hr className='border__top border__default mt-2 mb-3'/>
                             <div className='d-flex'>
                                 <p className='text-xs text__grey-dark mr-7 mb-0'>
-                                    <span className='weight-500'>Trip duraction</span>: 11 hours
+                                    <span className='weight-500'>{t("commons.duration")}</span>: 11 {t("commons.hours")}
                                 </p>
                                 <p className='text-xs text__grey-dark mb-0'>
-                                    <span className='weight-500'>Distance</span>: 267 km
+                                    <span className='weight-500'>{t("commons.distance")}</span>: 267 {t("commons.km")}
                                 </p>
                             </div>
                         </li>
@@ -247,7 +248,7 @@ const LocationAndDestination = (props) => {
             }
 
             {openModal && (
-                <ModalAside title='Trips' onClose={() => setOpenModal(false)}>
+                <ModalAside title={t("driver_sigup.step8.tariff_tip_title")} onClose={() => setOpenModal(false)}>
                     <h4 className='text__blue'>{!_.isEmpty(carTips) && carTips.title}</h4>
 
                     {

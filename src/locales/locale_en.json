@@ -169,7 +169,7 @@
             "residence_city_text": "City of Residence",
             "residence_city_pholder": "Search your city",
             "lang_text": "Languages",
-            "lang_pholder": "Tell us what languages you speak",
+            "langs_pholder": "Tell us what languages you speak",
             "occupation": "Occupation",
             "not_specified": "Not specified"
         },
@@ -260,8 +260,7 @@
             "car_make_label": "What is Your Car Make?",
             "car_model_label": "What is Your Car Model?",
             "car_year_label": "Year",
-            "car_color_label": "Color",
-            "select_pholder": "Choose"
+            "car_color_label": "Color"
         },
         "step2": {
             "title1": "How many passengers can travel in your car?",
@@ -296,31 +295,35 @@
         "step7": {
             "page_title": "Let’s Make Your Profile Look Better",
             "gender": "Gender",
-            "birthday": "Date of Birth",
-            "about_text": "Short Bio",
+            "birthday": "Day of Birth",
+            "birthyear": "Year of Birth",
+            "about_label": "Short Bio",
             "about_pholder": "Tell the travelers a bit about yourself and why they should want to travel with you. Share your interests and hobbies",
-            "lang_text": "Languages",
+            "langs_label": "Languages",
             "lang_pholder": "Tell us what languages you speak",
             "occupation": "Occupation",
             "occupation_pholder": "What is your specialty?"
         },
         "step8": {
             "title1": "Few More Details",
-            "residence_text": "City of Residence",
+            "residence_label": "City of Residence",
             "residence_pholder": "Search your city",
-            "dest_text": "Destinations",
+            "dest_label": "Destinations",
             "dest_pholder": "I can drive to",
-            "title2": "Set Your Price per 1 Km",
+            "title2": "Set Your Price per 1 Km  ",
             "price_short": "Set your price per 1 Km for short-distance trips (up to 110 Km, including waiting time)",
             "price_long": "Set your price per 1 Km for long-distance trips (over 110 Km, including waiting time)",
             "price_pholder": "Price",
-            "price_info": "The following examples show how much you will earn based on your 1 Km tariff."
+            "price_info": "The following examples show how much you will earn based on your 1 Km tariff.",
+            "tariff_tip_title": "Tariff",
+            "min_price_km_text": "Minimal price for 1km {{price}}"
         },
         "step9": {
             "illustration_title": "Full Day Drive",
             "hit_the_road_text": "“Hit The Road” is for the travelers who want to travel across the country without any specific destination preferences, stop for breaks wherever they like. As their driver, you should be available for the whole day.",
             "hit_the_road_question": "Would you like to take this opportunity?",
-            "hit_the_road_toggle": "Set your price for booking you for the whole day."
+            "hit_the_road_toggle": "Set your price for booking you for the whole day.",
+            "min_price_full_day_text": "Minimal price for full day drive {{price}}"
         }
     },
     "calendar_page": {
@@ -459,14 +462,33 @@
             "phone_invalid": "Phone is invalid",
             "required_field": "This field is mandatory"
         },
+        "months": {
+            "january": "January",
+            "february": "February",
+            "march": "March",
+            "april": "April",
+            "may": "May",
+            "june": "June",
+            "july": "July",
+            "august": "August",
+            "september": "September",
+            "october": "October",
+            "november": "November",
+            "december": "December"
+        },
+        "male": "Male",
+        "female": "Female",
         "choose_currency": "Choose Currency",
         "choose_lang": "Choose Language",
+        "select_pholder": "Choose",
         "upload_box_title": "Upload Photos",
         "loading_save_driver": "Please Wait While We are Saving Your Data",
         "no_options": "No options",
         "toogle_yes": "Yes",
         "toogle_no": "No",
         "or": "or",
+        "hours": "hours",
+        "km": "km",
         "duration": "Trip duration",
         "distance": "Distance",
         "view_details_btn": "View Details",

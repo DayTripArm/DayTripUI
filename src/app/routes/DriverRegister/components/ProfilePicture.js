@@ -1,16 +1,16 @@
 import React, {useEffect} from 'react';
 import FormDropZone from 'shared/components/FormDropZone';
 import {useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import _ from "lodash";
-
-const profile_title = "Upload Your Profile Picture";
 
 const ProfilePicture = (props) => {
 
     const {invalidFields} = props;
-
+    const { t } = useTranslation();
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
+    const profile_title = t("driver_sigup.step6.page_title");
     const {
         profile_photos=[],
     } = preregistered_info;
@@ -26,10 +26,10 @@ const ProfilePicture = (props) => {
             <h4 className='text__blue mt-6 mb-4'>
                 <span className={_.includes(invalidFields, "profile_photos") ? "text-danger" : ""}>{_.includes(invalidFields, "profile_photos") ? profile_title + " *" : profile_title}</span>
             </h4>
-            <p className='text__grey-dark'>Let the travelers know their future driver.</p>
+            <p className='text__grey-dark'>{t("driver_sigup.step6.text1")}</p>
             <FormDropZone
                 type="profile_photos"
-                label="Upload Photos"
+                label={t("commons.upload_box_title")}
                 photos={profile_photos}
             />
         </>

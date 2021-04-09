@@ -3,6 +3,7 @@ import SelectCustom from 'shared/components/SelectCustom';
 import Textarea from 'shared/components/Textarea';
 import MultiSelect from 'shared/components/MultiSelect';
 import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import actions from "../../../../actions";
 import {DAYS, GENDER_LIST, GET_DATE_YEARS, LANGUAGES, MONTH_LIST} from "../../../../constants";
 import _ from "lodash";
@@ -10,7 +11,7 @@ import _ from "lodash";
 const ProfileData = (props) => {
     const dispatch = useDispatch();
     const {invalidFields} = props;
-
+    const { t } = useTranslation();
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
     const {
@@ -41,8 +42,8 @@ const ProfileData = (props) => {
     };
 
     const languageList = LANGUAGES.map(item => {return {label: item, value: item}});
-    const genderList   = GENDER_LIST.map(item => {return {label: item, value: item}});
-    const monthList    = MONTH_LIST.map((month, i) => {return {label: month, value: i}});
+    const genderList   = GENDER_LIST.map(item => {return {label: t(`commons.${item}`), value: t(`commons.${item}`)}});
+    const monthList    = MONTH_LIST.map((month, i) => {return {label: t(`commons.months.${month}`), value: i}});
     const days         = DAYS.map(i => {return {label: i, value: i}});
     const yearList     = GET_DATE_YEARS().map(i => {return {label: i, value: i}});
 
@@ -51,16 +52,16 @@ const ProfileData = (props) => {
 
   return (
       <>
-          <h4 className='text__blue mb-6'>Let’s Make Your Profile Look Better</h4>
+          <h4 className='text__blue mb-6'>{t("driver_sigup.step7.page_title")}</h4>
           <SelectCustom
               type='text'
               name='gender'
-              label='Gender'
-              placeholder='Choose'
+              label={t("driver_sigup.step7.gender")}
+              placeholder={t("commons.select_pholder")}
               onChange={(event, opt) => selectOnChange(event.value, opt.name)}
               value={_.find(genderList, i => i.value === gender)}
               options={genderList}
-              message={_.includes(invalidFields, "gender") ? "This field is mandatory" : ""}
+              message={_.includes(invalidFields, "gender") ? t("commons.error_msgs.required_field") : ""}
               isError={_.includes(invalidFields, "gender")}
           />
 
@@ -68,11 +69,11 @@ const ProfileData = (props) => {
               type='text'
               name='birthMonth'
               label='Date of Birth'
-              placeholder='Choose'
+              placeholder={t("commons.select_pholder")}
               onChange={(event, opt) => selectOnChange(event.value, opt.name)}
               value={_.find(monthList, i => i.value === birthMonth)}
               options={monthList}
-              message={_.includes(invalidFields, "birthMonth") ? "This field is mandatory" : ""}
+              message={_.includes(invalidFields, "birthMonth") ? t("commons.error_msgs.required_field") : ""}
               isError={_.includes(invalidFields, "birthMonth")}
 
           />
@@ -82,12 +83,12 @@ const ProfileData = (props) => {
                   <SelectCustom
                       type='text'
                       name='birthDay'
-                      placeholder='Day'
+                      placeholder={t("driver_sigup.step7.birthday")}
                       onChange={(event, opt) => selectOnChange(event.value, opt.name)}
                       value={_.find(days, i => i.value === birthDay)}
                       options={days}
                       containerClass='field-flexible flex-fill mb-4'
-                      message={_.includes(invalidFields, "birthDay") ? "This field is mandatory" : ""}
+                      message={_.includes(invalidFields, "birthDay") ? t("commons.error_msgs.required_field") : ""}
                       isError={_.includes(invalidFields, "birthDay")}
                   />
               </div>
@@ -95,12 +96,12 @@ const ProfileData = (props) => {
                   <SelectCustom
                       type='text'
                       name='birthYear'
-                      placeholder='Year'
+                      placeholder={t("driver_sigup.step7.birthyear")}
                       onChange={(event, opt) => selectOnChange(event.value, opt.name)}
                       value={_.find(yearList,i => i.value === birthYear)}
                       options={yearList}
                       containerClass='field-flexible flex-fill mb-4'
-                      message={_.includes(invalidFields, "birthYear") ? "This field is mandatory" : ""}
+                      message={_.includes(invalidFields, "birthYear") ? t("commons.error_msgs.required_field") : ""}
                       isError={_.includes(invalidFields, "birthYear")}
                   />
               </div>
@@ -109,19 +110,19 @@ const ProfileData = (props) => {
           <MultiSelect
               isMulti={true}
               name='languages'
-              label="Languages"
-              placeholder="Tell us what languages you speak"
+              label={t("driver_sigup.step7.langs_label")}
+              placeholder={t("driver_sigup.step7.langs_pholder")}
               onChange={event => selectOnChange(event, "languages")}
               value={languageValue}
               options={languageList}
-              message={_.includes(invalidFields, "languages") ? "This field is mandatory" : ""}
+              message={_.includes(invalidFields, "languages") ? t("commons.error_msgs.required_field") : ""}
               isError={_.includes(invalidFields, "languages")}
           />
 
           <Textarea
             name='about'
-            label='Short Bio'
-            placeholder="Tell the travelers a bit about yourself and why they should want to travel with you. Share your interests and hobbies."
+            label={t("driver_sigup.step7.about_label")}
+            placeholder={t("driver_sigup.step7.about_pholder")}
             value={about}
             onChange={event => selectOnChange(event.target.value, "about")}
             className='h-152px'
@@ -129,8 +130,8 @@ const ProfileData = (props) => {
 
           <Textarea
               name='work'
-              label='Occupation'
-              placeholder='What is your specialty?'
+              label={t("driver_sigup.step7.occupation")}
+              placeholder={t("driver_sigup.step7.occupation_pholder")}
               onChange={event => selectOnChange(event.target.value, "work")}
               value={work}
           />
