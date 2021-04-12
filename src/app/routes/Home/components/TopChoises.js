@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { IconArrowLeft, IconArrowRight } from 'shared/components/Icons';
 import Card from 'shared/components/Card';
+import { useTranslation } from 'react-i18next';
 import {useSelector} from "react-redux";
 import _ from "lodash";
 
@@ -13,6 +14,7 @@ const SlideNavigation = ({ dir, onClick }) => (
 
 const TopChoises = () => {
     const {travelerData={}} = useSelector(state => state);
+    const { t } = useTranslation();
     const {trips} = travelerData;
     const {tripsList=[]} = trips;
 
@@ -44,7 +46,7 @@ const TopChoises = () => {
 
     return (
         <>
-            <h2 className='pull-b-8 text__blue'> Top Choices </h2>
+            <h2 className='pull-b-8 text__blue'>{t("home_page.top_choices")}</h2>
             <Slider {...settings}>
                 {
                     top_choices.map(trip => {

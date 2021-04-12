@@ -1,11 +1,13 @@
 import React from 'react';
 import Card from 'shared/components/Card';
+import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "actions";
 
 let limit = 12;
 const ExploreTrips = () => {
     const {travelerData={}} = useSelector(state => state);
+    const { t } = useTranslation();
     const {trips} = travelerData;
     const {tripsList=[], tripsTotalCount} = trips;
     const dispatch = useDispatch();
@@ -21,7 +23,7 @@ const ExploreTrips = () => {
     };
     return (
         <>
-            <h2 className='text__blue'> Explore All Day Trips </h2>
+            <h2 className='text__blue'>{t("home_page.explore_all_trips")}</h2>
             <div className='row row-1'>
                 {
                     tripsList.map(trip => {
@@ -47,8 +49,7 @@ const ExploreTrips = () => {
             </div>
             {(limit < tripsTotalCount) &&
             <div className='text-center'>
-                <button onClick={e => loadTripsList(limit)} className='btn btn-primary text-uppercase'>Load More
-                </button>
+                <button onClick={e => loadTripsList(limit)} className='btn btn-primary text-uppercase'>{t("home_page.load_more_btn")}</button>
             </div>
             }
         </>

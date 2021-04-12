@@ -4,11 +4,13 @@ import DatePicker from 'shared/components/DatePicker';
 import FormPlusMinus from 'shared/components/FormPlusMinus';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router";
+import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 import moment from "moment";
 
 const SearchForDriverModal = (props) => {
     const history = useHistory();
+    const { t } = useTranslation();
     const [form, setForm] = useState({date: "", travelers: ""});
     const [count, setCount] = useState({adults: 0, children: 0});
     const {trip_id, onCloseShowPopup} = props
@@ -51,23 +53,23 @@ const SearchForDriverModal = (props) => {
         .matches ? 75 : window.matchMedia("(max-width: 767px)")
         .matches ? 95 : 40;
     return (
-        <Modal size='md' containerClass="sfd_modal" title="Search For Drivers" onClose={() => onCloseShowPopup()}>
+        <Modal size='md' containerClass="sfd_modal" title={t("home_page.hit_the_road.btn_sfd")} onClose={() => onCloseShowPopup()}>
             <div className='py-4 px-0 px-md-8 sfd_popup_form'>
                   <div className="sfd-items-aligned">
                     <div className="d-flex align-items-center justify-content-between mb-5">
-                        <h4 className="mb-0 text__grey-dark">Select a Date</h4>
+                        <h4 className="mb-0 text__grey-dark">{t("home_page.hit_the_road.date_picker_placeholder")}</h4>
                     </div>
                     <DatePicker daySize={daySize} date={!_.isEmpty(form.date)? moment(form.date) : moment()} onDateChange={(date) => onDaySelect(date)} />
                   </div>
                   <div className="sfd-items-aligned">
                     <hr className="border__top border__default my-4"></hr>
                     <div className="d-flex align-items-center justify-content-between mb-5">
-                        <h4 className="mb-0 text__grey-dark">Add Travelers</h4>
+                        <h4 className="mb-0 text__grey-dark">{t("home_page.hit_the_road.travelers_placeholder")}</h4>
                     </div>
                     <div className="trvlr_count_container">
                         <FormPlusMinus
-                            label="Adults"
-                            name="adults"
+                            label={t("commons.adults")}
+                            name={t("home_page.hit_the_road.date_picker_placeholder")}
                             max={9}
                             min={2}
                             initialValue={count.adults}
@@ -80,7 +82,7 @@ const SearchForDriverModal = (props) => {
                             }}
                         />
                         <FormPlusMinus
-                            label="Children"
+                            label={t("commons.children")}
                             name="children"
                             max={9}
                             min={1}
@@ -101,7 +103,7 @@ const SearchForDriverModal = (props) => {
                     e.preventDefault();
                     searchDriver();
                 }}>
-                Search For Drivers
+                {t("home_page.hit_the_road.btn_sfd")}
                 </Link>
             </div>
         </Modal>

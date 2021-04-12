@@ -8,6 +8,7 @@ import SearchForDriverModal from './SearchForDriverModal';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router";
+import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 import moment from "moment";
 
@@ -24,6 +25,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
     const history = useHistory();
     const container1 = useRef();
     const container2 = useRef();
+    const { t } = useTranslation();
     const [invalidFields, setInvalidFields] = useState({});
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [showCountPopup, setShowCountPopup] = useState(false);
@@ -81,7 +83,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
         const rule = validations[name];
         if (rule) {
             if (rule.required && (_.isEmpty(form[name]) || _.isEqual(form[name], "0"))) {
-                return { status: "error", statusMessage: "This field is required" };
+                return { status: "error", statusMessage: t("commons.required_field") };
             }
 
         }
@@ -138,11 +140,11 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                   <p className='mb-0 d-xl-block'>
                     <span className='weight-700 mb-0'>{review_stats?.rate || 'No reviews'}</span>
                     <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                    {review_stats?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>}
+                    {review_stats?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} {t("commons.reviews")})</span>}
                   </p>
               </div>
               <p className='text-sm weight-500 mb-0 d-xl-block'>
-                Trip Duration: <span className='text__grey-dark'>{trip_detail.trip_duration } hours</span>
+                {t("commons.duration")}: <span className='text__grey-dark'>{trip_detail.trip_duration } {t("commons.hours")}</span>
               </p>
             </div>
             <div className='d-flex justify-content-end flex-fill'>
@@ -160,7 +162,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                         type='text'
                         name='date'
                         value={form.date}
-                        placeholder='Select the Date'
+                        placeholder={t("home_page.hit_the_road.date_picker_placeholder")}
                         autoComplete='off'
                         isError={getStatusMessage("date")  || false}
                         readonly={true}
@@ -173,7 +175,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                         <div className="tour_travelers_count_popup">
                             <div className="trvlr_count_container">
                                 <FormPlusMinus
-                                    label="Adults"
+                                    label={t("commons.adults")}
                                     name="adults"
                                     max={9}
                                     min={1}
@@ -187,7 +189,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                                     }}
                                 />
                                 <FormPlusMinus
-                                    label="Children"
+                                    label={t("commons.children")}
                                     name="children"
                                     max={9}
                                     min={1}
@@ -206,8 +208,8 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                      <Input
                         type='text'
                         name='travelers'
-                        placeholder='Add Travelers'
-                        value={Number(form.travelers) > 0 ?  form.travelers + " Travelers": "" }
+                        placeholder={t("home_page.hit_the_road.travelers_placeholder")}
+                        value={Number(form.travelers) > 0 ? t("commons.travelers_pholder", {count: form.travelers}): "" }
                         isError={getStatusMessage("travelers") || false}
                         containerClass='mb-0 mr-3 mnw-0 w-156px'
                         autoComplete='off'
@@ -221,7 +223,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                 e.preventDefault();
                 searchDriver();
               }}>
-              Search For Drivers
+              {t("home_page.hit_the_road.btn_sfd")}
              </Link>
             </div>
             {

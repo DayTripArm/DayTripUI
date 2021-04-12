@@ -6,11 +6,12 @@ import Reviews from '../Individuals/routes/Driver/components/Reviews';
 import SearchPanel from './components/SearchPanel';
 import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import actions from "../../../actions";
 
 const Tour = ({ history }) => {
     const dispatch = useDispatch();
-
+    const { t } = useTranslation();
     const {id: trip_id} = useParams(); // trip_id
 
     const {travelerData} = useSelector(state => state);
@@ -54,30 +55,30 @@ const Tour = ({ history }) => {
                             <h2 className='text__blue mb-1'>{title}</h2>
                             <span className='weight-700'>{review_stats?.rate || 'No reviews'}</span>
                             <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                            {reviews.trip_review?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} reviews)</span>}
+                            {reviews.trip_review?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} {t("commons.reviews")})</span>}
                         </div>
                         <div className='col-xl-8 d-xl-flex align-items-end pb-xl-4'>
                             <div className='d-md-flex'>
                                 <div className='d-flex mb-4 mb-md-0 mr-md-5'>
                                     <IconClockOutlined className='mr-2' />
-                                    <p className='mb-0'>Trip duration: <span className='weight-500 text__grey-dark'>{trip_duration} hours</span></p>
+                                    <p className='mb-0'>{t("trip_details_page.duration")}: <span className='weight-500 text__grey-dark'>{trip_duration} {t("commons.hours")}</span></p>
                                 </div>
                                 <div className='d-flex mb-0'>
                                     <IconDestination className='mr-2' />
-                                    <p className='mb-0'>Starting destination:{' '}<span className='weight-500 text__grey-dark'>{start_location}</span></p>
+                                    <p className='mb-0'>{t("trip_details_page.start")}:{' '}<span className='weight-500 text__grey-dark'>{start_location}</span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className='row mt-9 mt-md-11 mt-xl-13 mt-xxl-15'>
                         <div className='col-xl-4'>
-                            <h2 className='mb-4 mb-md-5'>What You'll Do</h2>
+                            <h2 className='mb-4 mb-md-5'>{t("trip_details_page.title1")}</h2>
                         </div>
                         <div className='col-xl-8' dangerouslySetInnerHTML={{__html: agenda}}></div>
                     </div>
                     <div className='row mt-9 mt-md-11 mt-xl-13 mt-xxl-15'>
                         <div className='col-xl-4'>
-                            <h2 className='mb-4 mb-md-5'>What You'll See</h2>
+                            <h2 className='mb-4 mb-md-5'>{t("trip_details_page.title2")}</h2>
                         </div>
                         <div className='col-xl-8'>
                             <Destinations destinations={destinations} />
@@ -85,7 +86,7 @@ const Tour = ({ history }) => {
                     </div>
                     <div className='row mt-9 mt-md-11 mt-xl-13 mt-xxl-15'>
                         <div className='col-xl-4'>
-                            <h2 className='mb-4 mb-md-5'>Where You'll Be</h2>
+                            <h2 className='mb-4 mb-md-5'>{t("trip_details_page.title3")}</h2>
                         </div>
                         <div className='col-xl-8'>
                             {

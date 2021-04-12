@@ -76,14 +76,16 @@
             "date_picker_placeholder": "Select the Date",
             "travelers_label": "Travelers",
             "travelers_placeholder": "Add Travelers",
-            "explore_all_trips": "Explore All Day Trips",
-            "btn_sfd": "SEARCH FOR DRIVERS",
-            "btn": "LOAD MORE"
-        }
+            "btn_sfd": "SEARCH FOR DRIVERS"
+        },
+        "explore_all_trips": "Explore All Day Trips",
+        "load_more_btn": "LOAD MORE"
     },
     "trip_details_page": {
         "duration": "Trip duration",
         "start": "Starting destination",
+        "stop": " stop",
+        "final_stop": "Final Stop ",
         "title1": "What You’ll Do",
         "title2": "What You’ll See",
         "title3": "Where You’ll Be",
@@ -476,6 +478,7 @@
             "november": "November",
             "december": "December"
         },
+        "stops": ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"],
         "male": "Male",
         "female": "Female",
         "choose_currency": "Choose Currency",
@@ -493,6 +496,11 @@
         "distance": "Distance",
         "view_details_btn": "View Details",
         "reviews": "Reviews",
+        "no_reviews": "No Reviews",
+        "read_more": "Read More",
+        "adults": "Adults",
+        "children": "Children",
+        "travelers_pholder": "{{count}} Travelers",
         "not_connected": "Not connected"
     }
 }

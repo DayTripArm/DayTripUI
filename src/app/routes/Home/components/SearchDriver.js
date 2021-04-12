@@ -10,6 +10,7 @@ import "react-dates/lib/css/_datepicker.css";
 import { Link } from 'react-router-dom';
 import {useSelector} from "react-redux";
 import { useHistory } from "react-router";
+import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 import moment from "moment";
 
@@ -26,6 +27,7 @@ const SearchDriver = () => {
     const history = useHistory();
     const container1 = useRef();
     const container2 = useRef();
+    const { t } = useTranslation();
     const {travelerData={}} = useSelector(state => state);
     const {hit_the_road={},htrTips={}} = travelerData;
     const [invalidFields, setInvalidFields] = useState({});
@@ -66,7 +68,7 @@ const SearchDriver = () => {
         const rule = validations[name];
         if (rule) {
             if (rule.required && (_.isEmpty(form[name]) || _.isEqual(form[name], "0"))) {
-                return { status: "error", statusMessage: "This field is required" };
+                return { status: "error", statusMessage: t("commons.error_msgs.required_field") };
             }
 
         }
@@ -108,10 +110,10 @@ const SearchDriver = () => {
         .matches ? 35 : 40
     return(
         <>
-            <h2 className='text__blue'> Hit The Road </h2>
+            <h2 className='text__blue'>{t("home_page.hit_the_road.section_title")}</h2>
             <div className='home-search-driver box-overlay rounded__10'>
                 {image ?
-                    <img src={src} className='w-100 object-pos-center object-fit-cover rounded__10' alt="Hit the road" /> :
+                    <img src={src} className='w-100 object-pos-center object-fit-cover rounded__10' alt={t("home_page.hit_the_road.section_title")} /> :
                     <div className='img_overlay_htr w-100 object-pos-center object-fit-cover rounded__10'>
                     </div>
                 }
@@ -126,7 +128,7 @@ const SearchDriver = () => {
                             <h4 className='mb-5 weight-300' dangerouslySetInnerHTML={{__html: description}}></h4>
                         </div>
                         {openModal && (
-                            <ModalAside title='Hit the Road' onClose={() => setOpenModal(false)} containerClass="htr_modal" className="htr_slider">
+                            <ModalAside title={t("home_page.hit_the_road.section_title")} onClose={() => setOpenModal(false)} containerClass="htr_modal" className="htr_slider">
                                 <h4 className='text__blue'>{!_.isEmpty(htrTips) && htrTips.title}</h4>
 
                                 {
@@ -150,9 +152,9 @@ const SearchDriver = () => {
                                 <Input
                                     type='text'
                                     name='date'
-                                    label='Date *'
+                                    label={t("home_page.hit_the_road.date_picker_label")+' *'}
                                     value={form.date}
-                                    placeholder='Select the Date'
+                                    placeholder={t("home_page.hit_the_road.date_picker_placeholder")}
                                     autoComplete='off'
                                     readonly={true}
                                     isError={getStatusMessage("date")  || false}
@@ -166,6 +168,7 @@ const SearchDriver = () => {
                                <div className="calendar_popup">
                                     <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
                                     onDateChange={(date) => onDaySelect(date)}
+
                                     daySize={daySize}
                                     />
                                 </div>
@@ -175,11 +178,11 @@ const SearchDriver = () => {
                                 <Input
                                     type='text'
                                     name='travelers'
-                                    label='Travelers *'
-                                    placeholder='Add Travelers'
+                                    label={t("home_page.hit_the_road.travelers_label")+' *'}
+                                    placeholder={t("home_page.hit_the_road.travelers_placeholder")}
                                     autoComplete='off'
                                     readonly={true}
-                                    value={Number(form.travelers) > 0 ?  form.travelers + " Travelers": "" }
+                                    value={Number(form.travelers) > 0 ?  t("commons.travelers_pholder",{count: form.travelers}): "" }
                                     isError={getStatusMessage ("travelers") || false}
                                     containerClass='mr-lg-4 mb-lg-0'
                                     onMouseDown={() => {
@@ -193,7 +196,7 @@ const SearchDriver = () => {
                                 <div className="travelers_count_popup">
                                     <div className="trvlr_count_container">
                                         <FormPlusMinus
-                                            label="Adults"
+                                            label={t("commons.adults")}
                                             name="adults"
                                             max={9}
                                             min={1}
@@ -207,7 +210,7 @@ const SearchDriver = () => {
                                             }}
                                         />
                                         <FormPlusMinus
-                                            label="Children"
+                                            label={t("commons.children")}
                                             name="children"
                                             max={9}
                                             min={1}
@@ -233,7 +236,7 @@ const SearchDriver = () => {
                                         e.preventDefault();
                                         searchDriver();
                                     }}>
-                                        Search for Drivers
+                                        {t("home_page.hit_the_road.btn_sfd")}
                                     </Link>
                                 </div>
                             </div>

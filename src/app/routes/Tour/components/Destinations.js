@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {STRING_NUMBERS} from "../../../../constants";
 import InfoModal from "./InfoModal";
-
+import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 
 const Destinations = (props) => {
@@ -11,7 +11,7 @@ const Destinations = (props) => {
         image_url: "",
         title: "",
     });
-
+    const { t } = useTranslation();
     const {
         destinations=[]
     } = props;
@@ -27,7 +27,7 @@ const Destinations = (props) => {
                     return (
                         <div key={i} className={`step-vertical  ${!_.isEmpty(dest.dest_title) && "step-vertical__contained pb-6"}`}>
                             <h4 className='text__grey-dark mb-4 mb-md-5'>
-                                {finalIndex === i ? `Final stop:${' '}` : `${STRING_NUMBERS[i]} stop:${' '} `}
+                                {finalIndex === i ? `${t("trip_details_page.final_stop")}` : `${t(`commons.stops.${i}`)} ${t("trip_details_page.stop")}:${' '} `}
                                 <span className='weight-400'>{dest.stop_title}</span>
                             </h4>
                             {!_.isEmpty(dest.dest_title) && <div className='row'>
