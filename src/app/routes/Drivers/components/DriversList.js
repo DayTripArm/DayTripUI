@@ -11,6 +11,7 @@ import ModalLogin from 'app/components/modals/ModalLogin';
 import { useLocation } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router";
+import { useTranslation } from 'react-i18next';
 import actions from "actions";
 import moment from "moment";
 import _ from "lodash";
@@ -46,7 +47,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
     const location = useLocation();
     const dispatch = useDispatch();
     const history = useHistory();
-
+    const { t } = useTranslation();
     const loadDriverList = (lmt) => {
         limit = lmt +5;
         const body = {
@@ -136,14 +137,14 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                                 <div>
                                                     <p className='weight-500 pt-1 mb-0'>{driver.driver_name}</p>
                                                     <p className='mb-0'>
-                                                        <span className='weight-700'>{driver.review?.rate || 'No reviews'}</span>
+                                                        <span className='weight-700'>{driver.review?.rate || t("commons.no_reviews")}</span>
                                                         <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                                                        {driver.review?.rate && <span className='text-sm text__grey-dark'>({driver.review.count} reviews)</span>}
+                                                        {driver.review?.rate && <span className='text-sm text__grey-dark'>({driver.review.count} {t("commons.reviews")})</span>}
                                                     </p>
                                                 </div>
                                             </div>
                                             <button onClick={(e) => bookTrip(e, driver)} className='btn btn-primary text-uppercase btn-xs-block'>
-                                                Book for ${location.state?.trip_id ? driver.tariff1 : driver.hit_the_road_tariff}
+                                                {t("select_drivers_page.btn")} ${location.state?.trip_id ? driver.tariff1 : driver.hit_the_road_tariff}
                                             </button>
                                         </div>
                                         <div className='pt-5 pt-md-4 pb-4'>
@@ -152,21 +153,21 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                                 <div className='col-md-8 px-0 d-flex mb-4'>
                                                     <IconCar className='mr-2' />
                                                     <p className='mb-0'>
-                                                        Car: <span className='weight-500 text__grey-dark'>{driver.car_full_name}</span>
+                                                        {t("commons.car_options.car")}: <span className='weight-500 text__grey-dark'>{driver.car_full_name}</span>
                                                     </p>
                                                 </div>
 
                                                 <div className='col-md-4 px-0 d-flex mb-4'>
                                                     <IconSeat className='mr-2' />
                                                     <p className='mb-0'>
-                                                        Seats: <span className='weight-500 text__grey-dark'>{driver.car_seats}</span>
+                                                        {t("commons.car_options.seats")}: <span className='weight-500 text__grey-dark'>{driver.car_seats}</span>
                                                     </p>
                                                 </div>
 
                                                 <div className='col-md-8 px-0 d-flex mb-4'>
                                                     <IconGlobe className='mr-2 fixed-svg' />
                                                     <p className='mb-0'>
-                                                        Speaks:{' '}
+                                                        {t("commons.car_options.speaks")}:{' '}
                                                         <span className='weight-500 text__grey-dark'>{driver.languages}</span>
                                                     </p>
                                                 </div>
@@ -174,31 +175,31 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                                 <div className='col-md-4 px-0 d-flex mb-4'>
                                                     <IconCarSeat className='mr-2' />
                                                     <p className='mb-0'>
-                                                        Car Seat:{' '}
-                                                        <span className='weight-500 text__grey-dark'>{driver.car_seat ? "Yes" : "No"}</span>
+                                                        {t("commons.car_options.car_seat")}:{' '}
+                                                        <span className='weight-500 text__grey-dark'>{driver.car_seat ? t("commons.toogle_yes") : t("commons.toogle_no")}</span>
                                                     </p>
                                                 </div>
 
                                                 <div className='col-md-8 px-0 d-flex mb-4'>
                                                     <IconSmoking className='mr-2' />
                                                     <p className='mb-0'>
-                                                        Smoking Allowed:{' '}
-                                                        <span className='weight-500 text__grey-dark'>{driver.smoke_allowed ? "Yes" : "No"}</span>
+                                                        {t("commons.car_options.smoking")}:{' '}
+                                                        <span className='weight-500 text__grey-dark'>{driver.smoke_allowed ? t("commons.toogle_yes") : t("commons.toogle_no")}</span>
                                                     </p>
                                                 </div>
 
                                                 <div className='col-md-4 px-0 d-flex mb-4'>
                                                     <IconAC className='mr-2' />
                                                     <p className='mb-0'>
-                                                        Air Conditioning:{' '}
-                                                        <span className='weight-500 text__grey-dark'>{driver.air_condition ? "Yes" : "No"}</span>
+                                                        {t("commons.car_options.air_cond")}:{' '}
+                                                        <span className='weight-500 text__grey-dark'>{driver.air_condition ? t("commons.toogle_yes") : t("commons.toogle_no")}</span>
                                                     </p>
                                                 </div>
                                             </div>
 
                                             <div className='text-right' onClick={(e) => bookTrip(e, driver, true)}>
                                                 <button className='btn weight-700 btn-sm btn-text'>
-                                                    Learn More
+                                                    {t("select_drivers_page.text_btn")}
                                                 </button>
                                             </div>
                                         </div>
@@ -210,7 +211,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
             </ul>
             {(limit < driversTotalCount) &&
                 <div className='text-center mt-5 mt-xl-6'>
-                    <button onClick={e => loadDriverList(limit)} className='btn btn-primary text-uppercase'>Load More
+                    <button onClick={e => loadDriverList(limit)} className='btn btn-primary text-uppercase'>{t("select_drivers_page.load_more_btn")}
                     </button>
                 </div>
             }

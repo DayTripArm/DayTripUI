@@ -39,11 +39,11 @@ export const CAR_YEAR_LIST = () => {
 };
 
 export const AVAILABILITY_WINDOW = {
-    'All future dates': 12,
-    '9 months in advance': 9,
-    '6 months in advance': 6,
-    '3 months in advance': 3,
-    'Dates unavailable by default': 0
+    'all_dates': 12,
+    '9_months': 9,
+    '6_months': 6,
+    '3_months': 3,
+    'all_unavialable': 0
 };
 export const DRIVER_NOTICE = [1, 2, 3, 7];
 

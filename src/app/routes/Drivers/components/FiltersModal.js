@@ -7,12 +7,14 @@ import { Grid } from "@material-ui/core";
 import RangeSlider from "./RangeSlider";
 import {useDispatch} from "react-redux";
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 import actions from "../../../../actions";
 import moment from "moment";
 
 const FiltersModal = (props) => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const {trip_id, prices_list, filters, onSetCalendarDate, onSetTravelersCount,onSetAdultsCount, onSetChildrenCount, onSetReviewScore, onSetPriceRange, onCloseShowPopup} = props;
     const [form, setForm] = useState(JSON.parse(localStorage.getItem('sfd_filters')) || filters);
     const onDaySelect = ((day) => {
@@ -33,7 +35,7 @@ const FiltersModal = (props) => {
             price_range: price_range || [10, 1100]
         });
     });
-
+    const locale_code = localStorage.getItem('lang') || 'en'
     const updateDriversList = (() => {
         dispatch(actions.searchForDriversRequest({
             date: form.date,
@@ -68,20 +70,20 @@ const FiltersModal = (props) => {
             <div className='py-4 px-0 px-md-8 sfd_popup_form'>
                   <div className="sfd-items-aligned">
                     <div className="d-flex align-items-center justify-content-between mb-5">
-                        <h4 className="mb-0 text__grey-dark">Add Date</h4>
+                        <h4 className="mb-0 text__grey-dark">{t("select_drivers_page.chips.date_filter_title")}</h4>
                     </div>
                     <DatePicker daySize={daySize}
-                        date={!_.isEmpty(form.date)? moment(form.date) : moment()}
+                        date={!_.isEmpty(form.date)? moment(form.date).locale(locale_code === "am" ? "hy-am" : locale_code) : moment().locale(locale_code === "am" ? "hy-am" : locale_code).format()}
                         onDateChange={(date) => {onDaySelect(date); onSetCalendarDate(date)}}/>
                   </div>
                   <div className="sfd-items-aligned">
                     <hr className="border__top border__default my-4"></hr>
                     <div className="d-flex align-items-center justify-content-between mb-5">
-                        <h4 className="mb-0 text__grey-dark">Add Travelers</h4>
+                        <h4 className="mb-0 text__grey-dark">{t("select_drivers_page.chips.travelers_filter_title")}</h4>
                     </div>
                     <div className="trvlr_count_container">
                         <FormPlusMinus
-                            label="Adults"
+                            label={t("commons.adults")}
                             name="adults"
                             max={9}
                             min={2}
@@ -93,7 +95,7 @@ const FiltersModal = (props) => {
                             }}
                         />
                         <FormPlusMinus
-                            label="Children"
+                            label={t("commons.children")}
                             name="children"
                             max={9}
                             min={1}
@@ -109,13 +111,13 @@ const FiltersModal = (props) => {
                  <div className="sfd-items-aligned">
                     <hr className="border__top border__default my-4"></hr>
                     <div className="d-flex align-items-center justify-content-between mb-5">
-                        <h4 className="mb-0 text__grey-dark">Review Score</h4>
+                        <h4 className="mb-0 text__grey-dark">{t("select_drivers_page.chips.rating")}</h4>
                     </div>
                     <div className="review_container">
                         <Checkbox
                             className='mb-4 w-100'
                             name='wonderful'
-                            label="Wonderful: 4+"
+                            label={t("select_drivers_page.chips.wonderfull")}
                             onChange={(e) => {setForm({
                                     ...form,
                                     review: {"wonderfull": e.target.checked, "excelent": form.reviews.excelent, "good": form.reviews.good}
@@ -127,7 +129,7 @@ const FiltersModal = (props) => {
                         <Checkbox
                             className='mb-4 w-100'
                             name='review_score'
-                            label="Very good: 3.5+"
+                            label={t("select_drivers_page.chips.very_good")}
                             onChange={(e) => {setForm({
                                     ...form,
                                     review: {"wonderfull": form.reviews.wonderfull, "excelent": e.target.checked, "good": form.reviews.good},
@@ -139,7 +141,7 @@ const FiltersModal = (props) => {
                         <Checkbox
                             className='mb-4 w-100'
                             name='good'
-                            label="Good: 3+"
+                            label={t("select_drivers_page.chips.good")}
                             onChange={(e) => {setForm({
                                     ...form,
                                     review: {"wonderfull": form.reviews.wonderfull, "excelent": form.reviews.excelent, "good": e.target.checked},
@@ -153,7 +155,7 @@ const FiltersModal = (props) => {
                  <div className="sfd-items-aligned">
                     <hr className="border__top border__default my-4"></hr>
                     <div className="d-flex align-items-center justify-content-between mb-5">
-                        <h4 className="mb-0 text__grey-dark">Price Range</h4>
+                        <h4 className="mb-0 text__grey-dark">{t("select_drivers_page.chips.price")}</h4>
                     </div>
                     <div className="price_container">
                         <div className="price_slider">
@@ -179,7 +181,7 @@ const FiltersModal = (props) => {
                     e.preventDefault();
                     updateDriversList();
                 }}>
-                Show Results
+                {t("select_drivers_page.chips.show_results")}
                 </Link>
             </div>
         </Modal>

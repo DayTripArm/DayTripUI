@@ -4,9 +4,12 @@ import { IconHome, IconGlobe } from 'shared/components/Icons';
 import actions from "../../../../../actions";
 import {MONTH_LIST, TRAVELER_TYPE} from "../../../../../constants";
 import {Link} from "react-router-dom";
+import _ from "lodash";
+import { useTranslation } from 'react-i18next';
 
 const User = ({history={}}) => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const {config, driverData={}} = useSelector(state => state);
     const {individual_user, userType} = config;
 
@@ -32,7 +35,7 @@ const User = ({history={}}) => {
     } = booked_trip ? user_info : individual_user;
 
     const created_date = new Date(created_at || "");
-    const member_since = MONTH_LIST[created_date.getMonth()] + " " + created_date.getFullYear();
+    const member_since = t(`commons.months.${MONTH_LIST[created_date.getMonth()]}`) + " " + created_date.getFullYear();
     const src = profile_photo ? (process.env.NODE_ENV === "development"
         ? "http://localhost:3000" + profile_photo
         : profile_photo) : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
@@ -70,12 +73,12 @@ const User = ({history={}}) => {
 
                     </div>
                     <div className='col-xl-9'>
-                        <h1 className='text__blue mt-9 mt-md-10 mt-xl-0 mb-2 mb-xl-1'>Hi, I am {user_name} !</h1>
-                        <p className='text-sm weight-500 text__grey-dark mb-5'>Member since {member_since}
+                        <h1 className='text__blue mt-9 mt-md-10 mt-xl-0 mb-2 mb-xl-1'>{t("profiles_page.info_area.title", {name: user_name})} !</h1>
+                        <p className='text-sm weight-500 text__grey-dark mb-5'>{t("profiles_page.info_area.member_since")} {member_since}
                             {
                                 userType === TRAVELER_TYPE &&
                                 <Link to='/account/personal' className='btn btn-secondary btn-sm ml-5'>
-                                    Edit Profile
+                                    {t("profiles_page.info_area.edit_btn")}
                                 </Link>
                             }
                         </p>
@@ -86,13 +89,13 @@ const User = ({history={}}) => {
                             <div className='col-md-6 d-flex mb-4'>
                                 <IconHome className='mr-2' />
                                 <p className='mb-0'>
-                                    Lives in: <span className='weight-500 text__grey-dark'>{location}</span>
+                                    {t("profiles_page.details.lives_in")}: <span className='weight-500 text__grey-dark'>{location}</span>
                                 </p>
                             </div>
                             <div className='col-md-6 d-flex mb-4'>
                                 <IconGlobe className='mr-2 fixed-svg' />
                                 <p className='mb-0'>
-                                    Speaks: <span className='weight-500 text__grey-dark'>{languages}</span>
+                                    {t("profiles_page.details.speaks")}: <span className='weight-500 text__grey-dark'>{languages}</span>
                                 </p>
                             </div>
                         </div>

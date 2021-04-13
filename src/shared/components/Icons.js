@@ -235,8 +235,8 @@ export const IconCurrecy = ({ curr_code, fill=defaultFill }) => {
       </SvgIcon>
     );
 }
-export const IconGlobe = ({ className, view, fill = defaultFill }) => (
-  <SvgIcon width='16' height='16' viewBox='0 0 16 16' className={className}>
+export const IconGlobe = ({ className, view, fill = defaultFill, size="24" }) => (
+  <SvgIcon width={size} height={size} viewBox={`0 0 ${size} ${size}`} className={className}>
     <path
       className={view}
       fill={fill}

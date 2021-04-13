@@ -9,7 +9,7 @@
             "saved": "Запомнивщиеся",
             "trips": "Поездки",
             "messages": "Сообщения",
-            "calenar": "Календарь",
+            "calendar": "Календарь",
             "progress": "Прогресс",
             "my_car": "Моя Машина",
             "profile": "Профиль",
@@ -69,7 +69,7 @@
         "trip_duration": "Длительность",
         "reviews": "Отзывы",
         "hit_the_road": {
-            "section_title": "В путь, ",
+            "section_title": "В путь ",
             "title": "Поездка на целый день",
             "info_slider": "Road trips are one of the best ways to really get to know a country.",
             "desc": "Нет в мыслях конкретное направление? Тогда путешествуйте по стане, а где остановиться, можете решить по пути.",
@@ -96,14 +96,22 @@
         "chips": {
             "date_input": "Месяц-День",
             "travelers_input": "Пассажиры",
+            "date_filter_title": "Изменить Дату",
+            "travelers_filter_title": "Изменить Число Пассажиров",
             "rating": "Оценка",
+            "wonderfull": "Отлично։ 4+",
+            "very_good": "Очень хорошо։ 4",
+            "good": "Хорошо։ 3+",
             "price": "Диапазон цен",
-            "no_drivers_title": "Нет доступных водителей",
-            "no_drivers_text": "Предлогаем изменить дату и попробовать снова",
-            "drivers_title": "Доступные водители",
-            "btn": "Забронировть",
-            "text_btn": "Увидеть больше"
-        }
+            "filters": "Фильтры",
+            "show_results": "Показать результаты"
+        },
+        "no_drivers_title": "Нет доступных водителей",
+        "no_drivers_text": "Предлогаем изменить дату и попробовать снова",
+        "drivers_title": "Доступные водители",
+        "btn": "Забронировать",
+        "text_btn": "Узнать больше",
+        "load_more_btn": "Увидеть больше"
     },
     "reviews_page": {
         "pickup_info": {
@@ -139,10 +147,12 @@
         "info_box": {
             "id_number": "Идентификационная карта/Пасспорт",
             "phone": "Телефон",
-            "email": "Эл. адресс"
+            "email": "Эл. адресс",
+            "driver_license": "Водительское удостоверение",
+            "reg_card": "Тех. пасспорт машины"
         },
         "info_area": {
-            "title": "Привет, я ",
+            "title": "Привет, я {{name}}",
             "member_since": "Зарегистрирован с ",
             "edit_btn": "Редактировать"
         },
@@ -204,8 +214,8 @@
         "no_trips": "Поездок нет",
         "explore_btn": "ОТКРОЙТЕ DAYTRIP",
         "upcoming_tab": "Будущие поездки",
-        "no_upcoming_title": "Будущих поездок нет",
         "past_tab": "Прошедшие поездки",
+        "no_upcoming_title": "Будущих поездок нет",
         "no_past_title": "Прошедших поездок нет",
         "no_trip_text": "Начните планировать ваше поездку",
         "trip_card": {
@@ -219,10 +229,12 @@
             "rate_review": "Отзыв и оценка",
             "slider": {
                 "more_btn": "Более",
+                "trip_title": "Поездка",
                 "trip_info": {
                     "title": "Данные поездки",
                     "duration": "Длительность",
                     "order_status": "Состояние платежа",
+                    "confirmed_on": "Подтверждено ",
                     "order_id": "Номер платежа"
                 },
                 "pickup_info": "Данные встречи",
@@ -239,7 +251,7 @@
                 "trip_price": "Цена",
                 "service_fee": "Плата за услуги",
                 "total_price": "Итоговая цена",
-                "contact_btn": "Связь "
+                "contact_btn": "СВЯЗЬ С {{name}}"
             },
             "rate_review_modal": {
                 "title": "Отзыв и оценка",
@@ -329,12 +341,15 @@
         }
     },
     "calendar_page": {
-        "title1": "Календарь",
+        "title": "Календарь",
         "overview": "Обзор",
+        "upcoming_tab": "Будущие поездки",
+        "past_tab": "Прошедшие поездки",
         "settings_slider": {
             "slider_title": "Настройки",
             "title": "Доступность",
             "available_title": "Открыть дни календаря до",
+            "notice_title": "Минимально за скоько дней до поездки могут вас забронировать?",
             "availability_opts": {
                 "all_dates": "Все будующие месяцы",
                 "9_months": "9 месяцев",
@@ -342,13 +357,7 @@
                 "3_months": "3 месяцев",
                 "all_unavialable": "Все дни закрыты"
             },
-            "notice_opts": {
-                "1_day": "По крайне мере за 1 день до поездки",
-                "2_day": "По крайне мере за 2 день до поездки",
-                "3_day": "По крайне мере за 3 день до поездки",
-                "7_day": "По крайне мере за 7 день до поездки"
-            },
-            "notice_title": "Минимально за скоько дней до поездки могут вас забронировать?"
+            "notice_opts":  "По крайне мере за {{day}} день до поездки"
         }
     },
     "progress_page": {
@@ -414,7 +423,7 @@
             "speaks": "Языки",
             "car_seat": "Детское кресло",
             "air_cond": "Кондиционер",
-            "smocking": "Курить разрешено",
+            "smoking": "Курить разрешено",
             "pets": "Животные разрешены",
             "water": "Вода",
             "snacks": "Закуски",
@@ -493,6 +502,7 @@
         "or": "или",
         "hours": "час",
         "km": "км",
+        "up_to": "До ",
         "duration": "Длительность",
         "distance": "Расстояние",
         "view_details_btn": "В деталях",
@@ -502,6 +512,8 @@
         "adults": "Взрослые",
         "children": "Дети",
         "travelers_pholder": "{{count}} Пассажира",
+        "day_text": "День : ",
+        "travelers_text": "Пассажиры : ",
         "not_connected": "Не прикрепленно"
     }
 }

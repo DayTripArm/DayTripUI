@@ -15,6 +15,7 @@ import _ from 'lodash';
 import moment from "moment";
 import actions from "../../../actions";
 import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import { useHistory } from "react-router";
 
 
@@ -64,9 +65,9 @@ const Calendar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const {driverData} = useSelector(state => state);
-
+    const { t } = useTranslation();
     const {calendar_settings={}, driver_calendar={}} = driverData;
-
+    const locale_code = localStorage.getItem('lang') || 'en'
     let {available_days} = calendar_settings;
     if (!available_days) {
         available_days = [];
@@ -225,7 +226,7 @@ const Calendar = () => {
                 <div className='col-xl-9 col-xxl-8 col-xxxl-7 m-auto p-0'>
                     <div
                         className='d-flex align-items-center justify-content-between mt-6 mb-5 mt-md-9 mb-md-9 mt-xl-11 mt-xxl-13 '>
-                        <h2 className='text__blue mb-0'>Calendar</h2>
+                        <h2 className='text__blue mb-0'>{t("calendar_page.title")}</h2>
                         <button className='btn btn-circle border-0' onClick={() => {
                             setOpenSettingsModal(true);
                             window.location.hash = "modal"
@@ -251,13 +252,17 @@ const Calendar = () => {
                             renderDayContents={renderDayContents}
                             isOutsideRange={date => isOutsideRange(date)}
                             isDayHighlighted={isDayHighlighted}
+                            renderMonthElement={({ month }) => {
+                                const date = moment(month).locale(locale_code === "am" ? "hy-am" : locale_code)
+                                return _.startCase(date.format('MMMM YYYY'))
+                            }}
                             date={date}
                         />
 
                     {/*</Mobile>*/}
 
 
-                    <h2 className='text__blue mb-0 mt-6 mb-5 mt-md-9 mb-md-9 mt-xl-11 mt-xxl-13'>Overview</h2>
+                    <h2 className='text__blue mb-0 mt-6 mb-5 mt-md-9 mb-md-9 mt-xl-11 mt-xxl-13'>{t("calendar_page.overview")}</h2>
                     <div className='tabs mb-6'>
                         <ul className='no-list-style mb-3 mb-lg-0 clearfix'>
                             <li
@@ -265,14 +270,14 @@ const Calendar = () => {
                                 onClick={() => setTab(1)}
                                 role='presentation'
                             >
-                                Upcoming Trips
+                                {t("calendar_page.upcoming_tab")}
                             </li>
                             <li
                                 className={tab === 2 ? 'active' : ''}
                                 onClick={() => setTab(2)}
                                 role='presentation'
                             >
-                                Past Trips
+                                {t("calendar_page.past_tab")}
                             </li>
                         </ul>
                     </div>

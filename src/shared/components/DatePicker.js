@@ -14,8 +14,7 @@ const DatePicker = ({ date, onDateChange, daySize }) => {
     const isOutsideRange = (date) => {
         return date.isBefore(moment(), 'day')
     };
-    const months = MONTH_LIST.map((month, i) => {return t(`commons.months.${month}`)});
-    const locale = localStorage.getItem('lang') || 'en'
+    const locale = localStorage.getItem('lang') || 'en';
     const props = {
         renderCalendarDay: undefined,
         renderDayContents: null,
@@ -34,7 +33,7 @@ const DatePicker = ({ date, onDateChange, daySize }) => {
     return (
         <DayPickerSingleDateController
             {...props}
-            date={date.locale(locale == "am" ? "hy-am" : locale)}
+            date={date}
             daySize={daySize}
             isOutsideRange={date => isOutsideRange(date)}
             renderMonthElement={({ month }) => {
@@ -42,7 +41,7 @@ const DatePicker = ({ date, onDateChange, daySize }) => {
                 return _.startCase(date.format('MMMM YYYY'))
             }}
             onDateChange={(date) => {
-                onDateChange(date)
+                onDateChange(date);
             }}
         />
     );

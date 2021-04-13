@@ -32,7 +32,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
     const [showSearchPopup, setShowSearchPopup] = useState(false);
     const [form, setForm] = useState({date: "", travelers: "0"});
     const [count, setCount] = useState({adults: 0, children: 0});
-
+    const locale_code = localStorage.getItem('lang') || 'en'
     let [tripTitle, setTitle] = useState("");
 
     useEffect(() => {
@@ -103,7 +103,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
             if (_.isEmpty(invalidFields)) {
                 try {
                     localStorage.setItem('sfd_filters', JSON.stringify({
-                        date: form.date,
+                        date: form.date.locale(locale_code === "am" ? "hy-am" : locale_code),
                         reviews: {"wonderfull": false, "excelent": false, "good": false},
                         travelers: form.travelers,
                         passengers_count: count,
@@ -112,7 +112,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                     history.push({
                         pathname: '/drivers',
                         state: {
-                            date: form.date,
+                            date: form.date.locale(locale_code === "am" ? "hy-am" : locale_code),
                             travelers: form.travelers,
                             trip_id: trip_detail.id,
                             passenger_count: count
@@ -138,13 +138,13 @@ const SearchPanel = ({trip_detail, review_stats}) => {
               <div className='d-flex align-items-center'>
                 <h6 className='mb-1 text__blue mr-2'>{tripTitle}</h6>
                   <p className='mb-0 d-xl-block'>
-                    <span className='weight-700 mb-0'>{review_stats?.rate || 'No reviews'}</span>
+                    <span className='weight-700 mb-0'>{review_stats?.rate || t("commons.no_reviews")}</span>
                     <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
                     {review_stats?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} {t("commons.reviews")})</span>}
                   </p>
               </div>
               <p className='text-sm weight-500 mb-0 d-xl-block'>
-                {t("commons.duration")}: <span className='text__grey-dark'>{trip_detail.trip_duration } {t("commons.hours")}</span>
+                {t("commons.duration")}: <span className='text__grey-dark'>{trip_detail.trip_duration} {t("commons.hours")}</span>
               </p>
             </div>
             <div className='d-flex justify-content-end flex-fill'>
@@ -152,7 +152,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                   <div className="tour_search_items" ref={container1}>
                     <div className="tour_calendar_popup">
                         {showDatePicker && (
-                            <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
+                            <DatePicker date={!_.isEmpty(form.date)? moment(form.date).locale(locale_code === "am" ? "hy-am" : locale_code) : moment().locale(locale_code === "am" ? "hy-am" : locale_code).format()}
                                 onDateChange={(date) => onDaySelect(date)}
                                 daySize={daySize}
                             />

@@ -7,6 +7,7 @@ import DriversList from './components/DriversList';
 import FormPlusMinus from 'shared/components/FormPlusMinus';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
 import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import actions from "../../../actions";
 import _ from "lodash";
 import moment from "moment";
@@ -21,7 +22,7 @@ const Drivers = ({ history }) => {
     const container2 = useRef();
     //const container3 = useRef();  //for review popup
     const container4 = useRef();
-
+    const { t } = useTranslation();
     let filters = JSON.parse(localStorage.getItem('sfd_filters')) || history.location.state;
     const trip_id = history.location.state?.trip_id || null;
     if (_.isEmpty(filters)){
@@ -59,7 +60,7 @@ const Drivers = ({ history }) => {
     const [openCount, setOpenCount] = useState(false);
     const [isPricePopupOpened, setPricePopupOpened] = useState(false);
     const [form, setForm] = useState(filters);
-
+    const locale_code = localStorage.getItem('lang') || 'en'
     useOutsideClick(container1, () => setOpenCalendar(false));
     useOutsideClick(container2, () => setOpenCount(false));
     //useOutsideClick(container3, () => setShowCountPopup(false));  //for review popup
@@ -84,12 +85,12 @@ const Drivers = ({ history }) => {
         }));
     }
     const displayPrice = (() => {
-        let price_text = "Prices";
+        let price_text = t("select_drivers_page.chips.price");
         if (form.price_range) {
             if (form.price_range[0] && form.price_range[1]){
                 price_text = "$"+form.price_range[0]+" - $"+form.price_range[1];
             } else {
-                price_text = "Up to $"+(form.price_range[1] || "1000+");
+                price_text = t("commons.up_to", {price: form.price_range[1] || "1000+", currency: "$"});
             }
 
         }
@@ -157,13 +158,13 @@ const Drivers = ({ history }) => {
                             <div className='d-flex mb-4 mr-md-4'>
                                 <IconClockOutlined className='mr-2'/>
                                 <p className='mb-0'>
-                                    Trip duration: <span className='weight-500 text__grey-dark'>{trip_duration}</span>
+                                {t("commons.duration")}: <span className='weight-500 text__grey-dark'>{trip_duration}</span>
                                 </p>
                             </div>
                             <div className='d-flex mb-5'>
                                 <IconDestination className='mr-2'/>
                                 <p className='mb-0'>
-                                    Starting destination: <span className='weight-500 text__grey-dark'>{start_location}</span>
+                                {t("trip_details_page.start")}: <span className='weight-500 text__grey-dark'>{start_location}</span>
                                 </p>
                             </div>
                         </div>
@@ -171,7 +172,7 @@ const Drivers = ({ history }) => {
                             {
                                 singleFilter ?
                                     <div className="home_seach_items">
-                                        <Chips name="Filters" className='mr-4 mb-md-5'
+                                        <Chips name={t("select_drivers_page.chips.filters")} className='mr-4 mb-md-5'
                                             onClick={() => {
                                                 openFiltersPopup(!filtersPopup);
                                                 window.location.hash = "modal"
@@ -191,19 +192,19 @@ const Drivers = ({ history }) => {
                                     </div>
                                     : <>
                                         <div className="home_seach_items">
-                                            <Chips name={moment(form.date).format('MMM-DD')} className='mr-4 mb-md-5'
+                                            <Chips name={_.startCase(moment(form.date).locale(locale_code === "am" ? "hy-am" : locale_code).format('MMM-DD'))} className='mr-4 mb-md-5'
                                                 onClick={() => {
                                                     setOpenCalendar(!openCalendar);
                                                     setOpenCount(false);
                                                     setPricePopupOpened(false);
                                                 }} />
                                             {openCalendar && (<div className="calendar_popup" ref={container1}>
-                                                 <DatePicker date={!_.isEmpty(form.date)? moment(form.date) : moment()}
+                                                 <DatePicker date={!_.isEmpty(form.date)? moment(_.startCase(form.date)) : _.startCase(moment().locale(locale_code === "am" ? "hy-am" : locale_code).format())}
                                                  onDateChange={(date) => onDaySelect(date)} />
                                             </div>)}
                                         </div>
                                         <div className="home_seach_items">
-                                            <Chips name={form.travelers+" Travelers"} className='mr-4 mb-md-5'
+                                            <Chips name={t("commons.travelers_pholder", {count: form.travelers})} className='mr-4 mb-md-5'
                                                 onClick={() => {
                                                 setOpenCalendar(false);
                                                 setOpenCount(!openCount);
@@ -213,7 +214,7 @@ const Drivers = ({ history }) => {
                                                 <div className="travelers_count_popup" ref={container2}>
                                                     <div className="trvlr_count_container">
                                                         <FormPlusMinus
-                                                            label="Adults"
+                                                            label={t("commons.adults")}
                                                             name="adults"
                                                             max={9}
                                                             min={2}
@@ -235,7 +236,7 @@ const Drivers = ({ history }) => {
                                                             }}
                                                         />
                                                         <FormPlusMinus
-                                                            label="Children"
+                                                            label={t("commons.children")}
                                                             name="children"
                                                             max={9}
                                                             min={1}
@@ -261,7 +262,7 @@ const Drivers = ({ history }) => {
                                             )}
                                         </div>
                                         <div className="home_seach_items">
-                                            <Chips name="Reviews" className='mr-4 mb-md-5'/>
+                                            <Chips name={t("commons.reviews")} className='mr-4 mb-md-5'/>
                                         </div>
                                         <div className="home_seach_items">
                                             <Chips name={displayPrice()}
@@ -301,10 +302,10 @@ const Drivers = ({ history }) => {
 
                         { _.isEmpty(drivers_list)
                             ?
-                            <NoResults/>
+                            <NoResults no_driver_title={t("select_drivers_page.no_drivers_title")} no_driver_desc={t("select_drivers_page.no_drivers_text")} />
                             :
                             <>
-                                <h2 className='text__blue mb-4 mb-md-5'>Available Drivers</h2>
+                                <h2 className='text__blue mb-4 mb-md-5'>{t("select_drivers_page.drivers_title")}</h2>
                                 <DriversList
                                 drivers_list={drivers_list}
                                 trip_details={trip_details}

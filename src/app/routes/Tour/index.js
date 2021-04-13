@@ -53,7 +53,7 @@ const Tour = ({ history }) => {
                     <div className='row'>
                         <div className='col-xl-4'>
                             <h2 className='text__blue mb-1'>{title}</h2>
-                            <span className='weight-700'>{review_stats?.rate || 'No reviews'}</span>
+                            <span className='weight-700'>{review_stats?.rate || t("commons.no_reviews")}</span>
                             <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
                             {reviews.trip_review?.rate && <span className='text-sm text__grey-dark'>({review_stats.count} {t("commons.reviews")})</span>}
                         </div>
@@ -109,7 +109,7 @@ const Tour = ({ history }) => {
                     </div>
                 </div>
             </div>
-            {!booked_trip && <SearchPanel trip_detail={trip_detail.trip || {}} review_stats={review_stats} />}
+            {!booked_trip && <SearchPanel trip_detail={trip_detail.trip || {}} review_stats={review_stats}  />}
         </>
     );
 };

@@ -9,7 +9,7 @@
             "saved": "Saved",
             "trips": "Trips",
             "messages": "Messages",
-            "calenar": "Calendar",
+            "calendar": "Calendar",
             "progress": "Progress",
             "my_car": "My Car",
             "account": "Account",
@@ -93,16 +93,23 @@
     },
     "select_drivers_page": {
         "chips": {
-            "date_input": "MM-DD",
+            "date_filter_title": "Change Date",
+            "travelers_filter_title": "Change Travelers Count",
             "travelers_input": "Travelers",
-            "rating": "Rating",
+            "rating": "Review Score",
+            "wonderfull": "Wonderful: 4+",
+            "very_good": "Very good: 3.5+",
+            "good": "Good: 3+",
             "price": "Price Range",
-            "no_drivers_title": "There Are No Available Drivers",
-            "no_drivers_text": "Please consider rescheduling your trip. You can edit the date and try again.",
-            "drivers_title": "Available Drivers",
-            "btn": "BOOK FOR",
-            "text_btn": "Learn more"
-        }
+            "filters": "Filters",
+            "show_results": "Show Results"
+        },
+        "no_drivers_title": "There Are No Available Drivers",
+        "no_drivers_text": "Please consider rescheduling your trip. You can edit the date and try again.",
+        "drivers_title": "Available Drivers",
+        "btn": "BOOK FOR",
+        "text_btn": "Learn more",
+        "load_more_btn": "Load more"
     },
     "reviews_page": {
         "pickup_info": {
@@ -138,10 +145,12 @@
         "info_box": {
             "id_number": "ID",
             "phone": "Phone Number",
-            "email": "Email Address"
+            "email": "Email Address",
+            "driver_license": "Driver License",
+            "reg_card": "Car Registration Card"
         },
         "info_area": {
-            "title": "Hi, I am ",
+            "title": "Hi, I am {{name}}",
             "member_since": "Member since",
             "edit_btn": "Edit Profile"
         },
@@ -218,11 +227,13 @@
             "contact_traveler": "CONTACT TRAVELER",
             "rate_review": "RATE AND REVIEW",
             "slider": {
+                "trip_title": "Trip",
                 "more_btn": "More",
                 "trip_info": {
                     "title": "Trip Info",
                     "duration": "Trip Duration",
                     "order_status": "Order Status",
+                    "confirmed_on": "Confirmed on ",
                     "order_id": "Order ID"
                 },
                 "pickup_info": "Pick Up Info",
@@ -239,7 +250,7 @@
                 "trip_price": "Trip Price",
                 "service_fee": "Service Fee",
                 "total_price": "Total Price",
-                "contact_btn": "CONTACT "
+                "contact_btn": "CONTACT {{name}}"
             },
             "rate_review_modal": {
                 "title": "Rate and Review",
@@ -329,8 +340,10 @@
         }
     },
     "calendar_page": {
-        "title1": "Calendar",
+        "title": "Calendar",
         "overview": "Overview",
+        "upcoming_tab": "Upcoming Tab",
+        "past_tab": "Past Tab",
         "settings_slider": {
             "slider_title": "Settings",
             "title": "Availability Settings",
@@ -343,12 +356,7 @@
                 "3_months": "3 months in advance",
                 "all_unavialable": "Dates unavailable by default"
             },
-            "notice_opts": {
-                "1_day": "At least 1 day’s notice",
-                "2_day": "At least 2 day’s notice",
-                "3_day": "At least 3 day’s notice",
-                "7_day": "At least 7 day’s notice"
-            }
+            "notice_opts":  "At least {{day}} day’s notice"
         }
     },
     "progress_page": {
@@ -414,7 +422,7 @@
             "speaks": "Speaks",
             "car_seat": "Car Seat",
             "air_cond": "Air Conditioning",
-            "smocking": "Smoking Allowed",
+            "smoking": "Smoking Allowed",
             "pets": "Pets Allowed",
             "water": "Water",
             "snacks": "Snacks",
@@ -492,6 +500,7 @@
         "or": "or",
         "hours": "hours",
         "km": "km",
+        "up_to": "Up to {{currency}}{{price}}",
         "duration": "Trip duration",
         "distance": "Distance",
         "view_details_btn": "View Details",
@@ -500,6 +509,8 @@
         "read_more": "Read More",
         "adults": "Adults",
         "children": "Children",
+        "day_text": "Day : ",
+        "travelers_text": "Passenger : ",
         "travelers_pholder": "{{count}} Travelers",
         "not_connected": "Not connected"
     }

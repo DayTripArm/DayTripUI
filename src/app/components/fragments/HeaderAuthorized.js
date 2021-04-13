@@ -12,60 +12,14 @@ import {
     IconTimes,
 } from 'shared/components/Icons';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
 import actions from "../../../actions";
 import _ from "lodash";
 
-const navigationTypes = {
-    user: [
-        {
-            route: '/home',
-            icon: IconHome,
-            name: 'Home',
-        },
-        {
-            route: '/favorites',
-            icon: IconHeartFilled,
-            name: 'Saved',
-        },
-        {
-            route: '/trips',
-            icon: IconTrip,
-            name: 'Trips',
-        },
-        {
-            route: '/messaging',
-            icon: IconMessage,
-            name: 'Messages',
-        },
-    ],
-    driver: [
-        {
-            route: '/calendar',
-            icon: IconCalendar,
-            name: 'Calendar',
-        },
-        {
-            route: '/progress',
-            icon: IconChart,
-            name: 'Progress',
-        },
-        {
-            route: '/car',
-            icon: IconCar,
-            name: 'My Car',
-        },
-        {
-            route: '/messaging',
-            icon: IconMessage,
-            name: 'Messages',
-        },
-    ],
-};
-
 const HeaderAuthorized = ({ type }) => {
     const dispatch = useDispatch();
-
+    const { t } = useTranslation();
     const dropdownContainer = useRef();
     const [openDropdown, setOpenDropdown] = useState(false);
 
@@ -96,7 +50,52 @@ const HeaderAuthorized = ({ type }) => {
             'omission': ''
         });
     }
-
+    const navigationTypes = {
+        user: [
+            {
+                route: '/home',
+                icon: IconHome,
+                name: t("home_page.top_menu.home"),
+            },
+            {
+                route: '/favorites',
+                icon: IconHeartFilled,
+                name: t("home_page.top_menu.saved")
+            },
+            {
+                route: '/trips',
+                icon: IconTrip,
+                name: t("home_page.top_menu.trips")
+            },
+            {
+                route: '/messaging',
+                icon: IconMessage,
+                name: t("home_page.top_menu.messages")
+            },
+        ],
+        driver: [
+            {
+                route: '/calendar',
+                icon: IconCalendar,
+                name: t("home_page.top_menu.calendar")
+            },
+            {
+                route: '/progress',
+                icon: IconChart,
+                name: t("home_page.top_menu.progress")
+            },
+            {
+                route: '/car',
+                icon: IconCar,
+                name: t("home_page.top_menu.my_car")
+            },
+            {
+                route: '/messaging',
+                icon: IconMessage,
+                name: t("home_page.top_menu.messages")
+            },
+        ],
+    };
     const logOut = () => {
         dispatch(actions.logOut());
         delete localStorage.userType;
@@ -124,7 +123,7 @@ const HeaderAuthorized = ({ type }) => {
                                 <div className='dropdown dropdown__center active mnw-328px'>
                                     <ul className='dropdown-list no-list-style mb-0 px-5 pb-5'>
                                         <li className='list-item border__bottom border__default py-4 d-flex align-items-center justify-content-between'>
-                                            <span className='text__grey-dark weight-500'>Messages(0)</span>
+                                            <span className='text__grey-dark weight-500'>{t("home_page.top_menu.messages")}(0)</span>
                                             <button className='btn btn-secondary btn-sm'>View All</button>
                                         </li>
                                         <li className='list-item list-item__removable border__bottom border__default py-4 d-flex align-items-start justify-content-between'>
@@ -212,7 +211,7 @@ const HeaderAuthorized = ({ type }) => {
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >
-                                    <span className='d-block py-4 border__bottom border__default'>Profile</span>
+                                    <span className='d-block py-4 border__bottom border__default'>{t("home_page.top_menu.profile")}</span>
                                 </NavLink>
                             </li>
                             <li>
@@ -222,7 +221,7 @@ const HeaderAuthorized = ({ type }) => {
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >
-                                    <span className='d-block py-4 border__bottom border__default'>Account</span>
+                                    <span className='d-block py-4 border__bottom border__default'>{t("home_page.top_menu.account")}</span>
                                 </NavLink>
                             </li>
                             <li>
@@ -232,7 +231,7 @@ const HeaderAuthorized = ({ type }) => {
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >
-                                    <span className='d-block py-4 border__bottom border__default'>Help</span>
+                                    <span className='d-block py-4 border__bottom border__default'>{t("home_page.top_menu.help")}</span>
                                 </NavLink>
                             </li>
                             <li>
@@ -241,7 +240,7 @@ const HeaderAuthorized = ({ type }) => {
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
                                 >
-                                    <span className='d-block py-4' onClick={() => logOut()}>Log Out</span>
+                                    <span className='d-block py-4' onClick={() => logOut()}>{t("home_page.top_menu.logout")}</span>
                                 </NavLink>
                             </li>
                         </ul>
