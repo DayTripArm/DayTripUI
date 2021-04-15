@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useDropzone} from "react-dropzone";
 import ReactCrop from 'react-image-crop';
+import { useTranslation } from 'react-i18next';
 import Modal from 'shared/components/Modal';
 import 'scss/packages/_react-image-crop-custom.scss';
 import { IconUser } from 'shared/components/Icons';
@@ -17,7 +18,7 @@ import actions from "../../actions";
 
 const CropContainer = ({setShowCropContainer, profilePhoto}) => {
     const dispatch = useDispatch();
-
+    const { t } = useTranslation();
     const {travelerData, driverData} = useSelector(state => state);
 
     const {profile:profileData} = !_.isEmpty(travelerData.profile) ? travelerData : driverData;
@@ -69,7 +70,7 @@ const CropContainer = ({setShowCropContainer, profilePhoto}) => {
     };
 
     return (
-        <Modal title='Crop the Profile Picure' showDismissButton onClose={() => setShowCropContainer(false)}>
+        <Modal title={t("commons.crop_pic_title")} showDismissButton onClose={() => setShowCropContainer(false)}>
             <div className='py-4 px-0 px-md-8'>
                 <ReactCrop
                     src={profilePhoto.src}
@@ -84,7 +85,7 @@ const CropContainer = ({setShowCropContainer, profilePhoto}) => {
                 <canvas style={{display: 'none'}} ref={imagePreviewCanvasRef}> </canvas>
 
                 <div className='d-flex align-items-center justify-content-end'>
-                    <button className='btn btn-secondary text-uppercase' onClick={() => handleSave()}>Save</button>
+                    <button className='btn btn-secondary text-uppercase' onClick={() => handleSave()}>{t("commons.buttons.save_btn")}</button>
                 </div>
             </div>
         </Modal>
@@ -99,7 +100,7 @@ const FormDropZoneInlineText = (props) => {
 
     const [profilePhoto, setProfilePhoto] = useState({});
     const [showCropContainer, setShowCropContainer] = useState(false);
-
+    const { t } = useTranslation();
     const {getRootProps, getInputProps, open} = useDropzone({
         onDrop: acceptedFiles => {
             const currentFile = acceptedFiles[0];
@@ -131,7 +132,7 @@ const FormDropZoneInlineText = (props) => {
                         :
                         <IconUser width='72' height='72' fill='#757575' className='mb-4 op-5' />
                 }
-                <label className='btn btn-sm text__grey-dark mb-0' onClick={open}>Upload</label>
+                <label className='btn btn-sm text__grey-dark mb-0' onClick={open}>{t("commons.buttons.upload_btn")}</label>
                 <input name={type} id='file' {...getInputProps({className: 'd-none'})} />
             </div>
 

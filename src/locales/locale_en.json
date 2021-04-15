@@ -19,7 +19,7 @@
         "sign_up": {
             "title": "Please Sign Up",
             "name": "Name",
-            "name_placeholder": "e.g John Smith",
+            "name_placeholder": "Name Surname",
             "email": "Email",
             "email_placeholder": "Enter your email",
             "phone": "Phone",
@@ -162,6 +162,7 @@
     },
     "account_page": {
         "page_title": "Account",
+        "btn_to_profile": "Go to profile",
         "persona_info_title": "Personal Info",
         "persona_info_desc": "Provide personal details and contacts to reach you",
         "login_title": "Update your password and secure your account",
@@ -171,6 +172,7 @@
         "personal_info_page": {
             "page_title": "Personal Info",
             "name": "Name",
+            "name_pholder": "Name Surname",
             "gender": "Gender",
             "birthday": "Date of Birth",
             "email": "Email Address",
@@ -188,16 +190,24 @@
             "page_title": "Login & Security",
             "section1": "Login",
             "section1_title": "Password",
-            "section1_pholder": "Last Updated Days ago",
-            "section": "Social Accounts",
+            "section1_pholder": "Last Updated {{days}} Days ago",
+            "section2": "Social Accounts",
             "section2_title1": "Facebook",
             "section2_title2": "Google"
         },
         "payments": {
             "page_title": "Payments",
-            "tab1_title": "Payment methods",
-            "no_card_attached": "Add a payment method using our secure payment system, then start planning your next trip.",
+            "payment_title": "Payment methods",
+            "payout_title": "Payout methods",
+            "add_payment_text": "Add a payment method using our secure payment system, then start planning your next trip.",
+            "add_payout_text": "Add a payout method using our secure payment system, then start planning your next trip.",
+            "card_currency": "This card is in {{currency}}",
+            "card_type": "Card Type",
+            "visa_ends": "Visa ending in {{number}}",
+            "name_on_card": "Name On Card",
+            "expires_on": "Expires On",
             "add_payment_btn": "ADD A PAYMENT METHOD",
+            "add_payout_btn": "ADD A PAYOUT METHOD",
             "card_attached": "ADD A NEW CARD"
         }
     },
@@ -209,7 +219,7 @@
     },
     "trips_page": {
         "page_title": "Trips",
-        "no_trips": "No Trips Here",
+        "no_trips": "There aren't Any Trips Yet",
         "explore_btn": "EXPLORE DAYTRIP",
         "upcoming_tab": "Upcoming Trips",
         "no_upcoming_title": "You don’t Have Any Upcoming Trips",
@@ -217,15 +227,20 @@
         "past_tab": "Past Trips",
         "no_past_title": "You don’t Have Any Past Trips",
         "no_past_text": "Start exploring ideas for your next trip",
+        "no_trip_header": "What’s Coming Up",
         "trip_card": {
             "date": "Date",
             "travelers": "Travelers",
             "btn_cancelation": "Cancelation",
             "btn_details": "Details",
             "review_added": "Already wrote a review",
+            "trip_rating": "Trip rating",
+            "driver_rating": "Driver rating",
+            "rating_text": "Գնահատական",
             "contact_driver": "CONTACT DRIVER",
             "contact_traveler": "CONTACT TRAVELER",
             "rate_review": "RATE AND REVIEW",
+            "see_review": "SEE YOUR REVIEW",
             "slider": {
                 "trip_title": "Trip",
                 "more_btn": "More",
@@ -254,10 +269,13 @@
             },
             "rate_review_modal": {
                 "title": "Rate and Review",
-                "tab1": "Your trip",
-                "tab2": "Your driver",
+                "tab1": "Trip",
+                "tab2": "Driver",
                 "text1": "Did you enjoy your day? Please rate the trip and the driver",
-                "text2": "Share your experience"
+                "text2": "Share your experience",
+                "write_review_text": "Write a review",
+                "thank_u_feedback": "Thank You For Your Feedback!",
+                "rate_err_msg": "Please rate your {{text}}"
             }
         }
     },
@@ -414,6 +432,16 @@
             "full_day_title": "Price for a Full Day Drive"
         }
     },
+    "messages_page": {
+       "title": "Messages",
+       "search_for_author": "Search for author",
+        "no_messages_text": "There aren't Any Messages Yet",
+        "short_desc": "When you book a trip the messages from your host will show up here.",
+        "trip_details": "Trip Details",
+        "type_msg": "Type a Message",
+        "upcoming_text": "Upcoming",
+        "past_text": "Past"
+    },
     "footer": {
         "terms_conditions": "Terms & Conditions",
         "help": "Help"
@@ -492,12 +520,15 @@
             "december": "December"
         },
         "stops": ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"],
-        "male": "Male",
-        "female": "Female",
+        "gender": {
+            "male": "Male",
+            "female": "Female"
+        },
         "choose_currency": "Choose Currency",
         "choose_lang": "Choose Language",
         "select_pholder": "Choose",
         "upload_box_title": "Upload Photos",
+        "crop_pic_title": "Crop the Profile Picտure",
         "loading_save_driver": "Please Wait While We are Saving Your Data",
         "no_options": "No options",
         "toogle_yes": "Yes",

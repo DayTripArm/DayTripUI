@@ -70,7 +70,7 @@ function Step_7(props) {
     };
 
     const languageList = LANGUAGES.map(item => {return {label: item, value: item}});
-    const genderList   = GENDER_LIST.map(item => {return {label: item, value: item}});
+    const genderList   = GENDER_LIST.map(item => {return {label: t(`commons.gender.${item}`), value: item}});
     const monthList    = MONTH_LIST.map((month, i) => {return {label: month, value: i}});
     const days         = DAYS.map(i => {return {label: i, value: i}});
     const yearList     = GET_DATE_YEARS().map(i => {return {label: i, value: i}});

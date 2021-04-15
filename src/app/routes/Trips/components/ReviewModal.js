@@ -5,6 +5,7 @@ import Rating from 'shared/components/Rating';
 import {useDispatch} from "react-redux";
 import actions from "../../../../actions";
 import _ from "lodash";
+import { useTranslation } from 'react-i18next';
 
 const validations = {
     rate: {
@@ -15,6 +16,7 @@ const validations = {
 const ReviewModal = ({ onClose, reviewTrip, activeTab }) => {
   const dispatch = useDispatch();
   const [tab, setTab] = useState(activeTab);
+  const { t } = useTranslation();
   const [invalidFields, setInvalidFields] = useState({});
   const [isRated, setIsRated] = useState(false);
   const [tripForm, setTripRateForm] = useState(reviewTrip.reviews.trip_review || {rate: null, notes: ""});
@@ -33,7 +35,8 @@ const ReviewModal = ({ onClose, reviewTrip, activeTab }) => {
     const rule = validations[name];
     if (rule) {
         if (rule.required && (!form[name] || form[name] && form[name]===0) && validate) {
-            return { status: "error", statusMessage: "Please rate your "+(tab === 1 ? 'trip': 'driver') };
+            return { status: "error", statusMessage: t("trips_page.trip_card.rate_review_modal.rate_err_msg",
+                    {text: (tab === 1 ? t("trips_page.trip_card.rate_review_modal.tab1"): t("trips_page.trip_card.rate_review_modal.tab2")).toLowerCase()})};
         }
     }
   }
@@ -72,23 +75,23 @@ const ReviewModal = ({ onClose, reviewTrip, activeTab }) => {
       setInvalidFields(invalidFields);
   }
   return (
-    <Modal title='Rate and Review' showDismissButton onClose={() => onClose(false)}>
+    <Modal title={t("trips_page.trip_card.rate_review_modal.title")} showDismissButton onClose={() => onClose(false)}>
       {isRated ?
       <div className='py-4 px-0 px-md-8'>
-          <p className='text-center weight-700'>Thank You For Your Feedback!</p>
+          <p className='text-center weight-700'>{t("trips_page.trip_card.rate_review_modal.thank_u_feedback")}</p>
       </div> :
       <div className='py-4 px-0 px-md-8'>
         <div className='tabs tabs__fit mb-6'>
           <ul className='no-list-style mb-3 mb-lg-0 clearfix'>
             <li className={tab === 1 ? 'active' : ''} onClick={() => {setTab(1); validateForm(false); setInvalidFields({});}} role='presentation'>
-              Your Trip
+                {t("trips_page.trip_card.rate_review_modal.tab1")}
             </li>
             <li className={tab === 2 ? 'active' : ''} onClick={() => {setTab(2); validateForm(false); setInvalidFields({});}} role='presentation'>
-              Your Driver
+                {t("trips_page.trip_card.rate_review_modal.tab2")}
             </li>
           </ul>
         </div>
-        <p className='text-center weight-700'>Did you enjoy your day? Please rate the trip and the driver</p>
+        {tab === 1 && (<p className='text-center weight-700'>{t("trips_page.trip_card.rate_review_modal.text1")}</p>)}
         <div className='mb-6'>
             {tab === 1 &&
                 (
@@ -111,8 +114,8 @@ const ReviewModal = ({ onClose, reviewTrip, activeTab }) => {
                 )
             }
         </div>
-        <p className='text-center weight-700'>Share your experience</p>
-        <Textarea name='note' placeholder='Write a review' value={tab === 1 ? tripForm.notes: driverForm.notes} className='h-152px'
+        {tab === 2 && (<p className='text-center weight-700'>{t("trips_page.trip_card.rate_review_modal.text1")}</p>)}
+        <Textarea name='note' placeholder={t("trips_page.trip_card.rate_review_modal.write_review_text")} value={tab === 1 ? tripForm.notes: driverForm.notes} className='h-152px'
             disabled={tab === 1 ? (!_.isEmpty(reviewTrip.reviews.trip_review.notes) ? true: false) : (!_.isEmpty(reviewTrip.reviews.driver_review.notes) ? true: false) }
             onChange={(e) => {
                         tab === 1 ? setTripRateForm({...tripForm, notes: e.target.value }):
@@ -121,11 +124,11 @@ const ReviewModal = ({ onClose, reviewTrip, activeTab }) => {
         {tab === 1 && _.isEmpty(reviewTrip.reviews.trip_review?.rate) && <button className={`btn btn-primary btn-block text-uppercase`} onClick={(e) => {
             e.preventDefault();
             writeReview()
-        }}>Submit</button> }
+        }}>{t("commons.buttons.submit_btn")}</button> }
         {tab === 2 && _.isEmpty(reviewTrip.reviews.driver_review?.rate) && <button className={`btn btn-primary btn-block text-uppercase`} onClick={(e) => {
             e.preventDefault();
             writeReview()
-        }}>Submit</button> }
+        }}>{t("commons.buttons.submit_btn")}</button> }
       </div>}
     </Modal>
   );

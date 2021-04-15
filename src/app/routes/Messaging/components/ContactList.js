@@ -3,8 +3,11 @@ import moment from "moment";
 import {
     IconBullet
 } from 'shared/components/Icons';
+import { useTranslation } from 'react-i18next';
 
-const ContactList = ({ conversations, onClick }) => (
+const ContactList = ({ conversations, onClick }) => {
+    const { t } = useTranslation();
+    return(
     <ul className='contacts-list no-list-style mb-0 overflow-auto py-5'>
         {
             conversations && conversations.map((conversation, index) => {
@@ -29,7 +32,7 @@ const ContactList = ({ conversations, onClick }) => (
                                 />
                                 <div>
                                     <p className='weight-500 pt-2 mb-0 text-sm text-overflow_hidden'>{conversation.recipient_name}</p>
-                                    <p className='mb-0 text-xs text__grey-dark'>{moment(conversation.trip_day).isSameOrAfter(moment(), 'day') ? "Upcoming" : "Past"}</p>
+                                    <p className='mb-0 text-xs text__grey-dark'>{moment(conversation.trip_day).isSameOrAfter(moment(), 'day') ? t('messages_page.upcoming_text') : t('messages_page.past_text')}</p>
                                 </div>
                             </div>
                             <div className='dsc-text col-6 col-lg-4 col-xl-3 text__grey-dark weight-700 d-none d-md-block'>
@@ -51,6 +54,7 @@ const ContactList = ({ conversations, onClick }) => (
             })
         }
     </ul>
-);
+    );
+};
 
 export default ContactList;

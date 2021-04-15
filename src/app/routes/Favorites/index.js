@@ -4,12 +4,13 @@ import NoResults from './components/NoResults';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../actions";
 import _ from "lodash";
+import { useTranslation } from 'react-i18next';
 
 const Favorites = () => {
     const dispatch = useDispatch();
     const {travelerData} = useSelector(state => state);
     const {saved_trips=[]} = travelerData;
-
+    const { t } = useTranslation();
     useEffect(() => {
         dispatch(actions.savedTripsRequest());
 
@@ -21,10 +22,14 @@ const Favorites = () => {
             {
                 _.isEmpty(saved_trips)
                     ?
-                    <NoResults/>
+                    <NoResults texts={{
+                        no_saved_trip_title: t("saved_page.no_saved_title"),
+                        no_saved_trip_text: t("saved_page.no_saved_text"),
+                        no_saved_btn: t("saved_page.no_saved_btn")
+                    }} />
                     :
                     <div className='container pt-6 pt-md-8 pt-xl-11 xxl-13'>
-                        <h2 className='text__blue'>Saved Trips</h2>
+                        <h2 className='text__blue'>{t("saved_page.page_title")}</h2>
                         <div className='row row-1'>
                                 {
                                     saved_trips.map(trip => {

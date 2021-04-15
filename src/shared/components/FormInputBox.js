@@ -300,7 +300,7 @@ const FormInputBox = (props) => {
                         }}>{t("commons.buttons.save_btn")}</button>
                     </div>
                     :
-                    <p className='text__grey-dark mb-0'>{_.isEmpty(value) ? empty_message : _.includes(['car_type', 'car_color'], name)? t(`commons.${name}.${value}`) : value}</p>
+                    <p className='text__grey-dark mb-0'>{_.isEmpty(value) ? empty_message : _.includes(['car_type', 'car_color', 'gender'], name)? t(`commons.${name}.${value}`) : value}</p>
             }
         </li>
         { openInfoModal && <InfoModal title={t("my_car_page.car_details.change_profile_title")} onProceed={() => setProceed(true)} onClose={() => {

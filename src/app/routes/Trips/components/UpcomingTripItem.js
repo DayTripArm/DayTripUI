@@ -1,13 +1,17 @@
 import React from 'react';
 import moment from "moment";
+import _ from "lodash";
+import { useTranslation } from 'react-i18next';
 
 const UpcomingTripItem = ({ item, onBookedTripClick, onContactClick}) => {
     let src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + item.trip.trip_image : item.trip.trip_image;
+    const locale = localStorage.getItem('lang') || 'en';
+    const { t } = useTranslation();
     return (
         <React.Fragment key={item.id}>
         <div className='text-separator my-6'>
             <span
-                className='separator-content text-xs text__grey-dark py-1 px-2'>{moment(item.trip_day).format("D MMMM YYYY")}</span>
+                className='separator-content text-xs text__grey-dark py-1 px-2'>{_.startCase(moment(item.trip_day).locale(locale === "am" ? "hy-am" : locale).format("D MMMM YYYY"))}</span>
         </div>
         <div
             className='rounded__4 border-style border__default d-md-flex justify-content-between align-items-center'>
@@ -27,15 +31,15 @@ const UpcomingTripItem = ({ item, onBookedTripClick, onContactClick}) => {
                     <div>
                         <p className='weight-500 mb-1'>{item.trip.title.length >= 53 ? item.trip.title.slice(0,53) + "..." : item.trip.title}</p>
                         <p className='mb-1 text-xs'>
-                            <span className='weight-500'>Date:</span>{' '}
-                            <span className='weight-500 text__grey-dark'>{moment(item.trip_day).format("D MMMM")}</span>
+                            <span className='weight-500'>{t("trips_page.trip_card.date")}:</span>{' '}
+                            <span className='weight-500 text__grey-dark'>{_.startCase(moment(item.trip_day).locale(locale === "am" ? "hy-am" : locale).format("D MMMM"))}</span>
                         </p>
                         <p className='mb-0 text-xs'>
-                            <span className='weight-500'>Travelers:</span>{' '}
+                            <span className='weight-500'>{t("trips_page.trip_card.travelers")}:</span>{' '}
                             <span className='weight-500 text__grey-dark'>{item.travelers_count}</span>
                         </p>
                         <div className='cancelation-container d-inline-block text-center py-2 py-md-0'>
-                            <button className='btn btn-secondary btn-sm'>Cancelation</button>
+                            <button className='btn btn-secondary btn-sm'>{t("trips_page.trip_card.btn_cancelation")}</button>
                         </div>
                     </div>
                 </div>
@@ -46,10 +50,10 @@ const UpcomingTripItem = ({ item, onBookedTripClick, onContactClick}) => {
                     className='btn btn-secondary btn-secondary__grey text-uppercase mb-1'
                     onClick={onBookedTripClick}
                 >
-                    Details
+                    {t("trips_page.trip_card.btn_details")}
                 </button>
                 <button className='btn btn-secondary btn-secondary__grey text-uppercase mb-1'
-                        onClick={onContactClick}>Contact Driver</button>
+                        onClick={onContactClick}>{t("trips_page.trip_card.contact_driver")}</button>
             </div>
         </div>
     </React.Fragment>

@@ -13,12 +13,15 @@ import TripDetailsModal from './components/TripDetailsModal';
 import NoResults from './components/NoResults';
 import actions from "../../../actions";
 import Cable from 'actioncable';
+import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from "react-redux";
 import moment from "moment";
+import _ from "lodash";
 
 const Messaging = () => {
     const dispatch = useDispatch();
     const ref = useRef();
+    const { t } = useTranslation();
     const {config} = useSelector(state => state);
     const {conversations={}, messages=[]} = config;
     const {conversations_list} = conversations;
@@ -28,7 +31,7 @@ const Messaging = () => {
     const [conversation, setConversation] = useState(undefined);
     const [currentMessage, setCurrentMessage] = useState("");
     const [channel, setChannel] = useState(null)
-
+    const locale = localStorage.getItem('lang') || 'en';
     let cable = Cable.createConsumer(process.env.NODE_ENV === "development" ? 'http://localhost:3000/cable' : 'http://104.197.178.29/cable');
 
     useEffect (() => {
@@ -117,7 +120,7 @@ const Messaging = () => {
     return (
         <>
             <div className='container'>
-                <h2 className='text__blue mt-6 mt-md-9 mb-md-6 mt-xl-11 mt-xxl-13'>Messages</h2>
+                <h2 className='text__blue mt-6 mt-md-9 mb-md-6 mt-xl-11 mt-xxl-13'>{t("messages_page.title")}</h2>
                 <div className={`messaging-container rounded__4 d-flex${chatActive ? ' active' : ''}`}>
                     {/* Contacts Area */}
                     <div className='flex-fill'>
@@ -125,7 +128,7 @@ const Messaging = () => {
                             <Input
                                 type='search'
                                 name='search'
-                                placeholder='Search for author'
+                                placeholder={t("messages_page.search_for_author")}
                                 icon={IconZoom}
                                 onChange={(e) => searchByAuthor(e)}
                                 iconPosition='left'
@@ -136,7 +139,7 @@ const Messaging = () => {
                         <hr className='border__top border__default d-none d-md-block my-0' />
                         <div>{
                             dataLength===0 ?
-                                <NoResults message={`There aren't Any Messages Yet`}/>
+                                <NoResults message={t("messages_page.no_messages_text")} short_desc={t("messages_page.short_desc")} />
                                 :
                                 <ContactList conversations={conversations_list} onClick={(item) => onChatClick(item)} />
                         }
@@ -154,11 +157,11 @@ const Messaging = () => {
                                 </button>
                                 <div>
                                     <p className='weight-500 pt-2 mb-0 text-sm'>{conversation && conversation.recipient_name}</p>
-                                    <p className='mb-0 text-xs text__grey-dark'>{conversation && moment(conversation.created_at).format("MMMM Do")}</p>
+                                    <p className='mb-0 text-xs text__grey-dark'>{conversation && _.startCase(moment(conversation.created_at).locale(locale === "am" ? "hy-am" : locale).format("MMMM Do"))}</p>
                                 </div>
                             </div>
                             <button className='btn btn-secondary btn-sm' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>
-                                Trip Details
+                                {t("messages_page.trip_details")}
                             </button>
                         </div>
                         <div className='flex-fill d-flex flex-column'>
@@ -173,7 +176,7 @@ const Messaging = () => {
                                     type='text'
                                     name='currentMessage'
                                     value={currentMessage}
-                                    placeholder='Type a message'
+                                    placeholder={t("messages_page.type_msg")}
                                     icon={IconSmileOutlined}
                                     iconPosition='right'
                                     className='border-0'

@@ -34,7 +34,7 @@ const Driver = ({ history }) => {
     } = individual_user;
 
     const created_date = new Date(created_at || "");
-    const member_since = t(`${MONTH_LIST[created_date.getMonth()]}`) + " " + created_date.getFullYear();
+    const member_since = t(`commons.months.${MONTH_LIST[created_date.getMonth()]}`) + " " + created_date.getFullYear();
 
     const checkout_info = locate.state;
 

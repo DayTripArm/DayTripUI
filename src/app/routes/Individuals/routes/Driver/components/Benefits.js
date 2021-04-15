@@ -60,7 +60,7 @@ const Benefits = (props) => {
             </div>
             <div className='col-md-6 d-flex mb-4'>
                 <IconPetStep className='mr-2'/>
-                <p className='mb-0'>{t("commons.car_options.pets")}: <span className='weight-500 text__grey-dark'>{car_features['pets_allowed'] ? t("commons.toogle_yes") : t("commons.toogle_no")}</span></p>
+                <p className='mb-0'>{t("commons.car_options.pets_allowed")}: <span className='weight-500 text__grey-dark'>{car_features['pets_allowed'] ? t("commons.toogle_yes") : t("commons.toogle_no")}</span></p>
             </div>
             <div className='col-md-6 d-flex mb-4'>
                 <IconWifi className='mr-2'/>

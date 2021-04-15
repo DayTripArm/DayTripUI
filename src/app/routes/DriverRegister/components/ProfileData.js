@@ -42,7 +42,7 @@ const ProfileData = (props) => {
     };
 
     const languageList = LANGUAGES.map(item => {return {label: item, value: item}});
-    const genderList   = GENDER_LIST.map(item => {return {label: t(`commons.${item}`), value: t(`commons.${item}`)}});
+    const genderList   = GENDER_LIST.map(item => {return {label: t(`commons.gender.${item}`), value: t(`commons.${item}`)}});
     const monthList    = MONTH_LIST.map((month, i) => {return {label: t(`commons.months.${month}`), value: i}});
     const days         = DAYS.map(i => {return {label: i, value: i}});
     const yearList     = GET_DATE_YEARS().map(i => {return {label: i, value: i}});

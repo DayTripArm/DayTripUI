@@ -4,7 +4,7 @@ import TripDetailsModal from '../Messaging/components/TripDetailsModal';
 import NoResults from './components/NoResults';
 import UpcomingTripItem from './components/UpcomingTripItem';
 import PastTripItem from './components/PastTripItem';
-
+import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 import moment from "moment";
 import actions from "../../../actions";
@@ -16,7 +16,7 @@ const Trips = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const {travelerData} = useSelector(state => state);
-
+  const { t } = useTranslation();
   const {booked_trips={}} = travelerData
   let {travelers_trips} = booked_trips;
   let  dataLength = travelers_trips && travelers_trips.length;
@@ -27,7 +27,7 @@ const Trips = () => {
   const [openDetailsModal, setOpenDetailsModal] = useState(false);
   const [openReviewModal, setOpenReviewModal] = useState({open: false, currentTab: 1});
   const [reviewTrip, setReviewTrip] = useState({});
-
+  const no_trip_texts = {no_trip_header: t('trips_page.no_trip_header'), no_trip_text: t('trips_page.no_trip_text'), explore_btn: t('trips_page.explore_btn')};
 
     const onBookedTripClick = (booked_id) => {
         dispatch(actions.getBookedTripRequest(booked_id, 2));
@@ -52,13 +52,12 @@ const Trips = () => {
        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (dataLength && dataLength===0) return <NoResults message={`There aren't Any Trips Yet`}/>;
-
+  if (dataLength && dataLength===0) return <NoResults message={t('trips_page.no_trips')} texts={no_trip_texts} />;
   return (
     <>
       <div className='container'>
         <div className='col-xl-9 col-xxl-8 col-xxxl-7 m-auto p-0'>
-          <h2 className='text__blue mb-0 mt-6 mb-5 mt-md-9 mb-md-9 mt-xl-11 mt-xxl-13'>Trips</h2>
+          <h2 className='text__blue mb-0 mt-6 mb-5 mt-md-9 mb-md-9 mt-xl-11 mt-xxl-13'>{t('trips_page.page_title')}</h2>
           <div className='tabs mb-6'>
             <ul className='no-list-style mb-3 mb-lg-0 clearfix'>
               <li
@@ -66,32 +65,32 @@ const Trips = () => {
                 onClick={() => setTab(1)}
                 role='presentation'
               >
-                Upcoming Trips
+                 {t('trips_page.upcoming_tab')}
               </li>
               <li
                 className={tab === 2 ? 'active' : ''}
                 onClick={() => setTab(2)}
                 role='presentation'
               >
-                Past Trips
+                {t('trips_page.past_tab')}
               </li>
             </ul>
           </div>
             {tab === 1  &&
                    (upcoming_trips && upcoming_trips.length > 0 ?
                     upcoming_trips.map((item) => { return <UpcomingTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)}/>}) :
-                    <NoResults message={`You don’t Have Any Upcoming Trips`}/>)
+                    <NoResults message={t('trips_page.no_upcoming_title')} texts={no_trip_texts} />)
             }
             {tab === 2 &&
                 (past_trips && past_trips.length > 0 ?
                 past_trips.map((item) => {return <PastTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)} activeTab={1} onReviewModal={(openReviewPopup) => {setOpenReviewModal(openReviewPopup); setReviewTrip(item); window.location.hash = "modal"}}/>}) :
-                <NoResults message={`You don’t Have Any Past Trips`}/>)
+                <NoResults message={t('trips_page.no_past_title')} texts={no_trip_texts}/>)
             }
 
         </div>
       </div>
         {openDetailsModal && (
-            <TripDetailsModal title='Trips' onClose={() => setOpenDetailsModal(false)}/>
+            <TripDetailsModal title={t('trips_page.page_title')} onClose={() => setOpenDetailsModal(false)}/>
         )}
       {openReviewModal?.open && <ReviewModal reviewTrip={reviewTrip} activeTab={openReviewModal?.currentTab || 1} onClose={() => setOpenReviewModal({open: false})} />}
     </>

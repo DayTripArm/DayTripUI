@@ -69,7 +69,7 @@
         "trip_duration": "Длительность",
         "reviews": "Отзывы",
         "hit_the_road": {
-            "section_title": "В путь ",
+            "section_title": "В путь",
             "title": "Поездка на целый день",
             "info_slider": "Road trips are one of the best ways to really get to know a country.",
             "desc": "Нет в мыслях конкретное направление? Тогда путешествуйте по стане, а где остановиться, можете решить по пути.",
@@ -164,6 +164,7 @@
     },
     "account_page": {
         "page_title": "Аккаунт",
+        "btn_to_profile": "Идти в профиль",
         "persona_info_title": "Личные данные",
         "persona_info_desc": "Предоставте данные для связи с вами",
         "login_title": "Обновите парольи обеспечте безопасность аккаунта",
@@ -173,6 +174,7 @@
         "personal_info_page": {
             "page_title": "Личные данные",
             "name": "Имя",
+            "name_pholder": "Имя Фамилия",
             "gender": "Пол",
             "birthday": "Дата рождения",
             "email": "Эл. адресс",
@@ -190,16 +192,24 @@
             "page_title": "Логин и безопасность",
             "section1": "Логин",
             "section1_title": "Пароль",
-            "section1_pholder": "Последний раз обновлялся дней назад",
-            "section": "Социальн аккаунт",
+            "section1_pholder": "Последний раз обновлялся {{days}} дней назад",
+            "section2": "Социальные аккаунты",
             "section2_title1": "Facebook",
             "section2_title2": "Google"
         },
         "payments": {
-            "page_title": "Платежи",
-            "tab1_title": "Платежные методы",
-            "no_card_attached": "Добавьте платежный метод, используя нашу безопасную платежную систему и начните планировать ваше поездку.",
+            "page_title": "Платежи и выплаты",
+            "payment_title": "Платежные методы",
+            "payout_title": "Методы выплаты",
+            "add_payment_text": "Добавьте платежный метод, используя нашу безопасную платежную систему и начните планировать ваше поездку.",
+            "add_payout_text": "Добавьте метод выплаты, используя нашу безопасную платежную систему и начните планировать ваше поездку.",
+            "card_currency": "Эта карта в {{currency}}",
+            "card_type": "Тип карты",
+            "visa_ends": "Карта заканчивается {{number}}",
+            "name_on_card": "Имя на карте",
+            "expires_on": "Истекает",
             "add_payment_btn": "Добавить новую платежную систему",
+            "add_payout_btn": "Добавить новую систему выплаты",
             "card_attached": "Добавить новую карту"
         }
     },
@@ -207,26 +217,31 @@
         "page_title": "Сохраненые поездки",
         "no_saved_title": "Сохраненых поездок нет",
         "no_saved_text": "Начните планировать вашу следующую поездку",
-        "no_saved_btn": "ОТКРОЙТЕ DAYTRIP"
+        "no_saved_btn": "ИСЛЕДУЙТЕ DAYTRIP"
     },
     "trips_page": {
         "page_title": "Поездки",
         "no_trips": "Поездок нет",
-        "explore_btn": "ОТКРОЙТЕ DAYTRIP",
+        "explore_btn": "ИСЛЕДУЙТЕ DAYTRIP",
         "upcoming_tab": "Будущие поездки",
         "past_tab": "Прошедшие поездки",
         "no_upcoming_title": "Будущих поездок нет",
         "no_past_title": "Прошедших поездок нет",
         "no_trip_text": "Начните планировать ваше поездку",
+        "no_trip_header": "Что нас ждет",
         "trip_card": {
             "date": "Дата",
             "travelers": "Пассажиры",
             "btn_cancelation": "Отмена",
             "btn_details": "Детали",
             "review_added": "Отзыв написан",
+            "trip_rating": "Оценка поездки",
+            "driver_rating": "Оценка водителя",
+            "rating_text": "Оценить",
             "contact_driver": "Связь с водителем",
             "contact_traveler": "Связь с водителем",
             "rate_review": "Отзыв и оценка",
+            "see_review": "УВИДЕТЬ ВАШУ ОЦЕНКУ",
             "slider": {
                 "more_btn": "Более",
                 "trip_title": "Поездка",
@@ -258,7 +273,10 @@
                 "tab1": "Поездка",
                 "tab2": "Водитель",
                 "text1": "Как прошел ваш день? Пожалуйста оцените поездку и водителя",
-                "text2": "Поделитесь своими ощущениями"
+                "text2": "Поделитесь своими ощущениями",
+                "write_review_text": "Написать отзыв",
+                "thank_u_feedback": "Спасибо за обратную связь!",
+                "rate_err_msg": "Пожалуйста оцените {{text}}"
             }
         }
     },
@@ -415,6 +433,16 @@
             "full_day_title": "Тариф для целого дня"
         }
     },
+    "messages_page": {
+        "title": "Сообщения",
+        "search_for_author": "Искать автора",
+        "no_messages_text": "Нет сообщений",
+        "short_desc": "Когда вы бронируете поездку, здесь будут отображаться сообщения от вашего хоста",
+        "trip_details": "Детали поездки",
+        "type_msg": "Написать сообщение",
+        "upcoming_text": "Будущие",
+        "past_text": "Прошедшие"
+    },
     "footer": {
         "terms_conditions": "Правила и условия",
         "help": "Помощь"
@@ -494,12 +522,15 @@
             "december": "Декабрь"
         },
         "stops": ["Первая", "Вторая", "Третья", "Четвертая", "Пятая", "Шестая", "Седьмая", "Восьмая", "Девятая", "Десятая"],
-        "male": "Мужской",
-        "female": "Женский",
+        "gender": {
+            "male": "Мужской",
+            "female": "Женский"
+        },
         "choose_currency": "Выбрать валюту",
         "choose_lang": "Выбрать язык",
         "upload_box_title": "Загрузить фото",
         "select_pholder": "Выбрать",
+        "crop_pic_title": "Обрезать изображение профиля",
         "loading_save_driver": "Просим подождать пока ваши данные сохраняются",
         "no_options": "Нет опций",
         "toogle_yes": "Да",
