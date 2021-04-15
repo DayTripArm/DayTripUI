@@ -183,7 +183,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                                 <div className='col-md-8 px-0 d-flex mb-4'>
                                                     <IconSmoking className='mr-2' />
                                                     <p className='mb-0'>
-                                                        {t("commons.car_options.smoking")}:{' '}
+                                                        {t("commons.car_options.smoking_allowed")}:{' '}
                                                         <span className='weight-500 text__grey-dark'>{driver.smoke_allowed ? t("commons.toogle_yes") : t("commons.toogle_no")}</span>
                                                     </p>
                                                 </div>
@@ -191,7 +191,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                                 <div className='col-md-4 px-0 d-flex mb-4'>
                                                     <IconAC className='mr-2' />
                                                     <p className='mb-0'>
-                                                        {t("commons.car_options.air_cond")}:{' '}
+                                                        {t("commons.car_options.air_conditioning")}:{' '}
                                                         <span className='weight-500 text__grey-dark'>{driver.air_condition ? t("commons.toogle_yes") : t("commons.toogle_no")}</span>
                                                     </p>
                                                 </div>

@@ -18,19 +18,19 @@ const CarRegComplete = (props) => {
 
     return(
         <>
-            <h4 className='text__blue mb-4'>{t("driver_sigup.step5.title1", {name: name})}!</h4>
-            <p className='text__grey-dark'>{t("driver_sigup.step5.title2")}</p>
+            <h4 className='text__blue mb-4'>{t("driver_signup.step5.title1", {name: name})}!</h4>
+            <p className='text__grey-dark'>{t("driver_signup.step5.title2")}</p>
             <div className='d-flex align-items-center text-xs'>
                 <IconCheckMarkFilled className='mr-2'/>
-                {t("driver_sigup.step5.car_details")}
+                {t("driver_signup.step5.car_details")}
             </div>
             <div className='text-right mt-3'>
                 <button className='btn btn-sm btn-secondary btn-bold' onClick={() => setStep(1)}>Change</button>
             </div>
             <hr className='border__top border__default mt-4 mb-5'/>
-            <p className='text__blue'>{t("driver_sigup.step_header")}: 4</p>
-            <p className='weight-600 mb-2'>{t("driver_sigup.step5.text1")}</p>
-            <p>{t("driver_sigup.step5.text2")}</p>
+            <p className='text__blue'>{t("driver_signup.step_header")}: 4</p>
+            <p className='weight-600 mb-2'>{t("driver_signup.step5.text1")}</p>
+            <p>{t("driver_signup.step5.text2")}</p>
         </>
     );
 };

@@ -44,11 +44,11 @@ const Benefits = (props) => {
             </div>
             <div className='col-md-6 d-flex mb-4'>
                 <IconAC className='mr-2'/>
-                <p className='mb-0'>{t("commons.car_options.air_cond")}: <span className='weight-500 text__grey-dark'>{car_features['air_condition'] ? t("commons.toogle_yes") : t("commons.toogle_no")}</span></p>
+                <p className='mb-0'>{t("commons.car_options.air_conditioning")}: <span className='weight-500 text__grey-dark'>{car_features['air_condition'] ? t("commons.toogle_yes") : t("commons.toogle_no")}</span></p>
             </div>
             <div className='col-md-6 d-flex mb-4'>
                 <IconSmoking className='mr-2'/>
-                <p className='mb-0'>{t("commons.car_options.smoking")}: <span className='weight-500 text__grey-dark'>{car_features['smoke_allowed'] ? t("commons.toogle_yes") : t("commons.toogle_no")}</span></p>
+                <p className='mb-0'>{t("commons.car_options.smoking_allowed")}: <span className='weight-500 text__grey-dark'>{car_features['smoke_allowed'] ? t("commons.toogle_yes") : t("commons.toogle_no")}</span></p>
             </div>
             <div className='col-md-6 d-flex mb-4'>
                 <IconSnack className='mr-2'/>
@@ -60,7 +60,7 @@ const Benefits = (props) => {
             </div>
             <div className='col-md-6 d-flex mb-4'>
                 <IconPetStep className='mr-2'/>
-                <p className='mb-0'>{t("commons.car_options.pets")}: <span className='weight-500 text__grey-dark'>{car_features['pets_allowd'] ? t("commons.toogle_yes") : t("commons.toogle_no")}</span></p>
+                <p className='mb-0'>{t("commons.car_options.pets")}: <span className='weight-500 text__grey-dark'>{car_features['pets_allowed'] ? t("commons.toogle_yes") : t("commons.toogle_no")}</span></p>
             </div>
             <div className='col-md-6 d-flex mb-4'>
                 <IconWifi className='mr-2'/>

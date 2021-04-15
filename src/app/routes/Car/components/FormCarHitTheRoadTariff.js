@@ -6,6 +6,7 @@ import { IconQuestionOutlined } from 'shared/components/Icons';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import _ from "lodash";
+import { useTranslation } from 'react-i18next';
 import actions from "../../../../actions";
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -26,7 +27,7 @@ const FormCarHitTheRoadTariff = (props) => {
         disabled=false,
         carTips
     } = props;
-
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     const {travelerData, driverData} = useSelector(state => state);
     const {profile:profileData} = !_.isEmpty(travelerData.profile) ? travelerData : driverData;
@@ -41,11 +42,11 @@ const FormCarHitTheRoadTariff = (props) => {
     const isValid = () => {
         errorMsg = "";
         if (hit_the_road_tariff === null || hit_the_road_tariff === ""){
-            errorMsg = "This field is mandatory";
+            errorMsg = t("commons.required_fiield");
             return false;
         }
         else if (hit_the_road_tariff < 25000){
-            errorMsg = "Minimal price for full day drive is 25.000 AMD";
+            errorMsg = t("driver_signup.step9.min_price_full_day_text", {price: "25.000 AMD"});
             return false;
         }else{return true;}
     }
@@ -69,17 +70,17 @@ const FormCarHitTheRoadTariff = (props) => {
                 <button className='btn btn-circle btn-sm border-0 pull-t-1' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>
                     <IconQuestionOutlined fill='#757575'/>
                 </button></p>
-                <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? "Edit" : "Cancel"}</button>
+                <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? t("commons.buttons.edit_btn") : t("commons.buttons.cancel_btn")}</button>
             </div>
             {
                 edit ?
                 <div className='mt-4 mt-md-5'>
                     <div>
                         <p className='text-sm'>
-                            “Hit The Road” is for the travelers who want to travel across the country without any specific destination preferences, stop for breaks wherever they like. As their driver, you should be available for the whole day.
+                            {t("driver_signup.step9.hit_the_road_text")}
                         </p>
 
-                        <p className='weight-700 mb-3'>Would you like to take this opportunity?</p>
+                        <p className='weight-700 mb-3'>{t("driver_signup.step9.hit_the_road_question")}</p>
 
                         <ToggleButtonGroup
                             value={tariffChecked}
@@ -101,8 +102,8 @@ const FormCarHitTheRoadTariff = (props) => {
                                 }
                             }}
                         >
-                            <ToggleButton value={false} classes={{selected: classes.selected}}>No</ToggleButton>
-                            <ToggleButton value={true}  classes={{selected: classes.selected}} >Yes</ToggleButton>
+                            <ToggleButton value={false} classes={{selected: classes.selected}}>{t("commons.toogle_no")}</ToggleButton>
+                            <ToggleButton value={true}  classes={{selected: classes.selected}} >{t("commons.toogle_yes")}</ToggleButton>
                         </ToggleButtonGroup>
 
                         {tariffChecked &&
@@ -115,21 +116,21 @@ const FormCarHitTheRoadTariff = (props) => {
                                 min={25000}
                                 precision={100}
                                 onChange={(e) => setHitTheRoadTariff(e.target ? e.target.value : e)}
-                                label='Set your price for booking you for the whole day'
-                                placeholder='Price'
+                                label={t("driver_signup.step9.hit_the_road_toggle")}
+                                placeholder={t("my_car_details.tarrifs.price_input")}
                                 iconPosition='right'
                                 containerClass="mt-6"
                                 isError={tariffChecked && !isValid()}
                                 message={errorMsg}
                             />
-                            <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>Save</button>
+                            <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>{t("commons.buttons.save_btn")}</button>
                             </>
                         }
                     </div>
 
                 </div>
                 :
-                <p className='text__grey-dark mb-0'>{value !==""? value : "Are you interested in a full-day drive? Activate this opportunity, so the travelers can book you for the whole day."}</p>
+                <p className='text__grey-dark mb-0'>{value !==""? value : t("my_car_page.tarrifs.activate_htr_text")}</p>
             }
             {openModal && (
                 <ModalAside title='Tips' onClose={() => setOpenModal(false)}>

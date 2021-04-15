@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import FormDropZone from "./FormDropZone";
 import actions from "../../actions";
+import { useTranslation } from 'react-i18next';
 // import _ from "lodash";
 
 const FormCarInputBoxPicture = (props) => {
@@ -9,7 +10,7 @@ const FormCarInputBoxPicture = (props) => {
     const dispatch = useDispatch();
     // const {travelerData, driverData} = useSelector(state => state);
     const [edit, setEdit] = useState(false);
-
+    const { t } = useTranslation();
     const {
         label,
         options=[],
@@ -71,7 +72,7 @@ const FormCarInputBoxPicture = (props) => {
         <li className='border__bottom border__default pt-3 pb-4'>
             <div className='d-flex align-items-center justify-content-between mb-2'>
                 <p className='mb-0 weight-700'>{label}</p>
-                <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? "Edit" : "Cancel"}</button>
+                <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? t("commons.buttons.edit_btn") : t("commons.buttons.cancel_btn")}</button>
             </div>
             {
                 edit ?
@@ -84,7 +85,7 @@ const FormCarInputBoxPicture = (props) => {
                                 onChange={(type, uploadsPhotos, deletedName) => handleChange(type, uploadsPhotos, deletedName)}
                             />
                         </div>
-                        <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>Save</button>
+                        <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>{t("commons.buttons.save_btn")}</button>
                     </div>
                     :
                     <p className='text__grey-dark mb-0'>{empty_message}</p>

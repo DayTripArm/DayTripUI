@@ -52,15 +52,16 @@ const ProfileData = (props) => {
 
   return (
       <>
-          <h4 className='text__blue mb-6'>{t("driver_sigup.step7.page_title")}</h4>
+          <h4 className='text__blue mb-6'>{t("driver_signup.step7.page_title")}</h4>
           <SelectCustom
               type='text'
               name='gender'
-              label={t("driver_sigup.step7.gender")}
+              label={t("driver_signup.step7.gender")}
               placeholder={t("commons.select_pholder")}
               onChange={(event, opt) => selectOnChange(event.value, opt.name)}
               value={_.find(genderList, i => i.value === gender)}
               options={genderList}
+              noOptionsMessage={t("commons.no_options")}
               message={_.includes(invalidFields, "gender") ? t("commons.error_msgs.required_field") : ""}
               isError={_.includes(invalidFields, "gender")}
           />
@@ -70,6 +71,7 @@ const ProfileData = (props) => {
               name='birthMonth'
               label='Date of Birth'
               placeholder={t("commons.select_pholder")}
+              noOptionsMessage={t("commons.no_options")}
               onChange={(event, opt) => selectOnChange(event.value, opt.name)}
               value={_.find(monthList, i => i.value === birthMonth)}
               options={monthList}
@@ -83,10 +85,11 @@ const ProfileData = (props) => {
                   <SelectCustom
                       type='text'
                       name='birthDay'
-                      placeholder={t("driver_sigup.step7.birthday")}
+                      placeholder={t("driver_signup.step7.birthday")}
                       onChange={(event, opt) => selectOnChange(event.value, opt.name)}
                       value={_.find(days, i => i.value === birthDay)}
                       options={days}
+                      noOptionsMessage={t("commons.no_options")}
                       containerClass='field-flexible flex-fill mb-4'
                       message={_.includes(invalidFields, "birthDay") ? t("commons.error_msgs.required_field") : ""}
                       isError={_.includes(invalidFields, "birthDay")}
@@ -96,10 +99,11 @@ const ProfileData = (props) => {
                   <SelectCustom
                       type='text'
                       name='birthYear'
-                      placeholder={t("driver_sigup.step7.birthyear")}
+                      placeholder={t("driver_signup.step7.birthyear")}
                       onChange={(event, opt) => selectOnChange(event.value, opt.name)}
                       value={_.find(yearList,i => i.value === birthYear)}
                       options={yearList}
+                      noOptionsMessage={t("commons.no_options")}
                       containerClass='field-flexible flex-fill mb-4'
                       message={_.includes(invalidFields, "birthYear") ? t("commons.error_msgs.required_field") : ""}
                       isError={_.includes(invalidFields, "birthYear")}
@@ -110,8 +114,8 @@ const ProfileData = (props) => {
           <MultiSelect
               isMulti={true}
               name='languages'
-              label={t("driver_sigup.step7.langs_label")}
-              placeholder={t("driver_sigup.step7.langs_pholder")}
+              label={t("driver_signup.step7.langs_label")}
+              placeholder={t("driver_signup.step7.langs_pholder")}
               onChange={event => selectOnChange(event, "languages")}
               value={languageValue}
               options={languageList}
@@ -121,8 +125,8 @@ const ProfileData = (props) => {
 
           <Textarea
             name='about'
-            label={t("driver_sigup.step7.about_label")}
-            placeholder={t("driver_sigup.step7.about_pholder")}
+            label={t("driver_signup.step7.about_label")}
+            placeholder={t("driver_signup.step7.about_pholder")}
             value={about}
             onChange={event => selectOnChange(event.target.value, "about")}
             className='h-152px'
@@ -130,8 +134,8 @@ const ProfileData = (props) => {
 
           <Textarea
               name='work'
-              label={t("driver_sigup.step7.occupation")}
-              placeholder={t("driver_sigup.step7.occupation_pholder")}
+              label={t("driver_signup.step7.occupation")}
+              placeholder={t("driver_signup.step7.occupation_pholder")}
               onChange={event => selectOnChange(event.target.value, "work")}
               value={work}
           />

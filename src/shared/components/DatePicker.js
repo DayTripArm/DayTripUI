@@ -4,7 +4,6 @@ import "react-dates/initialize";
 import 'moment/locale/ru'
 import 'moment/locale/hy-am'
 import { useTranslation } from 'react-i18next';
-import {MONTH_LIST} from "../../constants"
 import "react-dates/lib/css/_datepicker.css";
 import moment from "moment";
 import _ from "lodash";

@@ -38,27 +38,28 @@ const CarRegistration = (props) => {
         }
     };
 
-    const carTypeList = CAR_TYPE_LIST.map(item => {return {label: t(`commons.car_types.${item}`), value: t(`commons.car_types.${item}`)}});
+    const carTypeList = CAR_TYPE_LIST.map(item => {return {label: t(`commons.car_type.${item}`), value: item }});
     const yearList    = CAR_YEAR_LIST().map(item => {return {label: item, value: item}});
-    const colorList   = COLOR_LIST.map(item => {return {label: t(`commons.colors.${item}`), value: t(`commons.colors.${item}`)}});
+    const colorList   = COLOR_LIST.map(item => {return {label: t(`commons.car_color.${item}`), value: item }});
     const carBrands = car_mark_list.map(item => {return {label: item.brand_name, value: item.id}});
     const carModels = car_model_list.map(item => {return {label: item.car_model_name, value: item.id, brand_id: item.brand_id}});
 
     return(
         <>
 
-            <h2 className='text__blue mb-6'>{t("driver_sigup.step1.title")}</h2>
-            <p className='text__grey-dark'>{t("driver_sigup.step1.text")}</p>
+            <h2 className='text__blue mb-6'>{t("driver_signup.step1.title")}</h2>
+            <p className='text__grey-dark'>{t("driver_signup.step1.text")}</p>
 
-            <h4 className='text__blue mb-6'>{t("driver_sigup.step1.page_title")}</h4>
+            <h4 className='text__blue mb-6'>{t("driver_signup.step1.page_title")}</h4>
             <SelectCustom
                 type='text'
                 name='car_type'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
-                label={t("driver_sigup.step1.car_type_label")}
+                label={t("driver_signup.step1.car_type_label")}
                 placeholder={t("commons.select_pholder")}
                 value={_.find(carTypeList, i => i.value === car_type)}
                 options={carTypeList}
+                noOptionsMessage={t("commons.no_options")}
                 message={_.includes(invalidFields, "car_type") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_type")}
             />
@@ -66,10 +67,11 @@ const CarRegistration = (props) => {
                 type='text'
                 name='car_mark'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
-                label={t("driver_sigup.step1.car_make_label")}
+                label={t("driver_signup.step1.car_make_label")}
                 placeholder={t("commons.select_pholder")}
                 value={_.find(carBrands, i => i.value === car_mark)}
                 options={carBrands}
+                noOptionsMessage={t("commons.no_options")}
                 message={_.includes(invalidFields, "car_mark") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_mark")}
             />
@@ -77,8 +79,9 @@ const CarRegistration = (props) => {
                 type='text'
                 name='car_model'
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
-                label={t("driver_sigup.step1.car_model_label")}
+                label={t("driver_signup.step1.car_model_label")}
                 placeholder={t("commons.select_pholder")}
+                noOptionsMessage={t("commons.no_options")}
                 value={_.find(carModels, i => i.value === car_model && i.brand_id === car_mark)}
                 options={carModels}
                 message={_.includes(invalidFields, "car_model") ? t("commons.error_msgs.required_field") : ""}
@@ -90,8 +93,9 @@ const CarRegistration = (props) => {
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
                 name="car_year"
                 value={_.find(yearList, i => i.value === car_year)}
-                label={t("driver_sigup.step1.car_year_label")}
+                label={t("driver_signup.step1.car_year_label")}
                 placeholder={t("commons.select_pholder")}
+                noOptionsMessage={t("commons.no_options")}
                 message={_.includes(invalidFields, "car_year") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_year")}
             />
@@ -101,8 +105,9 @@ const CarRegistration = (props) => {
                 onChange={(event, opt) => selectOnChange(event, opt.name)}
                 name="car_color"
                 value={_.find(colorList, i => i.value === car_color)}
-                label={t("driver_sigup.step1.car_color_label")}
+                label={t("driver_signup.step1.car_color_label")}
                 placeholder={t("commons.select_pholder")}
+                noOptionsMessage={t("commons.no_options")}
                 message={_.includes(invalidFields, "car_color") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "car_color")}
             />

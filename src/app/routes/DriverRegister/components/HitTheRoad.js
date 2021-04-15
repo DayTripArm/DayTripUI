@@ -60,7 +60,7 @@ const HitTheRoad = (props) => {
             return false;
         }
         else if (hit_the_road_tariff < 25000){
-            errorMsg = t("driver_sigup.step9.min_price_full_day_text", {price: "is 25.000 AMD"});
+            errorMsg = t("driver_signup.step9.min_price_full_day_text", {price: "is 25.000 AMD"});
             return false;
         }else{return true;}
     }
@@ -70,16 +70,16 @@ const HitTheRoad = (props) => {
             <h2 className='text__blue mb-6 text-center'>Final Step</h2>
             <img className='rounded__4 mb-4' alt='328x213' src={ImgMap} />
             <h4 className='text__blue mb-6 text-center'>
-                {t("driver_sigup.step9.illustration_title")}
+                {t("driver_signup.step9.illustration_title")}
                 <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>
                     <IconQuestionOutlined fill='#757575'/>
                 </button>
             </h4>
             <p className='text-sm mh-100px mb-11'>
-                {t("driver_sigup.step9.hit_the_road_text")}
+                {t("driver_signup.step9.hit_the_road_text")}
             </p>
 
-            <p className='weight-700 mb-3'>{t("driver_sigup.step9.hit_the_road_question")}</p>
+            <p className='weight-700 mb-3'>{t("driver_signup.step9.hit_the_road_question")}</p>
 
             <ToggleButtonGroup
                 value={tariffChecked}
@@ -106,8 +106,8 @@ const HitTheRoad = (props) => {
                     precision={100}
                     value={hit_the_road_tariff}
                     onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
-                    label={t("driver_sigup.step9.hit_the_road_toggle")}
-                    placeholder={t("driver_sigup.step8.price_pholder")}
+                    label={t("driver_signup.step9.hit_the_road_toggle")}
+                    placeholder={t("driver_signup.step8.price_pholder")}
                     iconPosition='right'
                     containerClass="mt-6"
                     isError={tariffChecked && !isValid()}
@@ -116,7 +116,7 @@ const HitTheRoad = (props) => {
             }
 
             {openModal && (
-                <ModalAside title={t("driver_sigup.step8.tariff_tip_title")} onClose={() => setOpenModal(false)}>
+                <ModalAside title={t("driver_signup.step8.tariff_tip_title")} onClose={() => setOpenModal(false)}>
                     <h4 className='text__blue'>{!_.isEmpty(carTips) && carTips.title}</h4>
 
                     {

@@ -50,6 +50,7 @@ const SelectCustom = ({
     isSuccess,
     message,
     options,
+    noOptionsMessage="",
     borderWidth = 1,
     className = '',
     containerClass = '',
@@ -110,6 +111,7 @@ const SelectCustom = ({
                         value={value}
                         placeholder={placeholder}
                         className={className}
+                        noOptionsMessage={() => noOptionsMessage}
                         components={{
                             Option: props => {
                                 return (
@@ -134,6 +136,7 @@ const SelectCustom = ({
                         className={className}
                         placeholder={placeholder}
                         isSearchable={isSearchable}
+                        noOptionsMessage={() => noOptionsMessage}
                         {...restProps}
                     />
             }

@@ -4,6 +4,7 @@ import FormPlusMinus from "./FormPlusMinus";
 import Checkbox from "./Checkbox";
 import MultiSelect from "./MultiSelect";
 import actions from "../../actions";
+import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 
 const FormCarInputBox = (props) => {
@@ -11,7 +12,7 @@ const FormCarInputBox = (props) => {
     const dispatch = useDispatch();
     const {travelerData, driverData} = useSelector(state => state);
     const [edit, setEdit] = useState(false);
-
+    const { t } = useTranslation();
     const {
         type,
         label,
@@ -76,7 +77,7 @@ const FormCarInputBox = (props) => {
                     <Checkbox
                         className='mb-4 w-100'
                         name='car_seat'
-                        label="Car Seat"
+                        label={t("commons.car_options.car_seat")}
                         onChange={(e) => setCarOptions({
                             ...carOptions,
                             car_seat: e.target.checked
@@ -85,39 +86,39 @@ const FormCarInputBox = (props) => {
                     />
                     <Checkbox
                         className='mb-4 w-100'
-                        name='air_condition'
-                        label='Air Conditioning'
+                        name='air_conditioning'
+                        label={t("commons.car_options.air_conditioning")}
                         onChange={(e) => setCarOptions({
                             ...carOptions,
-                            air_condition: e.target.checked
+                            air_conditioning: e.target.checked
                         })}
-                        value={carOptions['air_condition']}
+                        value={carOptions['air_conditioning']}
                     />
 
                     <Checkbox
                         className='mb-4 w-100'
-                        name='smoke_allowed'
-                        label='Smoke Allowed'
+                        name='smoking_allowed'
+                        label={t("commons.car_options.smoking_allowed")}
                         onChange={(e) => setCarOptions({
                             ...carOptions,
-                            smoke_allowed: e.target.checked
+                            smoking_allowed: e.target.checked
                         })}
-                        value={carOptions['smoke_allowed']}
+                        value={carOptions['smoking_allowed']}
                     />
                     <Checkbox
                         className='mb-4 w-100'
-                        name='pets_allowd'
-                        label='Pets Allowed'
+                        name='pets_allowed'
+                        label={t("commons.car_options.pets_allowed")}
                         onChange={(e) => setCarOptions({
                             ...carOptions,
-                            pets_allowd: e.target.checked
+                            pets_allowed: e.target.checked
                         })}
-                        value={carOptions['pets_allowd']}
+                        value={carOptions['pets_allowed']}
                     />
                     <Checkbox
                         className='mb-4 w-100'
                         name='water'
-                        label='Water'
+                        label={t("commons.car_options.water")}
                         onChange={(e) => setCarOptions({
                             ...carOptions,
                             water: e.target.checked
@@ -127,7 +128,7 @@ const FormCarInputBox = (props) => {
                     <Checkbox
                         className='mb-4 w-100'
                         name='snacks'
-                        label='Snacks'
+                        label={t("commons.car_options.snacks")}
                         onChange={(e) => setCarOptions({
                             ...carOptions,
                             snacks: e.target.checked
@@ -137,7 +138,7 @@ const FormCarInputBox = (props) => {
                     <Checkbox
                         className='mb-4 w-100'
                         name='wifi'
-                        label='WIFI'
+                        label={t("commons.car_options.wifi")}
                         onChange={(e) => setCarOptions({
                             ...carOptions,
                             wifi: e.target.checked
@@ -153,7 +154,7 @@ const FormCarInputBox = (props) => {
         <li className='border__bottom border__default pt-3 pb-4'>
             <div className='d-flex align-items-center justify-content-between mb-2'>
                 <p className='mb-0 weight-700'>{label}</p>
-                <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? "Edit" : "Cancel"}</button>
+                <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? t("commons.buttons.edit_btn") : t("commons.buttons.cancel_btn")}</button>
             </div>
             {
                 edit ?
@@ -181,14 +182,14 @@ const FormCarInputBox = (props) => {
                                 <MultiSelect
                                     isMulti={true}
                                     name={name}
-                                    placeholder='I want to drive to'
+                                    placeholder={t("driver_signup.step8.dest_pholder")}
                                     onChange={event => selectOnChange(event)}
                                     value={destinationValue}
                                     options={options}
                                 />
                             }
                         </div>
-                        <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>Save</button>
+                        <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>{t("commons.buttons.save_btn")}</button>
                     </div>
                     :
                     <p className='text__grey-dark mb-0'>{_.includes(["car_options", "destinations"], type) || _.isEmpty(value) ? empty_message : value}</p>

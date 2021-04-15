@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../actions";
 import _ from "lodash";
+import { useTranslation } from 'react-i18next';
 import Input from "./Input";
 
 const FormCarInputBoxTariff = (props) => {
@@ -17,7 +18,7 @@ const FormCarInputBoxTariff = (props) => {
         disabled=false,
     } = props;
 
-
+    const { t } = useTranslation();
     const [tariff1, setTariff1] = useState(value[0]);
     const [tariff2, setTariff2] = useState(value[1]);
     let errorMsgTariff1, errorMsgTariff2 = "";
@@ -25,22 +26,22 @@ const FormCarInputBoxTariff = (props) => {
     const isValidTariff1 = () => {
         errorMsgTariff1 = "";
         if (tariff1 === ""){
-            errorMsgTariff1 = "This field is mandatory";
+            errorMsgTariff1 = t("commons.error_msgs.required_field");
             return false;
         }
         else if (tariff1 < 50 ){
-            errorMsgTariff1 = "Minimal price for 1km is 50 AMD";
+            errorMsgTariff1 = t("driver_signup.step8.min_price_km_text", {price: "is 50 AMD"});
             return false;
         }else{return true;}
     }
     const isValidTariff2 = () => {
         errorMsgTariff2 = "";
         if ( tariff2 === ""){
-            errorMsgTariff2 = "This field is mandatory";
+            errorMsgTariff2 = t("commons.error_msgs.required_field");
             return false;
         }
         else if (tariff2 < 50){
-            errorMsgTariff2 = "Minimal price for 1km is 50 AMD";
+            errorMsgTariff2 = t("driver_signup.step8.min_price_km_text", {price: "is 50 AMD"});
             return false;
         }else{return true;}
     }
@@ -64,8 +65,8 @@ const FormCarInputBoxTariff = (props) => {
     return (
         <li className='border__bottom border__default pt-3 pb-4'>
             <div className='d-flex align-items-center justify-content-between mb-2'>
-                <p className='mb-0 weight-700'>Price per 1 km</p>
-                <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? "Edit" : "Cancel"}</button>
+                <p className='mb-0 weight-700'>{t("my_car_page.tarrifs.price_input")}</p>
+                <button className='btn btn-sm btn-secondary' disabled={disabled} onClick={() => setEdit(!edit)}>{!edit ? t("commons.buttons.edit_btn") : t("commons.buttons.cancel_btn")}</button>
             </div>
             <br/>
             <div className='d-flex align-items-center justify-content-between mb-2 mt-2'>
@@ -86,7 +87,7 @@ const FormCarInputBoxTariff = (props) => {
                                     min={50}
                                     precision={5}
                                     onChange={(e) => setTariff1(e.target ? e.target.value : e)}
-                                    placeholder='Price'
+                                    placeholder={t("my_car_details.tarrifs.price_input")}
                                     iconPosition='right'
                                     isError={!isValidTariff1()}
                                     message={errorMsgTariff1}
@@ -97,7 +98,7 @@ const FormCarInputBoxTariff = (props) => {
                     {
                         Number(tariff1) > 0 &&
                         <div className='w-100 mxw-328px'>
-                            <p className='text__grey-dark'>According to the 1km price, you will earn the following amounts for these example trips.</p>
+                            <p className='text__grey-dark'>{t("driver_signup.step8.price_info")}</p>
                             <ul className='no-list-style mb-0'>
                                 <li className='rounded__4 border-style border__default p-4 mb-2'>
                                     <div className='d-flex justify-content-between'>
@@ -107,10 +108,10 @@ const FormCarInputBoxTariff = (props) => {
                                     <hr className='border__top border__default mt-2 mb-3'/>
                                     <div className='d-flex'>
                                         <p className='text-xs text__grey-dark mr-7 mb-0'>
-                                            <span className='weight-500'>Trip duraction</span>: 6 hours
+                                            <span className='weight-500'>{t("commons.duration")}</span>: 6 {t("commons.hours")}
                                         </p>
                                         <p className='text-xs text__grey-dark mb-0'>
-                                            <span className='weight-500'>Distance</span>: 76 km
+                                            <span className='weight-500'>{t("commons.distance")}</span>: 76 {t("commons.km")}
                                         </p>
                                     </div>
                                 </li>
@@ -122,10 +123,10 @@ const FormCarInputBoxTariff = (props) => {
                                     <hr className='border__top border__default mt-2 mb-3'/>
                                     <div className='d-flex'>
                                         <p className='text-xs text__grey-dark mr-7 mb-0'>
-                                            <span className='weight-500'>Trip duraction</span>: 4 hours
+                                            <span className='weight-500'>{t("commons.duration")}</span>: 4 {t("commons.hours")}
                                         </p>
                                         <p className='text-xs text__grey-dark mb-0'>
-                                            <span className='weight-500'>Distance</span>: 46 km
+                                            <span className='weight-500'>{t("commons.distance")}</span>: 46 {t("commons.km")}
                                         </p>
                                     </div>
                                 </li>
@@ -156,7 +157,7 @@ const FormCarInputBoxTariff = (props) => {
                                     min={50}
                                     precision={5}
                                     onChange={(e) => setTariff2(e.target ? e.target.value : e)}
-                                    placeholder='Price'
+                                    placeholder={t("my_car_details.tarrifs.price_input")}
                                     iconPosition='right'
                                     isError={!isValidTariff2()}
                                     message={errorMsgTariff2}
@@ -166,7 +167,7 @@ const FormCarInputBoxTariff = (props) => {
                         {
                             Number(tariff2) > 0 &&
                             <div className='w-100 mxw-328px'>
-                                <p className='text__grey-dark'>According to the 1km price, you will earn the following amounts for these example trips.</p>
+                                <p className='text__grey-dark'>{t("driver_signup.step8.price_info")}</p>
                                 <ul className='no-list-style mb-0'>
                                     <li className='rounded__4 border-style border__default p-4 mb-2'>
                                         <div className='d-flex justify-content-between'>
@@ -176,10 +177,10 @@ const FormCarInputBoxTariff = (props) => {
                                         <hr className='border__top border__default mt-2 mb-3'/>
                                         <div className='d-flex'>
                                             <p className='text-xs text__grey-dark mr-7 mb-0'>
-                                                <span className='weight-500'>Trip duraction</span>: 14 hours
+                                                <span className='weight-500'>{t("commons.duration")}</span>: 14 {t("commons.hours")}
                                             </p>
                                             <p className='text-xs text__grey-dark mb-0'>
-                                                <span className='weight-500'>Distance</span>: 530 km
+                                                <span className='weight-500'>{t("commons.distance")}</span>: 530 {t("commons.km")}
                                             </p>
                                         </div>
                                     </li>
@@ -191,17 +192,17 @@ const FormCarInputBoxTariff = (props) => {
                                         <hr className='border__top border__default mt-2 mb-3'/>
                                         <div className='d-flex'>
                                             <p className='text-xs text__grey-dark mr-7 mb-0'>
-                                                <span className='weight-500'>Trip duraction</span>: 11 hours
+                                                <span className='weight-500'>{t("commons.duration")}</span>: 11 {t("commons.hours")}
                                             </p>
                                             <p className='text-xs text__grey-dark mb-0'>
-                                                <span className='weight-500'>Distance</span>: 267 km
+                                                <span className='weight-500'>{t("commons.distance")}</span>: 267 {t("commons.km")}
                                             </p>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         }
-                        <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>Save</button>
+                        <button className='btn btn-primary text-uppercase btn-xs-block' onClick={() => handleSave()}>{t("commons.buttons.save_btn")}</button>
                     </div>
                     :
                     <p className='text__grey-dark mb-0'>{value[1]}</p>

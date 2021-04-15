@@ -1,5 +1,6 @@
 import React from "react";
 import {useDispatch} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import {useDropzone} from "react-dropzone";
 import { IconTimes } from 'shared/components/Icons';
 import _ from "lodash";
@@ -12,7 +13,7 @@ function FormDropZoneInlineText(props) {
         type,
         photos=[]
     } = props;
-
+    const { t } = useTranslation();
     const {getRootProps, getInputProps, open} = useDropzone({
         onDrop: acceptedFiles => {
             const newPhotos = [];
@@ -50,9 +51,9 @@ function FormDropZoneInlineText(props) {
     return (
         <>
             <div {...getRootProps({className: 'd-flex align-items-end justify-content-between mb-4'})}>
-                <p className='weight-700 mb-0'>Car Image</p>
+                <p className='weight-700 mb-0'>{t("my_car_page.car_details.images")}</p>
                 <input name={type} {...getInputProps()} />
-                <button type="button" className='btn btn-secondary btn-sm' onClick={open}>Add a new image</button>
+                <button type="button" className='btn btn-secondary btn-sm' onClick={open}>{t("commons.buttons.add_image")}</button>
             </div>
 
 

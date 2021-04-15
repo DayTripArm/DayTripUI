@@ -18,7 +18,7 @@ const CarRegistration = (props) => {
         car_photos=[],
         tips={},
     } = preregistered_info;
-    const title = t("driver_sigup.step3.title");
+    const title = t("driver_signup.step3.title");
     const dispatch = useDispatch();
 
     const carTips = tips[1]; // type = 1
@@ -41,7 +41,7 @@ const CarRegistration = (props) => {
                   <IconQuestionOutlined fill='#757575' />
               </button>
           </h4>
-          <p className='text__grey-dark'>{t("driver_sigup.step3.text")}</p>
+          <p className='text__grey-dark'>{t("driver_signup.step3.text")}</p>
 
           <FormDropZone
               type="car_photos"
@@ -50,7 +50,7 @@ const CarRegistration = (props) => {
           />
 
           {openModal && (
-              <ModalAside title={t("driver_sigup.step3.help_slider_title")} onClose={() => setOpenModal(false)}>
+              <ModalAside title={t("driver_signup.step3.help_slider_title")} onClose={() => setOpenModal(false)}>
                   <h4 className='text__blue'>{!_.isEmpty(carTips) && carTips.title}</h4>
 
                   {

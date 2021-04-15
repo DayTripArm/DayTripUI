@@ -261,7 +261,7 @@
             }
         }
     },
-    "driver_sigup": {
+    "driver_signup": {
         "header": "Driver Sign Up",
         "step_header": "Step ",
         "final_step_header": "Final Step",
@@ -361,19 +361,19 @@
     },
     "progress_page": {
         "page_title": "Progress",
-        "section1_title": " Earnings",
+        "section1_title_short": "Earnings",
+        "section1_title": "{{month}} Earnings",
         "section1_text": "Earnings including upcoming bookings",
         "section2_title": "Rating and Reviews",
-        "section2_value_no_review": "No Reviews",
         "section2_text": "Average rating",
         "section3_title": "Bookings",
         "section3_text": "All past and upcoming bookings",
         "section4_title": "Completed Trips",
         "section4_text": "Last month",
         "section5_title": "Popular Trips",
-        "section5_text": "Overall",
+        "section5_6_text": "Overall",
         "section6_title": "Upcoming Trips",
-        "section6_text": "Overall"
+        "booked_count_text": "Booked {{count}} times"
     },
     "my_car_page": {
         "page_title": "My Car",
@@ -391,10 +391,13 @@
             "color": "Color",
             "driving_license": "Driving License",
             "registration_card": "Registration Card",
+            "gov_id": "Goverment ID",
             "input_text": "Provided",
+            "not_specified": "Not specified",
             "change_profile_title": "Profile Changes",
-            "change_profile_text1": "If you change this field your profile will be temporarily suspended for further verification. If you make any changes here, you will be asked toupdate all car related information.",
-            "change_profile_text2": "NOTE:Please be notified that all your upcoming bookings will be cancelled if you proceed"
+            "change_profile_text1": "If you change this field your profile will be temporarily suspended for further verification. If you make any changes here, you will be asked to update all car related information.",
+            "change_profile_text2_note": "NOTE:",
+            "change_profile_text2": "Please be notified that all your upcoming bookings will be cancelled if you proceed"
         },
         "more_details": {
             "section1_title": "How many passengers can travel in your car?",
@@ -407,6 +410,7 @@
             "long_trip_text": "Long round-trips (over 110 km)",
             "price_input": "Price",
             "info_text": "The following examples show how much you will earn based on your 1 Km tariff.",
+            "activate_htr_text": "Are you interested in a full-day drive? Activate this opportunity, so the travelers can book you for the whole day.",
             "full_day_title": "Price for a Full Day Drive"
         }
     },
@@ -421,9 +425,9 @@
             "live_in": "Lives in",
             "speaks": "Speaks",
             "car_seat": "Car Seat",
-            "air_cond": "Air Conditioning",
-            "smoking": "Smoking Allowed",
-            "pets": "Pets Allowed",
+            "air_conditioning": "Air Conditioning",
+            "smoking_allowed": "Smoking Allowed",
+            "pets_allowed": "Pets Allowed",
             "water": "Water",
             "snacks": "Snacks",
             "wifi": "WiFi"
@@ -438,9 +442,10 @@
             "cancel_btn": "Cancel",
             "save_btn": "Save",
             "upload_btn": "Upload",
+            "proceed_btn": "Proceed",
             "add_image": "Add A New Image"
         },
-        "car_types": {
+        "car_type": {
             "sedan": "Sedan",
             "hatchback": "Hatchback",
             "wagon": "Wagon",
@@ -510,6 +515,9 @@
         "adults": "Adults",
         "children": "Children",
         "day_text": "Day : ",
+        "day_pholder": "Day",
+        "month_pholder": "Month",
+        "year_pholder": "Year",
         "travelers_text": "Passenger : ",
         "travelers_pholder": "{{count}} Travelers",
         "not_connected": "Not connected"

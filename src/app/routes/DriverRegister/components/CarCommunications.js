@@ -24,8 +24,8 @@ const CarRegistration = () => {
 
     return (
         <>
-            <h4 className='text__blue mb-4'>{t("driver_sigup.step2.title1")}</h4>
-            <p className='text__grey-dark'>{t("driver_sigup.step2.text1")}</p>
+            <h4 className='text__blue mb-4'>{t("driver_signup.step2.title1")}</h4>
+            <p className='text__grey-dark'>{t("driver_signup.step2.text1")}</p>
 
             <FormPlusMinus
                 label={t("commons.car_options.seats")}
@@ -36,8 +36,8 @@ const CarRegistration = () => {
                 onChange={(e) => dispatch(actions.setPreregisteredDriverProperty(e.name, e.value))}
             />
 
-            <h4 className='text__blue mb-4'>{t("driver_sigup.step2.title2")}</h4>
-            <p className='text__grey-dark'>{t("driver_sigup.step2.text2")}</p>
+            <h4 className='text__blue mb-4'>{t("driver_signup.step2.title2")}</h4>
+            <p className='text__grey-dark'>{t("driver_signup.step2.text2")}</p>
 
             <Checkbox
                 className='mb-4 w-100'
@@ -49,25 +49,25 @@ const CarRegistration = () => {
 
             <Checkbox
                 className='mb-4 w-100'
-                name='air_condition'
-                label={t("commons.car_options.air_cond")}
-                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('air_condition', e.target.checked))}
-                value={car_specs['air_condition']}
+                name='air_conditioning'
+                label={t("commons.car_options.air_conditioning")}
+                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('air_conditioning', e.target.checked))}
+                value={car_specs['air_conditioning']}
             />
 
             <Checkbox
                 className='mb-4 w-100'
-                name='smoke_allowed'
-                label={t("commons.car_options.smocking")}
-                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('smoke_allowed', e.target.checked))}
-                value={car_specs['smoke_allowed']}
+                name='smoking_allowed'
+                label={t("commons.car_options.smoking_allowed")}
+                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('smoking_allowed', e.target.checked))}
+                value={car_specs['smoking_allowed']}
             />
             <Checkbox
                 className='mb-4 w-100'
-                name='pets_allowd'
-                label={t("commons.car_options.pets")}
-                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('pets_allowd', e.target.checked))}
-                value={car_specs['pets_allowd']}
+                name='pets_allowed'
+                label={t("commons.car_options.pets_allowed")}
+                onChange={(e) => dispatch(actions.setPreregisteredDriverCarOptions('pets_allowed', e.target.checked))}
+                value={car_specs['pets_allowed']}
             />
             <Checkbox
                 className='mb-4 w-100'

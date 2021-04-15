@@ -262,7 +262,7 @@
             }
         }
     },
-    "driver_sigup": {
+    "driver_signup": {
         "header": "Регистрация Водителя",
         "step_header": "ШАГ ",
         "final_step_header": "Последний шаг",
@@ -362,19 +362,19 @@
     },
     "progress_page": {
         "page_title": "Прогресс",
-        "section1_title": "Прибыль",
+        "section1_title_short": "Прибыль",
+        "section1_title": "Прибыль {{month}}",
         "section1_text": "Прибыль включая предстоящие бронирования",
         "section2_title": "Отзыв и оценка",
-        "section2_value_no_review": "Обзора нет",
         "section2_text": "Средняя оценка",
         "section3_title": "Бронирования",
         "section3_text": "Все прошедшие и предстоящие бронирования",
         "section4_title": "Завершившийся поездки",
         "section4_text": "В прошлом месяце",
         "section5_title": "Предпочтительные поездки",
-        "section5_text": "Итого",
+        "section5_6_text": "Итого",
         "section6_title": "Предстоящие поездки",
-        "section6_text": "Итого"
+        "booked_count_text": "Забронировано {{count}} раза"
     },
     "my_car_page": {
         "page_title": "Моя машина",
@@ -392,10 +392,13 @@
             "color": "Цвет",
             "driving_license": "Водительское удостоверение",
             "registration_card": "Тех. пасспорт",
+            "gov_id": "Пасспорт/ID",
             "input_text": "Предоставлена",
+            "not_specified": "Не указан",
             "change_profile_title": "Изменения профиля",
-            "change_profile_text1": "If you change this field your profile will be temporarily suspended for further verification. If you make any changes here, you will be asked toupdate all car related information.",
-            "change_profile_text2": "NOTE:Please be notified that all your upcoming bookings will be cancelled if you proceed"
+            "change_profile_text1": "Если вы измените это поле, ваш профиль будет временно заблокирован для дальнейшей проверки. Если вы внесете здесь какие-либо изменения, вам будет предложено обновить всю информацию, касающуюся автомобиля.",
+            "change_profile_text2_note": "ПРИМЕЧАНИЕ:",
+            "change_profile_text2": "Обратите внимание, что все ваши предстоящие бронирования будут отменены, если вы продолжите"
         },
         "more_details": {
             "section1_title": "Для скольких пассажиров расчитана машина?",
@@ -408,6 +411,7 @@
             "long_trip_text": "Длинные поездки с возвратом(более 110км)",
             "price_input": "Тариф",
             "info_text": "Данные примеры показывают сколько вы заработаете учитывая указанный тариф за 1км",
+            "activate_htr_text": "Заинтересованы в вождении на целый день? Активируйте эту возвожность, чтобы пассажиры могли забронировать вас на целый день.",
             "full_day_title": "Тариф для целого дня"
         }
     },
@@ -422,9 +426,9 @@
             "live_in": "Место жительства",
             "speaks": "Языки",
             "car_seat": "Детское кресло",
-            "air_cond": "Кондиционер",
-            "smoking": "Курить разрешено",
-            "pets": "Животные разрешены",
+            "air_conditioning": "Кондиционер",
+            "smoking_allowed": "Курить разрешено",
+            "pets_allowed": "Животные разрешены",
             "water": "Вода",
             "snacks": "Закуски",
             "wifi": "WiFi"
@@ -440,6 +444,7 @@
             "cancel_btn": "Отменить",
             "save_btn": "Сохранить",
             "upload_btn": "Загрузить",
+            "proceed_btn": "Продолжить",
             "add_image": "Добавить фото"
         },
         "error_msgs":{
@@ -449,7 +454,7 @@
             "phone_invalid": "Номер телефона неправелен",
             "required_field": "Эти данные необходимы"
         },
-        "car_types": {
+        "car_type": {
             "sedan": "Седан",
             "hatchback": "Хечбек",
             "wagon": "Универсал",
@@ -459,7 +464,7 @@
             "pickup": "Пикап",
             "van": "Фургон"
         },
-        "colors": {
+        "car_color": {
             "black": "Черный",
             "blue": "Синий",
             "brown": "Коричневый",
@@ -513,6 +518,9 @@
         "children": "Дети",
         "travelers_pholder": "{{count}} Пассажира",
         "day_text": "День : ",
+        "day_pholder": "День",
+        "month_pholder": "Месяц",
+        "year_pholder": "Год",
         "travelers_text": "Пассажиры : ",
         "not_connected": "Не прикрепленно"
     }

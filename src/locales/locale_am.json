@@ -262,7 +262,7 @@
             }
         }
     },
-    "driver_sigup": {
+    "driver_signup": {
         "header": "Վարորդի Գրանցում",
         "step_header": "ՔԱՅԼ ",
         "final_step_header": "Վերջին Քայլ",
@@ -336,7 +336,7 @@
             "illustration_title": "Մեկ Լիարժեք Օրվա Ուղևորություն",
             "hit_the_road_text": "«Ճամփա Ընկի՛ր» առաջարկը նախատեսված է այն ուղևորների համար, ովքեր չունեն նախընտրած ուղղություն։ Որպես նրանց վարորդ՝ դուք պետք է հասանալի լինեք ամբողջ օրը։",
             "hit_the_road_question": "Ցանկանու՞մ եք տրամադրել այսպիսի ծառայություն",
-            "hit_the_road_toggle": "Նշե՛ք քո սակագինն ամբողջօրվա համար",
+            "hit_the_road_toggle": "Նշե՛ք ձեր սակագինն ամբողջ օրվա համար",
             "min_price_full_day_text": "Մինիմալ սակագինը ամբողջ օրվա համար {{price}}"
         }
     },
@@ -362,19 +362,19 @@
     },
     "progress_page": {
         "page_title": "Առաջընթաց",
-        "section1_title": " Շահույթը",
+        "section1_title_short": "Շահույթը",
+        "section1_title": "{{month}}ի Շահույթը",
         "section1_text": "Շահույթը ներառյալ գալիք ամրագրումները",
-        "section2_title": "Կարծիք եվ Գնահատական",
-        "section2_value_no_review": "Կարծիք չկա",
+        "section2_title": "Կարծիք և Գնահատական",
         "section2_text": "Միջին գնահատական",
         "section3_title": "Ամրագրումներ",
-        "section3_text": "Բոլոր անցյալ եվ գալիք ամրագրումները",
+        "section3_text": "Բոլոր անցյալ և գալիք ամրագրումները",
         "section4_title": "Ավարտված Ուղևորություններ",
         "section4_text": "Նախորդ ամսում",
         "section5_title": "Նախընտրելի Ուղևորություններ",
-        "section5_text": "Ընդամենը",
+        "section5_6_text": "Ընդամենը",
         "section6_title": "Գալիք Ուղևորություններ",
-        "section6_text": "Ընդամենը"
+        "booked_count_text": "Ամրագրված է {{count}} անգամ"
     },
     "my_car_page": {
         "page_title": "Իմ Մեքենան",
@@ -392,10 +392,13 @@
             "color": "Գույն",
             "driving_license": "Վարորդական Իրավունք",
             "registration_card": "Տեխ. Անձնագիր",
+            "gov_id": "Անձնագիրը/ID",
             "input_text": "Տրամադրված է",
-            "change_profile_title": "Profile Changes",
-            "change_profile_text1": "If you change this field your profile will be temporarily suspended for further verification. If you make any changes here, you will be asked toupdate all car related information.",
-            "change_profile_text2": "NOTE:Please be notified that all your upcoming bookings will be cancelled if you proceed"
+            "not_specified": "Նշված չէ",
+            "change_profile_title": "Պրոֆիլի Փոփոխություններ",
+            "change_profile_text1": "Այս դաշտը փոխելու դեպքում ձեր պրոֆիլը ժամանակավորապես կասեցվելու է՝ հետագա ստուգման համար: Եթե այստեղ կատարեք որևէ փոփոխություն, Ձեզ կառաջարկվի թարմացնել մեքենայի հետ կապված բոլոր տեղեկությունները:",
+            "change_profile_text2_note": "ՆՇՈՒՄ:",
+            "change_profile_text2": "Շարունակելու դեպքում տեղեկացրեք, որ ձեր բոլոր առաջիկա ամրագրումները կչեղարկվեն"
         },
         "more_details": {
             "section1_title": "Քանի՞ ուղևորի համար է նախատեսված մեքենան",
@@ -408,6 +411,7 @@
             "long_trip_text": "Երկար ուղևորություններ հետադարձով (ավելի քան 110 կմ)",
             "price_input": "Սակագին",
             "info_text": "Հետեվյալ օրինակները ցույց են տալիս, թե որքան գումար կաշխատեք՝ հիմնվելով նշված 1 կմ սակագնի վրա",
+            "activate_htr_text": "Հետաքրքրված ե՞ք ամբողջ օրը վարելու։ Ակտիվացրեք այս հնարավորությունը, որպեսզի ուղևորները կարողանան ամրագրել ձեզ ամբոզջ օրվա համար։",
             "full_day_title": "Սակագինն ամբողջ օրվա համար"
         }
     },
@@ -422,9 +426,9 @@
             "live_in": "Բնակավայր",
             "speaks": "Լեզուներ",
             "car_seat": "Մանկական նստատեղ",
-            "air_cond": "Օդորակիչ",
-            "smoking": "Ծխելը Թույլատրվում է",
-            "pets": "Կենդանիները Թույլատրվում են",
+            "air_conditioning": "Օդորակիչ",
+            "smoking_allowed": "Ծխելը Թույլատրվում է",
+            "pets_allowed": "Կենդանիները Թույլատրվում են",
             "water": "Ջուր",
             "snacks": "Թեթեվ Ուտեստներ",
             "wifi": "WiFi"
@@ -440,9 +444,10 @@
             "cancel_btn": "Չեղարկել",
             "save_btn": "Հիշել",
             "upload_btn": "Բեռնել",
+            "proceed_btn": "Շարունակել",
             "add_image": "Ավելացնել լուսանկար"
         },
-        "car_types": {
+        "car_type": {
             "sedan": "Սեդան",
             "hatchback": "Հեչբեկ",
             "wagon": "Ունիվերսալ",
@@ -452,7 +457,7 @@
             "pickup": "Պիկապ",
             "van": "Ֆուրգոն"
         },
-        "colors": {
+        "car_color": {
             "black": "Սև",
             "blue": "Կապույտ",
             "brown": "Շագանակագույն",
@@ -513,6 +518,9 @@
         "children": "Երեխաներ",
         "travelers_pholder": "{{count}} Ուղևոր",
         "day_text": "Օր : ",
+        "day_pholder": "Օր",
+        "month_pholder": "Ամիս",
+        "year_pholder": "Տարի",
         "travelers_text": "Ուղևորներ : ",
         "not_connected": "Կցված չէ"
     }

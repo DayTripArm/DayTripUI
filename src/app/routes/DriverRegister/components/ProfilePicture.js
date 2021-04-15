@@ -10,7 +10,7 @@ const ProfilePicture = (props) => {
     const { t } = useTranslation();
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
-    const profile_title = t("driver_sigup.step6.page_title");
+    const profile_title = t("driver_signup.step6.page_title");
     const {
         profile_photos=[],
     } = preregistered_info;
@@ -26,7 +26,7 @@ const ProfilePicture = (props) => {
             <h4 className='text__blue mt-6 mb-4'>
                 <span className={_.includes(invalidFields, "profile_photos") ? "text-danger" : ""}>{_.includes(invalidFields, "profile_photos") ? profile_title + " *" : profile_title}</span>
             </h4>
-            <p className='text__grey-dark'>{t("driver_sigup.step6.text1")}</p>
+            <p className='text__grey-dark'>{t("driver_signup.step6.text1")}</p>
             <FormDropZone
                 type="profile_photos"
                 label={t("commons.upload_box_title")}

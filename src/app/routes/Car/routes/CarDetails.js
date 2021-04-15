@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 import FormCarInputBox from "../../../../shared/components/FormCarInputBox";
-import {CAR_SPECS} from "../../../../constants";
 
 const CarDetails = () => {
     const {driverData} = useSelector(state => state);
     const {driver_details={}, preregistered_info={}} = driverData;
-
+    const { t } = useTranslation();
     const {more_details={}} = driver_details;
     const {car_seats, car_specs="", driver_destinations=""} = more_details;
 
@@ -19,7 +19,7 @@ const CarDetails = () => {
 
     const key_options = _.reduce(carOptions, (memo, val, key) => {
         if (memo.length === 0) memo = [];
-        if (val) memo.push(CAR_SPECS[key]);
+        if (val) memo.push(t(`commons.car_options.${key}`));
         return memo;
     },[]);
 
@@ -39,31 +39,31 @@ const CarDetails = () => {
                 <FormCarInputBox
                     type="plus_minus"
                     name="car_seats"
-                    label="How Many Travelers can fit in Your car?"
-                    placeholder="Choose"
+                    label={t("my_car_page.more_details.section1_title")}
+                    placeholder={t("commons.select_pholder")}
                     value={car_seats}
-                    empty_message={car_seats ? car_seats : "Not Specified"}
+                    empty_message={car_seats ? car_seats : t("my_car_page.car_details.not_specified")}
                 />
 
                 <FormCarInputBox
                     type="car_options"
                     name="car_specs"
-                    label="Tell us what you have in the car"
-                    placeholder="Choose"
+                    label={t("my_car_page.more_details.section2_title")}
+                    placeholder={t("commons.select_pholder")}
                     value={car_specs}
                     carOptions={carOptions}
                     setCarOptions={setCarOptions}
-                    empty_message={(!_.isEmpty(key_options) && key_options.join(", ")) || "Not Specified"}
+                    empty_message={(!_.isEmpty(key_options) && key_options.join(", ")) || t("my_car_page.car_details.not_specified")}
                 />
 
                 <FormCarInputBox
                     type="destinations"
                     name="driver_destinations"
-                    label="Selected Destinations"
-                    placeholder="Choose"
+                    label={t("my_car_page.more_details.section3_title")}
+                    placeholder={t("commons.select_pholder")}
                     value={driver_destinations}
                     options={destinationList}
-                    empty_message={destinationMsg || "Not Specified"}
+                    empty_message={destinationMsg || t("my_car_page.car_details.not_specified")}
                 />
             </ul>
         </>

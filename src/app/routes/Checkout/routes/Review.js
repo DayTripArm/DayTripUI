@@ -245,11 +245,11 @@ const Review = (props) => {
                     return (
                         <div className='d-flex mb-4' key={i}>
                           {opt === "car_seat" && (<IconCarSeat className='mr-2' />) }
-                          {opt === "smoke_allowed" && (<IconNoSmoking className='mr-2' />) }
-                          {opt === "pets_allowd"  && (<IconPetStep className='mr-2' />) }
+                          {opt === "smoking_allowed" && (<IconNoSmoking className='mr-2' />) }
+                          {opt === "pets_allowed"  && (<IconPetStep className='mr-2' />) }
                           {opt === "wifi"  && (<IconWifi className='mr-2' />) }
                           {opt === "snacks"  && (<IconSnack className='mr-2' />) }
-                          {opt === "air_condition"  && (<IconAC className='mr-2' />) }
+                          {opt === "air_conditioning"  && (<IconAC className='mr-2' />) }
                           {opt === "water"  && (<IconWater className='mr-2' />) }
                           <p className='mb-0'>
                             {CAR_SPECS[opt]}: <span className='weight-500 text__grey-dark'>{checkout_info.car_specs[opt]? "Yes" : "No"}</span>

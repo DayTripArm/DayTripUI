@@ -6,27 +6,29 @@ import PopularTrips from './PopularTrips';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "actions";
 import _ from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 const DetailsModal = ({ onClose, activeSection}) => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const {driverData} = useSelector(state => state);
     const {driver_progress_details} = driverData;
     let title = "";
     switch(activeSection){
         case 1:
-            title = 'Earnings';
+            title = t("progress_page.section1_title_short");
         break;
         case 2:
-            title = 'Reviews';
+            title = t("progress_page.section2_title");
         break;
         case 4:
-            title = 'Completed Trips';
+            title = t("progress_page.section4_title");
         break;
         case 5:
-            title = 'Popular Trips';
+            title = t("progress_page.section5_title");
         break;
         case 6:
-            title = 'Upcoming Trips';
+            title = t("progress_page.section6_title");
         break;
         default:
             title = ''

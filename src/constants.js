@@ -47,7 +47,7 @@ export const AVAILABILITY_WINDOW = {
 };
 export const DRIVER_NOTICE = [1, 2, 3, 7];
 
-export const CAR_SPECS = {"air_condition": "Air Condition", "car_seat" : "Car Seat", "pets_allowd": "Pets Allowed", "smoke_allowed": "Smoke Allowed", "snacks": "Snacks", "water": "Water", "wifi": "Wifi"};
+export const CAR_SPECS = {"air_conditioning": "Air Condition", "car_seat" : "Car Seat", "pets_allowed": "Pets Allowed", "smoking_allowed": "Smoke Allowed", "snacks": "Snacks", "water": "Water", "wifi": "Wifi"};
 
 export const HOURS = () => {
     var times = [];

@@ -16,9 +16,9 @@ const GovermentAndLicense = (props) => {
         license_photos=[],
         reg_card_photos=[]
     } = preregistered_info;
-    const gov_title = t("driver_sigup.step4.title1");
-    const license_title = t("driver_sigup.step4.title2");
-    const reg_card_title = t("driver_sigup.step4.title3");
+    const gov_title = t("driver_signup.step4.title1");
+    const license_title = t("driver_signup.step4.title2");
+    const reg_card_title = t("driver_signup.step4.title3");
 
     useEffect(() => {
         document.documentElement.scrollTop = 0;
@@ -30,7 +30,7 @@ const GovermentAndLicense = (props) => {
             <h4 className='text__blue mb-4'>
                 <span className={_.includes(invalidFields, "gov_photos") ? "text-danger" : ""}>{_.includes(invalidFields, "gov_photos") ? gov_title + " *" : gov_title}</span>
             </h4>
-            <p className='text__grey-dark'>{t("driver_sigup.step4.text1")}</p>
+            <p className='text__grey-dark'>{t("driver_signup.step4.text1")}</p>
 
             <FormDropZone
                 type="gov_photos"
@@ -41,7 +41,7 @@ const GovermentAndLicense = (props) => {
             <h4 className='text__blue mt-6 mb-4'>
                 <span className={_.includes(invalidFields, "license_photos") ? "text-danger" : ""}>{_.includes(invalidFields, "license_photos") ? license_title + " *" : license_title}</span>
             </h4>
-            <p className='text__grey-dark'>{t("driver_sigup.step4.text2")}</p>
+            <p className='text__grey-dark'>{t("driver_signup.step4.text2")}</p>
 
             <FormDropZone
                 type="license_photos"
@@ -52,7 +52,7 @@ const GovermentAndLicense = (props) => {
             <h4 className='text__blue mt-6 mb-4'>
                 <span className={_.includes(invalidFields, "reg_card_photos") ? "text-danger" : ""}>{_.includes(invalidFields, "reg_card_photos") ? reg_card_title + " *" : reg_card_title}</span>
             </h4>
-            <p className='text__grey-dark'>{t("driver_sigup.step4.text3")}</p>
+            <p className='text__grey-dark'>{t("driver_signup.step4.text3")}</p>
 
             <FormDropZone
                 type="reg_card_photos"

@@ -32,15 +32,15 @@ const requiredFields = {
 const DriverRegister = () => {
     const { t } = useTranslation();
     const StepPageByNumber = {
-        1: {page: CarRegistration, stepText: t("driver_sigup.header"), stepNumber: "1"},
-        2: {page: CarCommunications, stepText: t("driver_sigup.header"), stepNumber: "1"},
-        3: {page: CarPhotoUpload, stepText: t("driver_sigup.header"), stepNumber: "2"},
-        4: {page: GovermentAndLicence, stepText: t("driver_sigup.header"), stepNumber: "3"},
-        5: {page: CarRegComplete, stepText: t("driver_sigup.header"), stepNumber: "4"},
-        6: {page: ProfilePicture, stepText: t("driver_sigup.header"), stepNumber: "4"},
-        7: {page: ProfileData, stepText: t("driver_sigup.header"), stepNumber: "5"},
-        8: {page: LocationAndDestination, stepText: t("driver_sigup.header"), stepNumber: "5"},
-        9: {page: HitTheRoad, stepText: t("driver_sigup.header"), stepNumber: "6"},
+        1: {page: CarRegistration, stepText: t("driver_signup.header"), stepNumber: "1"},
+        2: {page: CarCommunications, stepText: t("driver_signup.header"), stepNumber: "1"},
+        3: {page: CarPhotoUpload, stepText: t("driver_signup.header"), stepNumber: "2"},
+        4: {page: GovermentAndLicence, stepText: t("driver_signup.header"), stepNumber: "3"},
+        5: {page: CarRegComplete, stepText: t("driver_signup.header"), stepNumber: "4"},
+        6: {page: ProfilePicture, stepText: t("driver_signup.header"), stepNumber: "4"},
+        7: {page: ProfileData, stepText: t("driver_signup.header"), stepNumber: "5"},
+        8: {page: LocationAndDestination, stepText: t("driver_signup.header"), stepNumber: "5"},
+        9: {page: HitTheRoad, stepText: t("driver_signup.header"), stepNumber: "6"},
     };
     const limit = _.keys(StepPageByNumber).length;
     const [step, setStep] = useState(1);
@@ -89,7 +89,7 @@ const DriverRegister = () => {
 
     return (
         <>
-            <OnboardingPanel step={step==9 ? t("driver_sigup.final_step_header") : t("driver_sigup.step_header") + stepNumber} name={stepText} progress={(100 / limit) * step} />
+            <OnboardingPanel step={step===9 ? t("driver_signup.final_step_header") : t("driver_signup.step_header") + stepNumber} name={stepText} progress={(100 / limit) * step} />
             <div className='container mh-min-screen'>
                 <div className='d-flex justify-content-center mt-3 pt-8 pt-md-10 pt-xl-12'>
                     <div className='w-100 mxw-328px'>

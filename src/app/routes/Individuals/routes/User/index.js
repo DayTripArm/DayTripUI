@@ -4,7 +4,6 @@ import { IconHome, IconGlobe } from 'shared/components/Icons';
 import actions from "../../../../../actions";
 import {MONTH_LIST, TRAVELER_TYPE} from "../../../../../constants";
 import {Link} from "react-router-dom";
-import _ from "lodash";
 import { useTranslation } from 'react-i18next';
 
 const User = ({history={}}) => {

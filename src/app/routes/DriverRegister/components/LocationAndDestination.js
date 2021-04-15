@@ -86,7 +86,7 @@ const LocationAndDestination = (props) => {
             return false;
         }
         else if (tariff1 < 50 ){
-            errorMsgTariff1 = t("driver_sigup.step8.min_price_km_text", {price: "is 50 AMD"});
+            errorMsgTariff1 = t("driver_signup.step8.min_price_km_text", {price: "is 50 AMD"});
             return false;
         }else{return true;}
     }
@@ -97,7 +97,7 @@ const LocationAndDestination = (props) => {
             return false;
         }
         else if (tariff2 < 50){
-            errorMsgTariff2 = t("driver_sigup.step8.min_price_km_text", {price: "is 50 AMD"});
+            errorMsgTariff2 = t("driver_signup.step8.min_price_km_text", {price: "is 50 AMD"});
             return false;
         }else{return true;}
     }
@@ -112,9 +112,10 @@ const LocationAndDestination = (props) => {
                 name='location'
                 onChange={event => selectOnChange(event, "location")}
                 value={locationValue}
-                label={t("driver_sigup.step8.residence_label")}
-                placeholder={t("driver_sigup.step8.residence_pholder")}
+                label={t("driver_signup.step8.residence_label")}
+                placeholder={t("driver_signup.step8.residence_pholder")}
                 loadOptions={loadOptions}
+                noOptionsMessage={t("commons.no_options")}
                 message={_.includes(invalidFields, "location") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "location")}
             />
@@ -122,8 +123,8 @@ const LocationAndDestination = (props) => {
             <MultiSelect
                 isMulti={true}
                 name='driver_destinations'
-                label={t("driver_sigup.step8.dest_label")}
-                placeholder={t("driver_sigup.step8.dest_pholder")}
+                label={t("driver_signup.step8.dest_label")}
+                placeholder={t("driver_signup.step8.dest_pholder")}
                 onChange={event => selectOnChange(event, "driver_destinations")}
                 value={destinationValue}
                 options={destinationList}
@@ -132,7 +133,7 @@ const LocationAndDestination = (props) => {
             />
 
             <h4 className='text__blue mb-6'>
-                {t("driver_sigup.step8.title2")}
+                {t("driver_signup.step8.title2")}
                 <button className='btn btn-circle btn-sm border-0 pull-t-5' onClick={() => {setOpenModal(true); window.location.hash = "modal"}}>
                     <IconQuestionOutlined fill='#757575'/>
                 </button>
@@ -146,8 +147,8 @@ const LocationAndDestination = (props) => {
                 precision={5}
                 tariff={true}
                 onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
-                label={t("driver_sigup.step8.price_short")}
-                placeholder={t("driver_sigup.step8.price_pholder")}
+                label={t("driver_signup.step8.price_short")}
+                placeholder={t("driver_signup.step8.price_pholder")}
                 iconPosition='right'
                 isError={!isValidTariff1()}
                 message={errorMsgTariff1}
@@ -156,7 +157,7 @@ const LocationAndDestination = (props) => {
             {
                 Number(tariff1) > 0 &&
                     <>
-                        <p className='text__grey-dark'>{t("driver_sigup.step8.price_info")}</p>
+                        <p className='text__grey-dark'>{t("driver_signup.step8.price_info")}</p>
                         <ul className='no-list-style mb-0'>
                             <li className='rounded__4 border-style border__default p-4 mb-2'>
                                 <div className='d-flex justify-content-between'>
@@ -200,8 +201,8 @@ const LocationAndDestination = (props) => {
                 precision={5}
                 tariff={true}
                 onChange={(e, name) => selectOnChange(e.target ? e.target.value : e, name)}
-                label={t("driver_sigup.step8.price_long")}
-                placeholder={t("driver_sigup.step8.price_pholder")}
+                label={t("driver_signup.step8.price_long")}
+                placeholder={t("driver_signup.step8.price_pholder")}
                 iconPosition='right'
                 containerClass="mt-6"
                 isError={!isValidTariff2()}
@@ -211,7 +212,7 @@ const LocationAndDestination = (props) => {
             {
                 Number(tariff2) > 0 &&
                 <>
-                    <p className='text__grey-dark'>{t("driver_sigup.step8.price_info")}</p>
+                    <p className='text__grey-dark'>{t("driver_signup.step8.price_info")}</p>
                     <ul className='no-list-style mb-0'>
                         <li className='rounded__4 border-style border__default p-4 mb-2'>
                             <div className='d-flex justify-content-between'>

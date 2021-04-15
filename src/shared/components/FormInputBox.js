@@ -7,6 +7,7 @@ import MultiSelect from "./MultiSelect";
 import actions from "../../actions";
 import dateFormat from "date-format";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 
 import {GET_DATE_YEARS, DAYS, MONTH_LIST, LANGUAGES} from "../../constants";
@@ -16,6 +17,7 @@ const FormInputBox = (props) => {
 
     let history = useHistory();
     const dispatch = useDispatch();
+    const { t } = useTranslation();
     const {travelerData, driverData} = useSelector(state => state);
 
     const {validationList} = driverData; // for pop up and validation, car details page
@@ -111,7 +113,7 @@ const FormInputBox = (props) => {
     };
 
     const renderDateForm = () => {
-        const monthList = MONTH_LIST.map((month, i) => {return {label: month, value: i}});
+        const monthList = MONTH_LIST.map((month, i) => {return {label: t(`commons.months.${month}`), value: i}});
         const days      = DAYS.map(i => {return {label: i, value: i}});
         const yearList  = GET_DATE_YEARS().map(i => {return {label: i, value: i}});
 
@@ -120,33 +122,36 @@ const FormInputBox = (props) => {
                 <SelectCustom
                     type='text'
                     name='month'
-                    placeholder='Month'
+                    placeholder={t("commons.month")}
                     onChange={e => setMonth(e.value)}
                     value={_.find(monthList, i => i.value === month)}
                     containerClass='mb-4'
                     options={monthList}
+                    noOptionsMessage={t("commons.no_options")}
                 />
                 <div className='d-flex mxw-md-328px w-100 ml-md-4'>
                     <div className='flex-fill d-flex mb-5'>
                         <SelectCustom
                             type='text'
                             name='day'
-                            placeholder='Day'
+                            placeholder={t("commons.day")}
                             onChange={e => setDay(e.value)}
                             value={_.find(days, i => i.value === day)}
                             containerClass='field-flexible flex-fill mb-0'
                             options={days}
+                            noOptionsMessage={t("commons.no_options")}
                         />
                     </div>
                     <div className='pl-4 flex-fill d-flex'>
                         <SelectCustom
                             type='text'
                             name='year'
-                            placeholder='Year'
+                            placeholder={t("commons.year")}
                             onChange={e => setYear(e.value)}
                             value={_.find(yearList,i => i.value === year)}
                             containerClass='field-flexible flex-fill mb-0'
                             options={yearList}
+                            noOptionsMessage={t("commons.no_options")}
                         />
                     </div>
                 </div>
@@ -206,7 +211,7 @@ const FormInputBox = (props) => {
                             value: field.initialValue
                         });
                     }
-                }}>{!edit ? "Edit" : "Cancel"}</button>
+                }}>{!edit ? t("commons.buttons.edit_btn") : t("commons.buttons.cancel_btn")}</button>
             </div>
             {
                 edit ?
@@ -239,6 +244,7 @@ const FormInputBox = (props) => {
                                     })}
                                     value={_.find(options, i => i.value === field.value)}
                                     options={options}
+                                    noOptionsMessage={t("commons.no_options")}
                                 />
                             }
                             {
@@ -255,8 +261,9 @@ const FormInputBox = (props) => {
                                         })
                                     }}
                                     value={location}
-                                    placeholder='Search your city'
+                                    placeholder={t("driver_signup.step8.residence_pholder")}
                                     loadOptions={loadOptions}
+                                    noOptionsMessage={t("commons.no_options")}
                                 />
                             }
                             {
@@ -267,7 +274,7 @@ const FormInputBox = (props) => {
                                 <MultiSelect
                                     isMulti={true}
                                     name='languages'
-                                    placeholder="Tell us what languages you speak"
+                                    placeholder={t("driver_signup.step7.langs_pholder")}
                                     onChange={event => selectOnChange(event, "languages")}
                                     value={languageValue}
                                     options={languageList}
@@ -290,13 +297,13 @@ const FormInputBox = (props) => {
                             }
 
 
-                        }}>Save</button>
+                        }}>{t("commons.buttons.save_btn")}</button>
                     </div>
                     :
-                    <p className='text__grey-dark mb-0'>{_.isEmpty(value) ? empty_message : value}</p>
+                    <p className='text__grey-dark mb-0'>{_.isEmpty(value) ? empty_message : _.includes(['car_type', 'car_color'], name)? t(`commons.${name}.${value}`) : value}</p>
             }
         </li>
-        { openInfoModal && <InfoModal title="Profile Changes" onProceed={() => setProceed(true)} onClose={() => {
+        { openInfoModal && <InfoModal title={t("my_car_page.car_details.change_profile_title")} onProceed={() => setProceed(true)} onClose={() => {
             setOpenInfoModal(false);
             setEdit(false);
             if (type === "select") { // set initial value after click cancel button in pop up
