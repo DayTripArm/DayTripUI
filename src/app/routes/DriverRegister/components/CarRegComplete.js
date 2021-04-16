@@ -25,7 +25,7 @@ const CarRegComplete = (props) => {
                 {t("driver_signup.step5.car_details")}
             </div>
             <div className='text-right mt-3'>
-                <button className='btn btn-sm btn-secondary btn-bold' onClick={() => setStep(1)}>Change</button>
+                <button className='btn btn-sm btn-secondary btn-bold' onClick={() => setStep(1)}>{t("commons.buttons.change_btn")}</button>
             </div>
             <hr className='border__top border__default mt-4 mb-5'/>
             <p className='text__blue'>{t("driver_signup.step_header")}: 4</p>

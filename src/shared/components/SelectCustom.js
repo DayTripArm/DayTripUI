@@ -51,6 +51,7 @@ const SelectCustom = ({
     message,
     options,
     noOptionsMessage="",
+    loadingText="",
     borderWidth = 1,
     className = '',
     containerClass = '',
@@ -111,6 +112,7 @@ const SelectCustom = ({
                         value={value}
                         placeholder={placeholder}
                         className={className}
+                        loadingMessage={() => loadingText}
                         noOptionsMessage={() => noOptionsMessage}
                         components={{
                             Option: props => {

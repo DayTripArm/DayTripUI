@@ -42,6 +42,7 @@ const MultiSelect = (props) => {
         name="",
         value=undefined,
         containerClass='',
+        noOptionsMessage="",
         options=[],
         isError,
         isSuccess,
@@ -150,6 +151,7 @@ const MultiSelect = (props) => {
                 isClearable={isClearable}
                 isRtl={isRtl}
                 placeholder={placeholder}
+                noOptionsMessage={() => noOptionsMessage}
                 isSearchable={isSearchable}
                 name={name}
                 value={value}

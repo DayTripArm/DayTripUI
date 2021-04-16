@@ -128,6 +128,7 @@ const LocationAndDestination = (props) => {
                 onChange={event => selectOnChange(event, "driver_destinations")}
                 value={destinationValue}
                 options={destinationList}
+                loadingText={t("commons.loading")}
                 message={_.includes(invalidFields, "driver_destinations") ? t("commons.error_msgs.required_field") : ""}
                 isError={_.includes(invalidFields, "driver_destinations")}
             />

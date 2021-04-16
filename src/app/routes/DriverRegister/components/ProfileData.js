@@ -119,6 +119,7 @@ const ProfileData = (props) => {
               onChange={event => selectOnChange(event, "languages")}
               value={languageValue}
               options={languageList}
+              noOptionsMessage={t("commons.no_options")}
               message={_.includes(invalidFields, "languages") ? t("commons.error_msgs.required_field") : ""}
               isError={_.includes(invalidFields, "languages")}
           />
