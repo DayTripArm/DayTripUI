@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import actions from "../../../actions";
 import {DRIVER_TYPE, TRAVELER_TYPE, LANGUAGES_BY_COUNTRY} from "../../../constants";
-import { IconGlobe, IconCurrecy } from 'shared/components/Icons';
+import { IconLang, IconCurrecy } from 'shared/components/Icons';
 
 const HeaderUnauthorized = () => {
   const dispatch = useDispatch();
@@ -49,7 +49,7 @@ const HeaderUnauthorized = () => {
           <ul className='no-list-style d-flex align-items-center mb-0'>
             {showInHeader && <li className='mr-lg-2'>
               <div className='lang_curr_text_icon position-relative d-inline-flex'>
-                <IconGlobe fill={themeLight ? '#fff' : '#000'} />
+                <IconLang fill={themeLight ? '#fff' : '#000'} />
                 <span
                   className={`pointer text-nowrap px-1${themeLight ? ' text-white' : ''}`}
                   onClick={() => setOpenLanguagePopup(true)}

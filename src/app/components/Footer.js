@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
-import { IconFbFilled, IconTwitter, IconInstagramOutlined, IconGlobe, IconCurrecy } from 'shared/components/Icons';
+import { IconFbFilled, IconTwitter, IconInstagramOutlined, IconLang, IconCurrecy } from 'shared/components/Icons';
 import LanguagesModal from './modals/LanguagesModal';
 import CurrenciesModal from './modals/CurrenciesModal';
 import {useSelector} from "react-redux";
@@ -54,7 +54,7 @@ const Footer = () => {
                 showInFooter ?
                 <div className='mb-3 mb-md-0'>
                   <a href='#modal' className='lang_curr_text_icon text__grey-dark mr-2' onClick={(e) => {e.preventDefault(); setOpenLanguagePopup(true); window.location.hash = "modal"}}>
-                    <IconGlobe size="16" fill="#757575" />
+                    <IconLang fill="#757575" />
                     <span className="pointer text-nowrap px-1">{lang ? LANGUAGES_BY_COUNTRY[lang]: LANGUAGES_BY_COUNTRY[localStorage.getItem('lang')] || 'ENG'} </span>
                   </a>
                   <a href='#modal' className='lang_curr_text_icon text__grey-dark mr-2' onClick={(e) => {e.preventDefault(); setOpenCurrencyPopup(true); window.location.hash = "modal"}}>

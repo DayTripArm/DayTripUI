@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 const Help = () => {
+    const { t } = useTranslation();
   return (
     <div className='container'>
       <h1 className='mxw-700px text__grey-dark mt-6 mb-md-8 mt-md-9 mt-xl-11 mb-xl-9 mb-xxl-11 mt-xxl-13'>
@@ -15,7 +16,7 @@ const Help = () => {
             convallis felis quis egestas luctus dignissim. Suspendisse augue a vulputate elit.
           </p>
           <Link to='/help/1' className='btn btn-secondary btn-sm'>
-            Read More
+            {t("commons.read_more")}
           </Link>
         </li>
         <li className='mb-5 mb-md-6 mb-xl-9 col-md-6 col-xl-4 col-xxl-3'>
@@ -25,7 +26,7 @@ const Help = () => {
             convallis felis quis egestas luctus dignissim. Suspendisse augue a vulputate elit.
           </p>
           <Link to='/help/1' className='btn btn-secondary btn-sm'>
-            Read More
+            {t("commons.read_more")}
           </Link>
         </li>
         <li className='mb-5 mb-md-6 mb-xl-9 col-md-6 col-xl-4 col-xxl-3'>
@@ -35,7 +36,7 @@ const Help = () => {
             convallis felis quis egestas luctus dignissim. Suspendisse augue a vulputate elit.
           </p>
           <Link to='/help/1' className='btn btn-secondary btn-sm'>
-            Read More
+            {t("commons.read_more")}
           </Link>
         </li>
         <li className='mb-5 mb-md-6 mb-xl-9 col-md-6 col-xl-4 col-xxl-3'>
@@ -45,7 +46,7 @@ const Help = () => {
             convallis felis quis egestas luctus dignissim. Suspendisse augue a vulputate elit.
           </p>
           <Link to='/help/1' className='btn btn-secondary btn-sm'>
-            Read More
+            {t("commons.read_more")}
           </Link>
         </li>
         <li className='mb-5 mb-md-6 mb-xl-9 col-md-6 col-xl-4 col-xxl-3'>
@@ -55,7 +56,7 @@ const Help = () => {
             convallis felis quis egestas luctus dignissim. Suspendisse augue a vulputate elit.
           </p>
           <Link to='/help/1' className='btn btn-secondary btn-sm'>
-            Read More
+            {t("commons.read_more")}
           </Link>
         </li>
         <li className='mb-5 mb-md-6 mb-xl-9 col-md-6 col-xl-4 col-xxl-3'>
@@ -65,7 +66,7 @@ const Help = () => {
             convallis felis quis egestas luctus dignissim. Suspendisse augue a vulputate elit.
           </p>
           <Link to='/help/1' className='btn btn-secondary btn-sm'>
-            Read More
+            {t("commons.read_more")}
           </Link>
         </li>
         <li className='mb-5 mb-md-6 mb-xl-9 col-md-6 col-xl-4 col-xxl-3'>
@@ -75,7 +76,7 @@ const Help = () => {
             convallis felis quis egestas luctus dignissim. Suspendisse augue a vulputate elit.
           </p>
           <Link to='/help/1' className='btn btn-secondary btn-sm'>
-            Read More
+            {t("commons.read_more")}
           </Link>
         </li>
       </ul>
