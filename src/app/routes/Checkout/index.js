@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useTranslation } from 'react-i18next';
 // Load Vendors
 import { Route, Switch, Redirect } from 'react-router-dom';
 
@@ -11,22 +11,30 @@ import Review from './routes/Review';
 import Payment from './routes/Payment';
 import Success from './routes/Success';
 
-// Conditionally
-const routes = [
-  {
-    route: 'checkout/review',
-    name: 'Review Your Trip',
-    isActive: true
-  },
-  {
-    route: 'checkout/payment',
-    name: 'Payment Information',
-    isActive: false
-  },
-];
-
 const Checkout = ({ location, match }) => {
+  const { t } = useTranslation();
   const isSuccessPage = location.pathname.includes('success');
+  const isPaymentPage = location.pathname.includes('payment');
+    // Conditionally
+    let routes = [
+        {
+            route: '/checkout/review',
+            name: t("checkout_page.pickup_info.page_title"),
+            isActive: true
+        },
+        {
+            route: '/checkout/payment',
+            name: t("checkout_page.payment_page_title"),
+            isActive: false
+        },
+    ];
+  if (isPaymentPage) {
+      routes[0].isActive = false;
+      routes[1].isActive = true;
+  } else {
+      routes[0].isActive = true;
+      routes[1].isActive = false;
+  }
 
   return (
     <div className='container'>

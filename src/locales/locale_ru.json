@@ -113,7 +113,7 @@
         "text_btn": "Узнать больше",
         "load_more_btn": "Увидеть больше"
     },
-    "reviews_page": {
+    "checkout_page": {
         "pickup_info": {
             "page_title": "Краткое описание",
             "title": "Информация о встречи",
@@ -137,7 +137,13 @@
             "btn": "Платить"
         },
         "payment_page_title": "Платежные данные",
-        "payment_title": "Добавить карту"
+        "payment_title": "Добавить карту",
+        "card_info": {
+            "title": "Ваша кредитная или дебитная карта",
+            "card_num": "Номер карты",
+            "expire_date": "Срок действия карты",
+            "set_as_default_checkbox": "Установить как способ оплаты по умолчанию"
+        }
     },
     "thank_you_title": "Спасибо!",
     "title1": "Ваша поездка потвержденна.",

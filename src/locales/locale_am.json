@@ -113,7 +113,7 @@
         "text_btn": "Իմանալ ավելին",
         "load_more_btn": "Տեսնել ավելին"
     },
-    "reviews_page": {
+    "checkout_page": {
         "pickup_info": {
             "page_title": "Ամփոփ նկարագրություն",
             "title": "Հանդիպման տեղեկություն",
@@ -137,7 +137,13 @@
             "btn": "ՎՃԱՐԵԼ"
         },
         "payment_page_title": "Վճարման տվյալներ",
-        "payment_title": "Կցել քարտ"
+        "payment_title": "Կցել քարտ",
+        "card_info": {
+            "title": "Ձեր Կրեդիտ կամ Դեբիտ ՔարտըYour Credit or Debit Card",
+            "card_num": "Քարտի Հաշվեհամար",
+            "expire_date": "Քարտի պիտանելիության ժամկետը",
+            "set_as_default_checkbox": "Սահմանեք որպես լռելյայն վճարման եղանակ"
+        }
     },
     "thank_you_title": "Շնորհակալություն!",
     "title1": "Ձեր Ուղևորությունը Հաստատված Է",

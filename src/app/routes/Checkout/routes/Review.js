@@ -17,6 +17,7 @@ import Textarea from 'shared/components/Textarea';
 import Timepicker from "shared/components/Timepicker";
 import { Link, useLocation } from 'react-router-dom';
 import { useHistory } from "react-router";
+import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 import moment from "moment";
 
@@ -32,6 +33,8 @@ const validations = {
 const Review = (props) => {
     const locate = useLocation();
     const history = useHistory();
+    const { t } = useTranslation();
+    const locale = localStorage.getItem('lang') || 'en';
     const [invalidFields, setInvalidFields] = useState({});
     const [showTimePicker, setShowTimePicker] = useState(false);
     const [showMoreDetails, setShowMoreDetails] = useState(false);
@@ -62,7 +65,7 @@ const Review = (props) => {
         const rule = validations[name];
         if (rule) {
             if (rule.required && !form[name].trim()) {
-                return { status: "error", statusMessage: "This field is required" };
+                return { status: "error", statusMessage: t("commons.required_field") };
             }
 
         }
@@ -95,15 +98,15 @@ const Review = (props) => {
   return (
     <>
       <div className='col-lg-5 col-xl-4 col-xxl-3 px-0 mb-10'>
-        <h2 className='text__blue'>Review Your Trip</h2>
-        <h4 className='text__grey-dark mb-4'>Pick Up Information</h4>
+        <h2 className='text__blue'>{t("checkout_page.pickup_info.page_title")}</h2>
+        <h4 className='text__grey-dark mb-4'>{t("checkout_page.pickup_info.title")}</h4>
         <div className="position-relative" >
             <Input
                 type='text'
                 name="pickup_time"
                 value={form.pickup_time}
-                label='Pick Up Time'
-                placeholder='Select Time'
+                label={t("checkout_page.pickup_info.pickup_time")}
+                placeholder={t("checkout_page.pickup_info.pickup_placeholder")}
                 isError={getStatusMessage("pickup_time")  || false}
                 onMouseDown={() => {
                     if (showTimePicker){
@@ -120,8 +123,8 @@ const Review = (props) => {
                     <span className="btn btn-secondary btn-sm btn-clear" onClick={() => {
                         setShowTimePicker(!showTimePicker);
                         document.body.style.overflowY = 'auto';
-                    }}>Clear</span>
-                    <span className="btn btn-secondary btn-sm btn-save" onClick={() => onTimeSet()}>Save</span>
+                    }}>{t("commons.buttons.cancel_btn")}</span>
+                    <span className="btn btn-secondary btn-sm btn-save" onClick={() => onTimeSet()}>{t("commons.buttons.save_btn")}</span>
                 </div>
                 <Timepicker pickTime={pickTime} />
               </div>
@@ -130,8 +133,8 @@ const Review = (props) => {
         <Input
           type='text'
           name='pickup_location'
-          label='Pick Up Location'
-          placeholder='Select Location'
+          label={t("checkout_page.pickup_info.pickup_location")}
+          placeholder={t("checkout_page.pickup_info.pickup_location_placeholder")}
           isError={getStatusMessage("pickup_location")  || false}
           icon={IconDestination}
           iconPosition='right'
@@ -143,8 +146,8 @@ const Review = (props) => {
         />
         <Textarea
           name='notes'
-          label='Notes'
-          placeholder='Add a note'
+          label={t("checkout_page.pickup_info.notes")}
+          placeholder={t("checkout_page.pickup_info.notes_placeholder")}
           className='h-152px'
           onChange={e => setForm({
                 ...form,
@@ -155,7 +158,7 @@ const Review = (props) => {
                 e.preventDefault();
                 submitCheckout();
             }} className='btn btn-primary text-uppercase'>
-          Continue
+            {t("checkout_page.pickup_info.btn")}
         </Link>
       </div>
       <div className='col-lg-5 col-xl-4 col-xxl-3 px-0'>
@@ -165,53 +168,53 @@ const Review = (props) => {
               width='106'
               height='136'
               src={checkout_info?.trip_img}
-              alt={checkout_info?.trip_title || 'Trip'}
+              alt={checkout_info?.trip_title || t("home_page.hit_the_road.section_title")}
               className='rounded__4 object-pos-center object-fit-cover mr-3'
             />
             <div>
               <p className='weight-500 mb-2'>{checkout_info?.trip_title}</p>
               <p className='mb-0'>
-                <span className='weight-700'>{checkout_info?.trip_review?.rate || "No reviews"}</span>
+                <span className='weight-700'>{checkout_info?.trip_review?.rate || t("commons.no_reviews")}</span>
                 <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                {checkout_info?.trip_review?.rate && <span className='text-sm text__grey-dark'>({checkout_info?.trip_review?.count} reviews)</span>}
+                {checkout_info?.trip_review?.rate && <span className='text-sm text__grey-dark'>({checkout_info?.trip_review?.count} {t("commons.reviews")})</span>}
               </p>
             </div>
           </div>
           <hr className='border__top border__default m-0' />
           <div className='p-4'>
             <div className='d-flex justify-content-between mb-2'>
-              <span className='text-sm text__grey-dark'>Date</span>
-              <span className='weight-500'>{moment(checkout_info?.trip_day).format('MMMM DD')}</span>
+              <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.date")}</span>
+              <span className='weight-500'>{_.startCase(moment(checkout_info?.trip_day).locale(locale === "am" ? "hy-am" : locale).format('MMMM DD'))}</span>
             </div>
             <div className='d-flex justify-content-between mb-2'>
-              <span className='text-sm text__grey-dark'>Travelers</span>
-              <span className='weight-500'>{checkout_info?.travelers_count}</span>
+              <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.travelers")}</span>
+              <span className='weight-500'>{t("commons.travelers_pholder", {count: checkout_info?.travelers_count})}</span>
             </div>
             <div className='d-flex justify-content-between'>
-              <span className='text-sm text__grey-dark'>Trip Duration</span>
+              <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.duration")}</span>
               <span className='weight-500'>{checkout_info?.trip_duration}</span>
             </div>
           </div>
           <hr className='border__top border__default m-0' />
           <div className='p-4'>
             <div className='d-flex justify-content-between mb-2'>
-              <span className='text-sm text__grey-dark'>Trip Price</span>
+              <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.price")}</span>
               <span className='weight-500'>${parseFloat(checkout_info?.price)+".00"}</span>
             </div>
             <div className='d-flex justify-content-between'>
-              <span className='text-sm text__grey-dark'>Service Fee</span>
+              <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.fee")}</span>
               <span className='weight-500'>$4.00</span>
             </div>
             <hr className='border__top border__default my-4' />
             <div className='d-flex justify-content-between'>
-              <span className='text-sm text__grey-dark'>Total Price</span>
+              <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.total_price")}</span>
               <span className='weight-500'>${parseFloat((checkout_info?.price || 0)+4)+".00"}</span>
             </div>
           </div>
           <hr className='border__top border__default m-0' />
           <div className='pt-3 px-4 pb-4'>
             <p className='text-center'>
-              <button className='btn btn-secondary btn-sm' onClick={() => setShowMoreDetails(!showMoreDetails)}>{showMoreDetails ? 'Less Details': 'More Details'}</button>
+              <button className='btn btn-secondary btn-sm' onClick={() => setShowMoreDetails(!showMoreDetails)}>{showMoreDetails ? t("checkout_page.trip_summary.less_detail"): t("checkout_page.trip_summary.more_detail")}</button>
             </p>
             {showMoreDetails &&
             <>
@@ -226,9 +229,9 @@ const Review = (props) => {
               <div>
                 <p className='weight-500 pt-1 mb-0'>{checkout_info.driver_name}</p>
                 <p className='mb-0'>
-                  <span className='weight-700'>{checkout_info?.review.rate || 'No reviews'}</span>
+                  <span className='weight-700'>{checkout_info?.review.rate || t("commons.no_reviews")}</span>
                   <IconStar fill='#FE4C30' className='card-star mx-1 pull-t-1' />
-                  {checkout_info?.review?.rate && <span className='text-sm text__grey-dark'>({checkout_info?.review?.count} reviews)</span>}
+                  {checkout_info?.review?.rate && <span className='text-sm text__grey-dark'>({checkout_info?.review?.count} {t("commons.reviews")})</span>}
                 </p>
               </div>
             </div>
@@ -236,7 +239,7 @@ const Review = (props) => {
             <div className='d-flex mb-4'>
               <IconGlobe className='mr-2 fixed-svg' />
               <p className='mb-0'>
-                Speaks:{' '}
+                {t("commons.car_options.speaks")}:{' '}
                 <span className='weight-500 text__grey-dark'>{checkout_info?.languages}</span>
               </p>
             </div>
@@ -252,7 +255,7 @@ const Review = (props) => {
                           {opt === "air_conditioning"  && (<IconAC className='mr-2' />) }
                           {opt === "water"  && (<IconWater className='mr-2' />) }
                           <p className='mb-0'>
-                            {CAR_SPECS[opt]}: <span className='weight-500 text__grey-dark'>{checkout_info.car_specs[opt]? "Yes" : "No"}</span>
+                            {t(`commons.car_options.${opt}`)}: <span className='weight-500 text__grey-dark'>{checkout_info.car_specs[opt]? t("commons.toogle_yes") : t("commons.toogle_no")}</span>
                           </p>
                         </div>
                      )

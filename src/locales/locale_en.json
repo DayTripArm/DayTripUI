@@ -111,7 +111,7 @@
         "text_btn": "Learn more",
         "load_more_btn": "Load more"
     },
-    "reviews_page": {
+    "checkout_page": {
         "pickup_info": {
             "page_title": "Review Your Trip",
             "title": "Pick Up Information",
@@ -135,7 +135,13 @@
             "btn": "Checkout"
         },
         "payment_page_title": "Payment Information",
-        "payment_title": "Add a Card"
+        "payment_title": "Add a Card",
+        "card_info": {
+            "title": "Your Credit or Debit Card",
+            "card_num": "Card Number",
+            "expire_date": "Expiration Date",
+            "set_as_default_checkbox": "Set as Default Payment Method"
+        }
     },
     "thank_you_title": "Thank You!",
     "title1": "Your Trip is Confirmed",
