@@ -527,6 +527,7 @@
             "december": "December"
         },
         "stops": ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth"],
+        "weeks": ["Sun", "Mon","Tue","Wed","Thu","Fri","Sat"],
         "gender": {
             "male": "Male",
             "female": "Female"

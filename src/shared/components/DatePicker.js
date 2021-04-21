@@ -28,16 +28,21 @@ const DatePicker = ({ date, onDateChange, daySize }) => {
         focused: true,
         hideKeyboardShortcutsPanel: true,
         monthFormat: 'MMMM YYYY',
+        weekDayFormat: 'd'
     };
     return (
         <DayPickerSingleDateController
             {...props}
             date={date}
             daySize={daySize}
+            firstDayOfWeek={1}
             isOutsideRange={date => isOutsideRange(date)}
             renderMonthElement={({ month }) => {
                 const date = moment(month).locale(locale === "am" ? "hy-am" : locale)
                 return _.startCase(date.format('MMMM YYYY'))
+            }}
+            renderWeekHeaderElement={(day) => {
+                return t(`commons.weeks.${day}`)
             }}
             onDateChange={(date) => {
                 onDateChange(date);

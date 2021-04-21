@@ -29,11 +29,6 @@ const defaultProps = {
     // day presentation and interaction related props
     renderCalendarDay: undefined,
     renderDayContents: null,
-    //isDayBlocked: () => false,
-    //isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
-    // isDayHighlighted: (day1) => {
-    //     return day.some(day2 => day1.isSame(day2))
-    // },
     enableOutsideDays: false,
 
     // calendar presentation and interaction related props
@@ -58,7 +53,7 @@ const defaultProps = {
 
     // internationalization
     monthFormat: 'MMMM YYYY',
-    weekDayFormat: 'ddd'
+    weekDayFormat: 'd'
 };
 
 const Calendar = () => {
@@ -89,6 +84,7 @@ const Calendar = () => {
             // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    moment.locale(locale_code === "am" ? "hy-am" : locale_code)
     const onDateChange = (date) => {
         const date_string = moment(date).format('YYYY-MM-DD');
 
@@ -171,7 +167,7 @@ const Calendar = () => {
     };
 
     const renderDayContents=(day, i)=> {
-
+        moment.locale(locale_code === "am" ? "hy-am" : locale_code)
         if (calendar_info && (_.find(calendar_info, {trip_day: day.format("YYYY-MM-DD")})) ){
             const info = _.find(calendar_info, {trip_day: day.format("YYYY-MM-DD")});
 
@@ -241,6 +237,7 @@ const Calendar = () => {
                             verticalHeight={370}
                             noBorder={true}
                             daySize={daySize}
+                            firstDayOfWeek={1}
                             numberOfMonths = {numberOfMonths}
                             onDateChange={onDateChange}
                             onFocusChange={onFocusChange}
@@ -255,6 +252,9 @@ const Calendar = () => {
                             renderMonthElement={({ month }) => {
                                 const date = moment(month).locale(locale_code === "am" ? "hy-am" : locale_code)
                                 return _.startCase(date.format('MMMM YYYY'))
+                            }}
+                            renderWeekHeaderElement={(day) => {
+                                return t(`commons.weeks.${day}`)
                             }}
                             date={date}
                         />
