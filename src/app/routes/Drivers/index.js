@@ -31,7 +31,7 @@ const Drivers = ({ history }) => {
             travelers: 1,
             passengers_count: {adults: 1, children: 0},
             reviews: {"wonderfull": false, "excelent": false, "good": false},
-            price_range: trip_id ? [10, 1000]: [25000, 100000]}
+            price_range: trip_id ? [50, 1000]: [25000, 50000]}
     }
 
     useEffect(() => {
@@ -133,7 +133,7 @@ const Drivers = ({ history }) => {
         const body = {
             date: form.date,
             travelers: form.passengers_count.adults + form.passengers_count.children,
-            price_range: price_range || [10, 1100]
+            price_range: price_range || trip_id ? [50, 1000]: [25000, 50000]
         };
         updateDriversList(body);
     });
@@ -280,7 +280,9 @@ const Drivers = ({ history }) => {
                                                           </Grid>
                                                           <Grid item xs={12} lg={12}>
                                                             <RangeSlider prices_list={prices_list}
-                                                                range={trip_id ? form.price_range || [10, 1000]: [25000, 85000]}
+                                                                range={trip_id ? form.price_range || [50, 1000]: form.price_range || [25000, 50000]}
+                                                                min_max={trip_id ? [50, 1000]: [25000, 50000]}
+                                                                price_label={{min_price_text: t("commons.min_price_text"), max_price_text: t("commons.max_price_text")}}
                                                                 isTrip={trip_id ? true: false}
                                                                 onChange={(price_range) => {
                                                                     setForm({

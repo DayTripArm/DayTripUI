@@ -29,7 +29,7 @@ const SearchForDriverModal = (props) => {
                 reviews: {"wonderfull": false, "excelent": false, "good": false},
                 travelers: form.travelers,
                 passengers_count: count,
-                price_range: [10, 1000],
+                price_range: [50, 1000],
             }));
             history.push({
                 pathname: '/drivers',

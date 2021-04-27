@@ -560,6 +560,8 @@
         "year_pholder": "Year",
         "travelers_text": "Passenger : ",
         "travelers_pholder": "{{count}} Travelers",
+        "min_price_text": "Min Price",
+        "max_price_text": "Max Price",
         "not_connected": "Not connected"
     }
 }

@@ -32,7 +32,7 @@ const FiltersModal = (props) => {
     const onSetPrice = ((price_range) => {
         setForm({
             ...form,
-            price_range: price_range || [10, 1100]
+            price_range: price_range || trip_id ? [50, 1000]: [25000, 50000]
         });
     });
     const locale_code = localStorage.getItem('lang') || 'en'
@@ -164,7 +164,10 @@ const FiltersModal = (props) => {
                               </Grid>
                               <Grid item xs={12} lg={12}>
                                 <RangeSlider prices_list={prices_list}
-                                    range={trip_id ? form.price_range || [10, 1000]: [25000, 85000]}
+                                    range={trip_id ? form.price_range || [50, 1000]: form.price_range || [25000, 50000]}
+                                    min_max={trip_id ? [50, 1000]: [25000, 50000]}
+                                    isTrip={trip_id ? true: false}
+                                    price_label={{min_price_text: t("commons.min_price_text"), max_price_text: t("commons.max_price_text")}}
                                     onChange={(price_range) => {
                                         onSetPrice(price_range);
                                         onSetPriceRange(price_range);

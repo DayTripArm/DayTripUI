@@ -88,7 +88,7 @@ const SearchDriver = () => {
                     reviews: {"wonderfull": false, "excelent": false, "good": false},
                     travelers: form.travelers,
                     passengers_count: count,
-                    price_range: [25000, 85000],
+                    price_range: [25000, 50000],
                 }));
                 history.push({
                     pathname: '/drivers',

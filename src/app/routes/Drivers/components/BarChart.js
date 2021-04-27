@@ -3,20 +3,20 @@ import { Bar } from "react-chartjs-2";
 
 class BarChart extends React.Component {
   render() {
-    const { data, prices_list, highlight, domain } = this.props;
+    const { data, prices_list, highlight, domain, step } = this.props;
     // calculate frequency of data
     var counts = {};
     for (var i = 0; i < data.length; i++) {
-        counts[data[i]] = prices_list[data[i]] || 0.03;
+        counts[data[i]] = prices_list[data[i]] || 0.01;
     }
 
     // generate data
     const barDataValues = [];
-    for (let i = 0; i < domain[1]; i++) {
-      barDataValues.push(counts[i] || 0);
+    for (let i = domain[0]; i < domain[1]; i=i+step) {
+      barDataValues.push(counts[i]);
     }
     const barData = {
-      labels: barDataValues.map((val, i) => i),
+      labels: barDataValues.map((val, i) => data[i]),
       datasets: [
         {
           backgroundColor: barDataValues.map((val, i) =>
@@ -41,7 +41,7 @@ class BarChart extends React.Component {
         xAxes: [
           {
             display: false,
-            barPercentage: 10
+            barPercentage: 1.5
           }
         ],
         yAxes: [

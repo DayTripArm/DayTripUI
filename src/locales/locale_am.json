@@ -562,6 +562,8 @@
         "month_pholder": "Ամիս",
         "year_pholder": "Տարի",
         "travelers_text": "Ուղևորներ : ",
+        "min_price_text": "Մին․ Գին",
+        "max_price_text": "Մաքս․ Գին",
         "not_connected": "Կցված չէ"
     }
 }

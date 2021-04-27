@@ -9,27 +9,50 @@ class RangeSlider extends React.Component {
     super(props);
 
       this.price_range = [];
-      for (let i = this.props.range[0]; i <= this.props.range[1]; i = this.props.isTrip ? i + 10: i + 10000) {
+      const min_max = this.props.min_max;
+      const step = this.props.isTrip ? 10: 1000;
+
+      for (let i = min_max[0]; i <= min_max[1]; i=i+step) {
           this.price_range.push(i);
       }
       const sortedData = this.price_range.slice().sort((a, b) => a - b);
       const range = [sortedData[0], sortedData[sortedData.length - 1]];
 
-    this.state = {
-      domain: range,
-      update: this.props.range,
-      values: this.props.range,
-      inputValues: range
-    };
+      this.state = {
+        domain: range,
+        update: this.props.range,
+        values: this.props.range,
+        inputValues: this.props.range
+      };
       this.onChange = (price_range) => {
           if (this.props.onChange) {
               this.props.onChange(price_range);
           }
       };
+      this.maxPriceChange = (evt, inputValues) => {
+          const value = evt.target.value;
+          const newState = [inputValues[0], value];
+          this.setState({ inputValues: newState });
+          this.onChange(newState);
+          if (value && value <= this.state.domain[1] && value >= this.state.values[0]) {
+              this.setState({ values: newState });
+          }
+      }
+      this.minPriceChange = (evt, inputValues) => {
+          const value = evt.target.value;
+          const newState = [value, inputValues[1]];
+          this.setState({ inputValues: newState });
+          this.onChange(newState);
+          if (value && value >= this.state.domain[0]) {
+              this.setState({ values: newState });
+          }
+      }
   }
 
   render() {
     const { domain, values, update, inputValues } = this.state;
+    const {min_price_text, max_price_text} = this.props.price_label;
+    const step = this.props.isTrip ? 10: 1000;
 
     return (
       <Grid container>
@@ -40,10 +63,11 @@ class RangeSlider extends React.Component {
               prices_list={this.props.prices_list}
               highlight={update}
               domain={domain}
+              step={step}
             />
             <Slider
               mode={3}
-              step={this.props.isTrip ? 10: 10000}
+              step={step}
               domain={domain}
               rootStyle={{
                 position: "relative",
@@ -106,47 +130,51 @@ class RangeSlider extends React.Component {
               <Grid item xs={4} style={{ textAlign: "right" }}>
                 <TextField
                   variant="outlined"
-                  label="min price"
-                    type="number"
+                  label={min_price_text}
+                  type="number"
                   value={inputValues[0]}
                   onChange={(evt) => {
-                    const value = evt.target.value;
-                    const newState = [value, inputValues[1]];
-                    this.setState({ inputValues: newState });
-                    this.onChange(newState);
-                    if (value && value >= domain[0]) {
-                      this.setState({ values: newState });
-                    }
+                      this.minPriceChange(evt, inputValues)
+                  }}
+                  onKeyUp={(evt) => {
+                      this.minPriceChange(evt, inputValues)
+                  }}
+                  onKeyDown={(evt) => {
+                      this.minPriceChange(evt, inputValues)
                   }}
                   InputProps={{
+                      inputProps: {
+                          max: update[1], min: domain[0], step: step
+                      },
                     startAdornment: (
                       <InputAdornment position="start">$</InputAdornment>
                     )
                   }}
                 />
               </Grid>
-              <Grid item xs={4} style={{ textAlign: "center" }}>
-                —
-              </Grid>
+              <Grid item xs={4} style={{ textAlign: "center" }}></Grid>
               <Grid item xs={4} style={{ textAlign: "left" }}>
                 <TextField
                   variant="outlined"
-                  label="max price"
-                    type="number"
+                  label={max_price_text}
+                  type="number"
                   value={inputValues[1]}
                   onChange={(evt) => {
-                    const value = evt.target.value;
-                    const newState = [inputValues[0], value];
-                    this.setState({ inputValues: newState });
-                    this.onChange(newState);
-                    if (value && value <= domain[1] && value >= values[0]) {
-                      this.setState({ values: newState });
-                    }
+                      this.maxPriceChange(evt, inputValues)
+                  }}
+                  onKeyUp={(evt) => {
+                      this.maxPriceChange(evt, inputValues)
+                  }}
+                  onKeyDown={(evt) => {
+                      this.maxPriceChange(evt, inputValues)
                   }}
                   InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">$</InputAdornment>
-                    )
+                      inputProps: {
+                          max: domain[1], min: update[0], step: step
+                      },
+                      startAdornment: (
+                         <InputAdornment position="start">$</InputAdornment>
+                      )
                   }}
                 />
               </Grid>

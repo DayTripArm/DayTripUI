@@ -562,6 +562,8 @@
         "month_pholder": "Месяц",
         "year_pholder": "Год",
         "travelers_text": "Пассажиры : ",
+        "min_price_text": "Мин. Цена",
+        "max_price_text": "Макс. Цена",
         "not_connected": "Не прикрепленно"
     }
 }
