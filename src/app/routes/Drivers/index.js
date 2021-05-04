@@ -4,6 +4,7 @@ import Chips from 'shared/components/Chips';
 import { IconClockOutlined, IconDestination } from 'shared/components/Icons';
 import DatePicker from 'shared/components/DatePicker';
 import DriversList from './components/DriversList';
+import Checkbox from 'shared/components/Checkbox';
 import FormPlusMinus from 'shared/components/FormPlusMinus';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
 import {useDispatch, useSelector} from "react-redux";
@@ -20,7 +21,7 @@ const Drivers = ({ history }) => {
     const dispatch = useDispatch();
     const container1 = useRef();
     const container2 = useRef();
-    //const container3 = useRef();  //for review popup
+    const container3 = useRef();
     const container4 = useRef();
     const { t } = useTranslation();
     let filters = JSON.parse(localStorage.getItem('sfd_filters')) || history.location.state;
@@ -59,16 +60,18 @@ const Drivers = ({ history }) => {
     const [filtersPopup, openFiltersPopup] = useState(false);
     const [openCount, setOpenCount] = useState(false);
     const [isPricePopupOpened, setPricePopupOpened] = useState(false);
+    const [isReviewsPopupOpened, setReviewsPopupOpened] = useState(false);
     const [form, setForm] = useState(filters);
     const locale_code = localStorage.getItem('lang') || 'en'
     useOutsideClick(container1, () => setOpenCalendar(false));
     useOutsideClick(container2, () => setOpenCount(false));
-    //useOutsideClick(container3, () => setShowCountPopup(false));  //for review popup
+    useOutsideClick(container3, () => setReviewsPopupOpened(false));
     useOutsideClick(container4, () => setPricePopupOpened(false));
 
     window.addEventListener("resize", showChips, false);
 
     function showChips(e){
+        openFiltersPopup(false)
         if(window.innerWidth >= 768){
             showSingleFilter(false);
         } else {
@@ -78,7 +81,7 @@ const Drivers = ({ history }) => {
     function keepFiltersState(){
         localStorage.setItem('sfd_filters', JSON.stringify({
             date: form.date,
-            reviews: '',
+            reviews: form.reviews,
             passengers_count: form.passengers_count,
             travelers: form.travelers,
             price_range: form.price_range
@@ -105,7 +108,7 @@ const Drivers = ({ history }) => {
         setOpenCalendar(false);
         localStorage.setItem('sfd_filters', JSON.stringify({
             date: moment(day).format('YYYY-MM-DD'),
-            reviews: '',
+            reviews: form.reviews,
             passengers_count: form.passengers_count,
             travelers: form.travelers,
             price_range: form.price_range
@@ -125,7 +128,6 @@ const Drivers = ({ history }) => {
             price_range: form.price_range
         };
         updateDriversList(body);
-        //keepFiltersState();
     });
 
     const onSetPrice = ((price_range) => {
@@ -196,6 +198,7 @@ const Drivers = ({ history }) => {
                                                 onClick={() => {
                                                     setOpenCalendar(!openCalendar);
                                                     setOpenCount(false);
+                                                    setReviewsPopupOpened(false);
                                                     setPricePopupOpened(false);
                                                 }} />
                                             {openCalendar && (<div className="calendar_popup" ref={container1}>
@@ -208,6 +211,7 @@ const Drivers = ({ history }) => {
                                                 onClick={() => {
                                                 setOpenCalendar(false);
                                                 setOpenCount(!openCount);
+                                                setReviewsPopupOpened(false);
                                                 setPricePopupOpened(false);
                                             }} />
                                             {openCount && (
@@ -228,7 +232,7 @@ const Drivers = ({ history }) => {
                                                                 onSetCount(children + obj.value);
                                                                 localStorage.setItem('sfd_filters', JSON.stringify({
                                                                     date: form.date,
-                                                                    reviews: '',
+                                                                    reviews: form.reviews,
                                                                     passengers_count: {adults: obj.value, children: children},
                                                                     travelers: children + obj.value,
                                                                     price_range: form.price_range
@@ -250,7 +254,7 @@ const Drivers = ({ history }) => {
                                                                 onSetCount(adults + obj.value);
                                                                 localStorage.setItem('sfd_filters', JSON.stringify({
                                                                     date: form.date,
-                                                                    reviews: '',
+                                                                    reviews: form.reviews,
                                                                     passengers_count: {adults: adults, children: obj.value},
                                                                     travelers: adults + obj.value,
                                                                     price_range: form.price_range
@@ -262,13 +266,87 @@ const Drivers = ({ history }) => {
                                             )}
                                         </div>
                                         <div className="home_seach_items">
-                                            <Chips name={t("commons.reviews")} className='mr-4 mb-md-5'/>
+                                            <Chips name={t("commons.reviews")}
+                                                className='mr-4 mb-md-5'
+                                                onClick={() => {
+                                                    setOpenCalendar(false);
+                                                    setOpenCount(false);
+                                                    setPricePopupOpened(false);
+                                                    setReviewsPopupOpened(!isReviewsPopupOpened);
+                                                }}
+                                             />
+                                           {isReviewsPopupOpened && (<div className="reviews_popup" ref={container3}>
+                                                    <div className="reviews_container">
+                                                        <Checkbox
+                                                            className='mb-4 w-100'
+                                                            name='wonderful'
+                                                            label={t("select_drivers_page.chips.wonderfull")}
+                                                            onChange={(e) => {
+                                                                const review_scores = {"wonderful": e.target.checked, "excelent": form.reviews.excelent || false, "good": form.reviews.good || false}
+                                                                setForm({
+                                                                    ...form,
+                                                                    reviews: review_scores
+                                                                });
+                                                                localStorage.setItem('sfd_filters', JSON.stringify({
+                                                                   date: form.date,
+                                                                   reviews: review_scores,
+                                                                   passengers_count: form.passengers_count,
+                                                                   travelers: form.travelers,
+                                                                   price_range: form.price_range
+                                                                }));
+                                                            }}
+                                                            value={form.reviews.wonderful || false}
+                                                        />
+                                                        <Checkbox
+                                                            className='mb-4 w-100'
+                                                            name='review_score'
+                                                            label={t("select_drivers_page.chips.very_good")}
+                                                            onChange={(e) => {
+                                                                const review_scores = {"wonderful": form.reviews.wonderful || false, "excelent": e.target.checked, "good": form.reviews.good || false}
+                                                                setForm({
+                                                                    ...form,
+                                                                    reviews: review_scores
+                                                                });
+                                                               localStorage.setItem('sfd_filters', JSON.stringify({
+                                                                   date: form.date,
+                                                                   reviews: review_scores,
+                                                                   passengers_count: form.passengers_count,
+                                                                   travelers: form.travelers,
+                                                                   price_range: form.price_range
+                                                               }));
+                                                            }}
+                                                            value={form.reviews.excelent || false}
+                                                        />
+                                                        <Checkbox
+                                                            className='mb-4 w-100'
+                                                            name='good'
+                                                            label={t("select_drivers_page.chips.good")}
+                                                            onChange={(e) => {
+                                                                const review_scores = {"wonderfull": form.reviews.wonderful || false, "excelent": form.reviews.excelent || false, "good": e.target.checked}
+                                                                setForm({
+                                                                    ...form,
+                                                                    reviews: review_scores
+                                                                });
+                                                                localStorage.setItem('sfd_filters', JSON.stringify({
+                                                                   date: form.date,
+                                                                   reviews: review_scores,
+                                                                   passengers_count: form.passengers_count,
+                                                                   travelers: form.travelers,
+                                                                   price_range: form.price_range
+                                                               }));
+                                                            }}
+                                                            value={form.reviews.good || false}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
                                         <div className="home_seach_items">
                                             <Chips name={displayPrice()}
                                                 onClick={() => {
                                                     setOpenCalendar(false);
                                                     setOpenCount(false);
+                                                    setReviewsPopupOpened(false);
                                                     setPricePopupOpened(!isPricePopupOpened);
                                                 }
                                             } />

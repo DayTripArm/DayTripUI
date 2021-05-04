@@ -104,7 +104,7 @@ const LocationAndDestination = (props) => {
 
     return(
         <>
-            <h4 className='text__blue mb-6'>{t("driver_sigup.step8.title1")}</h4>
+            <h4 className='text__blue mb-6'>{t("driver_signup.step8.title1")}</h4>
 
             <SelectCustom
                 async={true}

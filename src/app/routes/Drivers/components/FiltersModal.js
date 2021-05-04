@@ -47,7 +47,7 @@ const FiltersModal = (props) => {
         }));
         localStorage.setItem('sfd_filters', JSON.stringify({
             date: form.date,
-            reviews: '',
+            reviews: form.reviews,
             travelers: form.travelers,
             passengers_count: form.passengers_count,
             price_range: form.price_range
@@ -118,11 +118,12 @@ const FiltersModal = (props) => {
                             className='mb-4 w-100'
                             name='wonderful'
                             label={t("select_drivers_page.chips.wonderfull")}
-                            onChange={(e) => {setForm({
+                            onChange={(e) => {
+                                setForm({
                                     ...form,
-                                    review: {"wonderfull": e.target.checked, "excelent": form.reviews.excelent, "good": form.reviews.good}
+                                    reviews: {"wonderful": e.target.checked, "excelent": form.reviews.excelent || false, "good": form.reviews.good || false}
                                 });
-                                onSetReviewScore({"wonderfull": e.target.checked, "excelent": form.reviews.excelent, "good": form.reviews.good});
+                                onSetReviewScore({"wonderful": e.target.checked, "excelent": form.reviews.excelent || false, "good": form.reviews.good || false});
                             }}
                             value={form.reviews.wonderful || false}
                         />
@@ -130,23 +131,25 @@ const FiltersModal = (props) => {
                             className='mb-4 w-100'
                             name='review_score'
                             label={t("select_drivers_page.chips.very_good")}
-                            onChange={(e) => {setForm({
+                            onChange={(e) => {
+                                setForm({
                                     ...form,
-                                    review: {"wonderfull": form.reviews.wonderfull, "excelent": e.target.checked, "good": form.reviews.good},
+                                    reviews: {"wonderful": form.reviews.wonderful, "excelent": e.target.checked, "good": form.reviews.good},
                                 });
-                                onSetReviewScore({"wonderfull": form.reviews.wonderfull, "excelent": e.target.checked, "good": form.reviews.good});
+                                onSetReviewScore({"wonderful": form.reviews.wonderful || false, "excelent": e.target.checked, "good": form.reviews.good || false});
                             }}
-                            value={form.reviews.very_good || false}
+                            value={form.reviews.excelent || false}
                         />
                         <Checkbox
                             className='mb-4 w-100'
                             name='good'
                             label={t("select_drivers_page.chips.good")}
-                            onChange={(e) => {setForm({
+                            onChange={(e) => {
+                                setForm({
                                     ...form,
-                                    review: {"wonderfull": form.reviews.wonderfull, "excelent": form.reviews.excelent, "good": e.target.checked},
+                                    reviews: {"wonderful": form.reviews.wonderful || false, "excelent": form.reviews.excelent || false, "good": e.target.checked},
                                 });
-                                onSetReviewScore({"wonderfull": form.reviews.wonderfull, "excelent": form.reviews.excelent, "good": e.target.checked});
+                                onSetReviewScore({"wonderful": form.reviews.wonderful || false, "excelent": form.reviews.excelent || false, "good": e.target.checked});
                             }}
                             value={form.reviews.good || false}
                         />

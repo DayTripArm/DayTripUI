@@ -69,7 +69,7 @@ const ProfileData = (props) => {
           <SelectCustom
               type='text'
               name='birthMonth'
-              label='Date of Birth'
+              label={t("driver_signup.step7.birthdate")}
               placeholder={t("commons.select_pholder")}
               noOptionsMessage={t("commons.no_options")}
               onChange={(event, opt) => selectOnChange(event.value, opt.name)}

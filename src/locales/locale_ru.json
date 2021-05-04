@@ -333,6 +333,7 @@
         "step7": {
             "page_title": "Сделайте ваш профиль лучше",
             "gender": "Пол",
+            "birthdate": "Дата рождения",
             "birthday": "День рождения",
             "birthyear": "Год рождения",
             "about_label": "О вас",

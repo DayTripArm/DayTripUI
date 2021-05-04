@@ -332,6 +332,7 @@
         "step7": {
             "page_title": "Let’s Make Your Profile Look Better",
             "gender": "Gender",
+            "birthdate": "Date of Birth",
             "birthday": "Day of Birth",
             "birthyear": "Year of Birth",
             "about_label": "Short Bio",

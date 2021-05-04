@@ -13,7 +13,6 @@ import {
     IconAC,
     IconCheckMarkFilled
 } from 'shared/components/Icons';
-import {CAR_SPECS} from "../../../../constants";
 import { Link, useLocation } from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import { useTranslation } from 'react-i18next';

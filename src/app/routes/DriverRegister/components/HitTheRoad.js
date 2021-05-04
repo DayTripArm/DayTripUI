@@ -67,7 +67,7 @@ const HitTheRoad = (props) => {
 
     return (
         <>
-            <h2 className='text__blue mb-6 text-center'>Final Step</h2>
+            <h2 className='text__blue mb-6 text-center'>{t("driver_signup.final_step_header")}</h2>
             <img className='rounded__4 mb-4' alt='328x213' src={ImgMap} />
             <h4 className='text__blue mb-6 text-center'>
                 {t("driver_signup.step9.illustration_title")}

@@ -12,7 +12,6 @@ import {
   IconWater,
   IconAC
 } from 'shared/components/Icons';
-import {CAR_SPECS} from "../../../../constants";
 import Textarea from 'shared/components/Textarea';
 import Timepicker from "shared/components/Timepicker";
 import { Link, useLocation } from 'react-router-dom';
