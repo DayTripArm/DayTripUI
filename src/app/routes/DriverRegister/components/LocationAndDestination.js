@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
 import actions from "../../../../react_app/actions";
 import _ from "lodash";
+import i18n from './../../../../i18n';
 import Api from '../../../../Api';
 
 const LocationAndDestination = (props) => {
@@ -16,6 +17,7 @@ const LocationAndDestination = (props) => {
     const dispatch = useDispatch();
     const [openModal, setOpenModal] = useState(false);
     const { t } = useTranslation();
+    const lang = i18n.language || localStorage.getItem('lang') || 'en'
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
     const {
@@ -34,7 +36,7 @@ const LocationAndDestination = (props) => {
         document.documentElement.scrollTop = 0;
 
         dispatch(actions.destinationRequest());
-        dispatch(actions.tipsRequest(2));
+        dispatch(actions.tipsRequest(2, lang));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

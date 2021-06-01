@@ -157,8 +157,9 @@ const actions  = {
     }),
 
     HEROES_REQUEST: `${nameSpace}_HEROES_REQUEST`,
-    heroesRequest: () => ({
+    heroesRequest: (lang) => ({
         type: actions.HEROES_REQUEST,
+        lang
     }),
 
     HEROES_RECEIVE: `${nameSpace}_HEROES_RECEIVE`,
@@ -180,9 +181,10 @@ const actions  = {
     }),
 
     TRIP_DETAIL_REQUEST: `${nameSpace}_TRIP_DETAIL_REQUEST`,
-    tripDetailRequest: (trip_id) => ({
+    tripDetailRequest: (trip_id, lang) => ({
         type: actions.TRIP_DETAIL_REQUEST,
-        trip_id
+        trip_id,
+        lang
     }),
 
     TRIP_DETAIL_RECEIVE: `${nameSpace}_TRIP_DETAIL_RECEIVE`,
@@ -192,8 +194,9 @@ const actions  = {
     }),
 
     HIT_THE_ROAD_REQUEST: `${nameSpace}_HIT_THE_ROAD_REQUEST`,
-    hitTheRoadRequest: () => ({
-        type: actions.HIT_THE_ROAD_REQUEST
+    hitTheRoadRequest: (lang) => ({
+        type: actions.HIT_THE_ROAD_REQUEST,
+        lang
     }),
 
     HIT_THE_ROAD_RECEIVE: `${nameSpace}_HIT_THE_ROAD_RECEIVE`,
@@ -273,9 +276,10 @@ const actions  = {
     }),
 
     TIPS_REQUEST: `${nameSpace}_TIPS_REQUEST`,
-    tipsRequest: (tip_type) => ({
+    tipsRequest: (tip_type, lang) => ({
         type: actions.TIPS_REQUEST,
-        tip_type
+        tip_type,
+        lang
     }),
 
     TIPS_RECEIVE: `${nameSpace}_TIPS_RECEIVE`,

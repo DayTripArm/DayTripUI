@@ -152,10 +152,10 @@ function* carModelRequest(action) {
 }
 
 function* tipsRequest(action) {
-    const {tip_type} = action;
+    const {tip_type, lang} = action;
 
     try {
-        const {response, error} = yield call(Api.getTips, tip_type);
+        const {response, error} = yield call(Api.getTips, tip_type, lang);
 
         if (response) {
             yield put(actions.tipsReceive(response.data, tip_type));
@@ -183,7 +183,8 @@ function* destinationRequest(action) {
 
 function* heroesRequest(action) {
     try {
-        const {response, error} = yield call(Api.getHeroes);
+        const {lang} = action;
+        const {response, error} = yield call(Api.getHeroes, lang);
 
         if (response) {
             yield put(actions.heroesReceive(response.data));
@@ -198,8 +199,8 @@ function* heroesRequest(action) {
 function* tripsRequest(action) {
     try {
         const {body={}} = action;
-        const {is_top_choice=false, offset=0,limit=12} = body;
-        const {response, error} = yield call(Api.getTrips, localStorage.id || 0, is_top_choice,  Number(offset),Number(limit));
+        const {is_top_choice=false, offset=0,limit=12, lang="en"} = body;
+        const {response, error} = yield call(Api.getTrips, localStorage.id || 0, is_top_choice,  Number(offset),Number(limit),lang);
 
         if (response) {
             yield put(actions.tripsReceive(response.data));
@@ -214,7 +215,8 @@ function* tripsRequest(action) {
 function* hitTheRoadRequest(action) {
 
     try {
-        const {response, error} = yield call(Api.getHitTheRoad);
+        const {lang} = action;
+        const {response, error} = yield call(Api.getHitTheRoad, lang);
 
         if (response) {
             yield put(actions.hitTheRoadReceive(response.data));
@@ -265,10 +267,10 @@ function* savedTripsRequest(action) {
 }
 
 function* tripDetailRequest(action) {
-    const {trip_id} = action;
+    const {trip_id, lang} = action;
 
     try {
-        const {response, error} = yield call(Api.getTripDetail, trip_id, localStorage.id || 0);
+        const {response, error} = yield call(Api.getTripDetail, trip_id, localStorage.id || 0, lang);
 
         if (response) {
             yield put(actions.tripDetailReceive(response.data));

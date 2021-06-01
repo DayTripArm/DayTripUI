@@ -4,6 +4,7 @@ import ModalAside from 'shared/components/ModalAside';
 import FormDropZone from 'shared/components/FormDropZone';
 import {useDispatch, useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
+import i18n from './../../../../i18n';
 import actions from "../../../../actions";
 import _ from "lodash";
 
@@ -13,7 +14,7 @@ const CarRegistration = (props) => {
     const {preregistered_info} = driverData;
     const { t } = useTranslation();
     const {invalidFields} = props;
-
+    const lang = i18n.language || localStorage.getItem('lang') || 'en'
     const {
         car_photos=[],
         tips={},
@@ -25,7 +26,7 @@ const CarRegistration = (props) => {
 
     useEffect(() => {
         document.documentElement.scrollTop = 0;
-        dispatch(actions.tipsRequest(1));
+        dispatch(actions.tipsRequest(1, lang));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

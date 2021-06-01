@@ -130,6 +130,27 @@ const Drivers = ({ history }) => {
         updateDriversList(body);
     });
 
+    const onSetReviewsScore = ((review_scores) => {
+        setForm({
+            ...form,
+            reviews: review_scores
+        });
+        localStorage.setItem('sfd_filters', JSON.stringify({
+            date: form.date,
+            reviews: review_scores,
+            passengers_count: form.passengers_count,
+            travelers: form.travelers,
+            price_range: form.price_range
+        }));
+        const body = {
+            date: form.date,
+            travelers: form.travelers,
+            price_range: form.price_range || trip_id ? [50, 1000]: [25000, 50000],
+            reviews_score: review_scores
+        };
+        updateDriversList(body);
+    })
+
     const onSetPrice = ((price_range) => {
         keepFiltersState();
         const body = {
@@ -283,17 +304,7 @@ const Drivers = ({ history }) => {
                                                             label={t("select_drivers_page.chips.wonderfull")}
                                                             onChange={(e) => {
                                                                 const review_scores = {"wonderful": e.target.checked, "excelent": form.reviews.excelent || false, "good": form.reviews.good || false}
-                                                                setForm({
-                                                                    ...form,
-                                                                    reviews: review_scores
-                                                                });
-                                                                localStorage.setItem('sfd_filters', JSON.stringify({
-                                                                   date: form.date,
-                                                                   reviews: review_scores,
-                                                                   passengers_count: form.passengers_count,
-                                                                   travelers: form.travelers,
-                                                                   price_range: form.price_range
-                                                                }));
+                                                                onSetReviewsScore(review_scores);
                                                             }}
                                                             value={form.reviews.wonderful || false}
                                                         />
@@ -303,17 +314,7 @@ const Drivers = ({ history }) => {
                                                             label={t("select_drivers_page.chips.very_good")}
                                                             onChange={(e) => {
                                                                 const review_scores = {"wonderful": form.reviews.wonderful || false, "excelent": e.target.checked, "good": form.reviews.good || false}
-                                                                setForm({
-                                                                    ...form,
-                                                                    reviews: review_scores
-                                                                });
-                                                               localStorage.setItem('sfd_filters', JSON.stringify({
-                                                                   date: form.date,
-                                                                   reviews: review_scores,
-                                                                   passengers_count: form.passengers_count,
-                                                                   travelers: form.travelers,
-                                                                   price_range: form.price_range
-                                                               }));
+                                                                onSetReviewsScore(review_scores);
                                                             }}
                                                             value={form.reviews.excelent || false}
                                                         />
@@ -323,17 +324,7 @@ const Drivers = ({ history }) => {
                                                             label={t("select_drivers_page.chips.good")}
                                                             onChange={(e) => {
                                                                 const review_scores = {"wonderfull": form.reviews.wonderful || false, "excelent": form.reviews.excelent || false, "good": e.target.checked}
-                                                                setForm({
-                                                                    ...form,
-                                                                    reviews: review_scores
-                                                                });
-                                                                localStorage.setItem('sfd_filters', JSON.stringify({
-                                                                   date: form.date,
-                                                                   reviews: review_scores,
-                                                                   passengers_count: form.passengers_count,
-                                                                   travelers: form.travelers,
-                                                                   price_range: form.price_range
-                                                               }));
+                                                                onSetReviewsScore(review_scores);
                                                             }}
                                                             value={form.reviews.good || false}
                                                         />

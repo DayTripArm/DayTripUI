@@ -7,6 +7,7 @@ import SearchPanel from './components/SearchPanel';
 import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
+import i18n from './../../../i18n';
 import actions from "../../../actions";
 
 const Tour = ({ history }) => {
@@ -16,7 +17,7 @@ const Tour = ({ history }) => {
 
     const {travelerData} = useSelector(state => state);
     const {trip_detail={}} = travelerData;
-
+    const lang = i18n.language || localStorage.getItem('lang') || 'en'
     const {location:history_location={}} = history;
     let {state:history_state={}} = history_location;
 
@@ -39,7 +40,7 @@ const Tour = ({ history }) => {
     const {is_saved, destinations=[], review_stats={}, reviews=[]} = trip_detail;
 
     useEffect(() => {
-        dispatch(actions.tripDetailRequest(trip_id));
+        dispatch(actions.tripDetailRequest(trip_id, lang));
         document.documentElement.scrollTop = 0;
 
         // eslint-disable-next-line react-hooks/exhaustive-deps

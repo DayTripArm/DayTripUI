@@ -39,8 +39,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    getTips(type) {
-        return axios.get(template(base_urls.day_trip.getTips, type), { handlesError: [400, 417, 500] })
+    getTips(type, lang) {
+        return axios.get(template(base_urls.day_trip.getTips, type, lang), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
@@ -51,14 +51,14 @@ export default {
             .catch(error => ({error}) );
     },
 
-    getHeroes() {
-        return axios.get(base_urls.day_trip.getHeroes, { handlesError: [400, 417, 500] })
+    getHeroes(lang) {
+        return axios.get(template(base_urls.day_trip.getHeroes, lang), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
 
-    getTrips(login_id, is_top_choice, offset, limit) {
-        return axios.get(template(base_urls.day_trip.getTrips, login_id, is_top_choice, offset, limit), { handlesError: [400, 417, 500] })
+    getTrips(login_id, is_top_choice, offset, limit, lang) {
+        return axios.get(template(base_urls.day_trip.getTrips, login_id, is_top_choice, offset, limit, lang), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
@@ -69,8 +69,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    getHitTheRoad() {
-        return axios.get(base_urls.day_trip.getHitTheRoad, { handlesError: [400, 417, 500] })
+    getHitTheRoad(lang) {
+        return axios.get(template(base_urls.day_trip.getHitTheRoad, lang), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
@@ -87,8 +87,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    getTripDetail(trip_id, login_id) {
-        return axios.get(template(base_urls.day_trip.getTripDetail, trip_id, login_id), { handlesError: [400, 417, 500] })
+    getTripDetail(trip_id, login_id, lang) {
+        return axios.get(template(base_urls.day_trip.getTripDetail, trip_id, login_id, lang), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },

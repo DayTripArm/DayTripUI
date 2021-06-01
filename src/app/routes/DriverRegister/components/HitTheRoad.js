@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
 import actions from "../../../../react_app/actions";
 import _ from "lodash";
+import i18n from './../../../../i18n';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
@@ -30,7 +31,7 @@ const HitTheRoad = (props) => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [openModal, setOpenModal] = useState(false);
-
+    const lang = i18n.language || localStorage.getItem('lang') || 'en'
     const {driverData} = useSelector(state => state);
     const {preregistered_info} = driverData;
     const {
@@ -45,7 +46,7 @@ const HitTheRoad = (props) => {
     useEffect(() => {
         document.documentElement.scrollTop = 0;
 
-        dispatch(actions.tipsRequest(4));
+        dispatch(actions.tipsRequest(4, lang));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
