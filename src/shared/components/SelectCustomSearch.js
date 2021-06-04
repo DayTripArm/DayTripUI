@@ -3,12 +3,13 @@ import {IconZoom } from 'shared/components/Icons';
 import Input from "./Input";
 import Api from "../../Api";
 import _ from 'lodash';
+import i18n from './../../i18n';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from "react-router-dom";
 
 const SelectCustomSearch = (props) => {
     let history = useHistory();
-
+    const lang = i18n.language || localStorage.getItem('lang') || 'en'
     const {
         mobileSearchActive,
         setOpenSearchDropdown,
@@ -22,7 +23,7 @@ const SelectCustomSearch = (props) => {
         const value = e.target ? e.target.value : "";
 
         setTimeout(async (value) => {
-            let response = await Api.searchTrips(value || "");
+            let response = await Api.searchTrips(value || "", lang);
 
             setOptions(response.response? response.response.data.slice(0, 30) : {}); // show first 30 items
         }, 300, value);

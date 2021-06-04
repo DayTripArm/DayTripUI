@@ -7,11 +7,13 @@ import CarPrices from './routes/CarPrices';
 import {useDispatch} from "react-redux";
 import { useTranslation } from 'react-i18next';
 import actions from "../../../actions";
+import i18n from './../../../i18n';
 import Api from "../../../Api";
 
 const Car = ({ match }) => {
     const dispatch = useDispatch();
     const { t } = useTranslation();
+    const lang = i18n.language || localStorage.getItem('lang') || 'en'
     useEffect(() => {
         const asyncRequest = async () => {
             const driverInfo = await Api.driverInfosRequest(Number(localStorage.id));  // driverInfosRequest
@@ -24,7 +26,7 @@ const Car = ({ match }) => {
             const carModels = await Api.getCarModels(Number(car_mark)); // get car models
             dispatch(actions.carModelReceive(carModels.response.data));
 
-            dispatch(actions.destinationRequest()); // get destination list
+            dispatch(actions.destinationRequest(lang)); // get destination list
 
         };
 

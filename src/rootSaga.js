@@ -169,7 +169,8 @@ function* tipsRequest(action) {
 
 function* destinationRequest(action) {
     try {
-        const {response, error} = yield call(Api.getDestinations);
+        const {lang} = action;
+        const {response, error} = yield call(Api.getDestinations, lang);
 
         if (response) {
             yield put(actions.destinationReceive(response.data));

@@ -45,8 +45,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    getDestinations() {
-        return axios.get(base_urls.day_trip.getDestinations, { handlesError: [400, 417, 500] })
+    getDestinations(lang) {
+        return axios.get(template(base_urls.day_trip.getDestinations, lang), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
@@ -63,8 +63,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    searchTrips(query) {
-        return axios.get(template(base_urls.day_trip.searchTrips, query), { handlesError: [400, 417, 500] })
+    searchTrips(query,lang) {
+        return axios.get(template(base_urls.day_trip.searchTrips, query, lang), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },

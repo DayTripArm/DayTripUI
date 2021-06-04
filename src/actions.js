@@ -290,8 +290,9 @@ const actions  = {
     }),
 
     DESTINATION_REQUEST: `${nameSpace}_DESTINATION_REQUEST`,
-    destinationRequest: () => ({
-        type: actions.DESTINATION_REQUEST
+    destinationRequest: (lang) => ({
+        type: actions.DESTINATION_REQUEST,
+        lang
     }),
 
     DESTINATION_RECEIVE: `${nameSpace}_DESTINATION_RECEIVE`,

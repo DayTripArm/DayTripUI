@@ -35,7 +35,7 @@ const LocationAndDestination = (props) => {
     useEffect(() => {
         document.documentElement.scrollTop = 0;
 
-        dispatch(actions.destinationRequest());
+        dispatch(actions.destinationRequest(lang));
         dispatch(actions.tipsRequest(2, lang));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
