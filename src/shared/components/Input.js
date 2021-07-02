@@ -111,6 +111,7 @@ const Input = ({
                         value={inputValue}
                         placeholder={placeholder}
                         onChange={(e) => onChangeHandle(e, name)}
+                        countryCodeEditable={false}
                         onFocus={onFocus}
                         onBlur={(e) => onBlurHandle(e, name)}
                         required={required}
