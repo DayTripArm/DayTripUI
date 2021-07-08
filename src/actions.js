@@ -403,6 +403,12 @@ const actions  = {
         body
     }),
 
+    TRIP_BOOKING_CHECKOUT_RECEIVE_ERROR: `${nameSpace}_TRIP_BOOKING_CHECKOUT_RECEIVE_ERROR`,
+    tripBookingCheckoutReceiveError: (response) => ({
+        type: actions.TRIP_BOOKING_CHECKOUT_RECEIVE_ERROR,
+        response
+    }),
+
     BOOKED_TRIPS_REQUEST: `${nameSpace}_BOOKED_TRIPS_REQUEST`,
     getBookedTripsRequest: (driver_id, user_type) => ({
         type: actions.BOOKED_TRIPS_REQUEST,

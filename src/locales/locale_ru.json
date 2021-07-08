@@ -486,8 +486,8 @@
         "error_msgs":{
             "name_required": "Имя обязательно",
             "password_required": "Пароль обязателен",
-            "email_invalid": "Эл. адресс неправелен",
-            "phone_invalid": "Номер телефона неправелен",
+            "email_invalid": "Эл. адресс неправилен",
+            "phone_invalid": "Номер телефона неправилен",
             "required_field": "Эти данные необходимы"
         },
         "car_type": {

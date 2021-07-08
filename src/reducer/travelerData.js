@@ -210,6 +210,17 @@ const travelerData = (state = INITIAL_STATE, action) => {
                 traveler_info: data.profile
             }
         }
+
+        case actions.TRIP_BOOKING_CHECKOUT_RECEIVE_ERROR: {
+            const {response} = action;
+            const {data} = response;
+
+            return {
+                ...state,
+                booked_trip_errors: data
+            }
+        }
+
         case actions.PRICES_LIST_RECEIVE:{
             const {data={}} = action;
 

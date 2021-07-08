@@ -14,7 +14,7 @@ import {
     IconCheckMarkFilled
 } from 'shared/components/Icons';
 import { Link, useLocation } from 'react-router-dom';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
 import actions from "actions";
 import moment from "moment";
@@ -83,7 +83,15 @@ const Payment = () => {
   const location = useLocation();
   const checkout_info = location.state;
   const [showMoreDetails, setShowMoreDetails] = useState(false);
+  const [promo, setPromo] = useState("");
   const driver_img_src = checkout_info?.driver_img || 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
+
+    const {travelerData} = useSelector(state => state);
+    const {
+        booked_trip_errors
+    } = travelerData;
+
+    const {message} = booked_trip_errors || "";
 
   const card_info_texts = {
     card_currency: t("account_page.payments.card_currency", {currency: "AMD"}),
@@ -97,10 +105,11 @@ const Payment = () => {
     name_pholder: t("home_page.sign_up.name_placeholder"),
     set_as_default_checkbox: t("checkout_page.card_info.set_as_default_checkbox")
   }
-    const locale = localStorage.getItem('lang') || 'en';
+  const locale = localStorage.getItem('lang') || 'en';
   const completeCheckout = () => {
-    const body = _.omit(checkout_info,["driver_img", "trip_img", "driver_name", "car_specs", "car_full_name", "trip_location", "trip_review", "review", "car_full_name", "languages", "trip_duration"]);
-    dispatch(actions.confirmTripBookingCheckout(body))
+
+    let body = _.omit(checkout_info,["driver_img", "trip_img", "driver_name", "car_specs", "car_full_name", "trip_location", "trip_review", "review", "car_full_name", "languages", "trip_duration"]);
+    dispatch(actions.confirmTripBookingCheckout({...body, promo_code: promo}))
   };
 
   return (
@@ -108,6 +117,15 @@ const Payment = () => {
       <div className='col-lg-5 col-xl-4 col-xxl-3 pl-0 pr-0 pr-md-4 mb-10'>
         <h2 className='text__blue'>{t("checkout_page.payment_page_title")}</h2>
         {cardExists ? <CardInformation card_info_texts={card_info_texts} /> : <CardRegistrationForm card_info_texts={card_info_texts} />}
+        <Input
+          type='text'
+          name='promo_code'
+          label='Promo Code'
+          placeholder=''
+          message={message}
+          isError={message  || false}
+          onChange={(e) => {setPromo(e.target.value)}}
+        />
       </div>
       <div className='col-lg-5 col-xl-4 col-xxl-3 px-0'>
         <div className='rounded__4 border-style border__default'>

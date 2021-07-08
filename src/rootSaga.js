@@ -491,7 +491,8 @@ function* confirmTripBookingCheckout(action) {
                 window.location.href = "/checkout/success";
             })
         } else {
-            console.log(" err ", error);
+            console.log(" err ", error.response);
+            yield put(actions.tripBookingCheckoutReceiveError(error.response));
         }
 
     } catch (e) {
