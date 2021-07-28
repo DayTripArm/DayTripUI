@@ -20,7 +20,7 @@ const DeleteAccountModal = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        #debugger
+        // debugger
         dispatch(actions.deleteUserRequest({reason: itemValue, other: otherValue}, Number(localStorage.id)));
         // dispatch(actions.logOut());
         // delete localStorage.userType;
