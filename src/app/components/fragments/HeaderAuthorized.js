@@ -11,11 +11,14 @@ import {
     IconUser,
     IconTimes,
 } from 'shared/components/Icons';
+import DeleteAccountModal from '../modals/DeleteAccountModal';
+import RestrictDeleteModal from '../modals/RestrictDeleteModal';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
 import actions from "../../../actions";
 import _ from "lodash";
+import Api from "../../../Api";
 
 const HeaderAuthorized = ({ type }) => {
     const dispatch = useDispatch();
@@ -24,6 +27,8 @@ const HeaderAuthorized = ({ type }) => {
     const [openDropdown, setOpenDropdown] = useState(false);
 
     useOutsideClick(dropdownContainer, () => setOpenDropdown(false));
+    const [openDeleteAccountModal, setOpenDeleteAccountModal] = useState(false);
+    const [openRestrictModal, setOpenRestrictModal] = useState(false);
 
     const {travelerData={}, driverData={}, config={}} = useSelector(state => state);
 
@@ -34,6 +39,7 @@ const HeaderAuthorized = ({ type }) => {
 
     const {user={}} = !_.isEmpty(user_info) ? user_info : driver_info;
     let obj = {};
+    let bookedTripsCount = -1;
 
     if (Number(userType) === 1) { //traveler user
         obj = !_.isEmpty(travelerProfile) ? travelerProfile : user;
@@ -104,7 +110,26 @@ const HeaderAuthorized = ({ type }) => {
         window.location.href = "/";
     };
 
+    const deleteAccount = () => {
+        const asyncRequest = async () => {
+            const bookedCount = await Api.getBookedTripsCount(Number(localStorage.id), Number(localStorage.userType));  // get users booked trips
+            bookedTripsCount = bookedCount.response.data ? bookedCount.response.data.book_trips_count : -1;
+
+            if (bookedTripsCount > 0){
+                setOpenRestrictModal(true);
+                window.location.hash = "modal"
+            }else if (bookedTripsCount === 0){
+                setOpenDeleteAccountModal(true);
+                window.location.hash = "modal"
+            }
+        };
+
+        asyncRequest();
+    };
+
+
     return (
+        <>
         <nav className='guest-nav d-flex'>
             <ul className='guest-menu guest-menu__mobile no-list-style mb-0 d-flex justify-content-center justify-content-xl-end'>
                 {navigationTypes[type].map((nav, i) => {
@@ -236,6 +261,15 @@ const HeaderAuthorized = ({ type }) => {
                             </li>
                             <li>
                                 <NavLink
+                                    to='/deleteAccount'
+                                    className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
+                                    activeClassName='active'
+                                >
+                                    <span className='d-block py-4 border__bottom border__default'  onClick={() => deleteAccount()}>{t("home_page.top_menu.delete_account")}</span>
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
                                     to='/currency'
                                     className='list-item d-block list-item__hover text__grey-dark weight-500 px-5 text-ellipsis'
                                     activeClassName='active'
@@ -248,6 +282,15 @@ const HeaderAuthorized = ({ type }) => {
                 </li>
             </ul>
         </nav>
+            {openDeleteAccountModal && <DeleteAccountModal
+                onClose={() => setOpenDeleteAccountModal(false)}
+                userType ={localStorage.userType}
+            />}
+            {openRestrictModal && <RestrictDeleteModal
+                count={bookedTripsCount} onClose={() => setOpenRestrictModal(false)}
+            />}
+
+        </>
     );
 };
 

@@ -1,7 +1,7 @@
 {
     "home_page": {
         "search_dest": "Որոնել Ուղղություններ",
-        "top_menu": {
+            "top_menu": {
             "become_driver": "Դառնալ Վարորդ",
             "sign_up": "Գրանցվել",
             "login": "Մուտք",
@@ -15,6 +15,7 @@
             "profile": "Պրոֆիլ",
             "account": "Հաշիվ",
             "help": "Օգնություն",
+            "delete_account": "Ջնջել Հաշիվը",
             "logout": "Դուրս գալ"
         },
         "sign_up": {
@@ -48,6 +49,21 @@
             "check_email": "Ստուգել էլ. հասցեն",
             "confirm_email_text": "Խնդրում ենք հաստատել էլ. հասցեն՝ սեղմելով հղման վրա, որ ուղղարկվել է ձեզ",
             "resend_btn": "Կրկին ուղղարկել"
+        },
+        "delete_account": {
+            "title": "Հաստատել Ջնջել Հաշիվը?",
+            "about_delete": "Դուք պատրաստվում եք ջնջել ձեր հաշիվը",
+            "reason_question": "Կարո՞ղ եք նշել պատճառը?",
+            "usage_reason_traveler": "Արձակուրդիս ժամանակ օգտագործում էի Dayatrip- ը, դա ինձ այլեւս պետք չէ",
+            "usage_reason_driver": "Ես չեմ ստանում բավարար ամրագրումներ",
+            "trouble_reason": "Ես խնդիրներ ունեմ հարթակի հետ / հարթակը դժվար էր օգտագործել",
+            "concern_reason": "Ինձ անհանգստացնում են իմ տվյալները",
+            "other_reason": "Այլ/նշեք"
+        },
+        "restrict_delete_account": {
+            "title": "Ջնջել Հաշիվը",
+            "upcoming_trips_information": "Կարծես թե առաջիկա ամրագրումներ ունեք!",
+            "cancel_all_trips": "Նախքան ձեր հաշիվը ջնջելը, դուք պետք է չեղարկեք բոլոր առաջիկա ուղևորությունները."
         },
         "onboarding": {
             "popup_title": "Բարի գալուստ DayTrip",
@@ -481,6 +497,7 @@
             "save_btn": "Հիշել",
             "upload_btn": "Բեռնել",
             "proceed_btn": "Շարունակել",
+            "confirm_btn": "Հաստատել",
             "add_image": "Ավելացնել լուսանկար"
         },
         "car_type": {

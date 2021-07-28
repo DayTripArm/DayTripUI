@@ -696,11 +696,28 @@ function* getConversationMessages(action) {
     }
 }
 
+function* deleteUserRequest(action) {
+    try {
+        const {body} = action;
+        const {response, error} = yield call(Api.deleteUserRequest, body, localStorage.id || 0);
+
+        if (response) {
+            yield put(actions.deleteUserReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
     yield takeEvery(actions.PROFILE_INFO_REQUEST, profileInfoRequest);
     yield takeEvery(actions.UPDATE_PROFILE_INFO, updateProfileInfo);
+    yield takeEvery(actions.DELETE_USER_REQUEST, deleteUserRequest);
     yield takeEvery(actions.CAR_MARK_REQUEST, carMarkRequest);
     yield takeEvery(actions.CAR_MODEL_REQUEST, carModelRequest);
     yield takeEvery(actions.TIPS_REQUEST, tipsRequest);

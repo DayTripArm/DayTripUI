@@ -5,6 +5,7 @@ export default {
   "day_trip": {
     "sign_up": `${HOST}/sign_up`,
     "sign_in": `${HOST}/sign_in`,
+    "delete_user": `${HOST}/logins/{0}`,
     "getProfileInfo": `${HOST}/profile_info/{0}?profile={1}`,
     "updateProfileInfo": `${HOST}/profile_info/{0}`,
     "getCarMarks": `${HOST}/car_brands`,
@@ -32,6 +33,7 @@ export default {
     "addDriverReview": `${HOST}/driver_review`,
     "confirmTripBookingCheckout": `${HOST}/booked_trips`,
     "getBookedTrips": `${HOST}/booked_trips?user_id={0}&utype={1}`,
+    "getBookedTripsCount": `${HOST}/booked_trips_count?user_id={0}&utype={1}`,
     "getBookedTrip": `${HOST}/booked_trips/{0}?utype={1}`,
     "resendConfirmation": `${HOST}/resend_confirmation?email={0}`,
     "getConversation": `${HOST}/conversations`,

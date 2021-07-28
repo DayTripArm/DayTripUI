@@ -48,6 +48,18 @@ const actions  = {
         type: actions.LOG_OUT
     }),
 
+    DELETE_USER_REQUEST: `${nameSpace}_DELETE_USER_REQUEST`,
+    deleteUserRequest: (body) => ({
+        type: actions.DELETE_USER_REQUEST,
+        body
+    }),
+
+    DELETE_USER_RECEIVE: `${nameSpace}_DELETE_USER_RECEIVE`,
+    deleteUserReceive: (data) => ({
+        type: actions.DELETE_USER_RECEIVE,
+        data
+    }),
+
     SHOW_HIDE_SIGN_IN: `${nameSpace}_SHOW_HIDE_SIGN_IN`,
     showHideSignIn: (show) => ({
         type: actions.SHOW_HIDE_SIGN_IN,

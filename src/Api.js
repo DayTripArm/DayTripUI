@@ -15,6 +15,12 @@ export default {
             .catch(error => ({error}) );
     },
 
+    deleteUserRequest(body, id) {
+        return axios.delete(template(base_urls.day_trip.delete_user, id), { handlesError: [400, 417, 500], data: body })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
     getProfileInfo(id) {
         return axios.get(template(base_urls.day_trip.getProfileInfo, id, "personal"), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
@@ -154,6 +160,12 @@ export default {
 
     getBookedTrips(driver_id, user_type) {
         return axios.get(template(base_urls.day_trip.getBookedTrips, driver_id, user_type), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    getBookedTripsCount(user_id, user_type) {
+        return axios.get(template(base_urls.day_trip.getBookedTripsCount, user_id, user_type), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },

@@ -15,6 +15,7 @@
             "profile": "Profile",
             "account": "Account",
             "help": "Help",
+            "delete_account": "Delete Account",
             "logout": "Log out"
         },
         "sign_up": {
@@ -48,6 +49,21 @@
             "check_email": "Check your Email",
             "confirm_email_text": "Please confirm your email address by clicking on the link we have sent",
             "resend_btn": "Resend Email"
+        },
+        "delete_account": {
+            "title": "Confirm Delete Account?",
+            "about_delete": "You are about to delete your account",
+            "reason_question": "Could you please specify the reason?",
+            "usage_reason_traveler": "I was using Dayatrip during my vacation, I don't need it anymore",
+            "usage_reason_driver": "I was not getting enough bookings",
+            "trouble_reason": "I have troubles getting through with the platform/the platform was hard to use",
+            "concern_reason": "I'm concerned about my data",
+            "other_reason": "Other/specify"
+        },
+        "restrict_delete_account": {
+            "title": "Delete Account",
+            "upcoming_trips_information": "It seems you have upcoming bookings!",
+            "cancel_all_trips": "You need to cancel all upcoming trips before deleting your account."
         },
         "onboarding": {
             "popup_title": "Welcome to Daytrip",
@@ -480,6 +496,7 @@
             "save_btn": "Save",
             "upload_btn": "Upload",
             "proceed_btn": "Proceed",
+            "confirm_btn": "Confirm",
             "add_image": "Add A New Image"
         },
         "car_type": {
