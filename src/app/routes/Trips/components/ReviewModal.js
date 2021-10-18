@@ -34,7 +34,7 @@ const ReviewModal = ({ onClose, reviewTrip, activeTab }) => {
   function validateField(form, name,validate) {
     const rule = validations[name];
     if (rule) {
-        if (rule.required && (!form[name] || form[name] && form[name]===0) && validate) {
+        if (rule.required && (!form[name] || (form[name] && form[name]===0)) && validate) {
             return { status: "error", statusMessage: t("trips_page.trip_card.rate_review_modal.rate_err_msg",
                     {text: (tab === 1 ? t("trips_page.trip_card.rate_review_modal.tab1"): t("trips_page.trip_card.rate_review_modal.tab2")).toLowerCase()})};
         }

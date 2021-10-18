@@ -22,7 +22,7 @@ const FormCarInputBoxPicture = (props) => {
     const [photos, setPhotos] = useState(options);
     const [deletedPhotos, setDeletedPhotos] = useState([]);
 
-    photos.map(file => {
+    photos.forEach(file => {
         const src = process.env.NODE_ENV === "development"
             ? HOST_URL + file.full_path
             : file.full_path;
@@ -46,7 +46,7 @@ const FormCarInputBoxPicture = (props) => {
     };
 
     const handleChange = (type, uploadPhotos, delPhoto) => {
-        uploadPhotos.map(file => {
+        uploadPhotos.forEach(file => {
             const src = process.env.NODE_ENV === "development"
                 ? HOST_URL + file.full_path
                 : file.full_path;

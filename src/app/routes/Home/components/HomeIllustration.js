@@ -7,7 +7,6 @@ import ProgressiveImage from "react-progressive-image-loading";
 const HomeIllustration = () => {
     const {travelerData={}} = useSelector(state => state);
     const {heroes={}} = travelerData;
-    console.log(heroes)
     const {
         btn_link,
         btn_title,

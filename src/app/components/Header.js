@@ -44,8 +44,9 @@ const Header = ({ type = 'unauthorized', navigationType = 'user' }) => {
     useOutsideClick(searchContainer, () => setMobileSearchActive(false));
 
     useEffect(() => {
-        let HeaderSection = headerTypes[type];
+        //let HeaderSection = headerTypes[type];
         document.body.style.overflow = mobileMenuActive ? 'hidden' : 'unset';
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mobileMenuActive]);
 
     if (hide) return null;

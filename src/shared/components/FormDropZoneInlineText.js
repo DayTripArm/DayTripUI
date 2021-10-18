@@ -25,7 +25,7 @@ function FormDropZoneInlineText(props) {
                 return memo;
             }, []);
 
-            acceptedFiles.map(file => {
+            acceptedFiles.forEach(file => {
                 if (!_.includes(existingPhotoNames, file.name)) {
                     Object.assign(file, {preview: URL.createObjectURL(file)});
                     newPhotos.push(file);

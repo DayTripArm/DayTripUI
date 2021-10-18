@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {STRING_NUMBERS} from "../../../../constants";
 import InfoModal from "./InfoModal";
 import { useTranslation } from 'react-i18next';
 import _ from "lodash";

@@ -190,6 +190,7 @@ const FormInputBox = (props) => {
             localStorage.setItem("proceed_once", "true");
             dispatch(actions.updateValidationList(name));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [proceed]);
 
     const box_label = localStorage.proceed_once === "true" && _.includes(validationList, name)

@@ -34,7 +34,6 @@ const Tour = ({ history }) => {
         title,
         images=[],
         trip_duration,
-        trip_distance,
         start_location,
         agenda,
         map_image=[],
@@ -50,19 +49,19 @@ const Tour = ({ history }) => {
     }, [trip_id]);
 
     // Albert: TODO Hide Gmaps controls
-    /*if(document.getElementById('tour_map')){
-        console.log("frame found")
-        document.getElementById('tour_map').addEventListener("load", ev => {
-            console.log("frame loaded")
-            console.log("ev", ev)
-            console.log("body", ev.path[9])
-            console.log("card", ev.path[9].querySelector('.directions-card'))
-            if(ev.path[9].querySelector('.directions-card')){
-                console.log("card founded")
-                ev.path[9].querySelector('.directions-card').style.display = "none";
-            }
-        })
-    }*/
+    // if(document.getElementById('tour_map')){
+    //     console.log("frame found")
+    //     document.getElementById('tour_map').addEventListener("load", ev => {
+    //         console.log("frame loaded")
+    //         console.log("ev", ev)
+    //         console.log("body", ev.path[9])
+    //         console.log("card", ev.path[9].querySelector('.directions-card'))
+    //         if(ev.path[9].querySelector('.directions-card')){
+    //             console.log("card founded")
+    //             ev.path[9].querySelector('.directions-card').style.display = "none";
+    //         }
+    //     })
+    // }
 
 
     const secondsToHourMinutes = (duration) => {
@@ -142,6 +141,7 @@ const Tour = ({ history }) => {
                                   height="400"
                                   frameBorder="0"
                                   id="tour_map"
+                                  title="Trip Map"
                                   src={`https://www.google.com/maps/embed/v1/directions?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&mode=driving&origin=${start_location || "Yerevan, Eritasardakan"}
                                   &destination=${start_location || "Yerevan, Eritasardakan"}&waypoints=${_.join(destinations.map(dest => (dest.dest_title)), '|')}`}>
                                 </iframe>

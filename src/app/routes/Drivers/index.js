@@ -45,8 +45,9 @@ const Drivers = ({ history }) => {
             limit: 5
         };
 
-        dispatch(actions.searchForDriversRequest(body))
-        dispatch(actions.loadPricesListRequest(trip_id? true: false))
+        dispatch(actions.searchForDriversRequest(body));
+        dispatch(actions.loadPricesListRequest(trip_id? true: false));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
     const {travelerData} = useSelector(state => state);

@@ -32,11 +32,11 @@ const SearchPanel = ({trip_detail, review_stats}) => {
     const [showSearchPopup, setShowSearchPopup] = useState(false);
     const [form, setForm] = useState({date: "", travelers: "0"});
     const [count, setCount] = useState({adults: 0, children: 0});
-    const locale_code = localStorage.getItem('lang') || 'en'
     let [tripTitle, setTitle] = useState("");
 
     useEffect(() => {
-            calculateTitleWidth();
+        calculateTitleWidth();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [trip_detail.title]);
 
     useOutsideClick(container1, () => setShowDatePicker(false));

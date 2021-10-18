@@ -323,9 +323,9 @@ function* updateDriverInfosRequest(action) {
 
     const photos_key = ['car_photos', 'license_photos', 'reg_card_photos', 'gov_photos'];
 
-    photos_key.map(key => {
+    photos_key.forEach(key => {
         _.each(_.pick(body, key), (photos, name) => {
-            photos.map(photo => {
+            photos.forEach(photo => {
                 if (photo.id) {
                     formData.append(`${name}[${photo.name}]`, JSON.stringify(photo));
                 } else {

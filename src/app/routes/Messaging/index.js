@@ -26,7 +26,7 @@ const Messaging = () => {
     const {config} = useSelector(state => state);
     const {conversations={}, messages=[]} = config;
     const {conversations_list} = conversations;
-    const dataLength = conversations_list && conversations_list.length || 0;
+    const dataLength = conversations_list ? conversations_list.length : 0;
     const [chatActive, setChatActive] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [conversation, setConversation] = useState(undefined);
