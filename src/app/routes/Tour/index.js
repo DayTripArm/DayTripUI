@@ -8,7 +8,9 @@ import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
 import i18n from './../../../i18n';
+import {HOST_URL} from "../../../constants";
 import actions from "../../../actions";
+import _ from "lodash";
 
 const Tour = ({ history }) => {
     const dispatch = useDispatch();
@@ -32,6 +34,7 @@ const Tour = ({ history }) => {
         title,
         images=[],
         trip_duration,
+        trip_distance,
         start_location,
         agenda,
         map_image=[],
@@ -45,6 +48,31 @@ const Tour = ({ history }) => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [trip_id]);
+
+    // Albert: TODO Hide Gmaps controls
+    /*if(document.getElementById('tour_map')){
+        console.log("frame found")
+        document.getElementById('tour_map').addEventListener("load", ev => {
+            console.log("frame loaded")
+            console.log("ev", ev)
+            console.log("body", ev.path[9])
+            console.log("card", ev.path[9].querySelector('.directions-card'))
+            if(ev.path[9].querySelector('.directions-card')){
+                console.log("card founded")
+                ev.path[9].querySelector('.directions-card').style.display = "none";
+            }
+        })
+    }*/
+
+
+    const secondsToHourMinutes = (duration) => {
+        let trip_duration = duration * 2
+        var hours = Math.floor(trip_duration / (60*60));
+        trip_duration -= hours   * (60*60);
+        var minutes  = Math.floor(trip_duration / (60));
+        trip_duration -= minutes * (60);
+        return (hours >=1 ? `${hours+t("commons.short_duration.hours")} `: "")+minutes+t("commons.short_duration.min")
+    }
 
     return (
         <>
@@ -62,7 +90,7 @@ const Tour = ({ history }) => {
                             <div className='d-md-flex'>
                                 <div className='d-flex mb-4 mb-md-0 mr-md-5'>
                                     <IconClockOutlined className='mr-2' />
-                                    <p className='mb-0'>{t("trip_details_page.duration")}: <span className='weight-500 text__grey-dark'>{trip_duration} {t("commons.hours")}</span></p>
+                                    <p className='mb-0'>{t("trip_details_page.duration")}: <span className='weight-500 text__grey-dark'>{secondsToHourMinutes(trip_duration)}</span></p>
                                 </div>
                                 <div className='d-flex mb-0'>
                                     <IconDestination className='mr-2' />
@@ -93,7 +121,7 @@ const Tour = ({ history }) => {
                             {
                                 map_image.map((img, i) => {
                                     const src = process.env.NODE_ENV === "development"
-                                        ? "http://localhost:3000" + img.url
+                                        ? HOST_URL + img.url
                                         : img.url;
                                     return(
                                         <img key={i} src={src} alt='map' className='w-100 rounded__8' />
@@ -102,6 +130,26 @@ const Tour = ({ history }) => {
                             }
                         </div>
                     </div>
+                    <div className='row'>
+                        <div className='col-xl-4' />
+                        <div className='col-xl-8'>
+                            <div className="mt-14 mt-md-15 mt-xl-16">
+                                <h2 className="text__blue mt-4">Map</h2>
+                            </div>
+                            {destinations && destinations.length > 0 &&
+                                <iframe
+                                  width="100%"
+                                  height="400"
+                                  frameBorder="0"
+                                  id="tour_map"
+                                  src={`https://www.google.com/maps/embed/v1/directions?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&mode=driving&origin=${start_location || "Yerevan, Eritasardakan"}
+                                  &destination=${start_location || "Yerevan, Eritasardakan"}&waypoints=${_.join(destinations.map(dest => (dest.dest_title)), '|')}`}>
+                                </iframe>
+                            }
+                        </div>
+                    </div>
+
+
                     <div className='row'>
                         <div className='col-xl-4' />
                         <div className='col-xl-8'>

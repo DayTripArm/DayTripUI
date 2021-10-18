@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { IconHome, IconGlobe } from 'shared/components/Icons';
 import actions from "../../../../../actions";
-import {MONTH_LIST, TRAVELER_TYPE} from "../../../../../constants";
+import {MONTH_LIST, TRAVELER_TYPE, HOST_URL} from "../../../../../constants";
 import {Link} from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
@@ -36,7 +36,7 @@ const User = ({history={}}) => {
     const created_date = new Date(created_at || "");
     const member_since = t(`commons.months.${MONTH_LIST[created_date.getMonth()]}`) + " " + created_date.getFullYear();
     const src = profile_photo ? (process.env.NODE_ENV === "development"
-        ? "http://localhost:3000" + profile_photo
+        ? HOST_URL + profile_photo
         : profile_photo) : 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
 
 

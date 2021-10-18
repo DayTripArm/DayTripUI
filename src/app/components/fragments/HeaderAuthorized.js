@@ -17,6 +17,7 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
 import actions from "../../../actions";
+import {HOST_URL} from "../../../constants";
 import _ from "lodash";
 import Api from "../../../Api";
 
@@ -218,7 +219,7 @@ const HeaderAuthorized = ({ type }) => {
                         width='24'
                         height='24'
                         className='object-pos-center object-fit-cover rounded__50 mr-2'
-                        src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + profile_photo : profile_photo}
+                        src={process.env.NODE_ENV === "development" ? HOST_URL + profile_photo : profile_photo}
                         alt='avatar'
                     /> : <IconUser className='mr-md-1' /> }
                     <span className='d-none d-md-inline-block'>{name}</span>

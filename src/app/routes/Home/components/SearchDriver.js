@@ -13,6 +13,7 @@ import { useHistory } from "react-router";
 import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 import moment from "moment";
+import {HOST_URL} from "../../../../constants";
 
 const validations = {
     date: {
@@ -45,7 +46,7 @@ const SearchDriver = () => {
 
     const [form, setForm] = useState({date: "", travelers: "0"});
     const [count, setCount] = useState({adults: 0, children: 0});
-    const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image?.url : image?.url;
+    const src = process.env.NODE_ENV === "development" ? HOST_URL + image?.url : image?.url;
 
     const onDaySelect = ((day) => {
         setForm({

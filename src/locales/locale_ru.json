@@ -552,6 +552,10 @@
             "male": "Мужской",
             "female": "Женский"
         },
+        "short_duration": {
+            "hours": "ч",
+            "min": "м"
+        },
         "choose_currency": "Выбрать валюту",
         "choose_lang": "Выбрать язык",
         "upload_box_title": "Загрузить фото",

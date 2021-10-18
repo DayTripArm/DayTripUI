@@ -1,9 +1,9 @@
 import React from 'react';
 import { IconArrowLeft } from 'shared/components/Icons';
-
+import {HOST_URL} from "../../../../constants";
 const DriversIllustration = ({ history, trip_details}) => {
     const trip_img = trip_details.images ? trip_details.images[0].url : trip_details.image.url
-    const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + trip_img : trip_img;
+    const src = process.env.NODE_ENV === "development" ? HOST_URL + trip_img : trip_img;
     return (
         <div className='drivers-illustration box-overlay'>
             <img

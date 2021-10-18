@@ -3,7 +3,7 @@ import Card from 'shared/components/Card';
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "actions";
-
+import {HOST_URL} from "../../../../constants";
 let limit = 12;
 const ExploreTrips = () => {
     const {travelerData={}} = useSelector(state => state);
@@ -28,7 +28,7 @@ const ExploreTrips = () => {
                 {
                     tripsList.map(trip => {
                         const src = process.env.NODE_ENV === "development"
-                            ? "http://localhost:3000" + trip.trip.images[0].url
+                            ? HOST_URL + trip.trip.images[0].url
                             : trip.trip.images[0].url;
 
                         return(

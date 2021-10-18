@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import FormDropZone from "./FormDropZone";
 import actions from "../../actions";
 import { useTranslation } from 'react-i18next';
-// import _ from "lodash";
+import {HOST_URL} from "../../constants";
 
 const FormCarInputBoxPicture = (props) => {
 
@@ -24,7 +24,7 @@ const FormCarInputBoxPicture = (props) => {
 
     photos.map(file => {
         const src = process.env.NODE_ENV === "development"
-            ? "http://localhost:3000" + file.full_path
+            ? HOST_URL + file.full_path
             : file.full_path;
 
         Object.assign(file, {preview: file.preview ? file.preview : src})
@@ -48,7 +48,7 @@ const FormCarInputBoxPicture = (props) => {
     const handleChange = (type, uploadPhotos, delPhoto) => {
         uploadPhotos.map(file => {
             const src = process.env.NODE_ENV === "development"
-                ? "http://localhost:3000" + file.full_path
+                ? HOST_URL + file.full_path
                 : file.full_path;
 
             Object.assign(file, {

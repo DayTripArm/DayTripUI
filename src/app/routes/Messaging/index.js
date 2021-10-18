@@ -12,6 +12,7 @@ import ChatContent from './components/ChatContent';
 import TripDetailsModal from './components/TripDetailsModal';
 import NoResults from './components/NoResults';
 import actions from "../../../actions";
+import {HOST_URL} from "../../../constants";
 import Cable from 'actioncable';
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from "react-redux";
@@ -32,7 +33,7 @@ const Messaging = () => {
     const [currentMessage, setCurrentMessage] = useState("");
     const [channel, setChannel] = useState(null)
     const locale = localStorage.getItem('lang') || 'en';
-    let cable = Cable.createConsumer(process.env.NODE_ENV === "development" ? 'http://localhost:3000/cable' : 'http://104.197.178.29/cable');
+    let cable = Cable.createConsumer(process.env.NODE_ENV === "development" ? HOST_URL+'/cable' : 'http://104.197.178.29/cable');
 
     useEffect (() => {
         dispatch(actions.conversationsListRequest(Number(localStorage.id)));

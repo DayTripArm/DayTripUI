@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-
+import {HOST_URL} from "../../../../../../constants";
 const Gallery = (props) => {
     const {car_photos} = props;
     const settings = {
@@ -32,7 +32,7 @@ const Gallery = (props) => {
                 {
                     car_photos.map((photo, id) => {
                         const src = process.env.NODE_ENV === "development"
-                            ? "http://localhost:3000" + photo.full_path
+                            ? HOST_URL + photo.full_path
                             : photo.full_path;
 
                         return (

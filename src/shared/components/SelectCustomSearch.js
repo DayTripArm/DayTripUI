@@ -6,7 +6,7 @@ import _ from 'lodash';
 import i18n from './../../i18n';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from "react-router-dom";
-
+import {HOST_URL} from "../../constants";
 const SelectCustomSearch = (props) => {
     let history = useHistory();
     const lang = i18n.language || localStorage.getItem('lang') || 'en'
@@ -59,7 +59,7 @@ const SelectCustomSearch = (props) => {
                         !_.isEmpty(options) ? options.map(trip => {
 
                             const src = process.env.NODE_ENV === "development"
-                                ? "http://localhost:3000" + trip.images[0].url
+                                ? HOST_URL + trip.images[0].url
                                 : trip.images[0].url;
 
                             return (

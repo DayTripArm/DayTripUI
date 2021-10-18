@@ -4,7 +4,7 @@ import FormInputBox from "../../../../shared/components/FormInputBox";
 import FormCarInputBoxPicture from "../../../../shared/components/FormCarInputBoxPicture";
 import {useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
-import {CAR_TYPE_LIST, CAR_YEAR_LIST, COLOR_LIST} from "../../../../constants";
+import {CAR_TYPE_LIST, CAR_YEAR_LIST, COLOR_LIST, HOST_URL} from "../../../../constants";
 import _ from "lodash";
 
 const CarView = () => {
@@ -29,7 +29,7 @@ const CarView = () => {
 
     const carPhotos = car_photos.map(photo => {
         const src = process.env.NODE_ENV === "development"
-            ? "http://localhost:3000/" + photo.full_path
+            ? HOST_URL + photo.full_path
             : photo.full_path;
 
         return (

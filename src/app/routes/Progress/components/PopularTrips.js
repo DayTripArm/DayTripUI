@@ -1,6 +1,7 @@
 import React from 'react';
 import { IconStar } from 'shared/components/Icons';
 import _ from 'lodash';
+import {HOST_URL} from "../../../../constants";
 import { useTranslation } from 'react-i18next';
 
 const PopularTrips = ({popular_trips}) => {
@@ -20,7 +21,7 @@ const PopularTrips = ({popular_trips}) => {
                                   width='48'
                                   height='48'
                                   alt={popular_trip?.trip_details?.title || 'Trip'}
-                                  src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + popular_trip.trip_details?.image: popular_trip.trip_details?.image}
+                                  src={process.env.NODE_ENV === "development" ? HOST_URL + popular_trip.trip_details?.image: popular_trip.trip_details?.image}
                                   className='object-pos-center object-fit-cover mr-3'
                                 /> :
                                 <div className='img_overlay object-pos-center object-fit-cover mr-3'>

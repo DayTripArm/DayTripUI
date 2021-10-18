@@ -4,6 +4,7 @@ import _ from "lodash";
 import {
     IconBullet
 } from 'shared/components/Icons';
+import {HOST_URL} from "../../../../constants";
 import { useTranslation } from 'react-i18next';
 
 const ContactList = ({ conversations, onClick }) => {
@@ -28,7 +29,7 @@ const ContactList = ({ conversations, onClick }) => {
                                 <img
                                     width='56'
                                     height='56'
-                                    src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + conversation.recipient_img: conversation.recipient_img}
+                                    src={process.env.NODE_ENV === "development" ? HOST_URL + conversation.recipient_img: conversation.recipient_img}
                                     alt='user'
                                     className='rounded__50 object-pos-center object-fit-cover mr-3'
                                 />

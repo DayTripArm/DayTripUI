@@ -1,11 +1,13 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import { Link } from 'react-router-dom';
+import {HOST_URL} from "../../../../constants";
 import ProgressiveImage from "react-progressive-image-loading";
 
 const HomeIllustration = () => {
     const {travelerData={}} = useSelector(state => state);
     const {heroes={}} = travelerData;
+    console.log(heroes)
     const {
         btn_link,
         btn_title,
@@ -14,7 +16,7 @@ const HomeIllustration = () => {
         title
     } = heroes;
 
-    const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
+    const src = process.env.NODE_ENV === "development" ? HOST_URL + image.url : image.url;
 
     return (
         <>

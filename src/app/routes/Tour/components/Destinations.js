@@ -3,7 +3,7 @@ import {STRING_NUMBERS} from "../../../../constants";
 import InfoModal from "./InfoModal";
 import { useTranslation } from 'react-i18next';
 import _ from "lodash";
-
+import {HOST_URL} from "../../../../constants";
 const Destinations = (props) => {
     const [openInfoModal, setOpenInfoModal] = useState(false);
     const [modalData, setModalData] = useState({
@@ -21,7 +21,7 @@ const Destinations = (props) => {
             {
                 destinations.map((dest, i) => {
                     const src = process.env.NODE_ENV === "development"
-                        ? "http://localhost:3000" + dest.dest_image.url
+                        ? HOST_URL + dest.dest_image.url
                         : dest.dest_image.url;
                      const finalIndex = destinations.length -1;
                     return (

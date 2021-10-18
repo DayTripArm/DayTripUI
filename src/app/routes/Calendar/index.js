@@ -14,6 +14,7 @@ import { DayPickerSingleDateController } from 'react-dates';
 import _ from 'lodash';
 import moment from "moment";
 import actions from "../../../actions";
+import {HOST_URL} from "../../../constants";
 import {useDispatch, useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
 import { useHistory } from "react-router";
@@ -177,7 +178,7 @@ const Calendar = () => {
                         <img
                             className="CalendarProfileImg"
                             alt=""
-                            src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + info.traveler_photo : info.traveler_photo}
+                            src={process.env.NODE_ENV === "development" ? HOST_URL + info.traveler_photo : info.traveler_photo}
                         /></div>
                     <span >{day.format('D')}</span>
 

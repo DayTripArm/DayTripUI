@@ -5,7 +5,7 @@ import Card from 'shared/components/Card';
 import { useTranslation } from 'react-i18next';
 import {useSelector} from "react-redux";
 import _ from "lodash";
-
+import {HOST_URL} from "../../../../constants";
 const SlideNavigation = ({ dir, onClick }) => (
     <button className={`btn btn-circle btn-static btn-circle__primary btn-${dir}`} onClick={onClick}>
         {dir === 'next' ? <IconArrowRight /> : <IconArrowLeft />}
@@ -51,7 +51,7 @@ const TopChoises = () => {
                 {
                     top_choices.map(trip => {
                         const src = process.env.NODE_ENV === "development"
-                            ? "http://localhost:3000" + trip.trip.images[0].url
+                            ? HOST_URL + trip.trip.images[0].url
                             : trip.trip.images[0].url;
                         return (
                             <Card

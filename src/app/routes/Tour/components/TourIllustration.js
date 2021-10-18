@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { IconArrowLeft, IconHeartOutlined, IconShare, IconHeartFilled } from 'shared/components/Icons';
 import actions from "../../../../actions";
+import {HOST_URL} from "../../../../constants";
 import {useDispatch} from "react-redux";
 import {isAuthorized} from "../../../../helper";
 import ProgressiveImage from "react-progressive-image-loading";
@@ -41,7 +42,7 @@ const TourIllustration = (props) => {
             <Slider {...settings}>
                 {
                     images.map((image, i) => {
-                        const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + image.url : image.url;
+                        const src = process.env.NODE_ENV === "development" ? HOST_URL + image.url : image.url;
 
                         return (
                             <ProgressiveImage

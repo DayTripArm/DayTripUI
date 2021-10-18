@@ -2,10 +2,11 @@ import React from 'react';
 import moment from "moment";
 import { IconStar } from 'shared/components/Icons';
 import _ from "lodash";
+import {HOST_URL} from "../../../../constants";
 import { useTranslation } from 'react-i18next';
 
 const PastTripItem = ({ item, onBookedTripClick, onReviewModal}) => {
-    let src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + item.trip?.trip_image : item.trip?.trip_image;
+    let src = process.env.NODE_ENV === "development" ? HOST_URL + item.trip?.trip_image : item.trip?.trip_image;
     const locale = localStorage.getItem('lang') || 'en';
     const { t } = useTranslation();
     return (

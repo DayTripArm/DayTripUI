@@ -2,11 +2,11 @@ import React from 'react';
 import moment from "moment";
 import _ from "lodash";
 import { useTranslation } from 'react-i18next';
-
+import {HOST_URL} from "../../../../constants";
 const BookedTripItem = ({ item, onBookedTripClick, onContactClick}) => {
     const { t } = useTranslation();
     const locale_code = localStorage.getItem('lang') || 'en'
-    let src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + item.trip.trip_image : item.trip.trip_image;
+    let src = process.env.NODE_ENV === "development" ? HOST_URL + item.trip.trip_image : item.trip.trip_image;
     return (
         <React.Fragment key={item.id}>
         <div className='text-separator my-6'>

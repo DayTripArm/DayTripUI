@@ -7,7 +7,7 @@ import BookPanel from './components/BookPanel';
 import { Link, useLocation } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
-import {MONTH_LIST, DRIVER_TYPE} from "../../../../../constants";
+import {MONTH_LIST, DRIVER_TYPE, HOST_URL} from "../../../../../constants";
 import actions from "../../../../../actions";
 
 const Driver = ({ history }) => {
@@ -40,7 +40,7 @@ const Driver = ({ history }) => {
 
     const benefits = {location, languages, car_specs, car_seats, car_mark, car_model, car_full_name};
     const src = process.env.NODE_ENV === "development"
-        ? "http://localhost:3000" + profile_photo
+        ? HOST_URL + profile_photo
         : profile_photo;
 
     useEffect(() => {

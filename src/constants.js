@@ -1,3 +1,5 @@
+//export const HOST_URL = "http://10.67.48.27:3000";
+export const HOST_URL = "http://100.81.155.66:3000";
 export const TRAVELER_TYPE = "1";
 export const DRIVER_TYPE = "2";
 

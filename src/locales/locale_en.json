@@ -551,6 +551,10 @@
             "male": "Male",
             "female": "Female"
         },
+        "short_duration": {
+            "hours": "h",
+            "min": "m"
+        },
         "choose_currency": "Choose Currency",
         "choose_lang": "Choose Language",
         "select_pholder": "Choose",

@@ -1,7 +1,7 @@
 {
     "home_page": {
         "search_dest": "Որոնել Ուղղություններ",
-            "top_menu": {
+        "top_menu": {
             "become_driver": "Դառնալ Վարորդ",
             "sign_up": "Գրանցվել",
             "login": "Մուտք",
@@ -551,6 +551,10 @@
         "gender": {
             "male": "Արական",
             "female": "Իգական"
+        },
+        "short_duration": {
+            "hours": "ժ",
+            "min": "ր"
         },
         "choose_currency": "Ընտրել Տարադրամ",
         "choose_lang": "Ընտրել Լեզու",

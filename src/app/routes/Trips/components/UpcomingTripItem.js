@@ -2,9 +2,9 @@ import React from 'react';
 import moment from "moment";
 import _ from "lodash";
 import { useTranslation } from 'react-i18next';
-
+import {HOST_URL} from "../../../../constants";
 const UpcomingTripItem = ({ item, onBookedTripClick, onContactClick}) => {
-    let src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + item.trip.trip_image : item.trip.trip_image;
+    let src = process.env.NODE_ENV === "development" ? HOST_URL + item.trip.trip_image : item.trip.trip_image;
     const locale = localStorage.getItem('lang') || 'en';
     const { t } = useTranslation();
     return (

@@ -2,6 +2,7 @@ import React from 'react';
 import { IconStar } from 'shared/components/Icons';
 import moment from "moment";
 import _ from 'lodash';
+import {HOST_URL} from "../../../../constants";
 import { useTranslation } from 'react-i18next';
 
 const DriverProgressReviews = ({overall_rating}) => {
@@ -26,7 +27,7 @@ const DriverProgressReviews = ({overall_rating}) => {
                                     <img
                                       width='48'
                                       height='48'
-                                      src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + review.reviewer_img: review.reviewer_img}
+                                      src={process.env.NODE_ENV === "development" ? HOST_URL + review.reviewer_img: review.reviewer_img}
                                       alt='user'
                                       className='rounded__50 object-pos-center object-fit-cover mr-3'
                                     />

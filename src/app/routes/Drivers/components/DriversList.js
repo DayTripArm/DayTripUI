@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router";
 import { useTranslation } from 'react-i18next';
 import actions from "actions";
+import {HOST_URL} from "../../../../constants";
 import moment from "moment";
 import _ from "lodash";
 
@@ -67,9 +68,9 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
 
     const bookTrip = (e, driver, learn_more) => {
         e.preventDefault();
-        const src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + driver.profile_photos.full_path : driver.profile_photos.full_path;
+        const src = process.env.NODE_ENV === "development" ? HOST_URL + driver.profile_photos.full_path : driver.profile_photos.full_path;
         const trip_img = !_.isEmpty(trip_details?.images) ? trip_details?.images[0].url : trip_details?.image?.url;
-        const trip_img_src = process.env.NODE_ENV === "development" ? "http://localhost:3000" + trip_img : trip_img;
+        const trip_img_src = process.env.NODE_ENV === "development" ? HOST_URL + trip_img : trip_img;
 
         if (localStorage.id || learn_more) {
             history.push({
@@ -104,7 +105,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
             <ul className='no-list-style mb-0'>
                 {
                     drivers_list.map((driver, i) => {
-                        const profile_photo = process.env.NODE_ENV === "development" ? "http://localhost:3000" + driver.profile_photos.full_path : driver.profile_photos.full_path;
+                        const profile_photo = process.env.NODE_ENV === "development" ? HOST_URL + driver.profile_photos.full_path : driver.profile_photos.full_path;
                         return (
                             <li className='mb-2 mb-md-4 mb-xl-5' key={i}>
                                 <div className='rounded__4 border-style border__default d-md-flex'>
@@ -113,7 +114,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                         <Slider {...settings}>
                                             {
                                                 driver.car_photos.map((photo, index) => {
-                                                    const car_photo = process.env.NODE_ENV === "development" ? "http://localhost:3000" + photo.full_path : photo.full_path;
+                                                    const car_photo = process.env.NODE_ENV === "development" ? HOST_URL + photo.full_path : photo.full_path;
 
                                                     return (
                                                         <div key={index} className='image-container mb-4'>

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 import moment from "moment";
 import actions from "../../../../actions";
-
+import {HOST_URL} from "../../../../constants";
 const TripDetailsModal = ({hideContact=false, onClose}) => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -88,7 +88,7 @@ const TripDetailsModal = ({hideContact=false, onClose}) => {
                     <img
                         width='106'
                         height='136'
-                        src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + trip_tour.image: trip_tour.image}
+                        src={process.env.NODE_ENV === "development" ? HOST_URL + trip_tour.image: trip_tour.image}
                         alt='garni'
                         className='rounded__4 object-pos-center object-fit-cover mr-2'
                     />
@@ -161,7 +161,7 @@ const TripDetailsModal = ({hideContact=false, onClose}) => {
                 <img
                     width='56'
                     height='56'
-                    src={process.env.NODE_ENV === "development" ? "http://localhost:3000" + user_info.profile_photo: user_info.profile_photo}
+                    src={process.env.NODE_ENV === "development" ? HOST_URL + user_info.profile_photo: user_info.profile_photo}
                     alt='user'
                     className='rounded__50 object-pos-center object-fit-cover mr-3'
                 />
