@@ -66,6 +66,13 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
         showSignUp,
     } = travelerData;
 
+    const calcBookingPrice = (trip_details, driver) => {
+        return location.state?.trip_id ? trip_details.trip_distance <= 100 ?
+            Math.round(trip_details.trip_distance * driver.tariff1/1000):
+            Math.round(trip_details.trip_distance * driver.tariff2/1000):
+            driver.hit_the_road_tariff;
+    }
+
     const bookTrip = (e, driver, learn_more) => {
         e.preventDefault();
         const src = process.env.NODE_ENV === "development" ? HOST_URL + driver.profile_photos.full_path : driver.profile_photos.full_path;
@@ -145,7 +152,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                                 </div>
                                             </div>
                                             <button onClick={(e) => bookTrip(e, driver)} className='btn btn-primary text-uppercase btn-xs-block'>
-                                                {t("select_drivers_page.btn")} ${location.state?.trip_id ? driver.tariff1 : driver.hit_the_road_tariff}
+                                                {t("select_drivers_page.btn")} ${calcBookingPrice(trip_details, driver)}
                                             </button>
                                         </div>
                                         <div className='pt-5 pt-md-4 pb-4'>

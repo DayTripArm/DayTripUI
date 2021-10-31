@@ -50,3 +50,12 @@ export const image64toCanvasRef = (canvasRef, image64, pixelCrop, imgSrc) => {
         )
     }
 };
+
+export const secondsToHourMinutes = (duration, hour_transl, min_transl) => {
+    let trip_duration = duration * 2
+    var hours = Math.floor(trip_duration / (60*60));
+    trip_duration -= hours   * (60*60);
+    var minutes  = Math.floor(trip_duration / (60));
+    trip_duration -= minutes * (60);
+    return (hours >=1 ? `${hours+hour_transl} `: "")+minutes+min_transl
+}

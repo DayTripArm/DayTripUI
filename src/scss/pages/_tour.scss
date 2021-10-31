@@ -186,3 +186,17 @@
 #booked_trip_modal{
     overflow: hidden;
 }
+
+div.map_container {
+    position: relative;
+    overflow: hidden;
+    min-height: 550px;
+    width: 100%;
+}
+iframe#tour_map {
+    width: 200%;
+    height: 150%;
+    position: absolute;
+    bottom: -25%;
+    left: -50%;
+}
