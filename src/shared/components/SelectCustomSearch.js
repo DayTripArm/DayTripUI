@@ -32,7 +32,7 @@ const SelectCustomSearch = (props) => {
     useEffect(() => {
         handleSearch(""); // get all trips in search options
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [lang]);
 
 
     return (
