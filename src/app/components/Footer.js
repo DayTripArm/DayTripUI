@@ -37,7 +37,7 @@ const Footer = () => {
       <div className='container'>
         <div className='d-flex flex-column flex-md-row align-items-center justify-content-between'>
           <div className='d-flex align-items-center flex-column flex-md-row'>
-              <p className='align-items-center mb-0 text__grey-dark mr-2 mr-md-3'>&copy; Daytrip. All rights reserved.</p>
+              <p className='align-items-center mb-0 text__grey-dark mr-2 mr-md-3'>&copy; Daytrip. {t('footer.copyright')}</p>
               { showSeparator && <span className='text__grey-dark mr-2 mr-md-2'>-</span> }
               <div className='mb-3 mb-md-0'>
                   <Link to='/terms' className='text__grey-dark mr-2 mr-md-2'>

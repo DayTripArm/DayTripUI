@@ -106,7 +106,8 @@
         "title1": "Что сделаете",
         "title2": "Что увидете",
         "title3": "Где окажетесь",
-        "show_more": "Увидеть больше"
+        "show_more": "Увидеть больше",
+        "read_more": "Читать далее"
     },
     "select_drivers_page": {
         "chips": {
@@ -467,6 +468,7 @@
         "past_text": "Прошедшие"
     },
     "footer": {
+        "copyright": "Все права защищены",
         "terms_conditions": "Правила и условия",
         "help": "Помощь"
     },

@@ -106,7 +106,8 @@
         "title1": "What You’ll Do",
         "title2": "What You’ll See",
         "title3": "Where You’ll Be",
-        "show_more": "Show more reviews"
+        "show_more": "Show more reviews",
+        "read_more": "Read More"
     },
     "select_drivers_page": {
         "chips": {
@@ -355,7 +356,7 @@
             "about_label": "Short Bio",
             "about_pholder": "Tell the travelers a bit about yourself and why they should want to travel with you. Share your interests and hobbies",
             "langs_label": "Languages",
-            "lang_pholder": "Tell us what languages you speak",
+            "langs_pholder": "Tell us what languages you speak",
             "occupation": "Occupation",
             "occupation_pholder": "What is your specialty?"
         },
@@ -467,6 +468,7 @@
         "past_text": "Past"
     },
     "footer": {
+        "copyright": "All rights reserved",
         "terms_conditions": "Terms & Conditions",
         "help": "Help"
     },
@@ -509,7 +511,7 @@
             "pickup": "Pickup Truck",
             "van": "Van"
         },
-        "colors": {
+        "car_color": {
             "black": "Black",
             "blue": "Blue",
             "brown": "Brown",

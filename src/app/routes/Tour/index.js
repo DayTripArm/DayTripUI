@@ -8,8 +8,6 @@ import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
 import i18n from './../../../i18n';
-import {HOST_URL} from "../../../constants";
-import {secondsToHourMinutes} from "../../../helper";
 import actions from "../../../actions";
 import _ from "lodash";
 
@@ -37,7 +35,6 @@ const Tour = ({ history }) => {
         trip_duration,
         start_location,
         agenda,
-        map_image=[],
     } = trip_detail.trip || {};
 
     const {is_saved, destinations=[], review_stats={}, reviews=[]} = trip_detail;
@@ -65,7 +62,7 @@ const Tour = ({ history }) => {
                             <div className='d-md-flex'>
                                 <div className='d-flex mb-4 mb-md-0 mr-md-5'>
                                     <IconClockOutlined className='mr-2' />
-                                    <p className='mb-0'>{t("trip_details_page.duration")}: <span className='weight-500 text__grey-dark'>{secondsToHourMinutes(trip_duration, t("commons.short_duration.hours"), t("commons.short_duration.min"))}</span></p>
+                                    <p className='mb-0'>{t("trip_details_page.duration")}: <span className='weight-500 text__grey-dark'>{trip_duration}</span></p>
                                 </div>
                                 <div className='d-flex mb-0'>
                                     <IconDestination className='mr-2' />
@@ -93,35 +90,17 @@ const Tour = ({ history }) => {
                             <h2 className='mb-4 mb-md-5'>{t("trip_details_page.title3")}</h2>
                         </div>
                         <div className='col-xl-8'>
-                            {
-                                map_image.map((img, i) => {
-                                    const src = process.env.NODE_ENV === "development"
-                                        ? HOST_URL + img.url
-                                        : img.url;
-                                    return(
-                                        <img key={i} src={src} alt='map' className='w-100 rounded__8' />
-                                    );
-                                })
-                            }
-                        </div>
-                    </div>
-                    <div className='row'>
-                        <div className='col-xl-4' />
-                        <div className='col-xl-8'>
-                            <div className="mt-14 mt-md-15 mt-xl-16">
-                                <h2 className="text__blue mt-4">Map</h2>
-                            </div>
                             <div className="map_container">
                             {destinations && destinations.length > 0 &&
-                                <iframe
-                                  width="100%"
-                                  height="400px"
-                                  frameBorder="0"
-                                  id="tour_map"
-                                  title="Trip Map"
-                                  src={`https://www.google.com/maps/embed/v1/directions?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&mode=driving&origin=${start_location}
-                                  &destination=${start_location}&waypoints=${_.join(destinations.map(dest => (dest.dest_title)), '|')}`}>
-                                </iframe>
+                            <iframe
+                                width="100%"
+                                height="400px"
+                                frameBorder="0"
+                                id="tour_map"
+                                title="Trip Map"
+                                src={`https://www.google.com/maps/embed/v1/directions?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&mode=driving&origin=${start_location}
+                                                      &destination=${_.last(destinations).dest_title || start_location}&waypoints=${_.join(destinations.map(dest => (dest.dest_title || start_location)), '|')}`}>
+                             </iframe>
                             }
                             </div>
                         </div>

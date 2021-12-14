@@ -49,7 +49,7 @@ const Destinations = (props) => {
                                             });
                                             setOpenInfoModal(true);
                                             window.location.hash = "modal"
-                                        }}>Read More</button>}
+                                        }}>{t("trip_details_page.read_more")}</button>}
                                     </p>
                                 </div>
                             </div>

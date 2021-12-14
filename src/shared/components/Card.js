@@ -63,7 +63,7 @@ const Card = (props) => {
                     <h4 className='mb-2'>{title}</h4>
                 </Link>
             )}
-            <p className='text__grey-dark weight-700 mb-2'>{t("home_page.trip_duration")} : {trip_duration} {t("commons.hours")}</p>
+            <p className='text__grey-dark weight-700 mb-2'>{t("home_page.trip_duration")} : {trip_duration}</p>
             <p className='mb-0'>
                 <span className='weight-700'>{review_stats?.rate || t("commons.no_reviews")}</span>
                 <IconStar className='card-star mx-1 pull-t-1'/>

@@ -144,7 +144,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                   </p>
               </div>
               <p className='text-sm weight-500 mb-0 d-xl-block'>
-                {t("commons.duration")}: <span className='text__grey-dark'>{trip_detail.trip_duration} {t("commons.hours")}</span>
+                {t("commons.duration")}: <span className='text__grey-dark'>{trip_detail.trip_duration}</span>
               </p>
             </div>
             <div className='d-flex justify-content-end flex-fill'>
