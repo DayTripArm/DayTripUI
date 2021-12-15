@@ -122,7 +122,7 @@ const FormInputBox = (props) => {
                 <SelectCustom
                     type='text'
                     name='month'
-                    placeholder={t("commons.month")}
+                    placeholder={t("commons.month_pholder")}
                     onChange={e => setMonth(e.value)}
                     value={_.find(monthList, i => i.value === month)}
                     containerClass='mb-4'
@@ -134,7 +134,7 @@ const FormInputBox = (props) => {
                         <SelectCustom
                             type='text'
                             name='day'
-                            placeholder={t("commons.day")}
+                            placeholder={t("commons.day_pholder")}
                             onChange={e => setDay(e.value)}
                             value={_.find(days, i => i.value === day)}
                             containerClass='field-flexible flex-fill mb-0'
@@ -146,7 +146,7 @@ const FormInputBox = (props) => {
                         <SelectCustom
                             type='text'
                             name='year'
-                            placeholder={t("commons.year")}
+                            placeholder={t("commons.year_pholder")}
                             onChange={e => setYear(e.value)}
                             value={_.find(yearList,i => i.value === year)}
                             containerClass='field-flexible flex-fill mb-0'

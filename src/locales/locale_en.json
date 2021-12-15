@@ -250,7 +250,7 @@
         "no_upcoming_text": "Start exploring ideas for your next trip",
         "past_tab": "Past Trips",
         "no_past_title": "You don’t Have Any Past Trips",
-        "no_past_text": "Start exploring ideas for your next trip",
+        "no_trip_text": "Start exploring ideas for your next trip",
         "no_trip_header": "What’s Coming Up",
         "trip_card": {
             "date": "Date",
