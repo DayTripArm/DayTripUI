@@ -28,8 +28,8 @@
             "phone_placeholder": "Նշեք հեռախոսահամարը",
             "password": "Գաղտնաբառ",
             "password_placeholder": "Մուտքագրեք գաղտնաբառը",
-            "sign_up_fb": "Գրանցվել Facebook հաշվով",
-            "sign_up_gg": "Գրանցվել Google հաշվով",
+            "sign_up_fb": "Գրանցվել Facebook-ով",
+            "sign_up_gg": "Գրանցվել Google-ով",
             "already_have_account": "Արդեն գրանցվա՞ծ եք",
             "sign_up_btn": "Գրանցվել"
         },
@@ -41,6 +41,8 @@
             "password_placeholder": "Մուտքագրեք էլ. հասցեն",
             "dont_have_account": "Գրանցված չե՞ք։",
             "login_btn": "Մուտք",
+            "login_fb": "Մուտք գործել Facebook-ով",
+            "login_gg": "Մուտք գործեք Google-ով",
             "forgot_pass": "Մոռացել ե՞ք գաղտնաբառը",
             "remember_me": "Հիշել"
         },

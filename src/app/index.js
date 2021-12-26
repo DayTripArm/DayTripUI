@@ -148,6 +148,8 @@ const App = () => {
                     <>
                         <Switch>
                             <Route path='/home' component={Home} />
+                            <Route path='/help/:id' component={HelpView} />
+                            <Route path='/help' component={Help} />
                             <Route path='/drivers' component={Drivers} />
                             <Route path='/tour/:id' component={Tour} />
                             <Route path='/individuals' component={Individuals} />

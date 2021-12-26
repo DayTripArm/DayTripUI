@@ -162,7 +162,7 @@ const ModalLogin = ({ onClose }) => {
                         scope="public_profile,email"
                         callback={responseFacebook}
                         icon={<IconFbClean fill='#FFFFFF' className='mr-3'/>}
-                        textButton={t("home_page.sign_up.sign_up_fb")}
+                        textButton={t("home_page.login.login_fb")}
                         cssClass={`btn btn-facebook btn-fixed mb-3`}
                     />
 
@@ -171,7 +171,7 @@ const ModalLogin = ({ onClose }) => {
                         render={renderProps => (
                             <button onClick={renderProps.onClick} className='btn btn-google btn-fixed text__grey-dark mb-5'>
                                 <IconGoogle fill='#FFFFFF' className='mr-3'/>
-                                {t("home_page.sign_up.sign_up_gg")}
+                                {t("home_page.login.login_gg")}
                             </button>
                         )}
                         fields="select_account"

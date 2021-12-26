@@ -41,6 +41,8 @@
             "password_placeholder": "Enter your password",
             "dont_have_account": "Don't have an account?",
             "login_btn": "Login",
+            "login_fb": "Login With Facebook",
+            "login_gg": "Login With Google",
             "forgot_pass": "Forgot Password?",
             "remember_me": "Remember Me"
         },

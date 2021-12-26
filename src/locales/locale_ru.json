@@ -41,6 +41,8 @@
             "password_placeholder": "Введите пароль",
             "dont_have_account": "Еще не регистрированы?",
             "login_btn": "Вход",
+            "login_fb": "Войти через Facebook",
+            "login_gg": "Войти через Google",
             "forgot_pass": "Забыли пароль?",
             "remember_me": "Запомнить"
         },
