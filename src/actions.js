@@ -565,6 +565,18 @@ const actions  = {
         data
     }),
 
+    HELP_CONTENT_LIST_REQUEST: `${nameSpace}_HELP_CONTENT_LIST_REQUEST`,
+    getHelpContentListRequest: (content_type, lang) => ({
+        type: actions.HELP_CONTENT_LIST_REQUEST,
+        content_type,
+        lang
+    }),
+
+    HELP_CONTENT_LIST_RECEIVE: `${nameSpace}_HELP_CONTENT_LIST_RECEIVE`,
+    getHelpContentListReceive: (data) => ({
+        type: actions.HELP_CONTENT_LIST_RECEIVE,
+        data
+    }),
 };
 
 export default actions;

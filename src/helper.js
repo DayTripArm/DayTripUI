@@ -51,11 +51,19 @@ export const image64toCanvasRef = (canvasRef, image64, pixelCrop, imgSrc) => {
     }
 };
 
-export const secondsToHourMinutes = (duration, hour_transl, min_transl) => {
-    let trip_duration = duration * 2
-    var hours = Math.floor(trip_duration / (60*60));
-    trip_duration -= hours   * (60*60);
-    var minutes  = Math.floor(trip_duration / (60));
-    trip_duration -= minutes * (60);
-    return (hours >=1 ? `${hours+hour_transl} `: "")+minutes+min_transl
+export const secondsToHourMinutes = (trip_duration, hour_transl, min_transl) => {
+    let hours = 0;
+    let minutes = 0;
+    if(trip_duration && trip_duration.indexOf(':') > -1){
+        trip_duration = trip_duration.split(':')
+        hours = parseInt(trip_duration[0])
+        minutes = parseInt(trip_duration[1])
+    } else {
+        hours = Math.floor(trip_duration / (60*60));
+        trip_duration -= hours   * (60*60);
+        minutes  = Math.floor(trip_duration / (60));
+        trip_duration -= minutes * (60);
+    }
+
+    return (hours >=1 ? `${hours+hour_transl} `: "")+(minutes >0 ? `${minutes+min_transl} `: "")
 }

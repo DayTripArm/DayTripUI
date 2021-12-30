@@ -466,8 +466,8 @@ function* driversListRequest(action) {
     try {
 
         const {body} = action;
-        const {date, travelers, price_range=[10, 1000], trip_id=0,offset=0,limit=5} = body;
-        const {response, error} = yield call(Api.searchForDriver, date, Number(travelers), price_range, Number(trip_id), Number(offset),Number(limit));
+        const {date, travelers, price_range=[10, 1000], trip_id=0,offset=0,limit=5, lang='en'} = body;
+        const {response, error} = yield call(Api.searchForDriver, date, Number(travelers), price_range, Number(trip_id), Number(offset),Number(limit), lang);
 
         if (response) {
             yield put(actions.searchForDriverReceive(response.data));
@@ -711,6 +711,22 @@ function* deleteUserRequest(action) {
     }
 }
 
+function* getHelpContentListRequest(action) {
+    const {content_type, lang} = action;
+
+    try {
+        const {response, error} = yield call(Api.getHelpContentListRequest, content_type, lang);
+
+        if (response) {
+            yield put(actions.getHelpContentListReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
@@ -750,6 +766,7 @@ function* watcherSaga() {
     yield takeEvery(actions.VIEW_CONVERSATION_DETAILS_REQUEST, viewConversationDetails);
     yield takeEvery(actions.SEND_MESSAGE_REQUEST, sendMessageRequest);
     yield takeEvery(actions.GET_CONVERSATION_MESSAGES_REQUEST, getConversationMessages);
+    yield takeEvery(actions.HELP_CONTENT_LIST_REQUEST, getHelpContentListRequest);
 }
 
 export default function* root() {

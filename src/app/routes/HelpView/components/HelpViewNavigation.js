@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { IconTimes } from 'shared/components/Icons';
 
-const HelpViewNavigation = ({ open, onClose }) => {
+
+const HelpViewNavigation = ({ open, onClose, helpContentList, params_id }) => {
   return (
     <div className={`menu-vertical bg-white px-1 px-md-0 d-${open ? 'block' : 'none'} d-md-block`}>
       <div className='p-4 text-right d-md-none'>
@@ -11,57 +12,30 @@ const HelpViewNavigation = ({ open, onClose }) => {
         </button>
       </div>
       <ul className='no-list-style mb-0'>
-        <li>
-          <NavLink to='/asd' className='pl-3 py-2'>
-            Getting Started
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/asd' className='pl-3 py-2'>
-            Booking
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/asd' className='pl-3 py-2'>
-            Payment
-          </NavLink>
-        </li>
-        <li className='pl-3'>
-          <span className='weight-700 pb-2'>Your Trips</span>
-          <ul className='no-list-style mb-0'>
-            <li>
-              <NavLink to='/asd' className='pl-3 py-2'>
-                Help with your trip
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/asd' className='pl-3 py-2'>
-                Host cancellations
-              </NavLink>
-            </li>
-            <li>
-              {/* <span>Changing a reservation</span> */}
-              <NavLink to='/help' className='pl-3 py-2'>
-                Changing a reservation
-              </NavLink>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <NavLink to='/asd' className='pl-3 py-2'>
-            Your Account
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/asd' className='pl-3 py-2'>
-            Become a Driver
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/asd' className='pl-3 py-2'>
-            Partners & Community
-          </NavLink>
-        </li>
+        {
+          helpContentList?.map((content, i) => {
+               return (
+                   content.tips ?
+                   <li className='pl-3' key={content.id}>
+                    <span className='weight-700 pb-2'>{content.title}</span>
+                    <ul className='no-list-style mb-0'>
+                        {
+                            content?.map((tip, i) => {
+                                return (
+                                    <li>
+                                        <NavLink to={`/help/${tip.id}`} className='pl-3 py-2'></NavLink>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </li> :
+                <li key={content.id}>
+                    <NavLink to={`/help/${content.id}`} className={`pl-3 py-2 ${params_id === content.id ? "active": ""}`} dangerouslySetInnerHTML={{__html: content.title}}></NavLink>
+                </li> )
+
+          })
+        }
       </ul>
     </div>
   );

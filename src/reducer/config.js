@@ -13,7 +13,8 @@ export const INITIAL_STATE = {
     conversations: {},
     conversation: {},
     messages: [],
-    message: undefined
+    message: undefined,
+    helpContentList: undefined
 };
 
 const config = (state = INITIAL_STATE, action) => {
@@ -142,6 +143,15 @@ const config = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 messages: data
+            }
+        }
+
+        case actions.HELP_CONTENT_LIST_RECEIVE: {
+            const { data } = action;
+
+            return {
+                ...state,
+                helpContentList: data || {}
             }
         }
 

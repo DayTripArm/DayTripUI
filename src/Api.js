@@ -147,8 +147,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    searchForDriver(date, travelers, price_range, trip_id, offset, limit) {
-        return axios.get(template(base_urls.day_trip.searchForDriver, date, travelers, price_range, trip_id,offset,limit), { handlesError: [400, 417, 500] })
+    searchForDriver(date, travelers, price_range, trip_id, offset, limit, lang) {
+        return axios.get(template(base_urls.day_trip.searchForDriver, date, travelers, price_range, trip_id,offset,limit, lang), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
@@ -237,6 +237,12 @@ export default {
 
     getConversationMessagesRequest(conversation_id, login_id) {
         return axios.get(template(base_urls.day_trip.getConversationMessages, conversation_id, login_id), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    },
+
+    getHelpContentListRequest(content_type, lang) {
+        return axios.get(template(base_urls.day_trip.getHelpContentList, content_type, lang), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
