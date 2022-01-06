@@ -14,7 +14,8 @@ export const INITIAL_STATE = {
     conversation: {},
     messages: [],
     message: undefined,
-    helpContentList: undefined
+    helpContentList: undefined,
+    individualContent: undefined
 };
 
 const config = (state = INITIAL_STATE, action) => {
@@ -152,6 +153,14 @@ const config = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 helpContentList: data || {}
+            }
+        }
+
+        case actions.HELP_INDIVIDUAL_CONTENT_RECEIVE: {
+            const { data } = action;
+            return {
+                ...state,
+                individualContent: data || {}
             }
         }
 

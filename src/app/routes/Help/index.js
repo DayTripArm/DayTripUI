@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {useDispatch, useSelector} from "react-redux";
 import actions from "../../../actions";
+import {unescapeHTML} from '../../../helper';
 
 const Help = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Help = () => {
             return (
                 <li className='mb-5 mb-md-6 mb-xl-9 col-md-6 col-xl-4 col-xxl-3' key={content.id}>
                   <h4 className='text__blue mb-3'>{content.title}</h4>
-                  <p dangerouslySetInnerHTML={{__html: content.description}}></p>
+                  <p dangerouslySetInnerHTML={{__html: unescapeHTML(content.description)}}></p>
                   <Link to={`/help/${content.id}`} className='btn btn-secondary btn-sm'>
                     {t("commons.read_more")}
                   </Link>

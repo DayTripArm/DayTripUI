@@ -246,4 +246,10 @@ export default {
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
+
+    getIndividualContentRequest(content_type, lang, id) {
+        return axios.get(template(template(base_urls.day_trip.getHelpContentById, id, content_type, lang)), { handlesError: [400, 417, 500] })
+            .then(response => ({response}) )
+            .catch(error => ({error}) );
+    }
 }

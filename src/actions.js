@@ -577,6 +577,20 @@ const actions  = {
         type: actions.HELP_CONTENT_LIST_RECEIVE,
         data
     }),
+
+    HELP_INDIVIDUAL_CONTENT_REQUEST: `${nameSpace}_HELP_INDIVIDUAL_CONTENT_REQUEST`,
+    getIndividualContentRequest: (content_type, lang, id) => ({
+        type: actions.HELP_INDIVIDUAL_CONTENT_REQUEST,
+        content_type,
+        lang,
+        id
+    }),
+
+    HELP_INDIVIDUAL_CONTENT_RECEIVE: `${nameSpace}_HELP_INDIVIDUAL_CONTENT_RECEIVE`,
+    getIndividualContentReceive: (data) => ({
+        type: actions.HELP_INDIVIDUAL_CONTENT_RECEIVE,
+        data
+    }),
 };
 
 export default actions;

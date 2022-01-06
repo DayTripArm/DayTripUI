@@ -43,5 +43,6 @@ export default {
     "createMessage": `${HOST}/messages/{0}`,
     "getConversationMessages":  `${HOST}/messages/{0}?user_id={1}`,
     "getHelpContentList": `${HOST}/contents?type={0}&lang={1}`,
+    "getHelpContentById": `${HOST}/contents/{0}?type={1}&lang={2}`
   }
 }

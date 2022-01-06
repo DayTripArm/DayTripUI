@@ -67,3 +67,12 @@ export const secondsToHourMinutes = (trip_duration, hour_transl, min_transl) => 
 
     return (hours >=1 ? `${hours+hour_transl} `: "")+(minutes >0 ? `${minutes+min_transl} `: "")
 }
+
+export const unescapeHTML = (html) => {
+    if (!html){
+        return ""
+    }
+    var escapeEl = document.createElement('div');
+    escapeEl.innerHTML = html;
+    return escapeEl.textContent;
+}

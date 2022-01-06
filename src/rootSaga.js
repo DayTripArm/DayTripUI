@@ -728,6 +728,20 @@ function* getHelpContentListRequest(action) {
 }
 
 
+function* getIndividualContentRequest(action) {
+    const {content_type, lang, id} = action;
+    try {
+        const {response, error} = yield call(Api.getIndividualContentRequest, content_type, lang, id);
+        if (response) {
+            yield put(actions.getIndividualContentReceive(response.data));
+        } else {
+            console.log(" err ", error);
+        }
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* watcherSaga() {
     yield takeEvery(actions.SIGN_UP_REQUEST, signUpRequest);
     yield takeEvery(actions.SIGN_IN_REQUEST, signInRequest);
@@ -767,6 +781,7 @@ function* watcherSaga() {
     yield takeEvery(actions.SEND_MESSAGE_REQUEST, sendMessageRequest);
     yield takeEvery(actions.GET_CONVERSATION_MESSAGES_REQUEST, getConversationMessages);
     yield takeEvery(actions.HELP_CONTENT_LIST_REQUEST, getHelpContentListRequest);
+    yield takeEvery(actions.HELP_INDIVIDUAL_CONTENT_REQUEST, getIndividualContentRequest);
 }
 
 export default function* root() {
