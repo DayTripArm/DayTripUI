@@ -147,8 +147,8 @@ export default {
             .catch(error => ({error}) );
     },
 
-    searchForDriver(date, travelers, price_range, trip_id, offset, limit, lang) {
-        return axios.get(template(base_urls.day_trip.searchForDriver, date, travelers, price_range, trip_id,offset,limit, lang), { handlesError: [400, 417, 500] })
+    searchForDriver(date, travelers, price_range, trip_id, offset, limit, lang, currency) {
+        return axios.get(template(base_urls.day_trip.searchForDriver, date, travelers, price_range, trip_id,offset,limit, lang, currency), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },

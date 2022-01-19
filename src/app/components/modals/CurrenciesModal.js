@@ -3,14 +3,19 @@ import { useTranslation } from 'react-i18next';
 import Modal from 'shared/components/Modal'
 import {useDispatch} from "react-redux";
 import actions from "../../../actions";
-import {CURRENCIES} from '../../../constants';
+import {CURRENCIES, CURRENCY_LIMIT_RANGES} from '../../../constants';
 import { IconCurrecy } from 'shared/components/Icons';
 
 const CurrenciesModal = ({onClose}) => {
     const dispatch = useDispatch();
     const { t } = useTranslation();
     function setCurrency(e,currency){
+        const trip_id = 1
         localStorage.setItem('currency', currency["short_name"]);
+        let sfd_filters = JSON.parse(localStorage.getItem('sfd_filters')) || {};
+        sfd_filters["price_range"] = trip_id ? CURRENCY_LIMIT_RANGES[currency["short_name"].toLowerCase()]: [25000, 50000];
+        localStorage.setItem('sfd_filters', JSON.stringify(sfd_filters));
+        window.dispatchEvent( new Event('storage'))
         dispatch(actions.setCurrency(currency["short_name"]));
         onClose();
     }

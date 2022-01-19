@@ -27,7 +27,7 @@ export default {
     "getIndividualUser": `${HOST}/profile_info/{0}?profile=user_profile&user_type={1}`,
     "getCalendarSettings": `${HOST}/calendar_settings/{0}`,
     "updateCalendarSettings": `${HOST}/calendar_settings/{0}`,
-    "searchForDriver": `${HOST}/search_drivers?date={0}&travelers={1}&price_range={2}&trip_id={3}&offset={4}&limit={5}&lang={6}`,
+    "searchForDriver": `${HOST}/search_drivers?date={0}&travelers={1}&price_range={2}&trip_id={3}&offset={4}&limit={5}&lang={6}&currency={7}`,
     "loadPricesList": `${HOST}/price_list?is_trip={0}`,
     "addTripReview": `${HOST}/trip_review`,
     "addDriverReview": `${HOST}/driver_review`,

@@ -8,8 +8,10 @@ import Checkbox from 'shared/components/Checkbox';
 import FormPlusMinus from 'shared/components/FormPlusMinus';
 import useOutsideClick from 'shared/hooks/useOutsideClick';
 import {useDispatch, useSelector} from "react-redux";
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import actions from "../../../actions";
+import {CURRENCIES, CURRENCY_LIMIT_RANGES} from "../../../constants";
 import {secondsToHourMinutes} from "../../../helper";
 import _ from "lodash";
 import moment from "moment";
@@ -25,36 +27,44 @@ const Drivers = ({ history }) => {
     const container3 = useRef();
     const container4 = useRef();
     const { t } = useTranslation();
-    let filters = JSON.parse(localStorage.getItem('sfd_filters')) || history.location.state;
-    const trip_id = history.location.state?.trip_id || null;
-    if (_.isEmpty(filters)){
-        filters = history.location.state? history.location.state : {
-            date: moment().format('YYYY-MM-DD'),
-            travelers: 1,
-            passengers_count: {adults: 1, children: 0},
-            reviews: {"wonderfull": false, "excelent": false, "good": false},
-            price_range: trip_id ? [50, 1000]: [25000, 50000]}
-    }
+    const {config, travelerData} = useSelector(state => state);
+    const {currency} = config;
+    const search = useLocation().search;
+    const trip_id = new URLSearchParams(search).get('trip_id') || null;
+    const locale_code = localStorage.getItem('lang') || 'en'
+    const selected_currency = currency || localStorage.getItem('currency') || 'amd'
+    const prices_range = trip_id ? CURRENCY_LIMIT_RANGES[selected_currency.toLowerCase()]: [25000, 50000]
+    let filters = JSON.parse(localStorage.getItem('sfd_filters')) || history.location.state || {
+        date: moment().format('YYYY-MM-DD'),
+        travelers: 1,
+        passengers_count: {adults: 1, children: 0},
+        reviews: {"wonderfull": false, "excelent": false, "good": false},
+        price_range: prices_range
+    };
 
     useEffect(() => {
+        window.addEventListener('storage', function(e){
+            setForm(JSON.parse(localStorage.getItem('sfd_filters') || filters));
+        }, false)
         const body = {
+            lang: locale_code,
             date: filters.date,
             travelers: filters.travelers,
             price_range: filters.price_range,
             trip_id: trip_id,
             offset: 0,
-            limit: 5
+            limit: 5,
+            currency: selected_currency
         };
 
         dispatch(actions.searchForDriversRequest(body));
         dispatch(actions.loadPricesListRequest(trip_id? true: false));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+    },[selected_currency]);
 
-    const {travelerData} = useSelector(state => state);
     const {search_for_drivers, prices_list} = travelerData;
     const {drivers_list, trip_details, driversTotalCount} = search_for_drivers;
-    const trip_duration = trip_details?.trip_duration || 12;
+    const trip_duration = trip_details?.trip_duration || "";
     const start_location = trip_details?.start_location || 'Yerevan';
 
     const [openCalendar, setOpenCalendar] = useState(false);
@@ -64,7 +74,7 @@ const Drivers = ({ history }) => {
     const [isPricePopupOpened, setPricePopupOpened] = useState(false);
     const [isReviewsPopupOpened, setReviewsPopupOpened] = useState(false);
     const [form, setForm] = useState(filters);
-    const locale_code = localStorage.getItem('lang') || 'en'
+
     useOutsideClick(container1, () => setOpenCalendar(false));
     useOutsideClick(container2, () => setOpenCount(false));
     useOutsideClick(container3, () => setReviewsPopupOpened(false));
@@ -91,11 +101,12 @@ const Drivers = ({ history }) => {
     }
     const displayPrice = (() => {
         let price_text = t("select_drivers_page.chips.price");
+        const currency_sign = _.find(CURRENCIES, {short_name: selected_currency}) || CURRENCIES[2];
         if (form.price_range) {
             if (form.price_range[0] && form.price_range[1]){
-                price_text = "$"+form.price_range[0]+" - $"+form.price_range[1];
+                price_text = `${currency_sign["utf_symbol"]}${form.price_range[0]} - ${currency_sign["utf_symbol"]}${form.price_range[1]}`;
             } else {
-                price_text = t("commons.up_to", {price: form.price_range[1] || "1000+", currency: "$"});
+                price_text = t("commons.up_to", {price: form.price_range[1] || `${currency_sign["utf_symbol"]}${prices_range[1]}+`, currency: currency_sign["utf_symbol"]});
             }
 
         }
@@ -147,7 +158,7 @@ const Drivers = ({ history }) => {
         const body = {
             date: form.date,
             travelers: form.travelers,
-            price_range: form.price_range || trip_id ? [50, 1000]: [25000, 50000],
+            price_range: form.price_range || prices_range,
             reviews_score: review_scores
         };
         updateDriversList(body);
@@ -158,7 +169,7 @@ const Drivers = ({ history }) => {
         const body = {
             date: form.date,
             travelers: form.passengers_count.adults + form.passengers_count.children,
-            price_range: price_range || trip_id ? [50, 1000]: [25000, 50000]
+            price_range: price_range || prices_range
         };
         updateDriversList(body);
     });
@@ -351,8 +362,8 @@ const Drivers = ({ history }) => {
                                                           </Grid>
                                                           <Grid item xs={12} lg={12}>
                                                             <RangeSlider prices_list={prices_list}
-                                                                range={trip_id ? form.price_range || [50, 1000]: form.price_range || [25000, 50000]}
-                                                                min_max={trip_id ? [50, 1000]: [25000, 50000]}
+                                                                range={trip_id ? form.price_range || CURRENCY_LIMIT_RANGES[selected_currency.toLowerCase()]: form.price_range || [25000, 50000]}
+                                                                min_max={prices_range}
                                                                 price_label={{min_price_text: t("commons.min_price_text"), max_price_text: t("commons.max_price_text")}}
                                                                 isTrip={trip_id ? true: false}
                                                                 onChange={(price_range) => {
@@ -385,8 +396,9 @@ const Drivers = ({ history }) => {
                                 driversTotalCount={driversTotalCount}
                                 req_body={{
                                     date: form.date,
-                                    travelers: form.passengers_count.adults + form.passengers_count.children,
-                                    trip_id: trip_id
+                                    travelers: form.passengers_count?.adults + form.passengers_count?.children,
+                                    trip_id: trip_id,
+                                    currency: selected_currency
                                 }}
                          />
                          </>}

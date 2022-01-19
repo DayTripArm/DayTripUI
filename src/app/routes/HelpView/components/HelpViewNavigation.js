@@ -14,28 +14,26 @@ const HelpViewNavigation = ({ open, onClose, helpContentList, params_id }) => {
       <ul className='no-list-style mb-0'>
         {
           helpContentList?.map((content, i) => {
-             {
-                 return (
-                     content.tips ?
-                     <li key={content.id}>
-                        <span className={`pl-3 py-2 ${params_id === content.id ? "active": ""}`}>{content.title}</span>
-                        <ul className='no-list-style mb-0'>
-                        {
-                            content.tips.map((list_item, i) => {
-                                return (
-                                    <li key={list_item.id}>
-                                        <NavLink to={`/help/${list_item.id}`} className={`pl-3 py-2 ${params_id === list_item.id ? "active": ""}`} dangerouslySetInnerHTML={{__html: list_item.title}}></NavLink>
-                                    </li>
-                                )
-                            })
-                        }
-                        </ul>
-                    </li> :
-                    <li key={content.id}>
-                        <NavLink to={`/help/${content.id}`} className={`pl-3 py-2 ${params_id === content.id ? "active": ""}`} dangerouslySetInnerHTML={{__html: content.title}}></NavLink>
-                    </li>
-                )
-             }
+             return (
+                 content.tips ?
+                 <li key={content.id}>
+                    <span className={`pl-3 py-2 ${params_id === content.id ? "active": ""}`}>{content.title}</span>
+                    <ul className='no-list-style mb-0'>
+                    {
+                        content.tips.map((list_item, i) => {
+                            return (
+                                <li key={list_item.id}>
+                                    <NavLink to={`/help/${list_item.id}`} className={`pl-3 py-2 ${params_id === list_item.id ? "active": ""}`} dangerouslySetInnerHTML={{__html: list_item.title}}></NavLink>
+                                </li>
+                            )
+                        })
+                    }
+                    </ul>
+                </li> :
+                <li key={content.id}>
+                    <NavLink to={`/help/${content.id}`} className={`pl-3 py-2 ${params_id === content.id ? "active": ""}`} dangerouslySetInnerHTML={{__html: content.title}}></NavLink>
+                </li>
+            )
           })
         }
       </ul>

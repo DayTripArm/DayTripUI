@@ -59,7 +59,7 @@ const Footer = () => {
                   </a>
                   <a href='#modal' className='lang_curr_text_icon text__grey-dark mr-2' onClick={(e) => {e.preventDefault(); setOpenCurrencyPopup(true); window.location.hash = "modal"}}>
                     <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || null} fill="#757575" />
-                    <span className="pointer text-nowrap px-1">{currency ? currency: localStorage.getItem('currency') || 'USD'}</span>
+                    <span className="pointer text-nowrap px-1">{currency ? currency: localStorage.getItem('currency') || 'AMD'}</span>
                   </a>
                 </div> : <></>
             }

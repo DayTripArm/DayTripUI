@@ -32,11 +32,11 @@ const SearchForDriverModal = (props) => {
                 price_range: [50, 1000],
             }));
             history.push({
-                pathname: '/drivers',
+                pathname: '/drivers?trip_id=',
+                search: '?trip_id='+trip_id,
                 state: {
                     date: form.date,
-                    travelers: form.travelers,
-                    trip_id: trip_id
+                    travelers: form.travelers
                 },
             })
         } catch (e) {

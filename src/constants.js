@@ -15,7 +15,13 @@ export const LOCATIONS = ["Yerevan", "Gyumri", "Vanadzor", "Vagharshapat", "Abov
 
 export const LANGUAGES_BY_COUNTRY = {"en": "English", "am": "Հայերեն", "ru": "Русский"}
 
-export const CURRENCIES = [{"short_name": "EUR", "name": "Euro"}, {"short_name": "USD", "name": "US Dollar"}, {"short_name": "AMD", "name": "Armenian Dram"},{"short_name": "RUB", "name": "Russian Rubli"}]
+export const CURRENCIES = [{"short_name": "EUR", "name": "Euro", "utf_symbol": "\u00A3"}, {"short_name": "USD", "name": "US Dollar", "utf_symbol": "\u0024"}, {"short_name": "AMD", "name": "Armenian Dram", "utf_symbol": "\u058F"},{"short_name": "RUB", "name": "Russian Rubli", "utf_symbol": "\u20BD"}]
+export const CURRENCY_LIMIT_RANGES = {
+    "eur": [10, 1000],
+    "usd": [10, 1000],
+    "rub": [500, 50000],
+    "amd": [5000, 500000]
+}
 
 export const MONTH_LIST = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 export const DAYS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];

@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import _ from "lodash";
 import actions from "../../../../actions";
+import {CURRENCY_LIMIT_RANGES} from "../../../../constants";
 import moment from "moment";
 
 const FiltersModal = (props) => {
@@ -17,6 +18,7 @@ const FiltersModal = (props) => {
     const { t } = useTranslation();
     const {trip_id, prices_list, filters, onSetCalendarDate, onSetTravelersCount,onSetAdultsCount, onSetChildrenCount, onSetReviewScore, onSetPriceRange, onCloseShowPopup} = props;
     const [form, setForm] = useState(JSON.parse(localStorage.getItem('sfd_filters')) || filters);
+    const currency = localStorage.getItem('currency') || 'amd'
     const onDaySelect = ((day) => {
         setForm({...form, date: moment(day).format('YYYY-MM-DD')});
     });
@@ -32,7 +34,7 @@ const FiltersModal = (props) => {
     const onSetPrice = ((price_range) => {
         setForm({
             ...form,
-            price_range: price_range || trip_id ? [50, 1000]: [25000, 50000]
+            price_range: price_range || trip_id ? CURRENCY_LIMIT_RANGES[currency.toLowerCase()]: [25000, 50000]
         });
     });
     const locale_code = localStorage.getItem('lang') || 'en'
@@ -167,8 +169,8 @@ const FiltersModal = (props) => {
                               </Grid>
                               <Grid item xs={12} lg={12}>
                                 <RangeSlider prices_list={prices_list}
-                                    range={trip_id ? form.price_range || [50, 1000]: form.price_range || [25000, 50000]}
-                                    min_max={trip_id ? [50, 1000]: [25000, 50000]}
+                                    range={trip_id ? form.price_range || CURRENCY_LIMIT_RANGES[currency.toLowerCase()]: form.price_range || [25000, 50000]}
+                                    min_max={trip_id ? CURRENCY_LIMIT_RANGES[currency.toLowerCase()]: [25000, 50000]}
                                     isTrip={trip_id ? true: false}
                                     price_label={{min_price_text: t("commons.min_price_text"), max_price_text: t("commons.max_price_text")}}
                                     onChange={(price_range) => {

@@ -13,7 +13,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { useHistory } from "react-router";
 import { useTranslation } from 'react-i18next';
 import actions from "actions";
-import {HOST_URL} from "../../../../constants";
+import {CURRENCIES, HOST_URL} from "../../../../constants";
 import moment from "moment";
 import _ from "lodash";
 
@@ -49,6 +49,9 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
     const dispatch = useDispatch();
     const history = useHistory();
     const { t } = useTranslation();
+    const search = location.search;
+    const trip_id = new URLSearchParams(search).get('trip_id') || null;
+    const currency_sign = _.find(CURRENCIES, {short_name: req_body?.selected_currency || localStorage.getItem('currency') || 'amd'}) || CURRENCIES[2];
     const loadDriverList = (lmt) => {
         limit = lmt +5;
         const body = {
@@ -56,7 +59,8 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
             travelers: req_body ? req_body.travelers : location.state.travelers,
             trip_id: req_body ? req_body.trip_id : (trip_details?.trip_id || null),
             offset: 0,
-            limit: limit
+            limit: limit,
+            currency: req_body?.selected_currency || localStorage.getItem('currency') || 'amd'
         };
         dispatch(actions.searchForDriversRequest(body))
     };
@@ -65,13 +69,6 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
         showSignIn,
         showSignUp,
     } = travelerData;
-
-    const calcBookingPrice = (trip_details, driver) => {
-        return location.state?.trip_id ? trip_details.trip_distance <= 100 ?
-            Math.round(trip_details.trip_distance * driver.tariff1/1000):
-            Math.round(trip_details.trip_distance * driver.tariff2/1000):
-            driver.hit_the_road_tariff;
-    }
 
     const bookTrip = (e, driver, learn_more) => {
         e.preventDefault();
@@ -87,9 +84,9 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                     user_type: driver.user_type,
                     booked_trip: true,
                     traveler_id: Number(localStorage.id),
-                    trip_id: location.state?.trip_id || null,
+                    trip_id: trip_id || null,
                     driver_img: src,
-                    trip_title: location.state?.trip_id ? trip_details.title: "Hit the road "+(profile.name ? profile.name : ''),
+                    trip_title: trip_id ? trip_details.title: "Hit the road "+(profile.name ? profile.name : ''),
                     trip_img: trip_img_src,
                     driver_name: driver.driver_name,
                     car_full_name: driver.car_full_name,
@@ -152,7 +149,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
                                                 </div>
                                             </div>
                                             <button onClick={(e) => bookTrip(e, driver)} className='btn btn-primary text-uppercase btn-xs-block'>
-                                                {t("select_drivers_page.btn")} ${calcBookingPrice(trip_details, driver)}
+                                                {t("select_drivers_page.btn")} {currency_sign["utf_symbol"]}{driver.booking_price}
                                             </button>
                                         </div>
                                         <div className='pt-5 pt-md-4 pb-4'>

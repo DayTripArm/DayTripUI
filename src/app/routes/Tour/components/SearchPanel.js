@@ -9,6 +9,8 @@ import useOutsideClick from 'shared/hooks/useOutsideClick';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router";
 import { useTranslation } from 'react-i18next';
+import {CURRENCY_LIMIT_RANGES} from "../../../../constants";
+import {secondsToHourMinutes} from "../../../../helper";
 import _ from "lodash";
 import moment from "moment";
 
@@ -32,6 +34,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
     const [showSearchPopup, setShowSearchPopup] = useState(false);
     const [form, setForm] = useState({date: "", travelers: "0"});
     const [count, setCount] = useState({adults: 0, children: 0});
+    const currency = localStorage.getItem('currency') || 'amd'
     let [tripTitle, setTitle] = useState("");
 
     useEffect(() => {
@@ -107,14 +110,14 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                         reviews: {"wonderfull": false, "excelent": false, "good": false},
                         travelers: form.travelers,
                         passengers_count: count,
-                        price_range: [10, 1000],
+                        price_range: CURRENCY_LIMIT_RANGES[currency.toLowerCase()],
                     }));
                     history.push({
                         pathname: '/drivers',
+                        search: '?trip_id='+trip_detail.id,
                         state: {
                             date: form.date,
                             travelers: form.travelers,
-                            trip_id: trip_detail.id,
                             passenger_count: count
                         },
                     })
@@ -144,7 +147,7 @@ const SearchPanel = ({trip_detail, review_stats}) => {
                   </p>
               </div>
               <p className='text-sm weight-500 mb-0 d-xl-block'>
-                {t("commons.duration")}: <span className='text__grey-dark'>{trip_detail.trip_duration}</span>
+                {t("commons.duration")}: <span className='text__grey-dark'>{secondsToHourMinutes(trip_detail.trip_duration, t("commons.short_duration.hours"), t("commons.short_duration.min"))}</span>
               </p>
             </div>
             <div className='d-flex justify-content-end flex-fill'>
