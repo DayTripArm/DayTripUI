@@ -211,9 +211,9 @@ export default {
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },
-    conversationsListRequest(user_id, contact_name) {
-        const url = contact_name ? base_urls.day_trip.loadConversationsByName : base_urls.day_trip.loadConversations
-        return axios.get(template(url, user_id, contact_name), { handlesError: [400, 417, 500] })
+    conversationsListRequest(user_id, contact_name, lang) {
+        const url = base_urls.day_trip.loadConversationsByName
+        return axios.get(template(url, user_id, contact_name, lang), { handlesError: [400, 417, 500] })
             .then(response => ({response}) )
             .catch(error => ({error}) );
     },

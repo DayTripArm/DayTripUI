@@ -514,10 +514,11 @@ const actions  = {
     }),
 
     CONVERSATIONS_LIST_REQUEST: `${nameSpace}_CONVERSATIONS_LIST_REQUEST`,
-    conversationsListRequest: (user_id, contact_name) => ({
+    conversationsListRequest: (user_id, contact_name, lang) => ({
         type: actions.CONVERSATIONS_LIST_REQUEST,
         user_id,
-        contact_name
+        contact_name,
+        lang
     }),
 
     CONVERSATIONS_LIST_RECEIVE: `${nameSpace}_CONVERSATIONS_LIST_RECEIVE`,

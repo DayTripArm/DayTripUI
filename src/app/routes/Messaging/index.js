@@ -36,9 +36,9 @@ const Messaging = () => {
     let cable = Cable.createConsumer(process.env.NODE_ENV === "development" ? HOST_URL+'/cable' : 'http://104.197.178.29/cable');
 
     useEffect (() => {
-        dispatch(actions.conversationsListRequest(Number(localStorage.id)));
+        dispatch(actions.conversationsListRequest(Number(localStorage.id), '', locale));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [locale]);
 
     useEffect (() => {
         ref.current = [...messages];
@@ -75,7 +75,7 @@ const Messaging = () => {
 
     const searchByAuthor = (e) => {
         const contact_name = e.target ? e.target.value : null;
-        dispatch(actions.conversationsListRequest(Number(localStorage.id), contact_name));
+        dispatch(actions.conversationsListRequest(Number(localStorage.id), contact_name, locale));
     };
 
     //User types in new message in chat box

@@ -12,7 +12,6 @@ import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import actions from "../../../actions";
 import {CURRENCIES, CURRENCY_LIMIT_RANGES} from "../../../constants";
-import {secondsToHourMinutes} from "../../../helper";
 import _ from "lodash";
 import moment from "moment";
 import { Grid } from "@material-ui/core";
@@ -64,7 +63,7 @@ const Drivers = ({ history }) => {
 
     const {search_for_drivers, prices_list} = travelerData;
     const {drivers_list, trip_details, driversTotalCount} = search_for_drivers;
-    const trip_duration = trip_details?.trip_duration || "";
+    const trip_duration = trip_details?.trip_duration || t("commons.hit_the_road_duration");
     const start_location = trip_details?.start_location || 'Yerevan';
 
     const [openCalendar, setOpenCalendar] = useState(false);
@@ -194,7 +193,7 @@ const Drivers = ({ history }) => {
                             <div className='d-flex mb-4 mr-md-4'>
                                 <IconClockOutlined className='mr-2'/>
                                 <p className='mb-0'>
-                                {t("commons.duration")}: <span className='weight-500 text__grey-dark'>{secondsToHourMinutes(trip_duration, t("commons.short_duration.hours"), t("commons.short_duration.min"))}</span>
+                                {t("commons.duration")}: <span className='weight-500 text__grey-dark'>{trip_duration}</span>
                                 </p>
                             </div>
                             <div className='d-flex mb-5'>
