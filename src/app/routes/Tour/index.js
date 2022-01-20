@@ -9,7 +9,6 @@ import {useDispatch, useSelector} from "react-redux";
 import { useTranslation } from 'react-i18next';
 import i18n from './../../../i18n';
 import actions from "../../../actions";
-import {secondsToHourMinutes} from "../../../helper";
 import _ from "lodash";
 
 const Tour = ({ history }) => {
@@ -63,7 +62,7 @@ const Tour = ({ history }) => {
                             <div className='d-md-flex'>
                                 <div className='d-flex mb-4 mb-md-0 mr-md-5'>
                                     <IconClockOutlined className='mr-2' />
-                                    <p className='mb-0'>{t("trip_details_page.duration")}: <span className='weight-500 text__grey-dark'>{secondsToHourMinutes(trip_duration, t("commons.short_duration.hours"), t("commons.short_duration.min"))}</span></p>
+                                    <p className='mb-0'>{t("trip_details_page.duration")}: <span className='weight-500 text__grey-dark'>{trip_duration}</span></p>
                                 </div>
                                 <div className='d-flex mb-0'>
                                     <IconDestination className='mr-2' />
