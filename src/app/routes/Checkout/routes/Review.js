@@ -96,14 +96,14 @@ const Review = (props) => {
         const invalidFields = validateForm();
         if (_.isEmpty(invalidFields)) {
             try {
+                localStorage.setItem("booking_details", JSON.stringify({
+                    ...checkout_info,
+                    pickup_time: form.pickup_time,
+                    pickup_location: form.pickup_location,
+                    notes: form.notes
+                }));
                 history.push({
-                    pathname: '/checkout/payment',
-                    state: {
-                        ...checkout_info,
-                        pickup_time: form.pickup_time,
-                        pickup_location: form.pickup_location,
-                        notes: form.notes
-                    }
+                    pathname: '/checkout/payment'
                 })
             } catch (e) {
                 console.log(" err ", e.response);

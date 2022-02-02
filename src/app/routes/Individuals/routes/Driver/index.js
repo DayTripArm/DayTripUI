@@ -44,7 +44,7 @@ const Driver = ({ history }) => {
         : profile_photo;
 
     useEffect(() => {
-        const user_id = locate.state?.driver_id ? Number(locate.state.driver_id) : Number(localStorage.id)
+        const user_id = locate.state?.user_id ? Number(locate.state.user_id) : Number(localStorage.id)
         const user_type = locate.state?.user_type ? Number(locate.state.user_type) : Number(localStorage.userType)
         dispatch(actions.individualUserRequest(user_id, user_type));
 

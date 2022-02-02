@@ -118,7 +118,7 @@ const Payment = () => {
 
     useEffect(() => {
         dispatch(actions.convertTripPriceRequest(checkout_info?.price, selected_currency));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[selected_currency]);
 
   return (
