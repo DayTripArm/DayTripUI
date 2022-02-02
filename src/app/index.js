@@ -10,7 +10,6 @@ import actions from "../actions";
 // Load Components
 import Header from './components/Header';
 import Footer from './components/Footer';
-import i18n from './../i18n';
 // Load Routes
 import Home from './routes/Home';
 import Help from './routes/Help';
@@ -34,7 +33,6 @@ import ModalConfirmation from "./components/modals/ModalConfirmation";
 const App = () => {
     const dispatch = useDispatch();
     const {travelerData, config} = useSelector(state => state);
-    const lang = i18n.language || localStorage.getItem('lang') || 'en'
 
     useEffect(() => {
         if (localStorage.userType && localStorage.userType === TRAVELER_TYPE) {
@@ -49,25 +47,13 @@ const App = () => {
             dispatch(actions.setPrereg(localStorage.is_prereg));
         }
 
-        delete localStorage.proceed_once; // we don't need this attribute in first time
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
         if (localStorage.id) {
             dispatch(actions.profileInfoRequest(localStorage.id));
         }
-        const body = {
-            offset: 0,
-            limit: 12,
-            lang
-        }
-        dispatch(actions.heroesRequest(lang));
-        dispatch(actions.tripsRequest(body));
-        dispatch(actions.hitTheRoadRequest(lang));
-        dispatch(actions.tipsRequest(3, lang));
+
+        delete localStorage.proceed_once; // we don't need this attribute in first time
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [lang]);
+    }, []);
 
 
     const {

@@ -139,7 +139,7 @@
             "pickup_placeholder": "Select Time",
             "pickup_location": "Pick Up Location",
             "pickup_location_placeholder": "Select Location",
-            "notes": "Pick Up Time",
+            "notes": "Pick Up Notes",
             "notes_placeholder": "Add a Note",
             "btn": "CONTINUE"
         },

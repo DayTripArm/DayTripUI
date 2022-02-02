@@ -8,11 +8,12 @@ import {useDispatch} from "react-redux";
 import actions from "../../../actions";
 
 import _ from "lodash";
+import i18n from '../../../i18n';
 
 const Home = () => {
     const location = useLocation();
     const dispatch = useDispatch();
-
+    const lang = i18n.language || localStorage.getItem('lang') || 'en'
     const {search = ""} = location;
 
     useEffect(() => {
@@ -27,6 +28,19 @@ const Home = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        const body = {
+            offset: 0,
+            limit: 12,
+            lang
+        }
+        dispatch(actions.heroesRequest(lang));
+        dispatch(actions.tripsRequest(body));
+        dispatch(actions.hitTheRoadRequest(lang));
+        dispatch(actions.tipsRequest(3, lang));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [lang]);
 
     return (
         <section className='home-page'>

@@ -1,4 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import { useHistory } from "react-router";
+import { useTranslation } from 'react-i18next';
+import {useDispatch, useSelector} from "react-redux";
+
+import _ from "lodash";
+import moment from "moment";
+
 import Input from 'shared/components/Input';
 import {
   IconDestination,
@@ -14,11 +22,8 @@ import {
 } from 'shared/components/Icons';
 import Textarea from 'shared/components/Textarea';
 import Timepicker from "shared/components/Timepicker";
-import { Link, useLocation } from 'react-router-dom';
-import { useHistory } from "react-router";
-import { useTranslation } from 'react-i18next';
-import _ from "lodash";
-import moment from "moment";
+import actions from "../../../../actions";
+import {CURRENCIES, SERVICE_FEES} from "../../../../constants";
 
 
 const validations = {
@@ -30,18 +35,30 @@ const validations = {
     },
 };
 const Review = (props) => {
-    const locate = useLocation();
     const history = useHistory();
+    const dispatch = useDispatch();
     const { t } = useTranslation();
-    const locale = localStorage.getItem('lang') || 'en';
+    const {config} = useSelector(state => state);
+
     const [invalidFields, setInvalidFields] = useState({});
     const [showTimePicker, setShowTimePicker] = useState(false);
     const [showMoreDetails, setShowMoreDetails] = useState(false);
     const [form, setForm] = useState({pickup_time: "", pickup_location: "", notes: ""});
-    const pickTime = !_.isEmpty(form.pickup_time) ? {hour: _.split(form.pickup_time,":")[0], minute: _.split(form.pickup_time,":")[1]} : {hour: "08", minute: "30"};
 
-    const checkout_info = locate.state;
+    const locale = localStorage.getItem('lang') || 'en';
+    const pickTime = !_.isEmpty(form.pickup_time) ? {hour: _.split(form.pickup_time,":")[0], minute: _.split(form.pickup_time,":")[1]} : {hour: "08", minute: "30"};
+    const selected_currency = localStorage.getItem('currency') || 'amd'
+    const currency_sign = _.find(CURRENCIES, {short_name: selected_currency}) || CURRENCIES[2];
+    const checkout_info = JSON.parse(localStorage.getItem("booking_details"));
     const driver_img_src = checkout_info?.driver_img || 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
+
+    const service_fee = SERVICE_FEES[selected_currency.toLowerCase()];
+    const {booking_price=checkout_info?.price} = config
+
+    useEffect(() => {
+        dispatch(actions.convertTripPriceRequest(checkout_info?.price, selected_currency));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[selected_currency]);
 
     // Select time
     function onTimeSet(){
@@ -198,16 +215,16 @@ const Review = (props) => {
           <div className='p-4'>
             <div className='d-flex justify-content-between mb-2'>
               <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.price")}</span>
-              <span className='weight-500'>${parseFloat(checkout_info?.price)+".00"}</span>
+              <span className='weight-500'>{currency_sign["utf_symbol"]}{parseFloat(booking_price)+".00"}</span>
             </div>
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.fee")}</span>
-              <span className='weight-500'>$4.00</span>
+              <span className='weight-500'>{currency_sign["utf_symbol"]}{service_fee+".00"}</span>
             </div>
             <hr className='border__top border__default my-4' />
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.total_price")}</span>
-              <span className='weight-500'>${parseFloat((checkout_info?.price || 0)+4)+".00"}</span>
+              <span className='weight-500'>{currency_sign["utf_symbol"]}{parseFloat(booking_price+service_fee)+".00"}</span>
             </div>
           </div>
           <hr className='border__top border__default m-0' />

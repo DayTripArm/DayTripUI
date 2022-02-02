@@ -1,4 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
+import { useTranslation } from 'react-i18next';
+
+import actions from "actions";
+import moment from "moment";
+import _ from "lodash";
+
 import Input from 'shared/components/Input';
 import Checkbox from 'shared/components/Checkbox';
 import {
@@ -13,12 +21,7 @@ import {
     IconAC,
     IconCheckMarkFilled
 } from 'shared/components/Icons';
-import { Link, useLocation } from 'react-router-dom';
-import {useDispatch, useSelector} from "react-redux";
-import { useTranslation } from 'react-i18next';
-import actions from "actions";
-import moment from "moment";
-import _ from "lodash";
+import {CURRENCIES, SERVICE_FEES} from "../../../../constants";
 
 const CardRegistrationForm = ({card_info_texts}) => (
   <>
@@ -77,40 +80,46 @@ const CardInformation = ({card_info_texts}) => (
 );
 
 const Payment = () => {
-  const dispatch = useDispatch();
-  const { t } = useTranslation();
-  const cardExists = false;
-  const location = useLocation();
-  const checkout_info = location.state;
-  const [showMoreDetails, setShowMoreDetails] = useState(false);
-  const [promo, setPromo] = useState("");
-  const driver_img_src = checkout_info?.driver_img || 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
+    const dispatch = useDispatch();
+    const { t } = useTranslation();
+    const {config, travelerData} = useSelector(state => state);
+    const [showMoreDetails, setShowMoreDetails] = useState(false);
+    const [promo, setPromo] = useState("");
 
-    const {travelerData} = useSelector(state => state);
-    const {
-        booked_trip_errors
-    } = travelerData;
+    const cardExists = false;
+    const checkout_info = JSON.parse(localStorage.getItem("booking_details"));
+    const driver_img_src = checkout_info?.driver_img || 'https://cdn1.iconfinder.com/data/icons/user-pictures/100/female1-512.png';
+    const selected_currency = localStorage.getItem('currency') || 'amd'
+    const currency_sign = _.find(CURRENCIES, {short_name: selected_currency}) || CURRENCIES[2];
+    const {booked_trip_errors} = travelerData;
 
     const {message} = booked_trip_errors || "";
 
-  const card_info_texts = {
-    card_currency: t("account_page.payments.card_currency", {currency: "AMD"}),
-    card_type: t("account_page.payments.card_type"),
-    visa_ends: t("account_page.payments.visa_ends", {number: 1234}),
-    name_on_card: t("account_page.payments.name_on_card"),
-    expires_on: t("account_page.payments.expires_on"),
-    btn: t("account_page.payments.add_payment_btn"),
-    card_num: t("checkout_page.card_info.card_num"),
-    expire_date: t("checkout_page.card_info.expire_date"),
-    name_pholder: t("home_page.sign_up.name_placeholder"),
-    set_as_default_checkbox: t("checkout_page.card_info.set_as_default_checkbox")
-  }
-  const locale = localStorage.getItem('lang') || 'en';
-  const completeCheckout = () => {
+    const card_info_texts = {
+        card_currency: t("account_page.payments.card_currency", {currency: "AMD"}),
+        card_type: t("account_page.payments.card_type"),
+        visa_ends: t("account_page.payments.visa_ends", {number: 1234}),
+        name_on_card: t("account_page.payments.name_on_card"),
+        expires_on: t("account_page.payments.expires_on"),
+        btn: t("account_page.payments.add_payment_btn"),
+        card_num: t("checkout_page.card_info.card_num"),
+        expire_date: t("checkout_page.card_info.expire_date"),
+        name_pholder: t("home_page.sign_up.name_placeholder"),
+        set_as_default_checkbox: t("checkout_page.card_info.set_as_default_checkbox")
+    }
+    const locale = localStorage.getItem('lang') || 'en';
+    const completeCheckout = () => {
+        let body = _.omit(checkout_info,["driver_img", "trip_img", "driver_name", "car_specs", "car_full_name", "trip_location", "trip_review", "review", "car_full_name", "languages", "trip_duration"]);
+        dispatch(actions.confirmTripBookingCheckout({...body, promo_code: promo}))
+    };
 
-    let body = _.omit(checkout_info,["driver_img", "trip_img", "driver_name", "car_specs", "car_full_name", "trip_location", "trip_review", "review", "car_full_name", "languages", "trip_duration"]);
-    dispatch(actions.confirmTripBookingCheckout({...body, promo_code: promo}))
-  };
+    const service_fee = SERVICE_FEES[selected_currency.toLowerCase()];
+    const {booking_price=checkout_info?.price} = config
+
+    useEffect(() => {
+        dispatch(actions.convertTripPriceRequest(checkout_info?.price, selected_currency));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[selected_currency]);
 
   return (
     <>
@@ -165,16 +174,16 @@ const Payment = () => {
           <div className='p-4'>
             <div className='d-flex justify-content-between mb-2'>
               <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.price")}</span>
-              <span className='weight-500'>${parseFloat(checkout_info.price)+".00"}</span>
+              <span className='weight-500'>{currency_sign["utf_symbol"]}{parseFloat(booking_price)+".00"}</span>
             </div>
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.fee")}</span>
-              <span className='weight-500'>$4.00</span>
+              <span className='weight-500'>{currency_sign["utf_symbol"]}{service_fee+".00"}</span>
             </div>
             <hr className='border__top border__default my-4' />
             <div className='d-flex justify-content-between'>
               <span className='text-sm text__grey-dark'>{t("checkout_page.trip_summary.total_price")}</span>
-              <span className='weight-500'>${parseFloat(checkout_info.price+4)+".00"}</span>
+              <span className='weight-500'>{currency_sign["utf_symbol"]}{parseFloat(booking_price+service_fee)+".00"}</span>
             </div>
           </div>
           <hr className='border__top border__default m-0' />

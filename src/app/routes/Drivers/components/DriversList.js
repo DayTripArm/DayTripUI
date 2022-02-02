@@ -28,13 +28,13 @@ const settings = {
         {
             breakpoint: 1023,
             settings: {
-                slidesToShow: 1,
+                slidesToShow: 1
             },
         },
         {
             breakpoint: 767,
             settings: {
-                slidesToShow: 1,
+                slidesToShow: 1
             },
         },
     ],
@@ -53,7 +53,7 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
     const trip_id = new URLSearchParams(search).get('trip_id') || null;
     const currency_sign = _.find(CURRENCIES, {short_name: req_body?.selected_currency || localStorage.getItem('currency') || 'amd'}) || CURRENCIES[2];
     const loadDriverList = (lmt) => {
-        limit = lmt +5;
+        limit = lmt + 5;
         const body = {
             date: req_body ? req_body.date : location.state.date,
             travelers: req_body ? req_body.travelers : location.state.travelers,
@@ -77,28 +77,29 @@ const DriversList = ({drivers_list,trip_details, driversTotalCount, req_body}) =
         const trip_img_src = process.env.NODE_ENV === "development" ? HOST_URL + trip_img : trip_img;
 
         if (localStorage.id || learn_more) {
+            const booking_details = {
+                driver_id: driver.id,
+                user_type: driver.user_type,
+                booked_trip: true,
+                traveler_id: Number(localStorage.id),
+                trip_id: trip_id || null,
+                driver_img: src,
+                trip_title: trip_id ? trip_details.title: "Hit the road "+(profile.name ? profile.name : ''),
+                trip_img: trip_img_src,
+                driver_name: driver.driver_name,
+                car_full_name: driver.car_full_name,
+                car_specs: driver.car_specs,
+                price: driver.booking_price,
+                languages: driver.languages,
+                review: driver.review,
+                trip_review: learn_more ? {}: location.state?.review,
+                trip_day: req_body?.date || location.state?.date || moment().format('YYYY-MM-DD'),
+                trip_duration: trip_details.trip_duration || 12,
+                travelers_count: req_body?.travelers || location.state?.travelers || 2
+            }
+            localStorage.setItem('booking_details', JSON.stringify(booking_details))
             history.push({
-                pathname: learn_more ? '/individuals/driver' : '/checkout/review',
-                state: {
-                    driver_id: driver.id,
-                    user_type: driver.user_type,
-                    booked_trip: true,
-                    traveler_id: Number(localStorage.id),
-                    trip_id: trip_id || null,
-                    driver_img: src,
-                    trip_title: trip_id ? trip_details.title: "Hit the road "+(profile.name ? profile.name : ''),
-                    trip_img: trip_img_src,
-                    driver_name: driver.driver_name,
-                    car_full_name: driver.car_full_name,
-                    car_specs: driver.car_specs,
-                    price: location.state?.trip_id ? driver.tariff1 : driver.hit_the_road_tariff,
-                    languages: driver.languages,
-                    review: driver.review,
-                    trip_review: learn_more ? {}: location.state?.review,
-                    trip_day: location.state?.date || moment().format('YYYY-MM-DD'),
-                    trip_duration: trip_details.trip_duration || 12,
-                    travelers_count: location.state?.travelers || 2
-                }
+                pathname: learn_more ? '/individuals/driver' : '/checkout/review'
             });
         } else {
             !showSignUp && dispatch(actions.showHideSignIn(true))

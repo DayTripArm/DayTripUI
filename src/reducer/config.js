@@ -13,6 +13,7 @@ export const INITIAL_STATE = {
     conversations: {},
     conversation: {},
     messages: [],
+    booking_price: undefined,
     message: undefined,
     helpContentList: undefined,
     individualContent: undefined
@@ -82,6 +83,15 @@ const config = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 is_prereg: bool
+            }
+        }
+
+        case actions.CONVERT_TRIP_PRICE_RECEIVE: {
+            const { data } = action;
+
+            return {
+                ...state,
+                booking_price: data
             }
         }
 

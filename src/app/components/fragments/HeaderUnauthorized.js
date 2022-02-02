@@ -59,7 +59,7 @@ const HeaderUnauthorized = () => {
             </li>}
             {showInHeader && <li>
               <div className='lang_curr_text_icon position-relative d-inline-flex'>
-                <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || null} fill={themeLight ? '#fff' : '#000'} />
+                <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || 'AMD'} fill={themeLight ? '#fff' : '#000'} />
                 <span
                   className={`pointer text-nowrap px-1${themeLight ? ' text-white' : ''}`}
                   onClick={() => setOpenCurrencyPopup(true)}

@@ -22,6 +22,12 @@ export const CURRENCY_LIMIT_RANGES = {
     "rub": [500, 50000],
     "amd": [5000, 500000]
 }
+export const SERVICE_FEES = {
+    "eur": 3,
+    "usd": 4,
+    "rub": 300,
+    "amd": 1500,
+}
 
 export const MONTH_LIST = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 export const DAYS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];

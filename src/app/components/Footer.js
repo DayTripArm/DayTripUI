@@ -58,7 +58,7 @@ const Footer = () => {
                     <span className="pointer text-nowrap px-1">{lang ? LANGUAGES_BY_COUNTRY[lang]: LANGUAGES_BY_COUNTRY[localStorage.getItem('lang')] || 'ENG'} </span>
                   </a>
                   <a href='#modal' className='lang_curr_text_icon text__grey-dark mr-2' onClick={(e) => {e.preventDefault(); setOpenCurrencyPopup(true); window.location.hash = "modal"}}>
-                    <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || null} fill="#757575" />
+                    <IconCurrecy curr_code={currency ? currency: localStorage.getItem('currency') || 'AMD'} fill="#757575" />
                     <span className="pointer text-nowrap px-1">{currency ? currency: localStorage.getItem('currency') || 'AMD'}</span>
                   </a>
                 </div> : <></>

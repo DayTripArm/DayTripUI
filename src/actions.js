@@ -459,6 +459,19 @@ const actions  = {
         data
     }),
 
+    CONVERT_TRIP_PRICE_REQUEST: `${nameSpace}_CONVERT_TRIP_PRICE_REQUEST`,
+    convertTripPriceRequest: (trip_price, currency) => ({
+        type: actions.CONVERT_TRIP_PRICE_REQUEST,
+        trip_price,
+        currency
+    }),
+
+    CONVERT_TRIP_PRICE_RECEIVE: `${nameSpace}_CONVERT_TRIP_PRICE_RECEIVE`,
+    convertTripPriceRecieve: (data) => ({
+        type: actions.CONVERT_TRIP_PRICE_RECEIVE,
+        data
+    }),
+
     RESEND_CONFIRMATION: `${nameSpace}_RESEND_CONFIRMATION`,
     resendConfirmation: (email) => ({
         type: actions.RESEND_CONFIRMATION,
