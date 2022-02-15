@@ -3,7 +3,7 @@ import moment from "moment";
 import _ from "lodash";
 import { useTranslation } from 'react-i18next';
 import {HOST_URL} from "../../../../constants";
-const BookedTripItem = ({ item, onBookedTripClick, onContactClick}) => {
+const BookedTripItem = ({ item, onBookedTripClick, onContactClick, acceptBookingClick}) => {
     const { t } = useTranslation();
     const locale_code = localStorage.getItem('lang') || 'en'
     let src = process.env.NODE_ENV === "development" ? HOST_URL + item.trip.trip_image : item.trip.trip_image;
@@ -48,6 +48,13 @@ const BookedTripItem = ({ item, onBookedTripClick, onContactClick}) => {
             </div>
             <hr className='border__top border__default my-0'/>
             <div className='py-3 d-flex flex-column flex-lg-row align-items-center pr-lg-5'>
+            {item.status === 0 && moment(item.trip_day).isAfter(moment(), 'day')
+             ?
+                <button className='btn btn-secondary text-uppercase' onClick={acceptBookingClick}>
+                    {t("trips_page.trip_card.btn_accept")}
+                </button>
+             :
+              <>
                 <button
                     className='btn btn-secondary btn-secondary__grey text-uppercase mb-1'
                     onClick={onBookedTripClick}
@@ -57,6 +64,8 @@ const BookedTripItem = ({ item, onBookedTripClick, onContactClick}) => {
                 <button className='btn btn-secondary text-uppercase' onClick={onContactClick}>
                     {t("trips_page.trip_card.contact_traveler")}
                 </button>
+              </>
+            }
             </div>
         </div>
     </React.Fragment>

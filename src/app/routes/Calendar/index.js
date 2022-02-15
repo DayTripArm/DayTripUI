@@ -140,6 +140,10 @@ const Calendar = () => {
 
     };
 
+    const acceptBookingClick = (booked_id) => {
+        dispatch(actions.acceptBookedTrip({"id" : booked_id}))
+    };
+
     const onFocusChange = () => {
         // Force the focused states to always be truthy so that date is always selectable
         setFocused(true);
@@ -284,12 +288,12 @@ const Calendar = () => {
                     </div>
                     {tab === 1 &&  overview_trips && overview_trips.map((item) => {
                         return (moment(item.trip_day).isSameOrAfter(moment(), 'day') &&
-                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)} />)
+                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)} acceptBookingClick={()=> acceptBookingClick(item.id)} />)
 
                     })}
                     {tab === 2 &&  overview_trips && overview_trips.map((item) => {
                         return (moment(item.trip_day).isBefore(moment(), 'day') &&
-                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)}/>)
+                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)} acceptBookingClick={()=> acceptBookingClick(item.id)}/>)
                     })}
 
                 </div>

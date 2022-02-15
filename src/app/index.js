@@ -49,6 +49,8 @@ const App = () => {
 
         if (localStorage.id) {
             dispatch(actions.profileInfoRequest(localStorage.id));
+            dispatch(actions.conversationsListRequest(Number(localStorage.id), '', localStorage.getItem("lang")));
+            dispatch(actions.getBookedTripsRequest(Number(localStorage.id), Number(localStorage.userType)));
         }
 
         delete localStorage.proceed_once; // we don't need this attribute in first time

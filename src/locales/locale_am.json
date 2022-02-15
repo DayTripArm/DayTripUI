@@ -257,6 +257,7 @@
         "trip_card": {
             "date": "Ամսաթիվ",
             "travelers": "Ուղևորներ",
+            "btn_accept": "Հաստատել",
             "btn_cancelation": "Չեղարկում",
             "btn_details": "Մանրամասներ",
             "review_added": "Կարծիքը գրված է",
