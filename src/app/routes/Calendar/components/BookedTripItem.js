@@ -48,7 +48,7 @@ const BookedTripItem = ({ item, onBookedTripClick, onContactClick, acceptBooking
             </div>
             <hr className='border__top border__default my-0'/>
             <div className='py-3 d-flex flex-column flex-lg-row align-items-center pr-lg-5'>
-            {item.status === 0 && moment(item.trip_day).isAfter(moment(), 'day')
+            {item.status === 0 && moment(item.trip_day).isSameOrAfter(moment(), 'day')
              ?
                 <button className='btn btn-secondary text-uppercase' onClick={acceptBookingClick}>
                     {t("trips_page.trip_card.btn_accept")}

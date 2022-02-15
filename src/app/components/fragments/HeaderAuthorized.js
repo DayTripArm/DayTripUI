@@ -21,6 +21,7 @@ import actions from "../../../actions";
 import {HOST_URL} from "../../../constants";
 import _ from "lodash";
 import Api from "../../../Api";
+import moment from "moment";
 
 const HeaderAuthorized = ({ type }) => {
     const dispatch = useDispatch();
@@ -69,7 +70,7 @@ const HeaderAuthorized = ({ type }) => {
     }
 
     if (overview_trips && overview_trips.length > 0){
-        acceptedBookedTrips = overview_trips.some(i => i.status === 0);
+        acceptedBookedTrips = overview_trips.some(i => i.status === 0 && moment(i.trip_day).isSameOrAfter(moment(), 'day'));
     }
 
     const navigationTypes = {
