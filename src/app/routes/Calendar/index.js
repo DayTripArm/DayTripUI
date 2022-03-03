@@ -140,8 +140,8 @@ const Calendar = () => {
 
     };
 
-    const acceptBookingClick = (booked_id) => {
-        dispatch(actions.acceptBookedTrip({"id" : booked_id}))
+    const acceptBookingClick = (booked_id, status) => {
+        dispatch(actions.acceptBookedTrip({"id" : booked_id, "status": status}))
     };
 
     const onFocusChange = () => {
@@ -288,12 +288,12 @@ const Calendar = () => {
                     </div>
                     {tab === 1 &&  overview_trips && overview_trips.map((item) => {
                         return (moment(item.trip_day).isSameOrAfter(moment(), 'day') &&
-                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)} acceptBookingClick={()=> acceptBookingClick(item.id)} />)
+                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)} onAcceptClick={()=> acceptBookingClick(item.id, true)} onRejectClick={()=> acceptBookingClick(item.id, false)} />)
 
                     })}
                     {tab === 2 &&  overview_trips && overview_trips.map((item) => {
                         return (moment(item.trip_day).isBefore(moment(), 'day') &&
-                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)} acceptBookingClick={()=> acceptBookingClick(item.id)}/>)
+                            <BookedTripItem key={item.id} item={item} onBookedTripClick={() => onBookedTripClick(item.id)} onContactClick={() => onContactClick(item.traveler_id, item.driver_id, item.id)} onAcceptClick={()=> acceptBookingClick(item.id, true)} onRejectClick={()=> acceptBookingClick(item.id, false)}/>)
                     })}
 
                 </div>

@@ -258,6 +258,7 @@
             "date": "Дата",
             "travelers": "Пассажиры",
             "btn_accept": "Утвердить",
+            "btn_reject": "Отклонить",
             "btn_cancelation": "Отмена",
             "btn_details": "Детали",
             "review_added": "Отзыв написан",
