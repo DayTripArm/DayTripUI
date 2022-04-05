@@ -1,4 +1,4 @@
-export const HOST_URL = "http://localhost:3000";
+export const HOST_URL = "http://137.184.128.54:3000";
 export const TRAVELER_TYPE = "1";
 export const DRIVER_TYPE = "2";
 

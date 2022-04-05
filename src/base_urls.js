@@ -1,4 +1,4 @@
-const HOST = "http://104.197.178.29/api";
+const HOST = "http://137.184.128.54/api";
 //const HOST = "http://localhost:3000/api";
 
 export default {
