@@ -74,6 +74,19 @@ export const IconCalendar = ({ className, view, fill = defaultFill }) => (
     />
   </SvgIcon>
 );
+
+export const IconBookedCalendar = ({ className, view, fill = defaultFill }) => (
+    <SvgIcon width='24' height='24' viewBox='0 0 24 24' className={className}>
+        <path
+    className={view}
+    fill={fill}
+    fillRule='evenodd'
+    clipRule='evenodd'
+    d='M6.5 2C5.67157 2 5 2.67157 5 3.5V4H4C2.89543 4 2 4.89543 2 6V8H22V6C22 4.89543 21.1046 4 20 4H19V3.5C19 2.67157 18.3284 2 17.5 2C16.6716 2 16 2.67157 16 3.5V4H8V3.5C8 2.67157 7.32843 2 6.5 2ZM22 9H2V20C2 21.1046 2.89543 22 4 22H20C21.1046 22 22 21.1046 22 20V9ZM4 13C4 13.5523 4.44772 14 5 14H7C7.55228 14 8 13.5523 8 13V12C8 11.4477 7.55228 11 7 11H5C4.44772 11 4 11.4477 4 12V13ZM5 19C4.44772 19 4 18.5523 4 18V17C4 16.4477 4.44772 16 5 16H7C7.55228 16 8 16.4477 8 17V18C8 18.5523 7.55228 19 7 19H5ZM10 13C10 13.5523 10.4477 14 11 14H13C13.5523 14 14 13.5523 14 13V12C14 11.4477 13.5523 11 13 11H11C10.4477 11 10 11.4477 10 12V13ZM11 19C10.4477 19 10 18.5523 10 18V17C10 16.4477 10.4477 16 11 16H13C13.5523 16 14 16.4477 14 17V18C14 18.5523 13.5523 19 13 19H11ZM16 13C16 13.5523 16.4477 14 17 14H19C19.5523 14 20 13.5523 20 13V12C20 11.4477 19.5523 11 19 11H17C16.4477 11 16 11.4477 16 12V13ZM17 19C16.4477 19 16 18.5523 16 18V17C16 16.4477 16.4477 16 17 16H19C19.5523 16 20 16.4477 20 17V18C20 18.5523 19.5523 19 19 19H17Z'
+    />
+    <circle  cx="20" cy="4" r="4" fill="red"/>
+    </SvgIcon>
+);
 export const IconCar = ({ className, view, fill = defaultFill }) => (
   <SvgIcon width='24' height='24' viewBox='0 0 24 24' className={className}>
     <path
@@ -316,6 +329,18 @@ export const IconMessage = ({ className, view, fill = defaultFill }) => (
       fill={fill}
     />
   </SvgIcon>
+);
+export const IconUnreadMessage = ({ className, view, fill = defaultFill }) => (
+    <SvgIcon width='24' height='24' viewBox='0 0 24 24' className={className}>
+        <path
+    fillRule='evenodd'
+    clipRule='evenodd'
+    d='M4 3C2.89543 3 2 3.89543 2 5V17C2 18.1046 2.89543 19 4 19H17.7662L22 23.0007L22 17.0067L22 17V5C22 3.89543 21.1046 3 20 3H4ZM6 8H18V10H6V8ZM18 12H6V14H18V12Z'
+    className={className}
+    fill={fill}
+    />
+    <circle  cx="20" cy="4" r="4" fill="red"/>
+    </SvgIcon>
 );
 export const IconMinus = ({ className, view, fill = defaultFill }) => (
   <SvgIcon width='24' height='24' viewBox='0 0 24 24' className={className}>

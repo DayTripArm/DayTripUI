@@ -500,6 +500,24 @@ function* confirmTripBookingCheckout(action) {
     }
 }
 
+function* acceptBookedTrip(action) {
+    const {body} = action;
+
+    try {
+        const {response, error} = yield call(Api.acceptBookedTrip, body);
+
+        if (response) {
+            yield put(actions.getBookedTripsRequest(response.data.driver_id, localStorage.userType));
+        } else {
+            console.log(" err ", error.response);
+            yield put(actions.acceptBookedTripReceiveError(error.response));
+        }
+
+    } catch (e) {
+        console.log(" error ", e);
+    }
+}
+
 function* getBookedTripsRequest(action) {
     try {
         const {driver_id, user_type} = action;
@@ -782,6 +800,7 @@ function* watcherSaga() {
     yield takeEvery(actions.UPDATE_CALENDAR_SETTINGS_REQUEST, updateCalendarSettingsRequest);
     yield takeEvery(actions.DRIVERS_LIST_REQUEST, driversListRequest);
     yield takeEvery(actions.CONFIRM_CHECKOUT_RECEIVE, confirmTripBookingCheckout);
+    yield takeEvery(actions.ACCEPT_BOOKING_RECEIVE, acceptBookedTrip);
     yield takeEvery(actions.BOOKED_TRIPS_REQUEST, getBookedTripsRequest);
     yield takeEvery(actions.BOOKED_TRIP_REQUEST, getBookedTripRequest);
     yield takeEvery(actions.PRICES_LIST_REQUEST, loadPricesListRequest);

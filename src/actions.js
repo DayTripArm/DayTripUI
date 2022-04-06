@@ -421,6 +421,18 @@ const actions  = {
         response
     }),
 
+    ACCEPT_BOOKING_RECEIVE: `${nameSpace}_ACCEPT_BOOKING_RECEIVE`,
+    acceptBookedTrip: (body) => ({
+    type: actions.ACCEPT_BOOKING_RECEIVE,
+    body
+}),
+
+    ACCEPT_BOOKING_RECEIVE_RECEIVE_ERROR: `${nameSpace}_ACCEPT_BOOKING_RECEIVE_RECEIVE_ERROR`,
+    acceptBookedTripReceiveError: (response) => ({
+    type: actions.ACCEPT_BOOKING_RECEIVE_RECEIVE_ERROR,
+    response
+}),
+
     BOOKED_TRIPS_REQUEST: `${nameSpace}_BOOKED_TRIPS_REQUEST`,
     getBookedTripsRequest: (driver_id, user_type) => ({
         type: actions.BOOKED_TRIPS_REQUEST,

@@ -207,6 +207,16 @@ const driverData = (state = INITIAL_STATE, action) => {
             }
         }
 
+        case actions.ACCEPT_BOOKING_RECEIVE_RECEIVE_ERROR: {
+            const {response} = action;
+            const {data} = response;
+
+            return {
+                ...state,
+                accept_booked_trip_errors: data
+        }
+        }
+
         default:
             return state;
     }

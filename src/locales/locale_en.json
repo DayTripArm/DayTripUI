@@ -257,6 +257,8 @@
         "trip_card": {
             "date": "Date",
             "travelers": "Travelers",
+            "btn_accept": "Accept",
+            "btn_reject": "Reject",
             "btn_cancelation": "Cancelation",
             "btn_details": "Details",
             "review_added": "Already wrote a review",

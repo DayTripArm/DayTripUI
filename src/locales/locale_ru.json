@@ -257,6 +257,8 @@
         "trip_card": {
             "date": "Дата",
             "travelers": "Пассажиры",
+            "btn_accept": "Утвердить",
+            "btn_reject": "Отклонить",
             "btn_cancelation": "Отмена",
             "btn_details": "Детали",
             "review_added": "Отзыв написан",
@@ -264,7 +266,7 @@
             "driver_rating": "Оценка водителя",
             "rating_text": "Оценить",
             "contact_driver": "Связь с водителем",
-            "contact_traveler": "Связь с водителем",
+            "contact_traveler": "Связь с пассажиром",
             "rate_review": "Отзыв и оценка",
             "see_review": "УВИДЕТЬ ВАШУ ОЦЕНКУ",
             "slider": {
